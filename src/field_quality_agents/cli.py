@@ -10,11 +10,11 @@ from __future__ import annotations
 import argparse
 import sys
 from collections.abc import Sequence
+from pathlib import Path
 
 from field_quality_agents import __version__
 
 _NOT_IMPLEMENTED = {
-    "data": "Q1 (NHTSA data)",
     "baseline": "Q3 (linear baseline)",
     "run": "Q8 (end-to-end run)",
     "issues": "Q8 (issue agent)",
@@ -34,6 +34,18 @@ def build_parser() -> argparse.ArgumentParser:
     sub = parser.add_subparsers(dest="command", required=True, metavar="COMMAND")
 
     data = sub.add_parser("data", help="fetch and derive the NHTSA data (Q1)")
+    data.add_argument(
+        "--refresh",
+        action="store_true",
+        help="re-download every NHTSA source before building",
+    )
+    data.add_argument(
+        "--skip-fetch",
+        action="store_true",
+        help="build from the existing data/raw files",
+    )
+    data.add_argument("--raw-dir", default="data/raw", help="raw data directory")
+    data.add_argument("--out-dir", default="data", help="derived data directory")
     data.set_defaults(handler="data")
 
     baseline = sub.add_parser("baseline", help="run the linear baseline (Q3)")
@@ -73,9 +85,34 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
+def _run_data(args: argparse.Namespace) -> int:
+    from field_quality_agents.data.build import build_all
+    from field_quality_agents.data.fetch import fetch_nhtsa
+
+    raw_dir = Path(args.raw_dir)
+    out_dir = Path(args.out_dir)
+    if not args.skip_fetch:
+        files = fetch_nhtsa(raw_dir, force=bool(args.refresh))
+        print(f"data: {len(files)} source file(s) recorded in {out_dir / 'SNAPSHOT.json'}")
+    result = build_all(raw_dir=raw_dir, out_dir=out_dir)
+    complaints = result.stats.get("complaints", {})
+    if isinstance(complaints, dict):
+        print(
+            "data: {eligible} eligible complaint(s) from {distinct} distinct".format(
+                eligible=complaints.get("eligible_complaints", 0),
+                distinct=complaints.get("distinct_complaints", 0),
+            )
+        )
+    for path in result.outputs:
+        print(f"data: wrote {path}")
+    return 0
+
+
 def main(argv: Sequence[str] | None = None) -> int:
     parser = build_parser()
     args = parser.parse_args(argv)
+    if args.handler == "data":
+        return _run_data(args)
     lane = _NOT_IMPLEMENTED[args.handler]
     print(
         f"fqa {args.command}: not implemented in the Q0 scaffold; this lands in {lane}.",

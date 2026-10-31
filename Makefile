@@ -9,7 +9,7 @@ setup:
 	cd web && npm install
 
 fetch-data:
-	$(FQA) data
+	$(FQA) data --refresh
 
 data:
 	$(FQA) data

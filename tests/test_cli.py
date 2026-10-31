@@ -25,7 +25,14 @@ def test_run_rejects_live_mode() -> None:
 
 
 def test_stub_exits_nonzero_with_lane(capsys: pytest.CaptureFixture[str]) -> None:
-    assert main(["data"]) == 2
+    assert main(["baseline"]) == 2
     captured = capsys.readouterr()
-    assert "Q1" in captured.err
+    assert "Q3" in captured.err
     assert captured.out == ""
+
+
+def test_data_parser_accepts_refresh_and_skip_fetch() -> None:
+    parser = build_parser()
+    assert parser.parse_args(["data", "--refresh"]).refresh is True
+    assert parser.parse_args(["data", "--skip-fetch"]).skip_fetch is True
+    assert parser.parse_args(["data", "--raw-dir", "raw"]).raw_dir == "raw"
