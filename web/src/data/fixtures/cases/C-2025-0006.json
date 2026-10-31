@@ -1,0 +1,224 @@
+{
+  "case": {
+    "id": "C-2025-0006",
+    "received_at": "2025-06-03",
+    "make": "Halcyon",
+    "model": "Nimbus",
+    "year": 2022,
+    "component": "Electrical system: tail lamp",
+    "narrative": "Both rear tail lamps fill with condensation after rain and the left lamp stopped working twice this month. Two neighbours reported the same fault on the same model and year.",
+    "group": "lighting",
+    "status": "issue_linked",
+    "safety_relevant": true,
+    "source": "nhtsa",
+    "source_id": "SRC-0006",
+    "mileage": 54870
+  },
+  "extraction": {
+    "case_id": "C-2025-0006",
+    "group": "lighting",
+    "summary": "Water ingress in both rear lamp assemblies with repeat lamp failure.",
+    "symptoms": ["Both rear tail lamps fill with condensation", "left lamp stopped working twice this month"],
+    "conditions": ["after rain"],
+    "fault_codes": [],
+    "clues": [
+      { "kind": "symptom", "quote": "Both rear tail lamps fill with condensation" },
+      { "kind": "condition", "quote": "after rain" },
+      { "kind": "safety", "quote": "left lamp stopped working twice this month" }
+    ],
+    "safety_relevant": true
+  },
+  "proposal": {
+    "case_id": "C-2025-0006",
+    "kind": "evidence_pack",
+    "summary": "Link this report to issue I-2025-0001 and recall R-24V-118",
+    "rationale": "The cluster is above its Poisson threshold, two neighbours report the same fault, and a matching recall exists. A human safety review comes before any test.",
+    "targeted_test": null,
+    "evidence": [
+      {
+        "source_type": "case",
+        "source_id": "C-2025-0006",
+        "quote": "Both rear tail lamps fill with condensation",
+        "verified": true
+      },
+      {
+        "source_type": "recall",
+        "source_id": "R-24V-118",
+        "quote": "water may enter the rear lamp assembly",
+        "verified": true
+      },
+      {
+        "source_type": "case",
+        "source_id": "C-2025-0006",
+        "quote": "two neighbours reported the same fault",
+        "verified": false
+      }
+    ],
+    "requested_info": [],
+    "created_at": "2025-06-03T15:44:18Z"
+  },
+  "trace": [
+    {
+      "step": 1,
+      "agent": "supervisor",
+      "action": "Routed to intake",
+      "reason": "New report; no extraction yet.",
+      "tool": null,
+      "tool_input": null,
+      "tool_output": null,
+      "started_at": "2025-06-03T15:39:02Z",
+      "duration_ms": 2,
+      "tokens": 0,
+      "cost_usd": 0
+    },
+    {
+      "step": 2,
+      "agent": "intake",
+      "action": "Normalised the report",
+      "reason": "Extracted the condensation symptom and flagged the repeat lamp failure.",
+      "tool": null,
+      "tool_input": null,
+      "tool_output": null,
+      "started_at": "2025-06-03T15:39:08Z",
+      "duration_ms": 1250,
+      "tokens": 900,
+      "cost_usd": 0.003
+    },
+    {
+      "step": 3,
+      "agent": "supervisor",
+      "action": "Escalated to a human before analysis",
+      "reason": "Safety flag on the report; a person decides before any further agent action.",
+      "tool": null,
+      "tool_input": null,
+      "tool_output": null,
+      "started_at": "2025-06-03T15:39:09Z",
+      "duration_ms": 2,
+      "tokens": 0,
+      "cost_usd": 0
+    },
+    {
+      "step": 4,
+      "agent": "human",
+      "action": "Opened a safety review",
+      "reason": "Reduced rear visibility is a safety concern; continue with evidence gathering.",
+      "tool": null,
+      "tool_input": null,
+      "tool_output": null,
+      "started_at": "2025-06-03T15:41:20Z",
+      "duration_ms": 0,
+      "tokens": 0,
+      "cost_usd": 0
+    },
+    {
+      "step": 5,
+      "agent": "analysis",
+      "action": "Checked the cluster",
+      "reason": "Three reports in four weeks on the same model and year.",
+      "tool": "cluster_stats",
+      "tool_input": { "make": "Halcyon", "model": "Nimbus", "year": 2022, "group": "lighting" },
+      "tool_output": { "observed": 12, "threshold": 4.6, "spike": true },
+      "started_at": "2025-06-03T15:41:31Z",
+      "duration_ms": 480,
+      "tokens": 320,
+      "cost_usd": 0.0012
+    },
+    {
+      "step": 6,
+      "agent": "analysis",
+      "action": "Checked recalls and investigations",
+      "reason": "A matching recall would connect the cluster to a known remedy.",
+      "tool": "recalls_for",
+      "tool_input": { "make": "Halcyon", "model": "Nimbus", "year": 2022, "group": "lighting" },
+      "tool_output": { "matches": 1, "recall_id": "R-24V-118" },
+      "started_at": "2025-06-03T15:41:34Z",
+      "duration_ms": 390,
+      "tokens": 260,
+      "cost_usd": 0.0009
+    },
+    {
+      "step": 7,
+      "agent": "analysis",
+      "action": "Verified 2 of 3 quotes",
+      "reason": "The neighbour claim is not in the source narrative and was dropped from evidence.",
+      "tool": "verify_quotes",
+      "tool_input": { "quotes": 3 },
+      "tool_output": { "verified": 2, "dropped": 1 },
+      "started_at": "2025-06-03T15:41:37Z",
+      "duration_ms": 240,
+      "tokens": 170,
+      "cost_usd": 0.0006
+    },
+    {
+      "step": 8,
+      "agent": "analysis",
+      "action": "Drafted an evidence pack",
+      "reason": "The cluster, the recall match and verified quotes justify an issue link.",
+      "tool": null,
+      "tool_input": null,
+      "tool_output": null,
+      "started_at": "2025-06-03T15:44:18Z",
+      "duration_ms": 2810,
+      "tokens": 1740,
+      "cost_usd": 0.0061
+    },
+    {
+      "step": 9,
+      "agent": "human",
+      "action": "Approved the evidence pack and issue link",
+      "reason": "Verified quotes and a matching recall; link to I-2025-0001.",
+      "tool": null,
+      "tool_input": null,
+      "tool_output": null,
+      "started_at": "2025-06-03T16:02:44Z",
+      "duration_ms": 0,
+      "tokens": 0,
+      "cost_usd": 0
+    }
+  ],
+  "decision": {
+    "case_id": "C-2025-0006",
+    "action": "approve",
+    "actor": "live_engineer",
+    "rationale": "Safety review done. Verified evidence supports the issue link.",
+    "decided_at": "2025-06-03T16:02:44Z",
+    "proposal_kind": "evidence_pack",
+    "edited_proposal": null
+  },
+  "similar_cases": [
+    {
+      "id": "C-2025-0014",
+      "score": 0.9321,
+      "make": "Halcyon",
+      "model": "Nimbus",
+      "year": 2022,
+      "group": "lighting",
+      "excerpt": "Condensation in both rear lamps after rain; left lamp failed."
+    },
+    {
+      "id": "C-2025-0019",
+      "score": 0.9187,
+      "make": "Halcyon",
+      "model": "Nimbus",
+      "year": 2022,
+      "group": "lighting",
+      "excerpt": "Water droplets in the tail lamp; same build month."
+    }
+  ],
+  "recalls": [
+    {
+      "id": "R-24V-118",
+      "summary": "Water may enter the rear lamp assembly and cause a loss of tail lamps",
+      "open_date": "2024-10-07",
+      "match": true
+    }
+  ],
+  "investigations": [
+    {
+      "id": "IN-2025-004",
+      "summary": "Rear lamp water ingress on Halcyon Nimbus 2022",
+      "open_date": "2025-05-20",
+      "match": true
+    }
+  ]
+}

@@ -31,6 +31,30 @@ export const STATUS_META: Record<CaseStatus, StatusMeta> = {
   issue_linked: { label: "Issue linked", tone: "issue", cssVar: "--status-issue" },
 };
 
+export interface BoardColumn {
+  id: CaseStatus;
+  /** Column heading. Intake and analysis are separate columns that share the
+   * "In agent" status tone, per PLAN §6 and DESIGN.md's six-column board. */
+  header: string;
+  tone: StatusTone;
+  statuses: CaseStatus[];
+}
+
+/** The six PLAN §6 board columns, in workflow order. */
+export const BOARD_COLUMNS: BoardColumn[] = [
+  { id: "new", header: "New", tone: "new", statuses: ["new"] },
+  { id: "intake", header: "Intake", tone: "in_agent", statuses: ["intake"] },
+  { id: "analysis", header: "Analysis", tone: "in_agent", statuses: ["analysis"] },
+  {
+    id: "needs_engineer",
+    header: "Needs engineer",
+    tone: "needs_engineer",
+    statuses: ["needs_engineer"],
+  },
+  { id: "decided", header: "Decided", tone: "decided", statuses: ["decided"] },
+  { id: "issue_linked", header: "Issue-linked", tone: "issue", statuses: ["issue_linked"] },
+];
+
 export function statusTone(status: CaseStatus): StatusTone {
   return STATUS_META[status].tone;
 }
@@ -39,11 +63,16 @@ export function statusLabel(status: CaseStatus): string {
   return STATUS_META[status].label;
 }
 
-/** Statuses shown as board columns; intake and analysis share the "in agent" column. */
-export const BOARD_COLUMNS: { tone: StatusTone; label: string; statuses: CaseStatus[] }[] = [
-  { tone: "new", label: "New", statuses: ["new"] },
-  { tone: "in_agent", label: "In agent", statuses: ["intake", "analysis"] },
-  { tone: "needs_engineer", label: "Needs engineer", statuses: ["needs_engineer"] },
-  { tone: "decided", label: "Decided", statuses: ["decided"] },
-  { tone: "issue", label: "Issue-linked", statuses: ["issue_linked"] },
-];
+export function isCaseStatus(value: unknown): value is CaseStatus {
+  return typeof value === "string" && (CASE_STATUSES as readonly string[]).includes(value);
+}
+
+export function isStatusTone(value: unknown): value is StatusTone {
+  return (
+    value === "new" ||
+    value === "in_agent" ||
+    value === "needs_engineer" ||
+    value === "decided" ||
+    value === "issue"
+  );
+}

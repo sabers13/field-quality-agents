@@ -1,0 +1,203 @@
+{
+  "case": {
+    "id": "C-2025-0004",
+    "received_at": "2025-06-07",
+    "make": "Halcyon",
+    "model": "Nimbus",
+    "year": 2023,
+    "component": "Electrical system: rear camera",
+    "narrative": "Rear camera shows a blue screen when the boot is wet. It clears after 20 minutes of driving. The dealer replaced the camera once and the fault returned two weeks later.",
+    "group": "adas",
+    "status": "needs_engineer",
+    "safety_relevant": false,
+    "source": "nhtsa",
+    "source_id": "SRC-0004",
+    "mileage": 36110
+  },
+  "extraction": {
+    "case_id": "C-2025-0004",
+    "group": "adas",
+    "summary": "Rear camera drops to a blue screen after water ingress; repeat repair.",
+    "symptoms": ["Rear camera shows a blue screen"],
+    "conditions": ["when the boot is wet", "clears after 20 minutes of driving"],
+    "fault_codes": [],
+    "clues": [
+      { "kind": "symptom", "quote": "Rear camera shows a blue screen" },
+      { "kind": "condition", "quote": "when the boot is wet" },
+      { "kind": "other", "quote": "replaced the camera once" }
+    ],
+    "safety_relevant": false
+  },
+  "proposal": {
+    "case_id": "C-2025-0004",
+    "kind": "targeted_load_test",
+    "summary": "Run a 4-hour humidity soak on the rear camera harness",
+    "rationale": "The fault needs water at the boot and survived a camera replacement, so the harness seal is the likely path. A humidity soak reproduces it without waiting for rain.",
+    "targeted_test": {
+      "name": "Rear camera harness humidity soak",
+      "conditions": ["85% relative humidity", "4 hours", "operate the camera every 15 minutes"],
+      "reason": "Water-dependent repeat failure after a camera swap points at the harness seal, not the camera."
+    },
+    "evidence": [
+      {
+        "source_type": "case",
+        "source_id": "C-2025-0004",
+        "quote": "Rear camera shows a blue screen",
+        "verified": true
+      },
+      {
+        "source_type": "case",
+        "source_id": "C-2025-0004",
+        "quote": "replaced the camera once",
+        "verified": true
+      }
+    ],
+    "requested_info": [],
+    "created_at": "2025-06-07T11:12:09Z"
+  },
+  "trace": [
+    {
+      "step": 1,
+      "agent": "supervisor",
+      "action": "Routed to intake",
+      "reason": "New report; no extraction yet.",
+      "tool": null,
+      "tool_input": null,
+      "tool_output": null,
+      "started_at": "2025-06-07T11:08:20Z",
+      "duration_ms": 2,
+      "tokens": 0,
+      "cost_usd": 0
+    },
+    {
+      "step": 2,
+      "agent": "intake",
+      "action": "Normalised the report",
+      "reason": "Extracted the symptom, the wet-boot condition and the previous repair.",
+      "tool": null,
+      "tool_input": null,
+      "tool_output": null,
+      "started_at": "2025-06-07T11:08:27Z",
+      "duration_ms": 1310,
+      "tokens": 910,
+      "cost_usd": 0.0031
+    },
+    {
+      "step": 3,
+      "agent": "analysis",
+      "action": "Searched similar cases",
+      "reason": "Repeat repair after a wet condition is a strong signal for a harness fault.",
+      "tool": "similar_cases",
+      "tool_input": { "text": "rear camera blue screen water ingress", "k": 5 },
+      "tool_output": { "matches": 3, "top_score": 0.9012 },
+      "started_at": "2025-06-07T11:08:33Z",
+      "duration_ms": 1980,
+      "tokens": 1190,
+      "cost_usd": 0.0042
+    },
+    {
+      "step": 4,
+      "agent": "analysis",
+      "action": "Applied the rulebook",
+      "reason": "A water condition maps to a humidity and condensation test.",
+      "tool": "rulebook",
+      "tool_input": { "conditions": ["wet", "repeat repair"] },
+      "tool_output": { "tests": ["humidity soak", "condensation test"] },
+      "started_at": "2025-06-07T11:08:37Z",
+      "duration_ms": 180,
+      "tokens": 120,
+      "cost_usd": 0.0004
+    },
+    {
+      "step": 5,
+      "agent": "analysis",
+      "action": "Verified 2 of 2 quotes",
+      "reason": "Both evidence quotes are verbatim in the case narrative.",
+      "tool": "verify_quotes",
+      "tool_input": { "quotes": 2 },
+      "tool_output": { "verified": 2, "dropped": 0 },
+      "started_at": "2025-06-07T11:08:39Z",
+      "duration_ms": 210,
+      "tokens": 150,
+      "cost_usd": 0.0005
+    },
+    {
+      "step": 6,
+      "agent": "analysis",
+      "action": "Drafted a targeted test",
+      "reason": "A humidity soak tests the harness seal directly.",
+      "tool": null,
+      "tool_input": null,
+      "tool_output": null,
+      "started_at": "2025-06-07T11:12:09Z",
+      "duration_ms": 2410,
+      "tokens": 1490,
+      "cost_usd": 0.0052
+    },
+    {
+      "step": 7,
+      "agent": "supervisor",
+      "action": "Queued the proposal for a human decision",
+      "reason": "A targeted test needs an engineer's approval before it is scheduled.",
+      "tool": null,
+      "tool_input": null,
+      "tool_output": null,
+      "started_at": "2025-06-07T11:12:10Z",
+      "duration_ms": 2,
+      "tokens": 0,
+      "cost_usd": 0
+    },
+    {
+      "step": 8,
+      "agent": "human",
+      "action": "Requested engineer decision",
+      "reason": "Waiting for approve, override or ask on the humidity soak.",
+      "tool": null,
+      "tool_input": null,
+      "tool_output": null,
+      "started_at": "2025-06-07T11:12:10Z",
+      "duration_ms": 0,
+      "tokens": 0,
+      "cost_usd": 0
+    }
+  ],
+  "decision": null,
+  "similar_cases": [
+    {
+      "id": "C-2024-1188",
+      "score": 0.9012,
+      "make": "Halcyon",
+      "model": "Nimbus",
+      "year": 2022,
+      "group": "adas",
+      "excerpt": "Rear camera blank after rain; harness seal replaced, camera reused."
+    },
+    {
+      "id": "C-2024-0531",
+      "score": 0.8345,
+      "make": "Halcyon",
+      "model": "Nimbus",
+      "year": 2023,
+      "group": "adas",
+      "excerpt": "Blue screen after a car wash; water in the tailgate connector."
+    },
+    {
+      "id": "C-2023-2011",
+      "score": 0.7022,
+      "make": "Meridian",
+      "model": "Vela",
+      "year": 2022,
+      "group": "adas",
+      "excerpt": "Camera fault fixed by reseating the harness grommet."
+    }
+  ],
+  "recalls": [
+    {
+      "id": "R-23V-217",
+      "summary": "Rear camera image may be delayed at low temperature",
+      "open_date": "2023-05-30",
+      "match": false
+    }
+  ],
+  "investigations": []
+}

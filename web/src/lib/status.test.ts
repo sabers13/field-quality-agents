@@ -11,9 +11,22 @@ describe("case status mapping", () => {
     }
   });
 
-  it("groups intake and analysis under the in-agent column", () => {
-    const inAgent = BOARD_COLUMNS.find((column) => column.tone === "in_agent");
-    expect(inAgent?.statuses).toEqual(["intake", "analysis"]);
+  it("keeps six board columns while intake and analysis share the in-agent tone", () => {
+    expect(BOARD_COLUMNS).toHaveLength(6);
+    expect(BOARD_COLUMNS.map((column) => column.id)).toEqual([
+      "new",
+      "intake",
+      "analysis",
+      "needs_engineer",
+      "decided",
+      "issue_linked",
+    ]);
+    const intake = BOARD_COLUMNS.find((column) => column.id === "intake");
+    const analysis = BOARD_COLUMNS.find((column) => column.id === "analysis");
+    expect(intake?.statuses).toEqual(["intake"]);
+    expect(analysis?.statuses).toEqual(["analysis"]);
+    expect(intake?.tone).toBe("in_agent");
+    expect(analysis?.tone).toBe("in_agent");
     expect(statusTone("analysis")).toBe("in_agent");
   });
 

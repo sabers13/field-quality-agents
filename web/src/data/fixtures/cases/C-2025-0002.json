@@ -1,0 +1,119 @@
+{
+  "case": {
+    "id": "C-2025-0002",
+    "received_at": "2025-06-08",
+    "make": "Meridian",
+    "model": "Aster",
+    "year": 2022,
+    "component": "Electrical system: charge port",
+    "narrative": "Owner reports the charge port door opens on its own in cold weather. It happens below freezing and only after a wash. The dealer has not seen the fault.",
+    "group": "charging",
+    "status": "intake",
+    "safety_relevant": false,
+    "source": "nhtsa",
+    "source_id": "SRC-0002",
+    "mileage": 42780
+  },
+  "extraction": {
+    "case_id": "C-2025-0002",
+    "group": "charging",
+    "summary": "Charge port door opens by itself in cold, wet conditions.",
+    "symptoms": ["charge port door opens on its own"],
+    "conditions": ["below freezing", "after a wash"],
+    "fault_codes": [],
+    "clues": [
+      { "kind": "symptom", "quote": "charge port door opens on its own" },
+      { "kind": "condition", "quote": "below freezing" },
+      { "kind": "condition", "quote": "after a wash" }
+    ],
+    "safety_relevant": false
+  },
+  "proposal": {
+    "case_id": "C-2025-0002",
+    "kind": "request_info",
+    "summary": "Ask for build date and charge-port service history",
+    "rationale": "The report names a cold-weather condition but gives no build date or repair history, so a group-specific test cannot be chosen yet.",
+    "targeted_test": null,
+    "evidence": [
+      {
+        "source_type": "case",
+        "source_id": "C-2025-0002",
+        "quote": "charge port door opens on its own",
+        "verified": true
+      }
+    ],
+    "requested_info": ["Build date", "Charge-port service history", "Whether the door latch was replaced"],
+    "created_at": "2025-06-08T14:02:11Z"
+  },
+  "trace": [
+    {
+      "step": 1,
+      "agent": "supervisor",
+      "action": "Routed to intake",
+      "reason": "New report has no extraction yet; intake runs first.",
+      "tool": null,
+      "tool_input": null,
+      "tool_output": null,
+      "started_at": "2025-06-08T14:01:48Z",
+      "duration_ms": 3,
+      "tokens": 0,
+      "cost_usd": 0
+    },
+    {
+      "step": 2,
+      "agent": "intake",
+      "action": "Normalised the report",
+      "reason": "Extracted the symptom and two conditions, all as verbatim spans.",
+      "tool": "similar_cases",
+      "tool_input": { "text": "charge port door opens in cold weather", "k": 5 },
+      "tool_output": { "matches": 2, "top_score": 0.8124 },
+      "started_at": "2025-06-08T14:01:54Z",
+      "duration_ms": 1840,
+      "tokens": 1180,
+      "cost_usd": 0.0041
+    },
+    {
+      "step": 3,
+      "agent": "intake",
+      "action": "Drafted an information request",
+      "reason": "Missing build date and repair history; the proposal is a request, not a test.",
+      "tool": null,
+      "tool_input": null,
+      "tool_output": null,
+      "started_at": "2025-06-08T14:02:11Z",
+      "duration_ms": 920,
+      "tokens": 640,
+      "cost_usd": 0.0022
+    }
+  ],
+  "decision": null,
+  "similar_cases": [
+    {
+      "id": "C-2024-0412",
+      "score": 0.8124,
+      "make": "Meridian",
+      "model": "Aster",
+      "year": 2022,
+      "group": "charging",
+      "excerpt": "Charge door popped open twice during a freeze; latch replaced under warranty."
+    },
+    {
+      "id": "C-2023-1180",
+      "score": 0.7411,
+      "make": "Meridian",
+      "model": "Vela",
+      "year": 2023,
+      "group": "charging",
+      "excerpt": "Port door opened after a car wash; water found in the latch connector."
+    }
+  ],
+  "recalls": [
+    {
+      "id": "R-23V-402",
+      "summary": "Charge port latch may stick in freezing conditions",
+      "open_date": "2023-08-14",
+      "match": false
+    }
+  ],
+  "investigations": []
+}

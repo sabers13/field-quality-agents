@@ -1,0 +1,197 @@
+{
+  "before": {
+    "cases": 600,
+    "group_macro_f1": { "value": 0.41, "ci_low": 0.37, "ci_high": 0.45, "n": 600 },
+    "group_coverage": { "value": 0.78, "ci_low": 0.74, "ci_high": 0.81, "n": 600 },
+    "safety_precision": { "value": 0.55, "ci_low": 0.49, "ci_high": 0.61, "n": 142 },
+    "safety_recall": { "value": 0.62, "ci_low": 0.56, "ci_high": 0.68, "n": 142 },
+    "quote_grounding_rate": null,
+    "citation_validity_rate": null,
+    "targeted_test_share": { "value": 0.18, "ci_low": 0.15, "ci_high": 0.21, "n": 484 },
+    "targeted_test_with_quote_share": { "value": 0, "ci_low": 0, "ci_high": 0, "n": 87 },
+    "issue_precision": { "value": 0.33, "ci_low": 0.24, "ci_high": 0.43, "n": 48 },
+    "issue_median_lead_days": 4.5,
+    "issue_base_rate": 0.021,
+    "recall_link_match_rate": { "value": 0.12, "ci_low": 0.08, "ci_high": 0.17, "n": 87 },
+    "human_touches_per_case": 0.4,
+    "decided_without_edits_share": 0.85,
+    "steps_per_case": 0,
+    "cost_per_1000_cases_usd": 0.12,
+    "latency_p50_ms": 2,
+    "latency_p95_ms": 4,
+    "budget_hits": 0
+  },
+  "after": {
+    "cases": 600,
+    "group_macro_f1": { "value": 0.68, "ci_low": 0.64, "ci_high": 0.71, "n": 600 },
+    "group_coverage": { "value": 0.94, "ci_low": 0.92, "ci_high": 0.96, "n": 600 },
+    "safety_precision": { "value": 0.81, "ci_low": 0.75, "ci_high": 0.86, "n": 142 },
+    "safety_recall": { "value": 0.88, "ci_low": 0.83, "ci_high": 0.92, "n": 142 },
+    "quote_grounding_rate": { "value": 0.93, "ci_low": 0.9, "ci_high": 0.95, "n": 366 },
+    "citation_validity_rate": { "value": 0.97, "ci_low": 0.95, "ci_high": 0.98, "n": 366 },
+    "targeted_test_share": { "value": 0.61, "ci_low": 0.57, "ci_high": 0.65, "n": 484 },
+    "targeted_test_with_quote_share": { "value": 0.88, "ci_low": 0.84, "ci_high": 0.91, "n": 295 },
+    "issue_precision": { "value": 0.71, "ci_low": 0.62, "ci_high": 0.79, "n": 48 },
+    "issue_median_lead_days": 11.2,
+    "issue_base_rate": 0.021,
+    "recall_link_match_rate": { "value": 0.44, "ci_low": 0.37, "ci_high": 0.51, "n": 87 },
+    "human_touches_per_case": 1.6,
+    "decided_without_edits_share": 0.52,
+    "steps_per_case": 7.8,
+    "cost_per_1000_cases_usd": 5.4,
+    "latency_p50_ms": 1850,
+    "latency_p95_ms": 4100,
+    "budget_hits": 3
+  },
+  "summary": {
+    "headline": [
+      { "id": "targeted_test_share", "label": "Targeted tests", "before": 0.18, "after": 0.61, "unit": "%" },
+      { "id": "safety_recall", "label": "Safety recall", "before": 0.62, "after": 0.88, "unit": "%" },
+      { "id": "quote_grounding", "label": "Quote grounding", "before": 0, "after": 0.93, "unit": "%" },
+      { "id": "issue_precision", "label": "Issue precision", "before": 0.33, "after": 0.71, "unit": "%" }
+    ],
+    "examples": [
+      {
+        "case_id": "C-2025-0004",
+        "before": "Standard test, closed no trouble found",
+        "after": "Targeted humidity soak requested",
+        "note": "The linear pipeline saw only the component keyword; the agent picked up the wet-boot condition and a repeat repair."
+      },
+      {
+        "case_id": "C-2025-0006",
+        "before": "Priority queue, no issue opened",
+        "after": "Issue I-2025-0001 opened, linked to recall R-24V-118",
+        "note": "Cluster counts crossed the Poisson 99.9% threshold nine days before the recall was published."
+      },
+      {
+        "case_id": "C-2025-0005",
+        "before": "Targeted test, headlamp connector",
+        "after": "Standard test, closed no trouble found",
+        "note": "The reverse case: a single report with no corroborating evidence did not justify the extra test."
+      }
+    ]
+  },
+  "rows": [
+    {
+      "metric": "group_macro_f1",
+      "label": "Group macro F1",
+      "before": { "value": 0.41, "ci_low": 0.37, "ci_high": 0.45, "n": 600 },
+      "after": { "value": 0.68, "ci_low": 0.64, "ci_high": 0.71, "n": 600 },
+      "note": "Higher is better."
+    },
+    {
+      "metric": "group_coverage",
+      "label": "Group coverage",
+      "before": { "value": 0.78, "ci_low": 0.74, "ci_high": 0.81, "n": 600 },
+      "after": { "value": 0.94, "ci_low": 0.92, "ci_high": 0.96, "n": 600 }
+    },
+    {
+      "metric": "safety_precision",
+      "label": "Safety precision",
+      "before": { "value": 0.55, "ci_low": 0.49, "ci_high": 0.61, "n": 142 },
+      "after": { "value": 0.81, "ci_low": 0.75, "ci_high": 0.86, "n": 142 }
+    },
+    {
+      "metric": "safety_recall",
+      "label": "Safety recall",
+      "before": { "value": 0.62, "ci_low": 0.56, "ci_high": 0.68, "n": 142 },
+      "after": { "value": 0.88, "ci_low": 0.83, "ci_high": 0.92, "n": 142 }
+    },
+    {
+      "metric": "quote_grounding_rate",
+      "label": "Quote grounding",
+      "before": null,
+      "after": { "value": 0.93, "ci_low": 0.9, "ci_high": 0.95, "n": 366 },
+      "note": "The linear pipeline produces no quotes."
+    },
+    {
+      "metric": "citation_validity_rate",
+      "label": "Citation validity",
+      "before": null,
+      "after": { "value": 0.97, "ci_low": 0.95, "ci_high": 0.98, "n": 366 }
+    },
+    {
+      "metric": "targeted_test_share",
+      "label": "Targeted test share",
+      "before": { "value": 0.18, "ci_low": 0.15, "ci_high": 0.21, "n": 484 },
+      "after": { "value": 0.61, "ci_low": 0.57, "ci_high": 0.65, "n": 484 }
+    },
+    {
+      "metric": "targeted_test_with_quote_share",
+      "label": "Targeted test with quote",
+      "before": { "value": 0, "ci_low": 0, "ci_high": 0, "n": 87 },
+      "after": { "value": 0.88, "ci_low": 0.84, "ci_high": 0.91, "n": 295 }
+    },
+    {
+      "metric": "issue_precision",
+      "label": "Issue precision",
+      "before": { "value": 0.33, "ci_low": 0.24, "ci_high": 0.43, "n": 48 },
+      "after": { "value": 0.71, "ci_low": 0.62, "ci_high": 0.79, "n": 48 },
+      "note": "Base rate 2.1%; read precision beside it."
+    },
+    {
+      "metric": "issue_median_lead_days",
+      "label": "Issue lead time",
+      "before": 4.5,
+      "after": 11.2,
+      "note": "Median days before a matching recall or investigation."
+    },
+    {
+      "metric": "issue_base_rate",
+      "label": "Issue base rate",
+      "before": 0.021,
+      "after": 0.021,
+      "note": "Same replay set, so the base rate cannot differ."
+    },
+    {
+      "metric": "recall_link_match_rate",
+      "label": "Recall link match",
+      "before": { "value": 0.12, "ci_low": 0.08, "ci_high": 0.17, "n": 87 },
+      "after": { "value": 0.44, "ci_low": 0.37, "ci_high": 0.51, "n": 87 }
+    },
+    {
+      "metric": "human_touches_per_case",
+      "label": "Human touches / case",
+      "before": 0.4,
+      "after": 1.6,
+      "note": "More human work is the cost of the extra evidence."
+    },
+    {
+      "metric": "decided_without_edits_share",
+      "label": "Prepared without human edits",
+      "before": 0.85,
+      "after": 0.52
+    },
+    {
+      "metric": "steps_per_case",
+      "label": "Steps / case",
+      "before": 0,
+      "after": 7.8
+    },
+    {
+      "metric": "cost_per_1000_cases_usd",
+      "label": "Cost / 1,000 cases",
+      "before": 0.12,
+      "after": 5.4,
+      "note": "Recorded calls only; no list-price claims."
+    },
+    {
+      "metric": "latency_p50_ms",
+      "label": "Latency p50",
+      "before": 2,
+      "after": 1850
+    },
+    {
+      "metric": "latency_p95_ms",
+      "label": "Latency p95",
+      "before": 4,
+      "after": 4100
+    },
+    {
+      "metric": "budget_hits",
+      "label": "Budget hits",
+      "before": 0,
+      "after": 3
+    }
+  ]
+}

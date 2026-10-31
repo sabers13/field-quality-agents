@@ -1,0 +1,189 @@
+{
+  "case": {
+    "id": "C-2025-0005",
+    "received_at": "2025-06-05",
+    "make": "Meridian",
+    "model": "Aster",
+    "year": 2021,
+    "component": "Electrical system: headlamp",
+    "narrative": "Headlamp flickers at idle and both low beams failed on the same trip. The connector shows heat marks but the bulb is intact.",
+    "group": "lighting",
+    "status": "decided",
+    "safety_relevant": false,
+    "source": "nhtsa",
+    "source_id": "SRC-0005",
+    "mileage": 61240
+  },
+  "extraction": {
+    "case_id": "C-2025-0005",
+    "group": "lighting",
+    "summary": "Headlamp flicker at idle with heat marks at the connector and intact bulbs.",
+    "symptoms": ["Headlamp flickers at idle", "both low beams failed on the same trip"],
+    "conditions": ["at idle"],
+    "fault_codes": [],
+    "clues": [
+      { "kind": "symptom", "quote": "Headlamp flickers at idle" },
+      { "kind": "symptom", "quote": "both low beams failed on the same trip" },
+      { "kind": "condition", "quote": "heat marks" }
+    ],
+    "safety_relevant": false
+  },
+  "proposal": {
+    "case_id": "C-2025-0005",
+    "kind": "targeted_load_test",
+    "summary": "Run a 1-hour connector load test at idle",
+    "rationale": "Heat marks plus an idle-only flicker point at connector resistance. A loaded idle test reproduces the voltage drop without replacing parts first.",
+    "targeted_test": {
+      "name": "Headlamp connector loaded idle test",
+      "conditions": ["1 hour at idle", "both low beams on", "log connector voltage and temperature"],
+      "reason": "Idle-only flicker and heat marks indicate a high-resistance connector, not a failed bulb."
+    },
+    "evidence": [
+      {
+        "source_type": "case",
+        "source_id": "C-2025-0005",
+        "quote": "Headlamp flickers at idle",
+        "verified": true
+      },
+      {
+        "source_type": "case",
+        "source_id": "C-2025-0005",
+        "quote": "heat marks",
+        "verified": true
+      }
+    ],
+    "requested_info": [],
+    "created_at": "2025-06-05T10:04:22Z"
+  },
+  "trace": [
+    {
+      "step": 1,
+      "agent": "supervisor",
+      "action": "Routed to intake",
+      "reason": "New report; no extraction yet.",
+      "tool": null,
+      "tool_input": null,
+      "tool_output": null,
+      "started_at": "2025-06-05T09:58:02Z",
+      "duration_ms": 2,
+      "tokens": 0,
+      "cost_usd": 0
+    },
+    {
+      "step": 2,
+      "agent": "intake",
+      "action": "Normalised the report",
+      "reason": "Grouped under lighting and kept the heat-mark clue.",
+      "tool": null,
+      "tool_input": null,
+      "tool_output": null,
+      "started_at": "2025-06-05T09:58:09Z",
+      "duration_ms": 1180,
+      "tokens": 860,
+      "cost_usd": 0.0029
+    },
+    {
+      "step": 3,
+      "agent": "analysis",
+      "action": "Searched similar cases",
+      "reason": "Connector heat marks are a known lighting failure mode.",
+      "tool": "similar_cases",
+      "tool_input": { "text": "headlamp flicker heat marks connector", "k": 5 },
+      "tool_output": { "matches": 2, "top_score": 0.8456 },
+      "started_at": "2025-06-05T09:58:15Z",
+      "duration_ms": 1740,
+      "tokens": 1040,
+      "cost_usd": 0.0037
+    },
+    {
+      "step": 4,
+      "agent": "analysis",
+      "action": "Applied the rulebook",
+      "reason": "An idle-only electrical fault maps to a loaded idle test.",
+      "tool": "rulebook",
+      "tool_input": { "conditions": ["idle", "heat marks"] },
+      "tool_output": { "tests": ["loaded idle test", "connector voltage drop"] },
+      "started_at": "2025-06-05T09:58:18Z",
+      "duration_ms": 160,
+      "tokens": 110,
+      "cost_usd": 0.0004
+    },
+    {
+      "step": 5,
+      "agent": "analysis",
+      "action": "Verified 2 of 2 quotes",
+      "reason": "Both quotes appear verbatim in the narrative.",
+      "tool": "verify_quotes",
+      "tool_input": { "quotes": 2 },
+      "tool_output": { "verified": 2, "dropped": 0 },
+      "started_at": "2025-06-05T09:58:20Z",
+      "duration_ms": 190,
+      "tokens": 140,
+      "cost_usd": 0.0005
+    },
+    {
+      "step": 6,
+      "agent": "analysis",
+      "action": "Drafted a targeted test",
+      "reason": "The loaded idle test isolates the connector.",
+      "tool": null,
+      "tool_input": null,
+      "tool_output": null,
+      "started_at": "2025-06-05T10:04:22Z",
+      "duration_ms": 2300,
+      "tokens": 1420,
+      "cost_usd": 0.005
+    },
+    {
+      "step": 7,
+      "agent": "human",
+      "action": "Approved the targeted test",
+      "reason": "Evidence is verified and the test is proportionate.",
+      "tool": null,
+      "tool_input": null,
+      "tool_output": null,
+      "started_at": "2025-06-05T10:31:05Z",
+      "duration_ms": 0,
+      "tokens": 0,
+      "cost_usd": 0
+    }
+  ],
+  "decision": {
+    "case_id": "C-2025-0005",
+    "action": "approve",
+    "actor": "live_engineer",
+    "rationale": "Verified evidence and a clear connector fault. Schedule the loaded idle test.",
+    "decided_at": "2025-06-05T10:31:05Z",
+    "proposal_kind": "targeted_load_test",
+    "edited_proposal": null
+  },
+  "similar_cases": [
+    {
+      "id": "C-2024-0671",
+      "score": 0.8456,
+      "make": "Meridian",
+      "model": "Aster",
+      "year": 2021,
+      "group": "lighting",
+      "excerpt": "Headlamp flicker at idle; connector replaced, heat damage visible."
+    },
+    {
+      "id": "C-2023-1390",
+      "score": 0.7812,
+      "make": "Meridian",
+      "model": "Aster",
+      "year": 2020,
+      "group": "lighting",
+      "excerpt": "Both low beams out after a loaded idle test; connector resistance high."
+    }
+  ],
+  "recalls": [
+    {
+      "id": "R-22V-510",
+      "summary": "Headlamp connector may overheat and cause a loss of low beams",
+      "open_date": "2022-09-12",
+      "match": true
+    }
+  ],
+  "investigations": []
+}
