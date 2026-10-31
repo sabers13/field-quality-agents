@@ -1,0 +1,21 @@
+[per_case]
+# PLAN §4: at most 12 agent steps and 40k tokens per case.
+max_steps = 12
+max_tokens = 40000
+
+[pace]
+# TASKS Q4: 2 concurrent requests, 30 per minute.
+max_concurrent = 2
+per_minute = 30
+
+[retry]
+# Transport errors and 429 only; a bad answer is never retried.
+max_attempts = 3
+base_delay_seconds = 0.5
+max_delay_seconds = 8.0
+max_retry_after_seconds = 300.0
+
+[request]
+temperature = 0.0
+max_tokens = 1024
+timeout_seconds = 60.0
