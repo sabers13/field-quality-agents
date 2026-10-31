@@ -1,0 +1,66 @@
+.PHONY: setup fetch-data data test lint typecheck web-build scan-forbidden scan-secrets \
+	facts baseline run-replay run-live serve export screenshots all release-check
+
+PYTHON := uv run python
+FQA := uv run fqa
+
+setup:
+	uv sync --all-groups
+	cd web && npm install
+
+fetch-data:
+	$(FQA) data
+
+data:
+	$(FQA) data
+
+test:
+	uv run pytest
+
+lint:
+	uv run ruff check .
+
+typecheck:
+	uv run mypy src
+
+web-build:
+	cd web && npm run build
+
+scan-forbidden:
+	$(PYTHON) scripts/scan_forbidden.py
+
+scan-secrets:
+	$(PYTHON) scripts/scan_secrets.py
+
+facts:
+	$(PYTHON) scripts/check_facts.py
+
+baseline:
+	$(FQA) baseline
+
+run-replay:
+	$(FQA) run --mode replay --set replay_2025
+
+run-live:
+	@if [ "$${FQA_LIVE_APPROVED:-}" != "1" ]; then \
+		echo "run-live is reserved for Q9/Q14; set FQA_LIVE_APPROVED=1 to approve real calls."; \
+		exit 2; \
+	fi
+	$(FQA) run --mode record --set replay_2025 --run-id live-2025
+
+serve:
+	$(FQA) serve
+
+export:
+	$(FQA) export
+
+screenshots:
+	@echo "Playwright screenshots land with Q6/Q10; no browser suite exists in the Q0 scaffold."
+	@exit 2
+
+all:
+	@echo "make all is wired in Q8 once data, baseline, replay and export exist."
+	@exit 2
+
+release-check: lint typecheck test web-build scan-forbidden scan-secrets facts
+	@echo "release-check: green on the Q0 scaffold"

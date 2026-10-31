@@ -1,0 +1,24 @@
+import { describe, expect, it } from "vitest";
+
+import { BOARD_COLUMNS, CASE_STATUSES, STATUS_META, statusLabel, statusTone } from "./status";
+
+describe("case status mapping", () => {
+  it("maps every contract status to a design tone", () => {
+    expect(CASE_STATUSES).toHaveLength(6);
+    for (const status of CASE_STATUSES) {
+      expect(STATUS_META[status].cssVar.startsWith("--status-")).toBe(true);
+      expect(STATUS_META[status].label.length).toBeGreaterThan(0);
+    }
+  });
+
+  it("groups intake and analysis under the in-agent column", () => {
+    const inAgent = BOARD_COLUMNS.find((column) => column.tone === "in_agent");
+    expect(inAgent?.statuses).toEqual(["intake", "analysis"]);
+    expect(statusTone("analysis")).toBe("in_agent");
+  });
+
+  it("uses plain labels", () => {
+    expect(statusLabel("needs_engineer")).toBe("Needs engineer");
+    expect(statusLabel("issue_linked")).toBe("Issue linked");
+  });
+});
