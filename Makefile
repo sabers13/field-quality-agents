@@ -1,5 +1,6 @@
 .PHONY: setup fetch-data data data-check test lint typecheck web-build scan-forbidden scan-secrets \
-	facts baseline run-replay run-live serve export screenshots all e2e release-check
+	facts baseline run-replay run-live run-live-smoke serve export screenshots all e2e release-check \
+	results-manifest
 
 PYTHON := uv run python
 FQA := uv run fqa
@@ -51,17 +52,27 @@ run-live:
 	fi
 	$(FQA) run --mode record --set replay_2025 --run-id live-2025
 
+run-live-smoke:
+	@if [ "$${FQA_LIVE_APPROVED:-}" != "1" ]; then \
+		echo "run-live-smoke makes real calls; set FQA_LIVE_APPROVED=1 to approve them."; \
+		exit 2; \
+	fi
+	$(FQA) run --mode record --set replay_2025 --run-id live-2025-smoke --limit 20
+
 serve:
 	$(FQA) serve
 
 export:
-	$(FQA) export
+	$(FQA) export --run-id replay
 
 screenshots:
 	@echo "Playwright screenshots land with Q6/Q10; no browser suite exists in the Q0 scaffold."
 	@exit 2
 
-all: data-check baseline run-replay export web-build
+results-manifest:
+	$(PYTHON) scripts/results_manifest.py write
+
+all: data-check baseline run-replay export web-build results-manifest
 	@echo "all: data checked, baseline, replay run, dashboard data and web build are up to date"
 
 e2e: web-build

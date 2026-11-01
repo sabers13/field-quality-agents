@@ -83,6 +83,12 @@ def build_parser() -> argparse.ArgumentParser:
     )
     run.add_argument("--results-dir", default="results/runs")
     run.add_argument("--baseline-dir", default="results/baseline")
+    run.add_argument(
+        "--limit",
+        type=int,
+        default=None,
+        help="run only the first N cases in received-date order (Q9 smoke run)",
+    )
     run.set_defaults(handler="run")
 
     issues = sub.add_parser("issues", help="inspect the issues a run opened (Q8)")
@@ -244,26 +250,34 @@ def _resolve_run_inputs(
 
 
 def _run_pipeline(args: argparse.Namespace) -> int:
+    from field_quality_agents.llm.errors import PolicyStopError
     from field_quality_agents.run.data import open_source
     from field_quality_agents.run.pipeline import DEFAULT_RUN_ID, execute_run
 
     recordings, data_dir, db_path, fixture_sql = _resolve_run_inputs(args)
     run_id = args.run_id or DEFAULT_RUN_ID
     mode = RunMode(args.mode)
-    with open_source(
-        data_dir=data_dir,
-        db_path=db_path,
-        fixture_sql=fixture_sql,
-    ) as source:
-        summary = execute_run(
-            source=source,
-            recordings_dir=recordings,
-            results_dir=Path(args.results_dir),
-            run_id=run_id,
-            set_name=args.set_name,
-            mode=mode,
-            baseline_dir=Path(args.baseline_dir),
-        )
+    try:
+        with open_source(
+            data_dir=data_dir,
+            db_path=db_path,
+            fixture_sql=fixture_sql,
+        ) as source:
+            summary = execute_run(
+                source=source,
+                recordings_dir=recordings,
+                results_dir=Path(args.results_dir),
+                run_id=run_id,
+                set_name=args.set_name,
+                mode=mode,
+                baseline_dir=Path(args.baseline_dir),
+                limit=args.limit,
+            )
+    except PolicyStopError as exc:
+        # PLAN §10 rule 3: the error has already written reports/STOP.md.
+        print(f"run: STOPPED, {exc}", file=sys.stderr)
+        print("run: see reports/STOP.md; make no further model calls", file=sys.stderr)
+        return 3
     print(
         f"run: {summary.cases} case(s), {summary.issues} issue(s), "
         f"{summary.reports} weekly report(s)"

@@ -328,12 +328,22 @@ def execute_run(
     model_name: str = DEFAULT_MODEL,
     seed: int = DEFAULT_SEED,
     baseline_dir: Path = Path("results/baseline"),
+    limit: int | None = None,
 ) -> RunSummary:
-    """Play one set through the desk and write the run directory."""
+    """Play one set through the desk and write the run directory.
+
+    ``limit`` keeps the first N cases in received-date order. Q9's smoke run
+    uses it to check the live traces before paying for the full set; the
+    recordings it leaves behind replay in the full run.
+    """
 
     cases = source.cases()
     if not cases:
         raise ValueError("the selected case set is empty")
+    if limit is not None:
+        if limit < 1:
+            raise ValueError("limit must be at least 1")
+        cases = cases[:limit]
     day_cases = _day_cases(cases)
     first_day = min(day_cases)
     last_day = max(day_cases)
