@@ -189,8 +189,9 @@ reported with confidence intervals where the metric supports one.
   evaluation target, so it never enters a model request; a run whose recorded
   requests did carry it reports no group number instead of a copy.
 - **Safety.** Recall and precision against the NHTSA crash, fire, injury and
-  death fields, with Wilson intervals. This is reported as behaviour; the flag
-  is not tuned to the replay set.
+  death fields, with Wilson intervals. The NHTSA flag is an evaluation target
+  and is not sent to the model; the desk's own flag is what the metric scores.
+  This is reported as behaviour; the flag is not tuned to the replay set.
 - **Evidence.** Quote grounding is the share of the quotes the desk proposed
   that are found verbatim in the source. The denominator is everything the
   model proposed: a quote that fails verification is dropped from the proposal
