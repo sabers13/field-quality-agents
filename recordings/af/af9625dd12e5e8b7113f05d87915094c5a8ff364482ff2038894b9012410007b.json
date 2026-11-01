@@ -1,0 +1,66 @@
+{
+  "key": "af9625dd12e5e8b7113f05d87915094c5a8ff364482ff2038894b9012410007b",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11947,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system / plug-in hybrid: service engine light and electric coolant heater repair plus recall software update, then B273C hybrid error and vehicle held un-driveable.\",\"group\":\"electrical_general\",\"symptoms\":[\"service engine light came on\",\"hybrid system error code B273C\",\"vehicle un-driveable\",\"vehicle held at dealership over a month with no repairs\"],\"conditions\":[\"after service\"],\"fault_codes\":[\"B273C\"],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"service engine light came on\"},{\"kind\":\"symptom\",\"quote\":\"hybrid system error code “B273C.”\"},{\"kind\":\"fault_code\",\"quote\":\"B273C\"},{\"kind\":\"condition\",\"quote\":\"In less than 2 weeks, my vehicle flagged a hybrid system error code “B273C.”\"},{\"kind\":\"symptom\",\"quote\":\"held at the dealership for over a month with no repairs\"},{\"kind\":\"symptom\",\"quote\":\"un-driveable\"},{\"kind\":\"safety\",\"quote\":\"concerning from a safety perspective\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need parse report. Component electrical system, group electrical_general. Symptoms: service engine light came on; electric coolant heater diagnosed and fixed; software update for recall; hybrid system error code B273C; vehicle impounded/held no repairs; un-driveable; safety concern. Conditions? \"plug-in hybrid\", \"after service\" maybe fixed then less than 2 weeks error; \"cold\"? no. \"charging\"? plug-in hybrid not necessarily charging. Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. We can include \"after service\" because after repair/software update. Maybe \"intermittent\"? no. Fault codes B273C. Safety_relevant? Report mentions safety perspective, un-driveable, but prompt says safety when mentions crash fire smoke injury loss control stall at speed or risk to people. It says concerning from safety perspective; un-driveable. That is risk? \"making a vehicle un-driveable\" and \"safety perspective\" indicates safety relevant? Need decide. The given input has safety_relevant false but we shouldn't trust? The rules say set safety_relevant when report mentions ... or another risk to people. \"un-driveable\" and safety perspective maybe risk to people. But no crash/fire. \"concerning from a safety perspective\" explicit safety. I'd set true? Hmm the source field says safety_relevant false, but our task normalise. If explicit safety perspective, likely true. But maybe not actual incident. It mentions manufacturer defects making vehicle un-driveable, safety perspective. I think safety_relevant true because explicit safety concern and un-driveable. Need clues with verbatim quotes. Summary one line: component, symptom, conditions. \"Electrical system / hybrid system: service engine light, electric coolant heater repair and software update, then B273C hybrid error; vehicle held un-driveable.\" Ensure quotes exact.\n\nNeed missing_info: mileage null, date? received_at given but not incident date. Component present. Symptom present. Conditions perhaps present after service. Missing mileage and date? Analysis needs mileage, date. Use [\"mileage\",\"date\"]. Maybe \"conditions\" not missing? We have after service. No.\n\nNeed groups. Symptoms array: \"service engine light came on\", \"hybrid system error code B273C\", \"vehicle un-driveable\", maybe \"electric coolant heater issue\". Plain words.\n\nClues:\n- symptom quote \"service engine light came on\"\n- symptom quote \"hybrid system error code \\u201cB273C.\\u201d\" Need verbatim includes curly quotes? The narrative has “B273C.” with curly quotes. Quote exact \"hybrid system error code “B273C.”\" That includes period inside quote? The narrative: flagged a hybrid system error code \\u201cB273C.\\u201d The quote can be \"hybrid system error code “B273C.”\" yes.\n- fault_code quote \"B273C\" or with quotes? Verbatim span \"B273C\" is in report (without curly quotes? It is inside curly quotes, but substring B273C exists). Use \"B273C\".\n- condition after service: quote \"then also performed a software up to address the recall 95B/NHTSA 24V-720. In less than 2 weeks, my vehicle flagged a hybrid system error code\" maybe too long. Need condition clue \"after service\" quote \"In less than 2 weeks, my vehicle flagged a hybrid system error code “B273C.”\" This indicates after service. Verbatim yes.\n- component_group quote \"ELECTRICAL SYSTEM\" from component? Is that report? The user message includes component field. Quote can be from report? The \"report\" includes whole JSON. Yes. But quote \"ELECTRICAL SYSTEM\".\n- safety quote \"concerning from a safety perspective\" exact.\n- other quote \"vehicle un-driveable\" exact from \"making a vehicle un-driveable\". Use \"un-driveable\". But quote \"un-driveable\" is verbatim. kind symptom? It's symptom/other. Use symptom quote \"vehicle un-driveable\"? Narrative says \"making a vehicle un-driveable\" so \"un-driveable\" exact. \n- symptom quote \"held at the dealership for over a month with no repairs\" exact? It says \"My vehicle has been held at the dealership for over a month with no repairs or timeline...\" Use exact substring \"held at the dealership for over a month with no repairs\" yes.\n\nNeed JSON only. Ensure no markdown? User says answer with one JSON object and no other text. So output raw JSON. No code fences. Need valid JSON.\n\nPotential issue \"safety_relevant\" true conflicts with input false. But rules say set when mentions risk. It mentions \"safety perspective\" and \"un-driveable\" but not crash etc. I think true. If uncertain, maybe false? Let's read: \"Most importantly, for a vehicle that is only 2 years old, it is concerning from a safety perspective that it has had so many issues with the hybrid system for which the manufacturer has no solutions available.\" That's explicit safety concern. Also \"un-driveable\" is not necessarily risk to people? But combined yes. Set true.\n\nConditions: \"after service\" only. Maybe \"charging\" because plug-in hybrid? The report doesn't say charging issue. Don't include.\n\nSummary: \"Electrical system / plug-in hybrid: service engine light and electric coolant heater repair plus recall software update, then B273C hybrid error and vehicle held un-driveable.\" One line.\n\nNeed missing_info includes \"date\" maybe report has received_at but not failure date. Yes.\n\nClues quote exact: Need be careful quotes. JSON string with curly quotes maybe okay. Use \\u201c? JSON can include Unicode directly. Verbatim char-for-char. If I use escaped \\u201c, it's still same char after parsing. But \"quote\" string should contain actual curly. I can include “B273C.” directly. Fine.\n\nLet's craft. Need include \"component_group\" clue quote \"ELECTRICAL SYSTEM\" exact. \"safety\" clue quote \"concerning from a safety perspective\" exact. \"condition\" clue quote \"In less than 2 weeks, my vehicle flagged a hybrid system error code “B273C.”\" exact? Let's verify narrative: \"In less than 2 weeks, my vehicle flagged a hybrid system error code \\u201cB273C.\\u201d\" yes. Good.\n\nSymptoms array: \"service engine light came on\", \"hybrid system error code B273C\", \"vehicle un-driveable\", \"vehicle held at dealership over a month with no repairs\". Fine.\n\nFault_codes [\"B273C\"].\n\nMissing_info [\"mileage\",\"date\"]. Maybe conditions? no.\n\nNeed no extra.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793528179,
+      "id": "d79863a68ff75035e3e0719afecc6bc2",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1707,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1445,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00064878,
+          "billing_source": "go",
+          "list_cost": 0.0010813,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 373,
+            "output": 1707,
+            "reasoning": 1445
+          }
+        },
+        "prompt_tokens": 757,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2464
+      }
+    },
+    "text": "{\"summary\":\"Electrical system / plug-in hybrid: service engine light and electric coolant heater repair plus recall software update, then B273C hybrid error and vehicle held un-driveable.\",\"group\":\"electrical_general\",\"symptoms\":[\"service engine light came on\",\"hybrid system error code B273C\",\"vehicle un-driveable\",\"vehicle held at dealership over a month with no repairs\"],\"conditions\":[\"after service\"],\"fault_codes\":[\"B273C\"],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"service engine light came on\"},{\"kind\":\"symptom\",\"quote\":\"hybrid system error code “B273C.”\"},{\"kind\":\"fault_code\",\"quote\":\"B273C\"},{\"kind\":\"condition\",\"quote\":\"In less than 2 weeks, my vehicle flagged a hybrid system error code “B273C.”\"},{\"kind\":\"symptom\",\"quote\":\"held at the dealership for over a month with no repairs\"},{\"kind\":\"symptom\",\"quote\":\"un-driveable\"},{\"kind\":\"safety\",\"quote\":\"concerning from a safety perspective\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00064878,
+      "cached_tokens": 384,
+      "cost_usd": 0.0010813,
+      "input_tokens": 757,
+      "list_cost_usd": 0.0010813,
+      "output_tokens": 1707,
+      "reasoning_tokens": 1445
+    }
+  }
+}

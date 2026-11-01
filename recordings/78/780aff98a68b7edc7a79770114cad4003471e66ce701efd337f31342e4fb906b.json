@@ -1,0 +1,66 @@
+{
+  "key": "780aff98a68b7edc7a79770114cad4003471e66ce701efd337f31342e4fb906b",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 5329,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2025 Chevrolet Blazer visibility/wiper issue: dashboard reflection on the windshield in sunlight dangerously impairs visibility and distracts while driving.\",\"group\":\"body_controls\",\"symptoms\":[\"visibility impaired by dashboard reflection on the windshield\",\"hard to see while driving\",\"distracting while driving\"],\"conditions\":[\"sunlight\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"VISIBILITY/WIPER\"},{\"kind\":\"condition\",\"quote\":\"in sunlight\"},{\"kind\":\"symptom\",\"quote\":\"reflection of the dashboard on the windshield\"},{\"kind\":\"symptom\",\"quote\":\"Hard to see and really distracting while driving\"},{\"kind\":\"safety\",\"quote\":\"dangerously impaired\"}]}",
+            "reasoning_content": "We need answer one JSON object no other text. Need parse report. Component visibility/wiper, group body_controls. Narrative: \"The visibity in sunlight is dangerously impaired with the reflection of the dashboard on the windshield . Hard to see and really distracting while driving .\" Need summary one line component, symptom, conditions. Group given body_controls (or component group). Symptoms plain words: visibility impaired by dashboard reflection on windshield; hard to see; distracting while driving. Conditions: sunlight. Fault codes none. Safety relevant? Report says \"dangerously impaired\", \"Hard to see and really distracting while driving\". Criteria mentions risk to people incl loss of control etc. It doesn't mention crash/fire etc, but dangerous visibility impairment while driving could be safety relevant? Set safety_relevant when report mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. \"dangerously impaired\" and \"hard to see while driving\" is another risk to people. So true. Missing info: mileage null, date? received_at is date? Report has received_at but not incident date. component present, symptom present, conditions sunlight present. Missing mileage, date perhaps. Need clues verbatim. Quotes exact spans. Must copy character for character including spaces? We can quote substrings. \"The visibity in sunlight is dangerously impaired with the reflection of the dashboard on the windshield .\" Note typo visibity. \"Hard to see and really distracting while driving .\" Also \"sunlight\" quote. component group? Could quote \"VISIBILITY/WIPER\" as component_group? It is in report. Use kind component_group quote \"VISIBILITY/WIPER\". Safety quote \"dangerously impaired\" maybe exact. Conditions quote \"in sunlight\". Symptom quote \"reflection of the dashboard on the windshield\". Need ensure verbatim.\n\nNeed output valid JSON only. No markdown. Summary one line. Could include group body_controls. symptoms array. conditions [\"sunlight\"]. fault_codes []. safety_relevant true. missing_info [\"mileage\",\"date\"]. clues.\n\nNeed be careful \"date\": received_at is date report received, not incident date. missing date likely. Mileage null. Conditions present. Component present. Symptom present. Good.\n\nNeed one JSON object no other text.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793532404,
+      "id": "15a92c4d0e2cda6deb9246f5b833f506",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 649,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 476,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00024639,
+          "billing_source": "go",
+          "list_cost": 0.00041065,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 134,
+            "output": 649,
+            "reasoning": 476
+          }
+        },
+        "prompt_tokens": 518,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1167
+      }
+    },
+    "text": "{\"summary\":\"2025 Chevrolet Blazer visibility/wiper issue: dashboard reflection on the windshield in sunlight dangerously impairs visibility and distracts while driving.\",\"group\":\"body_controls\",\"symptoms\":[\"visibility impaired by dashboard reflection on the windshield\",\"hard to see while driving\",\"distracting while driving\"],\"conditions\":[\"sunlight\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"VISIBILITY/WIPER\"},{\"kind\":\"condition\",\"quote\":\"in sunlight\"},{\"kind\":\"symptom\",\"quote\":\"reflection of the dashboard on the windshield\"},{\"kind\":\"symptom\",\"quote\":\"Hard to see and really distracting while driving\"},{\"kind\":\"safety\",\"quote\":\"dangerously impaired\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00024639,
+      "cached_tokens": 384,
+      "cost_usd": 0.00041065,
+      "input_tokens": 518,
+      "list_cost_usd": 0.00041065,
+      "output_tokens": 649,
+      "reasoning_tokens": 476
+    }
+  }
+}

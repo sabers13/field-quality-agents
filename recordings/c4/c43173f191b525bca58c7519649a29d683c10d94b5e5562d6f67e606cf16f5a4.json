@@ -1,0 +1,66 @@
+{
+  "key": "c43173f191b525bca58c7519649a29d683c10d94b5e5562d6f67e606cf16f5a4",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 8597,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Exterior lighting: auto headlights randomly switch off while driving and may remain on with the car off; intermittent.\",\n  \"group\": \"lighting\",\n  \"symptoms\": [\n    \"auto headlights randomly switch off while driving\",\n    \"dash indicates switch changed from auto to off while control remains auto\",\n    \"manual off/on restores headlights\",\n    \"headlights can be on in the morning with the car completely off and switch set to auto\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"EXTERIOR LIGHTING\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"My lights are set to auto but when driving they randomly switch off.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The dash shows the switch from auto to off but the control is still set to auto.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"I have to manually switch the control off and then back on for the lights to come back on.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"my lights are on\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"randomly switch off\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"This is very unsafe as it happens at night and I can’t see the road.\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer one JSON only. Need normalize report. Need parse. Component exterior lighting, group lighting. Symptoms: lights randomly switch off while driving despite auto setting; dash shows switch from auto to off but control still auto; manual off/on restores; lights on in morning with car completely off and switch auto. Conditions: intermittent, maybe at night, morning? Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. Report mentions randomly, happens at night, morning. Intermittent yes. Safety relevant? It says \"very unsafe as it happens at night and I can’t see the road.\" That's risk to people? Loss of visibility while driving at night. Rule safety_relevant when crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. Unsafe night can't see road is risk. Set true. Need missing_info: mileage null, date? received_at present but incident date missing? Analysis needs date? Report has received date but not occurrence date. Missing mileage, date maybe. Conditions? It mentions at night/morning but not weather etc; maybe not missing? We can list mileage and date. Component and symptom present. Conditions perhaps present enough (intermittent, night). Fault codes none. Clues verbatim quotes. Need quote exact spans from narrative. Ensure quotes exact. The narrative has curly apostrophes. We can quote spans: \"My lights are set to auto but when driving they randomly switch off.\" exact. \"The dash shows the switch from auto to off but the control is still set to auto.\" exact. \"I have to manually switch the control off and then back on for the lights to come back on.\" exact. \"my lights are on\" exact? maybe. \"This is very unsafe as it happens at night and I can’t see the road.\" exact includes curly apostrophe. Need JSON. summary one line: \"Exterior lighting: auto headlights randomly switch off while driving and may stay on with car off; intermittent.\" Group \"lighting\". Symptoms array plain words. Conditions array [\"intermittent\"] maybe also? At night is condition? Allowed list doesn't include night. Could include \"intermittent\" only. If condition not in allowed list, don't add. safety_relevant true. missing_info [\"mileage\",\"date\"]. Clues include symptom and safety. Maybe component_group clue \"EXTERIOR LIGHTING\" quote? The report component field not narrative. Quote must be copied from report, can be from component? It says report in user message includes JSON. Verbatim span from report. We can quote \"EXTERIOR LIGHTING\" as component_group. Conditions clue \"randomly\" maybe not exact? quote \"randomly switch off\" yes. Fault codes none. Need only JSON no other text.\n\nNeed be careful with safety_relevant: input had false but instructions say set when mentions risk. So true.\n\nNeed missing_info maybe \"mileage\", \"date\". Date? received_at exists, but not incident date. The analysis needs date. Yes.\n\nLet's craft valid JSON. Could include clues:\n- {\"kind\":\"component_group\",\"quote\":\"EXTERIOR LIGHTING\"}\n- {\"kind\":\"symptom\",\"quote\":\"My lights are set to auto but when driving they randomly switch off.\"}\n- {\"kind\":\"symptom\",\"quote\":\"The dash shows the switch from auto to off but the control is still set to auto.\"}\n- {\"kind\":\"symptom\",\"quote\":\"I have to manually switch the control off and then back on for the lights to come back on.\"}\n- {\"kind\":\"symptom\",\"quote\":\"my lights are on\"}\n- {\"kind\":\"condition\",\"quote\":\"randomly switch off\"}? \"condition\" maybe intermittent. But quote \"randomly switch off\" is verbatim. Could be condition intermittent. \n- {\"kind\":\"safety\",\"quote\":\"This is very unsafe as it happens at night and I can’t see the road.\"}\nNeed quote exact includes \"I’ve\" curly? Not needed.\n\nPotential issue \"my lights are on\" appears in \"my lights are on.\" yes.\n\nNeed summary mention \"conditions\" = intermittent. Good.\n\nFinal only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529414,
+      "id": "e8108cad01804d6b1339ceb97fbfc35a",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1245,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 875,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00046779,
+          "billing_source": "go",
+          "list_cost": 0.00077965,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 210,
+            "output": 1245,
+            "reasoning": 875
+          }
+        },
+        "prompt_tokens": 594,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1839
+      }
+    },
+    "text": "{\n  \"summary\": \"Exterior lighting: auto headlights randomly switch off while driving and may remain on with the car off; intermittent.\",\n  \"group\": \"lighting\",\n  \"symptoms\": [\n    \"auto headlights randomly switch off while driving\",\n    \"dash indicates switch changed from auto to off while control remains auto\",\n    \"manual off/on restores headlights\",\n    \"headlights can be on in the morning with the car completely off and switch set to auto\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"EXTERIOR LIGHTING\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"My lights are set to auto but when driving they randomly switch off.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The dash shows the switch from auto to off but the control is still set to auto.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"I have to manually switch the control off and then back on for the lights to come back on.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"my lights are on\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"randomly switch off\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"This is very unsafe as it happens at night and I can’t see the road.\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00046779,
+      "cached_tokens": 384,
+      "cost_usd": 0.00077965,
+      "input_tokens": 594,
+      "list_cost_usd": 0.00077965,
+      "output_tokens": 1245,
+      "reasoning_tokens": 875
+    }
+  }
+}

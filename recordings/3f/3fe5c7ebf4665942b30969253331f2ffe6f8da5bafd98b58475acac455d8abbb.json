@@ -1,0 +1,66 @@
+{
+  "key": "3fe5c7ebf4665942b30969253331f2ffe6f8da5bafd98b58475acac455d8abbb",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11304,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Tesla Model Y rear seat belt buckles fail to latch securely, release under light tension, and cannot restrain passengers in a crash.\",\n  \"group\": \"restraints\",\n  \"symptoms\": [\n    \"rear seat belt buckles fail to latch securely\",\n    \"metal tongue inserts fully but does not lock with an audible click\",\n    \"buckle releases immediately upon light tension\",\n    \"seat belts cannot restrain passengers in a crash\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"SEAT BELTS\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Both rear seat belt buckles (driver-side rear and center) fail to latch securely.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"does not lock with an audible click\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"releases immediately upon light tension\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"This prevents the seat belts from restraining passengers in a crash.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"Issue occurs consistently on multiple attempts and with different seat belt tongues.\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"This is a **safety defect**, not normal wear.\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer only JSON. Need normalize. Need read report. Component SEAT BELTS group restraints. Symptom: rear seat belt buckles fail to latch securely, tongue inserts fully but no audible click, releases immediately upon light tension, prevents restraint in crash. Conditions? Report mentions consistent multiple attempts, different tongues, no debris, first noticed Nov 2 2025, mileage 83,610 in narrative but mileage field null. Conditions list allowed: cold moisture heat vibration intermittent after service charging. None explicitly. Maybe no conditions. Fault codes none. Safety relevant true: crash, prevents restraining passengers in crash, inoperable unsafe. Missing info: mileage? narrative has 83,610, so not missing. Date? first noticed yesterday Nov 2, 2025 and received Nov 3, so not missing. component present, symptom present, conditions? Are conditions needed? They are not explicit but conditions list maybe absent. Missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Conditions missing? We can include \"conditions\" because no environmental conditions stated? But report has consistent multiple attempts etc. The rule says list only facts analysis needs. Conditions not necessarily needed? Maybe include conditions if not specified. But JSON expected. Need quotes verbatim. Need exact substrings. Clues: symptom quote \"Both rear seat belt buckles (driver-side rear and center) fail to latch securely.\" condition? maybe \"Issue occurs consistently on multiple attempts and with different seat belt tongues.\" kind condition? It's more symptom/condition? \"multiple attempts and with different seat belt tongues\" is conditions? But allowed conditions array only specific categories. Could include clue kind \"condition\" quote \"Issue occurs consistently on multiple attempts and with different seat belt tongues.\" But conditions list doesn't include \"multiple attempts\". Hmm.\n\nNeed safety quote: \"This prevents the seat belts from restraining passengers in a crash.\" and \"This is a **safety defect**, not normal wear.\" Verbatim includes markdown asterisks? Need copy exact. Could quote \"This prevents the seat belts from restraining passengers in a crash.\" It's verbatim. Also \"The rear seat belts are **inoperable**, rendering the rear seating positions **unsafe and non-compliant with federal safety standards**.\" But quote exact includes asterisks. Use simpler.\n\nComponent group clue: quote? \"SEAT BELTS\" is component field not narrative. The report includes component field? User message contains JSON. Quotes from report can include field values? It says copied from report. We can quote \"SEAT BELTS\" from component. kind component_group. Good.\n\nFault_code: none. If FMVSS 209? Not fault code. Could include? No.\n\nSummary one line: \"Tesla Model Y rear seat belt buckles fail to latch; no click, release under light tension, consistent, not restraining in crash.\" Need concise.\n\nGroup: \"restraints\".\n\nSymptoms: [\"rear seat belt buckles fail to latch securely\", \"metal tongue inserts fully but does not lock with an audible click\", \"buckle releases immediately upon light tension\", \"seat belts cannot restrain passengers in a crash\"]. Plain words.\n\nConditions: []? There are no cold/moisture/etc. Could include \"intermittent\"? No it's consistent. after service? no. charging? no. So [].\n\nFault_codes: [].\n\nSafety_relevant true.\n\nMissing_info: Maybe [] because all important facts present? The report has mileage and date in narrative though mileage field null. Component and symptom present. Conditions not present but not always. Maybe missing_info [\"conditions\"]? The analysis needs conditions? It says list missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. If no environmental conditions, include conditions. But \"Issue occurs consistently on multiple attempts and with different seat belt tongues\" are conditions of reproduction. So not missing. I'd use [].\n\nClues:\n- component_group quote \"SEAT BELTS\"\n- symptom quote \"Both rear seat belt buckles (driver-side rear and center) fail to latch securely.\"\n- symptom quote \"does not lock with an audible click\"\n- symptom quote \"releases immediately upon light tension\"\n- symptom quote \"This prevents the seat belts from restraining passengers in a crash.\"\n- safety quote \"This is a **safety defect**, not normal wear.\" Need exact includes two asterisks around safety defect? The narrative string has \"This is a **safety defect**, not normal wear.\" In JSON source, yes. Quote as string with asterisks: \"This is a **safety defect**, not normal wear.\" Verbatim.\n- condition? quote \"Issue occurs consistently on multiple attempts and with different seat belt tongues.\" kind condition maybe. Conditions array doesn't map but clue kind condition can capture. It is a condition/repro circumstance. Include? It might be \"condition\" but not one of allowed condition list. The schema says kind condition. It doesn't require conditions array match. Fine.\n- other quote \"Vehicle is 2021 Model Y Long Range with 83,610 miles.\" kind other? Could be mileage info. Not in allowed kind? \"other\". But maybe not needed. Keep clues relevant.\n\nNeed ensure every quote exact substring. Check: Narrative has \"Both rear seat belt buckles (driver-side rear and center) fail to latch securely.\" yes. \"does not lock with an audible click\" yes? full sentence \"The metal tongue inserts fully into the buckle but does not lock with an audible click and releases immediately upon light tension.\" substring yes. \"releases immediately upon light tension\" yes. \"This prevents the seat belts from restraining passengers in a crash.\" yes. \"Issue occurs consistently on multiple attempts and with different seat belt tongues.\" yes. \"This is a **safety defect**, not normal wear.\" yes. \"SEAT BELTS\" yes.\n\nNeed no other text. JSON valid. Use false? safety true. Missing_info [] maybe. But maybe \"conditions\" missing because no conditions. The report says no visible debris contamination; not environmental. Hmm.\n\nNeed answer one JSON object. Ensure no markdown.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531756,
+      "id": "b09686d57d1eb5b6df7625476eabf6e6",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1598,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1266,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00060603,
+          "billing_source": "go",
+          "list_cost": 0.00101005,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 334,
+            "output": 1598,
+            "reasoning": 1266
+          }
+        },
+        "prompt_tokens": 718,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2316
+      }
+    },
+    "text": "{\n  \"summary\": \"Tesla Model Y rear seat belt buckles fail to latch securely, release under light tension, and cannot restrain passengers in a crash.\",\n  \"group\": \"restraints\",\n  \"symptoms\": [\n    \"rear seat belt buckles fail to latch securely\",\n    \"metal tongue inserts fully but does not lock with an audible click\",\n    \"buckle releases immediately upon light tension\",\n    \"seat belts cannot restrain passengers in a crash\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"SEAT BELTS\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Both rear seat belt buckles (driver-side rear and center) fail to latch securely.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"does not lock with an audible click\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"releases immediately upon light tension\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"This prevents the seat belts from restraining passengers in a crash.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"Issue occurs consistently on multiple attempts and with different seat belt tongues.\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"This is a **safety defect**, not normal wear.\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00060603,
+      "cached_tokens": 384,
+      "cost_usd": 0.00101005,
+      "input_tokens": 718,
+      "list_cost_usd": 0.00101005,
+      "output_tokens": 1598,
+      "reasoning_tokens": 1266
+    }
+  }
+}

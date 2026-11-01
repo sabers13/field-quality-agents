@@ -1,0 +1,66 @@
+{
+  "key": "9c9a9e6d33e8362098a8db46e30bc1c4d46bfa5e68ad7d79d77fcabf626ce324",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 15073,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2021 Tesla Model 3 FSD/Autosteer reportedly misinterpreted an exit ramp/gore as a continuing lane at a highway fork, maintained ~60 mph, gave no perceived FCW/AEB, and contacted a roadside sign during takeover.\",\"group\":\"adas\",\"symptoms\":[\"FSD/Autosteer misinterpreted an exit ramp/gore area as a continuing lane\",\"maintained about 60 mph at a highway fork\",\"no forward-collision warning perceived\",\"no automatic emergency braking observed\",\"vehicle contacted a roadside sign during manual takeover\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"Advanced Driver Assistance Systems\"},{\"kind\":\"condition\",\"quote\":\"FSD (Supervised) engaged\"},{\"kind\":\"symptom\",\"quote\":\"misinterpret an exit ramp/gore area as a continuing lane\"},{\"kind\":\"symptom\",\"quote\":\"maintained ~60 mph\"},{\"kind\":\"symptom\",\"quote\":\"No audible/visual forward-collision warning was perceived by me\"},{\"kind\":\"symptom\",\"quote\":\"I did not observe automatic emergency braking\"},{\"kind\":\"symptom\",\"quote\":\"the vehicle contacted a roadside sign\"},{\"kind\":\"safety\",\"quote\":\"serious collision risk\"},{\"kind\":\"other\",\"quote\":\"NOT REPRODUCED\"}]}",
+            "reasoning_content": "We need to output JSON only. Need normalize. Extract summary, group adas, symptoms, conditions, fault_codes, safety_relevant true, missing_info, clues verbatim quotes.\n\nNeed be careful quotes verbatim from narrative. Narrative includes redacted placeholders. We can quote spans. Conditions: maybe \"FSD (Supervised) engaged\", \"highway fork\", \"exit ramp/gore area\", weather not. The allowed conditions list: cold, moisture, heat, vibration, intermittent, after service, charging. These don't fit. But schema says conditions [\"cold\",...] perhaps list from report. Could be empty. Symptoms: misinterpret exit ramp/gore as continuing lane, maintained ~60 mph, no FCW, no AEB, contacted roadside sign. Fault codes none. Missing_info: mileage missing (null), date redacted, conditions maybe? Component given. Symptom given. Date is redacted [XXX]. Mileage null. Conditions? Time/weather not material? We can list date, mileage. Maybe \"conditions\" missing? There is highway fork and FSD engaged, but weather/road conditions absent. But missing_info allowed only component, symptom, conditions, mileage, date. Include date and mileage; maybe conditions? Since no weather/road surface. But don't overdo. For safety_relevant true. Clues with kind and quote. Need quotes exact. Let's pick:\n- \"FSD (Supervised) engaged\" from \"with FSD (Supervised) engaged\" exact substring yes.\n- \"misinterpret an exit ramp/gore area as a continuing lane\" exact? Narrative: \"the system appeared to misinterpret an exit ramp/gore area as a continuing lane at a highway fork\" yes substring.\n- \"maintained ~60 mph\" exact? Narrative: \"maintained ~60 mph (posted ~70)\" yes.\n- \"vehicle contacted a roadside sign\" exact? \"the vehicle contacted a roadside sign near the gore/shoulder\" yes.\n- \"No audible/visual forward-collision warning was perceived by me\" exact? Narrative: \"No audible/visual forward-collision warning was perceived by me and I did not observe automatic emergency braking.\" yes.\n- \"did not observe automatic emergency braking\" exact substring? \"I did not observe automatic emergency braking\" yes.\n- \"serious collision risk\" exact? \"This posed a serious collision risk to me, my passenger, and nearby traffic.\" yes.\n- \"NOT REPRODUCED\" exact.\n- \"UNKNOWN whether any internal/partial interventions were recorded in logs\" exact.\nMaybe include component group \"Advanced Driver Assistance Systems\" quote? kind component_group quote \"Advanced Driver Assistance Systems\" exact.\nNeed summary one line: \"2021 Tesla Model 3 FSD/Autosteer misinterpreted exit ramp/gore as lane at highway fork, maintained ~60 mph, no FCW/AEB, contacted roadside sign; driver took over.\" Good.\n\nGroup \"adas\" given. Symptoms plain: \"FSD misinterpreted exit ramp/gore area as continuing lane\", \"maintained ~60 mph near highway fork\", \"no forward-collision warning perceived\", \"no automatic emergency braking observed\", \"vehicle contacted roadside sign\". Conditions: maybe [] because allowed list doesn't include FSD engaged? But schema examples conditions are environmental/operational tags. \"FSD engaged\" could be condition but not in list. It says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. Might include none. However \"highway fork\" isn't one. Empty.\n\nFault codes [].\n\nMissing_info: [\"mileage\",\"date\"] maybe \"conditions\" because weather/road not stated? But component and symptom present. The analysis might need date and mileage. Since date redacted [XXX], yes. Mileage null. Conditions? The narrative gives FSD engaged, highway fork, speed. It doesn't give weather/road. But conditions in schema are cold etc; not necessary. Could include \"conditions\" because environmental/road conditions missing. But if not important, no. I think [\"mileage\",\"date\",\"conditions\"] maybe. But \"conditions\" can mean cold/moisture/heat/vibration etc. The event conditions are described enough: FSD engaged, highway fork, ~60 mph. Weather not. Hmm.\n\nNeed output only JSON no markdown. Ensure valid JSON. No extra text.\n\nLet's craft with exact quotes. Check quote \"Advanced Driver Assistance Systems\" appears in \"Component/System involved: Advanced Driver Assistance Systems — FSD...\" yes. Good.\n\nNeed \"symptoms\": plain words not necessarily quotes. \n- \"FSD (Supervised)/Autosteer misinterpreted an exit ramp/gore area as a continuing lane\"\n- \"maintained about 60 mph at a highway fork\"\n- \"no forward-collision warning perceived\"\n- \"no automatic emergency braking observed\"\n- \"vehicle contacted a roadside sign during manual takeover\"\n\nSummary one line.\n\nSafety true.\n\nClues array. Every quote verbatim. Include:\n{\"kind\":\"component_group\",\"quote\":\"Advanced Driver Assistance Systems\"}\n{\"kind\":\"condition\",\"quote\":\"FSD (Supervised) engaged\"}\n{\"kind\":\"symptom\",\"quote\":\"misinterpret an exit ramp/gore area as a continuing lane\"}\n{\"kind\":\"symptom\",\"quote\":\"maintained ~60 mph\"}\n{\"kind\":\"symptom\",\"quote\":\"No audible/visual forward-collision warning was perceived by me\"}\n{\"kind\":\"symptom\",\"quote\":\"I did not observe automatic emergency braking\"}\n{\"kind\":\"symptom\",\"quote\":\"the vehicle contacted a roadside sign\"}\n{\"kind\":\"safety\",\"quote\":\"serious collision risk\"}\n{\"kind\":\"other\",\"quote\":\"NOT REPRODUCED\"}\nMaybe include \"engineering logs\" not needed.\n\nNeed ensure \"FSD (Supervised) engaged\" is exact substring? Narrative: \"with FSD (Supervised) engaged, the system...\" yes exact. Good.\n\nNo fault codes.\n\nOutput.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529595,
+      "id": "922231f446d63c35af52304c7a020b6a",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1535,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1239,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00060207,
+          "billing_source": "go",
+          "list_cost": 0.00100345,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 542,
+            "output": 1535,
+            "reasoning": 1239
+          }
+        },
+        "prompt_tokens": 926,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2461
+      }
+    },
+    "text": "{\"summary\":\"2021 Tesla Model 3 FSD/Autosteer reportedly misinterpreted an exit ramp/gore as a continuing lane at a highway fork, maintained ~60 mph, gave no perceived FCW/AEB, and contacted a roadside sign during takeover.\",\"group\":\"adas\",\"symptoms\":[\"FSD/Autosteer misinterpreted an exit ramp/gore area as a continuing lane\",\"maintained about 60 mph at a highway fork\",\"no forward-collision warning perceived\",\"no automatic emergency braking observed\",\"vehicle contacted a roadside sign during manual takeover\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"Advanced Driver Assistance Systems\"},{\"kind\":\"condition\",\"quote\":\"FSD (Supervised) engaged\"},{\"kind\":\"symptom\",\"quote\":\"misinterpret an exit ramp/gore area as a continuing lane\"},{\"kind\":\"symptom\",\"quote\":\"maintained ~60 mph\"},{\"kind\":\"symptom\",\"quote\":\"No audible/visual forward-collision warning was perceived by me\"},{\"kind\":\"symptom\",\"quote\":\"I did not observe automatic emergency braking\"},{\"kind\":\"symptom\",\"quote\":\"the vehicle contacted a roadside sign\"},{\"kind\":\"safety\",\"quote\":\"serious collision risk\"},{\"kind\":\"other\",\"quote\":\"NOT REPRODUCED\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00060207,
+      "cached_tokens": 384,
+      "cost_usd": 0.00100345,
+      "input_tokens": 926,
+      "list_cost_usd": 0.00100345,
+      "output_tokens": 1535,
+      "reasoning_tokens": 1239
+    }
+  }
+}

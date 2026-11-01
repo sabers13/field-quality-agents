@@ -1,0 +1,66 @@
+{
+  "key": "09c17adbd74ad6884ac8752a9bfa584f4887513c7c54d60a40add66c3de06e84",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10364,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"ELECTRICAL SYSTEM / KIA EV6: ICCU died while driving, all 12V electrical inoperable with warning lights.\",\"group\":\"electrical_general\",\"symptoms\":[\"ICCU failure\",\"12-volt electrical system inoperable\",\"hazard lights inoperative\",\"cannot shift to neutral\",\"door locking inoperative\",\"master warning light illuminated\",\"12V battery warning light illuminated\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"the ICCU died\"},{\"kind\":\"symptom\",\"quote\":\"All 12 volt electrical was inoperable\"},{\"kind\":\"symptom\",\"quote\":\"The Master Warning light and 12V battery warning light illuminated\"},{\"kind\":\"condition\",\"quote\":\"Driving down local (residential) roads\"},{\"kind\":\"safety\",\"quote\":\"no hazard lights, no shift to neutral\"},{\"kind\":\"component_group\",\"quote\":\"All 12 volt electrical was inoperable\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize report. Need inspect narrative. Component electrical system group electrical_general. Symptoms: ICCU died; all 12 volt electrical inoperable; no hazard lights; no shift to neutral; no locking doors; master warning light and 12V battery warning light illuminated. Conditions: driving down local residential roads. Could include \"driving\" maybe not in conditions list; list allowed cold moisture heat vibration intermittent after service charging. No conditions matching? Maybe \"intermittent\"? Not exactly. Conditions list likely empty? But \"Driving down local (residential) roads\" is condition but not in allowed set. The schema conditions array examples include those; maybe only use listed. We can set conditions [] and missing_info? Missing mileage (null), maybe date present received and delivery/towed date. Conditions maybe present as driving. Missing_info: mileage. Maybe date? Report has dates, received date. component present, symptom present, conditions present. So missing_info [\"mileage\"]. safety_relevant: report mentions no hazard lights, no shift to neutral, all electrical died while driving; risk to people? Safety relevant when crash fire smoke injury loss of control stall at speed or other risk. Here loss of electrical while driving, no hazard lights, cannot shift neutral. It is a risk. The source says safety_relevant false but we decide from report. Need set true? \"another risk to people\" — inability to use hazard lights and shift neutral after electrical failure while driving is safety risk. Set true. Need clues with verbatim quotes. Need ensure quotes exact. Let's copy spans:\n- \"the ICCU died\"\n- \"All 12 volt electrical was inoperable\"\n- \"So no hazard lights, no shift to neutral, no locking the doors\"\n- \"The Master Warning light and 12V battery warning light illuminated\"\n- \"Driving down local (residential) roads\"\n- \"ICCU is now being ordered\" maybe component group? no.\n- \"Took delivery 6/28/25\" maybe date.\nNeed kind for safety: quote \"no hazard lights, no shift to neutral\" maybe exact substring? The narrative: \"So no hazard lights, no shift to neutral, no locking the doors.\" Yes quote \"no hazard lights, no shift to neutral\" verbatim. Could use full sentence. kind safety.\nNeed summary one line: \"ELECTRICAL SYSTEM / KIA EV6: ICCU died while driving, all 12V electrical inoperable with warning lights.\" Good.\nGroup: \"electrical_general\" or component group? Prompt: group \"the electrical/electronic component group, or the given group\". Given group electrical_general. Use electrical_general.\nSymptoms list plain words: \"ICCU failure\", \"12-volt electrical system inoperable\", \"hazard lights inoperative\", \"cannot shift to neutral\", \"door locking inoperative\", \"master warning light illuminated\", \"12V battery warning light illuminated\". Need not too many? Fine.\nConditions: Maybe \"driving\" not in list. The allowed conditions array is examples? The prompt says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. It may expect only these. No matching. But \"Driving down local roads\" is condition but not in allowed list. If include \"driving\" maybe deviates. Better [].\nFault_codes: none named. [].\nSafety true.\nMissing_info: [\"mileage\"]. Maybe date? It has received_at and dates, so no. Conditions? It gives driving context; no weather etc not necessary. Component present. Symptom present.\nClues include component_group? Quote \"ELECTRICAL SYSTEM\" but that's in component field not narrative. The report in user message includes JSON; quotes can be from report? It says report in user message; every quote copied verbatim from report. Could quote \"ELECTRICAL SYSTEM\" from JSON. But clues likely from narrative. Include component_group quote \"ELECTRICAL SYSTEM\"? It is verbatim in report. But maybe safer to quote narrative. Component group clue can be \"All 12 volt electrical was inoperable\" kind component_group? Hmm.\n\nNeed produce one JSON object no other text. Ensure valid JSON. No markdown. Use quotes exact. Let's verify exact strings from narrative:\n\"Driving down local (residential) roads, the ICCU died; towed to dealership 12/3/2025.\" Quote \"Driving down local (residential) roads\" exact yes.\n\"All 12 volt electrical was inoperable.\" exact.\n\"So no hazard lights, no shift to neutral, no locking the doors.\" exact.\n\"The Master Warning light and 12V battery warning light illuminated.\" There are double spaces before? Narrative: \"The Master Warning light and 12V battery warning light illuminated.   I was fortunate...\" The quote no trailing spaces.\n\"ICCU is now being ordered.\" exact maybe not needed.\n\"Took delivery 6/28/25.\" exact.\nNeed kind \"fault_code\"? none.\nCould include \"ICCU died\" kind symptom.\nNeed \"safety\" quote \"no hazard lights, no shift to neutral\" exact substring? In narrative \"So no hazard lights, no shift to neutral, no locking the doors.\" The substring \"no hazard lights, no shift to neutral\" is verbatim yes. Good.\n\nPotential issue: \"safety_relevant\" true? The prompt says set when mentions risk; no hazard lights while driving is risk. Yes.\n\nNeed answer only JSON. Final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793532668,
+      "id": "33c43829ff03e8b2ab24aef185495cdf",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1383,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1159,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00052035,
+          "billing_source": "go",
+          "list_cost": 0.00086725,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 242,
+            "output": 1383,
+            "reasoning": 1159
+          }
+        },
+        "prompt_tokens": 626,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2009
+      }
+    },
+    "text": "{\"summary\":\"ELECTRICAL SYSTEM / KIA EV6: ICCU died while driving, all 12V electrical inoperable with warning lights.\",\"group\":\"electrical_general\",\"symptoms\":[\"ICCU failure\",\"12-volt electrical system inoperable\",\"hazard lights inoperative\",\"cannot shift to neutral\",\"door locking inoperative\",\"master warning light illuminated\",\"12V battery warning light illuminated\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"the ICCU died\"},{\"kind\":\"symptom\",\"quote\":\"All 12 volt electrical was inoperable\"},{\"kind\":\"symptom\",\"quote\":\"The Master Warning light and 12V battery warning light illuminated\"},{\"kind\":\"condition\",\"quote\":\"Driving down local (residential) roads\"},{\"kind\":\"safety\",\"quote\":\"no hazard lights, no shift to neutral\"},{\"kind\":\"component_group\",\"quote\":\"All 12 volt electrical was inoperable\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00052035,
+      "cached_tokens": 384,
+      "cost_usd": 0.00086725,
+      "input_tokens": 626,
+      "list_cost_usd": 0.00086725,
+      "output_tokens": 1383,
+      "reasoning_tokens": 1159
+    }
+  }
+}

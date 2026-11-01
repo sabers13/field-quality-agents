@@ -1,0 +1,66 @@
+{
+  "key": "5688f36907a91ef9193bd0fff8b0d6ff0fe0c3c694c31dc264e180eaf59b52cb",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 17070,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"AIR BAGS: front airbags did not deploy in a severe direct frontal collision; occupant sustained neck/upper shoulder injury; no prior SRS warning.\",\"group\":\"restraints\",\"symptoms\":[\"front airbags did not deploy despite a severe front-end collision\"],\"conditions\":[\"collision\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"front airbags did NOT deploy\"},{\"kind\":\"condition\",\"quote\":\"severe front-end collision\"},{\"kind\":\"condition\",\"quote\":\"direct frontal nature of the crash\"},{\"kind\":\"safety\",\"quote\":\"I sustained a neck and upper shoulder injury and required medical evaluation.\"},{\"kind\":\"other\",\"quote\":\"There were no warning lights or messages prior to the crash indicating any malfunction in the airbag or SRS system.\"}]}",
+            "reasoning_content": "We need answer only JSON object. Need normalize report. Need include summary one line component symptom conditions. Group restraints. Symptoms plain words: front airbags did not deploy in severe front-end collision; injuries. Conditions: maybe \"collision\" not in list? Conditions allowed [\"cold\",\"moisture\",\"heat\",\"vibration\",\"intermittent\",\"after service\",\"charging\"]. Hmm conditions list only those? It says conditions [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"] but perhaps can include \"collision\"? Need follow schema? Conditions should be from list? The prompt says conditions: [\"cold\", ...]. But report conditions include severe front-end collision. The allowed list doesn't include crash. Could leave conditions empty? But summary includes conditions. We can include \"collision\" maybe as condition? Need not invent. The schema example lists possible. Rules say conditions list. We can include \"collision\" as condition? It's not in enumerated examples but that's likely acceptable? Hmm.\n\nNeed fault_codes empty. safety_relevant true. missing_info: mileage? Report has no mileage; date? received_at is date but crash date not given. Conditions? It gives crash conditions. Component present. Symptom present. Missing info likely mileage and date (of incident). Maybe \"mileage\", \"date\". We should include only facts analysis needs. Mileage null. Date received exists but crash date missing. So missing_info [\"mileage\",\"date\"]. Component present AIR BAGS. Symptom present. Conditions present? It says severe front-end collision direct frontal nature. So not missing conditions. But if conditions schema only environmental, maybe not.\n\nClues: verbatim spans. Need quote exact. Examples:\n- component_group: \"AIR BAGS\" from component? Report in user message includes component field, quote \"AIR BAGS\" is verbatim. Or narrative \"airbag/SRS system\".\n- symptom: \"front airbags did NOT deploy\" verbatim. Also \"airbags should have deployed but did not\". \n- safety: \"I sustained a neck and upper shoulder injury and required medical evaluation.\" verbatim. Also \"severe front-end collision\".\n- condition: \"severe front-end collision\" verbatim; \"direct frontal nature of the crash\" maybe.\n- fault_code none.\n- other: \"There were no warning lights or messages prior to the crash indicating any malfunction in the airbag or SRS system.\" This is relevant condition? Could include as other. But clues kind must one of symptom|condition|fault_code|component_group|safety|other. Use other.\n\nNeed summary one line: \"AIR BAGS: front airbags failed to deploy in a severe direct frontal collision, with neck/shoulder injury; no prior warning lights.\" Conditions include severe front-end collision. Good.\n\nNeed ensure JSON only no markdown? User says answer with one JSON object and no other text. So final should be raw JSON. Need no code fences? likely raw JSON. We'll output valid JSON.\n\nNeed decide conditions array. Maybe include \"collision\" because important. But conditions allowed list doesn't include. Could include \"severe front-end collision\" as condition? Schema says conditions [\"cold\", ...]. Hmm \"conditions\" likely contextual conditions; crash is relevant. But to avoid violating enumerated? It's not strict \"must be from list\"; examples. The prompt: conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. It might expect categories. There is no category for collision. If include \"collision\" it's okay? Desired answer? The intake agent normalizes field-quality report. It should not invent facts. \"collision\" is fact. But condition list may be fixed taxonomy; adding \"collision\" may be outside. The desk likely wants conditions like \"cold, moisture...\" but collision is a condition. Hmm.\n\nCould set conditions: [] and put collision in summary and clue condition. But missing_info conditions? Conditions are present but not in taxonomy. If conditions empty, maybe okay. But summary states severe collision. The conditions field can be empty because no listed environmental condition. But clues include condition quote \"severe front-end collision\". This may be inconsistent but okay. However schema \"conditions\": [\"cold\"...] indicates field for environmental conditions. The report's conditions are \"severe front-end collision\", \"direct frontal\". I'd include \"collision\" maybe.\n\nNeed maybe \"after service\" no. \"intermittent\" no. \"cold\" no. So conditions: [\"collision\"]. Is that allowed? It says \"conditions\": [\"cold\", ...] but not \"only\". Hmm.\n\nMissing_info: \"mileage\" and \"date\" (crash date). Is \"date\" missing? received_at 2025-11-16 is report date. The incident date not named. Analysis needs date. Yes.\n\nCould include \"conditions\" missing? No, collision conditions described.\n\nNeed \"fault_codes\": [] since no code named. There is \"SRS\" not fault code. No.\n\nNeed \"group\": \"restraints\" given.\n\nNeed \"symptoms\": [\"front airbags did not deploy in a severe front-end collision\", \"airbags should have deployed but did not\"] maybe one symptom enough. Plain words. Could include \"neck and upper shoulder injury\" but symptom? That's injury, safety. Symptoms should be component symptom: no deployment. Add \"no warning lights or messages prior to crash\" maybe not symptom? Could include as symptom? It's absence of warning. Maybe clues other. Symptoms array: [\"front airbags did not deploy despite a severe front-end collision\"]. Good.\n\nNeed clues with quotes exact. Let's verify exact spans from narrative:\n\"I was involved in a severe front-end collision where my vehicle struck another vehicle with significant force.\"\n\"Despite the major impact, the front airbags did NOT deploy.\"\n\"The entire front end of the vehicle was crushed, including destruction of the radiator, damage to engine components, internal structural collapse, and leaking fluids.\"\n\"Based on the severity and direct frontal nature of the crash, airbags should have deployed but did not.\"\n\"As a result of the impact, I sustained a neck and upper shoulder injury and required medical evaluation.\"\n\"There were no warning lights or messages prior to the crash indicating any malfunction in the airbag or SRS system.\"\n\"The vehicle is available for inspection by NHTSA, the manufacturer, insurance, or an authorized Mercedes-Benz service center.\"\n\"This appears to be a possible failure of the airbag/SRS system during a qualifying collision.\"\n\nQuotes must be copied verbatim. Need ensure exact spaces. Good.\n\nClues:\n{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"}? Is \"AIR BAGS\" in report? It appears in component field, yes user message JSON has \"component\": \"AIR BAGS\". Quote is verbatim. Good. But if quotes must be from report narrative? \"report\" includes JSON. Fine.\n{\"kind\":\"symptom\",\"quote\":\"front airbags did NOT deploy\"}\n{\"kind\":\"condition\",\"quote\":\"severe front-end collision\"}\n{\"kind\":\"condition\",\"quote\":\"direct frontal nature of the crash\"}\n{\"kind\":\"safety\",\"quote\":\"I sustained a neck and upper shoulder injury and required medical evaluation.\"}\n{\"kind\":\"other\",\"quote\":\"There were no warning lights or messages prior to the crash indicating any malfunction in the airbag or SRS system.\"}\nMaybe {\"kind\":\"safety\",\"quote\":\"severe front-end collision\"} but condition already. Safety clue with injury enough.\n\nNeed summary one line no newline. \"AIR BAGS: front airbags did not deploy in a severe direct frontal collision; occupant sustained neck/upper shoulder injury; no prior SRS warning.\" Good.\n\nNeed decide safety_relevant true.\n\nNeed JSON valid. No markdown. Final only.\n\nPotential issue: The prompt says \"Answer with one JSON object and no other text\" and shows code fence. We should output JSON object raw. Good.\n\nNeed maybe include \"missing_info\": [\"mileage\", \"date\"]. The report includes received_at date; but crash date missing. Good.\n\nNeed \"fault_codes\": [].\n\nNeed \"conditions\": [\"collision\"]. Hmm if strict, maybe conditions: [\"collision\"]. If they expected only allowed list, maybe invalid? We can set []? Let's think. The schema conditions has array of strings; no explicit \"only from this list\" but examples. We can include \"collision\". It is not one of environmental categories but relevant. The summary includes conditions. The clue kind condition quote. I think include \"collision\". Maybe also \"severe impact\"? Conditions array should be concise: [\"collision\"]. Good.\n\nNeed not include \"after service\". No.\n\nNeed maybe missing_info include \"component\"? No component present. \"symptom\" present. \"conditions\" present. Only mileage/date. Good.\n\nNeed \"summary\" one line: component, symptom, conditions. Good.\n\nLet's craft final JSON.\n\nNeed ensure no trailing commas. Use double quotes. Quotes exact. In clue \"front airbags did NOT deploy\" appears exactly. \"severe front-end collision\" exact. \"direct frontal nature of the crash\" exact. Injury quote exact includes period. Good.\n\nMaybe quote \"airbag/SRS system\" exact? Could add other. Not needed. But fault code? no.\n\nNeed include clue for \"no warning lights...\" as other. Good.\n\nFinal.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793532138,
+      "id": "7d032fb0288445eccabc9c27c7469563",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2172,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1971,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00080718,
+          "billing_source": "go",
+          "list_cost": 0.0013453,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 273,
+            "output": 2172,
+            "reasoning": 1971
+          }
+        },
+        "prompt_tokens": 657,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2829
+      }
+    },
+    "text": "{\"summary\":\"AIR BAGS: front airbags did not deploy in a severe direct frontal collision; occupant sustained neck/upper shoulder injury; no prior SRS warning.\",\"group\":\"restraints\",\"symptoms\":[\"front airbags did not deploy despite a severe front-end collision\"],\"conditions\":[\"collision\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"front airbags did NOT deploy\"},{\"kind\":\"condition\",\"quote\":\"severe front-end collision\"},{\"kind\":\"condition\",\"quote\":\"direct frontal nature of the crash\"},{\"kind\":\"safety\",\"quote\":\"I sustained a neck and upper shoulder injury and required medical evaluation.\"},{\"kind\":\"other\",\"quote\":\"There were no warning lights or messages prior to the crash indicating any malfunction in the airbag or SRS system.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00080718,
+      "cached_tokens": 384,
+      "cost_usd": 0.0013453,
+      "input_tokens": 657,
+      "list_cost_usd": 0.0013453,
+      "output_tokens": 2172,
+      "reasoning_tokens": 1971
+    }
+  }
+}

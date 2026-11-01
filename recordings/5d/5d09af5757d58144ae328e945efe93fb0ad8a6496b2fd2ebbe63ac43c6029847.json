@@ -1,0 +1,66 @@
+{
+  "key": "5d09af5757d58144ae328e945efe93fb0ad8a6496b2fd2ebbe63ac43c6029847",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10837,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2013 VW Beetle airbags deployed on their own, injuring driver and passenger and causing a crash into parked cars; no prior warning.\",\"group\":\"restraints\",\"symptoms\":[\"airbags deployed on their own\",\"driver and passenger injured\",\"vehicle crashed into two parked cars\",\"no warning lamps or messages before failure\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"front airbags\"},{\"kind\":\"symptom\",\"quote\":\"The airbags deployed on their own\"},{\"kind\":\"symptom\",\"quote\":\"both front airbags (steering wheel and dashboard airbags) deploying on their own\"},{\"kind\":\"safety\",\"quote\":\"My daughter and her friend were both injured\"},{\"kind\":\"safety\",\"quote\":\"causing the vw beetle to crash into two parked cars\"},{\"kind\":\"symptom\",\"quote\":\"There were not any warning lamps, messages, or other symptoms of the problem prior to the Tatanka airbag failure and recall.\"}]}",
+            "reasoning_content": "We need answer one JSON only. Need normalize report. Need be careful quotes verbatim from narrative. Need summary component symptom conditions. Group given restraints. Symptoms: airbags deployed on own; injuries; crash into parked cars; no warning lamps/messages prior. Conditions? Report mentions date 7-4-2023, parked? Airbags deployed causing crash into two parked cars in residential neighborhood. Conditions list allowed: cold moisture heat vibration intermittent after service charging. None clearly. Maybe \"intermittent\"? No. Conditions maybe empty. Fault codes none. safety_relevant true because injuries crash. missing_info: mileage null, maybe date present, component present, symptom present, conditions? Conditions not really but missing? The analysis needs conditions maybe absent. Report does mention date and no warning. Mileage missing. Could list mileage. Maybe also conditions? The report lacks ambient conditions, driving state? But symptom is deployment on own. \"conditions\" could be missing? The schema says missing_info facts analysis needs: component, symptom, conditions, mileage, date. We have component, symptom, date. Conditions absent (though no warning prior, parked cars after). We can include \"conditions\" and \"mileage\". But \"conditions\" could be \"airbags deployed on their own\" no environmental conditions. I'd include mileage and conditions perhaps. Need clues with quotes. Need verbatim spans. Quotes must be exactly from narrative. Let's extract exact substrings.\n\nNarrative: \"The airbags deployed on their own on 7-4-2023 in my daughter’s 2013 VW Beetle.  My daughter and her friend were both injured (physically/mentally) as a result of both front airbags (steering wheel and dashboard airbags) deploying on their own causing over $10,000 USD damage to the beetle and injury to my daughter and her friend who was a passenger in the front seat.   Volkswagen never sent out a recall notice to us even though we have owned the car since 9-13-2019 and the airbag recall notice was determined on 12-16-2020 by NHTSA and announced on that date.  I only became aware of this recall through investigation, after the accident happened and during repairing of the car.  The vehicle was not inspected by the manufacturer, or police, or insurance even though Progressive Insurance paid out over $20,000 in damages to the parked cars that were struck after the airbags deployed causing the vw beetle to crash into two parked cars in a residential neighborhood.  There was a sparse accident report that was filed by Colorado State police.  There were not any warning lamps, messages, or other symptoms of the problem prior to the Tatanka airbag failure and recall.\"\n\nNeed JSON. Summary one line: \"2013 VW Beetle airbag spontaneous deployment causing injuries and crash into parked cars; no prior warning.\" Use component AIR BAGS. group restraints. Symptoms array plain: \"airbags deployed on their own\", \"driver and passenger injured\", \"vehicle crashed into two parked cars\", \"no warning lamps or messages before failure\". Conditions: maybe [] because no allowed conditions. Fault codes []. safety true. missing_info [\"mileage\",\"conditions\"] maybe. Clues:\n- component_group? quote \"airbags\" or \"front airbags\"? kind component_group quote \"AIR BAGS\" not in narrative? The component field is AIR BAGS not narrative. Quote must copied from report; report includes JSON? The user message includes component field \"AIR BAGS\". But \"report\" could include all. They say narrative. Quote copied from report. Could quote \"AIR BAGS\" from component field? Hmm. Need verbatim from report. Safer quote from narrative: \"front airbags\" kind component_group.\n- symptom quote \"The airbags deployed on their own\" exact.\n- symptom quote \"both front airbags (steering wheel and dashboard airbags) deploying on their own\" exact.\n- safety quote \"My daughter and her friend were both injured\" exact.\n- safety quote \"causing the vw beetle to crash into two parked cars\" exact? Narrative has \"causing the vw beetle to crash into two parked cars in a residential neighborhood.\" yes exact substring.\n- symptom/condition quote \"There were not any warning lamps, messages, or other symptoms of the problem prior to\" maybe exact, but trailing \"the Tatanka airbag failure and recall.\" Could quote \"There were not any warning lamps, messages, or other symptoms of the problem prior to the Tatanka airbag failure and recall.\" exact. Kind symptom or other. Use symptom? It's absence of warning, symptom? kind \"symptom\".\n- condition? \"after the airbags deployed\" not allowed condition. Maybe no condition clues. Could include \"parked cars\" no.\n\nNeed no other text. Ensure valid JSON. Need quote exact character including curly apostrophe? Avoid quotes with apostrophe. Use simple exact substrings. \"The airbags deployed on their own\" exact includes The. yes. \"My daughter and her friend were both injured\" exact. \"both front airbags (steering wheel and dashboard airbags) deploying on their own\" exact? Let's verify narrative: \"as a result of both front airbags (steering wheel and dashboard airbags) deploying on their own causing...\" yes exact substring. Good. \"causing the vw beetle to crash into two parked cars\" exact? Narrative: \"causing the vw beetle to crash into two parked cars in a residential neighborhood.\" yes. \"There were not any warning lamps, messages, or other symptoms of the problem prior to the Tatanka airbag failure and recall.\" exact. Good.\n\nNeed mention fault code? none. Could include \"Tatanka\" not code. No.\n\nSummary one line. Conditions empty because no listed condition. missing_info maybe [\"mileage\",\"conditions\"]. Is \"conditions\" missing? They mention date but no weather/driving conditions. Since analysis needs conditions. Include. But if condition list empty, missing_info conditions yes.\n\nNeed safety_relevant true. Good.\n\nFinal JSON only.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793526708,
+      "id": "ae5d86418566211f1c6aee775b0960df",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1494,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1260,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00057156,
+          "billing_source": "go",
+          "list_cost": 0.0009526,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 367,
+            "output": 1494,
+            "reasoning": 1260
+          }
+        },
+        "prompt_tokens": 751,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2245
+      }
+    },
+    "text": "{\"summary\":\"2013 VW Beetle airbags deployed on their own, injuring driver and passenger and causing a crash into parked cars; no prior warning.\",\"group\":\"restraints\",\"symptoms\":[\"airbags deployed on their own\",\"driver and passenger injured\",\"vehicle crashed into two parked cars\",\"no warning lamps or messages before failure\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"front airbags\"},{\"kind\":\"symptom\",\"quote\":\"The airbags deployed on their own\"},{\"kind\":\"symptom\",\"quote\":\"both front airbags (steering wheel and dashboard airbags) deploying on their own\"},{\"kind\":\"safety\",\"quote\":\"My daughter and her friend were both injured\"},{\"kind\":\"safety\",\"quote\":\"causing the vw beetle to crash into two parked cars\"},{\"kind\":\"symptom\",\"quote\":\"There were not any warning lamps, messages, or other symptoms of the problem prior to the Tatanka airbag failure and recall.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00057156,
+      "cached_tokens": 384,
+      "cost_usd": 0.0009526,
+      "input_tokens": 751,
+      "list_cost_usd": 0.0009526,
+      "output_tokens": 1494,
+      "reasoning_tokens": 1260
+    }
+  }
+}

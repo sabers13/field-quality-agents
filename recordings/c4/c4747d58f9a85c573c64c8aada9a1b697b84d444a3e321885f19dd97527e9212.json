@@ -1,0 +1,66 @@
+{
+  "key": "c4747d58f9a85c573c64c8aada9a1b697b84d444a3e321885f19dd97527e9212",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10873,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2026 RAM 1500 electrical system: digital dash warning 'Warning Light Illumination Unavailable Service Required' recurs after acknowledgement, under 200 miles.\",\"group\":\"electrical_general\",\"symptoms\":[\"digital dash cluster warning: Warning Light Illumination Unavailable Service Required\",\"warning returns after being acknowledged\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"A warning popped up on the digital dash cluster\"},{\"kind\":\"symptom\",\"quote\":\"Warning Light Illumination Unavailable Service Required\"},{\"kind\":\"condition\",\"quote\":\"two days later it came back with the same message\"},{\"kind\":\"other\",\"quote\":\"I dont even have 200 miles on this car.\"}]}",
+            "reasoning_content": "We need answer only JSON object. Need normalize report. Component electrical system group electrical_general. Symptoms: warning light illumination unavailable service required message on digital dash cluster, recurring. Conditions? none explicitly; maybe intermittent? The message came back two days later, but condition list includes intermittent? Could include \"intermittent\" because warning reappeared? Need be careful. Report says one day into ownership, two days later came back. No cold/moisture/heat/vibration/after service/charging. Could include \"intermittent\" as symptom? The schema conditions list has intermittent. Is recurrence intermittent? It appeared, acknowledged, came back. I'd put conditions [\"intermittent\"]? But quote? Need clues quote verbatim. Clues include symptom, component_group maybe safety? Need every quote verbatim. Summary one line: electrical system, dash warning \"Warning Light Illumination Unavailable Service Required\", recurring after acknowledgement on 2026 Ram 1500 with <200 miles. Need not invent mileage? It says \"I dont even have 200 miles on this car.\" Mileage field null but narrative contains <200 miles. missing_info: mileage? Since actual mileage missing? The analysis needs mileage; report says under 200 miles but not exact. Could include mileage? Maybe missing_info [\"mileage\"] because null exact. Date? received_at exists but event date not. Conditions missing? There are no conditions. Component given. Symptom given. Could list \"conditions\", \"mileage\" maybe \"date\"? The instructions: list missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Here component/symptom present, conditions absent, exact mileage absent, date? Received date but not occurrence date. Should list [\"conditions\",\"mileage\",\"date\"]? Hm. Need not overdo. \"date\" maybe event date not given. But received_at is date report received. For analysis, date of incident useful; not given. Include missing_info [\"mileage\",\"date\",\"conditions\"]? But maybe conditions not needed? It's a warning. I'd include conditions and exact mileage/date. Safety false. Fault codes none.\n\nClues: \n- component_group quote \"ELECTRICAL SYSTEM\" (but quote must be in report; component field not narrative? The report includes component key value; quote can be from whole report? It says copied from report. The user message includes JSON with component \"ELECTRICAL SYSTEM\". Yes quote verbatim. Could include.\n- symptom quote: \"Warning Light Illumination Unavailable Service Required\" (verbatim includes escaped quotes? In narrative: saying that the \\\"Warning Light Illumination Unavailable Service Required\\\". The inner text verbatim without escaped? Character for character from report? The actual report string has backslashes in JSON display? Hmm user message is JSON-ish with escaped quotes. We need quote copied verbatim from report. We can quote \"Warning Light Illumination Unavailable Service Required\" because that's the text inside. Good.\n- symptom quote: \"A warning popped up on the digital dash cluster\"\n- condition quote: \"two days later it came back with the same message\" for intermittent? Is that a condition? Could kind condition quote that. \n- other quote: \"I dont even have 200 miles on this car.\" maybe mileage clue kind other? Clue kinds only symptom|condition|fault_code|component_group|safety|other. Use other for mileage? Maybe not necessary. \nNeed JSON no other text. Ensure valid JSON. \nNeed summary one line. \nPotential issue: \"conditions\": [\"intermittent\"] based on recurrence. Is \"intermittent\" a condition? It is in list. The report says warning returned. I'd include intermittent with quote. But \"condition\" maybe environmental. The rules list conditions includes intermittent. Fine.\n\nNeed \"symptoms\": [\"dash cluster warning: Warning Light Illumination Unavailable Service Required\", \"warning recurs after acknowledgement\"]. Plain words. \nMaybe \"Warning Light Illumination Unavailable Service Required\" is not plain words? It's message. Fine.\n\nNeed \"missing_info\": exact mileage, incident date, conditions. Since component/symptom present. \"conditions\" absent. Could include \"mileage\", \"date\", \"conditions\". The report says no exact mileage. Safety false.\n\nNeed only JSON. Let's craft:\n{\n \"summary\": \"2026 RAM 1500 electrical system: digital dash warning 'Warning Light Illumination Unavailable Service Required' recurs after acknowledgement, under 200 miles.\",\n \"group\": \"electrical_general\",\n \"symptoms\": [\"digital dash cluster warning: Warning Light Illumination Unavailable Service Required\", \"warning returns after being acknowledged\"],\n \"conditions\": [\"intermittent\"],\n \"fault_codes\": [],\n \"safety_relevant\": false,\n \"missing_info\": [\"mileage\", \"date\", \"conditions\"],\n \"clues\": [\n  {\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},\n  {\"kind\":\"symptom\",\"quote\":\"A warning popped up on the digital dash cluster\"},\n  {\"kind\":\"symptom\",\"quote\":\"Warning Light Illumination Unavailable Service Required\"},\n  {\"kind\":\"condition\",\"quote\":\"two days later it came back with the same message\"},\n  {\"kind\":\"other\",\"quote\":\"I dont even have 200 miles on this car.\"}\n ]\n}\nNeed quote \"ELECTRICAL SYSTEM\" is in component field. Good. \"I dont\" missing apostrophe in report? It says \"I dont even have 200 miles on this car.\" yes no apostrophe. Good.\n\nNeed if missing_info includes conditions while conditions array has intermittent, contradictory? Not necessarily: environmental conditions missing. Maybe okay. But if we include condition intermittent, missing_info \"conditions\" might be weird. Could remove \"conditions\" from missing_info? The report lacks cold/moisture etc but not necessarily important. Hmm. Maybe missing_info [\"mileage\",\"date\"] only. Exact mileage and event date. Since symptom/component present. Conditions not relevant? But rules mention conditions. The report doesn't mention environmental conditions. But analysis might need. I'd include [\"mileage\",\"date\",\"conditions\"]? The desk might handle. Desired oververbosity 5. The answer only JSON.\n\nNeed maybe \"safety_relevant\": false already given. No safety clue.\n\nEnsure no markdown. Final only JSON. \nNeed answer with one JSON object no other text. \nLet's final. ",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531360,
+      "id": "62af2f1f04790e01c07fbb82d1f1fc4c",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1535,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1339,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00056805,
+          "billing_source": "go",
+          "list_cost": 0.00094675,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 164,
+            "output": 1535,
+            "reasoning": 1339
+          }
+        },
+        "prompt_tokens": 548,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2083
+      }
+    },
+    "text": "{\"summary\":\"2026 RAM 1500 electrical system: digital dash warning 'Warning Light Illumination Unavailable Service Required' recurs after acknowledgement, under 200 miles.\",\"group\":\"electrical_general\",\"symptoms\":[\"digital dash cluster warning: Warning Light Illumination Unavailable Service Required\",\"warning returns after being acknowledged\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"A warning popped up on the digital dash cluster\"},{\"kind\":\"symptom\",\"quote\":\"Warning Light Illumination Unavailable Service Required\"},{\"kind\":\"condition\",\"quote\":\"two days later it came back with the same message\"},{\"kind\":\"other\",\"quote\":\"I dont even have 200 miles on this car.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00056805,
+      "cached_tokens": 384,
+      "cost_usd": 0.00094675,
+      "input_tokens": 548,
+      "list_cost_usd": 0.00094675,
+      "output_tokens": 1535,
+      "reasoning_tokens": 1339
+    }
+  }
+}

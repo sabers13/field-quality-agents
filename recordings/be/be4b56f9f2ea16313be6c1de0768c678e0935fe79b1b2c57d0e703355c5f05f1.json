@@ -1,0 +1,66 @@
+{
+  "key": "be4b56f9f2ea16313be6c1de0768c678e0935fe79b1b2c57d0e703355c5f05f1",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 15611,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"AIR BAGS: air bags did not deploy after a crash caused by continued acceleration while braking and turning into a parking spot at 20 MPH\",\n  \"group\": \"restraints\",\n  \"symptoms\": [\n    \"air bags did not deploy\",\n    \"vehicle continued to accelerate while braking\",\n    \"crash into concrete wall\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"AIR BAGS\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"while turning into a parking spot at 20 MPH and upon depressing the brake pedal\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"the vehicle continued to accelerate, causing the contact to crash the front of the vehicle into the concrete wall\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The air bags did not deploy\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"The contact seated in the driver's seat was injured\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"No warning lights were illuminated\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize report. Need extract component AIR BAGS group restraints. Summary one line: component, symptom, conditions. Symptoms: air bags did not deploy, vehicle continued to accelerate upon braking while turning into parking spot at 20 MPH causing crash into concrete wall. Conditions: turning? cold/moisture/heat/vibration/intermittent/after service/charging none. Maybe conditions array empty or include? The allowed conditions are specific; no match. Could include \"turning\" not in list? Schema says conditions [\"cold\",\"moisture\",\"heat\",\"vibration\",\"intermittent\",\"after service\",\"charging\"]. We should only list from those. None. Fault codes none. Safety relevant true. Missing info: date? Report has received_at but not incident date. Component present, symptom present, conditions present? Mileage given. Date missing maybe incident date. Could include \"date\". Need careful: missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Component present, symptom present, conditions? There is condition \"while turning into parking spot at 20 MPH and upon depressing brake pedal\" but not one of listed conditions? Conditions field refers environmental/usage conditions. We can say missing date. Maybe missing \"date\" only. Need clues with verbatim quotes. Must copy exact spans. Need include quotes exact from narrative. Let's craft.\n\nNeed ensure JSON valid, no extra text. Quotes verbatim. Could include:\n- symptom: \"the vehicle continued to accelerate, causing the contact to crash the front of the vehicle into the concrete wall\"\n- symptom: \"The air bags did not deploy\"\n- safety: \"The contact seated in the driver's seat was injured\"\n- condition: \"while turning into a parking spot at 20 MPH and upon depressing the brake pedal\" maybe kind condition. Verbatim yes.\n- component_group: \"AIR BAGS\" from component? The report in user JSON has component field. Quote can be from report? \"AIR BAGS\" is in report. Yes.\n- other: \"No warning lights were illuminated.\"\n- fault_code none.\n\nSummary: \"AIR BAGS: air bags did not deploy after a crash caused by unintended acceleration while braking and turning into a parking spot at 20 MPH.\" That's one line. Good.\n\nNeed group \"restraints\". Symptoms array plain words: [\"air bags did not deploy\", \"vehicle continued to accelerate while braking\", \"crash into concrete wall\"]. Conditions [] maybe. Could include \"turning into a parking spot at 20 MPH\" but conditions enum not. Better empty. However schema conditions examples allowed list. Use [].\n\nMissing_info [\"date\"] because incident date absent; received_at is not incident date. Maybe also \"conditions\" because no weather/road? But conditions not necessary? The analysis needs conditions; report has some driving condition but not environmental. Could list \"conditions\" if missing? Hmm. It says list missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. The report gives component, symptom, mileage. Conditions? It gives \"while turning into parking spot at 20 MPH and upon depressing brake pedal\" but not cold/moisture etc. Since conditions field will be empty, maybe missing_info should include \"conditions\" and \"date\". But \"conditions\" as in whether cold/moisture/heat etc not present. Is that important? For airbag non-deploy and acceleration, environmental conditions less. But rule says conditions is a fact analysis needs. I can include \"date\" only to avoid overclaim. But if conditions empty, missing_info could include conditions. Need decide. Desired output likely include date missing. We can include \"date\" only. But maybe \"conditions\" because no listed conditions. Hmm.\n\nNeed \"fault_codes\": [].\n\nNeed clues all quotes verbatim. Check exact string: narrative: \"The contact stated that while turning into a parking spot at 20 MPH and upon depressing the brake pedal, the vehicle continued to accelerate, causing the contact to crash the front of the vehicle into the concrete wall.\" Our quote \"while turning into a parking spot at 20 MPH and upon depressing the brake pedal\" is exact substring? Let's verify: \"that while turning into a parking spot at 20 MPH and upon depressing the brake pedal, the vehicle\" yes. The quote starts at \"while\". Good.\nQuote \"the vehicle continued to accelerate, causing the contact to crash the front of the vehicle into the concrete wall\" exact substring? Narrative: \"the vehicle continued to accelerate, causing the contact to crash the front of the vehicle into the concrete wall.\" yes.\nQuote \"The air bags did not deploy\" exact sentence? Narrative: \"The air bags did not deploy.\" yes.\nQuote \"The contact seated in the driver's seat was injured\" exact? Narrative: \"The contact seated in the driver's seat was injured.\" yes.\nQuote \"No warning lights were illuminated\" exact? Narrative: \"No warning lights were illuminated.\" yes.\nQuote \"AIR BAGS\" exact from component. Good.\n\nNeed ensure no markdown? User says answer with one JSON object and no other text. Final should raw JSON. Good.\n\nNeed consider summary includes \"unintended acceleration\" not verbatim but okay summary can paraphrase. No invent facts. It says \"continued to accelerate\" not \"unintended\" maybe okay. Use \"continued to accelerate\".\n\nNeed include \"safety_relevant\": true. Since crash injury. Good.\n\nNeed maybe \"clues\" kind condition for \"while turning...\" can be condition. Even though conditions array empty due enum. Good.\n\nPotential issue: \"conditions\" array allowed includes only listed. We can leave empty. Missing_info maybe include \"conditions\". But then clues has condition. Hmm conditions field empty despite clue condition. But allowed enum doesn't include turning/braking. Fine.\n\nNeed final JSON. Ensure no trailing commas. Use double quotes. Need escape apostrophe? JSON string can include apostrophe no escape. \"driver's\" fine.\n\nLet's final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793526058,
+      "id": "afbb44314e8d1b23c567d19fb00c79b8",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1536,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1248,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00058173,
+          "billing_source": "go",
+          "list_cost": 0.00096955,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 312,
+            "output": 1536,
+            "reasoning": 1248
+          }
+        },
+        "prompt_tokens": 696,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2232
+      }
+    },
+    "text": "{\n  \"summary\": \"AIR BAGS: air bags did not deploy after a crash caused by continued acceleration while braking and turning into a parking spot at 20 MPH\",\n  \"group\": \"restraints\",\n  \"symptoms\": [\n    \"air bags did not deploy\",\n    \"vehicle continued to accelerate while braking\",\n    \"crash into concrete wall\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"AIR BAGS\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"while turning into a parking spot at 20 MPH and upon depressing the brake pedal\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"the vehicle continued to accelerate, causing the contact to crash the front of the vehicle into the concrete wall\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The air bags did not deploy\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"The contact seated in the driver's seat was injured\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"No warning lights were illuminated\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00058173,
+      "cached_tokens": 384,
+      "cost_usd": 0.00096955,
+      "input_tokens": 696,
+      "list_cost_usd": 0.00096955,
+      "output_tokens": 1536,
+      "reasoning_tokens": 1248
+    }
+  }
+}

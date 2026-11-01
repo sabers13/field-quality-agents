@@ -1,0 +1,66 @@
+{
+  "key": "827ad666f66c17f2abb35dae4404fd3aeb35199980eca8aab050377cea59f6e6",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 15503,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system: 2022 Ford Maverick failed to restart after driving and parking; no warning lights; battery replaced.\",\"group\":\"electrical_general\",\"symptoms\":[\"vehicle failed to restart after driving and parking\",\"no warning lights illuminated\",\"vehicle was jump-started\",\"battery needed to be replaced\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"after driving the vehicle and parking, the vehicle failed to restart\"},{\"kind\":\"condition\",\"quote\":\"after driving the vehicle and parking\"},{\"kind\":\"symptom\",\"quote\":\"There were no warning lights illuminated.\"},{\"kind\":\"other\",\"quote\":\"The vehicle was jump-started.\"},{\"kind\":\"other\",\"quote\":\"the battery needed to be replaced\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize. Report: component ELECTRICAL SYSTEM group electrical_general. Symptom: after driving and parking vehicle failed to restart; no warning lights; jump-started; battery needed replacement. Conditions: after driving? parking? Not cold/moisture/heat/vibration/intermittent/after service/charging. Maybe conditions include \"after driving and parking\"? The allowed conditions list is specific. Could include \"after service\"? no. Maybe none. Fault codes none. safety_relevant false (no crash/fire etc; failed restart not at speed). missing_info: component? given. symptom given. conditions? It gives after driving/parking. mileage given. date received given; failure date not given? missing date maybe. Need list missing_info only important: date of failure? It has received_at but not incident date. Could include \"date\". But maybe no missing important? The analysis needs date? The prompt says list missing_info facts analysis needs: component, symptom, conditions, mileage, date. It has component, symptom, conditions, mileage. Date? received_at is report date not failure date. But maybe \"date\" missing. Need decide. Since no failure date specified (only received_at). So missing_info [\"date\"] perhaps. Clues verbatim spans: quote exact. Need include symptom quote: \"after driving the vehicle and parking, the vehicle failed to restart\" exact? Narrative: \"The contact stated that after driving the vehicle and parking, the vehicle failed to restart.\" We can quote substring \"after driving the vehicle and parking, the vehicle failed to restart\" yes verbatim. Another symptom \"There were no warning lights illuminated.\" condition? \"The vehicle was jump-started.\" maybe other. \"battery needed to be replaced\" other/symptom? Component group quote \"ELECTRICAL SYSTEM\" from component field? report includes component. We can quote. Need ensure quotes are in report. The user message includes JSON with component \"ELECTRICAL SYSTEM\". Quote okay. group? Could clue kind component_group quote \"ELECTRICAL SYSTEM\". Safety none. Fault codes none.\n\nNeed JSON only. summary one line: component, symptom, conditions. \"Electrical system: 2022 Ford Maverick failed to restart after driving and parking; no warning lights; battery replaced.\" Conditions: after driving/parking. Good.\n\nNeed perhaps conditions array empty? The allowed conditions are cold, moisture, heat, vibration, intermittent, after service, charging. The failure occurred after driving and parking, not in allowed. But conditions field can include \"after driving and parking\"? Schema says conditions: [\"cold\", ...] maybe expected from list. It says conditions: [\"cold\", \"moisture\", ...]. We should use allowed list only? It says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. So if none, empty array. But we can include \"intermittent\"? Failed to restart after parking could be intermittent? Not necessarily; no. Do not invent. So conditions [].\n\nMissing info: date? It has received_at but not failure date. Include \"date\". Could also missing \"conditions\"? It has after driving and parking. No. Maybe \"component\" not missing. \"symptom\" present. \"mileage\" present. So [\"date\"]. But date field? The report has received_at, so maybe date not missing? Yet analysis might need incident date; received_at is not failure date. I'll include \"date\" maybe. Is that inventing? Missing_info only facts analysis needs; date is in list. The report has received_at as date. But \"date\" could mean report date? Hmm. The report received_at is date. However, \"date\" in missing_info likely event date; not explicit. The prompt says read only report, don't invent. Listing date as missing when received_at present might be questionable. But received_at is not failure date. The narrative says failure mileage approx, no failure date. I'd include \"date\" because incident date missing. But maybe the desk has received_at. The missing_info examples include date; if received_at is enough? It asks normalise incoming report, date could be received_at. I'd lean not list date because received_at present. But \"date\" in missing_info likely date of incident. Hmm.\n\nCould include missing_info []? The report is complete enough: component, symptom, conditions, mileage, date (received_at). The prompt: \"List missing_info only for facts the analysis needs: component, symptom, conditions, mileage, date. Use empty list when nothing important is missing.\" Here component, symptom, conditions, mileage, date all present? Date present as received_at. The failure date not, but maybe not essential. Empty list defensible. But if they expect date missing? Need choose. The report includes \"received_at\": \"2025-06-23\", so date is present. Also mileage 36000. I'd use empty list to avoid false missing. But maybe \"conditions\" is not missing? It says after driving and parking. So empty. Good.\n\nNeed JSON. Ensure no markdown. Quotes: \n- \"ELECTRICAL SYSTEM\" from component.\n- \"after driving the vehicle and parking, the vehicle failed to restart\" exact substring in narrative? Let's check: \"The contact stated that after driving the vehicle and parking, the vehicle failed to restart.\" The substring starts after \"that \" and includes comma. Yes exact. \n- \"There were no warning lights illuminated.\" exact sentence.\n- \"The vehicle was jump-started.\" exact.\n- \"the battery needed to be replaced\" exact substring? Narrative: \"determined that the battery needed to be replaced.\" Yes.\nCould include condition clue \"after driving the vehicle and parking\" as condition, but same quote? We can have duplicate quote with kind condition and symptom? Fine but quote exact. Need no unnecessary. Clues array can include kind condition quote \"after driving the vehicle and parking\" exact. That's a substring of symptom quote. Good. But if we include condition quote, conditions array remains empty because not in taxonomy. Hmm.\n\nMaybe conditions array should include \"after driving and parking\"? The schema says conditions: [\"cold\", ...] but not strictly only? It says \"conditions\": [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. It might allow only these. We'll keep empty.\n\nSummary: \"Electrical system: 2022 Ford Maverick failed to restart after driving and parking; no warning lights; battery replaced.\" Conditions in summary \"after driving and parking\". Good.\n\nNeed safety_relevant false boolean.\n\nFinal JSON only. Use valid JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793527892,
+      "id": "e2c1caf5c2a41aaa6141863bfb5ad998",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1583,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1394,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00058902,
+          "billing_source": "go",
+          "list_cost": 0.0009817,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 205,
+            "output": 1583,
+            "reasoning": 1394
+          }
+        },
+        "prompt_tokens": 589,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2172
+      }
+    },
+    "text": "{\"summary\":\"Electrical system: 2022 Ford Maverick failed to restart after driving and parking; no warning lights; battery replaced.\",\"group\":\"electrical_general\",\"symptoms\":[\"vehicle failed to restart after driving and parking\",\"no warning lights illuminated\",\"vehicle was jump-started\",\"battery needed to be replaced\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"after driving the vehicle and parking, the vehicle failed to restart\"},{\"kind\":\"condition\",\"quote\":\"after driving the vehicle and parking\"},{\"kind\":\"symptom\",\"quote\":\"There were no warning lights illuminated.\"},{\"kind\":\"other\",\"quote\":\"The vehicle was jump-started.\"},{\"kind\":\"other\",\"quote\":\"the battery needed to be replaced\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00058902,
+      "cached_tokens": 384,
+      "cost_usd": 0.0009817,
+      "input_tokens": 589,
+      "list_cost_usd": 0.0009817,
+      "output_tokens": 1583,
+      "reasoning_tokens": 1394
+    }
+  }
+}

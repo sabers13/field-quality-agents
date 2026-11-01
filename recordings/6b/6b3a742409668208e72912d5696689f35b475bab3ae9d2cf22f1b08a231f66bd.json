@@ -1,0 +1,66 @@
+{
+  "key": "6b3a742409668208e72912d5696689f35b475bab3ae9d2cf22f1b08a231f66bd",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12002,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system: random traction-control/4x4 engagement with vehicle slowing and speed limited to 45 mph while engine RPM runs high.\",\"group\":\"electrical_general\",\"symptoms\":[\"random switch to traction control and 4x4\",\"vehicle slows down while driving\",\"speed limited to 45 mph\",\"engine RPM high relative to road speed\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"condition\",\"quote\":\"at random\"},{\"kind\":\"symptom\",\"quote\":\"will switch to traction control, 4x4\"},{\"kind\":\"symptom\",\"quote\":\"will slow down while driving\"},{\"kind\":\"symptom\",\"quote\":\"will not allow me to go above 45 mph\"},{\"kind\":\"symptom\",\"quote\":\"engine rpm’s revved as  high as if I’m driving 85 mph\"},{\"kind\":\"safety\",\"quote\":\"will slow down while driving\"}]}",
+            "reasoning_content": "We need answer one JSON object no other text. Need normalize report. Need read only report. Need infer component group given electrical_general. Symptoms: at random switches to traction control, 4x4, slows down while driving, won't allow above 45 mph, engine rpms revved high as if driving 85 mph. Conditions: intermittent/random? \"at random\" condition intermittent. Safety relevant? Report says slows down while driving and won't allow above 45 mph; risk? Prompt safety when crash fire smoke injury loss control stall at speed another risk to people. It slows down while driving, could be risk? It says vehicle will slow down while driving, not loss of control. Need set safety_relevant maybe true? Hmm \"risk to people\" includes unexpected deceleration while driving? Could be safety relevant because vehicle slows down while driving and limits speed, but no explicit crash/fire etc. The prompt says \"Set safety_relevant when the report mentions a crash, fire, smoke, injury, loss of control, a stall at speed or another risk to people.\" Unexpected slowing while driving could be another risk to people. But input has safety_relevant false from source; however we should determine. Need not invent. I think true because \"will slow down while driving\" unexpected deceleration can be safety risk. But maybe \"another risk to people\" yes. Need include quote.\n\nMissing_info: mileage null; date? received_at present, not incident date. Need missing_info likely [\"mileage\", \"date\"]? Conditions? It has \"at random\" but not weather etc. Component present, symptom present. Analysis needs mileage and date maybe date of incident? The report has received_at but no occurrence date. Include mileage, date. Maybe conditions? It says at random; no driving conditions. But list only important missing. I'd include mileage, date. Maybe \"conditions\" since no cold/moisture/heat etc but not necessary? The analysis might need conditions. Report has random while driving; conditions missing. Hmm.\n\nFault codes none.\n\nClues: need quote verbatim. Need kind. We can quote spans:\n- symptom: \"will switch to traction control, 4x4\"\n- symptom: \"will slow down while driving\"\n- symptom: \"will not allow me to go above 45 mph\"\n- symptom: \"engine rpm’s revved as  high as if I’m driving 85 mph\" Need exact text includes curly apostrophe and double space after as? The narrative: \"with the engine rpm\\u2019s revved as  high as if I\\u2019m driving 85 mph.\" There are two spaces between \"as\" and \"high\"? It shows \"as  high\". Need quote verbatim. Use exactly \"engine rpm’s revved as  high as if I’m driving 85 mph\" with curly. Need be careful JSON escaping. Could use unicode characters. Verbatim span can include. \n- condition: \"at random\"\n- safety: \"will slow down while driving\" maybe for safety.\n- component_group: \"ELECTRICAL SYSTEM\"\n- other: \"No mechanic has been able to accurately diagnose it\" maybe not necessary. Clues should support.\n\nSummary: one line component, symptom, conditions: \"Electrical system: random traction-control/4x4 engagement and speed limiting with high RPM while driving.\" Conditions include intermittent/random. Need group \"electrical_general\".\n\nSymptoms array plain words: \"random switch to traction control and 4x4\", \"vehicle slows down while driving\", \"speed limited to 45 mph\", \"engine RPM high relative to road speed\". Conditions: [\"intermittent\"] maybe \"random\". The allowed conditions list includes \"intermittent\". Use [\"intermittent\"].\n\nSafety_relevant true? Need decide. The instruction says report mentions \"another risk to people\"; unexpected slowing and speed cap can be risk. But source says false, perhaps not authoritative. We should set true. But if evaluator expects based on source? They likely expect safety false because no crash etc? Hmm. The prompt explicitly includes \"another risk to people\", and slowing down while driving is a potential risk. Yet \"slow down while driving\" is not necessarily loss of control. I'd lean true due to \"will slow down while driving\" unexpected deceleration. But \"safety_relevant\" field in input false maybe from source, but we're normalizing; we can override. Need not mention action. If false maybe okay? Let's think: NHTSA complaint likely safety relevant? The vehicle switching to 4x4/traction control and limiting speed at 45 mph is a malfunction that could be safety. But no crash/fire. \"another risk to people\" broad. I'd set true and quote.\n\nNeed JSON only. Ensure no markdown? User says answer with one JSON object and no other text. We'll output raw JSON. Need valid JSON with curly apostrophe. Use escaped? JSON can contain Unicode. Fine.\n\nNeed missing_info: \"mileage\", \"date\" maybe \"conditions\". The report says at random, no weather/temp. But conditions analysis? The schema's missing_info allowed [\"mileage\", \"date\", \"conditions\", \"component\", \"symptom\"]. We have component and symptom. Conditions is only \"at random\" not detailed. But \"conditions\" might mean cold/moisture/heat etc; missing. Should include \"conditions\". Mileage null. Date? received_at is date, but no incident date. Include date. So missing_info [\"mileage\", \"date\", \"conditions\"]. Is that too much? Fine.\n\nNeed clues quotes:\n- {\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"} It's in component not narrative? Report includes component field. \"copied verbatim from report\" yes report JSON includes. Fine.\n- {\"kind\":\"condition\",\"quote\":\"at random\"}\n- {\"kind\":\"symptom\",\"quote\":\"will switch to traction control, 4x4\"}\n- {\"kind\":\"symptom\",\"quote\":\"will slow down while driving\"}\n- {\"kind\":\"symptom\",\"quote\":\"will not allow me to go above 45 mph\"}\n- {\"kind\":\"symptom\",\"quote\":\"engine rpm’s revved as  high as if I’m driving 85 mph\"} Need exact substring: \"with the engine rpm\\u2019s revved as  high as if I\\u2019m driving 85 mph.\" The substring \"engine rpm’s revved as  high as if I’m driving 85 mph\" appears. Good.\n- {\"kind\":\"safety\",\"quote\":\"will slow down while driving\"} duplicate quote but kind safety. Fine.\nMaybe \"other\" for no diagnosis? Not needed.\n\nNeed ensure summary one line.\n\nPotential issue: \"symptoms\": \"symptom in plain words\" array. Use plain.\n\nLet's craft valid JSON. No trailing commas. Use double quotes. Curly apostrophe inside strings is fine. Need escape? No.\n\nOutput only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793526636,
+      "id": "6da4efb6672a502f0e6228e60f99517a",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1693,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1458,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00062718,
+          "billing_source": "go",
+          "list_cost": 0.0010453,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 189,
+            "output": 1693,
+            "reasoning": 1458
+          }
+        },
+        "prompt_tokens": 573,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2266
+      }
+    },
+    "text": "{\"summary\":\"Electrical system: random traction-control/4x4 engagement with vehicle slowing and speed limited to 45 mph while engine RPM runs high.\",\"group\":\"electrical_general\",\"symptoms\":[\"random switch to traction control and 4x4\",\"vehicle slows down while driving\",\"speed limited to 45 mph\",\"engine RPM high relative to road speed\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"condition\",\"quote\":\"at random\"},{\"kind\":\"symptom\",\"quote\":\"will switch to traction control, 4x4\"},{\"kind\":\"symptom\",\"quote\":\"will slow down while driving\"},{\"kind\":\"symptom\",\"quote\":\"will not allow me to go above 45 mph\"},{\"kind\":\"symptom\",\"quote\":\"engine rpm’s revved as  high as if I’m driving 85 mph\"},{\"kind\":\"safety\",\"quote\":\"will slow down while driving\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00062718,
+      "cached_tokens": 384,
+      "cost_usd": 0.0010453,
+      "input_tokens": 573,
+      "list_cost_usd": 0.0010453,
+      "output_tokens": 1693,
+      "reasoning_tokens": 1458
+    }
+  }
+}

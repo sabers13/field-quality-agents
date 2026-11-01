@@ -1,0 +1,66 @@
+{
+  "key": "a783f722b9b0b7e0b02ba8eca8f66b427dc626d6b8d55dc23212b99cf2daf992",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12368,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Center display screen shuts off and stays nonfunctional while driving, disabling collision warnings and rear view video.\",\"group\":\"infotainment_display\",\"symptoms\":[\"center display screen shuts off\",\"center display screen remains nonfunctional\",\"collision warnings unavailable\",\"rear view video unavailable\",\"rear view visibility severely reduced\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"center display screen\"},{\"kind\":\"symptom\",\"quote\":\"has shut off and remains to be unfunctional\"},{\"kind\":\"condition\",\"quote\":\"While driving\"},{\"kind\":\"symptom\",\"quote\":\"collision warnings and rear view video\"},{\"kind\":\"condition\",\"quote\":\"did not always work beforehand\"},{\"kind\":\"symptom\",\"quote\":\"The rear view video did not always work beforehand either\"},{\"kind\":\"safety\",\"quote\":\"extremely unsafe\"},{\"kind\":\"safety\",\"quote\":\"almost no rear view visibility\"}]}",
+            "reasoning_content": "We need answer one JSON object no other text. Need normalize report. Need follow schema. Read report. Component field VISIBILITY/WIPER but narrative about center display screen shut off, collision warnings rear view video, not driveable unsafe, rear view visibility. Group given body_controls? It says group \"the electrical/electronic component group, or the given group\". We need determine group. Given group body_controls but component visibility/wiper; narrative infotainment/display/rear camera. Electrical/electronic component group likely \"infotainment_display\" or \"driver_assistance\"? Need not invent? We can set group to given group if not clear. But prompt says electrical/electronic component group, or given group. Need component group. Could be \"infotainment/display\" maybe. But allowed? no enumerated. Need use concise. Maybe \"infotainment_display\" is a component group. But \"given group\" is body_controls. Since narrative is display screen, not wiper. Should we use \"infotainment_display\" as electrical/electronic group. But report component says VISIBILITY/WIPER; group body_controls. Hmm.\n\nNeed summary one line: component, symptom, conditions. \"Center display screen shuts off and remains nonfunctional while driving; rear view video/collision warnings unavailable.\" Conditions: \"while driving\" -> conditions includes intermittent? It shut off and remains unfunctional, not intermittent. \"while driving\" condition maybe not in enumerated conditions list? Conditions array allowed [\"cold\",\"moisture\",\"heat\",\"vibration\",\"intermittent\",\"after service\",\"charging\"]. \"while driving\" not listed. Could include \"intermittent\" because rear view video did not always work beforehand? Report says \"did not always work beforehand\" -> intermittent. Main screen shut off remains unfunctional. So conditions [\"intermittent\"]? Also driving? Conditions list has only these; maybe no condition? But \"while driving\" is a condition though not listed. Schema says conditions: [\"cold\", ...]. The examples are allowed values? It says list conditions. Must choose from those? It lists exact array. We should only include from allowed. \"intermittent\" is applicable due rear view video did not always work beforehand. Maybe not main. Include \"intermittent\".\n\nSymptoms: \"center display screen shut off\", \"center display screen remains unfunctional\", \"collision warnings unavailable\", \"rear view video unavailable\", \"rear view visibility almost absent\", \"vehicle not driveable\"? Symptom plain words. Need not overdo. \"center display screen shut off and remains nonfunctional\"; \"rear view video did not always work beforehand and now completely unfunctional\"; \"collision warnings unavailable\"; \"almost no rear view visibility\". Good.\n\nFault codes: none.\n\nSafety_relevant: report says \"extremely unsafe\", \"almost no rear view visibility\", \"collision warnings\" unavailable; not crash/fire etc. Set true? Rule: set when mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. \"extremely unsafe without display\" and no rear view visibility = risk to people. Though given safety_relevant false, we must normalize. Set true. Need clue quote for safety: \"extremely unsafe\" or \"almost no rear view visibility\". Use verbatim. \"This car is not driveable and extremely unsafe without the display screen as there is almost no rear view visibility without it.\" Verbatim. Or \"extremely unsafe\". Safety quote.\n\nMissing_info: mileage is null, date? received_at 2025-12-15 but not incident date. Need missing_info [\"mileage\",\"date\"]? Also conditions? It mentions while driving; conditions enough? Component? Component field mismatched but narrative identifies display. Symptom clear. Missing mileage and date. Maybe \"mileage\", \"date\". Date missing? received_at exists but incident date missing. Analysis needs date? It asks missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Use [\"mileage\",\"date\"]. Could also \"component\" because reported component VISIBILITY/WIPER inconsistent with narrative display; but narrative gives component. Hmm. The field component says VISIBILITY/WIPER but summary display. Missing component? No. But mismatch might need info. But missing_info list facts missing, not inconsistencies. So [\"mileage\",\"date\"].\n\nClues: Need quote verbatim from report. Need include kind symptom, condition, fault_code, component_group, safety, other. Need quote spans. We can include:\n- {\"kind\":\"component_group\",\"quote\":\"center display screen\"}\n- {\"kind\":\"symptom\",\"quote\":\"has shut off and remains to be unfunctional\"}\n- {\"kind\":\"condition\",\"quote\":\"While driving\"} Wait quote case exactly \"While driving, the center display screen has shut off...\" Yes \"While driving\" appears.\n- {\"kind\":\"symptom\",\"quote\":\"collision warnings and rear view video\"}\n- {\"kind\":\"symptom\",\"quote\":\"The rear view video did not always work beforehand either\"}\n- {\"kind\":\"condition\",\"quote\":\"did not always work beforehand\"} maybe intermittent. But condition quote can be \"did not always work beforehand\" verbatim? It appears: \"The rear view video did not always work beforehand either, but this makes it completely unfunctional.\" Yes substring \"did not always work beforehand\" exists. Good.\n- {\"kind\":\"safety\",\"quote\":\"extremely unsafe\"}\n- {\"kind\":\"safety\",\"quote\":\"almost no rear view visibility\"}\nNeed no invalid. \"center display screen\" verbatim yes. \"has shut off and remains to be unfunctional\" yes? Report: \"the center display screen has shut off and remains to be unfunctional.\" substring \"has shut off and remains to be unfunctional\" yes. \"collision warnings and rear view video\" yes. \"The rear view video did not always work beforehand either\" yes exact? Report: \"The rear view video did not always work beforehand either, but...\" yes exact with capital T. Good.\nMaybe \"This car is not driveable\" safety? Could include.\n\nNeed output JSON only. Ensure valid. Summary one line. group? Let's decide. \"infotainment_display\" maybe. But given group body_controls. Hmm prompt: \"group\": \"the electrical/electronic component group, or the given group\". The report has group body_controls but component VISIBILITY/WIPER. Narrative clearly center display screen (infotainment/display) and rear view camera (driver assistance). Which group? Electrical/electronic component group. In automotive taxonomy, \"infotainment\" or \"driver_information_display\". I can set \"infotainment_display\". Is that invented? It's a component group inferred. But prompt says don't invent facts. Group is classification, not fact. Fine.\n\nNeed \"component\" in summary: \"Center display screen\". Summary: \"Center display screen shuts off and stays nonfunctional while driving, disabling collision warnings and rear view video.\" Conditions included.\n\nSymptoms array: Need plain words. Could include \"center display screen shuts off\", \"center display screen remains nonfunctional\", \"collision warnings unavailable\", \"rear view video unavailable\", \"rear view visibility severely reduced\". Good.\n\nConditions: [\"intermittent\"]? Main display not intermittent. Rear video intermittent beforehand. Maybe \"while driving\" not allowed. Could include \"intermittent\" because report says did not always work. Yes.\n\nSafety_relevant true. Missing [\"mileage\",\"date\"]. Clues.\n\nNeed no extra text. Final JSON. Ensure no markdown? User says one JSON object and no other text. We'll output raw JSON. Use double quotes. No trailing commas.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793532843,
+      "id": "89eb9babab6ffa0026abefe16b903833",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1834,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1610,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00067704,
+          "billing_source": "go",
+          "list_cost": 0.0011284,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 179,
+            "output": 1834,
+            "reasoning": 1610
+          }
+        },
+        "prompt_tokens": 563,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2397
+      }
+    },
+    "text": "{\"summary\":\"Center display screen shuts off and stays nonfunctional while driving, disabling collision warnings and rear view video.\",\"group\":\"infotainment_display\",\"symptoms\":[\"center display screen shuts off\",\"center display screen remains nonfunctional\",\"collision warnings unavailable\",\"rear view video unavailable\",\"rear view visibility severely reduced\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"center display screen\"},{\"kind\":\"symptom\",\"quote\":\"has shut off and remains to be unfunctional\"},{\"kind\":\"condition\",\"quote\":\"While driving\"},{\"kind\":\"symptom\",\"quote\":\"collision warnings and rear view video\"},{\"kind\":\"condition\",\"quote\":\"did not always work beforehand\"},{\"kind\":\"symptom\",\"quote\":\"The rear view video did not always work beforehand either\"},{\"kind\":\"safety\",\"quote\":\"extremely unsafe\"},{\"kind\":\"safety\",\"quote\":\"almost no rear view visibility\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00067704,
+      "cached_tokens": 384,
+      "cost_usd": 0.0011284,
+      "input_tokens": 563,
+      "list_cost_usd": 0.0011284,
+      "output_tokens": 1834,
+      "reasoning_tokens": 1610
+    }
+  }
+}

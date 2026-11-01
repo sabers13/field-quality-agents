@@ -1,0 +1,66 @@
+{
+  "key": "e2dedaf0fd401ddc00f282de9969ffc612f1ef2c609898d413219a5d44ce7012",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11336,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Integrated trailer brake control module failed while hauling, causing trailer braking loss and persisting after repair.\",\"group\":\"safety_systems\",\"symptoms\":[\"trailer brake control module failed to operate as needed\",\"trailer lost braking capability\",\"failure persisted after repair\"],\"conditions\":[\"after service\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM: INTEGRATED TRAILER BRAKE CONTROL\"},{\"kind\":\"symptom\",\"quote\":\"trailer brake control module failed to operate as needed while hauling a trailer\"},{\"kind\":\"condition\",\"quote\":\"while hauling a trailer\"},{\"kind\":\"symptom\",\"quote\":\"causing the trailer to lose braking capability\"},{\"kind\":\"safety\",\"quote\":\"trailer to lose braking capability\"},{\"kind\":\"symptom\",\"quote\":\"trailer control module was faulty\"},{\"kind\":\"condition\",\"quote\":\"The vehicle was repaired; however, the failure persisted.\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize report. Component electrical system integrated trailer brake control. Group given safety_systems. Symptoms: trailer brake control module failed to operate as needed while hauling trailer, trailer lost braking capability, failure persisted after repair. Conditions: while hauling a trailer? \"charging\" no. Cold moisture heat vibration no. \"after service\" because repaired but persisted? Condition report says vehicle was repaired; however failure persisted. Could include after service. Safety relevant? Report mentions trailer lose braking capability. Is that risk to people? Loss of braking capability for trailer while hauling is safety risk. Set true. Fault codes none. Missing_info: maybe none? Has component, symptom, conditions (while hauling), mileage, date received? Date? received_at is report date not failure date. The schema missing_info includes date. Does report have date? It has received_at 2025-07-14, but no incident/failure date. Do we list date? Analysis needs date? Maybe yes incident date missing. But rules list date. Given received_at, date of report not failure date. Could list \"date\". Also component present symptom present conditions present mileage present. Missing_info: [\"date\"]. Need clues with verbatim quotes. Must copy exact spans from narrative or fields? Report includes JSON fields. Quotes should be verbatim from report. Use exact narrative spans:\n- \"trailer brake control module failed to operate as needed while hauling a trailer\"\n- \"causing the trailer to lose braking capability\"\n- \"The vehicle was repaired; however, the failure persisted.\"\n- \"trailer control module was faulty\"\n- safety quote \"trailer to lose braking capability\" maybe.\nNeed kind symptom, condition, safety, component_group? component_group quote \"ELECTRICAL SYSTEM: INTEGRATED TRAILER BRAKE CONTROL\" from component field. That's in report. Group given safety_systems not in report? The report has \"group\": \"safety_systems\"; quote can use? It's in report. But kind component_group maybe quote \"ELECTRICAL SYSTEM: INTEGRATED TRAILER BRAKE CONTROL\". Conditions: quote \"while hauling a trailer\" exact. \"after service\" quote \"The vehicle was repaired; however, the failure persisted.\" Need avoid quote not exact due semicolon yes.\n\nSummary one line: \"Integrated trailer brake control module failed while hauling, causing trailer braking loss; persisted after repair.\" Good.\n\nNeed JSON only. Ensure no markdown? It says one JSON object no other text. final only JSON.\n\nNeed decide safety_relevant true. Even input says false but we override per rules. Need include missing_info maybe [\"date\"]. Could include \"conditions\"? Conditions present while hauling. Mileage present. Date? Received_at present. But failure date missing. \"date\" likely missing. Also maybe \"component\" present. Symptom present. So [\"date\"].\n\nNeed clues: include safety quote. Could include fault_code none. \n\nNeed ensure every quote verbatim. Let's check exact narrative:\n\"The contact owns a 2024 Chevrolet Silverado 2500. The contact stated that the trailer brake control module failed to operate as needed while hauling a trailer, causing the trailer to lose braking capability. The vehicle was taken to a local dealer where it was diagnosed, and the contact was advised that the trailer control module was faulty and needed to be replaced. The vehicle was repaired; however, the failure persisted. The manufacturer was notified of the failure. The approximate failure mileage was 63,500.\"\n\nQuotes:\n\"trailer brake control module failed to operate as needed while hauling a trailer\" exact substring? It begins after \"that the \" yes: \"the trailer brake...\" Actually narrative: \"that the trailer brake control module failed...\" The substring without initial \"the\" is \"trailer brake control module failed...\" yes exact.\n\"causing the trailer to lose braking capability\" exact.\n\"while hauling a trailer\" exact.\n\"The vehicle was repaired; however, the failure persisted.\" exact.\n\"trailer control module was faulty\" exact? Narrative: \"advised that the trailer control module was faulty\" yes substring.\n\"ELECTRICAL SYSTEM: INTEGRATED TRAILER BRAKE CONTROL\" exact in component field. Good.\n\nNeed maybe kind \"condition\" for after service quote. Or \"symptom\" for persisted. Fine.\n\nNeed output valid JSON, no comments.\n\nLet's craft:\n{\n \"summary\": \"Integrated trailer brake control module failed while hauling, causing trailer braking loss and persisting after repair.\",\n \"group\": \"safety_systems\",\n \"symptoms\": [\"trailer brake control module failed to operate as needed\", \"trailer lost braking capability\", \"failure persisted after repair\"],\n \"conditions\": [\"while hauling a trailer\", \"after service\"],\n \"fault_codes\": [],\n \"safety_relevant\": true,\n \"missing_info\": [\"date\"],\n \"clues\": [...]\n}\nNeed \"symptoms\" plain words. Good.\n\nNeed conditions values list per allowed? Allowed list includes \"after service\", not \"while hauling a trailer\". It says conditions array [\"cold\", ...]. But also maybe any plain condition? The schema example suggests allowed values. But report has while hauling. Should we include \"while hauling a trailer\" as condition? It isn't in allowed list. The prompt says conditions: [\"cold\", \"moisture\", ...] likely controlled vocabulary, but also rules list conditions facts. Hmm. It says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. These are enumerated likely use these. \"while hauling a trailer\" not in list; but it's a condition? Could include only \"after service\" because repaired and persisted. But \"while hauling\" is important condition. Maybe \"conditions\" should include \"after service\" only; but summary includes while hauling. However clues can have condition quote \"while hauling a trailer\". But condition array should maybe only controlled values. Need decide. The instruction: `conditions`: [\"cold\", ...] indicates accepted categories, not arbitrary. It says normalise incoming field-quality report. Use only relevant from list? Probably yes. \"while hauling a trailer\" isn't in list, so not include in conditions? But it is a condition under which symptom occurs. Could include \"after service\" since repair. But \"after service\" means after service/repair. Fine.\n\nBut clues kind condition can quote \"while hauling a trailer\"; okay.\n\nMissing_info \"date\" maybe because received date present. Good.\n\nNeed ensure no suggestion of action. Fine.\n\nCould include safety clue quote \"trailer to lose braking capability\". That quote exact. Good.\n\nNeed perhaps clue for component_group with quote component. Good.\n\nNeed final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793528569,
+      "id": "9eb5c458af90b501ad8cf1aa81e0ad38",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1633,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1412,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00060855,
+          "billing_source": "go",
+          "list_cost": 0.00101425,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 222,
+            "output": 1633,
+            "reasoning": 1412
+          }
+        },
+        "prompt_tokens": 606,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2239
+      }
+    },
+    "text": "{\"summary\":\"Integrated trailer brake control module failed while hauling, causing trailer braking loss and persisting after repair.\",\"group\":\"safety_systems\",\"symptoms\":[\"trailer brake control module failed to operate as needed\",\"trailer lost braking capability\",\"failure persisted after repair\"],\"conditions\":[\"after service\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM: INTEGRATED TRAILER BRAKE CONTROL\"},{\"kind\":\"symptom\",\"quote\":\"trailer brake control module failed to operate as needed while hauling a trailer\"},{\"kind\":\"condition\",\"quote\":\"while hauling a trailer\"},{\"kind\":\"symptom\",\"quote\":\"causing the trailer to lose braking capability\"},{\"kind\":\"safety\",\"quote\":\"trailer to lose braking capability\"},{\"kind\":\"symptom\",\"quote\":\"trailer control module was faulty\"},{\"kind\":\"condition\",\"quote\":\"The vehicle was repaired; however, the failure persisted.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00060855,
+      "cached_tokens": 384,
+      "cost_usd": 0.00101425,
+      "input_tokens": 606,
+      "list_cost_usd": 0.00101425,
+      "output_tokens": 1633,
+      "reasoning_tokens": 1412
+    }
+  }
+}

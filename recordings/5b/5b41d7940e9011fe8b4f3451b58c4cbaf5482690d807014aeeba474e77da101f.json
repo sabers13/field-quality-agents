@@ -1,0 +1,66 @@
+{
+  "key": "5b41d7940e9011fe8b4f3451b58c4cbaf5482690d807014aeeba474e77da101f",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10423,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"AIR BAGS: airbags did not deploy in a 44 mph highway collision.\",\"group\":\"restraints\",\"symptoms\":[\"airbags did not deploy\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"The airbags of my car did not deploy\"},{\"kind\":\"condition\",\"quote\":\"going down the highway\"},{\"kind\":\"condition\",\"quote\":\"at 44 mph\"},{\"kind\":\"safety\",\"quote\":\"I collided with the vehicle at 44 mph\"},{\"kind\":\"other\",\"quote\":\"the airbags of the other vehicle did deploy\"}]}",
+            "reasoning_content": "We need answer one JSON only. Need normalize. Report has component AIR BAGS, group restraints, symptom airbags did not deploy, conditions? collision at 44 mph highway, another vehicle turned in front. Safety relevant true (crash, airbags not deploy). Fault codes none. Missing info: mileage? date? The report received_at exists, but no incident date. Conditions maybe \"highway\", \"44 mph\"? Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. None apply? Could include no conditions. Need clues verbatim quotes. Need summary one line component symptom conditions. \"AIR BAGS did not deploy after 44 mph highway collision.\" Conditions: maybe \"collision at 44 mph\" isn't in allowed list but conditions array could include \"highway\"? Rules say conditions [\"cold\"...]. It gives examples? It says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. Probably only those enumerated? But report conditions include highway collision. Could put \"highway\" maybe not. Need adhere. Maybe conditions [] because none of specified. But summary can mention collision. Symptoms: [\"airbags did not deploy\"]. Fault_codes [].\n\nMissing_info: mileage, date? Component and symptom present. Conditions present? Incident conditions present (highway, 44 mph). Mileage null. Date: received_at but not incident date. Missing_info [\"mileage\", \"date\"]. Could include \"conditions\"? no.\n\nClues need verbatim spans:\n- kind component_group quote \"AIR BAGS\" (from component field? Is that \"report\"? The user message includes JSON; quote from report likely narrative/fields. Verbatim \"AIR BAGS\" exists in component. Okay.\n- symptom quote \"The airbags of my car did not deploy\"\n- condition quote \"going down the highway\"\n- condition quote \"at 44 mph\" maybe verbatim? Narrative has \"I collided with the vehicle at 44 mph.\" So \"at 44 mph\" yes.\n- safety quote \"I collided with the vehicle at 44 mph\" or \"collided\". Safety relevant due crash. Quote \"collided with the vehicle at 44 mph\".\n- other quote \"the airbags of the other vehicle did deploy\" maybe evidence comparison? Could include.\n\nNeed no other text. Ensure JSON valid. summary maybe \"AIR BAGS: driver airbags did not deploy in a 44 mph highway collision.\" But \"driver\" not stated? It says \"airbags of my car\"; avoid driver. \"AIR BAGS did not deploy in a 44 mph highway collision.\" Good.\n\n\"group\": \"restraints\" given.\n\n\"conditions\": [] or [\"highway\"]? The schema's conditions list examples for environmental/operational conditions. The report conditions are collision. We can put [\"highway\"]? It isn't in enumerated list but likely acceptable? Hmm The instruction says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. It might expect only from that list. But \"highway\" is a condition relevant. However \"conditions\" in output could be any condition. But examples? Let's parse: It explicitly says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. It might be a controlled vocabulary. If none, [] best. But then summary includes collision. Clues capture highway/44mph. I think conditions [] because no environmental listed. But maybe \"conditions\" should include \"highway\" and \"44 mph\"? Hmm \"conditions\" array in schema has example values, not strict? It lists allowed? The line \"conditions\": [\"cold\", ...] likely indicates possible values. But no \"collision\". Could include \"highway\" as plain. However if evaluator expects exact? likely flexible. Better include \"highway\" because it's a condition from report, not invented. And \"44 mph\" maybe not a condition? It is a condition. But list does not include speed. Could include \"highway\", \"44 mph\". The rule says \"conditions\": [\"cold\", ...] not \"e.g.\". Might be a controlled vocab. To be safe with instruction, only use listed terms. None apply. But then missing_info conditions? no, because conditions reported. Hmm.\n\nNeed maybe \"safety_relevant\": true. Since schema field.\n\n\"missing_info\": mileage and date. Should we include \"conditions\" because no weather/road? But analysis needs conditions? It has highway, speed, collision. Enough. Missing mileage/date. Date maybe received_at not incident date. Include date.\n\nPotential issue: component field \"AIR BAGS\" and group \"restraints\". Clue quote \"AIR BAGS\" can be component_group. Clue for safety: \"collided with the vehicle at 44 mph\" quote exactly? Narrative: \"A vehicle turned in front of me as I was going down the highway and I collided with the vehicle at 44 mph.\" The substring \"I collided with the vehicle at 44 mph\" exists. Good.\n\nNeed no Markdown? It says answer with one JSON object and no other text. Use raw JSON. We can wrap? No, no code fences. Final only JSON.\n\nLet's produce concise. Ensure all quotes verbatim:\n- \"The airbags of my car did not deploy\" exact? Narrative: \"The airbags of my car did not deploy but...\" Yes substring exact including capital T.\n- \"going down the highway\" exact substring.\n- \"at 44 mph\" exact substring.\n- \"I collided with the vehicle at 44 mph\" exact substring.\n- \"the airbags of the other vehicle did deploy\" exact? Narrative: \"but the airbags of the other vehicle did deploy.\" lowercase \"the\". Substring starts after \"but \". Exact lower-case. Good.\n- Component quote \"AIR BAGS\" from component. Good.\n\nSummary: \"AIR BAGS: airbags did not deploy in a 44 mph highway collision.\" This says airbags did not deploy; report says airbags of my car did not. Fine.\n\nCould \"symptoms\": [\"airbags did not deploy\"]. Good.\n\nNeed maybe \"fault_codes\": []. Good.\n\nPotential issue: safety relevance due crash. Yes.\n\nFinal JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793533198,
+      "id": "b1a1d51f079c36001c7fd6b83c5e673c",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1498,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1336,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0005532,
+          "billing_source": "go",
+          "list_cost": 0.000922,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 147,
+            "output": 1498,
+            "reasoning": 1336
+          }
+        },
+        "prompt_tokens": 531,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2029
+      }
+    },
+    "text": "{\"summary\":\"AIR BAGS: airbags did not deploy in a 44 mph highway collision.\",\"group\":\"restraints\",\"symptoms\":[\"airbags did not deploy\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"The airbags of my car did not deploy\"},{\"kind\":\"condition\",\"quote\":\"going down the highway\"},{\"kind\":\"condition\",\"quote\":\"at 44 mph\"},{\"kind\":\"safety\",\"quote\":\"I collided with the vehicle at 44 mph\"},{\"kind\":\"other\",\"quote\":\"the airbags of the other vehicle did deploy\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0005532,
+      "cached_tokens": 384,
+      "cost_usd": 0.000922,
+      "input_tokens": 531,
+      "list_cost_usd": 0.000922,
+      "output_tokens": 1498,
+      "reasoning_tokens": 1336
+    }
+  }
+}

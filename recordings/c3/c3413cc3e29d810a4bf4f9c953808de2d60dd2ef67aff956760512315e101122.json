@@ -1,0 +1,66 @@
+{
+  "key": "c3413cc3e29d810a4bf4f9c953808de2d60dd2ef67aff956760512315e101122",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 8431,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"2014 Ford Edge electrical: rear view camera image disoriented, upside down or blank in reverse, and driver seat belt will not latch without pressing the release button\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"rear view camera image disoriented, upside down or blank when in reverse\",\n    \"driver seat belt does not clip in correctly and needs the red release button pressed to latch\"\n  ],\n  \"conditions\": [\"intermittent\"],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\"mileage\"],\n  \"clues\": [\n    {\"kind\": \"component_group\", \"quote\": \"ELECTRICAL SYSTEM\"},\n    {\"kind\": \"symptom\", \"quote\": \"my rear view camera is disoriented when car is in reverse\"},\n    {\"kind\": \"symptom\", \"quote\": \"the picture on the screen is upside down or doesnt show anything at all\"},\n    {\"kind\": \"condition\", \"quote\": \"Sometimes\"},\n    {\"kind\": \"symptom\", \"quote\": \"drivers seat belt does not clip in correctly\"},\n    {\"kind\": \"symptom\", \"quote\": \"I have to push the red button in for the seat belt to clip into place\"},\n    {\"kind\": \"safety\", \"quote\": \"drivers seat belt does not clip in correctly\"}\n  ]\n}",
+            "reasoning_content": "Let me parse the report.\n\nComponent: electrical system (rear view camera) plus seat belt. Two symptoms.\n\nSummary: rear view camera disoriented/blank in reverse; driver seat belt buckle requires button press to latch, 2014 Ford Edge.\n\nGroup: electrical_general (given).\n\nSymptoms: \"rear view camera image upside down or blank when in reverse\", \"driver seat belt buckle does not latch correctly without pressing release button\".\n\nConditions: \"intermittent\"? \"Sometimes\" implies intermittent. Reverse gear isn't in the list. I'd include \"intermittent\" since \"sometimes\". Hmm, \"Sometimes the picture is upside down or doesn't show anything at all\" — intermittent is appropriate.\n\nFault codes: none.\n\nSafety relevant: seat belt not latching correctly is a restraint safety issue — but rules say safety_relevant when report mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. A seat belt that doesn't latch is a risk to people. The source metadata says false, but I should judge. I'd set true with quote about seat belt not clipping in correctly. That's a risk to people in a crash. I'll set true.\n\nMissing info: mileage null → \"mileage\". Date present. Component present. Symptom present. Conditions — partially. I'd list \"mileage\".\n\nClues with verbatim quotes:\n- \"my rear view camera is disoriented when car is in reverse\" — symptom\n- \"the picture on the screen is upside down or doesnt show anything at all\" — symptom (verbatim, note \"doesnt\" without apostrophe)\n- \"drivers seat belt does not clip in correctly\" — symptom\n- \"I have to push the red button in for the seat belt to clip into place\" — symptom\n- \"ELECTRICAL SYSTEM\" — component_group? It's from the component field, which is part of the report JSON. Quote verbatim \"ELECTRICAL SYSTEM\".\n\nSafety clue: quote \"drivers seat belt does not clip in correctly\".\n\nSummary one line.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531321,
+      "id": "9b8250fcf2e19f78d16cf9818d267f9c",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 729,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 428,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00027762,
+          "billing_source": "go",
+          "list_cost": 0.0004627,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 161,
+            "output": 729,
+            "reasoning": 428
+          }
+        },
+        "prompt_tokens": 545,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1274
+      }
+    },
+    "text": "{\n  \"summary\": \"2014 Ford Edge electrical: rear view camera image disoriented, upside down or blank in reverse, and driver seat belt will not latch without pressing the release button\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"rear view camera image disoriented, upside down or blank when in reverse\",\n    \"driver seat belt does not clip in correctly and needs the red release button pressed to latch\"\n  ],\n  \"conditions\": [\"intermittent\"],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\"mileage\"],\n  \"clues\": [\n    {\"kind\": \"component_group\", \"quote\": \"ELECTRICAL SYSTEM\"},\n    {\"kind\": \"symptom\", \"quote\": \"my rear view camera is disoriented when car is in reverse\"},\n    {\"kind\": \"symptom\", \"quote\": \"the picture on the screen is upside down or doesnt show anything at all\"},\n    {\"kind\": \"condition\", \"quote\": \"Sometimes\"},\n    {\"kind\": \"symptom\", \"quote\": \"drivers seat belt does not clip in correctly\"},\n    {\"kind\": \"symptom\", \"quote\": \"I have to push the red button in for the seat belt to clip into place\"},\n    {\"kind\": \"safety\", \"quote\": \"drivers seat belt does not clip in correctly\"}\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00027762,
+      "cached_tokens": 384,
+      "cost_usd": 0.0004627,
+      "input_tokens": 545,
+      "list_cost_usd": 0.0004627,
+      "output_tokens": 729,
+      "reasoning_tokens": 428
+    }
+  }
+}

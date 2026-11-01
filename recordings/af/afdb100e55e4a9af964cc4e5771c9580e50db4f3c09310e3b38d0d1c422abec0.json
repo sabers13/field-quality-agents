@@ -1,0 +1,66 @@
+{
+  "key": "afdb100e55e4a9af964cc4e5771c9580e50db4f3c09310e3b38d0d1c422abec0",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10608,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"2020 Honda Odyssey forward collision avoidance/adaptive cruise control multi-purpose camera quit working; dealer scan confirmed camera malfunction at 4500 miles.\",\n  \"group\": \"adas\",\n  \"symptoms\": [\n    \"multi purpose camera quit working\",\n    \"confirmed malfunction of camera\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"missing_info\": [\n    \"conditions\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"multi purpose camera quit working\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"confirmed malfunction of camera\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer only JSON. Need normalize report. Component forward collision avoidance adaptive cruise control, group adas. Narrative: 2020 Honda Odyssey with 4500 miles multi purpose camera quit working, Honda service center scan confirmed malfunction camera, replacement over $1600, internet many similar, should be recall fixed free. Need summary one line component symptom conditions. Symptoms: multi purpose camera quit working; confirmed malfunction of camera. Conditions: none? mileage 4500 but conditions list only cold moisture heat vibration intermittent after service charging. No condition mentioned. fault_codes none. safety_relevant: report says safety_relevant false in input, but need set when mentions crash fire etc. It doesn't. So false. missing_info: component? Given component. symptom present. conditions? Not stated? Analysis needs conditions; missing conditions maybe. mileage is present 4500 miles despite mileage null. date received present. Date? Report has received_at but not incident date. Missing date? The analysis needs date. We list missing_info only facts needed: component, symptom, conditions, mileage, date. Component present, symptom present, conditions absent, mileage present, date? There is received_at but no incident date. Should include \"date\" and \"conditions\"? Need consider. The prompt asks normalise incoming field-quality report. missing_info list for facts analysis needs. Conditions not mentioned, date not mentioned (only received_at). Mileage present in narrative 4500. So missing_info [\"conditions\",\"date\"]. But maybe conditions is not needed? It lists conditions as fact analysis needs. Yes include. Clues verbatim quotes. Need quote exact spans. Summary one line: \"2020 Honda Odyssey forward collision avoidance/adaptive cruise control multi-purpose camera quit working; dealer scan confirmed camera malfunction at 4,500 miles.\" Conditions? None. Need include component group quote? Clues kinds. Need quote for symptom: \"multi purpose camera quit working\" exact. Another symptom quote \"confirmed malfunction of camera\". Component group quote maybe \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\" from component field? Is that part of report? User message JSON includes component field. Rule read only report. Quote copied verbatim from report. The \"report\" includes JSON fields. We can quote component string. Should we include clues for component_group with quote \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\". Also mileage? kind other quote \"4500 miles\". Conditions no. Safety none. Fault codes none. Missing info. Need ensure JSON no other text. Use exact casing. The narrative has \"multi purpose camera quit working\" (not multi-purpose). \"Honda service center ran a scan and confirmed malfunction of camera\" exact. Could quote \"confirmed malfunction of camera\". Also \"replacement costed over $1600\" not needed. \"many other similar vehicle have similar issue\" not symptom? other maybe. But clue kind other. Keep concise. Summary includes 4,500 miles but report says 4500 miles no comma; okay summary can paraphrase? It says one line component symptom conditions. Use no invented. \"2020 Honda Odyssey adaptive cruise control/forward collision avoidance multi-purpose camera quit working; dealer scan confirmed camera malfunction at 4500 miles.\" Conditions none.\n\nNeed possibly safety_relevant false though report says should recall? No safety. Good.\n\nNeed exact quote for component group: \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\" from component. That is verbatim. But if quotes must be from narrative? It says report; component field is report. Good.\n\nNeed include clue kind \"condition\"? No conditions. Could include \"other\" quote \"4500 miles\" not necessary. But clues can include only evidence. Include symptom quotes and component_group. Maybe \"other\" quote \"Internet tells me that many other similar vehicle have similar issue\" not needed. We must not include external facts.\n\nNeed missing_info: [\"conditions\",\"date\"]. Is \"date\" missing? received_at is date report received, not incident date. Yes. \"conditions\" missing. Should \"component\" missing? no. \"symptom\" present. \"mileage\" present. Good.\n\nNeed final JSON. Ensure no markdown? The instruction says answer with one JSON object and no other text. We can output raw JSON. Need valid JSON. Use exact quotes. Let's craft.\n\nPotential issue: summary \"forward collision avoidance/adaptive cruise control\" not exact maybe okay. Conditions list empty. Symptoms array [\"multi purpose camera quit working\", \"confirmed malfunction of camera\"]. Conditions []. fault_codes []. safety_relevant false. missing_info [\"conditions\",\"date\"]. clues array:\n{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\"}\n{\"kind\":\"symptom\",\"quote\":\"multi purpose camera quit working\"}\n{\"kind\":\"symptom\",\"quote\":\"confirmed malfunction of camera\"}\nCould include {\"kind\":\"other\",\"quote\":\"4500 miles\"}? Mileage isn't in clue kinds except other. Not needed. But evidence for summary mileage maybe not clue. Fine.\n\nNeed maybe group \"adas\" given. Good.\n\nFinal only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793526268,
+      "id": "f6948deba1736bc11714b6a6dd3123b8",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1261,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1068,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00047022,
+          "billing_source": "go",
+          "list_cost": 0.0007837,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 173,
+            "output": 1261,
+            "reasoning": 1068
+          }
+        },
+        "prompt_tokens": 557,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1818
+      }
+    },
+    "text": "{\n  \"summary\": \"2020 Honda Odyssey forward collision avoidance/adaptive cruise control multi-purpose camera quit working; dealer scan confirmed camera malfunction at 4500 miles.\",\n  \"group\": \"adas\",\n  \"symptoms\": [\n    \"multi purpose camera quit working\",\n    \"confirmed malfunction of camera\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"missing_info\": [\n    \"conditions\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"multi purpose camera quit working\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"confirmed malfunction of camera\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00047022,
+      "cached_tokens": 384,
+      "cost_usd": 0.0007837,
+      "input_tokens": 557,
+      "list_cost_usd": 0.0007837,
+      "output_tokens": 1261,
+      "reasoning_tokens": 1068
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "22c1e284522100687a01978032860a0c3be14269b591647c7280a121b9d620a0",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 8015,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Instrument panel speedometer/odometer; reported odometer fraud with a mileage discrepancy (93,326 at purchase vs. 362,712 per Carfax); no conditions noted.\",\"group\":\"instrumentation\",\"symptoms\":[\"odometer mileage discrepancy\",\"suspected odometer fraud\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"Odometer Fraud\"},{\"kind\":\"symptom\",\"quote\":\"there was a mileage discrepancy\"},{\"kind\":\"symptom\",\"quote\":\"At the time of purchase the vehicle mileage was 93,326\"},{\"kind\":\"symptom\",\"quote\":\"the mileage was 362,712\"},{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize. Report: component electrical system instrument panel speedometer/odometer, group instrumentation. Symptom: odometer mileage discrepancy / odometer fraud, mileage inconsistent with Carfax. Conditions? none really. Fault codes none. safety_relevant false (given but also no safety). missing_info: conditions? date? The report has received date, mileage 362712, component, symptom. Missing conditions maybe? \"conditions\" list only cold moisture etc; but missing_info list facts component symptom conditions mileage date. We have component, symptom, mileage, date (received_at maybe report date). Conditions not mentioned. Do we list missing_info [\"conditions\"]? The analysis needs conditions? In intake rules, missing_info only facts analysis needs. For odometer fraud, conditions not really needed. Could empty. But maybe missing \"date\" of purchase? Not a listed fact? Date exists received_at. Mileage exists. So empty.\n\nClues verbatim quotes. Need quote exact spans from narrative or fields? \"Odometer Fraud.\" quote. \"mileage discrepancy\" quote. \"At the time of purchase the vehicle mileage was 93,326\" quote exact? Narrative has \"At the time of purchase the vehicle mileage was 93,326, and after AAA retrieved the Carfax Report, it was discovered that the mileage was 362,712.\" Quote can be span. \"the mileage was 362,712\" exact. Also component group quote? For component_group quote maybe \"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\" from component field. Is that \"report\"? User message includes fields. Verbatim okay. Could include kind component_group quote exact. symptom quote \"mileage discrepancy\". condition none. safety none.\n\nNeed summary one line: component, symptom, conditions. \"Instrument panel speedometer/odometer; reported odometer fraud with mileage discrepancy (93,326 at purchase vs 362,712 per Carfax); no conditions noted.\" Must not invent? It says at purchase 93,326, after Carfax 362,712. Good.\n\nsymptoms plain words: [\"odometer mileage discrepancy\", \"suspected odometer fraud\"]. Are both plain? \"Odometer Fraud\" is report. Fine. Could include \"mileage inconsistency\". Need not overdo.\n\nconditions: [] because no cold etc. But maybe \"dealer sale\" not condition. Empty.\n\nfault_codes [].\n\nsafety_relevant false.\n\nmissing_info [] maybe. Let's consider \"date\" missing? received_at 2025-08-27 is report date not incident/purchase date. But missing_info should list facts analysis needs. It might need date of purchase? Not in enum \"date\" generic. The report doesn't give purchase date. But having received_at perhaps date present. Hmm. Could list [\"date\"] because no date of purchase/incident. But rule says \"date\" as fact. The report has received_at, so date exists. I'd keep empty.\n\nNeed JSON valid, no extra text. Ensure quotes exactly. Let's craft clues:\n{\"kind\":\"symptom\",\"quote\":\"Odometer Fraud\"}\n{\"kind\":\"symptom\",\"quote\":\"mileage discrepancy\"}\n{\"kind\":\"symptom\",\"quote\":\"At the time of purchase the vehicle mileage was 93,326\"}\n{\"kind\":\"symptom\",\"quote\":\"the mileage was 362,712\"}\n{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\"}\n\nIs \"At the time...\" a symptom? kind symptom maybe evidence of discrepancy. Could kind other. But okay. Maybe quote \"there was a mileage discrepancy\" exact? Narrative: \"the contact was informed that there was a mileage discrepancy.\" Yes. Use that. For 93,326 exact quote includes comma. Good.\n\nNeed no safety clue.\n\nFinal.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529896,
+      "id": "f2744d2a35d368b98aefed2ae5d263e4",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1001,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 812,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00037914,
+          "billing_source": "go",
+          "list_cost": 0.0006319,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 201,
+            "output": 1001,
+            "reasoning": 812
+          }
+        },
+        "prompt_tokens": 585,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1586
+      }
+    },
+    "text": "{\"summary\":\"Instrument panel speedometer/odometer; reported odometer fraud with a mileage discrepancy (93,326 at purchase vs. 362,712 per Carfax); no conditions noted.\",\"group\":\"instrumentation\",\"symptoms\":[\"odometer mileage discrepancy\",\"suspected odometer fraud\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"Odometer Fraud\"},{\"kind\":\"symptom\",\"quote\":\"there was a mileage discrepancy\"},{\"kind\":\"symptom\",\"quote\":\"At the time of purchase the vehicle mileage was 93,326\"},{\"kind\":\"symptom\",\"quote\":\"the mileage was 362,712\"},{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00037914,
+      "cached_tokens": 384,
+      "cost_usd": 0.0006319,
+      "input_tokens": 585,
+      "list_cost_usd": 0.0006319,
+      "output_tokens": 1001,
+      "reasoning_tokens": 812
+    }
+  }
+}

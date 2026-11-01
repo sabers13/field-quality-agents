@@ -1,0 +1,66 @@
+{
+  "key": "802b6272fc5916469180e8ddb3f78edaec5b478362bec0d0b11bee8c5bf2cdc3",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10797,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\": \"FISKER OCEAN ELECTRICAL SYSTEM: failed update, battery drain and no data service, plus door-handle smoke/NFC and charging lockout with dog inside\", \"group\": \"electrical_general\", \"symptoms\": [\"software update would not complete\", \"noticeable battery drain\", \"no internet/data service for the car\", \"driver door handle LED generates smoke\", \"NFC entry not working\", \"door handles retract while charging with key inside\"], \"conditions\": [\"after service\", \"charging\"], \"fault_codes\": [], \"safety_relevant\": true, \"missing_info\": [\"mileage\", \"date\"], \"clues\": [{\"kind\": \"component_group\", \"quote\": \"ELECTRICAL SYSTEM\"}, {\"kind\": \"symptom\", \"quote\": \"The car would not update.\"}, {\"kind\": \"symptom\", \"quote\": \"the batter drain was very noticeable.\"}, {\"kind\": \"symptom\", \"quote\": \"Now there is no internet service for the car\"}, {\"kind\": \"condition\", \"quote\": \"I took this to a dealer\"}, {\"kind\": \"symptom\", \"quote\": \"the LED lights actually generate smoke\"}, {\"kind\": \"symptom\", \"quote\": \"I cannot use the NFC to enter the car\"}, {\"kind\": \"condition\", \"quote\": \"while charging the vehicle\"}, {\"kind\": \"symptom\", \"quote\": \"all of the door handles retracted when I closed the door and the key was in the car\"}, {\"kind\": \"safety\", \"quote\": \"my DOG WAS INSIDE!\"}, {\"kind\": \"safety\", \"quote\": \"This car is dangerous\"}]}",
+            "reasoning_content": "We need answer only JSON object. Need normalize. Need extract symptoms, conditions, fault codes none, safety true due smoke and dog inside / dangerous maybe smoke. Missing info: mileage, date? Component present electrical system, symptom present. Conditions: charging, after service? It mentions scheduled updates, after service dealer unable repair, charging. \"intermittent\"? no. \"cold, moisture heat vibration\" no. Need list conditions from allowed: cold, moisture, heat, vibration, intermittent, after service, charging. We have charging, after service? It says took to dealer... unable repair; after service. Also \"updates\" maybe not condition list. Need quotes verbatim. Summary one line: ELECTRICAL SYSTEM / FISKER OCEAN, failed update, battery drain, no data, door handle smoke/NFC, charging lockout with dog inside. Group given electrical_general? They ask \"the electrical/electronic component group, or the given group\". Given group electrical_general. Use that.\n\nSymptoms plain words: \"software update would not complete\"; \"battery drain noticeable\"; \"no internet/data service\"; \"driver door handle LED generates smoke\"; \"NFC entry not working\"; \"door handles retract while charging with key inside\". Need only symptom plain words. Conditions: \"after service\", \"charging\". Maybe \"after software update\"? not allowed list except no. Use conditions allowed only. Missing_info: mileage, date? Report has received_at but not incident date. Date missing. Mileage null. Component present symptom present conditions present. So [\"mileage\",\"date\"].\n\nClues: need verbatim quotes. Include symptom quote spans:\n- \"The car would not update.\"\n- \"the batter drain was very noticeable.\"\n- \"Now there is no internet service for the car\"\n- \"the LED lights actually generate smoke\" (verbatim within parentheses: \"the LED lights actually generate smoke\")\n- \"I cannot use the NFC to enter the car\"\n- \"while charging the vehicle, all of the door handles retracted when I closed the door and the key was in the car\"\n- safety: \"my DOG WAS INSIDE!\" and \"This car is dangerous\"\n- condition: \"while charging the vehicle\" and \"after service\"? Need quote for after service: \"They were unable to repair the drivers door handle\" or \"I took this to a dealer to have...\" For condition after service quote maybe \"I took this to a dealer to have  the water pump replaced\" Note double spaces? Need exact. Narrative: \"I took this to a dealer to have  the water pump replaced, the car updated, the 12v batter replaced, the t-box reset and the door handle inserts replaced.\" It has two spaces after have. We can quote \"I took this to a dealer to have\" no issue? Verbatim span can be substring. For after service condition, quote \"They were unable to repair the drivers door handle\" maybe indicates after service? Hmm condition \"after service\" maybe from dealer attempted repair. Use quote \"I took this to a dealer\" as condition? Kind condition quote. But conditions list includes after service; evidence quote \"They were unable to repair the drivers door handle\". That's more symptom? Could be symptom. We don't need every condition quote? Clues array should support. We can include condition quote \"while charging the vehicle\" for charging, and \"I took this to a dealer\" for after service. But \"I took this to a dealer\" is verbatim.\n\nComponent group clue: \"ELECTRICAL SYSTEM\" from component? Is that in report? The report includes component field \"ELECTRICAL SYSTEM\"; quote can be from whole report? They say report in user message. JSON includes component. Verbatim \"ELECTRICAL SYSTEM\" appears. Kind component_group. Good.\n\nFault codes none.\n\nNeed JSON no other text. Ensure valid JSON. Summary one line. Keep quotes exact. Need check quote \"the batter drain was very noticeable.\" Exactly narrative: \"Afterward, the batter drain was very noticeable.   Now...\" includes three spaces after period? Quote can omit trailing spaces. \"the batter drain was very noticeable.\" yes.\n\nQuote \"Now there is no internet service for the car\" exact. Good.\n\nQuote \"the LED lights actually generate smoke\" exact inside parentheses. Good.\n\nQuote \"I cannot use the NFC to enter the car.\" exact? Narrative: \"and I cannot use the NFC to enter the car.\" substring \"I cannot use the NFC to enter the car\" yes.\n\nQuote \"while charging the vehicle, all of the door handles retracted when I closed the door and the key was in the car.\" Narrative: \"Additionally, one day while charging the vehicle, all of the door handles retracted when I closed the door and the key was in the car.\" substring yes. Include period? It has period after car. yes.\n\nSafety quote \"my DOG WAS INSIDE!\" exact? Narrative: \"because my DOG WAS INSIDE!   This\" yes.\n\nSafety quote \"This car is dangerous\" exact.\n\nCondition after service quote \"I took this to a dealer\" exact.\n\nMaybe symptom \"the car updated\" no.\n\nNeed group \"electrical_general\" not \"ELECTRICAL SYSTEM\". Use given group.\n\nMissing info includes date? Received_at is not incident date. yes. mileage null. Maybe conditions? present. Component present. Symptom present. Include date/mileage only.\n\nsafety_relevant true.\n\nPotential issue \"batter\" typo but quote exact. Summary can say battery. Fine.\n\nNeed answer with JSON object only. Final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793525309,
+      "id": "1a7da9fda2d797a7616a267da1e78a00",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1519,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1156,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00060804,
+          "billing_source": "go",
+          "list_cost": 0.0010134,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 680,
+            "output": 1519,
+            "reasoning": 1156
+          }
+        },
+        "prompt_tokens": 680,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 2199
+      }
+    },
+    "text": "{\"summary\": \"FISKER OCEAN ELECTRICAL SYSTEM: failed update, battery drain and no data service, plus door-handle smoke/NFC and charging lockout with dog inside\", \"group\": \"electrical_general\", \"symptoms\": [\"software update would not complete\", \"noticeable battery drain\", \"no internet/data service for the car\", \"driver door handle LED generates smoke\", \"NFC entry not working\", \"door handles retract while charging with key inside\"], \"conditions\": [\"after service\", \"charging\"], \"fault_codes\": [], \"safety_relevant\": true, \"missing_info\": [\"mileage\", \"date\"], \"clues\": [{\"kind\": \"component_group\", \"quote\": \"ELECTRICAL SYSTEM\"}, {\"kind\": \"symptom\", \"quote\": \"The car would not update.\"}, {\"kind\": \"symptom\", \"quote\": \"the batter drain was very noticeable.\"}, {\"kind\": \"symptom\", \"quote\": \"Now there is no internet service for the car\"}, {\"kind\": \"condition\", \"quote\": \"I took this to a dealer\"}, {\"kind\": \"symptom\", \"quote\": \"the LED lights actually generate smoke\"}, {\"kind\": \"symptom\", \"quote\": \"I cannot use the NFC to enter the car\"}, {\"kind\": \"condition\", \"quote\": \"while charging the vehicle\"}, {\"kind\": \"symptom\", \"quote\": \"all of the door handles retracted when I closed the door and the key was in the car\"}, {\"kind\": \"safety\", \"quote\": \"my DOG WAS INSIDE!\"}, {\"kind\": \"safety\", \"quote\": \"This car is dangerous\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00060804,
+      "cached_tokens": 0,
+      "cost_usd": 0.0010134,
+      "input_tokens": 680,
+      "list_cost_usd": 0.0010134,
+      "output_tokens": 1519,
+      "reasoning_tokens": 1156
+    }
+  }
+}

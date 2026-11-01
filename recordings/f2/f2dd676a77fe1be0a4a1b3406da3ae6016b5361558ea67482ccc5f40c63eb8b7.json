@@ -1,0 +1,66 @@
+{
+  "key": "f2dd676a77fe1be0a4a1b3406da3ae6016b5361558ea67482ccc5f40c63eb8b7",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 13673,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"AIR BAGS did not deploy in a June 12, 2024 passenger-side accident; air bag not able to be reset.\",\"group\":\"restraints\",\"symptoms\":[\"air bag did not deploy\",\"no air bags deployed\",\"air bag not able to be reset\"],\"conditions\":[\"accident\",\"passenger side impact\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"component_group\",\"quote\":\"restraints\"},{\"kind\":\"safety\",\"quote\":\"Accident June 12, 2024\"},{\"kind\":\"condition\",\"quote\":\"Accident June 12, 2024\"},{\"kind\":\"condition\",\"quote\":\"hit on passenger side\"},{\"kind\":\"symptom\",\"quote\":\"air bag did not deploy\"},{\"kind\":\"symptom\",\"quote\":\"no air bags deployed\"},{\"kind\":\"symptom\",\"quote\":\"Air bag not able to be reset\"}]}",
+            "reasoning_content": "We need answer one JSON object no other text. Need normalize report. Need read only report. Need include summary, group, symptoms, conditions, fault_codes, safety_relevant, missing_info, clues verbatim quotes.\n\nNeed parse narrative: \"Accident June 12, 2024 air bag did not deploy. hit on passenger side no air bags deployed. Air bag not able to be reset\". Component AIR BAGS, group restraints. Make Toyota Avalon year 2015, mileage null. Received date etc. Need likely safety_relevant true (accident, air bag did not deploy). Symptoms: air bag did not deploy; no air bags deployed; air bag not able to be reset. Conditions: maybe \"accident\", \"passenger side impact\"? The allowed conditions list: [\"cold\",\"moisture\",\"heat\",\"vibration\",\"intermittent\",\"after service\",\"charging\"]. But instruction says conditions array should use those? It says conditions: [\"cold\", ...]. But report mentions accident, passenger side. Hm. The schema says conditions: [\"cold\", \"moisture\", ...]. But clues can include condition quotes. We need maybe conditions include \"accident\"? But allowed list doesn't include accident. However rule says conditions list for facts? It provides enumerated allowed conditions. Need not invent. We can include \"accident\"? The template conditions array is examples? It says `\"conditions\": [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"],` likely allowed values. But narrative has \"Accident\" and \"hit on passenger side\" which are conditions. Since not in allowed list, maybe leave conditions empty and put clues kind condition with quotes. But task: normalise field-quality report, conditions should capture. I think we can include \"accident\" and \"passenger side impact\" despite not in allowed examples? But strict schema? Hmm.\n\nNeed fault_codes none. missing_info: mileage is null; date? There's accident date June 12 2024 but report received 2025. Missing_info facts analysis needs: component? present; symptom present; conditions? present accident and passenger side; mileage missing; date? There is accident date, but maybe vehicle date? The \"date\" likely incident date present. Mileage null missing. Maybe missing_info [\"mileage\"]. Could also \"conditions\" missing? It has accident and side. No.\n\nNeed clues with verbatim spans. Need exact quote from narrative. Quotes:\n- \"AIR BAGS\" from component? The report in user message includes JSON fields. Quote can be from report. \"AIR BAGS\" verbatim.\n- \"air bag did not deploy\"\n- \"hit on passenger side\"\n- \"no air bags deployed\"\n- \"Air bag not able to be reset\"\n- \"Accident June 12, 2024\"\nNeed kind: symptom for air bag did not deploy, no air bags deployed, not able to be reset. condition for Accident June 12, 2024 and hit on passenger side. component_group for \"AIR BAGS\"? Or component_group quote maybe \"restraints\" from group. But quote \"restraints\" is in report. safety clue maybe \"Accident\" indicates safety? Use kind safety quote \"Accident June 12, 2024\" or \"air bag did not deploy\"? Safety_relevant true due accident/airbag no deploy. Clue kind safety quote \"Accident June 12, 2024\" maybe.\n\nNeed summary one line: component, symptom, conditions. \"2015 Toyota Avalon air bag did not deploy in June 12, 2024 passenger-side accident; air bag could not be reset.\" But \"component\" is AIR BAGS; summary should one line. No invent: \"AIR BAGS did not deploy in a June 12, 2024 passenger-side accident; air bag not able to be reset.\" Good.\n\nNeed group: \"restraints\" given. Could \"restraints\". Symptoms plain words: \"air bag did not deploy\", \"no air bags deployed\", \"air bag not able to be reset\". Conditions: maybe [\"accident\", \"passenger side impact\"]? But allowed? Hm. The prompt's example conditions list maybe expected categories not free. But the report includes accident. If we include not in list, maybe okay? Need follow instruction exactly? It says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"], maybe that's a list of condition values. But also \"conditions\" in missing_info. The analysis needs conditions like accident. I think including \"accident\" and \"passenger side impact\" is more accurate. But if evaluator expects exact? The user wants normalize; no strict validation beyond JSON. We can include. However \"passenger side impact\" not verbatim? Could use \"passenger side\" condition. But conditions array item doesn't need quote. Use [\"accident\", \"passenger side impact\"]? \"impact\" not in report; \"hit\" implies. Better \"accident\", \"passenger side hit\". But \"hit on passenger side\" is phrase. Use conditions: [\"accident\", \"passenger side hit\"]. Yet allowed list not. Hmm.\n\nCould include conditions: [] and put condition clues. But then missing_info conditions? The report has conditions. The schema expects conditions. I think include.\n\nNeed safety_relevant true. Missing_info: [\"mileage\"] maybe. Could also \"component\"? no. \"date\" present. \"conditions\" present. \"symptom\" present. Mileage null. Good.\n\nNeed clues array. Ensure quotes exactly as in report. The narrative has \"Accident June 12, 2024 air bag did not deploy. hit on passenger side no air bags deployed. Air bag not able to be reset\". Exact spans:\n\"Accident June 12, 2024\"\n\"air bag did not deploy\"\n\"hit on passenger side\"\n\"no air bags deployed\"\n\"Air bag not able to be reset\"\n\"AIR BAGS\"\n\"restraints\"\n\nNeed kind for \"AIR BAGS\" maybe component_group? It's component field. Could use \"component_group\" quote \"AIR BAGS\". For group \"restraints\", quote \"restraints\". Clue kind component_group. But duplicate. Maybe one for \"AIR BAGS\" component_group. For safety clue quote \"Accident June 12, 2024\". But kind safety. Conditions clue \"hit on passenger side\". Symptom clues.\n\nNeed not include \"safety_relevant\" quote? Could include safety clue. Since safety_relevant true, evidence quote \"Accident June 12, 2024\" or \"air bag did not deploy\". Safety relevant due crash and nondeploy. Use quote \"Accident June 12, 2024\".\n\nNeed output JSON only. Ensure no markdown? They said answer with one JSON object and no other text. We can return raw JSON. Good.\n\nNeed think about \"fault_codes\": [] no codes.\n\nNeed \"missing_info\": maybe [\"mileage\"] since null. The analysis needs mileage? yes. Date? There is accident date, but date of report? received date. Maybe incident date present. Conditions present. Good.\n\nNeed \"summary\": \"AIR BAGS did not deploy in a June 12, 2024 passenger-side accident; air bag not able to be reset.\" Is \"passenger-side\" hyphen not verbatim? Summary not quote, okay. Component uppercase. Good.\n\nNeed \"symptoms\": [\"air bag did not deploy\", \"no air bags deployed\", \"air bag not able to be reset\"]. Plain words. Good.\n\nNeed \"conditions\": [\"accident\", \"passenger side hit\"]? Maybe \"passenger side impact\" better plain. But \"hit on passenger side\" is condition. Use [\"accident\", \"passenger side hit\"]. However \"hit\" not condition category. Hmm. If strict allowed list, maybe no. But I think accurate.\n\nCould include \"conditions\": [\"accident\", \"passenger side impact\"] because report says hit. That's okay.\n\nNeed maybe \"conditions\" should include \"crash\"? accident. Fine.\n\nNeed \"clues\": include all. But kind \"condition\" for \"Accident June 12, 2024\" and \"hit on passenger side\". Kind \"symptom\" for air bag did not deploy, no air bags deployed, air bag not able to be reset. Kind \"component_group\" quote \"AIR BAGS\". Kind \"safety\" quote \"Accident June 12, 2024\" duplicates. Is duplicate okay? Yes.\n\nNeed no other text. Ensure JSON valid: keys quoted, strings. Use false? safety true.\n\nNeed include exact quote \"Air bag not able to be reset\" capitalization. Good.\n\nPotential issue: \"component_group\" quote \"AIR BAGS\" is component not group; but kind component_group can be component group. Maybe quote \"restraints\" for group. Use both? \n{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"}\n{\"kind\":\"component_group\",\"quote\":\"restraints\"}\nBut \"restraints\" appears in JSON group field. Verbatim. Good.\n\nNeed maybe fault code none.\n\nLet's final. Ensure no markdown.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793526990,
+      "id": "c69901629731d0e7f9940b3067e4a316",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2150,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1934,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00078648,
+          "billing_source": "go",
+          "list_cost": 0.0013108,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 131,
+            "output": 2150,
+            "reasoning": 1934
+          }
+        },
+        "prompt_tokens": 515,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2665
+      }
+    },
+    "text": "{\"summary\":\"AIR BAGS did not deploy in a June 12, 2024 passenger-side accident; air bag not able to be reset.\",\"group\":\"restraints\",\"symptoms\":[\"air bag did not deploy\",\"no air bags deployed\",\"air bag not able to be reset\"],\"conditions\":[\"accident\",\"passenger side impact\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"component_group\",\"quote\":\"restraints\"},{\"kind\":\"safety\",\"quote\":\"Accident June 12, 2024\"},{\"kind\":\"condition\",\"quote\":\"Accident June 12, 2024\"},{\"kind\":\"condition\",\"quote\":\"hit on passenger side\"},{\"kind\":\"symptom\",\"quote\":\"air bag did not deploy\"},{\"kind\":\"symptom\",\"quote\":\"no air bags deployed\"},{\"kind\":\"symptom\",\"quote\":\"Air bag not able to be reset\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00078648,
+      "cached_tokens": 384,
+      "cost_usd": 0.0013108,
+      "input_tokens": 515,
+      "list_cost_usd": 0.0013108,
+      "output_tokens": 2150,
+      "reasoning_tokens": 1934
+    }
+  }
+}

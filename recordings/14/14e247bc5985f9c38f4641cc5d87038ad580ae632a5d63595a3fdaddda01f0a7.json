@@ -1,0 +1,66 @@
+{
+  "key": "14e247bc5985f9c38f4641cc5d87038ad580ae632a5d63595a3fdaddda01f0a7",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 8305,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Run standard electrical no-start diagnostics and inspect battery condition; no rulebook targeted test matches this case.\",\n  \"rationale\": \"The narrative reports a parked no-start resolved after battery terminal replacement, plus a dealer-noted battery side bulge and recall 23V734000. The rulebook, recall and investigation results are empty, so there is no named targeted test; a standard electrical diagnostic is appropriate.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"vehicle failed to start while parked\",\n    \"battery has a bulge on its side\"\n  ],\n  \"conditions\": [\n    \"while the vehicle was parked\"\n  ],\n  \"fault_codes\": [\n    \"23V734000\"\n  ],\n  \"safety_relevant\": false,\n  \"targeted\": false,\n  \"test_name\": \"standard electrical no-start diagnostic\",\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"ELECTRICAL SYSTEM\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"the vehicle failed to start\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"while the vehicle was parked\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"there was a bulge on the side of the battery\"\n    },\n    {\n      \"kind\": \"fault_code\",\n      \"quote\": \"NHTSA Campaign Number: 23V734000\"\n    }\n  ]\n}",
+            "reasoning_content": "We need to produce JSON only. Need analyze. No rulebook matches (empty). Recalls empty, investigations empty. Similar cases only. Need propose standard test targeted false, no test_name named by rulebook. Could leave test_name maybe \"\" or standard? Schema requires string. Targeted false. Safety relevant false (narrative no risk to people). Need clues quotes verbatim from narrative. Must be from case narrative, not extraction necessarily. Quotes: \"the vehicle failed to start\" exists? Narrative: \"the vehicle failed to start.\" yes. \"while the vehicle was parked\" yes. \"there was a bulge on the side of the battery\" yes? Narrative: \"there was a bulge on the side of the battery.\" yes. \"NHTSA Campaign Number: 23V734000\" yes. \"ELECTRICAL SYSTEM\" yes. Could include component_group quote. Need group electrical_general. symptoms, conditions, fault_codes. targeted false. test_name maybe \"standard electrical system diagnostic\" but rulebook doesn't name. Prompt: \"Only when the rulebook names a targeted test... Otherwise propose the standard test (\"targeted\": false).\" There is no explicit standard test name. Could set test_name \"standard test\" or empty. Need no other text. Summary one line what to test and why. Rationale condition evidence. Since no rulebook, standard diagnostic of no-start and battery bulge, verify recall remedy. But cannot propose dealer action? We can propose test, not repair. Maybe \"standard no-start electrical diagnostic including battery condition inspection\". But test_name should maybe \"standard test\". Ensure no unsupported recall id? We can cite 23V734000 since narrative contains. Do not cite recall result absent? It's in narrative. Fine.\n\nNeed maybe include fault_codes [\"23V734000\"]? It's recall campaign not fault code, but extraction. Could include. conditions [\"vehicle parked\"]. Symptoms. Clues only quote exact spans. Let's craft.\n\nNeed JSON valid. \"safety_relevant\": false. targeted false.\n\nTest_name: \"standard electrical no-start diagnostic\" maybe okay. But rulebook doesn't name targeted. We can say standard. \"summary\": \"Run standard electrical no-start diagnostics and inspect battery condition; no rulebook targeted test matches.\" Rationale: no rulebook entries, recall/investigation results empty, similar cases show repeated no-start and 23V734000. But don't cite ids? Rule: Do not cite a case, recall or investigation id that tool results do not contain. Similar case ids contained, but don't need. We can mention similar RAV4 cases? Keep generic. Could mention recall number from narrative. Fine.\n\nNeed quote \"the vehicle failed to start\" exact. Narrative has \"the vehicle failed to start.\" Good.\n\"while the vehicle was parked\" exact.\n\"there was a bulge on the side of the battery\" exact? Narrative: \"the contact was informed that there was a bulge on the side of the battery.\" substring yes.\n\"NHTSA Campaign Number: 23V734000\" exact? Narrative has \"NHTSA Campaign Number: 23V734000 (ELECTRICAL SYSTEM).\" yes.\n\"ELECTRICAL SYSTEM\" exact in narrative? Yes uppercase.\n\nMaybe conditions include \"vehicle parked\". fault_codes include \"23V734000\".\n\nNo rulebook targeted. Good.\n\nFinal only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793528235,
+      "id": "1bf62981013c5d4292181020a910ff80",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1020,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 698,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00049941,
+          "billing_source": "go",
+          "list_cost": 0.00083235,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 1469,
+            "output": 1020,
+            "reasoning": 698
+          }
+        },
+        "prompt_tokens": 1469,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 2489
+      }
+    },
+    "text": "{\n  \"summary\": \"Run standard electrical no-start diagnostics and inspect battery condition; no rulebook targeted test matches this case.\",\n  \"rationale\": \"The narrative reports a parked no-start resolved after battery terminal replacement, plus a dealer-noted battery side bulge and recall 23V734000. The rulebook, recall and investigation results are empty, so there is no named targeted test; a standard electrical diagnostic is appropriate.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"vehicle failed to start while parked\",\n    \"battery has a bulge on its side\"\n  ],\n  \"conditions\": [\n    \"while the vehicle was parked\"\n  ],\n  \"fault_codes\": [\n    \"23V734000\"\n  ],\n  \"safety_relevant\": false,\n  \"targeted\": false,\n  \"test_name\": \"standard electrical no-start diagnostic\",\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"ELECTRICAL SYSTEM\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"the vehicle failed to start\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"while the vehicle was parked\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"there was a bulge on the side of the battery\"\n    },\n    {\n      \"kind\": \"fault_code\",\n      \"quote\": \"NHTSA Campaign Number: 23V734000\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00049941,
+      "cached_tokens": 0,
+      "cost_usd": 0.00083235,
+      "input_tokens": 1469,
+      "list_cost_usd": 0.00083235,
+      "output_tokens": 1020,
+      "reasoning_tokens": 698
+    }
+  }
+}

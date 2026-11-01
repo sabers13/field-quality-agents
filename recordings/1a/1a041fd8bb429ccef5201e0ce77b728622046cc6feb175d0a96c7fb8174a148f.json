@@ -1,0 +1,66 @@
+{
+  "key": "1a041fd8bb429ccef5201e0ce77b728622046cc6feb175d0a96c7fb8174a148f",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 8016,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Jeep Wrangler 4XE electrical/general fault: repeated loss of motive power while driving, no warning, after software update and high-voltage battery replacement; later check engine light and limp mode.\",\"group\":\"electrical_general\",\"symptoms\":[\"engine lost power while driving\",\"loss of motive power\",\"check engine light came on\",\"shut down and go into limp mode without warning\"],\"conditions\":[\"intermittent\",\"after service\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"The engine lost power while driving and was almost T-boned the first time the issue happened.\"},{\"kind\":\"symptom\",\"quote\":\"No warning lights were present before the loss of power.\"},{\"kind\":\"condition\",\"quote\":\"The dealership updated the software, and the Wrangler 4XE was returned the same day.\"},{\"kind\":\"condition\",\"quote\":\"Less than two weeks later, the loss of motive power occurred again.\"},{\"kind\":\"condition\",\"quote\":\"The dealership had the vehicle for almost 40 days and replaced the high-voltage battery pack.\"},{\"kind\":\"symptom\",\"quote\":\"About 50 miles after the car was returned, the check engine light came on.\"},{\"kind\":\"symptom\",\"quote\":\"They can shut down and go into limp mode without warning, with or without the recalls being complied with.\"},{\"kind\":\"safety\",\"quote\":\"These vehicles are not safe to be on the road!\"},{\"kind\":\"safety\",\"quote\":\"The safety of any other vehicle around a 4XE is at risk.\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize. Need quote verbatim. Need include safety_relevant true because mentions almost T-boned, loss of power while driving, limp mode, risk. Group given electrical_general? Component ELECTRICAL SYSTEM. Need symptoms: engine lost power while driving, loss of motive power, check engine light came on, limp mode? Need conditions: intermittent? \"without warning\" maybe condition? \"after service\" because software update/battery replaced then recurrence. \"charging\"? 4XE high-voltage battery not charging explicitly. Maybe conditions include \"after service\" yes. \"intermittent\" yes less than two weeks later occurred again, repeated. Maybe \"without warning\" condition? list allowed conditions: cold, moisture, heat, vibration, intermittent, after service, charging. So include intermittent, after service. Fault codes none. missing_info: mileage? date? conditions? component present symptom present. Mileage null, date? received_at exists but incident date missing. Missing_info include mileage, date maybe conditions? Conditions not fully described but have leaving stop sign. Could include mileage and date. Need clues with verbatim quotes. Ensure quote exact. Need summary one line: ELECTRICAL SYSTEM / Jeep Wrangler 4XE loss of power while driving, repeated after software update and HV battery replacement, CEL and limp mode. Need no other text. Use JSON.\n\nNeed quote spans exactly:\n\"The engine lost power while driving and was almost T-boned the first time the issue happened.\"\n\"No warning lights were present before the loss of power.\"\n\"The dealership updated the software, and the Wrangler 4XE was returned the same day.\"\n\"Less than two weeks later, the loss of motive power occurred again.\"\n\"The dealership had the vehicle for almost 40 days and replaced the high-voltage battery pack.\"\n\"About 50 miles after the car was returned, the check engine light came on.\"\n\"They can shut down and go into limp mode without warning, with or without the recalls being complied with.\"\n\"These vehicles are not safe to be on the road!\"\n\"The safety of any other vehicle around a 4XE is at risk.\"\n\nNeed clues kind mapping. For safety quote. component_group maybe quote \"ELECTRICAL SYSTEM\"? But that's not in narrative? Report includes component field. User says read report in user message, quote verbatim from report. Component field is \"ELECTRICAL SYSTEM\" and group. Could include component_group quote \"ELECTRICAL SYSTEM\". But quote exact. Good.\n\nNeed ensure symptoms list plain words. Could include \"loss of motive power\" etc. Conditions list exactly allowed values. Fault_codes empty. missing_info [\"mileage\",\"date\"] maybe conditions? We have some conditions but missing specifics? The analysis needs conditions maybe present enough? The report has \"leaving a stop sign\", \"crossing traffic\", speed limit. But not weather etc. Could include \"conditions\" if not fully? Rule only for facts analysis needs. Might include mileage and date only. Since date received exists but incident date absent. Mileage null. Good.\n\nNeed no markdown? They ask one JSON object no other text. Final just JSON. Need valid JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793524895,
+      "id": "85a0ca1cb86d6ac7c4ae2a1f1c46a2a1",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1007,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 649,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00042822,
+          "billing_source": "go",
+          "list_cost": 0.0007137,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 730,
+            "output": 1007,
+            "reasoning": 649
+          }
+        },
+        "prompt_tokens": 730,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 1737
+      }
+    },
+    "text": "{\"summary\":\"Jeep Wrangler 4XE electrical/general fault: repeated loss of motive power while driving, no warning, after software update and high-voltage battery replacement; later check engine light and limp mode.\",\"group\":\"electrical_general\",\"symptoms\":[\"engine lost power while driving\",\"loss of motive power\",\"check engine light came on\",\"shut down and go into limp mode without warning\"],\"conditions\":[\"intermittent\",\"after service\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"The engine lost power while driving and was almost T-boned the first time the issue happened.\"},{\"kind\":\"symptom\",\"quote\":\"No warning lights were present before the loss of power.\"},{\"kind\":\"condition\",\"quote\":\"The dealership updated the software, and the Wrangler 4XE was returned the same day.\"},{\"kind\":\"condition\",\"quote\":\"Less than two weeks later, the loss of motive power occurred again.\"},{\"kind\":\"condition\",\"quote\":\"The dealership had the vehicle for almost 40 days and replaced the high-voltage battery pack.\"},{\"kind\":\"symptom\",\"quote\":\"About 50 miles after the car was returned, the check engine light came on.\"},{\"kind\":\"symptom\",\"quote\":\"They can shut down and go into limp mode without warning, with or without the recalls being complied with.\"},{\"kind\":\"safety\",\"quote\":\"These vehicles are not safe to be on the road!\"},{\"kind\":\"safety\",\"quote\":\"The safety of any other vehicle around a 4XE is at risk.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00042822,
+      "cached_tokens": 0,
+      "cost_usd": 0.0007137,
+      "input_tokens": 730,
+      "list_cost_usd": 0.0007137,
+      "output_tokens": 1007,
+      "reasoning_tokens": 649
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "8e32edfb9459ba5a15cc16a0dd3e4e9709ae073cac5b77a75c1382376a8a741e",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12759,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Exterior lighting report: persistent rubber-like odor, intermittent push-start failure and shaking, then under-hood smoke, visible flames and total fire after being parked following recent maintenance.\",\"group\":\"lighting\",\"symptoms\":[\"persistent rubber-like odor\",\"push-start button intermittently failed, requiring multiple attempts\",\"noticeable shaking\",\"smoke from under the hood after being parked\",\"visible flames\",\"vehicle completely engulfed in fire and exploded 6 times\"],\"conditions\":[\"intermittent\",\"after service\",\"vibration\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"condition\",\"quote\":\"Six weeks ago the alternator and battery had also been replaced.\"},{\"kind\":\"symptom\",\"quote\":\"persistent rubber-like odor for approximately three weeks after the latest maintenance\"},{\"kind\":\"condition\",\"quote\":\"after the latest maintenance\"},{\"kind\":\"symptom\",\"quote\":\"push-start button intermittently failed, requiring multiple attempts to engage\"},{\"kind\":\"condition\",\"quote\":\"intermittently\"},{\"kind\":\"symptom\",\"quote\":\"the vehicle experienced noticeable shaking\"},{\"kind\":\"condition\",\"quote\":\"After being parked\"},{\"kind\":\"symptom\",\"quote\":\"smoke began to emerge from under the hood, followed by visible flames\"},{\"kind\":\"symptom\",\"quote\":\"the vehicle was completely engulfed in fire and blew up 6 times\"},{\"kind\":\"safety\",\"quote\":\"completely engulfed in fire and blew up 6 times\"},{\"kind\":\"component_group\",\"quote\":\"EXTERIOR LIGHTING\"}]}",
+            "reasoning_content": "We need answer only JSON. Need parse report. Component exterior lighting? Given component EXTERIOR LIGHTING, group lighting. But narrative is fire, smoke, push-start intermittent, shaking, rubber odor, alternator battery replaced, engine replacement etc. Need summary one line: component, symptom, conditions. Since component field says EXTERIOR LIGHTING but narrative doesn't mention lighting. We should not invent. Maybe summary: \"Exterior lighting component report with under-hood smoke, flames and total fire after intermittent push-start failure and shaking.\" Need group given \"lighting\". Symptoms plain words: rubber-like odor; push-start button intermittently failed requiring multiple attempts; noticeable shaking; smoke from under hood after parked; visible flames; vehicle engulfed in fire and exploded 6 times. Conditions: intermittent, after service? \"after latest maintenance\" and \"six weeks ago alternator and battery replaced\"; \"after being parked\". Cold/moisture/heat/vibration? Shaking could vibration. Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. We can include intermittent, after service, vibration? Shaking symptom not condition maybe vibration. \"charging\" because alternator/battery replaced? But charging is a condition? The list includes charging. Report mentions alternator and battery replaced; could clue. But conditions should only from report. Include \"intermittent\", \"after service\", maybe \"vibration\". \"after service\" because \"after latest maintenance\" and repairs. \"charging\" because alternator/battery? Hmm \"charging\" condition not explicitly stated; alternator and battery replaced. Better not infer charging. Could include \"heat\" due fire? No, fire not heat condition. Safety true. Fault codes none. Missing_info: component? The given component exterior lighting conflicts with narrative, so missing_info maybe \"component\"? Mileage null. Date? received_at date given but incident date missing. Conditions? We have some. Need list only important facts missing: mileage, date maybe component? Since report component says EXTERIOR LIGHTING but narrative fire. Hmm missing_info should be facts analysis needs: \"mileage\", \"date\", maybe \"component\" because mismatch? But component is present. We should not invent. Use [\"mileage\", \"date\"] maybe also \"component\"? The component group given lighting but narrative no lighting; but component field exists. Missing info: exact incident date, mileage. Maybe \"conditions\" no because after service/parked/intermittent. Need clues with verbatim quotes. Must copy exact spans. Need ensure quotes exactly present. Let's identify exact substrings:\n\n\"Six weeks ago the alternator and battery had also been replaced.\"\n\"exhibited a persistent rubber-like odor for approximately three weeks after the latest maintenance\"\n\"push-start button intermittently failed, requiring multiple attempts to engage\"\n\"the vehicle experienced noticeable shaking\"\n\"After being parked, smoke began to emerge from under the hood, followed by visible flames.\"\n\"Within roughly 3-5mins minutes, the vehicle was completely engulfed in fire and blew up 6 times.\"\n\"engine replacement, starter, OEM parts, O2 sensors, brakes, valve cover gasket, new tires, and routine oil changes\" maybe after service clue.\n\nNeed kind mapping:\n- symptom: rubber-like odor quote\n- symptom: push-start failed quote\n- symptom: shaking quote\n- condition: after latest maintenance? quote \"after the latest maintenance\" (verbatim substring? yes appears \"after the latest maintenance\"). Or \"Six weeks ago...\" condition after service? Kind condition.\n- symptom: smoke quote\n- symptom: flames/fire quote\n- safety: \"completely engulfed in fire and blew up 6 times\" or \"visible flames\".\n- component_group: \"EXTERIOR LIGHTING\"? Is that in report? Yes component field value? The report JSON contains \"component\": \"EXTERIOR LIGHTING\". Quote verbatim from report. Could include component_group quote \"EXTERIOR LIGHTING\". But narrative doesn't support. It is in report. However quotes should be from report; field values count? It says verbatim span copied from report. Okay. But maybe don't include because component group is given. But clue kind component_group can quote \"EXTERIOR LIGHTING\". Hmm.\n\nNeed summary one line includes component, symptom, conditions. \"Exterior lighting report: persistent rubber-like odor, intermittent push-start failure and shaking, then under-hood smoke, flames and total fire after parked following recent maintenance.\" This includes component \"Exterior lighting\" but symptoms don't match. But component field says exterior lighting. Good.\n\nNeed JSON only no text. Ensure valid JSON. \"safety_relevant\": true. \"missing_info\": [\"mileage\", \"date\"]. But date? received_at exists, incident date not. They ask date fact analysis needs. yes.\n\nNeed \"conditions\": [\"intermittent\",\"after service\",\"vibration\"] maybe. Is \"vibration\" supported by shaking? Yes plain. Conditions allowed include vibration. \"after service\" supported by latest maintenance/repairs. Good. Maybe \"heat\"? Fire no. no.\n\nNeed \"fault_codes\": [].\n\"group\": \"lighting\".\n\nNeed clues. Include exact quotes. Need ensure no quote mismatch. Let's craft:\n\n{\"kind\":\"condition\",\"quote\":\"Six weeks ago the alternator and battery had also been replaced.\"}\n{\"kind\":\"symptom\",\"quote\":\"persistent rubber-like odor for approximately three weeks after the latest maintenance\"}\n{\"kind\":\"condition\",\"quote\":\"after the latest maintenance\"}\n{\"kind\":\"symptom\",\"quote\":\"push-start button intermittently failed, requiring multiple attempts to engage\"}\n{\"kind\":\"condition\",\"quote\":\"intermittently\"}\n{\"kind\":\"symptom\",\"quote\":\"the vehicle experienced noticeable shaking\"}\n{\"kind\":\"condition\",\"quote\":\"After being parked\"}\n{\"kind\":\"symptom\",\"quote\":\"smoke began to emerge from under the hood, followed by visible flames\"}\n{\"kind\":\"symptom\",\"quote\":\"the vehicle was completely engulfed in fire and blew up 6 times\"}\n{\"kind\":\"safety\",\"quote\":\"completely engulfed in fire and blew up 6 times\"}\n{\"kind\":\"component_group\",\"quote\":\"EXTERIOR LIGHTING\"}\n\nNeed quote \"visible flames\" exact? The sentence \"followed by visible flames.\" yes. \"smoke began to emerge...\" exact substring. Good. \"the vehicle was completely engulfed...\" exact substring? Original: \"Within roughly 3-5mins minutes, the vehicle was completely engulfed in fire and blew up 6 times.\" Yes substring \"the vehicle was completely engulfed in fire and blew up 6 times\" exact. For safety quote \"completely engulfed in fire and blew up 6 times\" exact substring. Good.\n\nNeed maybe \"other\" clue for engine replacement? Not necessary.\n\nPotential issue: component field says EXTERIOR LIGHTING but narrative doesn't mention lighting; summary \"Exterior lighting report...\" okay. But symptoms include fire. Good.\n\nNeed answer with one JSON object and no other text. Use final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793532556,
+      "id": "de6237a04222f48998a6221d1beba30b",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1805,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1468,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0006729,
+          "billing_source": "go",
+          "list_cost": 0.0011215,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 249,
+            "output": 1805,
+            "reasoning": 1468
+          }
+        },
+        "prompt_tokens": 633,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2438
+      }
+    },
+    "text": "{\"summary\":\"Exterior lighting report: persistent rubber-like odor, intermittent push-start failure and shaking, then under-hood smoke, visible flames and total fire after being parked following recent maintenance.\",\"group\":\"lighting\",\"symptoms\":[\"persistent rubber-like odor\",\"push-start button intermittently failed, requiring multiple attempts\",\"noticeable shaking\",\"smoke from under the hood after being parked\",\"visible flames\",\"vehicle completely engulfed in fire and exploded 6 times\"],\"conditions\":[\"intermittent\",\"after service\",\"vibration\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"condition\",\"quote\":\"Six weeks ago the alternator and battery had also been replaced.\"},{\"kind\":\"symptom\",\"quote\":\"persistent rubber-like odor for approximately three weeks after the latest maintenance\"},{\"kind\":\"condition\",\"quote\":\"after the latest maintenance\"},{\"kind\":\"symptom\",\"quote\":\"push-start button intermittently failed, requiring multiple attempts to engage\"},{\"kind\":\"condition\",\"quote\":\"intermittently\"},{\"kind\":\"symptom\",\"quote\":\"the vehicle experienced noticeable shaking\"},{\"kind\":\"condition\",\"quote\":\"After being parked\"},{\"kind\":\"symptom\",\"quote\":\"smoke began to emerge from under the hood, followed by visible flames\"},{\"kind\":\"symptom\",\"quote\":\"the vehicle was completely engulfed in fire and blew up 6 times\"},{\"kind\":\"safety\",\"quote\":\"completely engulfed in fire and blew up 6 times\"},{\"kind\":\"component_group\",\"quote\":\"EXTERIOR LIGHTING\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0006729,
+      "cached_tokens": 384,
+      "cost_usd": 0.0011215,
+      "input_tokens": 633,
+      "list_cost_usd": 0.0011215,
+      "output_tokens": 1805,
+      "reasoning_tokens": 1468
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "f0e5ba8ca49ab389104ddfcb1ec0dbfb89d4a5195672f4f7949393e451df592f",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 6898,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\": \"AIR BAGS: airbag service light came on; no conditions stated\", \"group\": \"restraints\", \"symptoms\": [\"airbag service light came on\"], \"conditions\": [], \"fault_codes\": [], \"safety_relevant\": false, \"missing_info\": [\"mileage\", \"date\", \"conditions\"], \"clues\": [{\"kind\": \"component_group\", \"quote\": \"AIR BAGS\"}, {\"kind\": \"symptom\", \"quote\": \"Airbag service light came on\"}, {\"kind\": \"other\", \"quote\": \"replace airbag module\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize report. Component AIR BAGS group restraints. Narrative: Airbag service light came on, required bring to dealership. Quote to access and replace airbag module ~$1350. Need summary one line: component, symptom, conditions. Conditions? none explicit. Symptoms: airbag service light came on. Fault codes none. safety_relevant? Report mentions airbag service light, not crash/fire etc. Given safety_relevant false. But airbag system safety? Rule set when mentions crash fire smoke injury loss control stall at speed or risk to people. It doesn't. So false. missing_info: mileage? report has mileage null, analysis needs? Could include mileage and conditions? The prompt says list missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Component present, symptom present, conditions not stated, mileage missing, date? received_at 2025-11-10 but not incident date. Incoming report includes received_at. Should missing_info include \"mileage\", \"date\", \"conditions\"? Need be careful. Conditions are included as array; report doesn't mention cold etc. But missing_info \"conditions\" if not stated. Mileage null. Date? received_at is date of report, but not event date. Missing? The analysis might need date. Could include [\"mileage\",\"date\",\"conditions\"]. But maybe avoid over. Need clues verbatim quotes. Quote \"Airbag service light came on\" exact. \"replace airbag module\" exact. \"AIR BAGS\" from component? Clue kind component_group quote \"AIR BAGS\" verbatim in report? It's in JSON field component not narrative? The report is entire user message JSON. Quote can be from report. Yes \"AIR BAGS\" appears. But maybe clues should be verbatim spans from narrative. We can use \"Airbag service light came on\" symptom. \"replace airbag module\" other/component? Kind symptom? The symptom is light. Component group clue quote \"AIR BAGS\" okay. Conditions none. Fault codes none. Safety false.\n\nNeed output JSON only. Ensure valid JSON. Summary: \"AIR BAGS: airbag service light came on; no conditions stated.\" Conditions array empty. symptoms [\"airbag service light came on\"]. missing_info maybe [\"mileage\",\"date\",\"conditions\"]. But \"date\" received_at exists; but incident date missing. The instructions list date as fact analysis needs. Since received_at is date received, not event date. I think include date. Conditions? It says conditions list cold, moisture, heat, vibration, intermittent, after service, charging. The report has none; missing_info conditions? Yes if important. But maybe conditions are not necessarily required. Hmm.\n\nNeed not mention quote cost? Clues can include \"replace airbag module\" kind other. Maybe quote \"Airbag service light came on\" and \"replace airbag module\". Also \"AIR BAGS\". Could include \"required us to bring to the dealership\" condition? after service? No. Not after service. It required dealer. Kind other maybe. But no need.\n\nLet's craft JSON. Use false boolean. Missing_info: [\"mileage\", \"date\", \"conditions\"]. Is date missing? received_at has date, but incident date not. Fine.\n\nNeed no extra text.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531905,
+      "id": "db0c07935bb35d47b430b882e4704e5e",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 809,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 681,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00030372,
+          "billing_source": "go",
+          "list_cost": 0.0005062,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 131,
+            "output": 809,
+            "reasoning": 681
+          }
+        },
+        "prompt_tokens": 515,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1324
+      }
+    },
+    "text": "{\"summary\": \"AIR BAGS: airbag service light came on; no conditions stated\", \"group\": \"restraints\", \"symptoms\": [\"airbag service light came on\"], \"conditions\": [], \"fault_codes\": [], \"safety_relevant\": false, \"missing_info\": [\"mileage\", \"date\", \"conditions\"], \"clues\": [{\"kind\": \"component_group\", \"quote\": \"AIR BAGS\"}, {\"kind\": \"symptom\", \"quote\": \"Airbag service light came on\"}, {\"kind\": \"other\", \"quote\": \"replace airbag module\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00030372,
+      "cached_tokens": 384,
+      "cost_usd": 0.0005062,
+      "input_tokens": 515,
+      "list_cost_usd": 0.0005062,
+      "output_tokens": 809,
+      "reasoning_tokens": 681
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "d2e28f0b3f7f3a84f80276270b1f80d36427e369fec919e1072cfc30879fb574",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11372,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Second Balmer alternator on 2024 Winnebago Ekko: burning-electrics smell and smoke from under hood after an 80-mile drive following a service recall; fire extinguished.\",\"group\":\"power_and_wiring\",\"symptoms\":[\"burning electrical smell\",\"smoke from under hood\",\"alternator burning/fire\"],\"conditions\":[\"after service\",\"charging\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"second alternator in the engine bay manufactured by Balmer and installed by Winnebago to charge the house batteries\"},{\"kind\":\"condition\",\"quote\":\"to charge the house batteries\"},{\"kind\":\"condition\",\"quote\":\"A service recall was completed by Winnebago Authorized Dealer in 6/2025 to reduce the charge capacity based on prior failures and fires in the alternator.\"},{\"kind\":\"symptom\",\"quote\":\"After an 80 mile drive, we smelled burning electrics and smoke came from under the hood.\"},{\"kind\":\"safety\",\"quote\":\"I applied a fire extinguisher from underneath on the alternator to stop the burning and disconnected the alternator from the electrical system.\"},{\"kind\":\"other\",\"quote\":\"Our vehicle has 26,000 miles\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize. Need extract summary component symptom conditions. Report: second alternator Balmer installed by Winnebago charge house batteries, recall 6/2025 reduce charge capacity based on prior failures and fires. Vehicle 26,000 miles no indication failure. After 80 mile drive smelled burning electrics and smoke from under hood. Applied fire extinguisher underneath on alternator to stop burning and disconnected alternator. Safety true due fire/smoke. Group given power_and_wiring. Symptoms: burning electrics smell; smoke from under hood; alternator burning/fire? Need plain words. Conditions: after 80 mile drive? \"after service\" because recall completed? Conditions list allowed cold moisture heat vibration intermittent after service charging. We should include \"after service\" (recall completed 6/2025) and \"charging\" because alternator charges house batteries. \"heat\"? burning? Maybe not explicit heat condition. \"after service\" yes. \"charging\" yes. Maybe \"after 80 mile drive\" not in list. Could include conditions array only allowed values. Safety true. Fault codes none. missing_info: date? received date, but report date? It says recall 6/2025, after drive no date. Mileage given 26,000. Component given. Symptom given. Conditions? Has after service, charging. Could missing date? Need facts analysis needs: date. The report has received_at 2025-12-01 but incident date not explicit. So missing_info [\"date\"]. Maybe conditions? not missing? We have conditions. Could include \"mileage\" not missing. Need clues with verbatim quotes. Must be exact spans. Need ensure quotes in narrative exactly. Let's craft quotes:\n- \"second alternator in the engine bay manufactured by Balmer and installed by Winnebago to charge the house batteries\" exact? Narrative: \"includes standard a second alternator in the engine bay manufactured by Balmer and installed by Winnebago to charge the house batteries, in this case two 320amp batteries manufactured by Lithionics.\" Yes substring.\n- \"A service recall was completed by Winnebago Authorized Dealer in 6/2025 to reduce the charge capacity based on prior failures and fires in the alternator.\" Exact.\n- \"After an 80 mile drive, we smelled burning electrics and smoke came from under the hood.\" Exact.\n- \"I applied a fire extinguisher from underneath on the alternator to stop the burning and disconnected the alternator from the electrical system.\" Exact.\n- \"Our vehicle has 26,000 miles\" exact.\n- \"no indication of failure\" maybe.\nNeed clue kind mapping:\ncomponent_group quote \"second alternator...\" or \"ELECTRICAL SYSTEM:ALTERNATOR/GENERATOR/REGULATOR\"? The quote can be from report; component field? It says report in user message includes JSON. \"verbatim span copied from report\" likely narrative. Use narrative. kind component_group.\nsymptom quotes for burning electrics/smoke and fire extinguisher/burning.\ncondition quote for service recall completed... kind condition. condition quote for charge house batteries kind condition? Maybe quote \"to charge the house batteries\" exact. kind condition. Safety quote \"smoke came from under the hood\" and fire extinguisher? Need safety_relevant. Clue kind safety quote \"I applied a fire extinguisher from underneath on the alternator to stop the burning\" exact. Also \"prior failures and fires in the alternator\" safety? It mentions fires but prior. Could include safety quote. Need not overdo.\nSummary one line: \"Alternator/generator/regulator (second Balmer alternator) — burning-electrics smell and smoke from under hood after 80-mile drive following service recall; fire extinguished.\" Conditions: after service, charging. Symptoms: [\"burning electrics smell\", \"smoke from under hood\", \"alternator burning/fire\"] maybe \"fire on alternator\". Plain.\nNeed JSON no other text. Ensure valid JSON. Use booleans.\n\nNeed decide missing_info. Since incident date absent. The report has recall date and received date. The analysis needs date? Include \"date\". Maybe \"conditions\" not missing because after drive and after service. Mileage present. Component present. Symptom present. Good.\n\nNeed group: given \"power_and_wiring\". Use exactly.\n\nFault_codes empty.\n\nNeed maybe safety_relevant true.\n\nNeed quote exact char-for-char. Check punctuation: \"After an 80 mile drive, we smelled burning electrics and smoke came from under the hood.\" includes period. Good.\n\"I applied a fire extinguisher from underneath on the alternator to stop the burning and disconnected the alternator from the electrical system.\" exact? Narrative: \"I applied a fire extinguisher from underneath on the alternator to stop the burning and disconnected the alternator from the electrical system.\" yes.\n\"A service recall was completed by Winnebago Authorized Dealer in 6/2025 to reduce the charge capacity based on prior failures and fires in the alternator.\" exact yes.\n\"second alternator in the engine bay manufactured by Balmer and installed by Winnebago to charge the house batteries\" exact yes (starts after \"a \"). Good.\n\"to charge the house batteries\" exact.\n\"Our vehicle has 26,000 miles\" exact.\n\"no indication of failure\" exact.\nNeed \"prior failures and fires in the alternator\" exact. Could use as safety clue? It's about prior failures/fires, not current. But safety relevant. Maybe include safety quote current fire extinguisher.\n\nNeed output only JSON. No markdown? User says one JSON object and no other text. We can output raw JSON. Good.\n\nNeed consider \"symptoms\" plain words, not quotes necessarily. Could include \"burning electrical smell\", \"smoke from under hood\", \"alternator fire\". Good.\n\nConditions allowed: \"after service\", \"charging\". Does \"after 80 mile drive\" map to \"heat\"? No. \"intermittent\" no. \"vibration\" no. \"cold/moisture/heat\" no. Maybe \"heat\" because burning? No, condition cause not symptom. Keep after service, charging.\n\nNeed \"summary\" one line. Fine.\n\nNeed include \"component_group\" clue maybe quote \"second alternator...\" Good.\n\nLet's produce JSON. Ensure no trailing commas.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793532488,
+      "id": "355b8c2208c42789d8b0e2a9edeacc49",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1596,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1323,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00060693,
+          "billing_source": "go",
+          "list_cost": 0.00101155,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 352,
+            "output": 1596,
+            "reasoning": 1323
+          }
+        },
+        "prompt_tokens": 736,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2332
+      }
+    },
+    "text": "{\"summary\":\"Second Balmer alternator on 2024 Winnebago Ekko: burning-electrics smell and smoke from under hood after an 80-mile drive following a service recall; fire extinguished.\",\"group\":\"power_and_wiring\",\"symptoms\":[\"burning electrical smell\",\"smoke from under hood\",\"alternator burning/fire\"],\"conditions\":[\"after service\",\"charging\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"second alternator in the engine bay manufactured by Balmer and installed by Winnebago to charge the house batteries\"},{\"kind\":\"condition\",\"quote\":\"to charge the house batteries\"},{\"kind\":\"condition\",\"quote\":\"A service recall was completed by Winnebago Authorized Dealer in 6/2025 to reduce the charge capacity based on prior failures and fires in the alternator.\"},{\"kind\":\"symptom\",\"quote\":\"After an 80 mile drive, we smelled burning electrics and smoke came from under the hood.\"},{\"kind\":\"safety\",\"quote\":\"I applied a fire extinguisher from underneath on the alternator to stop the burning and disconnected the alternator from the electrical system.\"},{\"kind\":\"other\",\"quote\":\"Our vehicle has 26,000 miles\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00060693,
+      "cached_tokens": 384,
+      "cost_usd": 0.00101155,
+      "input_tokens": 736,
+      "list_cost_usd": 0.00101155,
+      "output_tokens": 1596,
+      "reasoning_tokens": 1323
+    }
+  }
+}

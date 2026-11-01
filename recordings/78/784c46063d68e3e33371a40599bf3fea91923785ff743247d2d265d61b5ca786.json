@@ -1,0 +1,66 @@
+{
+  "key": "784c46063d68e3e33371a40599bf3fea91923785ff743247d2d265d61b5ca786",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9631,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Electrical system/battery: overheating, track fault message, reduced mileage, and charging capped at 80% after faulty cell replacement\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"battery issues\",\n    \"smaller batteries replaced\",\n    \"potential battery overheating\",\n    \"track fault detected error message\",\n    \"mileage decreased\",\n    \"faulty cell in larger battery replaced\",\n    \"would not charge past 80%\",\n    \"unable to charge to 100%\"\n  ],\n  \"conditions\": [\n    \"heat\",\n    \"after service\",\n    \"charging\"\n  ],\n  \"fault_codes\": [\n    \"track fault detected\"\n  ],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"ELECTRICAL SYSTEM\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"issues with the battery\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"potential over-heating of the battery\"\n    },\n    {\n      \"kind\": \"fault_code\",\n      \"quote\": \"track fault detected\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"the mileage decreased\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"replace a faulty cell in the larger battery\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"it wouldn't charge past 80%\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"when we received the car it wouldn't charge past 80%\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"moving fire hazards\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"I am scared to have it on my property\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer only JSON. Need parse report. Need normalize. Component ELECTRICAL SYSTEM group electrical_general. Symptoms: battery issues, smaller batteries replaced, updates recalls, potential over-heating of battery, \"track fault detected\" error message, mileage decreased, faulty cell in larger battery replaced, wouldn't charge past 80%, not able charge 100%, confirmed issue not fixed, cars needed purchased back safety measures, moving fire hazards. Conditions: heat? \"potential over-heating of battery\" -> heat. After service? car in shop 2 weeks early 2025 replace faulty cell; received car wouldn't charge past 80% -> after service. Charging -> wouldn't charge past 80. Intermittent? no. Cold/moisture/vibration no. Fault codes: \"track fault detected\" is error message not code. Could include as fault_code? Rules say code if report names one. It names error message \"track fault detected\" not code. Could put fault_codes [] and clue kind fault_code? Hmm kind fault_code quote \"track fault detected\" maybe yes as fault code/message. Safety_relevant true: fire hazards, scared. Also mentions safety measures, fire hazards. Missing_info: mileage null. Date? received date and narrative dates present. Conditions? has heat/charging/after service. Component present symptom present. mileage missing. Maybe date? narrative has 2023, early 2025, 3/19/25. So only mileage. Need summary one line: Electrical system / battery: overheating, track fault, reduced mileage, charge capped at 80% after cell replacement. Need clues verbatim. Must ensure quotes exact. Let's craft JSON. Need no other text. Ensure quotes copied exactly from narrative. Use spans:\n- \"issues with the battery\"\n- \"potential over-heating of the battery\"\n- \"\\\"track fault detected\\\" error message displayed on the dash\" exact includes quotes? In narrative: a \\\"track fault detected\\\" error message displayed on the dash. We can quote track fault detected without quotes? Verbatim span can be \"track fault detected\" inside quotes. Character for character includes words only. Good.\n- \"the mileage decreased\"\n- \"replace a faulty cell in the larger battery\"\n- \"it wouldn't charge past 80%\"\n- \"able to charge to 100%\" maybe.\n- \"moving fire hazards\"\n- \"next to our house\" and \"scared\" safety.\nNeed kind condition for \"potential over-heating of the battery\" heat. \"after service\" quote \"when we received the car it wouldn't charge past 80%\" maybe condition. Charging quote \"it wouldn't charge past 80%\".\nCould include component_group quote \"ELECTRICAL SYSTEM\"? That's from component field not narrative? Report includes component field. Quote must be from report, okay. But clues can quote field too? It says report. Could quote \"ELECTRICAL SYSTEM\". Good.\nNeed safety_relevant true despite input false. Summary. Fault_codes maybe [\"track fault detected\"]? It is an error message. The field says fault_codes: code if report names one. It names \"track fault detected\" error message. I'd include as fault code/message. But if strict, maybe okay. Clue kind fault_code quote same.\n\nNeed missing_info only mileage. Is date missing? received_at present, narrative dates. conditions present. component present. symptom present. So [\"mileage\"].\n\nNeed output valid JSON. Keep summary one line. No markdown? User says one JSON object and no other text. We can output raw JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793525633,
+      "id": "490c816630b6a583e8fa4a8ef85118f2",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1171,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 745,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00045375,
+          "billing_source": "go",
+          "list_cost": 0.00075625,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 350,
+            "output": 1171,
+            "reasoning": 745
+          }
+        },
+        "prompt_tokens": 734,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1905
+      }
+    },
+    "text": "{\n  \"summary\": \"Electrical system/battery: overheating, track fault message, reduced mileage, and charging capped at 80% after faulty cell replacement\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"battery issues\",\n    \"smaller batteries replaced\",\n    \"potential battery overheating\",\n    \"track fault detected error message\",\n    \"mileage decreased\",\n    \"faulty cell in larger battery replaced\",\n    \"would not charge past 80%\",\n    \"unable to charge to 100%\"\n  ],\n  \"conditions\": [\n    \"heat\",\n    \"after service\",\n    \"charging\"\n  ],\n  \"fault_codes\": [\n    \"track fault detected\"\n  ],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"ELECTRICAL SYSTEM\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"issues with the battery\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"potential over-heating of the battery\"\n    },\n    {\n      \"kind\": \"fault_code\",\n      \"quote\": \"track fault detected\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"the mileage decreased\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"replace a faulty cell in the larger battery\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"it wouldn't charge past 80%\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"when we received the car it wouldn't charge past 80%\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"moving fire hazards\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"I am scared to have it on my property\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00045375,
+      "cached_tokens": 384,
+      "cost_usd": 0.00075625,
+      "input_tokens": 734,
+      "list_cost_usd": 0.00075625,
+      "output_tokens": 1171,
+      "reasoning_tokens": 745
+    }
+  }
+}

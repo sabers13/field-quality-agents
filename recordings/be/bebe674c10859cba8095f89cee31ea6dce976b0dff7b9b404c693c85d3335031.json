@@ -1,0 +1,66 @@
+{
+  "key": "bebe674c10859cba8095f89cee31ea6dce976b0dff7b9b404c693c85d3335031",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11291,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Electrical system/ICCU: stopped Level 1 and Level 2 charging while Level 3 worked; a mid-Level 2 stop tripped the circuit and bricked the Level 2 charger; ICCU replaced.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"Level 1 charging stopped\",\n    \"Level 2 charging stopped\",\n    \"Level 3 charging still worked\",\n    \"Level 2 charging stopped midway\",\n    \"circuit tripped during Level 2 charging\",\n    \"Level 2 charger bricked\"\n  ],\n  \"conditions\": [\n    \"charging\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"missing_info\": [\n    \"mileage\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"ELECTRICAL SYSTEM\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The car stopped both Level 1 and 2 charging.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Level 3 charging worked.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"When it stopped in the middle of Level 2 charging\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"it tripped my circuit and bricked my Juicebix Level 2 charger\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"Hyundai replaced the ICCU.\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize. Read report. Component electrical system group electrical_general. Narrative: car stopped both Level 1 and 2 charging. Level 3 worked. When stopped mid Level 2 charging, tripped circuit and bricked Juicebox Level 2 charger. Hyundai replaced ICCU. Need summary one line component, symptom, conditions. Group given electrical_general. Symptoms plain words: loss of Level 1 and Level 2 charging; Level 3 charging still worked; Level 2 charging stopped midway; tripped circuit; Level 2 charger bricked. Conditions: charging likely. Maybe \"intermittent\"? Not exactly. \"after service\"? no. \"charging\" condition. Fault codes none. Safety relevant? Report says tripped circuit and bricked charger; no crash/fire/smoke/injury/loss control/stall. Initial safety_relevant false. We should set false. Missing info: mileage null, date? received_at present but date of incident missing? Rules missing_info for component, symptom, conditions, mileage, date. Component present group, symptom present, conditions present (charging). Mileage missing. Date? received_at is 2025-12-17, but incident date not given. Should we include date? Maybe yes if analysis needs date; but it has received_at. \"date\" likely event date. Include mileage and date? Hmm. Need only facts analysis needs. The report has no mileage. Date not explicitly incident, only received. Missing mileage; date maybe missing. But \"date\" in missing_info likely report date? It has received_at. Do not invent. Could include \"mileage\" only? We need decide. Desired strict. missing_info: [\"mileage\"] maybe date? The narrative doesn't say when. The metadata received_at. For analysis, event date matters. But report includes received_at, so date of report available. The schema \"date\" may mean incident date. I'd include mileage and date? Let's examine prompt: \"List missing_info only for facts the analysis needs: component, symptom, conditions, mileage, date.\" Report has component, symptom, conditions, received_at date. Mileage null. So missing_info [\"mileage\"]. Date is present as received_at, though not event date. I think include mileage only to avoid overclaim.\n\nClues: need verbatim spans from report. We can quote from narrative. Need kind. \n- symptom: \"The car stopped both Level 1 and 2 charging.\"\n- symptom: \"Level 3 charging worked.\"\n- symptom: \"it stopped in the middle of Level 2 charging\"\n- symptom/other: \"it tripped my circuit\"\n- symptom: \"bricked my Juicebix Level 2 charger\" note typo Juicebix (report says Juicebix not Juicebox). Quote verbatim. \n- component_group: \"ELECTRICAL SYSTEM\" from component? Is report includes component field. Quote can be from report entire JSON? \"report\" includes fields. Verbatim. Could quote \"ELECTRICAL SYSTEM\". \n- other/component: \"Hyundai replaced the ICCU.\" This indicates component ICCU. Kind component_group? Maybe other. The group is electrical_general. Could quote \"Hyundai replaced the ICCU.\" as other or component_group? It's a component mention. But kind options include component_group. The ICCU is a component, not group. \"other\" okay. But clues should support. \n- condition: \"Level 2 charging\" maybe condition charging. Quote exact \"When it stopped in the middle of Level 2 charging\". Kind condition. \nNeed no extra text.\n\nNeed summary: \"Electrical system / ICCU: lost Level 1 and Level 2 charging, Level 3 worked; Level 2 stop tripped circuit and bricked charger; ICCU replaced.\" One line. Component, symptom, conditions.\n\nNeed symptoms list plain words. Could include \"Level 1 charging stopped\", \"Level 2 charging stopped\", \"Level 3 charging still worked\", \"Level 2 charging stopped midway\", \"circuit tripped during Level 2 charging\", \"Level 2 charger bricked\". That's okay.\n\nConditions: [\"charging\"]. Could also \"Level 2 charging\" but conditions list limited examples include charging. Use \"charging\". Maybe \"cold moisture heat vibration intermittent after service charging\". We can include \"charging\" only. Does \"stopped in middle\" imply intermittent? Not necessarily. No.\n\nFault codes empty. Safety false.\n\nMissing_info: [\"mileage\"]? Maybe \"date\" if event date missing. Since received_at date exists. I'd include only mileage. But prompt says \"date\" as fact analysis needs. The report date given received_at; event date not. Hmm. If I include date, might be considered missing? The report has received_at. But \"date\" likely incident date. The instructions: \"Read only report... missing_info only facts analysis needs: component, symptom, conditions, mileage, date.\" It has date field received_at, so not missing date. Mileage null. Use [\"mileage\"].\n\nNeed ensure JSON valid, no markdown? User says answer one JSON object and no other text. We can output raw JSON. Good.\n\nNeed quotes character for character. Check narrative exactly: \"The car stopped both Level 1 and 2 charging. But Level 3 charging worked. When it stopped in the middle of Level 2 charging, it tripped my circuit and bricked my Juicebix Level 2 charger.  Hyundai replaced the ICCU.\" There are two spaces before Hyundai. Quote \"Hyundai replaced the ICCU.\" exists. Quote \"it tripped my circuit and bricked my Juicebix Level 2 charger\" exists (without period? yes substring). Need quote for condition \"When it stopped in the middle of Level 2 charging\" exists. For component group \"ELECTRICAL SYSTEM\" from component field uppercase. Is that verbatim in report? The JSON has \"component\": \"ELECTRICAL SYSTEM\", so yes quote. Good.\n\nPotential clue kinds:\n- {\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"}\n- {\"kind\":\"symptom\",\"quote\":\"The car stopped both Level 1 and 2 charging.\"}\n- {\"kind\":\"symptom\",\"quote\":\"Level 3 charging worked.\"}\n- {\"kind\":\"condition\",\"quote\":\"When it stopped in the middle of Level 2 charging\"}\n- {\"kind\":\"symptom\",\"quote\":\"it tripped my circuit and bricked my Juicebix Level 2 charger\"}\n- {\"kind\":\"other\",\"quote\":\"Hyundai replaced the ICCU.\"}\nCould include \"Level 2 charging\" as condition? The condition quote includes. Good.\n\nNeed safety_relevant false. Should we consider tripped circuit could be fire risk? No mention fire/smoke. initial false. Good.\n\nNeed group \"electrical_general\" or \"electrical/electronic component group\". Given group electrical_general. Use that.\n\nSummary one line. Fine.\n\nFinal only JSON. Ensure no trailing.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793532968,
+      "id": "f46af0d356b2676b99a0cc64282e1529",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1801,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1465,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00066327,
+          "billing_source": "go",
+          "list_cost": 0.00110545,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 158,
+            "output": 1801,
+            "reasoning": 1465
+          }
+        },
+        "prompt_tokens": 542,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2343
+      }
+    },
+    "text": "{\n  \"summary\": \"Electrical system/ICCU: stopped Level 1 and Level 2 charging while Level 3 worked; a mid-Level 2 stop tripped the circuit and bricked the Level 2 charger; ICCU replaced.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"Level 1 charging stopped\",\n    \"Level 2 charging stopped\",\n    \"Level 3 charging still worked\",\n    \"Level 2 charging stopped midway\",\n    \"circuit tripped during Level 2 charging\",\n    \"Level 2 charger bricked\"\n  ],\n  \"conditions\": [\n    \"charging\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"missing_info\": [\n    \"mileage\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"ELECTRICAL SYSTEM\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The car stopped both Level 1 and 2 charging.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Level 3 charging worked.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"When it stopped in the middle of Level 2 charging\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"it tripped my circuit and bricked my Juicebix Level 2 charger\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"Hyundai replaced the ICCU.\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00066327,
+      "cached_tokens": 384,
+      "cost_usd": 0.00110545,
+      "input_tokens": 542,
+      "list_cost_usd": 0.00110545,
+      "output_tokens": 1801,
+      "reasoning_tokens": 1465
+    }
+  }
+}

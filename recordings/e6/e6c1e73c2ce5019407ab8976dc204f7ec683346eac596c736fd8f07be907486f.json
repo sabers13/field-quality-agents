@@ -1,0 +1,66 @@
+{
+  "key": "e6c1e73c2ce5019407ab8976dc204f7ec683346eac596c736fd8f07be907486f",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 4627,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "```json\n{\n  \"summary\": \"2019 Audi Q5 passenger occupant detection system (PODS) intermittently fails to sense a seated passenger or falsely reports an empty seat, raising airbag deployment uncertainty\",\n  \"group\": \"restraints\",\n  \"symptoms\": [\n    \"intermittently fails to recognize when a passenger is present\",\n    \"falsely indicates that a passenger is present when the seat is empty\",\n    \"uncertainty whether the passenger airbag will deploy correctly in a collision\"\n  ],\n  \"conditions\": [\"intermittent\"],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\"mileage\"],\n  \"clues\": [\n    {\"kind\": \"component_group\", \"quote\": \"Passenger Occupant Detection System (PODS)\"},\n    {\"kind\": \"symptom\", \"quote\": \"intermittently fails to recognize when a passenger is present\"},\n    {\"kind\": \"symptom\", \"quote\": \"falsely indicates that a passenger is present when the seat is empty\"},\n    {\"kind\": \"condition\", \"quote\": \"The issue has occurred multiple times.\"},\n    {\"kind\": \"safety\", \"quote\": \"could result in the airbag being disabled when an adult passenger is seated\"},\n    {\"kind\": \"safety\", \"quote\": \"This poses a significant safety risk.\"}\n  ]\n}\n```",
+            "reasoning_content": "Let me extract the fields from the report.\n\nSummary: PODS passenger occupant detection system malfunction on 2019 Audi Q5, intermittent failure to detect passenger presence or false presence.\n\nGroup: restraints (given).\n\nSymptoms: \"intermittently fails to recognize when a passenger is present\", \"falsely indicates that a passenger is present when the seat is empty\".\n\nConditions: intermittent.\n\nFault codes: none.\n\nSafety relevant: the report mentions airbag may be disabled when adult passenger seated, or unintentionally activated — that's a risk to people. Set true.\n\nMissing info: mileage is null; date? Received date given. Mileage missing. Conditions maybe. I'd say [\"mileage\"].\n\nClues with verbatim quotes.\n\nQuotes must be exact substrings. Let me pull from narrative:\n- \"The Passenger Occupant Detection System (PODS) in my 2019 Audi Q5 is malfunctioning.\"\n- \"intermittently fails to recognize when a passenger is present\"\n- \"falsely indicates that a passenger is present when the seat is empty\"\n- \"The issue has occurred multiple times.\"\n- \"This poses a significant safety risk.\"\n- \"could result in the airbag being disabled when an adult passenger is seated\"\n\nComponent group quote: \"AIR BAGS\" is component field, not narrative. Hmm — quote must be copied verbatim from the report; the report includes the component field. Safer to quote from narrative: \"Passenger Occupant Detection System (PODS)\". Use that for component_group.\n\nWrite JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529736,
+      "id": "3f2fa5d0d2f2021e0b6c2d175db8bb03",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 615,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 318,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00025062,
+          "billing_source": "go",
+          "list_cost": 0.0004177,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 317,
+            "output": 615,
+            "reasoning": 318
+          }
+        },
+        "prompt_tokens": 701,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1316
+      }
+    },
+    "text": "```json\n{\n  \"summary\": \"2019 Audi Q5 passenger occupant detection system (PODS) intermittently fails to sense a seated passenger or falsely reports an empty seat, raising airbag deployment uncertainty\",\n  \"group\": \"restraints\",\n  \"symptoms\": [\n    \"intermittently fails to recognize when a passenger is present\",\n    \"falsely indicates that a passenger is present when the seat is empty\",\n    \"uncertainty whether the passenger airbag will deploy correctly in a collision\"\n  ],\n  \"conditions\": [\"intermittent\"],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\"mileage\"],\n  \"clues\": [\n    {\"kind\": \"component_group\", \"quote\": \"Passenger Occupant Detection System (PODS)\"},\n    {\"kind\": \"symptom\", \"quote\": \"intermittently fails to recognize when a passenger is present\"},\n    {\"kind\": \"symptom\", \"quote\": \"falsely indicates that a passenger is present when the seat is empty\"},\n    {\"kind\": \"condition\", \"quote\": \"The issue has occurred multiple times.\"},\n    {\"kind\": \"safety\", \"quote\": \"could result in the airbag being disabled when an adult passenger is seated\"},\n    {\"kind\": \"safety\", \"quote\": \"This poses a significant safety risk.\"}\n  ]\n}\n```",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00025062,
+      "cached_tokens": 384,
+      "cost_usd": 0.0004177,
+      "input_tokens": 701,
+      "list_cost_usd": 0.0004177,
+      "output_tokens": 615,
+      "reasoning_tokens": 318
+    }
+  }
+}

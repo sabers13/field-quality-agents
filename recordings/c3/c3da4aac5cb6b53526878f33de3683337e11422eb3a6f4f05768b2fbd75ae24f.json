@@ -1,0 +1,66 @@
+{
+  "key": "c3da4aac5cb6b53526878f33de3683337e11422eb3a6f4f05768b2fbd75ae24f",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 7068,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"No rulebook match; alleged odometer fraud/mileage discrepancy, so verify mileage records rather than run a targeted load test.\",\"rationale\":\"The narrative reports an odometer fraud concern after a private sale, with a Carfax-discovered mileage discrepancy between 124,000 and 211,000. There are no recalls, investigations, rulebook matches, fault codes, or reported operating conditions supporting a targeted load test.\",\"group\":\"instrumentation\",\"symptoms\":[\"odometer fraud\",\"mileage discrepancy\"],\"conditions\":[\"private sale\",\"mileage discrepancy discovered via Carfax report\"],\"fault_codes\":[],\"safety_relevant\":false,\"targeted\":false,\"test_name\":\"odometer/mileage verification against vehicle records\",\"clues\":[{\"kind\":\"symptom\",\"quote\":\"Odometer Fraud\"},{\"kind\":\"symptom\",\"quote\":\"there was a mileage discrepancy\"},{\"kind\":\"condition\",\"quote\":\"The vehicle was a private sale\"},{\"kind\":\"other\",\"quote\":\"the vehicle mileage was 124,000\"},{\"kind\":\"other\",\"quote\":\"the mileage was 211,000\"}]}",
+            "reasoning_content": "We need to output JSON only. No rulebook matches, no recalls/investigations. This is odometer fraud, not a testable field-quality failure. Targeted false, standard test? The rulebook names no test. We need propose a test. Hmm. The schema requires test_name string. There's no rulebook match so targeted false. But what standard test? For instrumentation/odometer discrepancy, verification of odometer/mileage records perhaps. But must be grounded in facts. The narrative is about title/odometer fraud, no component failure. We can propose standard test \"odometer mileage verification\" maybe. But \"standard test\" is ambiguous. We should keep it grounded: verify odometer reading against service records/Carfax. But that is an administrative check, not a load test. The desk doesn't close case etc. We can say targeted false, test_name \"odometer/mileage verification (records comparison)\". Safety false. Clues verbatim quotes. Only use quotes from narrative, not extraction? It says from case narrative. Use quotes: \"Odometer Fraud\", \"there was a mileage discrepancy\", maybe \"The vehicle was a private sale\", \"the vehicle mileage was 124,000\", \"the mileage was 211,000\". Also component quote? The component field is not narrative? The narrative doesn't contain \"ELECTRICAL SYSTEM...\" so can't cite. Use narrative spans.\n\nSummary one line: no rulebook entry; case is alleged odometer fraud/mileage discrepancy, so propose non-targeted records-verification test rather than a load test.\n\nRationale: no rulebook match/recalls/investigations; narrative reports Carfax discrepancy 124k vs 211k after private sale; no fault codes or conditions. Thus no targeted load test.\n\nGroup instrumentation. symptoms [\"odometer fraud\", \"mileage discrepancy\"]. conditions [\"private sale\", \"mileage discrepancy discovered via Carfax report\"]? Conditions must be quotes? clues separate. conditions array can be derived. fault_codes [].\n\nsafety_relevant false. targeted false. test_name \"odometer/mileage verification against vehicle records\".\n\nClues each kind quote. Ensure verbatim. Quotes:\n- \"Odometer Fraud\" yes.\n- \"there was a mileage discrepancy\" yes.\n- \"The vehicle was a private sale\" yes.\n- \"the vehicle mileage was 124,000\" yes exact? Narrative: \"At the time of purchase, the vehicle mileage was 124,000.\" substring \"the vehicle mileage was 124,000\" yes.\n- \"the mileage was 211,000\" yes substring.\n\nCould include kind other for private sale. Good.\n\nNeed JSON only.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793528196,
+      "id": "c6142a7edead15aced4aed00eee9a417",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 789,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 553,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00035496,
+          "billing_source": "go",
+          "list_cost": 0.0005916,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 788,
+            "output": 789,
+            "reasoning": 553
+          }
+        },
+        "prompt_tokens": 788,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 1577
+      }
+    },
+    "text": "{\"summary\":\"No rulebook match; alleged odometer fraud/mileage discrepancy, so verify mileage records rather than run a targeted load test.\",\"rationale\":\"The narrative reports an odometer fraud concern after a private sale, with a Carfax-discovered mileage discrepancy between 124,000 and 211,000. There are no recalls, investigations, rulebook matches, fault codes, or reported operating conditions supporting a targeted load test.\",\"group\":\"instrumentation\",\"symptoms\":[\"odometer fraud\",\"mileage discrepancy\"],\"conditions\":[\"private sale\",\"mileage discrepancy discovered via Carfax report\"],\"fault_codes\":[],\"safety_relevant\":false,\"targeted\":false,\"test_name\":\"odometer/mileage verification against vehicle records\",\"clues\":[{\"kind\":\"symptom\",\"quote\":\"Odometer Fraud\"},{\"kind\":\"symptom\",\"quote\":\"there was a mileage discrepancy\"},{\"kind\":\"condition\",\"quote\":\"The vehicle was a private sale\"},{\"kind\":\"other\",\"quote\":\"the vehicle mileage was 124,000\"},{\"kind\":\"other\",\"quote\":\"the mileage was 211,000\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00035496,
+      "cached_tokens": 0,
+      "cost_usd": 0.0005916,
+      "input_tokens": 788,
+      "list_cost_usd": 0.0005916,
+      "output_tokens": 789,
+      "reasoning_tokens": 553
+    }
+  }
+}

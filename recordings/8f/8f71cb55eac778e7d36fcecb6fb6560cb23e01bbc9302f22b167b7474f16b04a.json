@@ -1,0 +1,66 @@
+{
+  "key": "8f71cb55eac778e7d36fcecb6fb6560cb23e01bbc9302f22b167b7474f16b04a",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10775,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Airbags did not deploy in a head-on crash on snow during a storm; occupant struck windshield and dash.\",\"group\":\"restraints\",\"symptoms\":[\"airbags did not deploy during a head-on crash\",\"occupant hit windshield and dash\"],\"conditions\":[\"cold\",\"moisture\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"condition\",\"quote\":\"slid on snow during a storm\"},{\"kind\":\"condition\",\"quote\":\"hit head on to an oncoming car\"},{\"kind\":\"symptom\",\"quote\":\"not a single airbag at all deployed\"},{\"kind\":\"symptom\",\"quote\":\"I hit the windshield and the dash\"},{\"kind\":\"symptom\",\"quote\":\"none of them deployed in the car\"},{\"kind\":\"safety\",\"quote\":\"total loss\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize report. Component AIR BAGS group restraints. Symptoms: airbags did not deploy during head-on crash; hit windshield and dash. Conditions: snow, storm? Crash. Safety relevant true (crash, injury). Fault codes none. missing_info: mileage? date? received_at exists but date of incident missing. Conditions maybe present (snow during storm). Component present symptom present. Missing mileage and date. Maybe \"date\" means incident date. Narrative no mileage. So missing_info [\"mileage\",\"date\"]. Clues verbatim quotes. Need ensure quotes exact substrings. Report narrative: \"I slid on snow during a storm and hit head on to an oncoming car and my car has been deemed a total loss. During the crash not a single airbag at all deployed. I hit the windshield and the dash, at least one should have gone off, but none of them deployed in the car\"\n\nQuotes:\n- \"slid on snow during a storm\" condition\n- \"hit head on to an oncoming car\" symptom? other? condition? maybe symptom? It's crash condition. Could use condition.\n- \"not a single airbag at all deployed\" symptom\n- \"I hit the windshield and the dash\" symptom/other injury\n- \"none of them deployed in the car\" symptom\n- \"total loss\" other maybe not needed.\n- component_group quote \"AIR BAGS\" from component field? Is that in report? The report includes JSON fields. Rules read report. Quote verbatim from report. Component \"AIR BAGS\" is in report. But clues kind component_group quote \"AIR BAGS\". Fine.\n- safety quote \"total loss\" or \"hit head on\" maybe safety. Use \"hit head on to an oncoming car\" maybe safety? The crash implies risk. Use safety quote \"I hit the windshield and the dash\" indicates injury risk. Also \"total loss\". Need safety_relevant true.\n\nSummary one line: AIR BAGS: no airbag deployment in head-on crash on snow; occupant hit windshield/dash. Conditions list: cold? snow, storm? The allowed conditions list includes \"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\". Snow/storm not in enumerated? It says conditions: [\"cold\", \"moisture\", ...]. Maybe use \"cold\" for snow? But quote \"slid on snow during a storm\" doesn't contain cold. Conditions array should maybe \"cold\",\"moisture\"? Snow implies cold/moisture but don't invent? Hmm. The schema conditions allowed values? It lists examples likely. We can include conditions from report: \"snow\", \"storm\" maybe plain words. But prompt says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. It may expect only these controlled values. Yet report has snow/storm not in list. Could set conditions [\"cold\",\"moisture\"] derived from snow/storm? But rule do not invent facts. Snow is frozen moisture; cold? Better include \"snow\" and \"storm\"? But controlled vocabulary? The prompt: `\"conditions\": [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"],` likely allowed values. Hmm. It says conditions: [\"cold\", ...], not \"e.g.\"? It says answer schema. It likely expects select from list. Snow/storm are conditions but not in list. Could include \"cold\" because snow, and maybe \"moisture\" because storm. But \"cold\" not verbatim, but conditions normalized. That's acceptable? Need clues quote supports. Use clue condition quote \"slid on snow during a storm\" and conditions [\"cold\",\"moisture\"]? Maybe \"moisture\" from storm, \"cold\" from snow. But not explicit cold. Snow implies cold. I'd include \"cold\",\"moisture\". Could also include \"snow\" not in controlled. Hmm.\n\nNeed maybe \"intermittent\"? no.\n\nFault codes [].\n\nMissing info: mileage and date. The received_at is date but incident date missing. Should missing_info include \"date\" because no crash date. It includes received_at, but not incident date. Good. Maybe \"conditions\" not missing because snow storm given. Component and symptom present. mileage missing. date missing.\n\nClues array with exact quotes. Need JSON valid. No markdown? User says answer with one JSON object and no other text. Final should be JSON only. Ensure quotes exact:\n- \"AIR BAGS\" from component field. It's in report top-level. Since report in user message includes `\"component\": \"AIR BAGS\"`. Quote verbatim yes.\n- \"slid on snow during a storm\" exact substring? Narrative begins \"I slid on snow during a storm...\" substring \"slid on snow during a storm\" yes.\n- \"hit head on to an oncoming car\" exact? Narrative \"and hit head on to an oncoming car\" yes substring.\n- \"not a single airbag at all deployed\" exact? \"During the crash not a single airbag at all deployed.\" substring yes.\n- \"I hit the windshield and the dash\" exact yes.\n- \"none of them deployed in the car\" exact yes.\n- safety quote \"total loss\" exact? \"my car has been deemed a total loss\" substring \"total loss\" yes. Maybe safety kind quote \"I hit the windshield and the dash\" enough? Use \"total loss\" as safety? Total loss not necessarily safety. Use \"hit head on to an oncoming car\" as safety? Crash. But kind safety. I can use quote \"hit head on to an oncoming car\". But same quote also condition? Avoid duplicates? Fine.\n\nNeed summary mention component, symptom, conditions. \"Airbags did not deploy in a head-on crash on snow during a storm; occupant struck windshield and dash.\" Good.\n\nNeed group \"restraints\".\n\nPotential issue: `safety_relevant`: true due crash, injury risk. Good.\n\nNeed missing_info list maybe [\"mileage\",\"date\"]. But date: received_at exists 2025-12-30. The report's received_at is date. However event date not given. The analysis needs date of incident? Yes. missing_info includes date. Fine. Could include \"conditions\"? no.\n\nNeed maybe fault_codes [] because no code.\n\nLet's craft final JSON only.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793533171,
+      "id": "e234abf5c7dee3b04fbedff6509a04d7",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1561,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1361,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00057759,
+          "billing_source": "go",
+          "list_cost": 0.00096265,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 166,
+            "output": 1561,
+            "reasoning": 1361
+          }
+        },
+        "prompt_tokens": 550,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2111
+      }
+    },
+    "text": "{\"summary\":\"Airbags did not deploy in a head-on crash on snow during a storm; occupant struck windshield and dash.\",\"group\":\"restraints\",\"symptoms\":[\"airbags did not deploy during a head-on crash\",\"occupant hit windshield and dash\"],\"conditions\":[\"cold\",\"moisture\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"condition\",\"quote\":\"slid on snow during a storm\"},{\"kind\":\"condition\",\"quote\":\"hit head on to an oncoming car\"},{\"kind\":\"symptom\",\"quote\":\"not a single airbag at all deployed\"},{\"kind\":\"symptom\",\"quote\":\"I hit the windshield and the dash\"},{\"kind\":\"symptom\",\"quote\":\"none of them deployed in the car\"},{\"kind\":\"safety\",\"quote\":\"total loss\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00057759,
+      "cached_tokens": 384,
+      "cost_usd": 0.00096265,
+      "input_tokens": 550,
+      "list_cost_usd": 0.00096265,
+      "output_tokens": 1561,
+      "reasoning_tokens": 1361
+    }
+  }
+}

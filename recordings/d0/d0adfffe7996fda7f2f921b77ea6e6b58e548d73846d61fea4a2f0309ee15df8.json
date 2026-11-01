@@ -1,0 +1,66 @@
+{
+  "key": "d0adfffe7996fda7f2f921b77ea6e6b58e548d73846d61fea4a2f0309ee15df8",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10085,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"AIR BAGS: restraint control module failed with DTC b10a2 after 2015 recall 14s21; potential air bag/pretensioner failure in a crash\",\"group\":\"restraints\",\"symptoms\":[\"restraint control module has failed\",\"air bags and belt pretensioner could fail in the event of an accident\"],\"conditions\":[\"after service\"],\"fault_codes\":[\"b10a2\"],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"condition\",\"quote\":\"Ford recall 14s21 was performed on this vehicle in 2015.\"},{\"kind\":\"fault_code\",\"quote\":\"DTC b10a2\"},{\"kind\":\"symptom\",\"quote\":\"The code indicates that the restraint control module has failed.\"},{\"kind\":\"safety\",\"quote\":\"The issue is safety.\"},{\"kind\":\"safety\",\"quote\":\"the air bags and belt pretensioner could fail in the event of an accident.\"},{\"kind\":\"other\",\"quote\":\"The replacement of the original item does not provide long term protection since it has failed again.\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize. Report: component AIR BAGS group restraints. Narrative: recall performed 2015, DTC b10a2, restraint control module failed, dealer says out warranty, issue safety, air bags and belt pretensioner could fail in accident, replacement failed again. Conditions? \"after service\" maybe recall performed? Safety_relevant true because air bags could fail in accident, risk to people. Fault code b10a2. Symptoms: restraint control module failed, DTC b10a2; air bags and belt pretensioner could fail in event of accident? That's potential. Missing info: mileage null, date? received date present but no incident date. Conditions missing? Hmm list missing_info only facts analysis needs: component given, symptom given, conditions? Conditions not explicit except after service? Mileage missing. Date maybe report received date but no occurrence date. Could list mileage, date. Conditions? Not necessarily. Need quotes verbatim.\n\nNeed ensure quotes exact character. We can quote spans:\n\"Ford recall 14s21 was performed on this vehicle in 2015.\"\n\"I currently have a DTC b10a2.\"\n\"The code indicates that the restraint control module has failed.\"\n\"The issue is safety.\"\n\"the air bags and belt pretensioner could fail in the event of an accident.\"\n\"The replacement of the original item does not provide long term protection since it has failed again.\"\n\nClues kinds: condition after service? quote \"Ford recall 14s21 was performed on this vehicle in 2015.\" kind condition maybe \"after service\". Fault code quote \"DTC b10a2\" exact? In narrative \"I currently have a DTC b10a2.\" Quote can be \"DTC b10a2\" verbatim? It appears yes substring. Need quote verbatim span copied. For fault_code use \"b10a2\" or \"DTC b10a2\". quote \"b10a2\" is exact substring. Symptom quote \"restraint control module has failed\" exact? Narrative: \"the restraint control module has failed.\" yes substring. Safety quote \"The issue is safety.\" or \"air bags and belt pretensioner could fail in the event of an accident\" exact substring. Component group quote maybe \"AIR BAGS\" from component not narrative? Report includes component field \"AIR BAGS\". Quote allowed from report? likely yes. But quote must be copied from report; component field is part report. Use \"AIR BAGS\". Conditions: recall performed in 2015 = after service. Also maybe \"in 2015\" not condition. We include conditions [\"after service\"]. Symptom list plain words: \"restraint control module failed\", \"air bags and belt pretensioner could fail in an accident\". Could include DTC? fault codes separate. Summary one line: \"AIR BAGS: restraint control module failed with DTC b10a2 after 2015 recall 14s21; potential air bag/pretensioner failure in crash.\" Conditions: after service (recall service). Safety true.\n\nMissing info: mileage, date? Date of current fault/incident missing, but received_at exists. The schema says missing_info [\"mileage\", \"date\", \"conditions\", \"component\", \"symptom\"]. We can include mileage and date. Conditions maybe not missing? We know after recall but not current conditions. But \"conditions\" as cold/moisture etc not relevant? For airbag, not needed. But analysis needs conditions? likely list mileage and date. Maybe conditions if no environmental conditions. But not critical. We can list [\"mileage\", \"date\"]. But date: report has received_at 2025-06-20 and recall 2015, but not fault date. So yes date. Could include \"conditions\" because no when/how conditions; but conditions categories cold moisture heat vibration intermittent after service charging. We have after service. However no \"when it occurs\" condition. Hmm.\n\nNeed output valid JSON only. Ensure no extra text. Use quotes as exact. Let's craft.\n\nNeed \"safety_relevant\": true. \"group\": \"restraints\". \"fault_codes\": [\"b10a2\"]. \"symptoms\": [\"restraint control module has failed\", \"air bags and belt pretensioner could fail in the event of an accident\"]. \"conditions\": [\"after service\"]. Clues include component_group quote \"AIR BAGS\", symptom quote \"The code indicates that the restraint control module has failed.\", condition quote \"Ford recall 14s21 was performed on this vehicle in 2015.\", fault_code quote \"DTC b10a2\", safety quote \"The issue is safety.\", other quote maybe \"The replacement of the original item does not provide long term protection since it has failed again.\" kind other.\n\nNeed quote exact includes period? Verbatim span can include period. \"The code indicates that the restraint control module has failed.\" appears exactly? Narrative: \"The code indicates that the restraint control module has failed.  I contacted...\" yes. Double spaces after period irrelevant quote ends period. Good.\n\n\"Ford recall 14s21 was performed on this vehicle in 2015.\" exact. \"DTC b10a2\" exact substring? Narrative \"I currently have a DTC b10a2.\" yes. \"The issue is safety.\" exact. \"the air bags and belt pretensioner could fail in the event of an accident.\" Narrative has \"Based on the original recall, the air bags and belt pretensioner could fail in the event of an accident.\" lower \"the air bags...\" exact substring? It starts after comma space \"the air bags...\" yes. Include as safety quote perhaps. But safety quote \"The issue is safety.\" enough.\n\nNeed maybe no markdown. final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793527805,
+      "id": "85414d876e7d756e635d6b203751451d",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1448,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1199,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00054303,
+          "billing_source": "go",
+          "list_cost": 0.00090505,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 234,
+            "output": 1448,
+            "reasoning": 1199
+          }
+        },
+        "prompt_tokens": 618,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2066
+      }
+    },
+    "text": "{\"summary\":\"AIR BAGS: restraint control module failed with DTC b10a2 after 2015 recall 14s21; potential air bag/pretensioner failure in a crash\",\"group\":\"restraints\",\"symptoms\":[\"restraint control module has failed\",\"air bags and belt pretensioner could fail in the event of an accident\"],\"conditions\":[\"after service\"],\"fault_codes\":[\"b10a2\"],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"condition\",\"quote\":\"Ford recall 14s21 was performed on this vehicle in 2015.\"},{\"kind\":\"fault_code\",\"quote\":\"DTC b10a2\"},{\"kind\":\"symptom\",\"quote\":\"The code indicates that the restraint control module has failed.\"},{\"kind\":\"safety\",\"quote\":\"The issue is safety.\"},{\"kind\":\"safety\",\"quote\":\"the air bags and belt pretensioner could fail in the event of an accident.\"},{\"kind\":\"other\",\"quote\":\"The replacement of the original item does not provide long term protection since it has failed again.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00054303,
+      "cached_tokens": 384,
+      "cost_usd": 0.00090505,
+      "input_tokens": 618,
+      "list_cost_usd": 0.00090505,
+      "output_tokens": 1448,
+      "reasoning_tokens": 1199
+    }
+  }
+}

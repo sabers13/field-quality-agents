@@ -1,0 +1,66 @@
+{
+  "key": "b339d0ebfd0a1bc49f89d1c35d5d8c1cff279e27d17d99ef376df608c2977039",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9969,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Test the ADAS forward-looking sensor system because ACC, forward collision and lane departure functions fail together with orange warning lamps after repeated dealer repair attempts.\",\n  \"rationale\": \"The narrative reports that the forward-looking sensors fail, Adaptive Cruise Control with Full Stop and Forward Collision warning lamps turn orange, Cruise Control and Forward Collision fail, and Lane Departure Warnings stop working. The dealer has attempted repair three times. No rulebook entry matches these conditions, so the standard diagnostic test is proposed; the rearview camera recall is unrelated to the reported forward-looking sensor failures.\",\n  \"group\": \"adas\",\n  \"symptoms\": [\n    \"forward looking sensors fail\",\n    \"Adaptive Cruise Control and Forward Collision warning lamps turn orange\",\n    \"Cruise Control fails\",\n    \"Forward Collision fails\",\n    \"Lane Departure Warnings stop working\"\n  ],\n  \"conditions\": [\n    \"systems fail immediately when warning lamps appear\",\n    \"The warning lamps do not appear prior to failure\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"targeted\": false,\n  \"test_name\": \"standard ADAS diagnostic test\",\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The forward looking sensors fail\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Adaptive Cruise Control with Full Stop and Forward Collision warning lamps to blaze orange\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Cruise Control immediately fails and Forward Collision also fails\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Lane Departure Warnings stops working as well\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"systems fail immediately when warning lamps appear\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"The warning lamps do not appear prior to failure\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"The dealer has attempted to repair my vehicle 3 times\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer one JSON object only. Need follow schema. Need use only facts. Case narrative quotes verbatim. Rulebook empty so targeted false? \"Prefer targeted load test when reported conditions match rulebook entry. Otherwise propose standard test (targeted false).\" rulebook result empty. So targeted false. test_name? The rulebook names targeted test; none. For standard test maybe \"standard test\" or no? Schema requires test_name string. Could put \"standard diagnostic test\" perhaps. Need group \"adas\" or component group? group field \"component group\". Extraction group adas. symptoms, conditions, fault_codes arrays. safety_relevant false (narrative no risk to people). targeted false. summary one line.\n\nClues: every quote copied verbatim from case narrative. Need include clues perhaps from narrative only. Narrative: \"The forward looking sensors fail. This causes Adaptive Cruise Control with Full Stop and Forward Collision warning lamps to blaze orange. Cruise Control immediately fails and Forward Collision also fails. Although your system above would not allow me to select this Lane Departure Warnings stops working as well. Only the Dealer has inspected the vehicle at this point. The warning lamps do not appear prior to failure these systems fail immediately when warning lamps appear. In addition to the Dealer Repair Notes uploaded here. The dealer has attempted to repair my vehicle 3 times. I have images of the warning lamps that include the miles at each instance.\"\n\nNeed quotes verbatim spans. Could include \"The forward looking sensors fail\", \"Adaptive Cruise Control with Full Stop and Forward Collision warning lamps to blaze orange\", \"Cruise Control immediately fails and Forward Collision also fails\", \"Lane Departure Warnings stops working as well\", \"systems fail immediately when warning lamps appear\", \"The dealer has attempted to repair my vehicle 3 times\". Need kind symptom/condition/other. Note case narrative does not say \"forward collision warning lamp illuminates orange\" exactly? It says \"warning lamps to blaze orange\" with components. Use exact.\n\nNeed fault_codes empty since none. conditions maybe [\"systems fail immediately when warning lamps appear\"]. Could include \"warning lamps do not appear prior to failure\" as condition? It is weird. We can include.\n\nNeed rationale mention no rulebook entry, no recalls/investigations? Recall unrelated rearview camera. No rulebook matches. Could mention similar case? It says do not cite case id not in tool results; similar case id 2014403 exists. But maybe avoid citing. Rationale: ADAS forward-looking sensor failure causes ACC/FCW/LDW lamps and functions fail; no rulebook match; standard diagnostic test. Recall for rearview camera not relevant.\n\nNeed \"test_name\": since no rulebook, perhaps \"standard ADAS diagnostic test\". targeted false.\n\nNeed \"clues\" kind maybe component_group quote \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\" not narrative? The case component is not narrative? The prompt says quote copied verbatim from case narrative. So cannot use component field? It says case narrative. Avoid component_group quote from component unless in narrative? Narrative doesn't contain that exact. Could use symptom clues only.\n\nNeed valid JSON no other text. Ensure quotes exact. Let's formulate.\n\nCheck quote \"The forward looking sensors fail\" exact starts after \"The\". yes. \"Adaptive Cruise Control with Full Stop and Forward Collision warning lamps to blaze orange\" exact substring. \"Cruise Control immediately fails and Forward Collision also fails\" exact. \"Lane Departure Warnings stops working as well\" exact substring yes. \"systems fail immediately when warning lamps appear\" exact starts after \"these\". \"The dealer has attempted to repair my vehicle 3 times\" exact. \"The warning lamps do not appear prior to failure\" exact substring. Good.\n\nMaybe symptoms array should align with extraction but can use narrative terms. conditions array. fault_codes [].\n\nSafety_relevant false.\n\nNeed targeted false.\n\nNeed \"summary\": \"Test ADAS forward-looking sensor/camera system because ACC, FCW and Lane Departure fail together with orange warning lamps and repeated dealer repairs.\" One line.\n\nRationale: \"Narrative reports forward-looking sensors fail, ACC with Full Stop and Forward Collision warning lamps turn orange, cruise and forward collision fail, and lane departure stops working; dealer attempted repair three times. No rulebook entry matches, so standard diagnostic test is proposed; rearview camera recall is unrelated.\"\n\nPotential issue do not cite recall id? It says do not cite case, recall or investigation id that tool results do not contain. We can not cite id. Fine.\n\nCould include \"targeted\": false and \"test_name\": \"standard ADAS diagnostic test\". Good.\n\nNeed \"group\": \"adas\".\n\nClues list maybe include condition. Ensure kind valid.\n\nLet's answer JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793526552,
+      "id": "ec4d3bb91dad92c6a475fdf371927b66",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1449,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 994,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00063054,
+          "billing_source": "go",
+          "list_cost": 0.0010509,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 1210,
+            "output": 1449,
+            "reasoning": 994
+          }
+        },
+        "prompt_tokens": 1210,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 2659
+      }
+    },
+    "text": "{\n  \"summary\": \"Test the ADAS forward-looking sensor system because ACC, forward collision and lane departure functions fail together with orange warning lamps after repeated dealer repair attempts.\",\n  \"rationale\": \"The narrative reports that the forward-looking sensors fail, Adaptive Cruise Control with Full Stop and Forward Collision warning lamps turn orange, Cruise Control and Forward Collision fail, and Lane Departure Warnings stop working. The dealer has attempted repair three times. No rulebook entry matches these conditions, so the standard diagnostic test is proposed; the rearview camera recall is unrelated to the reported forward-looking sensor failures.\",\n  \"group\": \"adas\",\n  \"symptoms\": [\n    \"forward looking sensors fail\",\n    \"Adaptive Cruise Control and Forward Collision warning lamps turn orange\",\n    \"Cruise Control fails\",\n    \"Forward Collision fails\",\n    \"Lane Departure Warnings stop working\"\n  ],\n  \"conditions\": [\n    \"systems fail immediately when warning lamps appear\",\n    \"The warning lamps do not appear prior to failure\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"targeted\": false,\n  \"test_name\": \"standard ADAS diagnostic test\",\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The forward looking sensors fail\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Adaptive Cruise Control with Full Stop and Forward Collision warning lamps to blaze orange\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Cruise Control immediately fails and Forward Collision also fails\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Lane Departure Warnings stops working as well\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"systems fail immediately when warning lamps appear\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"The warning lamps do not appear prior to failure\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"The dealer has attempted to repair my vehicle 3 times\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00063054,
+      "cached_tokens": 0,
+      "cost_usd": 0.0010509,
+      "input_tokens": 1210,
+      "list_cost_usd": 0.0010509,
+      "output_tokens": 1449,
+      "reasoning_tokens": 994
+    }
+  }
+}

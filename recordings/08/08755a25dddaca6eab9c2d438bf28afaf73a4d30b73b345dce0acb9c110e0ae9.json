@@ -1,0 +1,66 @@
+{
+  "key": "08755a25dddaca6eab9c2d438bf28afaf73a4d30b73b345dce0acb9c110e0ae9",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10666,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2012 Jeep Liberty speedometer/odometer: odometer fraud/mileage discrepancy discovered at registration; private sale, 94,000 at purchase vs 171,000 at registration\",\"group\":\"instrumentation\",\"symptoms\":[\"odometer fraud\",\"mileage discrepancy\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\"},{\"kind\":\"symptom\",\"quote\":\"Odometer Fraud.\"},{\"kind\":\"symptom\",\"quote\":\"mileage discrepancy\"},{\"kind\":\"symptom\",\"quote\":\"At the time of purchase, the vehicle mileage was 94,000 and at the time of registration, it was discovered that the mileage was 171,000.\"}]}",
+            "reasoning_content": "We need answer one JSON object no other text. Need normalize report. Need extract summary component symptom conditions group. Component: ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER, group instrumentation. Symptoms: mileage discrepancy / odometer fraud? Report says Odometer Fraud; mileage discrepancy discovered at registration. Conditions? none? Maybe \"private sale\" not in allowed conditions list. Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. None apply. Fault codes none. safety_relevant false (given). Missing info: component? symptom? conditions? mileage present date present. Component present. Symptom present. Conditions maybe not needed? The schema says missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. Conditions not provided? Could list conditions? But report includes no environmental conditions; likely not important? Need decide. Since condition list not applicable, maybe missing_info empty? But analysis needs conditions? It says list missing_info only for facts analysis needs. For odometer fraud, conditions irrelevant. Empty list. Clues: need verbatim spans. quote \"Odometer Fraud.\" symptom? kind symptom? Could quote \"mileage discrepancy\" and \"vehicle mileage was 94,000 and at the time of registration, it was discovered that the mileage was 171,000.\" Need quote exact. Also component_group quote? maybe \"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\" is from component field not narrative, but report includes all JSON. Is quote from report? It says report in user message includes component field. Quote can be from entire report. Use \"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\" kind component_group. For symptom quote \"Odometer Fraud.\" kind symptom. For symptom \"mileage discrepancy\" quote exact. Also maybe \"private sale\" other? no. Need include \"safety_relevant\": false. Summary one line: \"2012 Jeep Liberty speedometer/odometer — odometer fraud/mileage discrepancy discovered at registration; private sale, mileage 94,000 at purchase vs 171,000 at registration.\" Conditions empty. Fault codes empty. missing_info maybe empty. Need ensure JSON valid, no markdown? User says answer with one JSON object and no other text. We can output raw JSON. Need no code fences? Probably raw. Ensure every quote verbatim. Let's craft.\n\nNeed consider \"symptoms\": [\"odometer fraud\", \"mileage discrepancy\"]? Plain words. \"Odometer Fraud\" exact. Maybe \"mileage discrepancy\". Good.\n\n\"conditions\": [] because no allowed condition. Could include \"after service\"? no. \"private sale\" not condition. So [].\n\n\"clues\": include quotes:\n- {\"kind\":\"symptom\",\"quote\":\"Odometer Fraud.\"}\n- {\"kind\":\"symptom\",\"quote\":\"mileage discrepancy\"}\n- {\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\"}\n- {\"kind\":\"other\",\"quote\":\"The vehicle was a private sale.\"}? maybe clue other. But not necessary. Could include \"At the time of purchase, the vehicle mileage was 94,000 and at the time of registration, it was discovered that the mileage was 171,000.\" kind symptom? This supports discrepancy. Quote exact. Include? Good.\n\nNeed summary one line. \"2012 Jeep Liberty instrument panel speedometer/odometer: odometer fraud/mileage discrepancy found at registration; private sale, 94,000 at purchase vs 171,000 at registration.\" Good.\n\nNeed missing_info: Could list \"conditions\" because no conditions? Hmm the analysis needs conditions? For fraud, no. But schema says missing_info facts analysis needs: component, symptom, conditions, mileage, date. If conditions absent, should we list? The report doesn't mention conditions like cold/moisture; but for odometer fraud, conditions not relevant. I'd set [].\n\nNeed safety_relevant false.\n\nPotential issue: \"summary\" should mention component, symptom, conditions. Conditions none. Fine.\n\nNeed JSON no other text.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793526933,
+      "id": "e24eb6907ecb398768ce2149a51b4d8e",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1067,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 881,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00040209,
+          "billing_source": "go",
+          "list_cost": 0.00067015,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 192,
+            "output": 1067,
+            "reasoning": 881
+          }
+        },
+        "prompt_tokens": 576,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1643
+      }
+    },
+    "text": "{\"summary\":\"2012 Jeep Liberty speedometer/odometer: odometer fraud/mileage discrepancy discovered at registration; private sale, 94,000 at purchase vs 171,000 at registration\",\"group\":\"instrumentation\",\"symptoms\":[\"odometer fraud\",\"mileage discrepancy\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\"},{\"kind\":\"symptom\",\"quote\":\"Odometer Fraud.\"},{\"kind\":\"symptom\",\"quote\":\"mileage discrepancy\"},{\"kind\":\"symptom\",\"quote\":\"At the time of purchase, the vehicle mileage was 94,000 and at the time of registration, it was discovered that the mileage was 171,000.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00040209,
+      "cached_tokens": 384,
+      "cost_usd": 0.00067015,
+      "input_tokens": 576,
+      "list_cost_usd": 0.00067015,
+      "output_tokens": 1067,
+      "reasoning_tokens": 881
+    }
+  }
+}

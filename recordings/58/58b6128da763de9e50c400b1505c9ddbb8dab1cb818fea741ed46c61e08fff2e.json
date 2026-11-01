@@ -1,0 +1,66 @@
+{
+  "key": "58b6128da763de9e50c400b1505c9ddbb8dab1cb818fea741ed46c61e08fff2e",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 16827,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2014 GMC Acadia with reported airbag defect and intermittent airbag service light; owner concerned about unresolved recall and safety.\",\"group\":\"restraints\",\"symptoms\":[\"airbag warning light/notification appeared\",\"airbag service light reappeared for two days\",\"airbag defect reported by letter\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"airbag light or notification did not appear until 2024\"},{\"kind\":\"symptom\",\"quote\":\"The airbag service light reappeared on [XXX] for 2 days\"},{\"kind\":\"condition\",\"quote\":\"for 2 days\"},{\"kind\":\"safety\",\"quote\":\"airbag defect\"},{\"kind\":\"safety\",\"quote\":\"who will take our complaint/life seriously?\"},{\"kind\":\"other\",\"quote\":\"NO DEFECT OR RECALL FOR AIRBAGS IN MY MODEL CAR\"}]}",
+            "reasoning_content": "We need answer only JSON. Need parse report. Component AIR BAGS group restraints. Summary one line component symptom conditions. Symptoms: airbag light/notification appeared; airbag service light reappeared for 2 days; concern. Conditions: intermittent? Maybe \"for 2 days\" intermittent. No cold moisture heat vibration after service charging. Fault codes none. Safety relevant? Airbag defect/recall, airbag light, concern for life. Is that safety? The rules mention crash fire smoke injury loss control stall at speed or other risk to people. Airbag defect is safety risk. Report mentions defect in airbag, airbag light, concerned life seriously. Set true? The input has safety_relevant false but we must normalize; set true likely because airbag defect/light implies safety risk. Need missing_info: mileage? mileage null. date? received_at exists but event dates redacted; date maybe missing? The report says 2022 letter, 2024, light reappeared [XXX] redacted. Mileage missing. Conditions? It says continued to drive, no other options; reappeared for 2 days. Could list mileage maybe date? Need only facts analysis needs. Component present, symptom present. Conditions maybe not fully; date event redacted. Missing_info [\"mileage\",\"date\"] perhaps. Clues verbatim spans copied exactly. Need ensure quotes exact substrings. We can quote:\n\"airbag defect\" (substring? \"an airbag defect\" yes)\n\"airbag light or notification did not appear until 2024\"\n\"The airbag service light reappeared on [XXX] for 2 days\"\n\"we are concerned why, where, how and who will take our complaint/life seriously?\"\n\"NO DEFECT OR RECALL FOR AIRBAGS IN MY MODEL CAR\" exact includes quotes? The report contains escaped quotes around phrase. We can quote phrase without surrounding quotes? It is verbatim span: NO DEFECT OR RECALL FOR AIRBAGS IN MY MODEL CAR is inside. Good.\n\"restraints\"? component group given, not in report? We can use kind component_group quote \"AIR BAGS\"? The report component field is not narrative? The user message includes JSON; quote can be from report. \"AIR BAGS\" is in component field. But quote verbatim from report. Good maybe clues kind component_group quote \"AIR BAGS\". Safety clue quote \"airbag defect\" or \"life seriously\". Need group \"restraints\".\n\nNeed summary one line: \"2014 GMC Acadia airbag defect and airbag service light reappearing intermittently; owner concerned about unresolved recall and safety.\" Conditions: \"intermittent\" because reappeared for 2 days; maybe \"after service\" no. \"charging\" no. \"cold\" no. Should conditions list only explicit? It says conditions array from enumerated. Use [\"intermittent\"]? The light reappeared for 2 days then maybe went away, intermittent. But is that a condition? Yes. Could include \"after service\"? No service not performed due cost. No.\n\nSymptoms plain words: [\"airbag warning light/notification appeared\", \"airbag service light reappeared for two days\", \"airbag defect reported by letter\"] Hmm symptom should be component symptom. Maybe \"airbag warning light illuminated\" and \"airbag service light intermittently reappears\". Use no invented? \"illuminated\" not exact but plain. Okay.\n\nFault codes empty.\n\nSafety_relevant true. Need missing_info: mileage, date (event date redacted), conditions? It gives intermittent. Maybe component and symptom present. Date of light reappearance redacted, but received_at known. The analysis needs date? The report has received date. However event date redacted. Missing mileage. Maybe missing_info [\"mileage\",\"date\"]. But date present received_at and years. Hmm \"date\" as event date missing due redaction. Fine.\n\nNeed JSON only no markdown. Ensure quotes exact including punctuation. Let's craft.\n\nClues:\n- {\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"} (from component field). Is that acceptable? It says quote copied verbatim from report; yes.\n- {\"kind\":\"symptom\",\"quote\":\"airbag light or notification did not appear until 2024\"}\n- {\"kind\":\"symptom\",\"quote\":\"The airbag service light reappeared on [XXX] for 2 days\"}\n- {\"kind\":\"condition\",\"quote\":\"for 2 days\"} maybe condition intermittent. But quote \"for 2 days\".\n- {\"kind\":\"fault_code\"? no}\n- {\"kind\":\"safety\",\"quote\":\"airbag defect\"} and \"life seriously\" maybe. Need safety relevant. Use quote \"who will take our complaint/life seriously?\" exact substring? Report: \"who will take our complaint/life seriously?\" yes.\n- {\"kind\":\"other\",\"quote\":\"NO DEFECT OR RECALL FOR AIRBAGS IN MY MODEL CAR\"} maybe.\n\nNeed avoid quote not exact due \"[XXX]\" appears. Good.\n\nNeed ensure JSON valid. Final only.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793525383,
+      "id": "31eafeefa51208e61e23a40727621573",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1265,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1040,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00051687,
+          "billing_source": "go",
+          "list_cost": 0.00086145,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 683,
+            "output": 1265,
+            "reasoning": 1040
+          }
+        },
+        "prompt_tokens": 683,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 1948
+      }
+    },
+    "text": "{\"summary\":\"2014 GMC Acadia with reported airbag defect and intermittent airbag service light; owner concerned about unresolved recall and safety.\",\"group\":\"restraints\",\"symptoms\":[\"airbag warning light/notification appeared\",\"airbag service light reappeared for two days\",\"airbag defect reported by letter\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"airbag light or notification did not appear until 2024\"},{\"kind\":\"symptom\",\"quote\":\"The airbag service light reappeared on [XXX] for 2 days\"},{\"kind\":\"condition\",\"quote\":\"for 2 days\"},{\"kind\":\"safety\",\"quote\":\"airbag defect\"},{\"kind\":\"safety\",\"quote\":\"who will take our complaint/life seriously?\"},{\"kind\":\"other\",\"quote\":\"NO DEFECT OR RECALL FOR AIRBAGS IN MY MODEL CAR\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00051687,
+      "cached_tokens": 0,
+      "cost_usd": 0.00086145,
+      "input_tokens": 683,
+      "list_cost_usd": 0.00086145,
+      "output_tokens": 1265,
+      "reasoning_tokens": 1040
+    }
+  }
+}

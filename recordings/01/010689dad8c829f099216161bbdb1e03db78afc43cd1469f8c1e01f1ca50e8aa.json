@@ -1,0 +1,66 @@
+{
+  "key": "010689dad8c829f099216161bbdb1e03db78afc43cd1469f8c1e01f1ca50e8aa",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9606,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system: smoke and fire under hood after leaving parking lot, hood burned, battery-area plastic melted, radiator hose damaged, vehicle unsafe.\",\"group\":\"electrical_general\",\"symptoms\":[\"smoke from under hood\",\"fire under hood\",\"hood burned through\",\"melted plastic around battery area\",\"radiator hose damaged\",\"vehicle unsafe to drive\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"smoke rapidly billowing from under the hood\"},{\"kind\":\"symptom\",\"quote\":\"to try and extinguish the fire\"},{\"kind\":\"symptom\",\"quote\":\"a hole burned through the hood\"},{\"kind\":\"symptom\",\"quote\":\"melted plastic covered the battery area\"},{\"kind\":\"symptom\",\"quote\":\"radiator hose was damaged\"},{\"kind\":\"safety\",\"quote\":\"significantly compromising the vehicle\\u2019s crash safety rating\"},{\"kind\":\"safety\",\"quote\":\"rendering the vehicle unsafe to drive\"}]}",
+            "reasoning_content": "We need answer only JSON. Need parse report. Component ELECTRICAL SYSTEM group electrical_general. Narrative smoke rapidly billowing under hood, fire extinguished with shirt, hole burned through hood, crash safety rating compromised, melted plastic battery area, radiator hose damaged unsafe. Safety relevant true. Symptoms: smoke from under hood, fire under hood, hole burned through hood, melted plastic battery area, radiator hose damaged. Conditions? none explicitly cold/moisture/heat/vibration/intermittent/after service/charging. Maybe \"heat\" implied fire? Rules conditions list from allowed? It says conditions: [\"cold\",\"moisture\",\"heat\"...]. We should not invent. Maybe no conditions. Fault codes none. Missing info: mileage? Report has null mileage, but missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Component present, symptom present, conditions absent? Conditions not specified. Mileage missing. Date present received_at? Incident date not given. The report includes received_at 2025-04-28, not incident date. Missing_info could include mileage, date, conditions. Component present, symptom present. Need clues with verbatim quotes. Need ensure quotes exact from narrative. Quotes: \"smoke rapidly billowing from under the hood\", \"he urgently removed his shirt to try and extinguish the fire\", \"a hole burned through the hood\", \"significantly compromising the vehicle’s crash safety rating\", \"melted plastic covered the battery area\", \"the radiator hose was damaged\", \"rendering the vehicle unsafe to drive\". Need be careful apostrophe curly. Use exact. Also component group quote? \"ELECTRICAL SYSTEM\" from component field? The prompt says report in user message includes JSON. Quote verbatim from report; can quote \"ELECTRICAL SYSTEM\". kind component_group. safety quote \"crash safety rating\" or \"unsafe to drive\". Conditions? none. Summary one line: Electrical system — smoke/fire under hood while driving after shopping, melted plastic at battery, radiator hose damage, unsafe. Must be one line. Include no other text. JSON valid. Need decide missing_info. Conditions missing? The analysis needs conditions, yes not stated. Mileage null. Date? Received date present but incident date missing. Does \"date\" mean report date? They have received_at. Missing info includes date maybe incident date. I can list [\"mileage\",\"date\",\"conditions\"]. Is that too much? They said use empty when nothing important missing. Mileage and incident date and conditions are important. Good.\n\nNeed conditions array empty because no explicit allowed condition? Could argue \"heat\" from fire? The schema conditions includes \"heat\"; smoke/fire indicates heat but not environmental condition. Better empty to avoid inventing. Symptoms: [\"smoke from under hood\", \"fire under hood\", \"hood burned through\", \"melted plastic around battery area\", \"radiator hose damaged\", \"vehicle unsafe to drive\"]. Safety true.\n\nNeed clues include kind symptom, safety, component_group, other. Use exact quotes. For component group quote \"ELECTRICAL SYSTEM\" is in component field. Good.\n\nNeed ensure no markdown? They said one JSON object and no other text. Final should be JSON only. Use proper escaping. Let's craft.\n\nSummary: \"Electrical system: smoke and fire under hood after leaving parking lot, hood burned, battery-area plastic melted, radiator hose damaged, vehicle unsafe.\" One line.\n\nQuotes exact:\n\"smoke rapidly billowing from under the hood\" yes.\n\"extinguish the fire\" yes exact substring? \"to try and extinguish the fire\" yes.\n\"a hole burned through the hood\" yes.\n\"significantly compromising the vehicle\\u2019s crash safety rating\" In narrative: \"significantly compromising the vehicle\\u2019s crash safety rating.\" Use curly apostrophe as \\u2019? JSON can contain literal curly. To be safe use unicode escape \\u2019. Quote must be copied character for character; escaped representation is same char. Use \"significantly compromising the vehicle\\u2019s crash safety rating\".\n\"melted plastic covered the battery area\" yes.\n\"radiator hose was damaged\" yes.\n\"rendering the vehicle unsafe to drive\" yes.\n\"ELECTRICAL SYSTEM\" from component.\n\nFault codes empty.\n\nNeed include safety_relevant true.\n\nPotential issue: clue quote \"smoke rapidly billowing from under the hood\" kind symptom. \"fire\" clue. \"melted plastic...\" symptom. \"radiator hose...\" symptom. \"rendering...\" safety. \"crash safety rating\" safety? Maybe one safety clue enough. Could include \"crash safety rating\" quote. But exact \"significantly compromising the vehicle\\u2019s crash safety rating\" includes safety. Include kind safety.\n\nNeed use \"conditions\": [] and missing_info includes conditions. That's okay.\n\nFinal JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793526434,
+      "id": "5c4728d46f378805c260c17ee7bb6a02",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1252,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1005,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00047292,
+          "billing_source": "go",
+          "list_cost": 0.0007882,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 239,
+            "output": 1252,
+            "reasoning": 1005
+          }
+        },
+        "prompt_tokens": 623,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1875
+      }
+    },
+    "text": "{\"summary\":\"Electrical system: smoke and fire under hood after leaving parking lot, hood burned, battery-area plastic melted, radiator hose damaged, vehicle unsafe.\",\"group\":\"electrical_general\",\"symptoms\":[\"smoke from under hood\",\"fire under hood\",\"hood burned through\",\"melted plastic around battery area\",\"radiator hose damaged\",\"vehicle unsafe to drive\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"smoke rapidly billowing from under the hood\"},{\"kind\":\"symptom\",\"quote\":\"to try and extinguish the fire\"},{\"kind\":\"symptom\",\"quote\":\"a hole burned through the hood\"},{\"kind\":\"symptom\",\"quote\":\"melted plastic covered the battery area\"},{\"kind\":\"symptom\",\"quote\":\"radiator hose was damaged\"},{\"kind\":\"safety\",\"quote\":\"significantly compromising the vehicle\\u2019s crash safety rating\"},{\"kind\":\"safety\",\"quote\":\"rendering the vehicle unsafe to drive\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00047292,
+      "cached_tokens": 384,
+      "cost_usd": 0.0007882,
+      "input_tokens": 623,
+      "list_cost_usd": 0.0007882,
+      "output_tokens": 1252,
+      "reasoning_tokens": 1005
+    }
+  }
+}

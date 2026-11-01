@@ -1,0 +1,66 @@
+{
+  "key": "2bd9dc2cfde0c3fadfdd316cb97ecbf6d2e9f5bd6ed21c3f79a4151387bda164",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 15107,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2022 Jeep Grand Cherokee L ADAS forward collision avoidance warnings: displays switch to Italian, settings reset, door locks/paddle shifter inoperative, PEB/FCW lamps on; no conditions given\",\"group\":\"adas\",\"symptoms\":[\"displays switch to Italian language\",\"cluster and radio display settings revert to default\",\"auto door locks and paddle shifter inoperative with no menu to enable\",\"pedestrian emergency brake lamp or forward collision warning lamp turns on with no way to disable\",\"units of measurement change\",\"other random settings change\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: WARNINGS\"},{\"kind\":\"symptom\",\"quote\":\"displays will switch into a language I do not speak or understand (Italian)\"},{\"kind\":\"symptom\",\"quote\":\"cluster and radio display settings revert back to default settings\"},{\"kind\":\"symptom\",\"quote\":\"auto door locks and paddle shifter becomes inoperative (with no menu to enable)\"},{\"kind\":\"symptom\",\"quote\":\"pedestrian emergency brake (peb) lamp or forward collision warning (fcw) lamp turns on with no way to disable\"},{\"kind\":\"symptom\",\"quote\":\"units of measurement including speed, temperature, etc. all change\"},{\"kind\":\"symptom\",\"quote\":\"many other random settings change as well\"}]}",
+            "reasoning_content": "We need answer JSON only. Need parse report. Component forward collision avoidance warnings, group adas. Symptoms: displays switch to Italian language; cluster and radio display settings revert to default; auto door locks and paddle shifter inoperative with no menu to enable; PEB lamp or FCW lamp turns on with no way to disable; units of measurement change; many other random settings change. Conditions? Maybe \"intermittent\"? Not explicitly. Could include conditions from report? No cold/moisture/heat/vibration/after service/charging. Maybe none. Fault codes none. safety_relevant? Report mentions pedestrian emergency brake lamp/forward collision warning lamp on no way disable, paddle shifter inoperative. Does it mention crash/fire/etc? No. But safety? Forward collision avoidance warning? The prompt says set safety_relevant when mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. Not explicitly. Could arguably ADAS warning lamp with no disable is risk? But rule specific. We should set false? Input already safety_relevant false. But need decide. It mentions pedestrian emergency brake (peb) lamp or forward collision warning (fcw) lamp turns on with no way to disable. That could be safety system malfunction, but not explicit risk. However \"another risk to people\" maybe PEB/FCW malfunction? But not loss. We can set false to be conservative. Missing_info: mileage is null, date? received_at exists, conditions missing? Component present, symptom present. Analysis needs mileage maybe yes. Date present. Conditions not given. So missing_info [\"mileage\",\"conditions\"]? The rules list conditions as fact analysis needs; no conditions. Could include. Do not invent. \n\nClues must be verbatim spans. Need exact quote from narrative. We can quote substrings. Need ensure character-for-character. Narrative: \"The instruments, gauges, and displays will switch into a language I do not speak or understand (Italian). Coinciding with the switch to Italian language, cluster and radio display settings revert back to default settings, auto door locks and paddle shifter becomes inoperative (with no menu to enable), pedestrian emergency brake (peb) lamp or forward collision warning (fcw) lamp turns on with no way to disable, units of measurement including speed, temperature, etc. all change, and many other random settings change as well.\"\n\nQuotes:\n- \"displays will switch into a language I do not speak or understand (Italian)\" exact? In narrative \"The instruments, gauges, and displays will switch into a language I do not speak or understand (Italian).\" Yes substring.\n- \"cluster and radio display settings revert back to default settings\" exact yes.\n- \"auto door locks and paddle shifter becomes inoperative (with no menu to enable)\" exact yes. Note grammar \"becomes\".\n- \"pedestrian emergency brake (peb) lamp or forward collision warning (fcw) lamp turns on with no way to disable\" exact yes.\n- \"units of measurement including speed, temperature, etc. all change\" exact yes.\n- \"many other random settings change as well\" exact yes.\n\nComponent group clue: \"FORWARD COLLISION AVOIDANCE: WARNINGS\" from component? Is that in report? The report includes component field. Rule quote verbatim from report. The \"report\" in user message includes JSON; component string is in report. Could quote \"FORWARD COLLISION AVOIDANCE: WARNINGS\" as component_group. But maybe quote must be from narrative? It says report. Fine. But group already given adas. Clues can include component_group quote. Could include. Need maybe condition clue? no.\n\nSummary: one line: component, symptom, conditions. \"2022 Jeep Grand Cherokee L ADAS forward collision avoidance warnings: displays switch to Italian, settings reset, door locks/paddle shifter inoperative, PEB/FCW lamps on; no conditions given.\" Need one line. Keep concise.\n\nJSON only. Need no markdown. Ensure valid JSON. \n\nNeed maybe symptoms array plain words. \"displays switch to Italian language\", \"cluster and radio display settings revert to default\", \"auto door locks and paddle shifter inoperative with no menu to enable\", \"pedestrian emergency brake lamp or forward collision warning lamp turns on with no way to disable\", \"units of measurement change\", \"other random settings change\". Conditions empty. Fault codes: [] because PEB/FCW are lamps not codes? They are not fault codes. Could include \"PEB\", \"FCW\"? No, fault_codes if report names one; PEB/FCW are acronyms for systems not codes. So [].\n\nSafety_relevant false? Let's revisit. The system is forward collision avoidance warnings, PEB lamp on no disable. It could indicate safety system unavailable/malfunction. But rule: \"Set safety_relevant when the report mentions a crash, fire, smoke, injury, loss of control, a stall at speed or another risk to people.\" No explicit. However \"pedestrian emergency brake (peb) lamp or forward collision warning (fcw) lamp turns on with no way to disable\" could be another risk? Hmm \"no way to disable\" maybe unintended braking? PEB lamp on could mean PEB disabled? It doesn't say braking occurred. I think false. The input has safety_relevant false likely expected. \n\nMissing_info: mileage null. Conditions absent. Maybe date is present received_at. Component present. Symptom present. So [\"mileage\",\"conditions\"]. Is \"conditions\" important? The schema includes conditions; report does not state when it happens. Yes. Could include \"date\"? received_at 2025-09-09 not incident date. Missing date? The analysis needs date of incident? The report has received_at, not occurrence date. The missing_info list includes \"date\". Should we list date? Hmm report doesn't provide date of occurrence, only received_at. The rule says list missing_info for facts analysis needs: component, symptom, conditions, mileage, date. If received_at is not incident date, maybe date missing. But user message has received_at. Does that count as date? It is report received date, not event date. For analysis, date of occurrence matters. But \"date\" could be provided by received_at? Usually intake normalizes; missing_info if no date. Here there is received_at 2025-09-09. So date present? Maybe not. To avoid over-listing, include mileage and conditions. Could include \"date\" because no incident date? But field received_at exists. I'd not include date.\n\nNeed ensure no other text. Final JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530270,
+      "id": "9da0ed6ce7085f95fcd9b8b4c024146d",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1698,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1385,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0006315,
+          "billing_source": "go",
+          "list_cost": 0.0010525,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 217,
+            "output": 1698,
+            "reasoning": 1385
+          }
+        },
+        "prompt_tokens": 601,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2299
+      }
+    },
+    "text": "{\"summary\":\"2022 Jeep Grand Cherokee L ADAS forward collision avoidance warnings: displays switch to Italian, settings reset, door locks/paddle shifter inoperative, PEB/FCW lamps on; no conditions given\",\"group\":\"adas\",\"symptoms\":[\"displays switch to Italian language\",\"cluster and radio display settings revert to default\",\"auto door locks and paddle shifter inoperative with no menu to enable\",\"pedestrian emergency brake lamp or forward collision warning lamp turns on with no way to disable\",\"units of measurement change\",\"other random settings change\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: WARNINGS\"},{\"kind\":\"symptom\",\"quote\":\"displays will switch into a language I do not speak or understand (Italian)\"},{\"kind\":\"symptom\",\"quote\":\"cluster and radio display settings revert back to default settings\"},{\"kind\":\"symptom\",\"quote\":\"auto door locks and paddle shifter becomes inoperative (with no menu to enable)\"},{\"kind\":\"symptom\",\"quote\":\"pedestrian emergency brake (peb) lamp or forward collision warning (fcw) lamp turns on with no way to disable\"},{\"kind\":\"symptom\",\"quote\":\"units of measurement including speed, temperature, etc. all change\"},{\"kind\":\"symptom\",\"quote\":\"many other random settings change as well\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0006315,
+      "cached_tokens": 384,
+      "cost_usd": 0.0010525,
+      "input_tokens": 601,
+      "list_cost_usd": 0.0010525,
+      "output_tokens": 1698,
+      "reasoning_tokens": 1385
+    }
+  }
+}

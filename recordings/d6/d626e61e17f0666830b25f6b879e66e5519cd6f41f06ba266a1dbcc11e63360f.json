@@ -1,0 +1,66 @@
+{
+  "key": "d626e61e17f0666830b25f6b879e66e5519cd6f41f06ba266a1dbcc11e63360f",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9206,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system: driver-side headlights and high beam are dim with a yellow haze; lens cleaned with no oxidation and alignment checked good; no conditions stated.\",\"group\":\"electrical_general\",\"symptoms\":[\"driver side headlights dim\",\"high beam dim\",\"yellow haze\",\"reduced light output\",\"reduced visibility\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"Driver side headlights and high beam have gone dim, reduced to a yellow haze.\"},{\"kind\":\"safety\",\"quote\":\"This creates a hazard by reducing visibility when driving.\"},{\"kind\":\"safety\",\"quote\":\"This increases risk of accidents due to dimly let roadway.\"},{\"kind\":\"other\",\"quote\":\"I have had the lens professional cleaned and there is no oxidation which may reduce light output.\"},{\"kind\":\"other\",\"quote\":\"I have checked the headlight alignment and it is good.\"}]}",
+            "reasoning_content": "We need produce JSON only. Need normalize report. Component ELECTRICAL SYSTEM group electrical_general. Narrative says driver side headlights and high beam dim reduced to yellow haze. Hazard reducing visibility, risk accidents dimly lit roadway. Lens cleaned no oxidation, alignment good. Safety relevant? It mentions hazard, risk of accidents due to reduced visibility. Prompt says safety_relevant when report mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. Here risk to people due to visibility/accidents. Set true likely. Symptoms: \"headlights and high beam dim\", \"yellow haze\", maybe reduced light output. Conditions: none explicit? maybe not cold/moisture/heat/vibration/intermittent/after service/charging. Could include? No. Fault codes none. missing_info: mileage? It is null, date? received date exists but date of incident? Conditions? component and symptom present. Missing mileage and date maybe date of occurrence. Need list only facts analysis needs. mileage null; date absent (only received_at). Could include mileage, date. But date may be received_at 2025-11-10 not incident date. Prompt says missing_info component symptom conditions mileage date. We can include \"mileage\", \"date\". Maybe conditions? No conditions mentioned, but not necessarily missing? For dim headlights conditions could matter (cold? moisture?). The report doesn't mention conditions. Could include \"conditions\". But only facts analysis needs; conditions are relevant. However if no condition present, list missing. Need be careful not overdo. Missing component? no. symptom? yes.\n\nClues: verbatim spans. Need exact quotes. We can quote \"Driver side headlights and high beam have gone dim, reduced to a yellow haze.\" That includes symptom. \"This creates a hazard by reducing visibility when driving.\" safety. \"This increases risk of accidents due to dimly let roadway.\" Note typo \"let\" in report. Quote exactly. \"I have had the lens professional cleaned and there is no oxidation which may reduce light output.\" other maybe. \"I have checked the headlight alignment and it is good.\" other. Component group quote? The report doesn't include \"ELECTRICAL SYSTEM\" in narrative but the user message includes JSON field; quote must copied from report. Could quote \"ELECTRICAL SYSTEM\" from component field? The report in user message includes component field. Is that part of report? It says read only report in user message. The whole JSON is report. We can quote \"ELECTRICAL SYSTEM\" verbatim. For component_group clue. But group given. Maybe include clue kind component_group quote \"ELECTRICAL SYSTEM\". Fine.\n\nNeed summary one line: component, symptom, conditions. \"Electrical system: driver-side headlights and high beam dim/yellow haze; no oxidation, alignment good; no conditions stated.\" Maybe one line.\n\nGroup: \"electrical_general\" or \"electrical/electronic component group\"? Prompt says \"the electrical/electronic component group, or the given group\". Given group electrical_general. So use \"electrical_general\".\n\nSymptoms: [\"driver side headlights dim\", \"high beam dim\", \"yellow haze\", \"reduced light output\", \"reduced visibility\"] But symptom plain words. Fault is dim headlights. Reduced visibility is consequence. Include maybe \"dim driver-side headlights and high beam\" and \"yellow haze\". Keep.\n\nConditions: [] because none.\n\nFault codes: [].\n\nSafety_relevant true.\n\nMissing_info: [\"mileage\", \"date\", \"conditions\"]? Let's evaluate. Mileage null. Date received_at but no incident date. Conditions not stated. The analysis needs conditions for dimming? Maybe yes. But \"conditions\" category includes cold, moisture, heat, vibration, intermittent, after service, charging. None. So missing. But if no conditions, it's not necessarily missing? The report just says gone dim. For diagnosis, conditions matter. Include. However desired output maybe concise. We can include all three.\n\nClues need quotes. Must be exact character for character. Check narrative exact:\n\"Driver side headlights and high beam have gone dim, reduced to a yellow haze. This creates a hazard by reducing visibility when driving. This increases risk of accidents due to dimly let roadway. I have had the lens professional cleaned and there is no oxidation which may reduce light output. I have checked the headlight alignment and it is good.\"\n\nQuote \"Driver side headlights and high beam have gone dim, reduced to a yellow haze.\" yes.\nQuote \"This creates a hazard by reducing visibility when driving.\" yes.\nQuote \"This increases risk of accidents due to dimly let roadway.\" yes.\nQuote \"I have had the lens professional cleaned and there is no oxidation which may reduce light output.\" yes.\nQuote \"I have checked the headlight alignment and it is good.\" yes.\nQuote \"ELECTRICAL SYSTEM\" yes from component field. But if quote from field maybe okay. We can include component_group.\n\nCould include safety clue quote \"This creates a hazard by reducing visibility when driving.\" kind safety. Also \"This increases risk of accidents...\" safety. Need avoid too many? Fine.\n\nNeed JSON only no markdown. Final. Ensure valid JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531899,
+      "id": "aab99e673babeea320b1c6bb6c03a311",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1305,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1079,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00048561,
+          "billing_source": "go",
+          "list_cost": 0.00080935,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 168,
+            "output": 1305,
+            "reasoning": 1079
+          }
+        },
+        "prompt_tokens": 552,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1857
+      }
+    },
+    "text": "{\"summary\":\"Electrical system: driver-side headlights and high beam are dim with a yellow haze; lens cleaned with no oxidation and alignment checked good; no conditions stated.\",\"group\":\"electrical_general\",\"symptoms\":[\"driver side headlights dim\",\"high beam dim\",\"yellow haze\",\"reduced light output\",\"reduced visibility\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"Driver side headlights and high beam have gone dim, reduced to a yellow haze.\"},{\"kind\":\"safety\",\"quote\":\"This creates a hazard by reducing visibility when driving.\"},{\"kind\":\"safety\",\"quote\":\"This increases risk of accidents due to dimly let roadway.\"},{\"kind\":\"other\",\"quote\":\"I have had the lens professional cleaned and there is no oxidation which may reduce light output.\"},{\"kind\":\"other\",\"quote\":\"I have checked the headlight alignment and it is good.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00048561,
+      "cached_tokens": 384,
+      "cost_usd": 0.00080935,
+      "input_tokens": 552,
+      "list_cost_usd": 0.00080935,
+      "output_tokens": 1305,
+      "reasoning_tokens": 1079
+    }
+  }
+}

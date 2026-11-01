@@ -1,0 +1,66 @@
+{
+  "key": "3cde5b340f99f97bcdebdfe5c78e878add1a91561e7b918c88d16ba840f2e9fc",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 13930,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2019 Honda Odyssey electrical system: sudden shift into neutral while driving, unable to shift into drive, Transmission Control Unit failure diagnosed\",\"group\":\"electrical_general\",\"symptoms\":[\"vehicle suddenly shifted into neutral while driving\",\"unable to shift into drive\",\"Adaptive Cruise Control, Lane Keep Assist, Collision Mitigation System, Road Departure System, and Transmission Fault Detected messages displayed\",\"Transmission Control Unit failure diagnosed\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"condition\",\"quote\":\"while driving at an undisclosed speed\"},{\"kind\":\"symptom\",\"quote\":\"the vehicle suddenly shifted into neutral\"},{\"kind\":\"symptom\",\"quote\":\"unable to shift into drive\"},{\"kind\":\"symptom\",\"quote\":\"Transmission Fault Detected messages were displayed\"},{\"kind\":\"other\",\"quote\":\"diagnosed a failure with the Transmission Control Unit\"},{\"kind\":\"other\",\"quote\":\"NHTSA Campaign Number: 19V299000\"},{\"kind\":\"safety\",\"quote\":\"the vehicle suddenly shifted into neutral\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize. Component electrical system group given electrical_general. Symptoms: vehicle suddenly shifted into neutral while driving; unable to shift into drive; warning messages displayed; Transmission Control Unit failure diagnosed. Conditions: driving at undisclosed speed? Condition maybe intermittent? No cold moisture heat vibration after service charging. Could include \"while driving\" as condition? Allowed conditions list specific: cold, moisture, heat, vibration, intermittent, after service, charging. None apply except maybe not. Safety relevant? Sudden shift into neutral while driving, loss of drive, unable to shift into drive, coast to shoulder. Is this risk to people? \"loss of control\" not explicitly but sudden neutral at speed could be safety. Prompt says set safety_relevant when mentions crash fire smoke injury loss of control stall at speed or another risk to people. Sudden shift into neutral while driving is loss of propulsion, risk. Should set true? The input has safety_relevant false but we should determine. It mentions vehicle suddenly shifted into neutral while driving, unable to shift into drive, towed. That's risk. So true. Need fault codes: none. missing_info: maybe date? received_at provides date? Missing component? no. Symptom yes. Conditions? speed undisclosed maybe missing conditions? Hmm list only facts needed: component, symptom, conditions, mileage, date. We have component, symptom, mileage, date (received_at). Conditions? It says while driving at undisclosed speed. Conditions are not specific environmental. Could list \"conditions\" missing? But conditions field includes cold/moisture etc. Not needed. Maybe no missing. But \"undisclosed speed\" missing? Not in allowed list. Could list missing_info [\"conditions\"]? Hmm \"conditions\" includes driving conditions; we know while driving. I'd say empty.\n\nNeed clues with verbatim quotes. Must copy exact spans. Quotes:\n- \"suddenly shifted into neutral\" symptom\n- \"unable to shift into drive\" symptom\n- \"Transmission Fault Detected\" symptom? It's message. quote exact from \"Transmission Fault Detected messages were displayed.\" Need quote \"Transmission Fault Detected messages were displayed\"\n- \"diagnosed a failure with the Transmission Control Unit\" symptom/component? Could be other/component.\n- \"while driving at an undisclosed speed\" condition\n- \"vehicle was towed\" other? maybe not.\n- safety quote: \"suddenly shifted into neutral as indicated by the gear shift indicator light\" or \"unable to shift into drive\" shows risk. Need quote verbatim.\n- component_group: \"ELECTRICAL SYSTEM\" quote exact? Report component field says ELECTRICAL SYSTEM. Yes.\n- fault_code: NHTSA Campaign Number 19V299000? Is that fault code? It's campaign number not fault code. Could include in clues kind fault_code? But fault_codes should be code if report names one. It names NHTSA Campaign Number: 19V299000. Is that a fault code? Not exactly. Could include in clues kind other. But field fault_codes maybe empty. Better not put as fault code. Maybe clues other quote \"NHTSA Campaign Number: 19V299000\". Hmm.\n\nNeed summary one line: \"2019 Honda Odyssey electrical system: sudden shift to neutral while driving, unable to shift into drive, TCU failure diagnosed.\" Conditions maybe while driving. Summary can mention.\n\nNeed group \"electrical_general\" or component group? User says group the electrical/electronic component group, or given group. Given group electrical_general. Use \"electrical_general\".\n\nNeed JSON only. Ensure valid JSON. No markdown? They asked one JSON object and no other text. Use raw JSON.\n\nNeed decide safety_relevant true. Even if source false, our normalization should flag. Could be controversial. The report says sudden shift into neutral while driving, unable to shift into drive, towed. This is a stall/loss of propulsion at speed? \"suddenly shifted into neutral\" could lead to loss of control? It's safety risk. Set true. Missing_info maybe [] because component/symptom/conditions/mileage/date all present. But date is received_at not failure date. Missing date maybe failure date? The report has received_at. The analysis needs date likely incident date. But we have received_at. Hmm missing_info should include \"date\" if no date of failure? It says \"failure mileage was 133,000\" no failure date. Received_at is 2025-10-30 not incident date. Should list \"date\"? The analysis needs date? Maybe yes, date of occurrence missing. But prompt says list only facts analysis needs: component, symptom, conditions, mileage, date. The report has received date, but not failure date. However date field could be report date. Hmm often missing_info includes date if no incident date. But received_at is a date. Yet \"date\" likely event date. I'd include \"date\" maybe. But no \"conditions\" missing? It has while driving. I'd include []? Need not overdo. The instruction: \"List missing_info only for facts the analysis needs: component, symptom, conditions, mileage, date. Use an empty list when nothing important is missing.\" Since failure date not given, date important? For trend analysis maybe received date enough. But \"date\" likely incident date. I'd list [\"date\"] maybe. But could be marked wrong if they expect empty. Let's inspect report: has received_at, year, mileage. No incident date. So missing date. Conditions: speed undisclosed but condition \"while driving\" present. Component given. Symptom present. Mileage present. So missing_info [\"date\"]. Good.\n\nFault codes: none. Could maybe \"19V299000\" is campaign not fault code. Leave empty.\n\nClues need maybe multiple. Need ensure quotes are exact substrings. Let's verify narrative exact:\n\"The contact owns a 2019 Honda Odyssey. The contact stated that while driving at an undisclosed speed, the vehicle suddenly shifted into neutral as indicated by the gear shift indicator light. The contact was able to coast to the shoulder of the roadway, where the failure persisted, and the vehicle was unable to shift into drive. The Adaptive Cruise Control, Lane Keep Assist, Collision Mitigation System, Road Departure System, and Transmission Fault Detected messages were displayed. The vehicle was towed to an independent mechanic, who diagnosed a failure with the Transmission Control Unit. The vehicle was not repaired. After investigating the failure, the contact related the failure to NHTSA Campaign Number: 19V299000 (Power Train, Electrical System), but the VIN was not included. The manufacturer was not notified of the failure. The failure mileage was 133,000.\"\n\nQuotes exact:\n\"while driving at an undisclosed speed\" yes\n\"the vehicle suddenly shifted into neutral\" yes includes \"the\". Or \"suddenly shifted into neutral\" yes substring.\n\"unable to shift into drive\" yes.\n\"Transmission Fault Detected messages were displayed\" yes.\n\"diagnosed a failure with the Transmission Control Unit\" yes.\n\"NHTSA Campaign Number: 19V299000\" yes.\n\"ELECTRICAL SYSTEM\" yes from component.\n\nNeed kind values allowed. For safety quote use kind safety quote \"the vehicle suddenly shifted into neutral\" or \"unable to shift into drive\". For component_group use \"ELECTRICAL SYSTEM\". For condition quote \"while driving at an undisclosed speed\". For symptom quotes. For other quote campaign.\n\nShould we include \"The vehicle was towed\" as other? Not necessary.\n\nSummary: \"2019 Honda Odyssey electrical system: sudden shift to neutral while driving, inability to shift into drive, TCU failure diagnosed.\" Good.\n\nNeed conditions array: maybe [] because no listed conditions. Could include \"while driving\" not allowed. Use [].\n\nSymptoms array: plain words. \"sudden shift into neutral while driving\", \"unable to shift into drive\", \"multiple driver-assist and transmission fault messages displayed\", \"Transmission Control Unit failure diagnosed\". Is TCU failure symptom? It's diagnosis. But symptoms field can include. Maybe keep symptom only: \"vehicle suddenly shifted into neutral while driving\", \"unable to shift into drive\", \"Adaptive Cruise Control, Lane Keep Assist, Collision Mitigation System, Road Departure System, and Transmission Fault Detected messages displayed\". That's long. Plain words okay.\n\nNeed no extra text. Ensure JSON valid. Could include safety_relevant true. Need maybe \"fault_codes\": [].\n\nLet's final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531722,
+      "id": "d5d79ca3162f88fa97f7060a502f95b8",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2032,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1781,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00075732,
+          "billing_source": "go",
+          "list_cost": 0.0012622,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 279,
+            "output": 2032,
+            "reasoning": 1781
+          }
+        },
+        "prompt_tokens": 663,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2695
+      }
+    },
+    "text": "{\"summary\":\"2019 Honda Odyssey electrical system: sudden shift into neutral while driving, unable to shift into drive, Transmission Control Unit failure diagnosed\",\"group\":\"electrical_general\",\"symptoms\":[\"vehicle suddenly shifted into neutral while driving\",\"unable to shift into drive\",\"Adaptive Cruise Control, Lane Keep Assist, Collision Mitigation System, Road Departure System, and Transmission Fault Detected messages displayed\",\"Transmission Control Unit failure diagnosed\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"condition\",\"quote\":\"while driving at an undisclosed speed\"},{\"kind\":\"symptom\",\"quote\":\"the vehicle suddenly shifted into neutral\"},{\"kind\":\"symptom\",\"quote\":\"unable to shift into drive\"},{\"kind\":\"symptom\",\"quote\":\"Transmission Fault Detected messages were displayed\"},{\"kind\":\"other\",\"quote\":\"diagnosed a failure with the Transmission Control Unit\"},{\"kind\":\"other\",\"quote\":\"NHTSA Campaign Number: 19V299000\"},{\"kind\":\"safety\",\"quote\":\"the vehicle suddenly shifted into neutral\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00075732,
+      "cached_tokens": 384,
+      "cost_usd": 0.0012622,
+      "input_tokens": 663,
+      "list_cost_usd": 0.0012622,
+      "output_tokens": 2032,
+      "reasoning_tokens": 1781
+    }
+  }
+}

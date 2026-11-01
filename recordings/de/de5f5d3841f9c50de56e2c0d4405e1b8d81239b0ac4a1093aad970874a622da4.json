@@ -1,0 +1,66 @@
+{
+  "key": "de5f5d3841f9c50de56e2c0d4405e1b8d81239b0ac4a1093aad970874a622da4",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11793,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2019 Honda Passport lane departure assist: front windshield camera glitches, random braking, front camera inoperative, all dashboard warning lights; occurred all at once on 2025-10-03.\",\"group\":\"adas\",\"symptoms\":[\"front windshield camera glitches\",\"car randomly brakes\",\"front camera does not work at all\",\"all dashboard warning lights illuminate\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"front windshield camera\"},{\"kind\":\"symptom\",\"quote\":\"camera having glitches\"},{\"kind\":\"symptom\",\"quote\":\"car would randomly brake\"},{\"kind\":\"symptom\",\"quote\":\"front camera won't work at all\"},{\"kind\":\"symptom\",\"quote\":\"dashboard looks like a christmas light show with all the warning lights\"},{\"kind\":\"safety\",\"quote\":\"car would randomly brake\"},{\"kind\":\"condition\",\"quote\":\"would randomly brake\"},{\"kind\":\"other\",\"quote\":\"everything happened at all once on oct3 2025\"},{\"kind\":\"other\",\"quote\":\"confirmed by a independent service center\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize report. Component given LANE DEPARTURE: ASSIST group adas. Narrative: front windshield camera glitches, car randomly brake, front camera won't work at all, dashboard christmas light show all warning lights, confirmed by independent service center, no warning lamps/messages prior, everything happened at once on oct3 2025. Safety relevant? Randomly brake could be risk? It mentions random braking, loss? No crash/fire etc. But random braking is a risk to people? Rule safety when crash fire smoke injury loss control stall at speed or another risk to people. Randomly braking could be risk. But source safety_relevant false. We should set true if random braking another risk. Need decide. The instructions say set safety_relevant when report mentions crash fire smoke injury loss of control, stall at speed or another risk to people. \"car would randomly brake\" is risk. So true. Need summary one line component symptom conditions. group adas. symptoms plain words: front camera glitch, random braking, front camera inoperative, dashboard warning lights. conditions: \"intermittent\"? Randomly brake suggests intermittent. \"after service\"? no. \"cold moisture heat vibration charging\" none. Maybe conditions empty? The schema conditions list examples; can include \"intermittent\". It says conditions [\"cold\", ... \"intermittent\"...]. Randomly = intermittent. Also \"everything happened at once\" maybe not. conditions: [\"intermittent\"]. fault_codes none. missing_info: mileage (null), date? The date is given oct3 2025 and received. Missing? Need component yes present, symptom present, conditions maybe present? mileage missing. Date present. Maybe missing_info [\"mileage\"]. Could include \"conditions\"? There are conditions? Intermittent. no. Need clues with verbatim quotes. Need exact spans from narrative. Quotes must be verbatim. Pick:\n\"front windshield camera\" exact? Narrative: \"My front windshield camera.\" includes. Quote \"front windshield camera\" yes substring. kind component_group? maybe symptom? Component. \n\"camera having glitches\" exact substring? \"Because of my camera having glitches\" yes. kind symptom.\n\"car would randomly brake\" exact substring. kind symptom/safety? use symptom.\n\"front camera won't work at all\" exact. kind symptom.\n\"dashboard looks like a christmas light show with all the warning lights\" exact? Narrative has \"my dashboard looks like a christmas light show with all the warning lights\" yes. kind symptom.\n\"everything happened at all once on oct3 2025\" exact? Narrative: \"everything happened at all once on oct3 2025\" yes (typo \"at all once\"). kind other or condition? maybe condition/date? kind condition? It's timing. Use other maybe.\n\"confirmed by a independent service center\" exact. kind other.\nNo fault codes.\n\nNeed ensure JSON only. Summary: \"2019 Honda Passport lane departure assist: front windshield camera glitches, random braking, camera inoperative, all dashboard warning lights; occurred all at once on 2025-10-03.\" That's one line.\n\nconditions: [\"intermittent\"]. But \"randomly brake\" = intermittent. Good.\n\nmissing_info: [\"mileage\"]. Also maybe \"conditions\" not missing? It has intermittent and date. Maybe no conditions like weather. But analysis needs? The report says no prior symptoms; happened at once. Conditions (cold/moisture/heat/vibration) absent. Should we list conditions? The schema missing_info includes conditions. If no environmental conditions, is that important? The report doesn't mention weather etc. But maybe list \"conditions\"? Hmm. It says list missing_info only facts analysis needs: component symptom conditions mileage date. Conditions could be missing, but we infer intermittent. However conditions in schema are environmental/operational triggers. Are they needed? It may be useful. But because no weather etc, maybe missing_info [\"mileage\",\"conditions\"]. But avoid over? Let's think. The report gives component, symptom, date. Mileage null. Conditions: no cold/moisture/heat/vibration/charging, but intermittent and after service? Not after service. \"everything happened at all once\" not environmental. The analysis could use conditions. I'd include \"mileage\" and maybe \"conditions\". But \"conditions\" absent. The system says missing_info only for facts analysis needs. Environmental conditions often needed for field-quality. I'd include \"mileage\", \"conditions\". But conditions may be \"intermittent\" which is given. Hmm. The allowed missing_info list has \"conditions\" meaning conditions of failure. They didn't state weather/driving. Include. Could include \"date\"? Date present. component present. symptom present. So [\"mileage\",\"conditions\"]. Need not include \"fault_codes\".\n\nSafety: true. Clue for safety: \"car would randomly brake\" kind safety? We can include same quote as symptom and maybe safety? It says clues kinds. We can have one quote kind safety. But duplicate quote with different kind? Could. Need evidence for safety. Use quote \"car would randomly brake\" kind safety. Also same quote kind symptom? Maybe not duplicate? It's okay but maybe avoid duplicates? We can include \"randomly brake\" as symptom and \"car would randomly brake\" as safety. But both verbatim? \"randomly brake\" substring yes. Let's include distinct:\n- component_group quote \"front windshield camera\"\n- symptom quote \"camera having glitches\"\n- symptom quote \"car would randomly brake\"\n- symptom quote \"front camera won't work at all\"\n- symptom quote \"dashboard looks like a christmas light show with all the warning lights\"\n- safety quote \"car would randomly brake\" (duplicate). Is duplicate okay? It is evidence. Fine.\n- other quote \"everything happened at all once on oct3 2025\"\n- other quote \"confirmed by a independent service center\"\nNeed conditions clue? \"randomly\" maybe condition intermittent. Quote \"randomly\" exact? It appears in \"randomly brake\". kind condition. Use quote \"randomly\" maybe too short but verbatim. Better \"would randomly brake\" exact? Narrative: \"my car would randomly brake\" yes. kind condition? It indicates intermittent. Use \"would randomly brake\". But also symptom. Hmm.\n\nCould include condition clue \"everything happened at all once on oct3 2025\" as condition? It's timing not listed. Use other.\n\nNeed JSON valid. No markdown? User said answer with one JSON object and no other text. So final just JSON. Ensure no trailing.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531099,
+      "id": "3bed04ababe9613196f8e4d7fa0f0fb3",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1634,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1380,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00060567,
+          "billing_source": "go",
+          "list_cost": 0.00100945,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 186,
+            "output": 1634,
+            "reasoning": 1380
+          }
+        },
+        "prompt_tokens": 570,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2204
+      }
+    },
+    "text": "{\"summary\":\"2019 Honda Passport lane departure assist: front windshield camera glitches, random braking, front camera inoperative, all dashboard warning lights; occurred all at once on 2025-10-03.\",\"group\":\"adas\",\"symptoms\":[\"front windshield camera glitches\",\"car randomly brakes\",\"front camera does not work at all\",\"all dashboard warning lights illuminate\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"front windshield camera\"},{\"kind\":\"symptom\",\"quote\":\"camera having glitches\"},{\"kind\":\"symptom\",\"quote\":\"car would randomly brake\"},{\"kind\":\"symptom\",\"quote\":\"front camera won't work at all\"},{\"kind\":\"symptom\",\"quote\":\"dashboard looks like a christmas light show with all the warning lights\"},{\"kind\":\"safety\",\"quote\":\"car would randomly brake\"},{\"kind\":\"condition\",\"quote\":\"would randomly brake\"},{\"kind\":\"other\",\"quote\":\"everything happened at all once on oct3 2025\"},{\"kind\":\"other\",\"quote\":\"confirmed by a independent service center\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00060567,
+      "cached_tokens": 384,
+      "cost_usd": 0.00100945,
+      "input_tokens": 570,
+      "list_cost_usd": 0.00100945,
+      "output_tokens": 1634,
+      "reasoning_tokens": 1380
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "ff51184a729788a7fc47babccbfc9e02846190d4174cf39ce57ae69c66ebab41",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10297,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2019 Chevrolet Tahoe navigation system screen image jumps/flips and intermittently fails to display while driving; software update performed but fault recurred\",\"group\":\"infotainment\",\"symptoms\":[\"navigation screen image jumping and flipping\",\"screen occasionally fails to display an image\",\"other images appear on the screen\"],\"conditions\":[\"intermittent\",\"after service\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"navigation system\"},{\"kind\":\"symptom\",\"quote\":\"the navigation system screen image was jumping and flipping\"},{\"kind\":\"symptom\",\"quote\":\"occasionally failed to display an image\"},{\"kind\":\"symptom\",\"quote\":\"other images displayed on the screen\"},{\"kind\":\"condition\",\"quote\":\"while driving at an undisclosed speed\"},{\"kind\":\"condition\",\"quote\":\"The vehicle was repaired, but the failure recurred.\"}]}",
+            "reasoning_content": "We need answer only JSON object. Need normalize report. Need parse. Component electrical navigational GPS, group infotainment. Symptoms: navigation system screen image jumping and flipping; occasionally failed to display an image; other images displayed on screen. Conditions: driving at undisclosed speed? \"while driving\" maybe condition? The allowed conditions list cold moisture heat vibration intermittent after service charging. Does \"occasionally\" = intermittent. \"while driving\" not in list but can quote condition? Need conditions array from allowed? It says conditions: [\"cold\", ...]. We can include \"intermittent\" because occasionally. Maybe \"after service\" because repaired but failure recurred? Hmm after service? It was taken dealer software update repaired but recurred. Condition after service maybe yes? It doesn't explicitly say after service? \"The vehicle was repaired, but the failure recurred.\" That implies after repair. But conditions list includes after service. We can include \"after service\" if evidence quote \"The vehicle was repaired, but the failure recurred.\" However quote for condition can be that. Need safety_relevant: source says false and report no crash/fire etc. Set false. Fault_codes: none. Missing_info: maybe date? We have received_at but not failure date. Mileage present. Component present. Symptom present. Conditions? Driving speed undisclosed but conditions present? missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Date missing (failure date) maybe include \"date\". Also maybe \"conditions\" because speed undisclosed? But conditions include driving. Hmm. Need one line summary: component, symptom, conditions. \"2019 Chevrolet Tahoe navigation system screen image jumping/flipping and intermittently blank while driving; software update performed but fault recurred.\" That's summary.\n\nNeed clues array with verbatim quotes. Must copy exactly. Quotes from narrative. Include symptom quotes:\n- \"the navigation system screen image was jumping and flipping\"\n- \"occasionally failed to display an image\"\n- \"other images displayed on the screen\"\nCondition quote:\n- \"while driving at an undisclosed speed\" kind condition? It's a condition. Allowed kind condition. Quote exact: \"while driving at an undisclosed speed\" yes in report.\n- \"occasionally\" is within quote? For intermittent condition, quote \"occasionally failed to display an image\" includes symptom. Could have kind condition with quote \"The vehicle was repaired, but the failure recurred.\" for after service. Is that a condition? It's after service. Maybe include kind condition quote \"The vehicle was repaired, but the failure recurred.\" It is verbatim.\nComponent group quote: \"navigation system\" maybe.\nSafety: no safety quote? Don't include.\nOther: maybe \"software update was needed\" not needed.\n\nNeed missing_info: date only? But if report includes received_at date (2025-07-16), but not incident date. The schema missing_info options include date. The report has received_at, but not failure date. Include \"date\". Maybe \"conditions\" because speed undisclosed? But condition \"while driving\" and intermittent. I'd include date only. However \"conditions\" maybe \"driving at undisclosed speed\" so speed missing but not in missing_info list. Hmm.\n\nNeed group \"infotainment\" given. Symptoms array plain words: \"navigation screen image jumping and flipping\", \"screen occasionally fails to display an image\", \"other images appear on screen\". Conditions array: [\"intermittent\", \"after service\"] maybe. Driving not in allowed list; no. Include \"intermittent\" and \"after service\". Does \"after service\" count? The vehicle was repaired but failure recurred. Yes. Maybe \"vibration\"? no.\n\nNeed safety_relevant false. fault_codes []. missing_info [\"date\"]. clues:\n- {\"kind\":\"component_group\",\"quote\":\"navigation system\"}\n- {\"kind\":\"symptom\",\"quote\":\"the navigation system screen image was jumping and flipping\"}\n- {\"kind\":\"symptom\",\"quote\":\"occasionally failed to display an image\"}\n- {\"kind\":\"symptom\",\"quote\":\"other images displayed on the screen\"}\n- {\"kind\":\"condition\",\"quote\":\"while driving at an undisclosed speed\"} (is condition? maybe)\n- {\"kind\":\"condition\",\"quote\":\"The vehicle was repaired, but the failure recurred.\"}\nCould also quote \"software update was needed\" as other? Not necessary.\nNeed ensure verbatim exact punctuation. The narrative: \"The contact stated that while driving at an undisclosed speed, the navigation system screen image was jumping and flipping, and occasionally failed to display an image. The contact also stated that there were other images displayed on the screen. There were no warning lights illuminated. The vehicle was taken to the local dealer, where it was determined that a software update was needed. The vehicle was repaired, but the failure recurred. The manufacturer was contacted, and confirmed that the VIN was not under recall. The failure mileage was approximately 40,550.\"\n\nQuotes:\n\"while driving at an undisclosed speed\" exactly yes.\n\"the navigation system screen image was jumping and flipping\" exactly yes? It says \"the navigation system screen image was jumping and flipping\" after comma. Yes lowercase the. Good.\n\"occasionally failed to display an image\" exactly yes.\n\"other images displayed on the screen\" exactly yes? \"there were other images displayed on the screen\" yes substring.\n\"The vehicle was repaired, but the failure recurred.\" exact yes.\n\"navigation system\" exact.\n\nNeed maybe summary one line. JSON only no markdown. Ensure valid JSON. Use false not string. Could include \"missing_info\": [\"date\"]. But what about conditions? \"while driving at an undisclosed speed\" no missing. Okay.\n\nNeed maybe safety_relevant false despite \"screen failed to display image\" could be safety? Navigation screen blank while driving could risk? But report no crash etc. Set false per rules. Good.\n\nFinal only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793528643,
+      "id": "1f3bb62e4bac5e24c400a00a56cc558e",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1431,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1231,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00053736,
+          "billing_source": "go",
+          "list_cost": 0.0008956,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 239,
+            "output": 1431,
+            "reasoning": 1231
+          }
+        },
+        "prompt_tokens": 623,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2054
+      }
+    },
+    "text": "{\"summary\":\"2019 Chevrolet Tahoe navigation system screen image jumps/flips and intermittently fails to display while driving; software update performed but fault recurred\",\"group\":\"infotainment\",\"symptoms\":[\"navigation screen image jumping and flipping\",\"screen occasionally fails to display an image\",\"other images appear on the screen\"],\"conditions\":[\"intermittent\",\"after service\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"navigation system\"},{\"kind\":\"symptom\",\"quote\":\"the navigation system screen image was jumping and flipping\"},{\"kind\":\"symptom\",\"quote\":\"occasionally failed to display an image\"},{\"kind\":\"symptom\",\"quote\":\"other images displayed on the screen\"},{\"kind\":\"condition\",\"quote\":\"while driving at an undisclosed speed\"},{\"kind\":\"condition\",\"quote\":\"The vehicle was repaired, but the failure recurred.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00053736,
+      "cached_tokens": 384,
+      "cost_usd": 0.0008956,
+      "input_tokens": 623,
+      "list_cost_usd": 0.0008956,
+      "output_tokens": 1431,
+      "reasoning_tokens": 1231
+    }
+  }
+}

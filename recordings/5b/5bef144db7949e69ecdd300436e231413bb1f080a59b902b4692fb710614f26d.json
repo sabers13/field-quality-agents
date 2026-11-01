@@ -1,0 +1,66 @@
+{
+  "key": "5bef144db7949e69ecdd300436e231413bb1f080a59b902b4692fb710614f26d",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 13812,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2022 Kia EV6 electrical system: sudden unintended maximum-speed lunge forward while parked near a building after charger area was unavailable, stopping before wall and impaling on barrier post.\",\"group\":\"electrical_general\",\"symptoms\":[\"sudden unintended acceleration\",\"vehicle lunged forward at maximum speed\",\"vehicle impaled on metal barrier post\"],\"conditions\":[\"charging\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"condition\",\"quote\":\"Prior to midnight on 9/25/2025 I stopped at a Sheetz in  Stephen\\\"s City , Va to charge my 2022 Kia EV6.\"},{\"kind\":\"condition\",\"quote\":\"scanned my phone app for alternative chargers in the area\"},{\"kind\":\"symptom\",\"quote\":\"my car lunged forward at MAXIMUM speed\"},{\"kind\":\"symptom\",\"quote\":\"It came to a sudden stop , prior to hitting the glass and brick wall of the building\"},{\"kind\":\"safety\",\"quote\":\"feared it would catch on fire\"},{\"kind\":\"symptom\",\"quote\":\"it was impaled upon the metal barrier post located in the middle , front of the parking space\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize report. Need follow rules. Need extract summary one line component, symptom, conditions. Group given electrical_general. Symptoms plain words. Conditions: possible \"charging\" because stopped to charge, scanning for chargers? It mentions prior to midnight, after discovering chargers removed, parked. Sudden unintended acceleration/lunged forward at maximum speed, stopped before hitting wall, impaled on metal barrier post. Safety relevant true. Fault codes none. Missing_info: mileage null? Analysis needs mileage maybe missing. Date present 9/25/2025 and received date. Conditions? It gives prior to midnight, maybe not weather. Component electrical system. Need clues verbatim quotes. Must copy exact. Quotes can include typo Stephen\"s City. Need ensure verbatim exact. We need JSON only no markdown? User says answer with one JSON object and no other text. We can output JSON. Need ensure quotes are exact spans from narrative.\n\nLet's parse narrative exact:\n\"Prior to midnight on 9/25/2025 I stopped at a Sheetz in  Stephen\\\"s City , Va to charge my 2022 Kia EV6. Upon pulling into the charging area I discovered construction fencing around the area with the chargers removed. I then drove to the other side of the store and parked next to the building to take advantage of the lighting as I scanned my phone app for alternative chargers in the area. SUDDENLY, within the blink of an eye, my car lunged forward at MAXIMUM speed. It came to a sudden stop , prior to hitting the glass and brick wall of the building. I was stunned. My first reaction was to try to go into reverse to back away from the building and then I noticed people coming toward me. I rolled the window down and heard them ask if I was ok , if I needed help calling 911, and then they began to insist that I climb down out of the car as they feared it would catch on fire. I did not understand what they meant initially, until I realized I was LOOKING DOWN at them. With assistance, I got out of my car and realized it was impaled upon the metal barrier post located in the middle , front of the parking space. The local sheriff dept responded and after putting me through all the DUI tests/exercises realized that I , indeed , was sober and not responsible for the incident. The deputy called Clem's Garage/Towing who arrived 30-45 min latter with a standard tow truck - I tried to explain that tugging at my car from the rear would not release it from the pole ( the rear of the car pointed toward the pavement while the front pointed toward the sky) and that continuing to tug would only do more damage (I wanted to prevent my car further damage). He eventually called another  company who arrived with a large crane-like vehicle that lifted my car off the pole. The top portion of the pole was missing and apparently stuck in my car . My car was then towed to Clem's holding yard.\"\n\nNeed summary: \"2022 Kia EV6 electrical system: sudden unintended maximum-speed lunge forward while parked/scanning for chargers, stopped before wall and impaled on barrier post.\" Include conditions? prior to midnight? We can say \"at night while parked near building after charger area closed\". One line. Need not overdo.\n\nSymptoms array: \"sudden unintended acceleration / lunged forward at maximum speed\", \"vehicle impaled on barrier post\", maybe \"fear of fire\" is safety not symptom. \"sudden stop before hitting wall\" maybe symptom? The symptom is unintended acceleration. \"vehicle became impaled on metal barrier post\" consequence. Include plain words.\n\nConditions array: allowed vocab: cold moisture heat vibration intermittent after service charging. Report mentions charging context (stopped to charge, chargers removed). Use \"charging\". Also \"prior to midnight\" not in list. Maybe \"intermittent\" no. \"after service\" no. Could include \"charging\" because intended charging. Conditions only allowed list? schema says [\"cold\",...]. Use charging. Maybe no other. Safety true.\n\nFault_codes [].\n\nMissing_info: mileage missing (null). Also maybe date? Actually date 9/25/2025 present. Component present. Symptom present. Conditions? Some conditions present. Mileage missing. Could include \"mileage\". Maybe \"component\" not missing? no. The report says component ELECTRICAL SYSTEM but symptom suggests powertrain/ADAS? But component given. Missing info only mileage. Date present. Conditions present? Night/charging. So [\"mileage\"].\n\nClues:\n- kind condition quote \"Prior to midnight on 9/25/2025 I stopped at a Sheetz in  Stephen\\\"s City , Va to charge my 2022 Kia EV6.\" Verbatim includes double spaces? In narrative: \"in  Stephen\" yes two spaces between in and Stephen? It says \"in  Stephen\\\"s City , Va\" likely two spaces. Need copy exact. JSON escaping. We can include as quote. Need exact char for char. It includes escaped quote in JSON as \\\" but actual narrative has Stephen\"s. In JSON string, use \"Stephen\\\"s\". The quote text includes double quote char. Fine.\n- kind condition quote \"scanned my phone app for alternative chargers in the area\" (verbatim)\n- kind symptom quote \"my car lunged forward at MAXIMUM speed\"\n- kind symptom quote \"It came to a sudden stop , prior to hitting the glass and brick wall of the building\" note space before comma exact.\n- kind safety quote \"they feared it would catch on fire\"\n- kind symptom/other quote \"it was impaled upon the metal barrier post located in the middle , front of the parking space\"\n- maybe safety \"feared it would catch on fire\" is safety.\n- component_group quote \"ELECTRICAL SYSTEM\" from component field? Report in user message includes component field. Is that part of report? The report is JSON includes component. Quote can be from report fields? likely yes. But clues should quote from report. Could quote \"ELECTRICAL SYSTEM\" from component. Need maybe component_group clue. Use exact \"ELECTRICAL SYSTEM\". But if quote not in narrative? It is in report. Fine. Or \"2022 Kia EV6\" component? Hmm.\n- safety quote \"feared it would catch on fire\" and \"insured? no\". Also \"911\" maybe risk. \"feared it would catch on fire\" enough. Crash? It nearly hit wall, impaled. Safety relevant. Could quote \"prior to hitting the glass and brick wall of the building\" maybe risk. But safety clue quote must mention crash/fire/risk. \"feared it would catch on fire\" exactly in narrative. Good.\n\nNeed exact quote for \"It came to a sudden stop , prior to hitting the glass and brick wall of the building.\" There is a space before comma. We'll copy.\n\nNeed no markdown. Valid JSON. Need only JSON object. Ensure all quotes exact. Let's craft.\n\nNeed summary maybe \"2022 Kia EV6 electrical system: sudden unintended maximum-speed lunge forward while parked near a building after charger area was unavailable, stopping before wall and impaling on barrier post.\" One line. Good.\n\nNeed group \"electrical_general\" per given group? The instruction: \"the electrical/electronic component group, or the given group\" Given group electrical_general. Use \"electrical_general\". Good.\n\nSymptoms: [\"sudden unintended acceleration\", \"vehicle lunged forward at maximum speed\", \"vehicle impaled on metal barrier post\"] Plain words. Could include \"sudden stop before hitting building wall\" but not symptom? Maybe include. But keep.\n\nConditions: [\"charging\"] maybe because \"to charge my 2022 Kia EV6\" and scanning chargers. Is \"charging\" condition? Yes.\n\nClues list. Need avoid quote not exact. Let's verify each:\n1 \"Prior to midnight on 9/25/2025 I stopped at a Sheetz in  Stephen\\\"s City , Va to charge my 2022 Kia EV6.\" In JSON: \"Prior to midnight on 9/25/2025 I stopped at a Sheetz in  Stephen\\\"s City , Va to charge my 2022 Kia EV6.\" Actual includes two spaces after \"in\"? It says \"in  Stephen\\\"s\" yes. It includes space before comma after City: \"City , Va\" yes. Good.\n2 \"scanned my phone app for alternative chargers in the area\" exact substring: \"as I scanned my phone app for alternative chargers in the area.\" Substring without as I is exact. Good.\n3 \"my car lunged forward at MAXIMUM speed\" exact substring.\n4 \"It came to a sudden stop , prior to hitting the glass and brick wall of the building\" exact substring? Narrative: \"It came to a sudden stop , prior to hitting the glass and brick wall of the building.\" yes.\n5 \"feared it would catch on fire\" exact substring: \"as they feared it would catch on fire.\" yes.\n6 \"it was impaled upon the metal barrier post located in the middle , front of the parking space\" exact substring: \"realized it was impaled...\" substring \"it was impaled upon...\" yes.\n\nMaybe include component_group quote \"ELECTRICAL SYSTEM\" from component. It's exact. Good. But clue kind component_group quote \"ELECTRICAL SYSTEM\". Include.\n\nNeed safety_relevant true. Missing_info [\"mileage\"].\n\nNeed output JSON no other text. Use double quotes. Good.\n\nPotential issue: \"group\" should electrical/electronic component group; given group \"electrical_general\". Use that.\n\nNeed no action suggestion. Fine.\n\nFinal only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530847,
+      "id": "146cd185bef33c87dd35f281837f78c9",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2321,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 2044,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00088323,
+          "billing_source": "go",
+          "list_cost": 0.00147205,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 522,
+            "output": 2321,
+            "reasoning": 2044
+          }
+        },
+        "prompt_tokens": 906,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 3227
+      }
+    },
+    "text": "{\"summary\":\"2022 Kia EV6 electrical system: sudden unintended maximum-speed lunge forward while parked near a building after charger area was unavailable, stopping before wall and impaling on barrier post.\",\"group\":\"electrical_general\",\"symptoms\":[\"sudden unintended acceleration\",\"vehicle lunged forward at maximum speed\",\"vehicle impaled on metal barrier post\"],\"conditions\":[\"charging\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"condition\",\"quote\":\"Prior to midnight on 9/25/2025 I stopped at a Sheetz in  Stephen\\\"s City , Va to charge my 2022 Kia EV6.\"},{\"kind\":\"condition\",\"quote\":\"scanned my phone app for alternative chargers in the area\"},{\"kind\":\"symptom\",\"quote\":\"my car lunged forward at MAXIMUM speed\"},{\"kind\":\"symptom\",\"quote\":\"It came to a sudden stop , prior to hitting the glass and brick wall of the building\"},{\"kind\":\"safety\",\"quote\":\"feared it would catch on fire\"},{\"kind\":\"symptom\",\"quote\":\"it was impaled upon the metal barrier post located in the middle , front of the parking space\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00088323,
+      "cached_tokens": 384,
+      "cost_usd": 0.00147205,
+      "input_tokens": 906,
+      "list_cost_usd": 0.00147205,
+      "output_tokens": 2321,
+      "reasoning_tokens": 2044
+    }
+  }
+}

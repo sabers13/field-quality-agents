@@ -1,0 +1,66 @@
+{
+  "key": "b4d34ed464bd677eea01a4d4342e72cf4b10587bf5411707b2613ab480ffc071",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 14798,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Infotainment: navigation screen turned blank and speedometer decreased to zero while driving 45-50 MPH on the freeway; dealer found rear end detaching and vehicle unsafe to drive.\",\"group\":\"infotainment\",\"symptoms\":[\"navigation screen turned blank\",\"speedometer decreased to zero\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"EQUIPMENT:ELECTRICAL:INFOTAINMENT\"},{\"kind\":\"symptom\",\"quote\":\"navigation screen turned blank\"},{\"kind\":\"symptom\",\"quote\":\"speedometer decreased to zero\"},{\"kind\":\"condition\",\"quote\":\"while driving 45-50 MPH on the freeway\"},{\"kind\":\"safety\",\"quote\":\"dealer determined that the vehicle was unsafe to drive\"},{\"kind\":\"safety\",\"quote\":\"rear end of the vehicle was detaching\"}]}",
+            "reasoning_content": "We need answer one JSON only. Need normalize. Report component infotainment, symptoms navigation screen blank, speedometer decreased to zero. Conditions while driving 45-50 MPH on freeway. Fault codes none. Safety relevant? Report mentions speedometer decreased to zero while driving, dealer determined vehicle unsafe to drive, rear end detaching diagnosed (though another dealer says rear axle good). Is that safety relevant? Rules set true when mentions crash fire smoke injury loss control stall at speed or other risk to people. \"dealer determined vehicle was unsafe to drive\" and \"rear end detaching\" imply risk. But safety_relevant field in input false, but we should set based on report. Need maybe true. However \"speedometer decreased to zero\" not loss control. \"rear end detaching\" risk. There is no crash etc but unsafe to drive. I'd set true due unsafe to drive/possible detachment. Need summary one line: component, symptom, conditions. group infotainment. symptoms plain: \"navigation screen turned blank\", \"speedometer decreased to zero\". conditions: \"while driving\", \"at 45-50 MPH on freeway\". Conditions allowed list includes cold moisture heat vibration intermittent after service charging. But rules say conditions array from list? The schema says conditions [\"cold\", ...] but likely can include driving? The list is examples? It says conditions [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. We should use only allowed? The report has driving at speed. But condition \"while driving 45-50 MPH on freeway\" important. Could maybe include \"intermittent\"? no. Hmm. The instructions: conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. It's a controlled vocab. We can put [] because none of those. But summary and clues capture driving. Missing info: date? received_at 2025-07-17, mileage 32000, component present, symptom present, conditions present. Missing none? Maybe date of failure? It has received_at not failure date. Need missing_info facts analysis needs: component, symptom, conditions, mileage, date. Mileage present, component present, symptom present, conditions present (driving speed). Date? received_at present but not incident date. Could list \"date\" because failure date not given. But if received_at counts? It says date maybe report date. The report has received_at. Hmm. missing_info only facts analysis needs. The incident date isn't specified; date of report is. I might list [\"date\"]? But maybe no important missing. The desk can analyze. Need not invent. Maybe missing_info [] because all core present. But exact failure date absent. Could include \"date\" as missing. The schema examples include date. I think include \"date\" because no failure date. But received_at is date. It might be enough. However \"date\" could mean report date. The user gave received_at. I'd say missing_info []? Need decide.\n\nClues: verbatim spans. Need copy exact substrings. We can include:\n- symptom quote: \"navigation screen turned blank\"\n- symptom quote: \"speedometer decreased to zero\"\n- condition quote: \"while driving 45-50 MPH on the freeway\" (verbatim? Narrative: \"while driving 45-50 MPH on the freeway, the navigation screen turned blank\" yes exact substring \"while driving 45-50 MPH on the freeway\")\n- safety quote: \"dealer determined that the vehicle was unsafe to drive\" exact? Narrative: \"The dealer determined that the vehicle was unsafe to drive.\" Yes substring \"dealer determined that the vehicle was unsafe to drive\" (lowercase d? Narrative has \"The dealer determined...\" substring starting at dealer is \"dealer determined that the vehicle was unsafe to drive\" yes).\n- safety/other quote: \"rear end of the vehicle was detaching\" exact substring? Narrative: \"diagnosed that the rear end of the vehicle was detaching.\" Yes.\n- component_group quote: \"EQUIPMENT:ELECTRICAL:INFOTAINMENT\" exact in component field. It is report. Or \"navigation screen\" as component? Use component_group.\n- other quote: \"rear axle was in good condition\" maybe not needed.\nNeed ensure quotes are verbatim. \"navigation screen turned blank\" exact. \"speedometer decreased to zero\" exact. \"while driving 45-50 MPH on the freeway\" exact. \"dealer determined that the vehicle was unsafe to drive\" exact. \"rear end of the vehicle was detaching\" exact. \"EQUIPMENT:ELECTRICAL:INFOTAINMENT\" exact.\n\nSummary: \"Infotainment: navigation screen blank and speedometer dropped to zero while driving 45-50 MPH on freeway; dealer found rear-end detachment risk.\" That's one line. But summary should not invent? \"rear-end detachment risk\" from dealer diagnosed rear end detaching and unsafe. Good. But maybe \"rear end detaching\" diagnosis. Good.\n\nGroup: \"infotainment\" given. Symptoms plain: \"navigation screen turned blank\", \"speedometer decreased to zero\". Maybe \"speedometer read zero\" plain. Use exact-ish. Conditions: Could include \"intermittent\"? no. The condition is while driving, not in list. But schema maybe free. However the allowed list has only environmental. To not violate, use [] and clues. But then conditions missing? It has conditions. Hmm. The instructions say conditions array examples; not necessarily exhaustive? \"conditions\": [\"cold\", ...] likely controlled. If I include \"while driving 45-50 MPH\" it's not in list. But summary and clues. The agent normalizes; conditions should be tags. The report conditions are not cold/moisture/heat/vibration/intermittent/after service/charging. So empty. But missing_info conditions? No, conditions present but not taggable. I think conditions [].\n\nFault codes [].\n\nSafety_relevant true. Despite input false, rule says set when mentions risk. \"unsafe to drive\" plus detaching. Good.\n\nMissing_info: component present, symptom present, conditions present, mileage present, date? received_at. I'd use [] maybe. But date of incident not specified. The desk analysis might need date. The received_at is date of report, not failure date. The rule says \"date\" missing if not given. Since failure date not given, list \"date\". But \"received_at\" is a date. Hmm. NHTSA reports often have incident date not given. The analysis can use received date. But \"date\" likely means when report received? We have. I lean [] to avoid unnecessary. But missing date of occurrence is important? The prompt says missing_info only facts analysis needs: component, symptom, conditions, mileage, date. All except maybe date. The report has received_at date. So no missing. Use [].\n\nNeed final only JSON no other text. Ensure valid JSON with quotes. No markdown? User says answer with one JSON object and no other text. We can output raw JSON. Final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793528705,
+      "id": "545321bf3015eaf378ae5a38806ad26f",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1701,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1501,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00063564,
+          "billing_source": "go",
+          "list_cost": 0.0010594,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 251,
+            "output": 1701,
+            "reasoning": 1501
+          }
+        },
+        "prompt_tokens": 635,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2336
+      }
+    },
+    "text": "{\"summary\":\"Infotainment: navigation screen turned blank and speedometer decreased to zero while driving 45-50 MPH on the freeway; dealer found rear end detaching and vehicle unsafe to drive.\",\"group\":\"infotainment\",\"symptoms\":[\"navigation screen turned blank\",\"speedometer decreased to zero\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"EQUIPMENT:ELECTRICAL:INFOTAINMENT\"},{\"kind\":\"symptom\",\"quote\":\"navigation screen turned blank\"},{\"kind\":\"symptom\",\"quote\":\"speedometer decreased to zero\"},{\"kind\":\"condition\",\"quote\":\"while driving 45-50 MPH on the freeway\"},{\"kind\":\"safety\",\"quote\":\"dealer determined that the vehicle was unsafe to drive\"},{\"kind\":\"safety\",\"quote\":\"rear end of the vehicle was detaching\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00063564,
+      "cached_tokens": 384,
+      "cost_usd": 0.0010594,
+      "input_tokens": 635,
+      "list_cost_usd": 0.0010594,
+      "output_tokens": 1701,
+      "reasoning_tokens": 1501
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "5637deb95047e1f195c4ce355a5dfa0b8353f716be74bfc8de4042de64bd56b6",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 15655,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Infotainment screen intermittently black (3 times in 4 weeks), disabling backup camera and parking safety features while vehicle remains drivable.\",\n  \"group\": \"body_controls\",\n  \"symptoms\": [\n    \"infotainment screen black and not functional\",\n    \"backup camera not shown in reverse\",\n    \"assistive/safety parking features unavailable\",\n    \"requires locking car and waiting 15 minutes to reset\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Infotainment screen is black and not functional\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"3 times in the last 4 weeks\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"if you put it into reverse the backup camera is not shown on the infotainment screen\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"This is a safety hazard\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"mandated safety features like the backup camera are inoperative\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer one JSON object no other text. Need parse report. Component VISIBILITY/WIPER but narrative infotainment screen black, backup camera not shown, safety hazard. Group given body_controls. Symptoms: infotainment screen black/not functional; requires lock and wait 15 min to reset; backup camera not shown in reverse; assistive/safety parking features not involved. Conditions: intermittent (3 times in last 4 weeks), after service? Taken to VW service unable reproduce no trouble found—maybe \"after service\" condition? The conditions list includes after service; report mentions taken to service but symptom not after service. Maybe condition \"intermittent\". Could include \"after service\"? No, it says taken into service and no assistance, not condition. We need safety_relevant true due \"safety hazard\" and backup camera inoperative mandated safety features. Fault codes none. Missing info: mileage (null), date? Received date but narrative no date of occurrences. Conditions maybe enough? Component mismatch? The report component says VISIBILITY/WIPER but narrative is infotainment/backup camera. Missing_info could include component? But component field is present though mismatched. Analysis needs component? It says component: VISIBILITY/WIPER, but narrative not wiper. Could list \"component\" as missing? Hmm missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Component is given but likely wrong; but rule says list only facts missing, not inconsistencies. Mileage null -> missing. Date of incidents missing. Maybe conditions? It says 3 times in last 4 weeks, but not ambient conditions. Conditions list could include intermittent. For missing_info include mileage and date. Maybe \"conditions\" no because intermittent specified. Could include component because actual component unclear? But field says component present; yet symptom is infotainment. But ask normalise incoming field-quality report. Maybe missing_info should include \"component\" due mismatch? Hmm.\n\nNeed clues with verbatim quotes. Need ensure quotes copied exactly. We can quote:\n- \"Infotainment screen is black and not functional\"\n- \"3 times in the last 4 weeks\"\n- \"if you put it into reverse the backup camera is not shown on the infotainment screen\"\n- \"This is a safety hazard\"\n- \"mandated safety features like the backup camera are inoperative\"\n- \"unable to reproduce\" maybe other.\n- \"car is still drivable\" for other? Maybe safety.\n- \"assistive/safety features involved with parking or safely backing up the vehicle\" quote exact: \"nor are any other of the assistive/safety features involved with parking or safely backing up the vehicle.\" We can quote.\n\nNeed group: \"body_controls\" given. Symptoms array plain words. Conditions array: [\"intermittent\"] maybe also \"after service\"? The report says taken to service. But condition \"after service\" maybe not. Could include \"intermittent\" only. Could include \"after service\" if issue happened after service? No.\n\nSafety_relevant true.\n\nFault_codes empty.\n\nSummary one line: \"Infotainment/backup camera black screen intermittent 3 times in 4 weeks; car drivable but rear camera/safety features inoperative.\" Need include component? \"VISIBILITY/WIPER report: infotainment screen black...\" But component says wiper. Summary should mention component? \"Body controls (reported as VISIBILITY/WIPER): infotainment screen black intermittently...\" Hmm.\n\nNeed JSON only.\n\nNeed missing_info: mileage, date. Maybe conditions. The report gives frequency but no ambient conditions; conditions list is for cold moisture heat vibration intermittent after service charging. We have intermittent. Missing \"date\" of incidents. \"mileage\" null. Maybe include \"component\" because component field mismatched? The rules say missing_info list only facts analysis needs: component, symptom, conditions, mileage, date. Since component field exists but likely not actual; but not missing. Don't include.\n\nNeed clues kind condition for \"3 times in the last 4 weeks\" maybe intermittent. kind symptom for black screen. kind safety for safety hazard. kind other for \"unable to reproduce\"? Maybe not needed.\n\nNeed ensure quote \"Infotainment screen is black and not functional\" appears exactly? Narrative: \"the Infotainment screen is black and not functional.\" Yes substring includes \"Infotainment screen is black and not functional\" exact (capital I). Good.\n\nQuote \"3 times in the last 4 weeks\" exact. Good.\n\nQuote \"if you put it into reverse the backup camera is not shown on the infotainment screen\" exact? Narrative: \"but if you put it into reverse the backup camera is not shown on the infotainment screen, nor...\" Yes.\n\nQuote \"This is a safety hazard\" exact. Good.\n\nQuote \"mandated safety features like the backup camera are inoperative\" exact? Narrative: \"even though mandated safety features like the backup camera are inoperative.\" Yes.\n\nQuote \"car is still drivable\" exact? Narrative: \"the car is still drivable\" yes. Could use for safety? Hmm.\n\nNeed perhaps clue component_group quote? Could quote \"Infotainment screen\" but kind component_group? Maybe no.\n\nNeed conditions list includes \"intermittent\". Maybe \"after service\" not.\n\nNeed summary: \"Infotainment screen goes black intermittently (3 times/4 weeks), disabling backup camera and parking safety features while car remains drivable.\" Good.\n\nNeed no extra text. Ensure valid JSON.\n\nNeed consider the prompt says \"Read only the report in user message. Do not invent facts.\" The user message includes metadata component VISIBILITY/WIPER and safety_relevant false. But narrative says safety hazard. We override safety_relevant true. Good.\n\nPotential issue: \"symptoms\": [\"infotainment screen black and not functional\", \"backup camera not shown in reverse\", \"assistive/safety parking features unavailable\", \"requires locking car and waiting 15 minutes to reset\"]. Conditions: [\"intermittent\"] maybe. Fault_codes empty. Missing_info [\"mileage\",\"date\"]. Maybe date not missing? received_at 2025-07-24 but incident dates not. Yes.\n\nCould include \"conditions\" missing? The report doesn't specify conditions like cold/moisture etc, but includes intermittent. The missing_info list uses \"conditions\" as fact analysis needs. Since we know intermittent but not environmental, maybe include \"conditions\"? Hmm. The instructions: \"List missing_info only for facts the analysis needs: component, symptom, conditions, mileage, date. Use an empty list when nothing important is missing.\" It doesn't specify environmental vs condition categories. Since conditions array can include intermittent from frequency. I'd say conditions not missing because intermittent is a condition. But ambient conditions maybe missing. However the desk may need conditions. We can include \"conditions\" maybe too broad. But if we include, it's not wrong? Need not invent. The report lacks ambient conditions; but does give intermittent. Hmm.\n\nMaybe missing_info [\"mileage\", \"date\", \"conditions\"]? But conditions includes intermittent. The rule \"conditions\" as fact maybe whether cold/moisture etc. The report does not state environmental conditions. Could list. But might be considered important? For infotainment black screen, ambient conditions maybe less. Date of incidents important. Mileage important. Component field mismatched maybe not missing. I'll include [\"mileage\", \"date\"] only to avoid over-listing.\n\nNeed clue kinds: use \"condition\" for 3 times; \"symptom\" for screen; \"symptom\" for backup camera; \"safety\" for safety hazard; \"safety\" for mandated safety features inoperative. Maybe \"other\" for unable to reproduce? Not necessary. Need all quotes verbatim. Good.\n\nNeed group \"body_controls\".\n\nNeed JSON object exactly. No markdown? The user says one JSON object and no other text. Final should be raw JSON no code fences. Good.\n\nNeed maybe include \"fault_codes\": [].\n\nLet's craft.\n\nNeed summary one line: \"Infotainment screen intermittently black (3 times in 4 weeks), disabling backup camera and parking safety features while vehicle remains drivable.\" Good.\n\nNeed quote \"Infotainment screen is black and not functional\" kind symptom. This is exact. Good.\n\nPotential quote \"if you put it into reverse the backup camera is not shown on the infotainment screen\" exact. Good.\n\nQuote \"3 times in the last 4 weeks\" exact. Good.\n\nQuote \"This is a safety hazard\" exact. Good.\n\nQuote \"mandated safety features like the backup camera are inoperative\" exact. Good.\n\nCould include quote \"car is still drivable\" kind safety? It supports risk. But not necessary. Could include \"other\" maybe. Keep concise.\n\nNeed ensure no trailing commas. Final raw JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793528912,
+      "id": "ee92e0c7980dbf54b31d61eb93a14a7d",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2173,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1874,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00081276,
+          "billing_source": "go",
+          "list_cost": 0.0013546,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 331,
+            "output": 2173,
+            "reasoning": 1874
+          }
+        },
+        "prompt_tokens": 715,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2888
+      }
+    },
+    "text": "{\n  \"summary\": \"Infotainment screen intermittently black (3 times in 4 weeks), disabling backup camera and parking safety features while vehicle remains drivable.\",\n  \"group\": \"body_controls\",\n  \"symptoms\": [\n    \"infotainment screen black and not functional\",\n    \"backup camera not shown in reverse\",\n    \"assistive/safety parking features unavailable\",\n    \"requires locking car and waiting 15 minutes to reset\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Infotainment screen is black and not functional\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"3 times in the last 4 weeks\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"if you put it into reverse the backup camera is not shown on the infotainment screen\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"This is a safety hazard\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"mandated safety features like the backup camera are inoperative\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00081276,
+      "cached_tokens": 384,
+      "cost_usd": 0.0013546,
+      "input_tokens": 715,
+      "list_cost_usd": 0.0013546,
+      "output_tokens": 2173,
+      "reasoning_tokens": 1874
+    }
+  }
+}

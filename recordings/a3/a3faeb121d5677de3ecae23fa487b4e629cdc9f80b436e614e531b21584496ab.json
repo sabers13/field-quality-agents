@@ -1,0 +1,66 @@
+{
+  "key": "a3faeb121d5677de3ecae23fa487b4e629cdc9f80b436e614e531b21584496ab",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 13038,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"2025 Hyundai Palisade forward collision avoidance/AEB: brakes lock up and skid, unable to brake with right foot, needed left-foot pressure to stop; toenail injury.\",\n  \"group\": \"adas\",\n  \"symptoms\": [\n    \"brakes lock up and skid\",\n    \"unable to brake using right foot\",\n    \"needed additional left-foot pressure to stop\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"While attempting to brake, they lock up and skid.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"I was unable to brake, only using my right foot.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"I have to apply pressure to finally be able to get it to stop, with my left foot as well.\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"I hit my left, big toenail on the brake pedal and rip half of it off.\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"I have a scared foster child in the car.\"\n    },\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"brakes\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer only JSON. Need normalize report. Component given forward collision avoidance automatic emergency braking group adas. But narrative is about brakes lock up and skid, unable to brake, injury toenail, scared child. Need summary one line component symptom conditions. Group given \"adas\" or component group electrical/electronic? The prompt says group \"the electrical/electronic component group, or the given group\". Given group adas. Use adas likely. Symptoms plain words: brakes lock up and skid; unable to brake; need both feet to stop. Conditions maybe \"after service\"? Not exactly. Cold moisture heat vibration intermittent charging none. Could include? Maybe no conditions. Fault codes none. safety_relevant true due injury and risk loss control? Report mentions scared foster child, inability to brake, injury, skid. Safety relevant true. Missing info: mileage null, date? received date and incident date June 30 but no year? It says June 30th; received 2025-07-15, model 2025. date maybe incident date lacks year? But do we need date? Analysis needs component, symptom, conditions, mileage, date. Component given. Symptom present. Conditions? maybe missing conditions (road? weather?) But conditions list only cold moisture heat vibration intermittent after service charging. The report doesn't mention those. Should missing_info include mileage and date? Mileage null. Date: narrative June 30th but no year; received date present. Maybe missing_info [\"mileage\",\"date\"]? Conditions could be missing? Need decide. The incident conditions: dry? parking lot, fast food driveway; no weather. Conditions important? The schema says missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Since conditions not specified, include \"conditions\"? But examples include conditions. We can include mileage and date, maybe conditions. However date has June 30 and received_at. Year missing? Since received 2025-07-15, June 30 likely 2025, but not explicit. Could include date? Hmm.\n\nClues with verbatim quotes. Need quote exactly from narrative. Use spans:\n- \"While attempting to brake, they lock up and skid.\" symptom\n- \"I was unable to brake, only using my right foot.\" symptom\n- \"I have to apply pressure to finally be able to get it to stop, with my left foot as well.\" symptom\n- \"I hit my left, big toenail on the brake pedal and rip half of it off.\" safety? injury. Quote exact: \"I hit my left, big toenail on the brake pedal and rip half of it off.\" yes.\n- \"I have a scared foster child in the car.\" safety? risk to people? Maybe safety.\n- \"They see nothing wrong.\" other maybe after service? Not condition listed. Could clue component_group? \"brakes\" not component group? component_group quote \"brakes\" maybe. But group is adas, component is forward collision avoidance AEB; narrative about brakes. Maybe clue component_group quote \"brakes\". Need kind component_group. Quote must be verbatim. \"brakes\" appears in \"issues with the brakes\" and \"have a look at the brakes\". Use \"brakes\". But kind component_group. Good.\n- fault_code none.\n- condition: \"skid\" maybe condition? \"they lock up and skid\" already symptom. Maybe \"parking lot\" condition? Not in list. Avoid.\n- safety: \"I hit my left, big toenail on the brake pedal and rip half of it off.\" and \"I have a scared foster child in the car.\" Maybe quote \"unable to brake\" as safety? But kind safety quote \"I was unable to brake\" yes.\n\nNeed summary one line: \"2025 Hyundai Palisade forward collision avoidance/AEB: brakes lock up and skid, unable to brake, required left-foot pressure to stop; injury to toenail.\" Conditions: maybe \"after service\"? The car taken to service after incident; not condition. \"intermittent\"? no. So empty conditions. But conditions array can be empty. The prompt says conditions [\"cold\", ...] maybe if present. Use [].\n\nMissing info: mileage, date? The report gives received_at. Incident date June 30. But no mileage. Maybe missing_info [\"mileage\"]. Conditions missing? Hmm. Since analysis needs conditions, but not all missing_info? They say list only facts analysis needs: component, symptom, conditions, mileage, date. Component present given. Symptom present. Conditions? Not specified but maybe not critical. Date present June 30 (though year ambiguous). Mileage missing. I think include [\"mileage\"] only. But if \"date\" missing because year not stated? The report has received_at and June 30; enough. Could include \"conditions\" because no weather/road? But conditions list is specific cold/moisture etc; none mentioned and not necessarily relevant. Better include [\"mileage\"] maybe. However prompt says use empty list when nothing important missing. Mileage is null, so include. Maybe date? The incident date June 30 with received date. No year, but model year 2025 and received 2025. Not important. So [\"mileage\"].\n\nNeed ensure JSON only. No markdown? User says answer one JSON object and no other text. final can be raw JSON. Need valid JSON. Use boolean true. Quotes exact.\n\nLet's craft:\n\n{\n \"summary\": \"2025 Hyundai Palisade forward collision avoidance/AEB: brakes lock up and skid, unable to brake with right foot, needed left-foot pressure to stop; toenail injury.\",\n \"group\": \"adas\",\n \"symptoms\": [\"brakes lock up and skid\", \"unable to brake using right foot\", \"needed additional left-foot pressure to stop\"],\n \"conditions\": [],\n \"fault_codes\": [],\n \"safety_relevant\": true,\n \"missing_info\": [\"mileage\"],\n \"clues\": [\n  {\"kind\":\"symptom\",\"quote\":\"While attempting to brake, they lock up and skid.\"},\n  {\"kind\":\"symptom\",\"quote\":\"I was unable to brake, only using my right foot.\"},\n  {\"kind\":\"symptom\",\"quote\":\"I have to apply pressure to finally be able to get it to stop, with my left foot as well.\"},\n  {\"kind\":\"safety\",\"quote\":\"I hit my left, big toenail on the brake pedal and rip half of it off.\"},\n  {\"kind\":\"safety\",\"quote\":\"I have a scared foster child in the car.\"},\n  {\"kind\":\"component_group\",\"quote\":\"brakes\"}\n ]\n}\n\nCheck quote \"I have to apply pressure...\" exact: narrative: \"I have to apply pressure to finally be able to get it to stop, with my left foot as well.\" yes. \"I hit my left, big toenail...\" exact yes. \"I have a scared foster child in the car.\" exact yes. \"brakes\" exact appears. Good.\n\nBut safety_relevant true due injury. Good.\n\nPotential issue group: given group \"adas\"; summary component \"forward collision avoidance/AEB\" but narrative brakes. That's fine. Maybe group should be \"adas\" because given. Good.\n\nNeed no other text. Done.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793528618,
+      "id": "11fe0498accb528ea48bb1bb76dd473d",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1832,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1515,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00068928,
+          "billing_source": "go",
+          "list_cost": 0.0011488,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 323,
+            "output": 1832,
+            "reasoning": 1515
+          }
+        },
+        "prompt_tokens": 707,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2539
+      }
+    },
+    "text": "{\n  \"summary\": \"2025 Hyundai Palisade forward collision avoidance/AEB: brakes lock up and skid, unable to brake with right foot, needed left-foot pressure to stop; toenail injury.\",\n  \"group\": \"adas\",\n  \"symptoms\": [\n    \"brakes lock up and skid\",\n    \"unable to brake using right foot\",\n    \"needed additional left-foot pressure to stop\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"While attempting to brake, they lock up and skid.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"I was unable to brake, only using my right foot.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"I have to apply pressure to finally be able to get it to stop, with my left foot as well.\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"I hit my left, big toenail on the brake pedal and rip half of it off.\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"I have a scared foster child in the car.\"\n    },\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"brakes\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00068928,
+      "cached_tokens": 384,
+      "cost_usd": 0.0011488,
+      "input_tokens": 707,
+      "list_cost_usd": 0.0011488,
+      "output_tokens": 1832,
+      "reasoning_tokens": 1515
+    }
+  }
+}

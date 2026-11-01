@@ -1,0 +1,66 @@
+{
+  "key": "8ee3759ee45999a3ce242f84f7fa89fa7dd203e9643e954cfd1130f6a97167d5",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11523,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2006 Toyota Prius air bags did not deploy in a low-speed left-turn side impact; driver was injured.\",\"group\":\"restraints\",\"symptoms\":[\"air bags did not deploy\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"None of the air bags deployed.\"},{\"kind\":\"condition\",\"quote\":\"while slowly driving into an intersection and turning left at less than 3 MPH\"},{\"kind\":\"condition\",\"quote\":\"crashed into their driver's side door\"},{\"kind\":\"safety\",\"quote\":\"The contact received a broken rib, rotator cuff, whiplash, and back injuries.\"},{\"kind\":\"safety\",\"quote\":\"Medical attention was needed.\"}]}",
+            "reasoning_content": "We need answer one JSON object no other text. Need normalize report. Need include quotes verbatim from report. Need summary one line component symptom conditions. Group restraints. Symptoms: air bags did not deploy in crash; injuries maybe. Conditions: crash? The enumerated conditions list includes cold, moisture, heat, vibration, intermittent, after service, charging. We should only choose from those? It says conditions: [\"cold\", ...]. Report doesn't mention those. Could be empty. Fault codes none. safety_relevant true due crash injuries. missing_info? Component is AIR BAGS, symptom no deployment, conditions? Mileage present 150000, date received but not incident date. Missing date? The analysis needs date maybe incident date. Conditions missing? We can include \"date\" perhaps. But missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Component given, symptom given, mileage given, conditions? maybe crash scenario present. Date missing (incident date not given). Could include \"date\". Need clues quotes. Must copy verbatim spans. Need ensure quotes exact. Narrative has double spaces maybe. We can quote: \"None of the air bags deployed.\" exact yes. \"The contact received a broken rib, rotator cuff, whiplash, and back injuries.\" exact. \"crashed into their driver's side door\" exact. \"at less than 3 MPH\" exact. \"The failure mileage was approximately 150,000\" exact. \"AIR BAGS\" is component field but quote from report? The report includes JSON component \"AIR BAGS\"; can quote \"AIR BAGS\" verbatim. Kind component_group. But quote must be from report. Yes entire user message includes JSON. But \"report\" likely narrative. Could quote component field. Need summary include 2006 Toyota Prius air bags no deployment in side impact crash at low speed, injuries. Conditions maybe crash is not in allowed list, but conditions array should use allowed values? It says conditions: [\"cold\", ...] likely canonical list. If none, empty. Could include \"other\"? No. For clues condition maybe quote \"at less than 3 MPH\" kind condition? It is a condition. But conditions field empty because not in canonical list? Hmm.\n\nNeed output valid JSON. Safety relevant true. missing_info maybe [\"date\"] because incident date absent. Could also include \"conditions\" because road/weather? But conditions include sun glare by other driver, crash. The analysis needs conditions; report has \"sun created a glare\" but that's other driver. Maybe conditions missing? The component is airbag no deployment; conditions relevant: impact speed, direction, crash. Present. Date of incident missing. Mileage present. So missing_info [\"date\"]. Clues: summary? Let's craft.\n\nNeed maybe symptom: \"air bags did not deploy\". Quote \"None of the air bags deployed.\" kind symptom. Another symptom injuries quote kind symptom? Injuries are safety, not component symptom. Could clue safety quote injuries. Condition quote \"while slowly driving into an intersection and turning left at less than 3 MPH\" kind condition. Another condition quote \"crashed into their driver's side door\" kind condition. Fault code none. component group quote \"AIR BAGS\". Safety quote \"The contact received a broken rib, rotator cuff, whiplash, and back injuries.\" and \"Medical attention was needed.\" maybe safety. Need no invented.\n\nNeed exact verbatim: Check narrative: \"The contact stated that while slowly driving into an intersection and turning left at less than 3 MPH,  the owner of a Ford F-150 coming from the driver's side of the vehicle at 35 MPH crashed into their driver's side door.\" There are two spaces after comma? In text: \"3 MPH,  the owner\" two spaces. If quote \"while slowly driving into an intersection and turning left at less than 3 MPH\" exact yes. \"crashed into their driver's side door\" exact. \"None of the air bags deployed.\" exact. \"The contact received a broken rib, rotator cuff, whiplash, and back injuries.\" exact. \"Medical attention was needed.\" exact. \"The failure mileage was approximately 150,000\" exact (no period? narrative ends \"150,000\" no period after? It has no period at end? It says \"approximately 150,000\" then JSON quote. Actually narrative string ends with 150,000 no period. Quote exact no period. Could include.\n\nNeed summary \"2006 Toyota Prius air bags did not deploy in a low-speed left-turn side impact; driver injured.\" Conditions? \"low-speed side impact\" maybe. Summary one line component symptom conditions.\n\nNeed group \"restraints\". Symptoms array: [\"air bags did not deploy\"]. Conditions array: [] maybe. But the schema says conditions list allowed values; if report conditions don't match, empty. Hmm maybe include \"crash\"? Not in list. Do not invent. Use empty. Fault codes [].\n\nNeed missing_info: [\"date\"] maybe. Also \"conditions\" maybe not? The report conditions include speed, direction, crash, glare. It lacks weather/road? But not important. Date is missing. Mileage present. Component present. Symptom present. Conditions present? I'd include date only. But perhaps \"conditions\" missing in canonical sense (cold/moisture etc) but not necessary. The prompt: \"List missing_info only for facts the analysis needs: component, symptom, conditions, mileage, date. Use empty list when nothing important is missing.\" Since date of incident missing important. conditions? It has crash conditions. So [\"date\"].\n\nNeed ensure JSON no markdown? User says answer with one JSON object and no other text. Final should just JSON. Good.\n\nNeed no suggestions. Fine.\n\nNeed maybe include \"safety_relevant\": true.\n\nLet's craft final JSON with quotes exact. Need check quotes in JSON escaping. \"driver's\" apostrophe okay. \"Ford F-150\" quote maybe not needed.\n\nPotential issue: quote \"AIR BAGS\" appears in component field with quotes? Yes user message has `\"component\": \"AIR BAGS\"`. Verbatim span \"AIR BAGS\" exists. Good.\n\nClues kind allowed: symptom|condition|fault_code|component_group|safety|other. Use exactly. For quote \"None of the air bags deployed.\" kind symptom. For injuries kind safety. For \"while slowly driving into an intersection and turning left at less than 3 MPH\" kind condition. For \"crashed into their driver's side door\" kind condition. For \"AIR BAGS\" kind component_group. For mileage other? Not needed. Could include mileage clue? kind other quote. But not necessary. Need evidence for missing date? no.\n\nNeed summary one line. Good.\n\nNeed maybe \"symptoms\": [\"air bags did not deploy in a crash\"] plain words. Fine.\n\nNeed conditions: [] but if clues include condition, then conditions array empty inconsistent? Conditions canonical list doesn't include impact/crash. Maybe leave empty. But clue kind condition can include crash scenario not canonical. That's okay? It might be fine. Hmm.\n\nCould set conditions [\"intermittent\"]? No, no intermittent. Don't invent. Empty.\n\nNeed final only JSON. Ensure valid JSON. Use double quotes. No trailing commas.\n\nFinal.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531030,
+      "id": "c85b55b1d31c96cd51a597cfb48eebb7",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1704,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1522,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0006396,
+          "billing_source": "go",
+          "list_cost": 0.001066,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 283,
+            "output": 1704,
+            "reasoning": 1522
+          }
+        },
+        "prompt_tokens": 667,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2371
+      }
+    },
+    "text": "{\"summary\":\"2006 Toyota Prius air bags did not deploy in a low-speed left-turn side impact; driver was injured.\",\"group\":\"restraints\",\"symptoms\":[\"air bags did not deploy\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"None of the air bags deployed.\"},{\"kind\":\"condition\",\"quote\":\"while slowly driving into an intersection and turning left at less than 3 MPH\"},{\"kind\":\"condition\",\"quote\":\"crashed into their driver's side door\"},{\"kind\":\"safety\",\"quote\":\"The contact received a broken rib, rotator cuff, whiplash, and back injuries.\"},{\"kind\":\"safety\",\"quote\":\"Medical attention was needed.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0006396,
+      "cached_tokens": 384,
+      "cost_usd": 0.001066,
+      "input_tokens": 667,
+      "list_cost_usd": 0.001066,
+      "output_tokens": 1704,
+      "reasoning_tokens": 1522
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "eae7e904006f9154ae38780e8b74f11bc60dd329e15780a46900c41cbac7d8c9",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 14289,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Back over prevention warnings (ADAS): shifter error, screen reads shift to park once car is turned off, slow turn-off, check engine light on reading for a filter; emergency exit/lock concern.\",\"group\":\"adas\",\"symptoms\":[\"shifter error\",\"screen reads shift to park once the car is turned off\",\"car takes time to turn off even when it is off\",\"check engine light is on and reads for a filter\",\"cannot get out of the car to lock it in an emergency\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"BACK OVER PREVENTION: WARNINGS\"},{\"kind\":\"symptom\",\"quote\":\"SHIFTER ERROR\"},{\"kind\":\"symptom\",\"quote\":\"SCREEN READS SHIFT TO PARK ONCE CAR IS TURNED OFF\"},{\"kind\":\"symptom\",\"quote\":\"THE CAR TAKES TIME TO TURN OFF EVEN WHEN ITS OFF\"},{\"kind\":\"safety\",\"quote\":\"IN AN EMERGENCY YOU CAN'T GET OUT OF YOUR CAR TO LOCK IT\"},{\"kind\":\"symptom\",\"quote\":\"THE CHECK ENGIN LIGHT IS ON\"},{\"kind\":\"symptom\",\"quote\":\"BUT IT READS FOR A FILTER\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize report. Component given \"BACK OVER PREVENTION: WARNINGS\" group adas. Narrative: \"SHIFTER ERROR - SCREEN READS SHIFT TO PARK ONCE CAR IS TURNED OFF ALREADY THE CAR TAKES TIME TO TURN OFF EVEN WHEN ITS OFF.  IN AN EMERGENCY YOU CAN'T GET OUT OF YOUR CAR TO LOCK IT  NO  NO  THE CHECK ENGIN LIGHT IS ON BUT IT READS FOR A FILTER\"\n\nNeed summary one line: component, symptom, conditions. Group adas? Given group adas. Symptoms plain words: shifter error, screen reads shift to park once car turned off, car takes time to turn off even when off, check engine light on reads for filter, cannot get out to lock car in emergency? That's symptom/risk? Safety? Report mentions \"IN AN EMERGENCY YOU CAN'T GET OUT OF YOUR CAR TO LOCK IT\" risk to people? Could be safety_relevant true? Rules set safety_relevant when crash fire smoke injury loss control stall at speed or another risk to people. \"In an emergency you can't get out of your car to lock it\" arguably risk to people. But input has safety_relevant false; we should determine from report. It mentions emergency and can't get out? Actually \"IN AN EMERGENCY YOU CAN'T GET OUT OF YOUR CAR TO LOCK IT\" maybe inability to exit to lock? It is a safety concern? Hmm. Could set true due to emergency risk. But maybe not crash/fire. \"another risk to people\" yes inability to get out in emergency. Need conditions: intermittent? after service? charging? None. Maybe \"when turned off\" is condition? Conditions list has cold, moisture, heat, vibration, intermittent, after service, charging. Report mentions once car turned off, even when off. That's not in list. Could include \"intermittent\"? No. conditions empty? But \"conditions\" in summary maybe \"when turned off\". In conditions array we can include only allowed? Prompt says conditions: [\"cold\",...]. It implies use these labels. No match. Could be empty. But missing_info: mileage null, date? received_at exists but report date? Date? It has received_at but not incident date. Missing info: mileage, date, conditions? Component and symptom present. Conditions? Report provides when turned off but not environmental. Analysis needs conditions maybe yes? But conditions list includes missing_info conditions. Since no conditions like cold etc, missing_info conditions. Also maybe component? It says back over prevention warnings but narrative shifter/check engine; component group mismatch? But given component. Missing_info could include \"conditions\", \"mileage\", \"date\". Date? received_at is 2025-05-07, but event date missing. Include date. Mileage null include mileage. Conditions maybe yes. Maybe missing \"component\" because narrative doesn't match back over prevention? But component provided. Hmm.\n\nFault codes: no code, just check engine light. fault_codes [].\n\nClues need verbatim quotes. Need kind. Quotes exact substrings. Need be careful with double spaces? We can copy from narrative. Need quote spans exactly. We can include:\n- {\"kind\":\"symptom\",\"quote\":\"SHIFTER ERROR\"}\n- {\"kind\":\"symptom\",\"quote\":\"SCREEN READS SHIFT TO PARK ONCE CAR IS TURNED OFF\"}\n- {\"kind\":\"symptom\",\"quote\":\"THE CAR TAKES TIME TO TURN OFF EVEN WHEN ITS OFF\"}\n- {\"kind\":\"symptom\",\"quote\":\"THE CHECK ENGIN LIGHT IS ON\"}\n- {\"kind\":\"other\",\"quote\":\"BUT IT READS FOR A FILTER\"} maybe symptom? It reads for filter. \n- {\"kind\":\"safety\",\"quote\":\"IN AN EMERGENCY YOU CAN'T GET OUT OF YOUR CAR TO LOCK IT\"} \n- {\"kind\":\"component_group\",\"quote\":\"BACK OVER PREVENTION: WARNINGS\"}? Not in narrative but component field? The report includes component field. Is that \"report\"? The JSON includes component. Quote can be from report? Likely yes, component field is part of report. But clue component_group quote \"BACK OVER PREVENTION: WARNINGS\" okay. However \"verbatim span copied from the report\"; the report includes component. Good.\nNeed summary \"Back over prevention warnings (ADAS): shifter error, screen reads shift to park once car turned off, slow turn-off, check engine light on reading for a filter; emergency exit/lock concern.\" one line. Mention component, symptom, conditions. Conditions \"when turned off\". Good.\n\nSafety_relevant: I lean true due to emergency cannot get out. But input says safety_relevant false; however instruction says set when mentions risk. The narrative explicitly \"IN AN EMERGENCY YOU CAN'T GET OUT OF YOUR CAR TO LOCK IT\" is risk to people. Set true. Could be considered \"another risk to people.\" Need not follow input.\n\nNeed output JSON only, no markdown? They said one JSON object and no other text. Final should be raw JSON.\n\nNeed ensure valid JSON. Quotes with apostrophe okay. Double quotes escaped? No. \"CAN'T\" okay in JSON string. Need no newline? fine.\n\nLet's craft. Symptoms array plain words:\n- \"shifter error\"\n- \"screen reads shift to park once the car is turned off\"\n- \"car takes time to turn off even when it is off\"\n- \"check engine light is on and reads for a filter\"\n- \"cannot get out of the car to lock it in an emergency\" (risk)\nBut symptoms list should be symptoms; safety clue separate. Could include as symptom? Maybe yes but safety. Maybe don't include in symptoms to avoid over. But it is reported issue. Hmm.\n\nConditions: []? But summary conditions when turned off. Conditions array could include \"when turned off\" but not allowed. The schema examples only. I think leave empty because none of labels match. But missing_info includes conditions. Wait \"conditions\" in missing_info means facts analysis needs. Since report says when turned off, that's condition but not environmental. The allowed conditions are specific. I can include \"conditions\" missing because no cold/moisture/heat etc. But if conditions array empty, missing_info conditions is appropriate. The summary includes \"when turned off\" not in conditions array. That's okay.\n\nMissing_info: [\"mileage\",\"date\",\"conditions\"]. Should we include \"component\"? Component given but mismatch. No. Maybe \"symptom\" present. Good.\n\nFault_codes [].\nGroup \"adas\".\n\nClues:\n- component_group quote \"BACK OVER PREVENTION: WARNINGS\" (from component field)\n- symptom quote \"SHIFTER ERROR\"\n- symptom quote \"SCREEN READS SHIFT TO PARK ONCE CAR IS TURNED OFF\"\n- symptom quote \"THE CAR TAKES TIME TO TURN OFF EVEN WHEN ITS OFF\"\n- safety quote \"IN AN EMERGENCY YOU CAN'T GET OUT OF YOUR CAR TO LOCK IT\"\n- symptom quote \"THE CHECK ENGIN LIGHT IS ON\"\n- symptom quote \"BUT IT READS FOR A FILTER\" maybe kind other? It is symptom/description. Use symptom.\nNeed quote exact including double spaces? The quotes themselves don't include surrounding double spaces, just span. \"SCREEN READS SHIFT TO PARK ONCE CAR IS TURNED OFF\" exactly yes. \"THE CAR TAKES TIME TO TURN OFF EVEN WHEN ITS OFF\" exactly? Narrative: \"ALREADY THE CAR TAKES TIME TO TURN OFF EVEN WHEN ITS OFF.\" Yes substring \"THE CAR TAKES TIME TO TURN OFF EVEN WHEN ITS OFF\" exact. \"THE CHECK ENGIN LIGHT IS ON\" exact (engin misspelled). \"BUT IT READS FOR A FILTER\" exact. \"IN AN EMERGENCY YOU CAN'T GET OUT OF YOUR CAR TO LOCK IT\" exact? Narrative: \"IN AN EMERGENCY YOU CAN'T GET OUT OF YOUR CAR TO LOCK IT  NO  NO\" yes. Good.\n\nSafety_relevant true.\n\nNeed final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793526738,
+      "id": "a99c4d84e7d4c1636b2ad58ddcb563e5",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2001,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1714,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0007377,
+          "billing_source": "go",
+          "list_cost": 0.0012295,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 185,
+            "output": 2001,
+            "reasoning": 1714
+          }
+        },
+        "prompt_tokens": 569,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2570
+      }
+    },
+    "text": "{\"summary\":\"Back over prevention warnings (ADAS): shifter error, screen reads shift to park once car is turned off, slow turn-off, check engine light on reading for a filter; emergency exit/lock concern.\",\"group\":\"adas\",\"symptoms\":[\"shifter error\",\"screen reads shift to park once the car is turned off\",\"car takes time to turn off even when it is off\",\"check engine light is on and reads for a filter\",\"cannot get out of the car to lock it in an emergency\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"BACK OVER PREVENTION: WARNINGS\"},{\"kind\":\"symptom\",\"quote\":\"SHIFTER ERROR\"},{\"kind\":\"symptom\",\"quote\":\"SCREEN READS SHIFT TO PARK ONCE CAR IS TURNED OFF\"},{\"kind\":\"symptom\",\"quote\":\"THE CAR TAKES TIME TO TURN OFF EVEN WHEN ITS OFF\"},{\"kind\":\"safety\",\"quote\":\"IN AN EMERGENCY YOU CAN'T GET OUT OF YOUR CAR TO LOCK IT\"},{\"kind\":\"symptom\",\"quote\":\"THE CHECK ENGIN LIGHT IS ON\"},{\"kind\":\"symptom\",\"quote\":\"BUT IT READS FOR A FILTER\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0007377,
+      "cached_tokens": 384,
+      "cost_usd": 0.0012295,
+      "input_tokens": 569,
+      "list_cost_usd": 0.0012295,
+      "output_tokens": 2001,
+      "reasoning_tokens": 1714
+    }
+  }
+}

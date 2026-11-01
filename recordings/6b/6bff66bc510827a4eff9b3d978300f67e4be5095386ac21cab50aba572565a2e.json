@@ -1,0 +1,66 @@
+{
+  "key": "6bff66bc510827a4eff9b3d978300f67e4be5095386ac21cab50aba572565a2e",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 15290,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Test ADAS for a BCI warning with multiple dash lights; no rulebook match, so a standard diagnostic scan is indicated.\",\"rationale\":\"The narrative reports a BCI message followed by multiple dash lights on a 2019 Nissan Armada. No rulebook entry matched and no fault codes or conditions were provided. Recall 19V654000 concerns rear camera display settings, and similar cases report BCI malfunction with multiple ADAS warnings, so a standard ADAS diagnostic scan and functional check is appropriate rather than a targeted load test.\",\"group\":\"adas\",\"symptoms\":[\"BCI message appears on dash\",\"a number of other dash lights\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"targeted\":false,\"test_name\":\"Standard ADAS diagnostic scan and functional check\",\"clues\":[{\"kind\":\"symptom\",\"quote\":\"Bci message appears on dash.\"},{\"kind\":\"symptom\",\"quote\":\"Then a number of other dash lights (see picture attached)\"}]}",
+            "reasoning_content": "We need answer JSON only. Need analyze. Case: 2019 Nissan Armada, BCI message on dash then other dash lights, no conditions, no fault codes. Rulebook empty, investigations empty, recall 19V654000 about back-up camera display settings not visible FMVSS 111. Similar cases include BCI malfunction entire system shut off, multiple warnings. But no rulebook match, so targeted false? Need propose standard test. Need maybe group adas. Symptoms. Conditions maybe none. Fault codes none. Safety_relevant false per case and no risk people? Narrative doesn't show risk to people. Recall exists but not necessarily safety? It is safety compliance. But safety_relevant should be narrative shows risk to people. No.\n\nNeed provide clues with verbatim quotes from case narrative, not extraction. Narrative: \"Bci message appears on dash. Then a number of other dash lights (see picture attached)\". Quotes must be exact spans. Could include \"Bci message appears on dash.\" and \"Then a number of other dash lights (see picture attached)\" and maybe component? Component is not narrative? \"BACK OVER PREVENTION: WARNINGS\" from case component not narrative. Rule says quotes copied verbatim from case narrative. So no component quote. Clues: symptom quotes. Maybe condition? none. Summary one line. Rationale mention no rulebook entry, recall for rear camera display settings but not exact match, similar cases BCI malfunction with multiple ADAS shutdown. But do not cite ids? We can mention recall? \"Do not cite a case, recall or investigation id that tool results do not contain.\" We can cite 19V654000 since contained. But quotes only narrative. Could mention recall in rationale. Need no extra text.\n\nTest_name: \"standard ADAS diagnostic scan and functional check\"? The rulebook names targeted test but empty. We propose standard test. Since targeted false, test_name can be standard test? Need maybe \"standard ADAS diagnostic test\" not named. The schema requires test_name string. Use \"Standard ADAS diagnostic scan and functional check\". Is that okay? The instruction says \"Otherwise propose the standard test (`\"targeted\": false`).\" We can use \"standard test\". Maybe \"Standard test\". Hmm.\n\nNeed include group \"adas\". targeted false. safety false. symptoms array from narrative: \"BCI message appears on dash\", \"a number of other dash lights\". conditions empty. fault_codes empty. clues list.\n\nSummary: \"Test ADAS for BCI warning with multiple dash lights; no rulebook match, standard diagnostic scan indicated.\" Rationale: \"The narrative reports a BCI message followed by multiple dash lights on a 2019 Nissan Armada. No rulebook entry matched and no fault codes were provided; recall 19V654000 concerns rear camera display settings, and similar cases report BCI malfunction with ADAS shutdown, so a standard ADAS diagnostic scan/functional check is appropriate rather than a targeted load test.\" Need avoid \"shutdown\" if similar case excerpt? It's in similar cases yes. But rationale can reference. Not cite id? We can cite recall id contained. Similar case ids contained but maybe not necessary. Good.\n\nClues exact: {\"kind\":\"symptom\",\"quote\":\"Bci message appears on dash.\"} and {\"kind\":\"symptom\",\"quote\":\"Then a number of other dash lights (see picture attached)\"}. Wait quote has \"Bci\" not \"BCI\". Verbatim. Good.\n\nNeed JSON only. Ensure no markdown.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793526405,
+      "id": "085b77d16d9b62f22a276ebee3108c03",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 944,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 730,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00047358,
+          "billing_source": "go",
+          "list_cost": 0.0007893,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 1486,
+            "output": 944,
+            "reasoning": 730
+          }
+        },
+        "prompt_tokens": 1486,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 2430
+      }
+    },
+    "text": "{\"summary\":\"Test ADAS for a BCI warning with multiple dash lights; no rulebook match, so a standard diagnostic scan is indicated.\",\"rationale\":\"The narrative reports a BCI message followed by multiple dash lights on a 2019 Nissan Armada. No rulebook entry matched and no fault codes or conditions were provided. Recall 19V654000 concerns rear camera display settings, and similar cases report BCI malfunction with multiple ADAS warnings, so a standard ADAS diagnostic scan and functional check is appropriate rather than a targeted load test.\",\"group\":\"adas\",\"symptoms\":[\"BCI message appears on dash\",\"a number of other dash lights\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"targeted\":false,\"test_name\":\"Standard ADAS diagnostic scan and functional check\",\"clues\":[{\"kind\":\"symptom\",\"quote\":\"Bci message appears on dash.\"},{\"kind\":\"symptom\",\"quote\":\"Then a number of other dash lights (see picture attached)\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00047358,
+      "cached_tokens": 0,
+      "cost_usd": 0.0007893,
+      "input_tokens": 1486,
+      "list_cost_usd": 0.0007893,
+      "output_tokens": 944,
+      "reasoning_tokens": 730
+    }
+  }
+}

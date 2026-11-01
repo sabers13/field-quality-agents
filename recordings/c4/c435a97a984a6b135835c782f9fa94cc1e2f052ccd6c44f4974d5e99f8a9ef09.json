@@ -1,0 +1,66 @@
+{
+  "key": "c435a97a984a6b135835c782f9fa94cc1e2f052ccd6c44f4974d5e99f8a9ef09",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 19346,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"AIR BAGS: no failure experienced; recall 23V865000 repair parts not yet available.\",\"group\":\"restraints\",\"symptoms\":[],\"conditions\":[],\"fault_codes\":[\"23V865000\"],\"safety_relevant\":false,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"fault_code\",\"quote\":\"23V865000\"},{\"kind\":\"condition\",\"quote\":\"the part to the recall repair was not yet available\"},{\"kind\":\"other\",\"quote\":\"The contact had not experienced a failure.\"},{\"kind\":\"condition\",\"quote\":\"VIN tool confirms parts not available.\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize report. Need read only report. Component AIR BAGS group restraints. Narrative: 2020 Toyota Highlander Hybrid, received notification NHTSA Campaign Number 23V865000 Air Bags; part for recall repair not yet available; manufacturer exceeded reasonable amount time; dealer aware confirmed parts not available; manufacturer aware; contact had not experienced failure; VIN tool confirms parts not available. No mileage. No symptom? \"had not experienced a failure\" means no symptom. Component present. Conditions? recall parts unavailable? Not cold/moisture etc. fault_codes: campaign number? It's not fault code but report names one. Rules fault_codes [\"code if report names one\"]; NHTSA Campaign Number 23V865000. Could include? It's a recall campaign number not diagnostic fault code. But \"fault_codes\" code if report names one. It names campaign number. Include? likely yes? Hmm \"fault_codes\": [\"23V865000\"] maybe. But campaign number isn't fault code. Yet source field? Need maybe include as fault_code? The schema allows clues kind fault_code. But if not fault code, maybe clue kind other. Need infer expected. We need JSON. Summary one line: component, symptom, conditions. Component AIR BAGS; symptom none/no failure; condition recall repair parts unavailable. Summary: \"AIR BAGS: no failure experienced; recall 23V865000 repair parts unavailable.\" That includes component symptom conditions. group restraints. symptoms: [] because no failure. conditions: maybe [\"recall parts unavailable\"]? The allowed conditions list are [\"cold\",\"moisture\",\"heat\",\"vibration\",\"intermittent\",\"after service\",\"charging\"] but says conditions array; likely pick from allowed? It lists exact enum examples? In schema conditions [\"cold\",...]. We should use only those if applicable. None apply. So conditions []. safety_relevant false. missing_info: mileage? The report has mileage null. Analysis needs mileage? For field quality report, missing mileage. Date? received_at present 2025-03-26; date? not incident date. Component and symptom present? Symptom absent? Report says no failure. Is missing symptom? If no failure, no symptom is a fact, not missing? But analysis needs symptom. Hmm \"missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. Use empty when nothing important missing.\" We have component, conditions? conditions maybe recall status, not environmental. Mileage missing. Date? received_at present but not incident date; but no incident. Should missing_info include mileage only? Could include symptom? The report explicitly says contact had not experienced a failure, so symptom is \"no failure\" not missing. Conditions? It includes recall parts unavailable; environmental conditions not applicable. Date? received_at. I'd list [\"mileage\"] because null. Maybe date? No, received_at present. Could list mileage only.\n\nClues: need quote verbatim. Need include symptom? \"The contact had not experienced a failure.\" kind symptom? It's absence of symptom; could quote as symptom? Maybe kind other? It is relevant. Condition quote: \"the part to the recall repair was not yet available\" verbatim? Narrative exact: \"however, the part to the recall repair was not yet available.\" Need exact substring. Use quote \"the part to the recall repair was not yet available\" exactly? Let's check narrative: \"however, the part to the recall repair was not yet available.\" Yes. kind condition? condition not in enum but recall availability. fault_code quote: \"NHTSA Campaign Number: 23V865000\" exact. kind fault_code. component_group quote: \"AIR BAGS\" exact? component field is AIR BAGS, narrative has \"(Air Bags)\" exact? We can quote \"Air Bags\" from narrative. But component group? group restraints not in narrative. Could quote \"AIR BAGS\" but not in narrative? The report includes component field; user message has JSON. Quote can be from report including component field. Verbatim \"AIR BAGS\" in component field. kind component_group. safety? none. other quote for no failure maybe \"The contact had not experienced a failure.\" kind other? It indicates no symptom. Could also include \"VIN tool confirms parts not available.\" condition. Need not overdo.\n\nNeed ensure JSON only no markdown. Desired oververbosity 5 but prompt strict. Need produce one object.\n\nNeed decide safety_relevant: false. Report no crash/fire etc. Good.\n\nNeed summary one line: \"AIR BAGS: no failure experienced; recall 23V865000 repair parts not yet available.\" Contains component symptom conditions. Good.\n\nSymptoms: [] or [\"no failure experienced\"]? Symptom in plain words. If no failure, no symptom. But summary includes no failure. The schema says symptoms array of symptom in plain words. Could include \"no failure experienced\" as symptom? That's not symptom. Better empty. But maybe expected to capture \"no failure\". Yet symptoms should be symptoms; absence isn't. missing_info? If symptoms empty, missing symptom? But report states none. I'd not include missing symptom because it's explicitly no failure. Analysis can know no symptom. Hmm.\n\nFault codes: [\"23V865000\"]. It's a campaign number, not fault code. But report names a code. The prompt says fault_codes [\"code if report names one\"]. Include. Could also include \"NHTSA Campaign Number: 23V865000\"? No, code only. Use \"23V865000\".\n\nConditions: [] because none of listed. But recall parts unavailable is condition. The allowed array in schema has examples; not necessarily strict? It says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. This looks like allowed set. \"recall parts unavailable\" not in set. Should we include? The intake normalizes conditions. The report condition is not environmental; it's service/recall availability. \"after service\" no. So empty. But summary includes recall parts unavailable.\n\nMissing_info: [\"mileage\"]. Maybe \"date\"? There is received_at but not incident date. Since no incident, no date needed. Could include \"conditions\" because no environmental conditions? But not applicable. Only mileage is null. Good.\n\nClues: Need verbatim spans. Let's select:\n- component_group: quote \"AIR BAGS\" (from component field) or \"Air Bags\" from narrative. Since report JSON has \"component\": \"AIR BAGS\". Use \"AIR BAGS\". Verbatim.\n- fault_code: quote \"23V865000\" from narrative? Narrative has \"23V865000\". Good.\n- condition: quote \"the part to the recall repair was not yet available\" exact substring? Narrative: \"however, the part to the recall repair was not yet available.\" Yes substring includes no \"however\". Good.\n- other: quote \"The contact had not experienced a failure.\" exact. This is important no symptom. kind other or symptom? It's an absence of symptom; kind other.\n- condition: quote \"VIN tool confirms parts not available.\" exact.\nMaybe safety? no.\n\nNeed ensure quote \"the part to the recall repair was not yet available\" exact includes \"the part to the recall repair\" unusual grammar yes. Let's verify narrative: \"however, the part to the recall repair was not yet available.\" Yes.\n\nCould include condition \"parts were not yet available\" exact from \"confirmed that parts were not yet available.\" Use \"parts were not yet available\". Good. But one condition enough.\n\nNeed produce JSON with no extra text. final only.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793525783,
+      "id": "a41bb223e6f51db51f0e50a8db650f89",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1756,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1611,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00065184,
+          "billing_source": "go",
+          "list_cost": 0.0010864,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 211,
+            "output": 1756,
+            "reasoning": 1611
+          }
+        },
+        "prompt_tokens": 595,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2351
+      }
+    },
+    "text": "{\"summary\":\"AIR BAGS: no failure experienced; recall 23V865000 repair parts not yet available.\",\"group\":\"restraints\",\"symptoms\":[],\"conditions\":[],\"fault_codes\":[\"23V865000\"],\"safety_relevant\":false,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"fault_code\",\"quote\":\"23V865000\"},{\"kind\":\"condition\",\"quote\":\"the part to the recall repair was not yet available\"},{\"kind\":\"other\",\"quote\":\"The contact had not experienced a failure.\"},{\"kind\":\"condition\",\"quote\":\"VIN tool confirms parts not available.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00065184,
+      "cached_tokens": 384,
+      "cost_usd": 0.0010864,
+      "input_tokens": 595,
+      "list_cost_usd": 0.0010864,
+      "output_tokens": 1756,
+      "reasoning_tokens": 1611
+    }
+  }
+}

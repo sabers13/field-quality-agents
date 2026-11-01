@@ -1,0 +1,66 @@
+{
+  "key": "abec8afc2ac355a59d342a7a79a1ddaea5d525d3ee75da9bf31e20378a2523a4",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 8617,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Exterior lighting: all dash lights go out when windshield wipers are turned on.\",\n  \"group\": \"lighting\",\n  \"symptoms\": [\n    \"all dash lights go out when windshield wipers are turned on\",\n    \"no warning lights warn of an electrical system issue\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"missing_info\": [\n    \"mileage\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"When the windshield wipers are turned on all the dash lights go out.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"When the windshield wipers are turned on\"\n    },\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"EXTERIOR LIGHTING\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"There were no warning lights to warn me of an issue with the electrical system.\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer JSON only. Need normalize report. Component exterior lighting but symptom dash lights go out when wipers on. Group lighting? Given group \"lighting\". Need symptoms plain words. Conditions: maybe \"when windshield wipers are turned on\" but allowed conditions list cold moisture heat vibration intermittent after service charging. The condition isn't in enumerated list? Schema says conditions array [\"cold\",\"moisture\",...]. We should choose maybe \"intermittent\"? Not exactly. Report says when wipers turned on all dash lights go out. That's a condition but not in list. We can include \"when windshield wipers are turned on\" maybe? But examples? Prompt says conditions: [\"cold\", ...]. Likely use only those? It says \"conditions\": [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. Could include none. But condition is wiper activation. Hmm.\n\nNeed summary one line component, symptom, conditions. \"Exterior lighting / dash lights go out when windshield wipers are turned on.\" Wait component is EXTERIOR LIGHTING but symptom is dash lights. Use component given. Group lighting.\n\nSymptoms: \"all dash lights go out when windshield wipers are turned on\"; maybe \"no warning lights warn of electrical system issue\". Fault_codes none. safety_relevant false (given and no risk mention). missing_info: mileage null, date? received_at exists 2025-05-08 but report date? missing mileage. Component? Given. Symptom? given. Conditions? given. Missing_info likely [\"mileage\"]. Could include date? They have received_at not incident date. The analysis needs date? Maybe missing incident date. Prompt says missing_info facts analysis needs: component, symptom, conditions, mileage, date. The report has received_at but not event date. Should include \"mileage\", \"date\" maybe. But date could be received_at. It asks \"date\" likely incident date. Should include mileage and date? We need be careful. Report has received_at 2025-05-08, so date present? It is received date, not necessarily incident date. But missing_info only facts analysis needs; mileage definitely missing. Date maybe not if received_at. I'd include \"mileage\" only to avoid over. But maybe include \"date\" because incident date missing. Hmm.\n\nNeed clues with verbatim quotes. Need quote exact spans from narrative. Could include:\n- {\"kind\":\"symptom\",\"quote\":\"When the windshield wipers are turned on all the dash lights go out.\"}\n- {\"kind\":\"condition\",\"quote\":\"When the windshield wipers are turned on\"}\n- {\"kind\":\"component_group\",\"quote\":\"EXTERIOR LIGHTING\"}? Quote must from report; component field is in JSON. Is that \"report\"? User message includes JSON with component. Verbatim \"EXTERIOR LIGHTING\" yes. But clues should quote from report, okay. Maybe include component_group quote \"EXTERIOR LIGHTING\".\n- {\"kind\":\"other\",\"quote\":\"There were no warning lights to warn me of an issue with the electrical system.\"} Could be symptom? It is symptom/no warning. Kind other maybe. But symptom quote enough. Need not too many.\n\nSafety false. Need valid JSON no other text. Ensure quotes exact: narrative: \"When the windshield wipers are turned on all the dash lights go out. There were no warning lights to warn me of an issue with the electrical system. I called a Jeep Wave Specialist, and I was told to take my Jeep to a dealer to diagnosis the problem.\"\n\nQuote \"When the windshield wipers are turned on all the dash lights go out.\" exact. Condition quote \"When the windshield wipers are turned on\" exact substring.\n\nSummary: \"Exterior lighting: all dash lights go out when windshield wipers are turned on.\" Component given exterior lighting but symptom dash lights. Conditions: wiper on. Good.\n\nNeed conditions array. Should we include \"intermittent\"? Not stated; only when wipers on. Don't invent. Could use empty list because no listed condition. But summary mentions condition. The schema conditions list only enumerated; if no match, empty. However \"when windshield wipers are turned on\" is a condition. But allowed array examples? It says conditions: [\"cold\", ...]. I think must use those categories. A wiper-activated issue is not in list. Maybe \"intermittent\" no. So conditions: [].\n\nBut clue kind condition can include quote. Good.\n\nNeed missing_info: mileage null. Maybe date? received_at present. Include \"mileage\" only. Safety false.\n\nLet's craft JSON. Ensure no markdown? User says answer with one JSON object and no other text. Final should be raw JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793526797,
+      "id": "dc9289c6cba8e2dbb1c791d6aedd8669",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1215,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 990,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00045204,
+          "billing_source": "go",
+          "list_cost": 0.0007534,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 155,
+            "output": 1215,
+            "reasoning": 990
+          }
+        },
+        "prompt_tokens": 539,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1754
+      }
+    },
+    "text": "{\n  \"summary\": \"Exterior lighting: all dash lights go out when windshield wipers are turned on.\",\n  \"group\": \"lighting\",\n  \"symptoms\": [\n    \"all dash lights go out when windshield wipers are turned on\",\n    \"no warning lights warn of an electrical system issue\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"missing_info\": [\n    \"mileage\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"When the windshield wipers are turned on all the dash lights go out.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"When the windshield wipers are turned on\"\n    },\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"EXTERIOR LIGHTING\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"There were no warning lights to warn me of an issue with the electrical system.\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00045204,
+      "cached_tokens": 384,
+      "cost_usd": 0.0007534,
+      "input_tokens": 539,
+      "list_cost_usd": 0.0007534,
+      "output_tokens": 1215,
+      "reasoning_tokens": 990
+    }
+  }
+}

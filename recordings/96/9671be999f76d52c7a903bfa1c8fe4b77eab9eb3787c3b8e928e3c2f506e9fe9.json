@@ -1,0 +1,66 @@
+{
+  "key": "9671be999f76d52c7a903bfa1c8fe4b77eab9eb3787c3b8e928e3c2f506e9fe9",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10998,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Lane Keeping Assistance misread a trash can and pickup truck on a narrow unlit city street at 7 mph at night, steering the Corolla into a parked vehicle; prior quick light/noise.\",\"group\":\"adas\",\"symptoms\":[\"Lane Keeping Assistance read a trash can on the left and pickup truck on the right\",\"vehicle pulled to the right side and hit a parked vehicle\",\"quick light and noise the day before the incident\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"Lane Keeping Assistance\"},{\"kind\":\"symptom\",\"quote\":\"read a trash can on the left and pickup truck on the right\"},{\"kind\":\"condition\",\"quote\":\"city street with no lights at 7 mph around 10pm\"},{\"kind\":\"condition\",\"quote\":\"narrow street\"},{\"kind\":\"symptom\",\"quote\":\"hitting a parked vehicle\"},{\"kind\":\"safety\",\"quote\":\"hitting a parked vehicle\"},{\"kind\":\"symptom\",\"quote\":\"initial issues with quick light and noise\"},{\"kind\":\"other\",\"quote\":\"FTS inspection on 08/22/25\"}]}",
+            "reasoning_content": "We need answer one JSON object no other text. Need normalize report. Read only report. Need summary one line component symptom conditions. Group adas given. Symptoms plain words. Conditions from list: cold moisture heat vibration intermittent after service charging. Report mentions city street no lights 7 mph around 10pm, lane keeping assistance read trash can left and pickup truck right on narrow street pulling it completely to right side and hitting parked vehicle. Initial issues with quick light and noise day before incident. FTS inspection scheduled. Safety relevant true because crash/hitting parked vehicle. Fault codes none. Missing info: component? component given Lane Departure Assist. symptom yes. conditions? Has conditions (time, speed, street) but maybe missing weather? The missing_info list only facts analysis needs: component, symptom, conditions, mileage, date. Mileage null => missing mileage. Date? received_at 2025-08-25, incident date not explicitly? \"around 10pm\" no date. It mentions inspection 08/22/25 day? Actually \"initial issues ... day before incident\" and FTS inspection on 08/22/25. Incident maybe 08/23? Not explicit. Missing date. Conditions present enough? Maybe conditions missing? Report says no lights at 7 mph around 10pm city street narrow. That's conditions. Could include missing_info [\"mileage\",\"date\"]. Component present. Symptom present. Safety true.\n\nClues verbatim spans. Need quotes copied exactly. Could use:\n- \"Lane Keeping Assistance read a trash can on the left and pickup truck on the right on the narrow street pulling it completed to the right  side and hitting a parked vehicle.\" Need exact double spaces? Report: \"pulling it completed to the right  side\" has two spaces between right and side. We must copy character for character. Need be careful. Let's copy exact. Narrative:\n\"Vehicle driving thru a city street with no lights at 7 mph around 10pm when the Lane Keeping Assistance read a trash can on the left and pickup truck on the right on the narrow street pulling it completed to the right  side and hitting a parked vehicle.  Vehicle presented initial issues with quick light and noise the day before the incident.  Damages does not reflect a vehicle driving at 7mph(GPS tracker video available but unable to upload)  Vehicle manufactures ran a completed FTS inspection on 08/22/25 at local dealership - Results will not be provided for another 45 - 60 days.\"\n\nNeed quotes verbatim. For symptom: maybe \"Lane Keeping Assistance read a trash can on the left and pickup truck on the right\" exact. Condition: \"city street with no lights at 7 mph around 10pm\" exact. Another symptom: \"hitting a parked vehicle\". Safety clue: \"hitting a parked vehicle\". Component group clue: \"Lane Keeping Assistance\". Fault code none. Other clue: \"quick light and noise\" exact? It says \"initial issues with quick light and noise\". Could quote \"initial issues with quick light and noise\". Condition \"narrow street\". Could include.\n\nNeed output JSON only. Ensure valid. Summary one line: \"Lane Keeping Assistance misread roadside objects on a narrow unlit city street at 7 mph and steered vehicle into parked car; prior quick light/noise.\" Conditions list from allowed: \"intermittent\"? No. \"after service\"? no. \"charging\"? no. \"cold/moisture/heat/vibration\"? no. Conditions in report: unlit city street at night, low speed, narrow street. But schema conditions array expects [\"cold\",\"moisture\",\"heat\",\"vibration\",\"intermittent\",\"after service\",\"charging\"]; not exhaustive? It says conditions: [\"cold\", ...]. We should only use those if applicable. None applicable? Hmm \"conditions\" in summary includes \"unlit city street, 7 mph, night, narrow\" but conditions array? The allowed list are condition tags. If none, empty list. But perhaps \"intermittent\" due initial issues day before? No. So conditions: [].\n\nSymptoms: [\"Lane Keeping Assistance read a trash can on the left and pickup truck on the right\", \"vehicle pulled to the right side and hit a parked vehicle\", \"quick light and noise the day before\"]. Plain words. We can include.\n\nFault_codes: [].\n\nMissing_info: [\"mileage\",\"date\"]? Date of incident missing, yes. Conditions? We have conditions. Component present. Symptom present. Mileage missing. Maybe \"date\" incident date missing. Include.\n\nClues:\n- {\"kind\":\"component_group\",\"quote\":\"Lane Keeping Assistance\"}\n- {\"kind\":\"symptom\",\"quote\":\"read a trash can on the left and pickup truck on the right\"}\n- {\"kind\":\"condition\",\"quote\":\"city street with no lights at 7 mph around 10pm\"}\n- {\"kind\":\"symptom\",\"quote\":\"hitting a parked vehicle\"}\n- {\"kind\":\"safety\",\"quote\":\"hitting a parked vehicle\"}\n- {\"kind\":\"symptom\",\"quote\":\"initial issues with quick light and noise\"}\n- {\"kind\":\"other\",\"quote\":\"FTS inspection on 08/22/25\"}\n\nNeed ensure each quote verbatim. \"read a trash can on the left and pickup truck on the right\" appears exactly? Report: \"the Lane Keeping Assistance read a trash can on the left and pickup truck on the right on the narrow street\". Yes substring.\n\n\"city street with no lights at 7 mph around 10pm\" appears? \"driving thru a city street with no lights at 7 mph around 10pm\" yes.\n\n\"hitting a parked vehicle\" appears yes.\n\n\"initial issues with quick light and noise\" appears yes.\n\n\"FTS inspection on 08/22/25\" appears? \"ran a completed FTS inspection on 08/22/25\" yes.\n\nCould include condition \"narrow street\" verbatim. Fine.\n\nNeed no other text. JSON valid. Ensure `safety_relevant`: true.\n\nPotential issue: group in prompt \"the electrical/electronic component group, or the given group\" given adas. Use \"adas\".\n\nSummary one line. Should mention component, symptom, conditions. \"Lane Keeping Assistance misread a trash can and pickup truck on a narrow unlit city street at 7 mph at night, steering into a parked vehicle; prior quick light/noise.\" Good.\n\nNeed maybe include \"2025 Toyota Corolla\"? Not necessary but component. Summary can include.\n\nLet's final JSON only.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529747,
+      "id": "d60d6237c479100601f34ecf1ac8ff6c",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1620,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1360,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0006045,
+          "billing_source": "go",
+          "list_cost": 0.0010075,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 229,
+            "output": 1620,
+            "reasoning": 1360
+          }
+        },
+        "prompt_tokens": 613,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2233
+      }
+    },
+    "text": "{\"summary\":\"Lane Keeping Assistance misread a trash can and pickup truck on a narrow unlit city street at 7 mph at night, steering the Corolla into a parked vehicle; prior quick light/noise.\",\"group\":\"adas\",\"symptoms\":[\"Lane Keeping Assistance read a trash can on the left and pickup truck on the right\",\"vehicle pulled to the right side and hit a parked vehicle\",\"quick light and noise the day before the incident\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"Lane Keeping Assistance\"},{\"kind\":\"symptom\",\"quote\":\"read a trash can on the left and pickup truck on the right\"},{\"kind\":\"condition\",\"quote\":\"city street with no lights at 7 mph around 10pm\"},{\"kind\":\"condition\",\"quote\":\"narrow street\"},{\"kind\":\"symptom\",\"quote\":\"hitting a parked vehicle\"},{\"kind\":\"safety\",\"quote\":\"hitting a parked vehicle\"},{\"kind\":\"symptom\",\"quote\":\"initial issues with quick light and noise\"},{\"kind\":\"other\",\"quote\":\"FTS inspection on 08/22/25\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0006045,
+      "cached_tokens": 384,
+      "cost_usd": 0.0010075,
+      "input_tokens": 613,
+      "list_cost_usd": 0.0010075,
+      "output_tokens": 1620,
+      "reasoning_tokens": 1360
+    }
+  }
+}

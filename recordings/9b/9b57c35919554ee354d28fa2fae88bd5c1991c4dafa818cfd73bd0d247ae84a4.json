@@ -1,0 +1,66 @@
+{
+  "key": "9b57c35919554ee354d28fa2fae88bd5c1991c4dafa818cfd73bd0d247ae84a4",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11473,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Forward collision avoidance/automatic emergency braking reported with total brake failure at 4,811 miles, recurring after repair and associated with avoiding pedestrians at a stop sign.\",\"group\":\"adas\",\"symptoms\":[\"total brake failure\",\"recurrent brake failure after repair\",\"brake issues\"],\"conditions\":[\"after service\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"},{\"kind\":\"symptom\",\"quote\":\"TOTAL BRAKE FAILURE causing my wife to drive thru a stop sign avoiding pedestrians\"},{\"kind\":\"condition\",\"quote\":\"The vehicle was again repaired\"},{\"kind\":\"symptom\",\"quote\":\"again TOTAL BRAKE FAILURE\"},{\"kind\":\"symptom\",\"quote\":\"a lot of brake issues\"},{\"kind\":\"safety\",\"quote\":\"drive thru a stop sign avoiding pedestrians\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize report. Need follow rules. Need read component \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\", group adas. Narrative mentions total brake failure causing wife drive thru stop sign avoiding pedestrians. Safety relevant true due risk to people/pedestrians/loss of control? Yes. Symptoms plain words: total brake failure, repeated after repair, brake issues. Conditions? \"after service\" because repaired and failed again when porter moved. Maybe \"intermittent\"? It failed twice, not necessarily intermittent. Avoid invent. Conditions include \"after service\" quote \"again TOTAL BRAKE FAILURE\" after repaired. Could include nothing else. Fault codes none. missing_info: mileage present in narrative \"4811 miles\" but field null; date? received_at present; conditions? component/symptom present. Maybe missing_info empty? It has mileage in narrative, date received. Could list \"date\" because event dates redacted? But analysis needs date? It has received_at but occurrence date redacted. Hmm missing_info only facts analysis needs: component, symptom, conditions, mileage, date. We have component/symptom/mileage (in narrative), conditions after service. Date of incident redacted. Should list [\"date\"]? The report has received_at 2025-07-29 but incident date redacted. Could list date. But maybe missing info only if not present. Date is redacted, so missing. Mileage present. Conditions maybe enough. Need clues with verbatim quotes. Need quote exact spans. We can quote from narrative. Need ensure verbatim character for character. Quotes:\n- \"TOTAL BRAKE FAILURE\" appears twice. Quote exact uppercase. In narrative: \"it had TOTAL BRAKE FAILURE causing my wife to drive thru a stop sign avoiding pedestrians.\" yes.\n- \"again TOTAL BRAKE FAILURE\" appears \"and again TOTAL BRAKE FAILURE.\" Quote exact.\n- \"after service\" kind condition quote? Need quote verbatim span containing condition. \"when I went to get it\" not after service? Better quote \"The vehicle was again repaired\" or \"again TOTAL BRAKE FAILURE\" indicates after service. For condition clue, quote \"again TOTAL BRAKE FAILURE\" maybe. But kind condition. Need quote verbatim.\n- safety: quote \"drive thru a stop sign avoiding pedestrians\" or \"TOTAL BRAKE FAILURE causing my wife to drive thru a stop sign avoiding pedestrians\". Use exact.\n- component_group: quote \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\" from component? Is that \"report\"? The user message JSON includes component. Yes can quote. But clues should from report; field component is in report. Good.\n- symptom: \"brake issues\" quote \"This car model has a lot of brake issues\" exact? Narrative: \"This car model has a lot of brake issues and I can't...\" yes quote \"a lot of brake issues\" exact. Could include.\nNeed summary one line: component, symptom, conditions. \"Automatic emergency braking / brake system: total brake failure at 4,811 miles, repeated after repair; vehicle driven through stop sign to avoid pedestrians.\" But component is forward collision avoidance automatic emergency braking, but narrative brake failure. Need not invent \"brake system\"? It says total brake failure. Summary: \"Forward collision avoidance/automatic emergency braking reported with total brake failure at 4,811 miles, recurring after repair and associated with avoiding pedestrians at a stop sign.\" Good.\n\nNeed JSON only. Ensure safety_relevant true. missing_info maybe [\"date\"]? Let's think. The report includes received_at date but redacted incident date. Analysis needs date? \"date\" in missing_info only facts analysis needs. The date of occurrence not given. Use [\"date\"] maybe. But if received_at is date, maybe not missing. \"mileage\": narrative 4811 but field null. We can include mileage? Since report names it, not missing. \"conditions\" after service present. \"component\" present. \"symptom\" present. Date of incident redacted. So [\"date\"]. Good.\n\nNeed no other text. JSON object. Quote exact: Need check narrative exact: \"With only 4811 miles on our Jeep Wagoneer, it had TOTAL BRAKE FAILURE causing my wife to drive thru a stop sign avoiding pedestrians.\" Quote \"TOTAL BRAKE FAILURE causing my wife to drive thru a stop sign avoiding pedestrians\" exact? It has \"causing my wife to drive thru a stop sign avoiding pedestrians.\" Yes. But quote \"drive thru a stop sign avoiding pedestrians\" exact. Good.\nSecond: \"The porter went to move the car and again TOTAL BRAKE FAILURE.\" exact. Quote \"again TOTAL BRAKE FAILURE\" exact. It appears twice? Actually phrase \"and again TOTAL BRAKE FAILURE\" yes.\nCondition after service: quote \"The vehicle was again repaired\" exact? Narrative: \"The vehicle was again repaired and when I went to get it\" yes. But condition is after service, quote \"again TOTAL BRAKE FAILURE\" better? Hmm kind condition with quote \"again TOTAL BRAKE FAILURE\" duplicates symptom. Could use \"when I went to get it\" no. Maybe \"The vehicle was again repaired\" indicates after repair. Use that.\nComponent group quote \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\". Good.\nSymptom \"a lot of brake issues\" exact. Good.\nSafety quote \"drive thru a stop sign avoiding pedestrians\" exact. Good.\n\nNeed symptoms array plain words: [\"total brake failure\", \"recurrent brake failure after repair\", \"brake issues\"]. Good. Conditions: [\"after service\"]. Could include \"after repair\" but allowed list has \"after service\". Use after service. Maybe \"after service\" condition. Good.\n\nFault codes [].\n\nClues kind allowed symptom|condition|fault_code|component_group|safety|other. Need clues list. Could include multiple. Ensure no quote with ellipsis. Good.\n\nFinal JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529012,
+      "id": "3342fbfcb1789a338149f6b9b2dd8ef4",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1474,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1266,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00055986,
+          "billing_source": "go",
+          "list_cost": 0.0009331,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 317,
+            "output": 1474,
+            "reasoning": 1266
+          }
+        },
+        "prompt_tokens": 701,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2175
+      }
+    },
+    "text": "{\"summary\":\"Forward collision avoidance/automatic emergency braking reported with total brake failure at 4,811 miles, recurring after repair and associated with avoiding pedestrians at a stop sign.\",\"group\":\"adas\",\"symptoms\":[\"total brake failure\",\"recurrent brake failure after repair\",\"brake issues\"],\"conditions\":[\"after service\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"},{\"kind\":\"symptom\",\"quote\":\"TOTAL BRAKE FAILURE causing my wife to drive thru a stop sign avoiding pedestrians\"},{\"kind\":\"condition\",\"quote\":\"The vehicle was again repaired\"},{\"kind\":\"symptom\",\"quote\":\"again TOTAL BRAKE FAILURE\"},{\"kind\":\"symptom\",\"quote\":\"a lot of brake issues\"},{\"kind\":\"safety\",\"quote\":\"drive thru a stop sign avoiding pedestrians\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00055986,
+      "cached_tokens": 384,
+      "cost_usd": 0.0009331,
+      "input_tokens": 701,
+      "list_cost_usd": 0.0009331,
+      "output_tokens": 1474,
+      "reasoning_tokens": 1266
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "fde238cbb9e1f1e119f24e1e2a5ae2b54aecc472049a8df258b9a7b3a0781ee6",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 7554,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\": \"Run the standard test for a reported odometer/mileage discrepancy after a private sale, since no rulebook match supports a targeted load test.\", \"rationale\": \"The narrative reports odometer fraud and a mileage discrepancy: the purchase mileage was stated as 193,786 while a Carfax report showed a title mileage of 211,529. No operating conditions, fault codes, recalls, investigations, similar cases, or rulebook entries were returned, so the standard test is proposed rather than a targeted test.\", \"group\": \"instrumentation\", \"symptoms\": [\"odometer fraud\", \"mileage discrepancy\"], \"conditions\": [], \"fault_codes\": [], \"safety_relevant\": false, \"targeted\": false, \"test_name\": \"standard test\", \"clues\": [{\"kind\": \"symptom\", \"quote\": \"Odometer Fraud\"}, {\"kind\": \"symptom\", \"quote\": \"mileage discrepancy\"}, {\"kind\": \"other\", \"quote\": \"private sale\"}, {\"kind\": \"other\", \"quote\": \"At the time of purchase, the vehicle mileage was 193,786\"}, {\"kind\": \"other\", \"quote\": \"Title mileage was 211,529\"}]}",
+            "reasoning_content": "We need answer JSON only. Need analyze. No rulebook matches, no recalls, investigations, similar. Case odometer fraud mileage discrepancy. Need propose standard test targeted false. Test_name? Standard test likely \"standard test\" but schema asks test_name targeted test rulebook names. Since not targeted, maybe test_name could be \"standard field-quality test\" or empty? We need infer. We should provide summary, rationale, group instrumentation, symptoms, conditions, fault_codes, safety false, targeted false, test_name maybe \"standard test\". Clues verbatim from narrative. Ensure quotes verbatim. Narrative contains \"Odometer Fraud.\", \"mileage discrepancy\", \"private sale\", \"At the time of purchase, the vehicle mileage was 193,786.\", \"Title mileage was 211,529.\" Component group quote from narrative \"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\" is actually component field not narrative? It appears in case component not narrative. Rule says quote copied from case narrative. So cannot use component field? \"case narrative\" specifically narrative string. Need quotes from narrative only. We can cite \"Odometer Fraud\", \"mileage discrepancy\", \"private sale\", \"At the time of purchase, the vehicle mileage was 193,786\", \"Title mileage was 211,529\". Maybe also \"2000 Honda Civic\" but narrative has \"The contact purchased a 2000 Honda Civic.\" quote \"2000 Honda Civic\". Good.\n\nNeed decide conditions empty; fault_codes empty. targeted false. test_name perhaps \"standard test\" no rulebook. Could be \"No targeted test; standard test\". The instructions: \"Otherwise propose the standard test (`\"targeted\": false`).\" So test_name \"standard test\". Summary one line what to test and why. \"Standard test for odometer/mileage discrepancy after private sale; no conditions or rulebook match.\" Rationale.\n\nNeed ensure JSON valid no other text.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529795,
+      "id": "5ea5408c3664a8555f3a341560f241f3",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 666,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 408,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00031329,
+          "billing_source": "go",
+          "list_cost": 0.00052215,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 817,
+            "output": 666,
+            "reasoning": 408
+          }
+        },
+        "prompt_tokens": 817,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 1483
+      }
+    },
+    "text": "{\"summary\": \"Run the standard test for a reported odometer/mileage discrepancy after a private sale, since no rulebook match supports a targeted load test.\", \"rationale\": \"The narrative reports odometer fraud and a mileage discrepancy: the purchase mileage was stated as 193,786 while a Carfax report showed a title mileage of 211,529. No operating conditions, fault codes, recalls, investigations, similar cases, or rulebook entries were returned, so the standard test is proposed rather than a targeted test.\", \"group\": \"instrumentation\", \"symptoms\": [\"odometer fraud\", \"mileage discrepancy\"], \"conditions\": [], \"fault_codes\": [], \"safety_relevant\": false, \"targeted\": false, \"test_name\": \"standard test\", \"clues\": [{\"kind\": \"symptom\", \"quote\": \"Odometer Fraud\"}, {\"kind\": \"symptom\", \"quote\": \"mileage discrepancy\"}, {\"kind\": \"other\", \"quote\": \"private sale\"}, {\"kind\": \"other\", \"quote\": \"At the time of purchase, the vehicle mileage was 193,786\"}, {\"kind\": \"other\", \"quote\": \"Title mileage was 211,529\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00031329,
+      "cached_tokens": 0,
+      "cost_usd": 0.00052215,
+      "input_tokens": 817,
+      "list_cost_usd": 0.00052215,
+      "output_tokens": 666,
+      "reasoning_tokens": 408
+    }
+  }
+}

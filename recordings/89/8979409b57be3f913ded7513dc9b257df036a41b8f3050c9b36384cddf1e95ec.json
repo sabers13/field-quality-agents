@@ -1,0 +1,66 @@
+{
+  "key": "8979409b57be3f913ded7513dc9b257df036a41b8f3050c9b36384cddf1e95ec",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12485,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"ADAS automatic emergency braking: after stopping in regenerative braking mode, car lunged forward at high speed with brake applied and hit a parked van; airbags did not deploy.\",\"group\":\"adas\",\"symptoms\":[\"vehicle lunged forward at high speed while brake pedal was applied\",\"brakes were applied while vehicle moved independently\",\"airbags did not deploy after impact\"],\"conditions\":[\"regenerative braking\",\"at stop\",\"brake applied\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"},{\"kind\":\"condition\",\"quote\":\"Using the regenerative braking mode\"},{\"kind\":\"condition\",\"quote\":\"I came to a stop on a side street\"},{\"kind\":\"symptom\",\"quote\":\"the car lunged forward at a high rate of speed while my foot was still on the brake\"},{\"kind\":\"symptom\",\"quote\":\"the brakes were employed while the car moved independently\"},{\"kind\":\"symptom\",\"quote\":\"the air bags did not deploy\"},{\"kind\":\"safety\",\"quote\":\"we ran into a parked service van\"},{\"kind\":\"safety\",\"quote\":\"We both experienced the hard impact of hitting the truck\"},{\"kind\":\"safety\",\"quote\":\"This could have been a tragic event!!!!!\"}]}",
+            "reasoning_content": "We need to output JSON only. Need parse report. Component: FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING, group adas. Summary one line: component, symptom, conditions. Symptoms: car lunged forward at high rate of speed while foot on brake; airbags did not deploy? That's more observation. Conditions: maybe \"using regenerative braking mode\", \"came to a stop\", \"foot still on brake\". Not cold/moisture/heat/vibration/intermittent/after service/charging. Conditions list only allowed? The schema says conditions array strings; examples include cold etc but can include plain conditions? It says conditions: [\"cold\", ...] maybe any. Should include \"regenerative braking\", \"while braking\", \"at stop\"? Need careful. Fault codes none. safety_relevant true (crash, hard impact, risk). Missing_info: mileage is null, so \"mileage\"; date? received_at exists but incident date missing? The analysis needs date maybe incident date. The report doesn't give incident date. Missing info includes \"mileage\", \"date\". Component present, symptom present, conditions present. Clues with verbatim quotes. Need ensure quotes exact substrings. Report: \"I drove our ID4 to pick up a neighbor's son from school.  Using the regenerative braking mode, I came to a stop on a side street, just beyond a school crossing where middle school kids were everywhere, at which time the car lunged forward at a high rate of speed while my foot was still on the brake.  Luckily we ran into a parked service van that slowed our progress while I put the car in the parking mode, which finally stopped the car.  We both experienced the hard impact of hitting the truck and noticed that the air bags did not deploy.  There are skid marks that confirm that the brakes were employed while the car moved independently.  We are grateful we didn't hit anyone.  I will not drive this car again.  There were no indications that anything we amiss prior to this malfunction.  Our insurance adjustor will be coming by in the next day or two to inspect the car. This could have been a tragic event!!!!!\"\n\nNeed quotes verbatim. For symptom: \"the car lunged forward at a high rate of speed while my foot was still on the brake\" exact? Check text: \"at which time the car lunged forward at a high rate of speed while my foot was still on the brake.\" Yes substring. Another symptom \"the brakes were employed while the car moved independently\" exact? Text: \"There are skid marks that confirm that the brakes were employed while the car moved independently.\" Yes. Airbags did not deploy: \"the air bags did not deploy\" exact? Text \"noticed that the air bags did not deploy.\" Yes. Safety quote: \"We both experienced the hard impact of hitting the truck\" exact. Or \"This could have been a tragic event!!!!!\" exact. Crash: \"we ran into a parked service van\" exact? Text \"Luckily we ran into a parked service van that slowed our progress\" yes. Condition: \"Using the regenerative braking mode\" exact. \"while my foot was still on the brake\" exact. \"I came to a stop on a side street\" exact.\n\nNeed JSON only. Ensure summary: \"ADAS automatic emergency braking: car lunged forward at high speed while brake applied after stopping in regenerative braking mode.\" That's one line.\n\nGroup: \"adas\". Symptoms array plain words: \"vehicle lunged forward at high speed while brake pedal was applied\", \"brakes were applied while vehicle moved independently\", \"airbags did not deploy after impact\". Are these plain words, okay. Conditions: Should we include \"regenerative braking\", \"braking\", \"at stop\". Not from predefined list except? The schema examples allowed cold etc. We can include \"regenerative braking\", \"while braking\", \"at stop\". But maybe condition list should be from set? It says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"] but maybe not exhaustive? It says \"conditions\": [\"cold\", ...] as template. The report conditions are regenerative braking mode and stopping. Include \"regenerative braking\", \"at stop\", \"brake applied\". Is \"intermittent\" no. \"after service\" no.\n\nMissing_info: [\"mileage\", \"date\"]. Should we include date? Incident date absent; received_at is date report received, not incident. Mileage null. Good.\n\nClues: include kind component_group? Quote \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\" from component field? Is component field part of report? User message JSON includes component. \"Read only the report in user message\" includes JSON. Quote can be from component? Yes. But narrative doesn't contain component phrase. We can quote component value as component_group. Need quote exact. It is \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\". Good. Also safety quote. Other clues.\n\nNeed no markdown. Valid JSON. Ensure no extra text.\n\nNeed maybe \"group\": \"adas\". \"safety_relevant\": true boolean.\n\nCould include fault_codes [].\n\nNeed clues: \n- {\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"}\n- {\"kind\":\"symptom\",\"quote\":\"the car lunged forward at a high rate of speed while my foot was still on the brake\"}\n- {\"kind\":\"condition\",\"quote\":\"Using the regenerative braking mode\"}\n- {\"kind\":\"condition\",\"quote\":\"I came to a stop on a side street\"}\n- {\"kind\":\"symptom\",\"quote\":\"the brakes were employed while the car moved independently\"}\n- {\"kind\":\"symptom\",\"quote\":\"the air bags did not deploy\"} maybe symptom? Could be other? It's a symptom/observation. kind symptom.\n- {\"kind\":\"safety\",\"quote\":\"We both experienced the hard impact of hitting the truck\"}\n- {\"kind\":\"safety\",\"quote\":\"This could have been a tragic event!!!!!\"}\n- {\"kind\":\"other\",\"quote\":\"There were no indications that anything we amiss prior to this malfunction\"} maybe not needed. Could include \"other\" for no prior indications. But not necessary. But clues should provide evidence. Could include crash quote \"we ran into a parked service van\" safety. Use exact \"we ran into a parked service van\". Check case: \"Luckily we ran into a parked service van\" lower w. Quote \"we ran into a parked service van\" exact substring. Good.\n\nNeed summary one line. We can mention airbags? \"ADAS automatic emergency braking: after stopping in regenerative braking mode, car lunged forward at high speed with brake applied and hit a parked van; airbags did not deploy.\" That's one line. Good.\n\nNeed plain words symptoms maybe not include airbags? It's a symptom of crash? Fine.\n\nNeed ensure JSON array quotes. No trailing commas. final only JSON.\n\nDouble-check quote exact: \"the car lunged forward at a high rate of speed while my foot was still on the brake\" — report has \"at which time the car lunged forward at a high rate of speed while my foot was still on the brake.\" Substring begins \"the car\". Good.\n\n\"the brakes were employed while the car moved independently\" exact. Report: \"that the brakes were employed while the car moved independently.\" substring yes.\n\n\"the air bags did not deploy\" exact? Text: \"noticed that the air bags did not deploy.\" substring \"the air bags did not deploy\" yes.\n\n\"Using the regenerative braking mode\" exact includes capital U. Yes.\n\n\"I came to a stop on a side street\" exact. Yes.\n\n\"we ran into a parked service van\" exact lower w? Text \"Luckily we ran into a parked service van\" yes.\n\n\"We both experienced the hard impact of hitting the truck\" exact. Yes.\n\n\"This could have been a tragic event!!!!!\" exact. Yes.\n\nCould include \"my foot was still on the brake\" as condition. Already symptom quote. Fine.\n\nNeed missing_info only facts analysis needs. Mileage and date. Maybe \"conditions\"? Conditions present. Component present. Symptom present. Good.\n\nNeed safety_relevant true. Good.\n\nFinal JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531495,
+      "id": "ca6bcebc287862976017bd1ec0ecbce4",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2045,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1749,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00076506,
+          "billing_source": "go",
+          "list_cost": 0.0012751,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 313,
+            "output": 2045,
+            "reasoning": 1749
+          }
+        },
+        "prompt_tokens": 697,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2742
+      }
+    },
+    "text": "{\"summary\":\"ADAS automatic emergency braking: after stopping in regenerative braking mode, car lunged forward at high speed with brake applied and hit a parked van; airbags did not deploy.\",\"group\":\"adas\",\"symptoms\":[\"vehicle lunged forward at high speed while brake pedal was applied\",\"brakes were applied while vehicle moved independently\",\"airbags did not deploy after impact\"],\"conditions\":[\"regenerative braking\",\"at stop\",\"brake applied\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"},{\"kind\":\"condition\",\"quote\":\"Using the regenerative braking mode\"},{\"kind\":\"condition\",\"quote\":\"I came to a stop on a side street\"},{\"kind\":\"symptom\",\"quote\":\"the car lunged forward at a high rate of speed while my foot was still on the brake\"},{\"kind\":\"symptom\",\"quote\":\"the brakes were employed while the car moved independently\"},{\"kind\":\"symptom\",\"quote\":\"the air bags did not deploy\"},{\"kind\":\"safety\",\"quote\":\"we ran into a parked service van\"},{\"kind\":\"safety\",\"quote\":\"We both experienced the hard impact of hitting the truck\"},{\"kind\":\"safety\",\"quote\":\"This could have been a tragic event!!!!!\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00076506,
+      "cached_tokens": 384,
+      "cost_usd": 0.0012751,
+      "input_tokens": 697,
+      "list_cost_usd": 0.0012751,
+      "output_tokens": 2045,
+      "reasoning_tokens": 1749
+    }
+  }
+}

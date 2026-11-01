@@ -1,0 +1,66 @@
+{
+  "key": "d3ca51b20e98671d7d7eea33be4d3234c5128d44a1736adaa218b83558447bea",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11020,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Infotainment/instrument panel: instrument panel blinked on/off then went dark and infotainment screen was blank while parked.\",\"group\":\"infotainment\",\"symptoms\":[\"instrument panel blinking on and off then going dark\",\"infotainment screen blank\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"EQUIPMENT:ELECTRICAL:INFOTAINMENT\"},{\"kind\":\"symptom\",\"quote\":\"instrument panel was blinking on and off several times before going dark\"},{\"kind\":\"symptom\",\"quote\":\"the infotainment system also displayed a blank screen\"},{\"kind\":\"condition\",\"quote\":\"while parked and seated in the vehicle\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize report. Need read only report. Component infotainment, group given infotainment. Symptom: instrument panel blinking on/off several times then dark; infotainment blank screen. Conditions: parked, seated in vehicle. Also taken to dealer for recall repair? condition \"after service\"? Hmm report says vehicle taken to dealer for recall repair and informed no failure with instrument panel. Failure occurred while parked before? It says while parked and seated instrument panel blinking... dealer contacted. Vehicle taken to dealer for recall repair. The failure not repaired. Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. We should only include conditions matching. It was intermittent? Blinking on/off several times then dark -> intermittent maybe. Parked is not in allowed list. \"after service\"? It was taken to dealer for recall repair, but failure described while parked, not necessarily after service. The condition list is constrained to those options? It says conditions: [\"cold\", ...]. We can include \"intermittent\" because blinking on and off several times. Maybe \"after service\" if dealer recall repair? But not clear. We should not invent. Use intermittent. Fault codes none. Safety false (given and no mention risk). Missing_info? component present, symptom present, conditions? There is parked condition, no mileage? mileage present 6000. date? received_at exists, failure date not specified. \"date\" missing? The analysis needs date? Report has received_at but not failure date. The missing_info list only facts analysis needs: component, symptom, conditions, mileage, date. Component/symptom/mileage present. Conditions only parked not in list? We can say date missing? Failure date not given. Also maybe conditions missing? It states parked, but no weather/temperature. The allowed condition fields include cold/moisture/heat/vibration/intermittent/after service/charging. We can include \"date\" because exact failure date not given. But is that important? The report received_at is 2025-11-06, but failure date absent. The prompt says list missing_info only for facts analysis needs. Date is often useful. Maybe include [\"date\"]? Hmm.\n\nNeed clues: verbatim quotes. Need include component group quote? \"EQUIPMENT:ELECTRICAL:INFOTAINMENT\" appears in component field, not narrative. Report is entire JSON? \"Read only the report in user message.\" The report includes JSON fields. Quotes can be from report, including component field? \"verbatim span copied from the report\". The report includes component value. Could quote \"EQUIPMENT:ELECTRICAL:INFOTAINMENT\" as component_group. Also symptom quotes: \"the instrument panel was blinking on and off several times before going dark\" exact? Narrative: \"The contact stated that while parked and seated in the vehicle, the instrument panel was blinking on and off several times before going dark.\" Need verbatim span. Quote can be \"instrument panel was blinking on and off several times before going dark\" (case? It is lower mid-sentence; exact substring after \"the \"? Narrative has \"the instrument panel was blinking...\" yes \"the instrument panel was blinking on and off several times before going dark\" exact if include \"the\". Better quote exact substring: \"instrument panel was blinking on and off several times before going dark\" yes exists. Another: \"infotainment system also displayed a blank screen\" exists: \"the infotainment system also displayed a blank screen\". Conditions quote: \"while parked and seated in the vehicle\" exists. Intermittent clue: same quote? Could use \"blinking on and off several times\". Fault code none.\n\nSafety false. Missing info maybe [\"date\"]? Also \"conditions\" maybe because only parked; no weather/road. But analysis needs conditions. The prompt allowed conditions list with cold/moisture etc. Report only parked. I'd include missing_info [\"date\"]? Hmm.\n\nNeed one JSON object no other text. Summary one line: \"Infotainment/instrument panel: instrument panel blinked on/off then went dark and infotainment screen blank while parked.\" Group \"infotainment\". Symptoms: [\"instrument panel blinking on and off then going dark\", \"infotainment screen blank\"]. Conditions: [\"intermittent\"] maybe. Fault codes empty. safety false. missing_info: [\"date\"]? Or []? Let's consider desk analysis. Component, symptom, conditions, mileage, date. We have component, symptom, mileage, received date but not failure date. Conditions: parked, intermittent. So missing date. But \"date\" might refer report date? received_at exists. The failure date is not specified but approximate failure mileage. It could matter. Use [\"date\"]. But if strict, the report has received_at; missing_info \"date\" perhaps failure date. Accept.\n\nNeed clues include safety? no. Include other? no. Could include component_group quote \"EQUIPMENT:ELECTRICAL:INFOTAINMENT\". But component field is part of report. It is a verbatim value. Good.\n\nNeed ensure JSON valid. Quotes exact from narrative. Let's check exact string: \"The contact stated that while parked and seated in the vehicle, the instrument panel was blinking on and off several times before going dark.\" So quote \"while parked and seated in the vehicle\" exact. \"instrument panel was blinking on and off several times before going dark\" exact? substring starts at \"instrument\" after \"the \". Yes. \"the infotainment system also displayed a blank screen\" exact: Narrative: \"The contact stated that the infotainment system also displayed a blank screen.\" There is \"the infotainment system also displayed a blank screen\" exact. Good.\n\nCould include \"blinking on and off several times\" as condition intermittent? But kind condition quote maybe same as symptom. Fine.\n\nNeed answer only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531861,
+      "id": "58daa85231932b9c0a6b4f6de0251119",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1411,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1236,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00052863,
+          "billing_source": "go",
+          "list_cost": 0.00088105,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 222,
+            "output": 1411,
+            "reasoning": 1236
+          }
+        },
+        "prompt_tokens": 606,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2017
+      }
+    },
+    "text": "{\"summary\":\"Infotainment/instrument panel: instrument panel blinked on/off then went dark and infotainment screen was blank while parked.\",\"group\":\"infotainment\",\"symptoms\":[\"instrument panel blinking on and off then going dark\",\"infotainment screen blank\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"EQUIPMENT:ELECTRICAL:INFOTAINMENT\"},{\"kind\":\"symptom\",\"quote\":\"instrument panel was blinking on and off several times before going dark\"},{\"kind\":\"symptom\",\"quote\":\"the infotainment system also displayed a blank screen\"},{\"kind\":\"condition\",\"quote\":\"while parked and seated in the vehicle\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00052863,
+      "cached_tokens": 384,
+      "cost_usd": 0.00088105,
+      "input_tokens": 606,
+      "list_cost_usd": 0.00088105,
+      "output_tokens": 1411,
+      "reasoning_tokens": 1236
+    }
+  }
+}

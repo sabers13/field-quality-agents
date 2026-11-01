@@ -1,0 +1,66 @@
+{
+  "key": "c7257bc57cc7ff2e733459a106ebc1ec851a378fe93d8c93339a18f09246d0be",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 14278,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2021 Kia Telluride ADAS/automatic emergency braking: brake pedal to floor with no stop, low brake fluid light, missing driver-side rear caliper bolts; recent dealer oil-change visit.\",\"group\":\"adas\",\"symptoms\":[\"brake pedal pushed to floor and vehicle would not stop\",\"low brake fluid warning light came on\",\"driver-side rear caliper bolts missing and caliper left hanging\",\"no warning lights before brake failure\"],\"conditions\":[\"after service\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"},{\"kind\":\"symptom\",\"quote\":\"brake pushed to floor and still not stop\"},{\"kind\":\"symptom\",\"quote\":\"low brake fluid light came on\"},{\"kind\":\"symptom\",\"quote\":\"bolts protecting driver side rear tire were gone and caliper on that side were left hanging\"},{\"kind\":\"symptom\",\"quote\":\"There was no warning or lights going off until after brakes failed.\"},{\"kind\":\"condition\",\"quote\":\"Last visit to Kia dealer was 30 days ago only for oil change not brake work.\"},{\"kind\":\"safety\",\"quote\":\"if I had been on highway not know how I would have come to a stop before crashing\"}]}",
+            "reasoning_content": "We need answer one JSON object no other text. Need normalize report. Need infer component group given adas? Report component FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING, group adas. But narrative is brake failure due caliper bolts missing, brake fluid light. Symptoms: brake pedal pushed to floor, still not stop; low brake fluid light came on; bolts missing/caliper hanging; no warning/lights until after brakes failed. Conditions? driving, after service? Last visit 30 days ago oil change not brake work; bolts clearly removed; no brake work. Conditions list allowed: cold moisture heat vibration intermittent after service charging. Could include \"after service\" because recent dealer visit? But report says only oil change not brake work; bolts removed. Hmm condition \"after service\" maybe relevant since last dealer visit 30 days ago. But not directly. We must not invent. Clues quotes verbatim. Need safety_relevant true: mentions \"before crashing\", risk to people, brake failure. Missing_info: mileage is null. Date? received_at given but report date not? Missing info maybe mileage. Component? component given. Symptom given. Conditions maybe not missing? We can include mileage only. Fault codes none.\n\nNeed summary one line: component, symptom, conditions. \"2021 Kia Telluride ADAS/automatic emergency braking report: brake pedal to floor with no stopping, low brake fluid light after pulling over; rear caliper bolts missing after recent oil-change visit.\" Need mention conditions maybe driving, after service. Keep concise.\n\nGroup: \"adas\" or \"electrical/electronic component group\"? Given group adas. Use \"adas\". Symptoms plain words: \"brake pedal went to floor and vehicle would not stop\", \"low brake fluid warning light illuminated\", \"driver-side rear caliper bolts missing and caliper hanging\", maybe \"no warning lights before brake failure\". These are symptoms. Conditions: [\"after service\"]? Also \"driving\". Allowed list doesn't include driving. Could include \"after service\" due last dealer visit. But report says not brake work. Hmm maybe condition \"after service\" could be misleading. The conditions list is constrained to cold, moisture, heat, vibration, intermittent, after service, charging. Does \"driving\" not allowed. So conditions maybe [\"after service\"] because last visit 30 days ago. But this may imply service caused? It says last visit only oil change not brake work. We can include \"after service\" quote \"Last visit to Kia dealer was 30 days ago only for oil change not brake work.\" But condition after service is factual recent dealer visit. Could also \"intermittent\"? No. Not cold etc. Maybe empty conditions. But conditions needed? The summary says conditions. If none, [].\n\nFault codes empty.\n\nSafety_relevant true. Quote for safety: \"if I had been on highway not know how I would have come to a stop before crashing\" or \"before crashing\". Use exact span. Need quote copied verbatim. Check exact narrative: \"Luckily when it happened i was only on back roads so could slow down eventually without incident but if I had been on highway not know how I would have come to a stop before crashing.\" The quote \"before crashing\" is verbatim, but maybe too short. Use full clause? Ensure exact. \"if I had been on highway not know how I would have come to a stop before crashing\" yes exact? Narrative has \"but if I had been on highway not know how I would have come to a stop before crashing.\" The span \"if I had been on highway not know how I would have come to a stop before crashing\" appears exactly after \"but \". Yes.\n\nClues:\n- symptom quote \"brake pushed to floor and still not stop\" exact? Narrative: \"Driving and trying to brake and brake pushed to floor and still not stop.\" Span \"brake pushed to floor and still not stop\" exact.\n- symptom quote \"low brake fluid light came on\" exact.\n- symptom/other quote \"bolts protecting driver side rear tire were gone and caliper on that side were left hanging\" exact. Kind symptom? It's a finding. Could kind \"symptom\" or \"other\". Use symptom? It describes condition. Maybe \"symptom\".\n- condition quote \"Last visit to Kia dealer was 30 days ago only for oil change not brake work.\" kind condition.\n- component_group quote \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\" kind component_group.\n- safety quote as above kind safety.\n- fault_code none.\n- other quote \"There was no warning or lights going off until after brakes failed.\" kind symptom? It describes no warning. Use symptom.\nNeed not too many.\n\nNeed missing_info: [\"mileage\"] because null. Maybe \"date\" not missing since received_at. Conditions? We have some. Component given. Symptom given.\n\nNeed JSON only. Ensure valid. No markdown? User says answer with one JSON object and no other text. We can output raw JSON. Need not include code fence? likely no. Final only JSON.\n\nNeed decide summary. \"2021 Kia Telluride ADAS/automatic emergency braking: brake pedal to floor with no stop, low brake fluid light, missing driver-side rear caliper bolts; recent dealer oil-change visit.\" That's one line. Conditions include after service. Good.\n\nNeed \"group\": \"adas\".\n\nNeed safety_relevant true.\n\nPotential issue: component is \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\" but symptoms are conventional brakes. The report component may be misclassified; but we don't invent. Group given adas. Could mention mismatch? No.\n\nNeed \"missing_info\": [\"mileage\"]. Does date missing? received_at 2025-08-06 but incident date not. The schema says date; the report has received_at but not incident date. Analysis needs date? Maybe yes. But received_at is date report received, not incident date. The report doesn't state incident date. Could include \"date\". But missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Date of incident is missing. Should we include \"date\"? Hmm received_at is given, but incident date not. The report says \"Last visit ... 30 days ago\" but no incident date. For analysis, date could matter. Add \"date\"? But user says list missing_info only for facts analysis needs. Mileage null. Date not explicitly missing? received_at gives report date, but incident date missing. In many intake, date = received_at? Schema includes received_at separate. I'd include mileage only to be safe? The report has received_at, so date not missing? But incident date is not. The prompt's missing_info \"date\" likely means report date? Hmm. The input includes received_at so date present. I'll include mileage only. Conditions present? after service. Good.\n\nNeed ensure quotes exactly copied including capitalization. Quote \"Driving and trying to brake and brake pushed to floor and still not stop.\" We can quote span. \"brake pushed to floor and still not stop\" exact. \"low brake fluid light came on\" exact? Narrative: \"While waiting for AAA to arrive low brake fluid light came on.\" yes.\n\n\"bolts protecting driver side rear tire were gone and caliper on that side were left hanging\" exact? Narrative: \"AAA driver arrived and stated bolts protecting driver side rear tire were gone and caliper on that side were left hanging.\" Yes exact.\n\n\"Last visit to Kia dealer was 30 days ago only for oil change not brake work.\" exact? Narrative: \"Last visit to Kia dealer was 30 days ago only for oil change not brake work.\" yes.\n\n\"There was no warning or lights going off until after brakes failed.\" exact. Yes.\n\nSafety quote exact.\n\nComponent quote exact.\n\nNeed maybe quote \"Dealer had no idea why bolts came off by themselves and why it happened.\" kind other? Not needed.\n\nNeed not include fault codes.\n\nNeed final JSON. Ensure no trailing commas. Use booleans. Use arrays. Good.\n\nLet's craft final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529293,
+      "id": "7e0e6c763275edd9533c0826db406276",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1995,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1701,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0007467,
+          "billing_source": "go",
+          "list_cost": 0.0012445,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 309,
+            "output": 1995,
+            "reasoning": 1701
+          }
+        },
+        "prompt_tokens": 693,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2688
+      }
+    },
+    "text": "{\"summary\":\"2021 Kia Telluride ADAS/automatic emergency braking: brake pedal to floor with no stop, low brake fluid light, missing driver-side rear caliper bolts; recent dealer oil-change visit.\",\"group\":\"adas\",\"symptoms\":[\"brake pedal pushed to floor and vehicle would not stop\",\"low brake fluid warning light came on\",\"driver-side rear caliper bolts missing and caliper left hanging\",\"no warning lights before brake failure\"],\"conditions\":[\"after service\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"},{\"kind\":\"symptom\",\"quote\":\"brake pushed to floor and still not stop\"},{\"kind\":\"symptom\",\"quote\":\"low brake fluid light came on\"},{\"kind\":\"symptom\",\"quote\":\"bolts protecting driver side rear tire were gone and caliper on that side were left hanging\"},{\"kind\":\"symptom\",\"quote\":\"There was no warning or lights going off until after brakes failed.\"},{\"kind\":\"condition\",\"quote\":\"Last visit to Kia dealer was 30 days ago only for oil change not brake work.\"},{\"kind\":\"safety\",\"quote\":\"if I had been on highway not know how I would have come to a stop before crashing\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0007467,
+      "cached_tokens": 384,
+      "cost_usd": 0.0012445,
+      "input_tokens": 693,
+      "list_cost_usd": 0.0012445,
+      "output_tokens": 1995,
+      "reasoning_tokens": 1701
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "cbdd1b5399c8e2198293a62f3f1852557d495514a730ca9f1d1db7a7a900330c",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 5475,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\": \"Verify the reported odometer/title mileage discrepancy on a 2013 Ford Explorer; no rulebook entry matches, so a standard verification applies.\", \"rationale\": \"The narrative alleges odometer fraud after a dealer sale, with three conflicting mileage figures: 106,796 at purchase, 160,412 on the title, and 203,912 later discovered. No operating conditions, fault codes, recalls, investigations, or rulebook matches were returned.\", \"group\": \"instrumentation\", \"symptoms\": [\"odometer fraud\", \"mileage discrepancy\"], \"conditions\": [], \"fault_codes\": [], \"safety_relevant\": false, \"targeted\": false, \"test_name\": \"\", \"clues\": [{\"kind\": \"symptom\", \"quote\": \"Odometer Fraud.\"}, {\"kind\": \"symptom\", \"quote\": \"mileage discrepancy\"}, {\"kind\": \"other\", \"quote\": \"At the time of purchase, the mileage was 106,796.\"}, {\"kind\": \"other\", \"quote\": \"the mileage on the Title was 160,412\"}, {\"kind\": \"other\", \"quote\": \"the mileage was 203,912.\"}]}",
+            "reasoning_content": "We need to produce JSON. No rulebook entries, no recalls, no similar cases. Narrative is odometer fraud, mileage discrepancy. Targeted test? Rulebook empty, so targeted false. Safety false. Group instrumentation. Need quotes verbatim from narrative. Clues: component group quote from narrative? Narrative does not contain \"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\" — that's component field, not narrative. The extraction has it but quote must be from case narrative. The narrative includes \"Odometer Fraud.\", \"mileage discrepancy\", \"At the time of purchase, the mileage was 106,796.\", \"the mileage on the Title was 160,412\", \"the mileage was 203,912.\" Check verbatim spans. Narrative: \"At the time of purchase, the mileage was 106,796.\" yes. \"the mileage on the Title was 160,412\" yes (preceded by \"It was later discovered that \"). \"the mileage was 203,912.\" yes. \"mileage discrepancy\" yes. \"Odometer Fraud.\" yes.\n\nNo test_name named by rulebook; can be empty string? Schema says test_name. Could set \"standard odometer/mileage discrepancy verification\"? But targeted false standard test. Safer to set test_name \"\" or \"standard odometer verification\". The instructions: \"test_name\": \"the targeted test the rulebook names\". No rulebook, targeted false. Could set null? JSON allows. But likely string. Use \"\" maybe.\n\nSummary one line what to test and why. Rationale condition/evidence. Conditions empty. Fault codes empty. Targeted false.\n\nLet's craft. Ensure no citations to ids. Summary: \"Verify odometer/title mileage discrepancy on a 2013 Ford Explorer; no rulebook match, so standard verification applies.\" Rationale mention narrative reports three conflicting mileages after dealer purchase with odometer fraud allegation; no operating conditions, recalls, investigations or rulebook entries.\n\nClues quote component group? Only from narrative, so can't use component field. Use symptom and other. Maybe include \"mileage discrepancy\", \"Odometer Fraud.\", mileage quotes. Component group clue kind? Quote must be narrative; narrative doesn't include component group string. So omit component_group clue? Could use \"other\" for \"2013 Ford Explorer\" but not necessary. But group field is enough.\n\nSafety false. targeted false.\n\nNeed valid JSON only.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531569,
+      "id": "ae377fa21462c2e9faa0bc674e798225",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 761,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 508,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00035001,
+          "billing_source": "go",
+          "list_cost": 0.00058335,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 845,
+            "output": 761,
+            "reasoning": 508
+          }
+        },
+        "prompt_tokens": 845,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 1606
+      }
+    },
+    "text": "{\"summary\": \"Verify the reported odometer/title mileage discrepancy on a 2013 Ford Explorer; no rulebook entry matches, so a standard verification applies.\", \"rationale\": \"The narrative alleges odometer fraud after a dealer sale, with three conflicting mileage figures: 106,796 at purchase, 160,412 on the title, and 203,912 later discovered. No operating conditions, fault codes, recalls, investigations, or rulebook matches were returned.\", \"group\": \"instrumentation\", \"symptoms\": [\"odometer fraud\", \"mileage discrepancy\"], \"conditions\": [], \"fault_codes\": [], \"safety_relevant\": false, \"targeted\": false, \"test_name\": \"\", \"clues\": [{\"kind\": \"symptom\", \"quote\": \"Odometer Fraud.\"}, {\"kind\": \"symptom\", \"quote\": \"mileage discrepancy\"}, {\"kind\": \"other\", \"quote\": \"At the time of purchase, the mileage was 106,796.\"}, {\"kind\": \"other\", \"quote\": \"the mileage on the Title was 160,412\"}, {\"kind\": \"other\", \"quote\": \"the mileage was 203,912.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00035001,
+      "cached_tokens": 0,
+      "cost_usd": 0.00058335,
+      "input_tokens": 845,
+      "list_cost_usd": 0.00058335,
+      "output_tokens": 761,
+      "reasoning_tokens": 508
+    }
+  }
+}

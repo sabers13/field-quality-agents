@@ -1,0 +1,66 @@
+{
+  "key": "57cbeae4b5ada7b0e406a785fcc1cf2b84a0882317647ad22779705947187b8d",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11345,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2020 Ford Escape AWD module grounding issue causes AWD Fault, ABS, AdvanceTrac Service, and Hill assist errors around 38,000 miles; ABS safety concern noted.\",\"group\":\"electrical_general\",\"symptoms\":[\"AWD Fault warning\",\"ABS warning\",\"AdvanceTrac Service warning\",\"Hill assist warning\",\"multiple different errors\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"many different errors\"},{\"kind\":\"symptom\",\"quote\":\"AWD Fault, ABS, AdvanceTrac Service, Hill assist, etc\"},{\"kind\":\"other\",\"quote\":\"improper grounding of the wiring on the AWD module\"},{\"kind\":\"safety\",\"quote\":\"it is a safety concern because the ABS is apparently also controlled by the AWD\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize. Report component electrical system, group electrical_general. Symptoms: many different errors AWD Fault, ABS, AdvanceTrac Service, Hill assist, etc. Fault codes? These are messages not codes. Maybe none. Conditions: around 38,000 mile mark? conditions include? \"improper grounding of wiring\" not in enum. Could include \"intermittent\"? Not stated. Maybe conditions empty? Need safety_relevant true because report mentions \"safety concern because the ABS is apparently also controlled by the AWD\" — risk to people? It says service tech did mention it is a safety concern because ABS controlled by AWD. Rule set safety_relevant when mentions crash/fire/smoke/injury/loss control/stall at speed or another risk to people. Safety concern related ABS is risk. So true. Clues verbatim spans. Need only quotes from report. Summary one line: AWD module electrical grounding fault causes multiple warning errors (AWD Fault, ABS, AdvanceTrac, Hill assist) on 2020 Ford Escape around 38,000 miles. Group electrical_general. Symptoms list plain words: \"AWD Fault warning\", \"ABS warning\", \"AdvanceTrac Service warning\", \"Hill assist warning\", \"multiple different errors\". Conditions maybe [\"after service\"]? No. \"at 38,000 miles\" not among conditions. Could list conditions [] because none of cold moisture heat vibration intermittent after service charging. Missing_info: date? received_at date exists but not incident date. Mileage mentioned around 38,000 but mileage field null; analysis needs mileage? It is in narrative, so not missing. Date missing? The report has received_at but not occurrence date. Could include \"date\". Component present, symptom present, conditions maybe present? Conditions missing? Need only facts analysis needs. Since no conditions, maybe missing_info [\"date\",\"conditions\"]? But conditions enumerated only specific. The report lacks environmental/operating conditions. But maybe not crucial. Need be careful.\n\nFault codes empty. Clues include symptom quote \"AWD Fault, ABS, AdvanceTrac Service, Hill assist, etc\" verbatim? It appears \"(AWD Fault, ABS, AdvanceTrac Service, Hill assist, etc)\" yes. component_group quote \"ELECTRICAL SYSTEM\" from report? It is in component field, user message includes JSON. Is that \"report\"? likely yes. But quote must verbatim from report. We can quote \"ELECTRICAL SYSTEM\". safety quote \"it is a safety concern because the ABS is apparently also controlled by the AWD\" exact substring? Narrative: \"though the Service Tech did mention it is a safety concern because the ABS is apparently also controlled by the AWD.\" The quote without though? It contains exact substring \"it is a safety concern because the ABS is apparently also controlled by the AWD\" yes. condition? \"improper grounding of the wiring on the AWD module\" exact substring. Kind other or condition? It's cause not condition. Could be other. Symptom quote exact \"many different errors\". Another clue for component_group. Fault_code none.\n\nNeed output one JSON object no other text. Ensure valid JSON. Summary concise. \"2020 Ford Escape AWD module electrical grounding fault causing AWD Fault, ABS, AdvanceTrac Service, and Hill assist errors around 38,000 miles.\" Group \"electrical_general\". Symptoms array. Conditions empty. Fault_codes empty. safety_relevant true. missing_info maybe [\"date\",\"conditions\"]? Hm. Let's decide. The report gives mileage in narrative, component, symptom. Date? received_at 2025-08-22 but incident date absent. Conditions? It mentions around 38,000 mile mark but not cold etc. The analysis might need conditions? But if no conditions, list conditions missing? They asked list missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. It lacks date and conditions. Mileage is present in narrative but field null; not missing. I'd include [\"date\",\"conditions\"]. But could \"conditions\" be missing? yes. No invented.\n\nNeed summary one line. Could include safety? \"AWD module grounding issue causes multiple ABS/AWD/AdvanceTrac/Hill assist warnings on 2020 Ford Escape around 38,000 miles; ABS safety concern noted.\" That's one line. Good.\n\nClues: \n- {\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"}\n- {\"kind\":\"symptom\",\"quote\":\"many different errors\"}\n- {\"kind\":\"symptom\",\"quote\":\"AWD Fault, ABS, AdvanceTrac Service, Hill assist, etc\"}\n- {\"kind\":\"other\",\"quote\":\"improper grounding of the wiring on the AWD module\"}\n- {\"kind\":\"safety\",\"quote\":\"it is a safety concern because the ABS is apparently also controlled by the AWD\"}\nMaybe condition none. Need quote exact. Check exact \"many different errors\" yes. \"AWD Fault, ABS, AdvanceTrac Service, Hill assist, etc\" exact substring includes no parentheses. yes.\n\nCould include \"AWD module\" component? component_group quote electrical. Good.\n\nFinal only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529672,
+      "id": "f42d79c4e6ee2ab118f470fd28059775",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1278,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1074,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00048831,
+          "billing_source": "go",
+          "list_cost": 0.00081385,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 306,
+            "output": 1278,
+            "reasoning": 1074
+          }
+        },
+        "prompt_tokens": 690,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1968
+      }
+    },
+    "text": "{\"summary\":\"2020 Ford Escape AWD module grounding issue causes AWD Fault, ABS, AdvanceTrac Service, and Hill assist errors around 38,000 miles; ABS safety concern noted.\",\"group\":\"electrical_general\",\"symptoms\":[\"AWD Fault warning\",\"ABS warning\",\"AdvanceTrac Service warning\",\"Hill assist warning\",\"multiple different errors\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"many different errors\"},{\"kind\":\"symptom\",\"quote\":\"AWD Fault, ABS, AdvanceTrac Service, Hill assist, etc\"},{\"kind\":\"other\",\"quote\":\"improper grounding of the wiring on the AWD module\"},{\"kind\":\"safety\",\"quote\":\"it is a safety concern because the ABS is apparently also controlled by the AWD\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00048831,
+      "cached_tokens": 384,
+      "cost_usd": 0.00081385,
+      "input_tokens": 690,
+      "list_cost_usd": 0.00081385,
+      "output_tokens": 1278,
+      "reasoning_tokens": 1074
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "664c4cfbad83f83b97fde9b967a552b17f146cbc17110190b329312c9446b81d",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10804,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system: yellow CEL and loss of hybrid mode while driving, then limp mode with red turtle/wrench/battery lights; gas engine shut down and vehicle would not restart in an intersection; hybrid battery pack failed.\",\"group\":\"electrical_general\",\"symptoms\":[\"yellow CEL light came on\",\"stopped operating in hybrid mode\",\"limp mode with red turtle, red wrench, and red battery light\",\"gas engine completely shut down\",\"vehicle stopped moving halfway through the intersection\",\"would not restart\",\"hybrid battery pack failed\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"yellow CEL light came on\"},{\"kind\":\"symptom\",\"quote\":\"stopped operating in hybrid mode\"},{\"kind\":\"symptom\",\"quote\":\"went into limp mode with a red turtle, red wrench, and red battery light\"},{\"kind\":\"symptom\",\"quote\":\"the gas engine completely shut down\"},{\"kind\":\"symptom\",\"quote\":\"the Jeep stopped moving halfway through the intersection\"},{\"kind\":\"symptom\",\"quote\":\"it wouldn’t restart\"},{\"kind\":\"other\",\"quote\":\"hybrid battery pack had failed\"},{\"kind\":\"safety\",\"quote\":\"the Jeep stopped and the gas engine completely shut down and the Jeep stopped moving halfway through the intersection\"}]}",
+            "reasoning_content": "We need answer with one JSON object no other text. Need normalize report. Must not invent. Need extract summary component symptom conditions. Component field ELECTRICAL SYSTEM group electrical_general. Narrative has CEL, stopped hybrid mode, limp mode red turtle/wrench/battery, stopped gas engine shut down halfway intersection, wouldn't restart, hybrid battery pack failed replaced. Safety relevant? It stalled/stopped moving halfway through intersection, risk. Prompt safety_relevant when mentions crash fire smoke injury loss of control stall at speed or another risk to people. It stopped in intersection, engine shut down, wouldn't restart. Is that risk? Yes \"another risk to people\" maybe safety_relevant true. Incoming says false but we should set based on report. Need missing_info: mileage null? It mentions date 11 August 2025 and received 19 Sep. Component Electrical system. Conditions: driving, hill? \"down the hill\", busy 4-lane highway, turning right, intersection. Conditions list allowed: cold moisture heat vibration intermittent after service charging. None directly. Could maybe \"intermittent\"? No. So conditions empty? But schema examples. We can include no conditions. Symptoms plain words: yellow CEL illuminated; stopped operating in hybrid mode; limp mode with red turtle, red wrench, red battery light; gas engine shut down and vehicle stopped moving; would not restart; hybrid battery pack failed. Fault codes none named (CEL is lamp not code). safety_relevant true. missing_info: mileage? Mileage null but report not provide; analysis needs mileage maybe yes. Date present. Conditions? We have driving conditions. Component present. Symptom present. So missing_info [\"mileage\"]. Could also \"conditions\" not missing? Maybe environmental conditions unknown but not essential. Need clues with verbatim quotes. Need ensure quotes exact from narrative. Use exact substrings. \"yellow CEL light came on\" exact. \"stopped operating in hybrid mode\" exact. \"went into limp mode with a red turtle, red wrench, and red battery light\" exact? Narrative: \"the Jeep went into limp mode with a red turtle, red wrench, and red battery light.\" yes substring \"went into limp mode with a red turtle, red wrench, and red battery light\". \"the gas engine completely shut down\" exact. \"the Jeep stopped moving halfway through the intersection\" exact. \"it wouldn’t restart\" exact? Narrative has \"but it wouldn\\u2019t restart\" with curly apostrophe. We can quote \"it wouldn’t restart\" maybe verbatim includes curly. JSON can contain unicode. Need quote exact. \"hybrid battery pack had failed\" exact. Safety clue quote: \"the Jeep stopped and the gas engine completely shut down and the Jeep stopped moving halfway through the intersection\" exact. Also \"busy 4-lane highway\" condition? It's a condition? Could clue condition. But condition kind maybe \"condition\". Use quotes. Need summary one line: component, symptom, conditions. \"Electrical system: yellow CEL, loss of hybrid mode, limp mode, gas engine shutdown and no restart while driving/turning at intersection; hybrid battery pack failed.\" That includes. Need group \"electrical_general\" or \"ELECTRICAL SYSTEM\"? The prompt says group the electrical/electronic component group, or given group. Given group electrical_general. Use \"electrical_general\".\n\nNeed include safety_relevant true. But intake input says false; we should override due to stall in intersection. Need clues kind safety quote exact \"the Jeep stopped moving halfway through the intersection\" maybe enough. Also maybe \"the Jeep stopped and the gas engine completely shut down\" exact. Good.\n\nNeed missing_info only mileage. Is date present yes. Conditions present? It says driving to appointment, busy highway, hill, turning. Component present. Symptom present. Mileage null. Could maybe \"conditions\" missing because not cold/moisture etc but not necessary. Use [\"mileage\"].\n\nNeed no other text. Ensure valid JSON. Use double quotes. Quotes verbatim. Need escape curly? JSON supports UTF-8. We can include curly apostrophe. Need maybe avoid exact \"it wouldn’t restart\" due to apostrophe. Could use \"wouldn\\u2019t restart\"? If quote string contains \\u2019 it's verbatim? In JSON, \\u2019 decodes to curly apostrophe, okay. But \"quote\" must be copied verbatim. We can use \"it wouldn\\u2019t restart\". But careful narrative has \"but it wouldn\\u2019t restart.\" substring \"it wouldn\\u2019t restart\" yes. Good.\n\nNeed perhaps symptom \"yellow CEL light came on\" exact. \"CEL\" acronym. Good.\n\nNeed conditions array: allowed values only cold moisture heat vibration intermittent after service charging. Report doesn't name those. Empty. But summary says while driving/turning. Conditions field maybe empty. The schema says conditions list from enumerated. We can't put driving. So [].\n\nNeed clues:\n- kind symptom quote \"yellow CEL light came on\"\n- kind symptom quote \"stopped operating in hybrid mode\"\n- kind symptom quote \"went into limp mode with a red turtle, red wrench, and red battery light\"\n- kind symptom quote \"the gas engine completely shut down\"\n- kind symptom quote \"the Jeep stopped moving halfway through the intersection\"\n- kind symptom quote \"it wouldn’t restart\"\n- kind other? \"hybrid battery pack had failed\" maybe symptom? It's component failure. kind component_group? The group is electrical system from field not narrative. Could use kind \"other\" quote \"hybrid battery pack had failed\". Or symptom. Since battery pack failure is cause, not symptom. Use \"other\". Maybe component_group quote \"ELECTRICAL SYSTEM\" but not in narrative? The report user message includes component field, not narrative. Quote must from report? \"Read only report\"; report includes component field. Could quote \"ELECTRICAL SYSTEM\" from component. But quote verbatim span copied from report, okay. But we don't need. Use clues from narrative. \n- condition quote \"busy 4-lane highway\" maybe kind condition? It is driving condition but not enumerated. Kind condition allowed? Clues kind includes symptom|condition|fault_code|component_group|safety|other. Quote can be condition. But conditions array empty. Is \"busy 4-lane highway\" condition? It could be context. But if we include kind condition, conditions array should maybe include? No conditions array enumerated. Maybe avoid.\n- safety quote \"the Jeep stopped and the gas engine completely shut down and the Jeep stopped moving halfway through the intersection\" exact? Let's verify narrative: \"I was turning right when the Jeep stopped and the gas engine completely shut down and the Jeep stopped moving halfway through the intersection.\" Yes substring \"the Jeep stopped and the gas engine completely shut down and the Jeep stopped moving halfway through the intersection\" exact. Good.\n\nNeed perhaps fault_codes [] because no code. CEL not code. Good.\n\nNeed summary no newline? One line. Could be \"Electrical system: yellow CEL and loss of hybrid mode while driving, then limp mode with red turtle/wrench/battery lights; gas engine shut down and vehicle would not restart in an intersection; hybrid battery pack failed.\" Good.\n\nNeed output JSON only. Ensure no markdown. Final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530574,
+      "id": "85943b32464707f225cefadb030b731d",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1817,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1524,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00068523,
+          "billing_source": "go",
+          "list_cost": 0.00114205,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 338,
+            "output": 1817,
+            "reasoning": 1524
+          }
+        },
+        "prompt_tokens": 722,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2539
+      }
+    },
+    "text": "{\"summary\":\"Electrical system: yellow CEL and loss of hybrid mode while driving, then limp mode with red turtle/wrench/battery lights; gas engine shut down and vehicle would not restart in an intersection; hybrid battery pack failed.\",\"group\":\"electrical_general\",\"symptoms\":[\"yellow CEL light came on\",\"stopped operating in hybrid mode\",\"limp mode with red turtle, red wrench, and red battery light\",\"gas engine completely shut down\",\"vehicle stopped moving halfway through the intersection\",\"would not restart\",\"hybrid battery pack failed\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"yellow CEL light came on\"},{\"kind\":\"symptom\",\"quote\":\"stopped operating in hybrid mode\"},{\"kind\":\"symptom\",\"quote\":\"went into limp mode with a red turtle, red wrench, and red battery light\"},{\"kind\":\"symptom\",\"quote\":\"the gas engine completely shut down\"},{\"kind\":\"symptom\",\"quote\":\"the Jeep stopped moving halfway through the intersection\"},{\"kind\":\"symptom\",\"quote\":\"it wouldn’t restart\"},{\"kind\":\"other\",\"quote\":\"hybrid battery pack had failed\"},{\"kind\":\"safety\",\"quote\":\"the Jeep stopped and the gas engine completely shut down and the Jeep stopped moving halfway through the intersection\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00068523,
+      "cached_tokens": 384,
+      "cost_usd": 0.00114205,
+      "input_tokens": 722,
+      "list_cost_usd": 0.00114205,
+      "output_tokens": 1817,
+      "reasoning_tokens": 1524
+    }
+  }
+}

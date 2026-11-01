@@ -1,0 +1,66 @@
+{
+  "key": "44972ef94ca76052aea845ec402e21967f00b74b2dc558ef3444f10dbb8f05f0",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 8255,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system: power steering failure with possible loss of control; catalytic converter failure leading to oxygen sensor failure and burnt spark plugs; engine sputters.\",\"group\":\"electrical_general\",\"symptoms\":[\"power steering failure\",\"catalytic converter failure\",\"oxygen sensor failure\",\"burnt spark plugs\",\"engine sputters\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"power steering failure\"},{\"kind\":\"safety\",\"quote\":\"loss of control\"},{\"kind\":\"symptom\",\"quote\":\"catalytic converter failure\"},{\"kind\":\"symptom\",\"quote\":\"oxygen sensor failure\"},{\"kind\":\"symptom\",\"quote\":\"burnt spark plugs\"},{\"kind\":\"symptom\",\"quote\":\"engine sputters\"},{\"kind\":\"safety\",\"quote\":\"safety concern\"}]}",
+            "reasoning_content": "We need answer with JSON only. Need normalize report. Need extract summary component symptom conditions. Component ELECTRICAL SYSTEM group electrical_general. Narrative: \"electrical codes saying power steering failure which could cause loss of control of vehicle catalytic converter failure - leading to oxygen sensor failure and burnt spark plugs. engine sputters. If you look online its non-stop reports of this same year having the same issues of catalytic converter failures. health concern, emissions concern, safety concern. GM needs to recall and replace these\"\n\nNeed symptoms: power steering failure, catalytic converter failure, oxygen sensor failure, burnt spark plugs, engine sputters. Maybe loss of control is safety risk not symptom. Conditions: none explicit? \"cold moisture heat vibration intermittent after service charging\" none. Could include? No. Fault codes: report says \"electrical codes\" but no code named. fault_codes empty. safety_relevant true because mentions loss of control, health concern safety concern. Missing info: date? received_at exists 2025-10-03; mileage null. conditions missing? Component given. symptom given. Mileage missing. Date? received_at present but maybe report date; missing repair date? The analysis needs mileage, date, conditions. Since received_at present, date not missing? It says missing_info facts analysis needs: component, symptom, conditions, mileage, date. Mileage null. Conditions not mentioned. Date given received_at. Maybe missing conditions and mileage. Component present, symptom present. Could include conditions. Also exact fault code missing? But missing_info list only specified categories, not fault code. So [\"mileage\",\"conditions\"]. Maybe date? received_at is date received not incident date. But \"date\" could be missing for when issue occurred. Hmm report has received_at 2025-10-03. Could still missing incident date. But rules list date. We can include \"date\" if no incident date? Need be careful. It's a report with received_at. Usually include mileage if null, conditions if none. Date may be present as received_at. I'd include mileage and conditions only.\n\nClues quotes verbatim. Need ensure exact spans from narrative. Quotes:\n- \"power steering failure\" (symptom)\n- \"loss of control\" (safety) exact span? Narrative: \"which could cause loss of control of vehicle\" yes contains \"loss of control\".\n- \"catalytic converter failure\" exact? narrative \"catalytic converter failure - leading\" yes.\n- \"oxygen sensor failure\" exact.\n- \"burnt spark plugs\" exact.\n- \"engine sputters\" exact.\n- \"health concern, emissions concern, safety concern\" maybe safety quote. Could use \"safety concern\". Verbatim.\n- \"electrical codes\" maybe fault_code? It says electrical codes but no code. kind other? Could quote \"electrical codes\" as fault_code? But no code named. Better not as fault_code; maybe other.\n- component_group quote? \"ELECTRICAL SYSTEM\" is in component field not narrative? The report includes component field. Quotes copied from report; can quote \"ELECTRICAL SYSTEM\" from component. kind component_group.\nNeed summary one line: \"Electrical system: power steering failure, catalytic converter/oxygen sensor failure, burnt spark plugs, engine sputter; no conditions/mileage.\" Keep one line.\n\nNeed conditions array empty. Symptoms plain words. Could include \"power steering failure\" etc. Fault_codes empty. safety_relevant true. missing_info [\"mileage\",\"conditions\"]. Clues array. Need not include all? Include key clues.\n\nNeed JSON valid no other text. Ensure no markdown? User says one JSON object and no other text. Final should be JSON only. Use exact quotes.\n\nPotential issue: \"safety_relevant\" in input false but narrative has safety concern/loss of control. Rules say set true when mentions loss control. So true.\n\nNeed summary: \"Electrical system: power steering failure with possible loss of control; catalytic converter failure leading to oxygen sensor failure and burnt spark plugs; engine sputters.\" One line. Conditions none.\n\nSymptoms array:\n\"power steering failure\"\n\"catalytic converter failure\"\n\"oxygen sensor failure\"\n\"burnt spark plugs\"\n\"engine sputters\"\nMaybe \"loss of control\" is safety not symptom. Keep separate.\n\nConditions empty.\n\nClues:\n{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"}\n{\"kind\":\"symptom\",\"quote\":\"power steering failure\"}\n{\"kind\":\"safety\",\"quote\":\"loss of control\"}\n{\"kind\":\"symptom\",\"quote\":\"catalytic converter failure\"}\n{\"kind\":\"symptom\",\"quote\":\"oxygen sensor failure\"}\n{\"kind\":\"symptom\",\"quote\":\"burnt spark plugs\"}\n{\"kind\":\"symptom\",\"quote\":\"engine sputters\"}\n{\"kind\":\"safety\",\"quote\":\"safety concern\"}\nMaybe \"health concern\" safety? Could include \"health concern\". But safety relevant enough. Add {\"kind\":\"safety\",\"quote\":\"health concern\"}? It mentions health concern. Could include. But overkill. Include \"safety concern\" and \"loss of control\". Fine.\n\nNeed \"fault_codes\": [] because no code named. But clue \"electrical codes\" maybe kind fault_code? No, fault_codes should be code if report names one. It doesn't. Do not include.\n\nNeed missing_info \"mileage\", \"conditions\". Could also include \"date\"? Since received_at date is given. But incident date not. The prompt says missing_info only facts analysis needs: component, symptom, conditions, mileage, date. The report has received_at, so date present. Good.\n\nNeed exact quote \"ELECTRICAL SYSTEM\" from component field; report includes that. Valid.\n\nEnsure JSON no trailing commas. Final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530943,
+      "id": "dfb6c0bc6b8ca111d521cc15014ce2c5",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1395,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1187,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00051873,
+          "billing_source": "go",
+          "list_cost": 0.00086455,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 176,
+            "output": 1395,
+            "reasoning": 1187
+          }
+        },
+        "prompt_tokens": 560,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1955
+      }
+    },
+    "text": "{\"summary\":\"Electrical system: power steering failure with possible loss of control; catalytic converter failure leading to oxygen sensor failure and burnt spark plugs; engine sputters.\",\"group\":\"electrical_general\",\"symptoms\":[\"power steering failure\",\"catalytic converter failure\",\"oxygen sensor failure\",\"burnt spark plugs\",\"engine sputters\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"power steering failure\"},{\"kind\":\"safety\",\"quote\":\"loss of control\"},{\"kind\":\"symptom\",\"quote\":\"catalytic converter failure\"},{\"kind\":\"symptom\",\"quote\":\"oxygen sensor failure\"},{\"kind\":\"symptom\",\"quote\":\"burnt spark plugs\"},{\"kind\":\"symptom\",\"quote\":\"engine sputters\"},{\"kind\":\"safety\",\"quote\":\"safety concern\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00051873,
+      "cached_tokens": 384,
+      "cost_usd": 0.00086455,
+      "input_tokens": 560,
+      "list_cost_usd": 0.00086455,
+      "output_tokens": 1395,
+      "reasoning_tokens": 1187
+    }
+  }
+}

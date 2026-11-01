@@ -1,0 +1,66 @@
+{
+  "key": "e2f2b639490a86d6ce43d0bc8b1e474e5a61a44f318dbc9cff67b7a8f5659233",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11962,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"VISIBILITY/WIPER (body_controls): clear coat peeling and exposed base paint; no conditions stated.\",\n  \"group\": \"body_controls\",\n  \"symptoms\": [\"clear coat peeling\", \"exposed base paint\"],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"missing_info\": [\"mileage\", \"date\", \"conditions\", \"component\"],\n  \"clues\": [\n    {\"kind\": \"symptom\", \"quote\": \"clear coat peeling and exposed base paint\"},\n    {\"kind\": \"other\", \"quote\": \"manufacturing defect\"},\n    {\"kind\": \"component_group\", \"quote\": \"VISIBILITY/WIPER\"}\n  ]\n}",
+            "reasoning_content": "We need to produce JSON per instructions. Need read report. Component VISIBILITY/WIPER, group body_controls. Narrative about paint peeling, clear coat, exposed base paint, manufacturing defect. No symptoms of wiper? The component given is wiper but narrative is paint. Need summarize component, symptom, conditions. Group given body_controls. Symptoms: paint clear coat peeling, exposed base paint. Conditions: none mentioned? Maybe no cold/moisture etc. Fault codes none. Safety false. Missing info: mileage is null, date? received_at given but not incident date. Component? The report has component but narrative mismatched? Missing_info maybe [\"mileage\",\"date\"]? Need only facts analysis needs. Mileage missing. Date? received_at present but date of issue not. Conditions missing? No conditions mentioned; but list missing_info only facts analysis needs. The component is given but narrative is paint, maybe component mismatch. Missing_info could include \"mileage\", \"date\", \"conditions\" maybe \"component\"? Since component field says wiper but narrative paint; analysis needs actual component. But \"component\" is provided (VISIBILITY/WIPER) but inconsistent. Hmm.\n\nNeed clues with verbatim quotes from narrative. Need quote character for character. Quotes: \"Blue metallic paint has clear coat peeling and exposed base paint.\" \"Paint should last longer than 8 years\" \"this is a manufacturing defect.\" Could include symptom quote \"clear coat peeling and exposed base paint\" verbatim. Condition none. Component group quote? No quote for body_controls. safety no. Other maybe \"manufacturing defect\" as other? The clue kind can be symptom|condition|fault_code|component_group|safety|other. Use quotes.\n\nNeed ensure JSON only. Summary: \"VISIBILITY/WIPER (body_controls): clear coat peeling and exposed base paint; no conditions stated.\" But component wiper? The report component is VISIBILITY/WIPER but narrative paint. Summary one line: component, symptom, conditions. Maybe \"VISIBILITY/WIPER: clear coat peeling and exposed base paint; no conditions stated.\" Good.\n\nSymptoms array: [\"clear coat peeling\", \"exposed base paint\"] or \"paint clear coat peeling and exposed base paint\". Plain words. Use [\"clear coat peeling\", \"exposed base paint\"].\n\nConditions: [].\n\nFault_codes: [].\n\nSafety_relevant false.\n\nMissing_info: mileage null. Date? received_at is date but not incident date. Conditions not stated. Component mismatch? The instruction says missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. The component is provided but maybe wrong. Since narrative says paint but component says wiper; analysis needs correct component. Could include \"component\" because the given component does not match narrative. But rule \"Do not invent facts.\" We can note missing_info [\"mileage\", \"date\", \"conditions\", \"component\"]? Is date missing? received_at present, but \"date\" likely incident date. It asks missing_info for facts analysis needs. Mileage missing, date? The report has received_at, not incident date. Conditions missing. Component? The report names component but inconsistent. Hmm. Symptom present. Let's decide missing_info [\"mileage\", \"date\", \"conditions\", \"component\"]? Could be too much. The component field is present, but narrative is about paint, not wiper. The analysis needs actual component. I think include \"component\" because mismatch. But \"missing_info\" should be facts missing, not inconsistent. However component is not missing; it's present. Yet the narrative not matching means actual faulty component missing. But maybe the provided component is VISIBILITY/WIPER (body_controls) and narrative paint; no wiper symptom. We can include \"component\" due to mismatch. But perhaps safer: missing_info [\"mileage\",\"date\",\"conditions\"]. The prompt examples include component. Since component field is given, not missing. But the narrative doesn't mention wiper; maybe component missing for paint issue. Hmm.\n\nNeed clues: \n- {\"kind\":\"symptom\",\"quote\":\"clear coat peeling and exposed base paint\"}\n- {\"kind\":\"other\",\"quote\":\"manufacturing defect\"}\nCould also quote \"Blue metallic paint has clear coat peeling and exposed base paint.\" as symptom. Need verbatim. Use exact substring. \"clear coat peeling and exposed base paint\" is exact? Narrative: \"Blue metallic paint has clear coat peeling and exposed base paint.\" Yes substring. \"Paint should last longer than 8 years\" exact. \"this is a manufacturing defect.\" exact including period? Narrative: \"Paint should last longer than 8 years, this is a manufacturing defect.\" So \"this is a manufacturing defect.\" exact. Clue for symptom can be full sentence. For other manufacturing defect. No condition quote. Component_group? Could quote \"VISIBILITY/WIPER\"? But report JSON component not narrative. The clue quote must be copied verbatim from report. The report includes JSON with \"component\": \"VISIBILITY/WIPER\". Could quote \"VISIBILITY/WIPER\" as component_group? The report is the whole JSON. But rules say quote copied verbatim from report. It can be from JSON. But kind component_group: quote \"VISIBILITY/WIPER\". That's valid. But maybe not needed. We can include component_group quote \"VISIBILITY/WIPER\" to evidence group. But summary uses component. Since group given body_controls, no quote. Could include {\"kind\":\"component_group\",\"quote\":\"VISIBILITY/WIPER\"} but that's component not group. Hmm.\n\nNeed answer only JSON. Let's craft.\n\nPotential final:\n{\n  \"summary\": \"VISIBILITY/WIPER: clear coat peeling and exposed base paint; no conditions stated.\",\n  \"group\": \"body_controls\",\n  \"symptoms\": [\"clear coat peeling\", \"exposed base paint\"],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"missing_info\": [\"mileage\", \"date\", \"conditions\", \"component\"],\n  \"clues\": [\n    {\"kind\": \"symptom\", \"quote\": \"clear coat peeling and exposed base paint\"},\n    {\"kind\": \"other\", \"quote\": \"manufacturing defect\"},\n    {\"kind\": \"component_group\", \"quote\": \"VISIBILITY/WIPER\"}\n  ]\n}\n\nBut \"manufacturing defect\" quote exact? Narrative: \"this is a manufacturing defect.\" Contains \"manufacturing defect\" yes. Good. \"VISIBILITY/WIPER\" exact in JSON. Good.\n\nQuestion: missing_info includes \"component\" though component present. Is that okay? Maybe not. The prompt says list missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. Use empty when nothing important missing. Since component present, not missing. But narrative mismatch means actual component? Hmm. Maybe include \"component\" because the reported component (wiper) doesn't match symptom (paint). But \"missing\" not \"inconsistent\". I think include component is defensible: actual faulty component (paint/body) not clearly specified. But the field component says wiper. We can phrase missing_info [\"mileage\",\"date\",\"conditions\"] and in summary note mismatch? Summary one line only. Could summary \"VISIBILITY/WIPER (body_controls): paint clear coat peeling and exposed base paint; no conditions stated.\" That surfaces mismatch. Then missing_info no component. But analysis needs correct component; maybe include. Hmm.\n\nNeed not overdo. Since the desk analysis needs component, symptom, conditions, mileage, date. Component is given, symptom given, conditions not, mileage missing, date missing. So missing_info [\"mileage\",\"date\",\"conditions\"]. If we include component, it contradicts given. But the narrative symptom is paint, not wiper; so actual component of fault is missing. Yet the report names VISIBILITY/WIPER. Maybe the \"component\" is a categorization, not exact. Hmm.\n\nLet's ensure no action suggestions. Good.\n\nNeed maybe safety_relevant false because report field false and no risk. Good.\n\nNeed \"conditions\" array should include only recognized conditions: cold, moisture, heat, vibration, intermittent, after service, charging. None. Good.\n\nCould symptoms be \"paint clear coat peeling\" and \"exposed base paint\". Fine.\n\nNeed no other text. Final JSON only.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530346,
+      "id": "49d7069ecb8324bc4f4ba04a3a0f72f9",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1916,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1757,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00070206,
+          "billing_source": "go",
+          "list_cost": 0.0011701,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 129,
+            "output": 1916,
+            "reasoning": 1757
+          }
+        },
+        "prompt_tokens": 513,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2429
+      }
+    },
+    "text": "{\n  \"summary\": \"VISIBILITY/WIPER (body_controls): clear coat peeling and exposed base paint; no conditions stated.\",\n  \"group\": \"body_controls\",\n  \"symptoms\": [\"clear coat peeling\", \"exposed base paint\"],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"missing_info\": [\"mileage\", \"date\", \"conditions\", \"component\"],\n  \"clues\": [\n    {\"kind\": \"symptom\", \"quote\": \"clear coat peeling and exposed base paint\"},\n    {\"kind\": \"other\", \"quote\": \"manufacturing defect\"},\n    {\"kind\": \"component_group\", \"quote\": \"VISIBILITY/WIPER\"}\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00070206,
+      "cached_tokens": 384,
+      "cost_usd": 0.0011701,
+      "input_tokens": 513,
+      "list_cost_usd": 0.0011701,
+      "output_tokens": 1916,
+      "reasoning_tokens": 1757
+    }
+  }
+}

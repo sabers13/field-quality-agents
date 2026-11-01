@@ -1,0 +1,66 @@
+{
+  "key": "f046f3387c47cf55b041321bc57a550030bc6b2ef3675adbc87ee9f0efc39ef3",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 6789,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Air bags: warning light illuminated on startup; front modules failed and rear air bags possibly inoperable.\",\n  \"group\": \"restraints\",\n  \"symptoms\": [\n    \"air bag warning light illuminated on startup\",\n    \"front air bag modules failed\",\n    \"rear air bags possibly inoperable\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"AIR BAGS\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"upon starting the vehicle, the air bag warning light unexpectedly illuminated\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"all the front air bag modules had failed\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"rear air bags could potentially be inoperable\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer only JSON. Need normalize. Component air bags, group restraints. Symptoms: air bag warning light illuminated upon starting; front air bag modules failed; rear air bags potentially inoperable. Conditions? \"upon starting the vehicle\" maybe not among list cold/moisture/heat/vibration/intermittent/after service/charging. Conditions list should be selected from those? The schema says conditions array examples. Could include \"upon starting\" but rules? We can list conditions only if report mentions. It mentions upon starting vehicle. But allowed examples? \"conditions\": [\"cold\", ...]. Better maybe empty? Need clues verbatim. Safety relevant? Air bag failure is safety risk? Rule says set when report mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. Air bag modules failed and rear inoperable is another risk to people. So safety_relevant true. Missing_info? Mileage present 80000, date received 2025-09-22 but failure date absent. Component and symptom present. Conditions present \"upon starting\". Missing date? They ask facts analysis needs: component, symptom, conditions, mileage, date. Date maybe received_at but not failure date. Should list \"date\" perhaps. Also maybe no missing? It has mileage. Need not invent. We can include missing_info [\"date\"] because no failure date. But report has received_at; date could be report date. Hmm.\n\nNeed quote exact spans. Use quotes:\n- \"upon starting the vehicle, the air bag warning light unexpectedly illuminated\"\n- \"all the front air bag modules had failed\"\n- \"rear air bags could potentially be inoperable\"\n- component_group: \"AIR BAGS\" from component? The report in user message JSON has \"component\": \"AIR BAGS\"; narrative says air bag. Quote must be copied verbatim from report. \"AIR BAGS\" is in report JSON. okay.\n- safety: \"rear air bags could potentially be inoperable\" or \"all the front air bag modules had failed\" as safety risk. Clue kind safety maybe quote \"rear air bags could potentially be inoperable\". Need not overdo.\n\nSummary one line: AIR BAGS: warning light on start; front modules failed, rear possibly inoperable. Conditions: maybe [\"after service\"]? No. \"upon starting\" not in enumerated list but condition. The schema's conditions array can contain free? It examples. I can put [\"upon starting\"]? But prompt says conditions [\"cold\",...]. It says normalise. Better use empty list? Hmm.\n\nThe conditions field in schema says [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. It likely expects only these tags. Report says upon starting, not one. Could classify as intermittent? No, unexpected illumination on starting. Could be not intermittent. So conditions [].\n\nSafety relevant true. Missing info maybe [\"date\"] only. Fault codes empty.\n\nNeed one JSON object and no other text. Ensure valid JSON. Quotes exact: narrative includes \"The contact stated that upon starting the vehicle, the air bag warning light unexpectedly illuminated.\" We can quote substring \"upon starting the vehicle, the air bag warning light unexpectedly illuminated\" exact yes. \"all the front air bag modules had failed\" exact substring? Narrative: \"determined that all the front air bag modules had failed and needed to be replaced.\" yes. \"rear air bags could potentially be inoperable\" exact substring yes. \"AIR BAGS\" exact in component. Good.\n\nNeed maybe symptom array plain words: [\"air bag warning light illuminated on startup\", \"front air bag modules failed\", \"rear air bags possibly inoperable\"]. Good.\n\nSummary mention Chevrolet Traverse? one line component symptom conditions: \"Air bags: warning light on startup; front modules failed and rear possibly inoperable.\" Good.\n\nFinal only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530673,
+      "id": "a79251c92098df01c4d4066c3d6c2f45",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1030,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 809,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00039021,
+          "billing_source": "go",
+          "list_cost": 0.00065035,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 208,
+            "output": 1030,
+            "reasoning": 809
+          }
+        },
+        "prompt_tokens": 592,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1622
+      }
+    },
+    "text": "{\n  \"summary\": \"Air bags: warning light illuminated on startup; front modules failed and rear air bags possibly inoperable.\",\n  \"group\": \"restraints\",\n  \"symptoms\": [\n    \"air bag warning light illuminated on startup\",\n    \"front air bag modules failed\",\n    \"rear air bags possibly inoperable\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"AIR BAGS\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"upon starting the vehicle, the air bag warning light unexpectedly illuminated\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"all the front air bag modules had failed\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"rear air bags could potentially be inoperable\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00039021,
+      "cached_tokens": 384,
+      "cost_usd": 0.00065035,
+      "input_tokens": 592,
+      "list_cost_usd": 0.00065035,
+      "output_tokens": 1030,
+      "reasoning_tokens": 809
+    }
+  }
+}

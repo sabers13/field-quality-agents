@@ -1,0 +1,66 @@
+{
+  "key": "fad5bbcda57fca5bffd2c38163a3b525d3d76b97f52c50a57936d3c31d42e8fc",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 13202,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Alternator/generator/regulator: fumes inside motorhome and illness with eye swelling while running overhead air conditioner on generator power with engine off.\",\"group\":\"power_and_wiring\",\"symptoms\":[\"fumes inside motorhome\",\"irritability\",\"felt ill\",\"swollen eyes\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM:ALTERNATOR/GENERATOR/REGULATOR\"},{\"kind\":\"symptom\",\"quote\":\"Fumes inside motorhome\"},{\"kind\":\"symptom\",\"quote\":\"I became irritable, felt ill and my eyes were swollen.\"},{\"kind\":\"condition\",\"quote\":\"running Motorcoach overhead air conditioner on Generator power with vehicle engine off\"},{\"kind\":\"safety\",\"quote\":\"I became irritable, felt ill and my eyes were swollen.\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize report. Must read only report. Need infer component from given component electrical system alternator/generator/regulator; group given power_and_wiring. Summary one line component, symptom, conditions. Symptoms plain words: fumes inside motorhome, irritability, felt ill, eyes swollen, required day to feel normal. Conditions: running overhead air conditioner on generator power with vehicle engine off. Safety relevant true? Report mentions felt ill eyes swollen, fumes. Safety risk to people yes. Fault codes none. Missing info: mileage null? Report has no mileage. Date? received_at not necessarily incident date. Need list missing_info facts analysis needs: mileage, date? Component present, symptom present, conditions present. Report says will take dealer this week. Missing mileage, date. Maybe also fault code? Not in allowed list? missing_info allowed [\"mileage\",\"date\",\"conditions\",\"component\",\"symptom\"]. So mileage and date. Clues need verbatim quotes. Need include symptom, condition, component_group, safety? Quotes copied exactly. Need make sure quotes exactly from narrative. Report fields component not narrative but report includes component string. Quote can be from entire report? User says report in user message; quote verbatim span copied from report. We can quote narrative spans. For component_group maybe quote \"ELECTRICAL SYSTEM:ALTERNATOR/GENERATOR/REGULATOR\" from component field? It is in report. But quote must be verbatim span. It is. Kind component_group. Conditions: \"on Generator power with vehicle engine off\" exact? Narrative: \"Motorcoach overhead air conditioner on Generator power with vehicle engine off.\" The span \"on Generator power with vehicle engine off\" appears. Or \"running Motorcoach overhead air conditioner on Generator power with vehicle engine off\" exact? Narrative: \"when running Motorcoach overhead air conditioner on Generator power with vehicle engine off.\" Yes includes when. Could quote \"running Motorcoach overhead air conditioner on Generator power with vehicle engine off\" exact. Symptoms: \"Fumes inside motorhome\" exact. \"I became irritable, felt ill and my eyes were swollen.\" exact? Narrative: \"I became irritable, felt ill and my eyes were swollen.\" Yes. Safety: same quote maybe. Fault code none. summary: \"Alternator/generator/regulator; fumes inside motorhome and illness with eye swelling while running overhead air conditioner on generator power with engine off.\" One line. Group power_and_wiring. symptoms plain words array: \"fumes inside motorhome\", \"irritability\", \"felt ill\", \"swollen eyes\". conditions array allowed values: \"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\". Hmm conditions enumerated? Prompt schema says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. But narrative condition is generator power engine off, not in list. We need decide. Could include \"charging\"? Generator power? Not charging. The allowed condition values don't fit. But schema shows examples? It says conditions: [\"cold\", ...]. Probably should include only applicable from list. But then conditions empty? Yet summary includes condition. However clues can condition quote. Need maybe conditions [] because none of listed conditions? But the report condition is \"on Generator power with vehicle engine off\" not among allowed. Hmm instruction: \"conditions\": [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. It's a constrained vocabulary. We shouldn't invent \"generator power\" in conditions. Could include \"charging\"? Generator power maybe electrical supply but vehicle engine off, overhead AC on generator. Not charging. So conditions [].\n\nNeed safety_relevant true. Clues include safety quote \"I became irritable, felt ill and my eyes were swollen.\" Kind safety. Symptom quote same? Can duplicate? Fine. Other clue \"Fumes inside motorhome\" symptom. Condition quote. Component group quote. Maybe \"other\" quote \"I will take it into the dealer this week for analysis.\" Not needed. Missing info includes mileage and date. Date? received_at 2025-05-12 but incident date not specified. yes.\n\nNeed no other text. Ensure JSON valid. Use false lowercase. Quote exact char. Need be careful quote \"Fumes inside motorhome\" appears exactly at start. \"running Motorcoach overhead air conditioner on Generator power with vehicle engine off\" appears exact? Narrative: \"when running Motorcoach overhead air conditioner on Generator power with vehicle engine off.\" yes substring. \"I became irritable, felt ill and my eyes were swollen.\" exact includes period. \"ELECTRICAL SYSTEM:ALTERNATOR/GENERATOR/REGULATOR\" exact. Good.\n\nNeed summary one line. Could say \"Alternator/generator/regulator: fumes inside motorhome and illness with eye swelling while running overhead air conditioner on generator power with engine off.\" That's one line. Good.\n\nNeed maybe group \"power_and_wiring\" given. symptoms plain words. Conditions []? But the schema conditions list maybe expects applicable conditions. Since report condition generator power not in list, empty. But maybe conditions should include \"charging\" because generator? Hmm \"charging\" as condition in automotive component context often battery charging. Here generator power running AC, not charging. Don't force.\n\nNeed missing_info: [\"mileage\",\"date\"]. Do we list conditions? Conditions present albeit not vocabulary. No. Component present. Symptom present.\n\nNeed clues kinds allowed. Include condition quote. Maybe component_group. Safety. Symptom. Could include \"other\" for \"vehicle engine off\"? condition quote includes. Good.\n\nFinal JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793526874,
+      "id": "20a61eacb8e5ab17e0b1516df1659182",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1388,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1190,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00051792,
+          "billing_source": "go",
+          "list_cost": 0.0008632,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 195,
+            "output": 1388,
+            "reasoning": 1190
+          }
+        },
+        "prompt_tokens": 579,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1967
+      }
+    },
+    "text": "{\"summary\":\"Alternator/generator/regulator: fumes inside motorhome and illness with eye swelling while running overhead air conditioner on generator power with engine off.\",\"group\":\"power_and_wiring\",\"symptoms\":[\"fumes inside motorhome\",\"irritability\",\"felt ill\",\"swollen eyes\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM:ALTERNATOR/GENERATOR/REGULATOR\"},{\"kind\":\"symptom\",\"quote\":\"Fumes inside motorhome\"},{\"kind\":\"symptom\",\"quote\":\"I became irritable, felt ill and my eyes were swollen.\"},{\"kind\":\"condition\",\"quote\":\"running Motorcoach overhead air conditioner on Generator power with vehicle engine off\"},{\"kind\":\"safety\",\"quote\":\"I became irritable, felt ill and my eyes were swollen.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00051792,
+      "cached_tokens": 384,
+      "cost_usd": 0.0008632,
+      "input_tokens": 579,
+      "list_cost_usd": 0.0008632,
+      "output_tokens": 1388,
+      "reasoning_tokens": 1190
+    }
+  }
+}

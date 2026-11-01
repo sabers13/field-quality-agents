@@ -1,0 +1,66 @@
+{
+  "key": "b1eacbfa159d92c6bde34ea7e986e36817330b5c875cbdc931585695f3f860ff",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 16673,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Hyundai Ioniq 5 ICCU failure caused 12-volt battery not charging, loss of power, limp mode and immobility while driving on a busy road.\",\"group\":\"electrical_general\",\"symptoms\":[\"ICCU failure\",\"12-volt battery not charging\",\"loss of power\",\"vehicle immobile\",\"dangerous slowdown\",\"limp mode\",\"vehicle stopped\"],\"conditions\":[\"charging\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"ICCU (Integrated Charging Control Unit) failed\"},{\"kind\":\"symptom\",\"quote\":\"12-volt battery to stop charging and die\"},{\"kind\":\"symptom\",\"quote\":\"loss of power to the vehicle\"},{\"kind\":\"symptom\",\"quote\":\"vehicle being completely immobile\"},{\"kind\":\"condition\",\"quote\":\"driving on a busy road\"},{\"kind\":\"symptom\",\"quote\":\"the car started to slow down dangerously\"},{\"kind\":\"safety\",\"quote\":\"which almost caused the cars behind me to crash into me\"},{\"kind\":\"symptom\",\"quote\":\"entering limp mode\"},{\"kind\":\"symptom\",\"quote\":\"Then the vehicle completely stopped\"},{\"kind\":\"condition\",\"quote\":\"12-volt battery to stop charging\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize. Need read report. Component electrical system group electrical_general given. Narrative mentions ICCU failed causing 12V battery stop charging and die, loss of power, vehicle immobile. Driving busy road car slowed dangerously almost caused cars behind crash. Screen limp mode. Vehicle stopped. Stranded tow. Dealer confirmed ICCU and 12v battery failed. 3 months repair. Safety_relevant true due loss of power at speed almost crash, limp mode, stopped. Symptoms: ICCU failure, 12-volt battery not charging/dying, loss of power, vehicle immobile, car slowing down dangerously, limp mode, vehicle stopped. Conditions: driving? \"driving on a busy road\" condition? The allowed conditions list includes cold moisture heat vibration intermittent after service charging. Maybe \"charging\" because ICCU charging control and 12V battery stop charging. Also \"driving\" not in list. We can include conditions from allowed list only: charging. Maybe intermittent? no. Fault_codes none. Missing_info: mileage, date? date received but no incident date. Mileage null. Conditions? We have driving, but missing date/mileage. Component? given. Symptom present. So missing_info [\"mileage\",\"date\"]. Maybe conditions? Not necessary? The report gives \"driving on busy road\" but not weather etc. The analysis needs conditions; but allowed missing_info includes conditions. However we have driving condition. But maybe no date. Include mileage and date. Clues verbatim. Need exact spans copied. Need ensure quotes exactly from narrative. Could quote \"My car’s ICCU (Integrated Charging Control Unit) failed\" includes curly apostrophe. Need verbatim. Since JSON can contain. Need careful. Quotes:\n- symptom: \"ICCU (Integrated Charging Control Unit) failed\"\n- symptom: \"causing the 12-volt battery to stop charging and die\"\n- symptom: \"leading to a loss of power to the vehicle\"\n- symptom: \"resulting in the vehicle being completely immobile\"\n- condition? \"I was driving on a busy road\" maybe kind condition? But allowed kind condition. It's a condition. Quote verbatim.\n- symptom: \"the car started to slow down dangerously\"\n- safety: \"which almost caused the cars behind me to crash into me\"\n- symptom: \"entering limp mode\"\n- symptom: \"Then the vehicle completely stopped\"\n- fault_code none.\n- component_group: \"ELECTRICAL SYSTEM\" from component field? The report includes component field. Quote can be from report. But narrative? The report object has component. Quote \"ELECTRICAL SYSTEM\" verbatim. Kind component_group.\n- safety: \"almost caused the cars behind me to crash into me\" duplicate? Use one. Maybe safety quote exact: \"which almost caused the cars behind me to crash into me\". It includes which. Fine.\n- condition: \"driving on a busy road\" exact span? Narrative: \"I was driving on a busy road when all of a sudden...\" quote \"driving on a busy road\" yes verbatim.\n- condition charging? \"12-volt battery to stop charging\" exact? Narrative \"causing the 12-volt battery to stop charging and die\". quote \"the 12-volt battery to stop charging\" not exact? It is substring? \"causing the 12-volt battery to stop charging and die\" contains \"the 12-volt battery to stop charging\" yes after causing? Let's check: \"causing the 12-volt battery to stop charging and die\" yes substring starting at \"the\". But condition kind maybe \"charging\". Quote \"12-volt battery to stop charging\" exact substring? Narrative has \"the 12-volt battery to stop charging\" so yes \"12-volt battery to stop charging\" is substring? It begins after \"the \" and includes \"12-volt...\" yes exact. Use.\n- other maybe dealer confirmed? Not needed.\n\nSummary one line: ICCU failure causing 12V battery not charging, loss of power/limp mode/immobile while driving. Conditions: driving busy road, charging? We can include in summary. Need group \"electrical_general\" or \"electrical/electronic component group\"? The prompt says group: \"the electrical/electronic component group, or the given group\". Given group electrical_general. Use that. Symptoms array plain words. Need not overly many. Could include \"ICCU failure\", \"12-volt battery not charging\", \"loss of power\", \"limp mode\", \"vehicle immobile\", \"vehicle slowed dangerously and stopped\". Conditions array allowed values: [\"charging\"]? Maybe also \"intermittent\"? no. \"after service\"? no. \"vibration\"? no. \"heat\"? no. \"cold\"? no. \"moisture\"? no. Do we include \"driving\"? Not allowed list. The schema says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. So only these. Include \"charging\" because ICCU charging. Safety true.\n\nMissing_info: component? no. symptom? no. conditions? We have driving/charging. Mileage and date missing. The report has received_at but not incident date. Include \"mileage\",\"date\". Maybe \"conditions\" because no weather? Hmm. The analysis needs conditions; but report gives driving on busy road and charging failure. The missing_info list includes conditions. It says list only facts analysis needs: component, symptom, conditions, mileage, date. Since conditions maybe partially present. I'd include mileage and date only. Could include \"conditions\" if we need specifics? But conditions includes driving? Not in allowed conditions. Maybe we have \"charging\". Hmm.\n\nNeed JSON only no other text. Ensure valid JSON. Quotes verbatim. Let's craft.\n\nNeed maybe \"fault_codes\": [] because no code. safety_relevant true.\n\nClues include kind safety quote. Need quote exact including \"almost caused the cars behind me to crash into me\". Narrative: \"which almost caused the cars behind me to crash into me.\" It has period after me? Let's quote without period? Verbatim span can omit final period if substring. \"which almost caused the cars behind me to crash into me\" is exact substring before period. Good.\n\nNeed exact curly apostrophe in \"My car’s\" if used. Maybe avoid.\n\nComponent group quote \"ELECTRICAL SYSTEM\" exact. Good.\n\nNeed summary one line: \"Hyundai Ioniq 5 ICCU failure caused 12-volt battery not to charge, loss of power, limp mode and immobility while driving on a busy road.\" Conditions? Good. One line.\n\nSymptoms array: [\"ICCU failure\", \"12-volt battery not charging\", \"loss of power\", \"vehicle immobile\", \"dangerous slowdown\", \"limp mode\", \"vehicle stopped\"]. Plain words.\n\nConditions: [\"charging\"] maybe. But summary mentions driving busy road; conditions array allowed not include driving. Could omit? The schema allows conditions array values from list. Include \"charging\". The condition \"charging\" is about 12V battery stop charging, not charging event. Good.\n\nClues: Need maybe all. Let's list 10. Quotes must be exact. Check each:\n1 kind component_group quote \"ELECTRICAL SYSTEM\" — in component field. Good.\n2 symptom quote \"ICCU (Integrated Charging Control Unit) failed\" — narrative: \"My car’s ICCU (Integrated Charging Control Unit) failed, causing...\" substring yes.\n3 symptom quote \"12-volt battery to stop charging and die\" — narrative: \"causing the 12-volt battery to stop charging and die\" substring yes? It includes \"the 12-volt...\" If quote starts \"12-volt\" after \"the \" yes exact substring \"12-volt battery to stop charging and die\". Good.\n4 symptom quote \"loss of power to the vehicle\" — narrative: \"leading to a loss of power to the vehicle\" substring yes.\n5 symptom quote \"vehicle being completely immobile\" — narrative: \"resulting in the vehicle being completely immobile\" substring yes.\n6 condition quote \"driving on a busy road\" — exact.\n7 symptom quote \"the car started to slow down dangerously\" — exact.\n8 safety quote \"which almost caused the cars behind me to crash into me\" — exact.\n9 symptom quote \"entering limp mode\" — narrative: \"The car's screen said it was entering limp mode.\" substring yes.\n10 symptom quote \"Then the vehicle completely stopped\" — exact.\n11 condition quote \"stop charging\" maybe duplicate. Could use condition kind charging quote \"12-volt battery to stop charging\" exact. But duplicate with symptom. Condition array has charging. Need evidence for condition? Could include kind condition quote \"12-volt battery to stop charging\". Already quote #3 includes. Fine maybe use #3 as symptom, not condition. But condition \"charging\" needs clue? Not required but good. Could add condition quote \"12-volt battery to stop charging\" exact. It duplicates. That's okay. But avoid too many. Need every quote exact. Good.\n\nNeed no suggestions. Good.\n\nFinal just JSON. Ensure safety_relevant true. Use group electrical_general.\n\nNeed maybe missing_info include \"date\" because no incident date; \"mileage\" because null. Good.\n\nNeed \"conditions\": [\"charging\"]. But if condition is charging failure, maybe yes.\n\nLet's formulate valid JSON. Use no markdown? User asked one JSON object and no other text. Final can be raw JSON. Good.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793527238,
+      "id": "694352a38fc8c7a798a4f679f1ef747e",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2293,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1999,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0008493,
+          "billing_source": "go",
+          "list_cost": 0.0014155,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 257,
+            "output": 2293,
+            "reasoning": 1999
+          }
+        },
+        "prompt_tokens": 641,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2934
+      }
+    },
+    "text": "{\"summary\":\"Hyundai Ioniq 5 ICCU failure caused 12-volt battery not charging, loss of power, limp mode and immobility while driving on a busy road.\",\"group\":\"electrical_general\",\"symptoms\":[\"ICCU failure\",\"12-volt battery not charging\",\"loss of power\",\"vehicle immobile\",\"dangerous slowdown\",\"limp mode\",\"vehicle stopped\"],\"conditions\":[\"charging\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"ICCU (Integrated Charging Control Unit) failed\"},{\"kind\":\"symptom\",\"quote\":\"12-volt battery to stop charging and die\"},{\"kind\":\"symptom\",\"quote\":\"loss of power to the vehicle\"},{\"kind\":\"symptom\",\"quote\":\"vehicle being completely immobile\"},{\"kind\":\"condition\",\"quote\":\"driving on a busy road\"},{\"kind\":\"symptom\",\"quote\":\"the car started to slow down dangerously\"},{\"kind\":\"safety\",\"quote\":\"which almost caused the cars behind me to crash into me\"},{\"kind\":\"symptom\",\"quote\":\"entering limp mode\"},{\"kind\":\"symptom\",\"quote\":\"Then the vehicle completely stopped\"},{\"kind\":\"condition\",\"quote\":\"12-volt battery to stop charging\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0008493,
+      "cached_tokens": 384,
+      "cost_usd": 0.0014155,
+      "input_tokens": 641,
+      "list_cost_usd": 0.0014155,
+      "output_tokens": 2293,
+      "reasoning_tokens": 1999
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "2200158eda2a746f2c814fd59cc6c97603d7a2288319f548ce9bcfaa6c1a5eaf",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 19735,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2024 Hyundai Palisade forward collision avoidance/automatic emergency braking pulsed/jerked and lurched forward during low-speed braking in a parking lot, resulting in minor rear-end contact.\",\"group\":\"adas\",\"symptoms\":[\"brake pedal pulsing/jerking consistent with ABS engagement\",\"vehicle would not stop despite hard braking\",\"forward collision warning alerts/beeping\",\"vehicle lurched/jumped forward instead of stopping smoothly\",\"minor rear-end contact with vehicle ahead\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"forward collision warning\"},{\"kind\":\"symptom\",\"quote\":\"Began pulsing/jerking, consistent with ABS engaging.\"},{\"kind\":\"symptom\",\"quote\":\"No matter how hard I pressed the brake my car would not stop\"},{\"kind\":\"symptom\",\"quote\":\"alerts and Beeping with a forward collision warning went off\"},{\"kind\":\"symptom\",\"quote\":\"car Lurched/jumped forward rather than stopping smoothly.\"},{\"kind\":\"safety\",\"quote\":\"This resulted in a minor rear-end contact with the vehicle ahead.\"},{\"kind\":\"safety\",\"quote\":\"Concerns for safety of myself and others\"},{\"kind\":\"symptom\",\"quote\":\"the car did not stop when hitting the brakes nor the collision warning initiate braking\"},{\"kind\":\"condition\",\"quote\":\"When I attempted to brake (approx. 10 mph), my vehicle:\"},{\"kind\":\"condition\",\"quote\":\"While entering the parking lot, the vehicle in front of me braked.\"},{\"kind\":\"other\",\"quote\":\"Concern that ABS or forward-collision system malfunctioned.\"}]}",
+            "reasoning_content": "We need to produce JSON per schema. Need parse report. Component: forward collision avoidance automatic emergency braking, group adas. Symptoms: pulsing/jerking consistent with ABS engaging, brakes not stopping despite hard press, forward collision warning alerts/beeping, car lurched/jumped forward rather than stopping smoothly, minor rear-end contact. Conditions: maybe \"approx. 10 mph\", entering parking lot, vehicle in front braked. Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. None apply? Could include \"intermittent\"? Not explicitly. Conditions maybe empty? But schema conditions should list from allowed values. Report doesn't mention cold etc. Could leave empty. Fault codes none. Safety relevant true (crash, risk). Missing info: mileage (null), date? Date present redacted? It says Date: [XXX] but received_at 2025-09-09; incident date redacted. So missing_info: mileage, date? Component present, symptom present, conditions maybe present? The analysis needs mileage/date. Include mileage and date. Maybe \"conditions\" present enough. Clues verbatim quotes. Need ensure exact spans from narrative. Quotes:\n- \"Began pulsing/jerking, consistent with ABS engaging.\" exact? Narrative: \"- Began pulsing/jerking, consistent with ABS engaging. No matter how hard I pressed the brake my car would not stop it's kept pulsing\" We can quote \"Began pulsing/jerking, consistent with ABS engaging.\" yes substring.\n- \"No matter how hard I pressed the brake my car would not stop\" exact substring? yes.\n- \"alerts and Beeping with a forward collision warning went off\" exact.\n- \"car Lurched/jumped forward rather than stopping smoothly.\" exact? Narrative: \" - car Lurched/jumped forward rather than stopping smoothly. This resulted...\" yes.\n- \"minor rear-end contact with the vehicle ahead\" exact.\n- \"Concern that ABS or forward-collision system malfunctioned.\" exact.\n- \"car did not stop when hitting the brakes nor the collision warning initiate braking\" exact? Narrative: \"because the car did not stop when hitting the brakes nor the collision warning initiate braking.\" We can quote that.\n- \"approx. 10 mph\" exact? Narrative: \"When I attempted to brake (approx. 10 mph), my vehicle:\" yes.\n- \"entering the parking lot\" exact? \"While entering the parking lot, the vehicle in front of me braked.\" yes.\n- \"vehicle in front of me braked\" exact.\nNeed clues kind: symptom, condition, safety, other. Conditions allowed? Clue kind condition for \"approx. 10 mph\"? Hmm condition clue quote can be from report. Maybe kind \"condition\" for \"While entering the parking lot\" and \"approx. 10 mph\"? But conditions array only allowed enumerated. If no enumerated conditions, we can still include clue kind condition? The kind \"condition\" quote could represent context not in allowed list? It says kind symptom|condition|fault_code|component_group|safety|other. Probably okay. But conditions array should be allowed values. We can set conditions empty. But maybe \"intermittent\" due pulsing? No that's symptom. We'll leave empty.\n\nNeed summary one line: component, symptom, conditions. \"2024 Hyundai Palisade forward collision avoidance/automatic emergency braking pulsed/jerked and lurched forward during low-speed braking in a parking lot, resulting in minor rear-end contact.\" Conditions: low-speed parking lot, vehicle ahead braked. Good.\n\nGroup \"adas\".\n\nSymptoms: plain words list. e.g.\n\"brake pedal pulsing/jerking consistent with ABS engagement\"\n\"vehicle would not stop despite hard braking\"\n\"forward collision warning alerts/beeping\"\n\"vehicle lurched/jumped forward instead of stopping smoothly\"\n\"minor rear-end contact with vehicle ahead\"\nCould include \"brakes did not stop vehicle\". Fine.\n\nFault codes [].\n\nSafety true.\n\nMissing info: mileage, date. Since narrative date redacted and mileage null. Maybe \"conditions\" not missing because report has low speed/parking lot. Component and symptom present. Include [\"mileage\",\"date\"].\n\nClues list maybe include all. Need exact quotes. Let's ensure each quote is verbatim. Need be careful with apostrophe \"it's\" in narrative. We won't include that.\n\nCould include component_group clue quote \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\" from component field? The instruction says quote from report, report includes component? The user message is whole JSON. The report includes component field. It says read only report in user message. Quote can be from report including component? Probably yes, but safer from narrative. For component_group clue quote \"forward collision warning\" or \"forward-collision system\" within narrative. Use \"forward-collision system\" exact. But kind component_group maybe quote \"forward collision warning\" from narrative? Hmm.\n\nNeed one JSON object no other text. Ensure valid JSON. No markdown? They said answer with one JSON object and no other text. We'll output plain JSON.\n\nLet's craft. Need ensure quote \"alerts and Beeping with a forward collision warning went off\" exact? Narrative: \" - alerts and Beeping with a forward collision warning went off  - car Lurched...\" Yes substring with leading? We'll omit leading. It has two spaces after off; quote exact substring includes \"alerts and Beeping with a forward collision warning went off\" yes. Good.\n\nQuote \"car Lurched/jumped forward rather than stopping smoothly.\" exact? Narrative has \" - car Lurched/jumped forward rather than stopping smoothly. This resulted...\" yes substring. Good.\n\nQuote \"This resulted in a minor rear-end contact with the vehicle ahead.\" exact. Good.\n\nQuote \"Concern that ABS or forward-collision system malfunctioned.\" exact. Good.\n\nQuote \"the car did not stop when hitting the brakes nor the collision warning initiate braking\" exact? Narrative: \"Concerns for safety of myself and others because the car did not stop when hitting the brakes nor the collision warning initiate braking.\" substring yes.\n\nQuote \"While entering the parking lot, the vehicle in front of me braked.\" exact. Good.\n\nQuote \"When I attempted to brake (approx. 10 mph), my vehicle:\" exact? Narrative: \"When I attempted to brake (approx. 10 mph), my vehicle: - Began...\" yes substring includes colon. Good.\n\nQuote \"No matter how hard I pressed the brake my car would not stop\" exact. Good.\n\nCould include \"Began pulsing/jerking, consistent with ABS engaging.\" exact. Good.\n\nSafety clue quote \"This resulted in a minor rear-end contact with the vehicle ahead.\" and \"Concerns for safety of myself and others\" exact? Narrative \"Concerns for safety of myself and others because the car did not stop...\" We can quote \"Concerns for safety of myself and others\" exact. Good.\n\nNeed not overdo. JSON.\n\nCheck conditions array: allowed enum? If we put [] okay. But summary mentions parking lot low speed. Conditions in JSON maybe [] because none of enum. But schema says conditions list e.g. [\"cold\", ...]. It may accept empty. Could include \"intermittent\"? The pulsing is not intermittent condition. No. We'll leave empty.\n\nMissing_info: [\"mileage\", \"date\"] okay.\n\nPotential issue: safety_relevant already true in input but we set true.\n\nClues kind \"condition\" quote \"When I attempted to brake (approx. 10 mph), my vehicle:\" Maybe kind condition? It's context/speed. We'll include kind \"condition\" for speed/parking lot. But conditions array empty could seem inconsistent. But clue kind condition can be any contextual condition. Fine.\n\nNeed \"fault_codes\": [] no codes.\n\nLet's final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530201,
+      "id": "9e21ffd03cbf5b7d9d0bf20d897e9cfc",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2000,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1642,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00075471,
+          "billing_source": "go",
+          "list_cost": 0.00125785,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 378,
+            "output": 2000,
+            "reasoning": 1642
+          }
+        },
+        "prompt_tokens": 762,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2762
+      }
+    },
+    "text": "{\"summary\":\"2024 Hyundai Palisade forward collision avoidance/automatic emergency braking pulsed/jerked and lurched forward during low-speed braking in a parking lot, resulting in minor rear-end contact.\",\"group\":\"adas\",\"symptoms\":[\"brake pedal pulsing/jerking consistent with ABS engagement\",\"vehicle would not stop despite hard braking\",\"forward collision warning alerts/beeping\",\"vehicle lurched/jumped forward instead of stopping smoothly\",\"minor rear-end contact with vehicle ahead\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"forward collision warning\"},{\"kind\":\"symptom\",\"quote\":\"Began pulsing/jerking, consistent with ABS engaging.\"},{\"kind\":\"symptom\",\"quote\":\"No matter how hard I pressed the brake my car would not stop\"},{\"kind\":\"symptom\",\"quote\":\"alerts and Beeping with a forward collision warning went off\"},{\"kind\":\"symptom\",\"quote\":\"car Lurched/jumped forward rather than stopping smoothly.\"},{\"kind\":\"safety\",\"quote\":\"This resulted in a minor rear-end contact with the vehicle ahead.\"},{\"kind\":\"safety\",\"quote\":\"Concerns for safety of myself and others\"},{\"kind\":\"symptom\",\"quote\":\"the car did not stop when hitting the brakes nor the collision warning initiate braking\"},{\"kind\":\"condition\",\"quote\":\"When I attempted to brake (approx. 10 mph), my vehicle:\"},{\"kind\":\"condition\",\"quote\":\"While entering the parking lot, the vehicle in front of me braked.\"},{\"kind\":\"other\",\"quote\":\"Concern that ABS or forward-collision system malfunctioned.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00075471,
+      "cached_tokens": 384,
+      "cost_usd": 0.00125785,
+      "input_tokens": 762,
+      "list_cost_usd": 0.00125785,
+      "output_tokens": 2000,
+      "reasoning_tokens": 1642
+    }
+  }
+}

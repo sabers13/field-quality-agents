@@ -1,0 +1,66 @@
+{
+  "key": "68bb52b609c903b486e293c9b4f5dcc91d8eb5b3022c4f601110b2600e28b763",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 8472,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2021 Toyota Camry rearview camera stopped working after intermittent operation for about 6 months; now no camera picture, intermittent rear cross traffic alert, and no wiring damage found.\",\"group\":\"adas\",\"symptoms\":[\"rear camera stopped working\",\"camera worked intermittently before failing completely\",\"warning light indicated rearview system not available initially\",\"rear cross traffic alert sometimes shown but no camera picture\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"BACK OVER PREVENTION: REARVIEW SYSTEM BRAKING\"},{\"kind\":\"symptom\",\"quote\":\"The rear camera has stopped working.\"},{\"kind\":\"condition\",\"quote\":\"intermittently\"},{\"kind\":\"symptom\",\"quote\":\"The warning light saying that it was not available would come on when it first started having a problem but that stopped when it stopped working completely.\"},{\"kind\":\"symptom\",\"quote\":\"It will show rear cross traffic alert at times but no picture and not every time there is traffic.\"},{\"kind\":\"other\",\"quote\":\"It has been inspected for any sign of damage to camera wiring, none found\"}]}",
+            "reasoning_content": "We need answer one JSON only. Need normalize report. Need quote verbatim spans. Component given \"BACK OVER PREVENTION: REARVIEW SYSTEM BRAKING\", group adas. Symptoms: rear camera stopped working; intermittent ~6 months then not work at all; warning light not available came on initially then stopped; shows rear cross traffic alert at times but no picture and not every time traffic; inspected no damage to camera wiring. Conditions: intermittent. Fault codes none. Safety relevant? Report says no safety? We must decide when mentions crash fire smoke injury loss control stall at speed or risk to people. Rearview camera failure could affect safety? Prompt says set when report mentions crash fire smoke injury loss of control stall at speed or another risk to people. Narrative doesn't explicitly mention risk. Could argue rear camera/back over prevention is safety relevant? But given safety_relevant false. We should follow report only, no explicit risk. Set false. Missing info: mileage null, date? received_at date exists but maybe incident date missing? The schema missing_info includes mileage/date/conditions/component/symptom. Component present, symptom present, conditions present intermittent. Mileage missing. Date? received at is 2025-08-19, but not event date. \"date\" maybe missing? We can list mileage only maybe date? Need facts analysis needs. Since report has received_at but no incident date, maybe missing date. But \"date\" likely event date; we can include \"mileage\" and \"date\" maybe. Conditions: intermittent present. Missing_info only facts needed: mileage, date. Component and symptom present. I think [\"mileage\",\"date\"].\n\nNeed clues with verbatim quotes. Must exact. From narrative:\n\"The rear camera has stopped working.\"\n\"It started working intermittently approximately 6 months ago and now it does not work at all.\"\n\"The warning light saying that it was not available would come on when it first started having a problem but that stopped when it stopped working completely.\"\n\"It will show rear cross traffic alert at times but no picture and not every time there is traffic.\"\n\"It has been inspected for any sign of damage to camera wiring, none found\"\n\nNeed kind mapping. component_group quote? Maybe \"BACK OVER PREVENTION: REARVIEW SYSTEM BRAKING\" from component field? It says report; user message includes JSON. quote can be from report. We can include component_group quote \"BACK OVER PREVENTION: REARVIEW SYSTEM BRAKING\". symptom quotes. condition \"intermittently\" quote maybe \"It started working intermittently approximately 6 months ago\". Could include \"at times\" condition intermittent. safety none. fault_code none.\n\nNeed summary one line: component, symptom, conditions. E.g. \"2021 Toyota Camry rearview camera stopped working, initially intermittent ~6 months ago, now dead with no camera image.\" Include conditions? \"intermittent then complete failure; no wiring damage found.\" Fine.\n\nNeed group \"adas\". Symptoms array plain words. Ensure no invented. Symptoms: \"rear camera stopped working\", \"camera worked intermittently before failing completely\", \"warning light indicated rearview system not available initially\", \"rear cross traffic alert sometimes displayed but no camera picture\", \"no damage found to camera wiring\" - last is inspection not symptom. Could include as symptom? Better not. Maybe symptoms include \"no camera picture\" and \"rear cross traffic alert intermittent\". Conditions: [\"intermittent\"]. Could include \"after service\"? no. \"charging\"? no. \"cold\"? no.\n\nNeed JSON only. Let's craft with exact quotes. Quotes must be character for character. Include \"intermittently\" from quote? Verbatim span can be \"intermittently\" yes within. For clue condition, quote \"intermittently\". Good. For symptom, quote \"The rear camera has stopped working.\" exact includes period. For warning light quote exact. For rear cross traffic quote exact. For wiring quote exact. For component group quote exact \"BACK OVER PREVENTION: REARVIEW SYSTEM BRAKING\". For summary no quote. Ensure no extra text.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529604,
+      "id": "517d8172e8a27939d2e7666ebb5700ba",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1091,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 833,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.000411,
+          "billing_source": "go",
+          "list_cost": 0.000685,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 195,
+            "output": 1091,
+            "reasoning": 833
+          }
+        },
+        "prompt_tokens": 579,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1670
+      }
+    },
+    "text": "{\"summary\":\"2021 Toyota Camry rearview camera stopped working after intermittent operation for about 6 months; now no camera picture, intermittent rear cross traffic alert, and no wiring damage found.\",\"group\":\"adas\",\"symptoms\":[\"rear camera stopped working\",\"camera worked intermittently before failing completely\",\"warning light indicated rearview system not available initially\",\"rear cross traffic alert sometimes shown but no camera picture\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"BACK OVER PREVENTION: REARVIEW SYSTEM BRAKING\"},{\"kind\":\"symptom\",\"quote\":\"The rear camera has stopped working.\"},{\"kind\":\"condition\",\"quote\":\"intermittently\"},{\"kind\":\"symptom\",\"quote\":\"The warning light saying that it was not available would come on when it first started having a problem but that stopped when it stopped working completely.\"},{\"kind\":\"symptom\",\"quote\":\"It will show rear cross traffic alert at times but no picture and not every time there is traffic.\"},{\"kind\":\"other\",\"quote\":\"It has been inspected for any sign of damage to camera wiring, none found\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.000411,
+      "cached_tokens": 384,
+      "cost_usd": 0.000685,
+      "input_tokens": 579,
+      "list_cost_usd": 0.000685,
+      "output_tokens": 1091,
+      "reasoning_tokens": 833
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "a6f63a3949d9cfc8e6ace97d5435789af301fd634fd075e4038f7c8907a31815",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 14588,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system: backup camera stopped working with a blue screen; Ford attributed it to a recurring wiring harness problem.\",\"group\":\"electrical_general\",\"symptoms\":[\"backup camera stopped working\",\"blue screen\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"Backup Camera has stopped work\"},{\"kind\":\"symptom\",\"quote\":\"has a blue screen\"},{\"kind\":\"other\",\"quote\":\"wiring harness that is having problems\"},{\"kind\":\"other\",\"quote\":\"this is the 3rd time that i have had to replace it\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize report. Given component electrical system, group given electrical_general. Narrative: \"Backup Camera has stopped work has a blue screen. Was told by Ford that it was a wiring harness that is having problems this is the 3rd time that i have had to replace it.\" Need summary one line component symptom conditions. Conditions maybe none? It says repeated replacement 3rd time, intermittent? Not explicitly intermittent. Could include \"after service\"? Replaced 3 times? Hmm conditions list allowed: cold moisture heat vibration intermittent after service charging. Report mentions repeated replacement, not after service exactly. Maybe \"after service\" because replaced wiring harness? But condition is after service? It says had to replace it 3rd time, not symptom after service. Better conditions [] unless \"repeated\" not in allowed. Could include \"intermittent\"? No, stopped working blue screen. Not intermittent. Safety false. Fault codes none. Missing info: mileage? Date? The report has received_at but no mileage. Analysis needs mileage maybe. Date received_at is there. Conditions missing? Maybe conditions (when it occurs) missing. Component present symptom present. Missing_info [\"mileage\", \"conditions\"]. Need clues with verbatim quotes. Need quote exact spans from narrative. Include symptom \"Backup Camera has stopped work\" or \"has a blue screen\". Condition? \"this is the 3rd time that i have had to replace it\" maybe other. Component_group quote \"ELECTRICAL SYSTEM\" is from component field, is that report? The report in user message includes fields. Quote can be from report. \"ELECTRICAL SYSTEM\" verbatim. For component_group. Symptom quote \"Backup Camera has stopped work\" exact substring? Narrative: \"Backup Camera has stopped work has a blue screen.\" Yes. Another symptom \"has a blue screen\". Other clue \"wiring harness that is having problems\" maybe other/component? It's a cause. Kind other. Safety? none. fault_code none. Need summary mention electrical general? \"Backup camera stopped working with blue screen; Ford attributed to recurring wiring harness problem.\" Conditions maybe \"recurring\" not allowed. In summary conditions none. JSON valid no markdown? They said answer one JSON object and no other text. Final should be JSON only. Ensure quotes exact. \"this is the 3rd time that i have had to replace it\" exact? Narrative has \"this is the 3rd time that i have had to replace it.\" Yes. Could quote as other. missing_info: mileage and conditions. But date? received_at present, not missing. Maybe \"date\" is received_at not occurrence date. They list date as fact analysis needs. Since only received_at, not date of incident. Should missing_info include \"date\"? Hmm The report has received_at 2025-05-07; date could mean report date, but missing occurrence date. The instructions say missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. Use empty when nothing important missing. Here mileage null, conditions not specified, date of occurrence not specified (received date given). Probably include \"mileage\", \"date\", \"conditions\"? But maybe date present as received_at. Need not over-include? Desired. The intake normalizer: report has mileage null. Conditions absent. Date maybe received_at. I'd include mileage and conditions; maybe date because occurrence date missing? But field received_at is date. However \"date\" in missing_info likely issue date. Since report has received_at, not missing. Hmm.\n\nNeed group: \"electrical_general\" from given group or electrical/electronic component group. Given group electrical_general. Use that.\n\nsymptoms: [\"backup camera stopped working\", \"blue screen\"] plain words. Must be based. Could add \"wiring harness problem\" as symptom? No, cause. Symptoms array plain words, not necessarily quotes. Include \"backup camera not working\" and \"blue screen\". Maybe \"repeated wiring harness failure\" as symptom? It is a repeated problem. But symptom plain words. Keep two.\n\nconditions: [] or [\"after service\"]? The harness replaced 3 times, but not necessarily after service. No.\n\nclues: Need every quote verbatim. Include:\n{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"}\n{\"kind\":\"symptom\",\"quote\":\"Backup Camera has stopped work\"}\n{\"kind\":\"symptom\",\"quote\":\"has a blue screen\"}\n{\"kind\":\"other\",\"quote\":\"wiring harness that is having problems\"}\n{\"kind\":\"other\",\"quote\":\"this is the 3rd time that i have had to replace it\"}\nMaybe safety none. Fault none.\n\nNeed summary one line: \"Electrical system: backup camera stopped working with blue screen; Ford attributed to recurring wiring harness problem.\" Conditions none. Good.\n\nNeed ensure JSON only, no markdown. Final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793526753,
+      "id": "9f32c1708d28cbd578ed2ae0b1a3bd77",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1176,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1015,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00043674,
+          "billing_source": "go",
+          "list_cost": 0.0007279,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 141,
+            "output": 1176,
+            "reasoning": 1015
+          }
+        },
+        "prompt_tokens": 525,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1701
+      }
+    },
+    "text": "{\"summary\":\"Electrical system: backup camera stopped working with a blue screen; Ford attributed it to a recurring wiring harness problem.\",\"group\":\"electrical_general\",\"symptoms\":[\"backup camera stopped working\",\"blue screen\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"Backup Camera has stopped work\"},{\"kind\":\"symptom\",\"quote\":\"has a blue screen\"},{\"kind\":\"other\",\"quote\":\"wiring harness that is having problems\"},{\"kind\":\"other\",\"quote\":\"this is the 3rd time that i have had to replace it\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00043674,
+      "cached_tokens": 384,
+      "cost_usd": 0.0007279,
+      "input_tokens": 525,
+      "list_cost_usd": 0.0007279,
+      "output_tokens": 1176,
+      "reasoning_tokens": 1015
+    }
+  }
+}

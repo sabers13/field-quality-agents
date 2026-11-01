@@ -1,0 +1,66 @@
+{
+  "key": "b03d21ba0f20c84ce0faa1060b62af477e63c03fe408a97e994b25e599f8af35",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10229,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Test the charging path with an electrical load test because fast charge is unavailable pending recall 24V700000, though no failure has occurred.\",\n  \"rationale\": \"The narrative reports a charging-related condition—fast charge cannot be used because of the unrepaired recall 24V700000—and the rulebook matches 'charging' to an Electrical load test. The parts have been unavailable for more than a year and a half, and no failure was experienced, so the targeted load test is the appropriate diagnostic.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"not to be able to use the fast charge because of the unrepaired recall\"\n  ],\n  \"conditions\": [\n    \"fast charge\"\n  ],\n  \"fault_codes\": [\n    \"24V700000\"\n  ],\n  \"safety_relevant\": false,\n  \"targeted\": true,\n  \"test_name\": \"Electrical load test\",\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"Electrical System\"\n    },\n    {\n      \"kind\": \"fault_code\",\n      \"quote\": \"24V700000\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"not to be able to use the fast charge because of the unrepaired recall\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"fast charge\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"The contact had not experienced a failure.\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"the parts had not been available for more than a year and a half\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer one JSON object. Need follow rules. Analyze case. Narrative: owner received recall notification 24V700000 Electrical System, part unavailable, dealer says parts unavailable >1.5 years, inconvenience cannot use fast charge because unrepaired recall, manufacturer not contacted, no failure experienced. Extraction has clues. Rulebook charging matched conditions [\"charging\"], test \"Electrical load test\". We should propose targeted? Conditions reported charging? Narrative says cannot use fast charge because unrepaired recall, no failure. The rulebook matches charging; prefer targeted load test when reported conditions match rulebook entry. So targeted true, test_name \"Electrical load test\". Safety_relevant? Narrative no risk to people? Recall electrical system maybe battery fire? But narrative itself says no failure. Extraction safety false. Set false. Group electrical_general. Symptoms: cannot use fast charge due to unrepaired recall, maybe \"not to be able to use the fast charge\". Conditions: \"fast charge\", \"charging\". Fault codes: \"24V700000\". Clues need quotes verbatim from narrative. Ensure quotes exact from narrative. We can include quotes: \"2019 Nissan Leaf\", \"NHTSA Campaign Number: 24V700000 (Electrical System)\", \"the part to do the recall repair was unavailable\", \"parts were unavailable\", \"the parts had not been available for more than a year and a half\", \"not to be able to use the fast charge because of the unrepaired recall\", \"The contact had not experienced a failure.\" Need kind mapping. But every quote copied verbatim from case narrative. Caution: The narrative contains \"The contact stated it was an inconvenience not to be able to use the fast charge because of the unrepaired recall.\" We can quote \"not to be able to use the fast charge because of the unrepaired recall\" as symptom. Condition \"fast charge\" appears. Fault code \"24V700000\" appears. Component group \"Electrical System\" appears. Safety? none maybe no quote. Other quote \"The contact had not experienced a failure.\" Could include. Summary one line. Rationale condition and evidence. Need no other text. JSON valid.\n\nNeed consider \"test_name\" the targeted test the rulebook names: \"Electrical load test\". targeted true. Clues can include component_group quote \"Electrical System\", fault_code \"24V700000\", symptom \"not to be able to use the fast charge because of the unrepaired recall\", condition \"fast charge\", condition \"charging\"? Does narrative contain \"charging\"? Let's check narrative: \"fast charge\" not \"charging\". Actually narrative: \"fast charge\". No \"charging\" word except? \"Electrical System\"; no. So don't include quote \"charging\" because not verbatim. Could include \"fast charge\" as condition. Other quote \"The contact had not experienced a failure.\" and \"the parts had not been available for more than a year and a half\". The quote \"the parts had not been available for more than a year and a half\" exact? Narrative: \"The contact stated that the parts had not been available for more than a year and a half.\" yes substring excluding The contact stated that. Good.\n\nNeed rationale mention recall 24V700000, parts unavailable, cannot use fast charge, no failure. \"Reported charging-related condition (fast charge unavailable pending recall 24V700000) matches rulebook charging entry; perform targeted electrical load test to stress supply path/connectors/protection circuits.\" Is \"targeted\" maybe questionable because no actual failure and issue is parts availability. But rules prefer targeted load test when conditions match rulebook. The rulebook matched charging. So yes. Could also maybe targeted false because no failure, but rule says prefer targeted when conditions match rulebook. Use targeted true.\n\nSafety_relevant false. Clues: We can include \"quote\": \"Electrical System\" kind component_group. \"24V700000\" kind fault_code. \"not to be able to use the fast charge because of the unrepaired recall\" kind symptom. \"fast charge\" kind condition. \"The contact had not experienced a failure.\" kind other. \"the parts had not been available for more than a year and a half\" kind other. Ensure quote \"Electrical System\" appears. Yes in \"24V700000 (Electrical System)\". Good. The quote \"fast charge\" appears. Good.\n\nNeed no action like recall repair? We don't propose closing etc. Test.\n\nJSON:\n{\n \"summary\": \"Test the charging path with an electrical load test because fast charge is unavailable pending recall 24V700000, though no failure has occurred.\",\n \"rationale\": \"The narrative reports a charging-related condition—fast charge cannot be used due to unrepaired recall 24V700000—and the rulebook matches 'charging' to an Electrical load test. Parts have been unavailable for over 1.5 years and no failure was experienced, so the targeted load test is the appropriate diagnostic.\",\n \"group\": \"electrical_general\",\n \"symptoms\": [\"cannot use fast charge because of unrepaired recall\"],\n \"conditions\": [\"fast charge\"],\n \"fault_codes\": [\"24V700000\"],\n \"safety_relevant\": false,\n \"targeted\": true,\n \"test_name\": \"Electrical load test\",\n \"clues\": [...]\n}\n\nNeed maybe symptoms array exact \"not to be able to use the fast charge because of the unrepaired recall\". Use that.\n\nCould include safety clue? none. Safety false.\n\nNeed not mention case ids from recalls etc. Fine.\n\nFinal only JSON. Ensure no markdown? User said one JSON object and no other text. So output raw JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793532200,
+      "id": "f59f8bf2bc13b9d895ed77bc06a3f4ee",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1517,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1156,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00067914,
+          "billing_source": "go",
+          "list_cost": 0.0011319,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 1478,
+            "output": 1517,
+            "reasoning": 1156
+          }
+        },
+        "prompt_tokens": 1478,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 2995
+      }
+    },
+    "text": "{\n  \"summary\": \"Test the charging path with an electrical load test because fast charge is unavailable pending recall 24V700000, though no failure has occurred.\",\n  \"rationale\": \"The narrative reports a charging-related condition—fast charge cannot be used because of the unrepaired recall 24V700000—and the rulebook matches 'charging' to an Electrical load test. The parts have been unavailable for more than a year and a half, and no failure was experienced, so the targeted load test is the appropriate diagnostic.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"not to be able to use the fast charge because of the unrepaired recall\"\n  ],\n  \"conditions\": [\n    \"fast charge\"\n  ],\n  \"fault_codes\": [\n    \"24V700000\"\n  ],\n  \"safety_relevant\": false,\n  \"targeted\": true,\n  \"test_name\": \"Electrical load test\",\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"Electrical System\"\n    },\n    {\n      \"kind\": \"fault_code\",\n      \"quote\": \"24V700000\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"not to be able to use the fast charge because of the unrepaired recall\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"fast charge\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"The contact had not experienced a failure.\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"the parts had not been available for more than a year and a half\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00067914,
+      "cached_tokens": 0,
+      "cost_usd": 0.0011319,
+      "input_tokens": 1478,
+      "list_cost_usd": 0.0011319,
+      "output_tokens": 1517,
+      "reasoning_tokens": 1156
+    }
+  }
+}

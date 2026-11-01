@@ -1,0 +1,66 @@
+{
+  "key": "5583288a0ce61b51c3c03fb138ea7d18386f724af2087989a21995022d6864a0",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 6149,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"AIR BAGS: airbags did not deploy in a rear-end collision; driver hit steering wheel\",\"group\":\"restraints\",\"symptoms\":[\"airbags did not deploy\",\"driver hit steering wheel\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"the airbags did not deploy\"},{\"kind\":\"symptom\",\"quote\":\"Driver hit steering wheel\"},{\"kind\":\"condition\",\"quote\":\"Driver rear-ended another car\"},{\"kind\":\"safety\",\"quote\":\"the car is deemed totaled\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize report. Need include summary one line component, symptom, conditions. Component AIR BAGS, group restraints. Symptoms airbags did not deploy; driver hit steering wheel. Conditions? Report mentions rear-ended another car, front end frame bent, totaled, passenger front damaged. Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. None apply. Could be \"crash\" but not in allowed conditions list. The schema conditions array examples but maybe only these? It says conditions: [\"cold\", ...]. Need output conditions probably empty list because no listed conditions. Safety relevant true (crash, injury? driver hit steering wheel). Fault codes none. Missing_info: mileage null, date? received_at is date but not incident date. Missing info include mileage and date? The report has received_at 2025-09-29, but date of incident missing. Analysis needs date. Component and symptom present. Conditions? Maybe missing conditions? But conditions maybe not applicable. missing_info only facts analysis needs: component, symptom, conditions, mileage, date. We can include mileage, date. Could include conditions? The report has crash conditions but not environmental. Not necessary. Clues verbatim: \"AIR BAGS\" component group? component_group quote? It says kind component_group. Quote should be from report. \"AIR BAGS\" is verbatim. Symptom quote: \"the airbags did not deploy\"; \"Driver hit steering wheel\". Condition quote: \"Driver rear-ended another car\" maybe condition. Safety quote: \"car is deemed totaled\" or \"Driver hit steering wheel\" safety. Need exact verbatim. Report narrative: \"Driver rear-ended another car, the airbags did not deploy. The cars passenger front was damaged, the front end frame was bent, and the car is deemed totaled. Driver hit steering wheel.\" Quotes exact. Need summary one line. Possible: \"AIR BAGS: airbags did not deploy in a rear-end collision; driver hit steering wheel.\" Conditions include \"rear-ended another car\" but conditions schema doesn't allow crash? It says conditions [\"cold\", ...] but could include free? Better include \"rear-ended another car\"? Hmm rules: conditions array list examples, not necessarily enum? It says \"conditions\": [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. It likely expects only those standardized. But crash is condition? They want normalise. The clue kind condition can quote crash. In conditions array maybe not include because not one of enumerated. But summary includes conditions. Could include \"crash\" in conditions? Schema doesn't list crash. I'd output conditions: [] to be safe. But \"conditions\" facts missing? Not necessarily. Missing_info: [\"mileage\", \"date\"] maybe because mileage null and no incident date. Also maybe \"conditions\" not missing because crash described. Component present. Symptom present. Safety true.\n\nNeed ensure JSON only. No extra. Let's craft.\n\nClues:\n- {\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"}\n- {\"kind\":\"symptom\",\"quote\":\"the airbags did not deploy\"}\n- {\"kind\":\"symptom\",\"quote\":\"Driver hit steering wheel\"}\n- {\"kind\":\"condition\",\"quote\":\"Driver rear-ended another car\"}\n- {\"kind\":\"safety\",\"quote\":\"the car is deemed totaled\"}\n- Maybe {\"kind\":\"other\",\"quote\":\"The cars passenger front was damaged, the front end frame was bent\"} but not necessary.\nFault codes [].\n\nSummary: \"AIR BAGS: airbags did not deploy in a rear-end collision; driver hit steering wheel.\" Conditions in summary \"rear-end collision\". Good.\n\nNeed maybe group \"restraints\" given. fine.\n\nOutput one JSON object.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530782,
+      "id": "e50a5d5ee50095fe1394e55070f09404",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 932,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 785,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00034854,
+          "billing_source": "go",
+          "list_cost": 0.0005809,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 137,
+            "output": 932,
+            "reasoning": 785
+          }
+        },
+        "prompt_tokens": 521,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1453
+      }
+    },
+    "text": "{\"summary\":\"AIR BAGS: airbags did not deploy in a rear-end collision; driver hit steering wheel\",\"group\":\"restraints\",\"symptoms\":[\"airbags did not deploy\",\"driver hit steering wheel\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"the airbags did not deploy\"},{\"kind\":\"symptom\",\"quote\":\"Driver hit steering wheel\"},{\"kind\":\"condition\",\"quote\":\"Driver rear-ended another car\"},{\"kind\":\"safety\",\"quote\":\"the car is deemed totaled\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00034854,
+      "cached_tokens": 384,
+      "cost_usd": 0.0005809,
+      "input_tokens": 521,
+      "list_cost_usd": 0.0005809,
+      "output_tokens": 932,
+      "reasoning_tokens": 785
+    }
+  }
+}

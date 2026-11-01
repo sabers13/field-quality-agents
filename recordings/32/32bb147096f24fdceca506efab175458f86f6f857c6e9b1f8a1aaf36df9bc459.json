@@ -1,0 +1,66 @@
+{
+  "key": "32bb147096f24fdceca506efab175458f86f6f857c6e9b1f8a1aaf36df9bc459",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 8407,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"2016 Ford Fusion AIR BAGS: air bag light intermittent, random panic alarm, backup camera intermittent/glitches\",\n  \"group\": \"restraints\",\n  \"symptoms\": [\n    \"air bag light comes on intermittently\",\n    \"panic alarm goes off at random times\",\n    \"backup camera sometimes works and sometimes glitches\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"missing_info\": [\n    \"mileage\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"AIR BAGS\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"air bag light comes on sometimes not other\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"car panic alarm goes off at random times\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"backup camera sometimes work sometimes glitches\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"sometimes\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer one JSON only. Need normalize report. Need read only report. Component AIR BAGS group restraints. Narrative: \"air bag light comes on sometimes not other  car panic alarm goes off at random times  backup camera sometimes work sometimes glitches\". Need summary one line component symptom conditions. Symptoms: air bag light comes on intermittently; panic alarm goes off at random times; backup camera sometimes works sometimes glitches. Conditions: intermittent. Maybe electrical? Group restraints given. Fault codes none. Safety relevant? Air bag light could be safety but prompt says set safety_relevant when report mentions crash fire smoke injury loss control stall at speed or another risk to people. Air bag light is restraint system safety but not explicit crash/fire/injury. Given input safety_relevant false. We should set false? It says when mentions... not mentions. Air bag light can indicate safety system fault, but no explicit risk. \"another risk to people\" maybe air bag malfunction could risk. But to avoid invent? The report says air bag light comes on sometimes. That's safety-relevant component but not explicit risk. The given field safety_relevant false. We can set false. Need missing_info: mileage is null, date received present. Conditions present intermittent. component present AIR BAGS, symptom present. Missing mileage only? Maybe date? received_at exists. Missing_info [\"mileage\"]. Need clues with verbatim quotes. Need quote exact spans. String has double spaces. Quotes can be substrings. For symptom quote \"air bag light comes on sometimes not other\" verbatim? Narrative: \"air bag light comes on sometimes not other  car panic alarm goes off at random times  backup camera sometimes work sometimes glitches\". There are two spaces after other. We can quote \"air bag light comes on sometimes not other\" yes substring? It appears exactly before two spaces. That's verbatim substring. For panic: \"car panic alarm goes off at random times\" exact with leading? Yes substring. Backup: \"backup camera sometimes work sometimes glitches\" exact. Condition quote \"sometimes\" or \"at random times\" or \"sometimes not other\" okay. Need kind condition quote \"sometimes\" maybe exact. Also component_group quote \"AIR BAGS\"? But component is field not narrative? \"Read only report in user message\" includes component. Clues quote verbatim from report; can quote \"AIR BAGS\" from component field. Good. Summary mention 2016 Ford Fusion air bag light intermittent plus panic alarm and backup camera glitches. Conditions intermittent. Need JSON valid. Ensure no extra text.\n\nLet's craft:\n{\n \"summary\": \"2016 Ford Fusion AIR BAGS: air bag light intermittent, random panic alarm, backup camera intermittent/glitches\",\n \"group\": \"restraints\",\n \"symptoms\": [\"air bag light comes on intermittently\", \"panic alarm goes off at random times\", \"backup camera sometimes works and sometimes glitches\"],\n \"conditions\": [\"intermittent\"],\n \"fault_codes\": [],\n \"safety_relevant\": false,\n \"missing_info\": [\"mileage\"],\n \"clues\": [\n  {\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},\n  {\"kind\":\"symptom\",\"quote\":\"air bag light comes on sometimes not other\"},\n  {\"kind\":\"symptom\",\"quote\":\"car panic alarm goes off at random times\"},\n  {\"kind\":\"symptom\",\"quote\":\"backup camera sometimes work sometimes glitches\"},\n  {\"kind\":\"condition\",\"quote\":\"sometimes\"}\n ]\n}\n\nNeed \"condition\" quote \"sometimes\" is verbatim. Good.\n\nWould safety_relevant true? Let's examine instructions: \"Set safety_relevant when the report mentions a crash, fire, smoke, injury, loss of control, a stall at speed or another risk to people.\" Air bag light comes on sometimes = potential air bag system malfunction. Is that \"another risk to people\"? Could be, because air bags may not deploy. But the report doesn't state risk. The provided field has false; likely use it. We should not invent. Set false. However \"air bag light\" is safety system. Hmm. The desk uses safety relevant to prioritize. But prompt specific. I can mention no explicit crash/fire etc. So false.\n\nNeed no suggestions. Final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793525443,
+      "id": "2e5c877ad147040e6a9fb22db95bfea7",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1128,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 877,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0004518,
+          "billing_source": "go",
+          "list_cost": 0.000753,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 508,
+            "output": 1128,
+            "reasoning": 877
+          }
+        },
+        "prompt_tokens": 508,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 1636
+      }
+    },
+    "text": "{\n  \"summary\": \"2016 Ford Fusion AIR BAGS: air bag light intermittent, random panic alarm, backup camera intermittent/glitches\",\n  \"group\": \"restraints\",\n  \"symptoms\": [\n    \"air bag light comes on intermittently\",\n    \"panic alarm goes off at random times\",\n    \"backup camera sometimes works and sometimes glitches\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"missing_info\": [\n    \"mileage\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"AIR BAGS\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"air bag light comes on sometimes not other\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"car panic alarm goes off at random times\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"backup camera sometimes work sometimes glitches\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"sometimes\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0004518,
+      "cached_tokens": 0,
+      "cost_usd": 0.000753,
+      "input_tokens": 508,
+      "list_cost_usd": 0.000753,
+      "output_tokens": 1128,
+      "reasoning_tokens": 877
+    }
+  }
+}

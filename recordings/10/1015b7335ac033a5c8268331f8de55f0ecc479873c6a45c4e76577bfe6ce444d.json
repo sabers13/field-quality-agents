@@ -1,0 +1,66 @@
+{
+  "key": "1015b7335ac033a5c8268331f8de55f0ecc479873c6a45c4e76577bfe6ce444d",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11092,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"AIR BAGS (restraints): ongoing safety recall with no available fix for rear airbags; concern about child safety in an accident.\",\"group\":\"restraints\",\"symptoms\":[\"ongoing safety recall with no available fix for rear airbags\",\"known safety issue that could impact safety and survival in an accident\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"Ongoing safety recall with no available fix for rear airbags.\"},{\"kind\":\"safety\",\"quote\":\"known safety issue that could impact their safety and survival in an accident\"},{\"kind\":\"symptom\",\"quote\":\"there is still no fix available\"},{\"kind\":\"other\",\"quote\":\"unable to trade my vehicle in due to this recall\"}]}",
+            "reasoning_content": "We need answer only JSON object per schema. Need normalize report. Need not invent. Component AIR BAGS group restraints. Summary one line component symptom conditions. Symptoms: ongoing safety recall with no available fix for rear airbags; known safety issue could impact safety/survival in accident; unable to trade vehicle? Not symptom maybe. Conditions: none explicit? \"rear airbags\" no condition. safety_relevant true because safety issue, accident survival risk, children. Fault codes none. missing_info: mileage null? date? received date present; conditions? component/symptom present. The report lacks mileage. It has date received. Missing info maybe mileage only. But instructions list missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Component present, symptom present, conditions absent? Conditions could be \"none\", but maybe missing conditions. Should list \"mileage\", \"conditions\"? Need decide. It asks normalise incoming field-quality report. The report is a complaint about recall no fix, not specific symptom conditions. Missing info likely mileage and conditions. Since mileage null, yes. Date present received_at. Could list conditions because no driving/environmental conditions. But the \"conditions\" array likely could be empty. Missing_info should only facts analysis needs. For a recall safety issue, conditions maybe not crucial. But schema includes conditions. Hmm.\n\nNeed clues with verbatim quotes copied. Need exact spans. Quotes:\n- \"AIR BAGS\" from component? quote from report? The report includes component field \"AIR BAGS\". Verbatim in JSON? Yes value. Could use \"AIR BAGS\" kind component_group? But component_group maybe group? Better clue kind component_group quote \"AIR BAGS\".\n- symptom quote \"Ongoing safety recall with no available fix for rear airbags.\" Exact includes leading hyphen? The narrative begins \"-Ongoing...\" Verbatim span can be \"Ongoing safety recall with no available fix for rear airbags.\" without hyphen? It is substring starting after hyphen yes.\n- safety quote \"known safety issue that could impact their safety and survival in an accident\" exact substring? Narrative: \"when there is a known safety issue that could impact their safety and survival in an accident.\" Yes.\n- condition? none.\n- other quote \"there is still no fix available\" maybe symptom.\n- fault_code none.\n\nNeed summary: \"AIR BAGS: ongoing safety recall with no available fix for rear airbags; no crash/fire reported.\" But do not invent no crash/fire? It doesn't mention crash/fire; don't say. Summary one line component, symptom, conditions. \"AIR BAGS (restraints): ongoing safety recall with no available fix for rear airbags; concern about child safety in an accident.\" Good. Conditions: maybe [] because no environmental conditions. But safety_relevant true. symptoms array: [\"ongoing safety recall with no available fix for rear airbags\", \"known safety issue that could impact safety and survival in an accident\"] maybe \"rear airbags under safety recall without remedy\". Conditions [].\nfault_codes [].\nmissing_info [\"mileage\"]? Should include conditions? Hmm. The report doesn't state mileage (null). It doesn't state specific conditions under which issue occurs, but it's a recall no fix. \"conditions\" likely cold/moisture/heat/vibration/intermittent/after service/charging. None. Should missing_info include \"conditions\"? The schema allows conditions. If none applicable, maybe not missing. But if no conditions given, analysis may need? The desk analyzing field-quality report, for recall issue conditions less relevant. But rules: list missing_info only for facts the analysis needs. For this safety recall complaint, mileage and date? Date received present but not incident date. It says problem known since May 2025. Missing date? The report date is received_at. Could list mileage and date? Date of report present. Hmm.\n\nNeed answer JSON no other text. Ensure valid JSON. Must include only object. Could include clues quotes exactly. Need ensure quote \"Ongoing safety recall with no available fix for rear airbags.\" is exact substring? Narrative: \"-Ongoing safety recall with no available fix for rear airbags. -I do not...\" Yes substring after hyphen includes capital O. Good.\nQuote \"known safety issue that could impact their safety and survival in an accident\" exact substring? Narrative: \"when there is a known safety issue that could impact their safety and survival in an accident.\" Yes.\nQuote \"there is still no fix available\" appears twice: \"and there is still no fix available\" and \"confirmed that there is still no fix available\". Exact substring yes.\nQuote \"unable to trade my vehicle in due to this recall\" exact: \"I am unable to trade my vehicle in due to this recall.\" Yes.\nQuote \"Courtesy Chrysler Dodge in Wyoming, MI has confirmed\" exact. But not needed.\nNeed not include component clue? kind component_group quote \"AIR BAGS\". Allowed. It is from report field. Good.\nNeed maybe clue kind safety quote \"could impact their safety and survival in an accident\" exact. Good.\nNeed group \"restraints\". \nSafety_relevant true. The prompt's input has \"safety_relevant\": false but we should set based on report. Yes.\n\nPotential issue: \"The problem has been known to Chrysler since at least May 2025. It is currently Mid-September, and there is still no fix available.\" Date context. Conditions? None.\n\nMissing_info: mileage null. Date? received_at present, but incident date not. The report is recall status; date maybe received. Since schema missing_info includes date; if no incident date? Could include \"date\"? But report has received_at 2025-09-19, and mentions Mid-September. Hm. Missing info analysis needs? For recall, model year and make model present. Mileage maybe not important but field null. The instructions explicitly include mileage. I think include \"mileage\". Maybe \"conditions\" because no conditions. But conditions list can be empty and not necessarily missing if not applicable. Yet schema says missing_info [\"mileage\", \"date\", \"conditions\", \"component\", \"symptom\"]. It might expect missing info facts not provided. Conditions are not provided. But for safety recall no fix, conditions not relevant. However rule says list only for facts the analysis needs. Does analysis need conditions? The desk analyses field-quality reports; conditions help. But recall applies generally. I'd include mileage and conditions? Hmm.\n\nNeed not suggest action. We don't.\n\nLet's produce JSON. Ensure no trailing commas. Summary one line. Conditions [].\n\nBut maybe conditions should include \"after service\"? No. \"safety recall\" not condition. No.\n\nFault codes [].\n\nClues maybe:\n{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"}\n{\"kind\":\"symptom\",\"quote\":\"Ongoing safety recall with no available fix for rear airbags.\"}\n{\"kind\":\"safety\",\"quote\":\"known safety issue that could impact their safety and survival in an accident\"}\n{\"kind\":\"symptom\",\"quote\":\"there is still no fix available\"}\n{\"kind\":\"other\",\"quote\":\"unable to trade my vehicle in due to this recall\"}\nNeed quote exact for \"unable...\" includes \"I am unable...\"? The substring \"unable to trade my vehicle in due to this recall\" exists. Yes.\n\nShould we include \"safety\" clue with quote \"could impact their safety and survival in an accident\" exact. Good.\n\nNeed no markdown? User said answer with one JSON object and no other text. Final can be raw JSON. Good.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530585,
+      "id": "358bad527440e68e1ba043dcf464210b",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1776,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1583,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00066147,
+          "billing_source": "go",
+          "list_cost": 0.00110245,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 238,
+            "output": 1776,
+            "reasoning": 1583
+          }
+        },
+        "prompt_tokens": 622,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2398
+      }
+    },
+    "text": "{\"summary\":\"AIR BAGS (restraints): ongoing safety recall with no available fix for rear airbags; concern about child safety in an accident.\",\"group\":\"restraints\",\"symptoms\":[\"ongoing safety recall with no available fix for rear airbags\",\"known safety issue that could impact safety and survival in an accident\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"Ongoing safety recall with no available fix for rear airbags.\"},{\"kind\":\"safety\",\"quote\":\"known safety issue that could impact their safety and survival in an accident\"},{\"kind\":\"symptom\",\"quote\":\"there is still no fix available\"},{\"kind\":\"other\",\"quote\":\"unable to trade my vehicle in due to this recall\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00066147,
+      "cached_tokens": 384,
+      "cost_usd": 0.00110245,
+      "input_tokens": 622,
+      "list_cost_usd": 0.00110245,
+      "output_tokens": 1776,
+      "reasoning_tokens": 1583
+    }
+  }
+}

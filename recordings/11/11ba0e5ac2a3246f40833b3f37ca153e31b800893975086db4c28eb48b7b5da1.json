@@ -1,0 +1,66 @@
+{
+  "key": "11ba0e5ac2a3246f40833b3f37ca153e31b800893975086db4c28eb48b7b5da1",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 8872,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Forward collision avoidance system did not brake to stop, causing a rear-end collision on a service road; prior braking system recall noted.\",\"group\":\"adas\",\"symptoms\":[\"forward collision mitigation did not brake to stop\",\"rear-end collision with SUV ahead\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: WARNINGS\"},{\"kind\":\"symptom\",\"quote\":\"didn't brake to stop\"},{\"kind\":\"symptom\",\"quote\":\"rear end a SUV infront on service road\"},{\"kind\":\"safety\",\"quote\":\"big damage to both vehicles\"},{\"kind\":\"other\",\"quote\":\"recall on previous year vehicles on the braking system\"}]}",
+            "reasoning_content": "We need answer one JSON only. Need normalize. Report: component FORWARD COLLISION AVOIDANCE: WARNINGS, group adas. Narrative: forward collision mitigation option, didn't brake to stop, rear ended SUV in front on service road, big damage both vehicles. Recall on previous year vehicles braking system but told fixed in 2025 model. Need summary one line component symptom conditions. Symptoms plain words: forward collision mitigation did not brake/stop; rear-end collision. Conditions: maybe service road? Not among enumerated? Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. Service road is not \"after service\". So no conditions? Could include? Rule conditions array from list. We can leave empty. Fault codes none. safety_relevant true. missing_info: mileage, date? Date received not incident date. Need component? given. symptom present. conditions missing? They ask facts analysis needs: component, symptom, conditions, mileage, date. We have component/symptom. Mileage null -> missing. Date? no incident date. Conditions? maybe not specified (speed, road, weather) but allowed list? Missing_info list includes conditions. Could include \"mileage\", \"date\", \"conditions\". Maybe date refers incident date. Yes.\n\nClues: verbatim quotes. Need exact spans. \"forward collision mitigation option\" exact? Narrative: \"We had forward collision mitigation option on this vehicle but it didn't brake to stop.\" quote \"forward collision mitigation option\" yes. \"didn't brake to stop\" exact. \"rear end a SUV infront on service road\" exact? Narrative \"This caused to rear end a SUV infront on service road and causing big damage to both vehicles.\" quote \"rear end a SUV infront on service road\" verbatim yes. \"big damage to both vehicles\" exact. \"recall on previous year vehicles on the braking system\" exact? Narrative \"There was a recall on previous year vehicles on the braking system but were told this was fixed in this 2025 model.\" quote \"recall on previous year vehicles on the braking system\" exact. Component group clue \"FORWARD COLLISION AVOIDANCE: WARNINGS\" from component? It is report field not narrative? User says report includes component. Verbatim from report? Could quote component field. But clues kind component_group quote \"FORWARD COLLISION AVOIDANCE: WARNINGS\" is in report. Safety clue quote \"rear end a SUV infront on service road\" or \"big damage to both vehicles\" indicates crash. Need safety_relevant true. Could include safety clue.\n\nNeed valid JSON no markdown? They requested JSON object and no other text. We can output raw JSON. Ensure all quotes exact. Let's craft.\n\nSummary: \"Forward collision avoidance warning system did not brake to stop, causing a rear-end collision on a service road; prior braking system recall noted.\" One line.\n\nGroup \"adas\".\n\nSymptoms: [\"forward collision mitigation did not brake to stop\", \"rear-end collision with SUV ahead\"] Maybe plain. Conditions: [] because none from list. Could include \"after service\"? No. Fault codes [].\n\nMissing_info include mileage, date, conditions? The report has received_at date but not incident date; maybe date missing. Conditions maybe weather/speed not specified. Component present. Symptom present. Use [\"mileage\",\"date\",\"conditions\"]. Is \"date\" missing? received_at is 2025-05-25, but that's report date not incident. Okay.\n\nClues:\n{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: WARNINGS\"}\n{\"kind\":\"symptom\",\"quote\":\"didn't brake to stop\"}\n{\"kind\":\"symptom\",\"quote\":\"rear end a SUV infront on service road\"}\n{\"kind\":\"safety\",\"quote\":\"big damage to both vehicles\"}\n{\"kind\":\"other\",\"quote\":\"recall on previous year vehicles on the braking system\"}\nMaybe \"forward collision mitigation option\" as component? kind component_group? Already.\n\nNeed ensure \"didn't brake to stop\" includes apostrophe? Narrative uses \"didn't\" with straight apostrophe? It shows \"didn't\". Yes.\n\nNeed exact quote \"rear end a SUV infront on service road\" Narrative: \"This caused to rear end a SUV infront on service road and causing big damage...\" yes exact substring. Good.\n\n\"big damage to both vehicles\" exact substring in \"causing big damage to both vehicles.\" yes.\n\n\"recall on previous year vehicles on the braking system\" exact? Narrative: \"There was a recall on previous year vehicles on the braking system but were told...\" yes exact substring. Good.\n\nSafety relevant true.\n\nFinal only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793527248,
+      "id": "6e01fc1d8863ad9624d8f56972b2710f",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1156,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 977,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00043197,
+          "billing_source": "go",
+          "list_cost": 0.00071995,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 168,
+            "output": 1156,
+            "reasoning": 977
+          }
+        },
+        "prompt_tokens": 552,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1708
+      }
+    },
+    "text": "{\"summary\":\"Forward collision avoidance system did not brake to stop, causing a rear-end collision on a service road; prior braking system recall noted.\",\"group\":\"adas\",\"symptoms\":[\"forward collision mitigation did not brake to stop\",\"rear-end collision with SUV ahead\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: WARNINGS\"},{\"kind\":\"symptom\",\"quote\":\"didn't brake to stop\"},{\"kind\":\"symptom\",\"quote\":\"rear end a SUV infront on service road\"},{\"kind\":\"safety\",\"quote\":\"big damage to both vehicles\"},{\"kind\":\"other\",\"quote\":\"recall on previous year vehicles on the braking system\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00043197,
+      "cached_tokens": 384,
+      "cost_usd": 0.00071995,
+      "input_tokens": 552,
+      "list_cost_usd": 0.00071995,
+      "output_tokens": 1156,
+      "reasoning_tokens": 977
+    }
+  }
+}

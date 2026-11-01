@@ -1,0 +1,66 @@
+{
+  "key": "bac4d8941c08af5a9f8ba9aa234fbb40d759e05ef9f29ba57b0b06b9bcb45318",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 6741,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Run a standard airbag-system diagnostic test to identify why the service light is on; no rulebook targeted test matches this case.\",\"rationale\":\"The narrative reports only that the airbag service light came on and that a dealership quoted access/replacement of the airbag module. No conditions, fault codes, investigations, or rulebook matches are present. A recall exists for the 2017 Camaro airbag cover emblem, but it concerns emblem separation during deployment, not the reported service-light/module issue.\",\"group\":\"restraints\",\"symptoms\":[\"airbag service light came on\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"targeted\":false,\"test_name\":\"standard airbag system diagnostic test\",\"clues\":[{\"kind\":\"symptom\",\"quote\":\"Airbag service light came on\"},{\"kind\":\"other\",\"quote\":\"replace airbag module\"}]}",
+            "reasoning_content": "We need to produce JSON only. Need analyze. Case: airbag service light on, replace airbag module quote. No rulebook matches, no investigations. Recall exists about emblem on steering wheel airbag cover may separate during deployment. Safety? Narrative no risk to people explicitly, but airbag light could indicate restraint system issue; intake says safety_relevant false. We should not overstate safety unless narrative shows risk. The rules: set safety_relevant when narrative shows a risk to people. It says airbag service light came on only. So false. Targeted? Rulebook empty, so targeted false standard test. Need test_name maybe \"standard diagnostic test\"? The prompt says otherwise propose standard test (\"targeted\": false). We need name maybe \"Standard airbag system diagnostic scan\". Since no rulebook names targeted test. Group restraints. Symptoms, conditions, fault_codes. Clues quotes verbatim from narrative: \"Airbag service light came on\", \"replace airbag module\". Also maybe \"AIR BAGS\" not in narrative? Narrative has \"Airbag service light\". The case component \"AIR BAGS\" but quote must from case narrative. The narrative: \"Airbag service light came on, which required us to bring to the dealership. Quote to access and replace airbag module came to roughly $1350.\" We can quote \"Airbag service light came on\" and \"replace airbag module\". Could quote \"bring to the dealership\"? Not needed.\n\nNeed JSON fields. summary one line what to test and why. rationale condition and evidence. targeted false. test_name standard. Maybe \"standard airbag system diagnostic test\". clues kind symptom quote, other quote. Maybe component_group clue from extraction not narrative? We should only include if verbatim in narrative. No \"AIR BAGS\" in narrative. Use \"Airbag service light came on\" as symptom. \"replace airbag module\" as other. Could include condition? None.\n\nNeed mention recall? We can in rationale but no clue id? The rule says do not cite a case, recall or investigation id that tool results do not contain. It does contain recall id 21V211000 but not necessary. Could mention recall in rationale? Yes but careful. But the recall is about emblem separation during deployment, not airbag service light/module. It might be relevant safety? Hmm. We should mention there is a recall but not matching the service light? The summary: test standard airbag system diagnostics; no rulebook targeted test; recall addresses emblem separation not module/light. But keep concise.\n\nNeed possibly fault_codes empty. conditions empty. safety_relevant false. targeted false.\n\nEnsure valid JSON only.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531912,
+      "id": "39a0334a7d56aaa4e754c7d5dbcd7b16",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 735,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 544,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00035721,
+          "billing_source": "go",
+          "list_cost": 0.00059535,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 1029,
+            "output": 735,
+            "reasoning": 544
+          }
+        },
+        "prompt_tokens": 1029,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 1764
+      }
+    },
+    "text": "{\"summary\":\"Run a standard airbag-system diagnostic test to identify why the service light is on; no rulebook targeted test matches this case.\",\"rationale\":\"The narrative reports only that the airbag service light came on and that a dealership quoted access/replacement of the airbag module. No conditions, fault codes, investigations, or rulebook matches are present. A recall exists for the 2017 Camaro airbag cover emblem, but it concerns emblem separation during deployment, not the reported service-light/module issue.\",\"group\":\"restraints\",\"symptoms\":[\"airbag service light came on\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"targeted\":false,\"test_name\":\"standard airbag system diagnostic test\",\"clues\":[{\"kind\":\"symptom\",\"quote\":\"Airbag service light came on\"},{\"kind\":\"other\",\"quote\":\"replace airbag module\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00035721,
+      "cached_tokens": 0,
+      "cost_usd": 0.00059535,
+      "input_tokens": 1029,
+      "list_cost_usd": 0.00059535,
+      "output_tokens": 735,
+      "reasoning_tokens": 544
+    }
+  }
+}

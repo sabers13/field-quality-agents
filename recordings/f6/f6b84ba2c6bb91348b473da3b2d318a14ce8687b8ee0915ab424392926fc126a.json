@@ -1,0 +1,66 @@
+{
+  "key": "f6b84ba2c6bb91348b473da3b2d318a14ce8687b8ee0915ab424392926fc126a",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 16251,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"DODGE CHARGER EV ELECTRICAL SYSTEM: repeated no-start/bricking with pull-over/shutdown warnings; brakes may lock in motion\",\"group\":\"electrical_general\",\"symptoms\":[\"vehicle unable to start (bricking)\",\"requires towing to the nearest dealer\",\"warnings about pulling over immediately\",\"electrical system must be shut down\",\"brakes lock if the issue occurs while in motion\",\"numerous warning lights and messages on screen\",\"vehicle will shut off soon\",\"SOS call unavailable\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"unable to start (bricking)\"},{\"kind\":\"symptom\",\"quote\":\"requires towing to the nearest dealer\"},{\"kind\":\"symptom\",\"quote\":\"flashes warnings about pulling over immediately\"},{\"kind\":\"symptom\",\"quote\":\"the electrical system must be shut down\"},{\"kind\":\"symptom\",\"quote\":\"brakes will immediately lock\"},{\"kind\":\"safety\",\"quote\":\"present a hazard to nearby motorists and the driver\"},{\"kind\":\"symptom\",\"quote\":\"Numerous warning lights flashed across the screen\"},{\"kind\":\"condition\",\"quote\":\"3 times now\"},{\"kind\":\"symptom\",\"quote\":\"Service Electric Vehicle System Stop Safely\"},{\"kind\":\"symptom\",\"quote\":\"Vehicle Will Shut Off Soon\"},{\"kind\":\"symptom\",\"quote\":\"SOS Call Unavailable\"}]}",
+            "reasoning_content": "We need output JSON only. Need normalize report. Component electrical system, group given electrical_general. Symptoms: unable to start/bricking, requires towing, warning flashes pull over immediately, electrical system must shut down, brakes lock if occurs in motion, warning lights, messages. Conditions: intermittent? 3 times, not cold/moisture/heat/vibration/after service/charging. Could include \"intermittent\" because repeated intermittent? Report says 3 times now unable to start. Conditions list allowed includes intermittent. Maybe include intermittent. Safety relevant true because mentions brakes lock hazard to motorists/driver, loss of control? \"brakes will immediately lock and present a hazard\" yes safety. Fault codes none. Missing info: mileage (null), date? date received exists but incident date missing. Conditions? maybe not. Component present symptom present. Missing_info includes mileage, date. Maybe \"conditions\" because no environmental conditions? But analysis needs conditions. However rules list missing only facts analysis needs: component, symptom, conditions, mileage, date. Conditions not given (when/weather), so include conditions? Hmm report does have repeated \"3 times\" but no ambient conditions. Could include \"mileage\", \"date\", \"conditions\". Need quotes verbatim. Need exact spans from narrative. Quotes must be copied character for character. We can quote phrases. Need careful exact text. Narrative has double spaces? Let's inspect: \"Car is an Electric Vehicle. 3 times now, it has been unable to start (bricking) and requires towing to the nearest dealer. When attempting to start  the vehicle, it flashes warnings about pulling over immediately and that the electrical system must be shut down.  Should this occur while in motion, the brakes will immediately lock and present a hazard to nearby motorists and the driver.  This is the 3rd time this issue has occurred, and dealers are unsure of what the fix could be.  Numerous warning lights flashed across the screen each time the car would not turn on. Including but not limited to: Warning Illumination Unavailable. Service Required. Service Electric Vehicle System Stop Safely. Vehicle Will Shut Off Soon SOS Call Unavailable. Please visit an authorized dealer.\"\n\nNeed quotes exact. Some include double spaces after periods. We can choose short spans avoiding weird spaces? E.g. \"unable to start (bricking)\" exact. \"requires towing to the nearest dealer\" exact. \"flashes warnings about pulling over immediately\" exact. \"the electrical system must be shut down\" exact. \"brakes will immediately lock\" exact. \"present a hazard to nearby motorists and the driver\" exact. \"Numerous warning lights flashed across the screen\" exact. \"Service Electric Vehicle System Stop Safely\" exact. \"Vehicle Will Shut Off Soon\" exact. \"SOS Call Unavailable\" exact. Safety quote.\n\nNeed summary one line: \"DODGE CHARGER EV electrical system: repeated no-start/bricking with pull-over and shutdown warnings; brakes may lock in motion.\" Conditions maybe \"intermittent\" only. Symptoms plain words: \"vehicle unable to start (bricking)\", \"requires towing\", \"warnings to pull over immediately\", \"electrical system must be shut down\", \"brakes lock if issue occurs while in motion\", \"numerous warning lights/messages\". Could include \"vehicle will shut off soon\" etc.\n\nGroup: \"electrical_general\" or \"electrical system\"? Prompt says group: \"the electrical/electronic component group, or the given group\". Given group is electrical_general. Use electrical_general. Component in report \"ELECTRICAL SYSTEM\". Summary includes component.\n\nSafety_relevant true. Missing_info: [\"mileage\",\"date\",\"conditions\"]. Date? received_at exists but incident date missing. Mileage null. Conditions missing. Maybe \"date\" yes. Could include \"conditions\" because not specified. No fault codes. Clues list with kind. Need all quotes verbatim. Since JSON only. Ensure no extra text.\n\nNeed consider \"fault_codes\": [] because messages are not codes. Could warning messages be fault codes? No named code. So empty.\n\nNeed \"conditions\": [\"intermittent\"]? Is that justified by \"3 times now\" and repeated. Yes. Could also include \"after service\"? No. \"charging\"? no. Maybe \"intermittent\" is a condition category. quote for condition \"3 times now\" or \"This is the 3rd time this issue has occurred\" exact. Kind condition quote \"3 times now\" maybe enough. But conditions array includes intermittent; clue quote \"3 times now\" could support repeated/intermittent. Need maybe not include \"conditions\" missing if we include intermittent? Hmm conditions missing ambient conditions still. But if conditions array has intermittent, missing_info \"conditions\" might be contradictory? Not necessarily; env conditions missing. But the allowed \"conditions\" in missing_info likely means driving/weather conditions. We can include conditions missing because report lacks when/weather. But if we include intermittent as condition, maybe no missing conditions? The analysis needs conditions to reproduce; report gives repeated occurrence but no ambient. I'd include \"conditions\" missing. But maybe overkill. Need \"missing_info only for facts the analysis needs\": mileage and date clearly missing; conditions missing. Component and symptom present. Good.\n\nNeed ensure JSON valid. Summary one line. Use no markdown? User says answer with one JSON object and no other text. So final only JSON.\n\nLet's craft.\n\nClues:\n- {\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"} Is that in report? component field yes report includes \"component\": \"ELECTRICAL SYSTEM\". The report is entire user message JSON; quote can be from component field. Good.\n- {\"kind\":\"symptom\",\"quote\":\"unable to start (bricking)\"}\n- {\"kind\":\"symptom\",\"quote\":\"requires towing to the nearest dealer\"}\n- {\"kind\":\"symptom\",\"quote\":\"flashes warnings about pulling over immediately\"}\n- {\"kind\":\"symptom\",\"quote\":\"the electrical system must be shut down\"}\n- {\"kind\":\"symptom\",\"quote\":\"brakes will immediately lock\"}\n- {\"kind\":\"safety\",\"quote\":\"present a hazard to nearby motorists and the driver\"}\n- {\"kind\":\"symptom\",\"quote\":\"Numerous warning lights flashed across the screen\"}\n- {\"kind\":\"condition\",\"quote\":\"3 times now\"} and maybe \"This is the 3rd time this issue has occurred\" for intermittent. Could include one.\n- {\"kind\":\"other\",\"quote\":\"Service Electric Vehicle System Stop Safely\"} maybe symptom? It's warning message. kind symptom. Actually message is symptom. Use symptom.\n- {\"kind\":\"symptom\",\"quote\":\"Vehicle Will Shut Off Soon\"}.\n- {\"kind\":\"symptom\",\"quote\":\"SOS Call Unavailable\"}.\nNeed not too many but okay.\n\nNeed exact quote \"When attempting to start  the vehicle\" has double space. Avoid. \"flashes warnings about pulling over immediately\" exact? Narrative: \"it flashes warnings about pulling over immediately and that...\" yes exact substring. \"the electrical system must be shut down\" exact. \"brakes will immediately lock\" exact. \"present a hazard to nearby motorists and the driver\" exact. \"Numerous warning lights flashed across the screen\" exact. \"Service Electric Vehicle System Stop Safely\" exact? Narrative: \"Service Electric Vehicle System Stop Safely.\" yes exact substring. \"Vehicle Will Shut Off Soon SOS Call Unavailable\" has space. We can quote \"Vehicle Will Shut Off Soon\" exact and \"SOS Call Unavailable\" exact.\n\nSummary: \"DODGE CHARGER EV ELECTRICAL SYSTEM: repeated no-start/bricking with pull-over/shutdown warnings; brakes may lock in motion.\" Good.\n\nNeed maybe group \"electrical_general\". Good.\n\nFinal.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793528928,
+      "id": "e728fb099dbde18bd834dcc7755ea183",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1979,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1636,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00073707,
+          "billing_source": "go",
+          "list_cost": 0.00122845,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 266,
+            "output": 1979,
+            "reasoning": 1636
+          }
+        },
+        "prompt_tokens": 650,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2629
+      }
+    },
+    "text": "{\"summary\":\"DODGE CHARGER EV ELECTRICAL SYSTEM: repeated no-start/bricking with pull-over/shutdown warnings; brakes may lock in motion\",\"group\":\"electrical_general\",\"symptoms\":[\"vehicle unable to start (bricking)\",\"requires towing to the nearest dealer\",\"warnings about pulling over immediately\",\"electrical system must be shut down\",\"brakes lock if the issue occurs while in motion\",\"numerous warning lights and messages on screen\",\"vehicle will shut off soon\",\"SOS call unavailable\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"unable to start (bricking)\"},{\"kind\":\"symptom\",\"quote\":\"requires towing to the nearest dealer\"},{\"kind\":\"symptom\",\"quote\":\"flashes warnings about pulling over immediately\"},{\"kind\":\"symptom\",\"quote\":\"the electrical system must be shut down\"},{\"kind\":\"symptom\",\"quote\":\"brakes will immediately lock\"},{\"kind\":\"safety\",\"quote\":\"present a hazard to nearby motorists and the driver\"},{\"kind\":\"symptom\",\"quote\":\"Numerous warning lights flashed across the screen\"},{\"kind\":\"condition\",\"quote\":\"3 times now\"},{\"kind\":\"symptom\",\"quote\":\"Service Electric Vehicle System Stop Safely\"},{\"kind\":\"symptom\",\"quote\":\"Vehicle Will Shut Off Soon\"},{\"kind\":\"symptom\",\"quote\":\"SOS Call Unavailable\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00073707,
+      "cached_tokens": 384,
+      "cost_usd": 0.00122845,
+      "input_tokens": 650,
+      "list_cost_usd": 0.00122845,
+      "output_tokens": 1979,
+      "reasoning_tokens": 1636
+    }
+  }
+}

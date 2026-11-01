@@ -1,0 +1,66 @@
+{
+  "key": "7db1b5287fb9c75cc0770de02404618fc27393b4e1c990faca70abfb5f4da085",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 7954,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Air bag/seatbelt reminder: driver seatbelt warning light and chime stay on despite being buckled, and the airbag light remains on.\",\"group\":\"restraints\",\"symptoms\":[\"driver seatbelt warning light stays on even when buckled\",\"seatbelt warning chime dings as if unbuckled despite being buckled\",\"airbag light remains on\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"Seatbelt light for the front driver continues to turn on even when buckled in\"},{\"kind\":\"symptom\",\"quote\":\"will ding to notify that it’s not buckled despite it buckled in\"},{\"kind\":\"safety\",\"quote\":\"This is a safety issue as the airbag light also remains on because of it.\"}]}",
+            "reasoning_content": "We need answer one JSON object no other text. Need normalize. Report component AIR BAGS group restraints. Narrative: Seatbelt light front driver continues to turn on even when buckled and ding notify not buckled despite buckled. Safety issue as airbag light remains on because of it. Need summary one line: component, symptom, conditions. Group \"restraints\" or given group. Symptoms: seatbelt warning light stays on despite buckled; warning chime/dings as if unbuckled; airbag light remains on. Conditions: maybe intermittent? \"continues to turn on even when buckled\" not cold/moisture/heat/vibration/after service/charging. Could be \"intermittent\"? It continues, not intermittent. Conditions list empty perhaps. Fault_codes none. safety_relevant true? Rules: mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. It says \"This is a safety issue as the airbag light also remains on because of it.\" Is that risk to people? Yes airbag light safety issue. Set true. missing_info: mileage (null), date? received date exists but report date? They list missing_info facts analysis needs: component, symptom, conditions, mileage, date. Component and symptom present. Conditions absent? Is conditions missing important? Maybe if no conditions mentioned, include \"conditions\"? Need only facts analysis needs. The report lacks conditions (when occurs? all times? while driving?). Could include \"conditions\", \"mileage\". Date received exists 2025-09-20 but maybe vehicle date? They have received_at. Missing date? Hmm \"date\" could be incident date not provided. But received_at is date. Usually missing_info include \"mileage\" and \"date\" if not. Here mileage null, date received present. Should we include \"date\"? The report has received_at, so no missing date. Include mileage and conditions. Maybe \"conditions\" because no conditions specified. Symptoms present. Component present. Need clues with verbatim quotes. Need exact spans copied. Quotes:\n\"Seatbelt light for the front driver continues to turn on even when buckled in\"\n\"will ding to notify that it’s not buckled despite it buckled in\"\n\"This is a safety issue as the airbag light also remains on because of it.\"\nNeed kind symptom for first maybe symptom; condition? \"even when buckled in\" is condition? But condition categories limited. Could use symptom quote for whole sentence. Fault code none. component_group quote \"AIR BAGS\"? That's in component field, but narrative? The report includes component \"AIR BAGS\" in JSON. Is that report? Yes user message JSON includes component. Quote verbatim \"AIR BAGS\" okay. Safety quote \"This is a safety issue as the airbag light also remains on because of it.\" kind safety. Other quote maybe \"will ding to notify that it’s not buckled despite it buckled in\" symptom. Need ensure character exact: narrative has curly apostrophe in \"it’s\". Copy exact. Summary: \"Air bag/seatbelt reminder: driver seatbelt warning light and chime stay on despite buckle; airbag light remains on.\" Conditions maybe \"all times\" not listed. JSON only. No markdown? They said answer with one JSON object and no other text. We can output raw JSON. Need valid JSON. Use false? safety_relevant true. missing_info [\"mileage\",\"conditions\"]. Maybe conditions are not a \"fact analysis needs\" if no conditions. But include conditions. They said use empty when nothing important missing; conditions important. Could include \"date\" because no incident date? The report has received_at, but not event date. However missing_info allowed list includes date; analysis often needs date. But received_at is date. Hm. \"date\" could be report received date. Since given, not missing. If no event date, maybe missing date. But don't overdo. I'll include mileage and conditions. Also maybe \"component\" no because component AIR BAGS. symptom no.\n\nNeed group \"restraints\". summary one line no line breaks. Ensure quotes exact. For \"Seatbelt light for the front driver continues to turn on even when buckled in\" exact. For second quote exact includes \"will ding to notify that it’s not buckled despite it buckled in\" exact. Third exact. \"AIR BAGS\" exact? In JSON component uppercase. Good.\n\nPotential condition clue: \"even when buckled in\" maybe condition but not in allowed conditions list. Use symptom quote. Another condition clue? none.\n\nNeed maybe fault_codes [] because no code named. safety_relevant true.\n\nFinal only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530631,
+      "id": "b0f229e004771ed8d5c3860a943d5aa5",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1176,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 973,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00043773,
+          "billing_source": "go",
+          "list_cost": 0.00072955,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 152,
+            "output": 1176,
+            "reasoning": 973
+          }
+        },
+        "prompt_tokens": 536,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1712
+      }
+    },
+    "text": "{\"summary\":\"Air bag/seatbelt reminder: driver seatbelt warning light and chime stay on despite being buckled, and the airbag light remains on.\",\"group\":\"restraints\",\"symptoms\":[\"driver seatbelt warning light stays on even when buckled\",\"seatbelt warning chime dings as if unbuckled despite being buckled\",\"airbag light remains on\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"Seatbelt light for the front driver continues to turn on even when buckled in\"},{\"kind\":\"symptom\",\"quote\":\"will ding to notify that it’s not buckled despite it buckled in\"},{\"kind\":\"safety\",\"quote\":\"This is a safety issue as the airbag light also remains on because of it.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00043773,
+      "cached_tokens": 384,
+      "cost_usd": 0.00072955,
+      "input_tokens": 536,
+      "list_cost_usd": 0.00072955,
+      "output_tokens": 1176,
+      "reasoning_tokens": 973
+    }
+  }
+}

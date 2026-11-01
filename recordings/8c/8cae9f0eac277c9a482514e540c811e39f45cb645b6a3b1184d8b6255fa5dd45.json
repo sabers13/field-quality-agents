@@ -1,0 +1,66 @@
+{
+  "key": "8cae9f0eac277c9a482514e540c811e39f45cb645b6a3b1184d8b6255fa5dd45",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 14915,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Electrical system: thermostat-related error code with gauge staying on C, loud fan, weak AC cooling, and reduced steering assist warning; conditions not stated.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"thermostat-related error code\",\n    \"temperature gauge remains on C\",\n    \"cooling fan runs loudly\",\n    \"air conditioner does not cool cabin well\",\n    \"steering assist reduced warning message\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\"mileage\", \"conditions\", \"date\"],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"ELECTRICAL SYSTEM\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"throwing an error code related to the thermostat\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"temperature gauge will remain on C\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"fan running loudly\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"air conditioner not cooling the cabin of the vehicle well\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"steering assist is reduced drive with care\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"steering assist is reduced drive with care\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"fluid levels everything is fine without issue\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer JSON only. Need normalize report. Component given ELECTRICAL SYSTEM group electrical_general. Narrative: thermostat error code, temp gauge remains on C, fan running loudly, AC not cooling well, message \"steering assist is reduced drive with care\", fluid levels fine. Need symptoms, conditions. Conditions: none explicit? Maybe not cold/moisture/heat/vibration/intermittent/after service/charging. Could include none. Fault codes: report says error code related to thermostat but no code named. So empty. Safety_relevant: mentions \"steering assist is reduced drive with care\" — is that risk? It says reduced steering assist, drive with care. That's a potential loss of control? But set safety_relevant when mentions loss of control, stall at speed or another risk to people. Reduced steering assist could be safety risk? Need decide. The input has safety_relevant false from source, but prompt says set when report mentions crash fire smoke injury loss of control stall at speed or another risk to people. \"steering assist is reduced drive with care\" indicates reduced steering assist, a risk. I'd set true? Need be careful. It doesn't mention crash/fire etc. But \"another risk to people\" includes reduced steering assist while driving. Hmm likely safety_relevant true. But given source field false? We read only report; can override. Need missing_info: mileage null. Also date? received_at exists but date of incident? missing date? The facts analysis needs: component present, symptom present, conditions? conditions not stated; mileage missing. Could list mileage, conditions, date? The report has received_at but not event date. Missing_info only facts analysis needs: component, symptom, conditions, mileage, date. It says use empty when nothing important missing. Mileage missing. Conditions missing (when occurs? cold? etc). Date? received_at 2025-06-16 is report received date, not incident date; likely date missing. But maybe don't overdo. Need include \"mileage\" and \"conditions\" maybe \"date\"? Since given date field? The report has received_at, but date of occurrence not. I think list mileage, conditions, date? Hmm.\n\nClues: need verbatim quotes. Must copy exact. We can include:\n- symptom quote \"throwing an error code related to the thermostat\"\n- symptom quote \"temperature gauge will remain on C\"\n- symptom quote \"fan running loudly\"\n- symptom quote \"air conditioner not cooling the cabin of the vehicle well\"\n- symptom quote \"message displaying \\\"steering assist is reduced drive with care\\\"\"\n- component_group quote \"ELECTRICAL SYSTEM\"? It's in component not narrative. The report includes component field. Quote verbatim \"ELECTRICAL SYSTEM\". kind component_group.\n- safety quote \"steering assist is reduced drive with care\" maybe safety. But same quote also symptom. Could include safety quote.\n- other \"fluid levels everything is fine\" maybe other.\n\nNeed summary one line: component, symptom, conditions. \"Electrical system: thermostat-related error code with temp gauge on C, loud fan, poor AC cooling, and reduced steering assist message; conditions not stated.\" Must one line.\n\nGroup: \"electrical_general\" or \"electrical\"? The instruction says \"the electrical/electronic component group, or the given group\". Given group electrical_general. Use electrical_general.\n\nSymptom plain words: \"thermostat-related error code\", \"temperature gauge stays on C\", \"cooling fan runs loudly\", \"air conditioner does not cool cabin well\", \"steering assist reduced warning message\". Also \"fluid levels normal\" not symptom. Could include \"no fluid level issue\" as other.\n\nConditions: no explicit conditions. Could be [] not include none. But conditions array should list conditions present. None. Could include \"intermittent\"? Not stated. No.\n\nFault_codes: [] because no code named. Though \"error code related to thermostat\" no specific. Could include \"thermostat-related error code\"? But fault_codes are code if names one. No.\n\nSafety_relevant: I lean true due steering assist reduced. Need quote \"steering assist is reduced drive with care\" exact includes escaped quotes? Narrative has message displaying \\\"steering assist is reduced drive with care\\\". Verbatim span inside quotes: steering assist is reduced drive with care. Good. If quote includes quotes? We'll include without surrounding escaped quotes. It's verbatim substring. Set true. But source says false. Hmm. The prompt specifically says set when mentions ... another risk to people. Reduced steering assist is risk. So true.\n\nMissing_info: component? given. symptom? present. conditions? Not stated. mileage null. date? received_at but no incident date. List [\"mileage\",\"conditions\",\"date\"] maybe. But \"date\" might be considered present received_at. The analysis likely needs date of report? They have received_at. Missing date of occurrence. Could list \"date\". It says missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Mileage definitely missing, conditions missing, date? I can include date. But maybe over-inclusive. Need answer exact JSON no other text. Ensure valid JSON.\n\nClues quotes must be exact. Need be careful with quote \"temperature gauge will remain on C\" exact yes. \"fan running loudly\" exact yes. \"air conditioner not cooling the cabin of the vehicle well\" exact yes. \"message displaying \\\"steering assist is reduced drive with care\\\"\" exact includes message displaying and escaped quotes. We can quote only inner \"steering assist is reduced drive with care\" exact. Good.\n\n\"throwing an error code related to the thermostat\" exact yes.\n\n\"fluid levels everything is fine without issue\" exact? Narrative: \"When I check the fluid levels everything is fine without issue.\" substring \"fluid levels everything is fine without issue\" yes.\n\nNeed maybe quote \"ELECTRICAL SYSTEM\" exact from component. Good.\n\nCould include condition quote? none. Don't invent.\n\nNeed output one JSON object no markdown? User says answer with one JSON object and no other text. So final just JSON. No code fence. Ensure no extra.\n\nLet's craft:\n\n{\n  \"summary\": \"Electrical system: thermostat-related error code with gauge staying on C, loud fan, weak AC cooling, and reduced steering assist warning; conditions not stated.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"thermostat-related error code\",\n    \"temperature gauge remains on C\",\n    \"cooling fan runs loudly\",\n    \"air conditioner does not cool cabin well\",\n    \"steering assist reduced warning message\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\"mileage\", \"conditions\", \"date\"],\n  \"clues\": [\n    {\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},\n    {\"kind\":\"symptom\",\"quote\":\"throwing an error code related to the thermostat\"},\n    {\"kind\":\"symptom\",\"quote\":\"temperature gauge will remain on C\"},\n    {\"kind\":\"symptom\",\"quote\":\"fan running loudly\"},\n    {\"kind\":\"symptom\",\"quote\":\"air conditioner not cooling the cabin of the vehicle well\"},\n    {\"kind\":\"symptom\",\"quote\":\"steering assist is reduced drive with care\"},\n    {\"kind\":\"safety\",\"quote\":\"steering assist is reduced drive with care\"},\n    {\"kind\":\"other\",\"quote\":\"fluid levels everything is fine without issue\"}\n  ]\n}\n\nCheck quote \"fan running loudly\" exact in \"resulting in the fan running loudly\" yes substring. \"temperature gauge will remain on C\" exact. \"air conditioner not cooling the cabin of the vehicle well\" exact yes. Good. \"fluid levels everything is fine without issue\" exact? Narrative: \"When I check the fluid levels everything is fine without issue.\" yes substring \"fluid levels everything is fine without issue\". Good.\n\nNeed safety_relevant true maybe. Good.\n\nShould conditions include \"cold\"? Temperature gauge remains on C could be cold? No, that's gauge reading not ambient. Don't infer.\n\nNeed summary one line. Good.\n\nPotential issue missing_info includes date though received_at. Fine.\n\nFinal only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793527683,
+      "id": "10caabccbbf734afed602d99751ea488",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2061,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1713,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0007593,
+          "billing_source": "go",
+          "list_cost": 0.0012655,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 185,
+            "output": 2061,
+            "reasoning": 1713
+          }
+        },
+        "prompt_tokens": 569,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2630
+      }
+    },
+    "text": "{\n  \"summary\": \"Electrical system: thermostat-related error code with gauge staying on C, loud fan, weak AC cooling, and reduced steering assist warning; conditions not stated.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"thermostat-related error code\",\n    \"temperature gauge remains on C\",\n    \"cooling fan runs loudly\",\n    \"air conditioner does not cool cabin well\",\n    \"steering assist reduced warning message\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\"mileage\", \"conditions\", \"date\"],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"ELECTRICAL SYSTEM\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"throwing an error code related to the thermostat\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"temperature gauge will remain on C\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"fan running loudly\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"air conditioner not cooling the cabin of the vehicle well\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"steering assist is reduced drive with care\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"steering assist is reduced drive with care\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"fluid levels everything is fine without issue\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0007593,
+      "cached_tokens": 384,
+      "cost_usd": 0.0012655,
+      "input_tokens": 569,
+      "list_cost_usd": 0.0012655,
+      "output_tokens": 2061,
+      "reasoning_tokens": 1713
+    }
+  }
+}

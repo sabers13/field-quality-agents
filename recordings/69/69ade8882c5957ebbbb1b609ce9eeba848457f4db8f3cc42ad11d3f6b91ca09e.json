@@ -1,0 +1,66 @@
+{
+  "key": "69ade8882c5957ebbbb1b609ce9eeba848457f4db8f3cc42ad11d3f6b91ca09e",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 13562,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2025 Porsche Taycan electrical system: sudden error message and loss of acceleration on highway, repeated after restart, battery cell fault identified.\",\"group\":\"electrical_general\",\"symptoms\":[\"electrical system error message\",\"sudden loss of acceleration\",\"vehicle stopped accelerating\",\"failed restart attempts\",\"vehicle required towing\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"electrical system error message\"},{\"kind\":\"symptom\",\"quote\":\"electrical system error message appeared suddenly\"},{\"kind\":\"symptom\",\"quote\":\"the car lost the ability to accelerate\"},{\"kind\":\"symptom\",\"quote\":\"unsuccessfully tried restarting it a few times\"},{\"kind\":\"symptom\",\"quote\":\"the same thing happened\"},{\"kind\":\"symptom\",\"quote\":\"it suddenly stopped accelerating\"},{\"kind\":\"symptom\",\"quote\":\"The car had to be towed.\"},{\"kind\":\"condition\",\"quote\":\"driving on a medium-speed highway\"},{\"kind\":\"safety\",\"quote\":\"was only able to get partially out of the road\"},{\"kind\":\"other\",\"quote\":\"problem with one of the battery cells\"}]}",
+            "reasoning_content": "We need produce JSON only. Need normalize. Component electrical system, group electrical_general given. Symptoms: electrical system error message, loss of ability to accelerate, car stopped accelerating, restart attempts unsuccessful, car had to be towed, battery cell problem identified. Conditions: driving medium-speed highway, sudden, intermittent? It happened twice, came back on then repeated. \"intermittent\" condition? The list includes intermittent. We can include \"intermittent\" perhaps. Also \"after service\"? no. \"charging\"? no. \"heat\"? no. \"cold\"? no. \"moisture\"? no. \"vibration\"? no. Safety relevant: loss of acceleration at speed? The prompt says set safety_relevant when mentions crash, fire, smoke, injury, loss of control, a stall at speed, or another risk to people. Here \"lost the ability to accelerate\" on medium-speed highway, coasted, partially out of road, towed. That's a stall/loss of power at speed, risk. Set true. Though input says safety_relevant false, but rule says set when mentions. Need true. Fault codes none. Missing info: mileage? It says just under 1000 miles, so mileage present approximate. date? received_at and narrative 2025; no specific incident date. Should list date? The analysis needs date, yes incident date missing. Conditions? It gives medium-speed highway. Component present. Symptom present. Maybe missing_info [\"date\"]? But \"mileage\" not missing because just under 1000. Could also missing fault code? Not in allowed list. Use [\"date\"]. But maybe date is received_at, not incident. Yes.\n\nClues: need quotes verbatim. Provide kind symptom/condition/safety/component_group/other. Quotes must be exact substrings. Need ensure exact character for character including punctuation. Let's copy spans:\n\n- \"electrical system error message appeared suddenly\" is substring? Narrative: \"when an electrical system error message appeared suddenly and the car lost the ability to accelerate.\" Yes quote \"electrical system error message appeared suddenly\" exact.\n- \"the car lost the ability to accelerate\" exact substring? Narrative has \"and the car lost the ability to accelerate.\" Yes.\n- \"unsuccessfully tried restarting it a few times\" exact? \"and unsuccessfully tried restarting it a few times before it came back on\" yes substring \"unsuccessfully tried restarting it a few times\".\n- \"the same thing happened\" exact? \"About 5 minutes later, the same thing happened--the same message appeared and it suddenly stopped accelerating.\" Yes.\n- \"it suddenly stopped accelerating\" exact? Narrative: \"and it suddenly stopped accelerating.\" substring \"it suddenly stopped accelerating\". yes.\n- \"The car had to be towed.\" exact sentence. yes.\n- \"Porsche identified  problem with one of the battery cells\" note double space after identified? Narrative: \"Porsche identified  problem with one of the battery cells\" yes there are two spaces? Let's inspect: \"Porsche identified  problem with one of the battery cells, and estimated 3 weeks for repair.\" It appears two spaces between identified and problem? The string: \"Porsche identified  problem\" yes double space. We can quote shorter \"problem with one of the battery cells\" exact. \n- condition quote \"driving on a medium-speed highway\" exact? Narrative: \"I was driving on a medium-speed highway when an electrical system error message appeared suddenly\" yes.\n- safety quote? \"lost the ability to accelerate\" demonstrates risk; also \"only able to get partially out of the road\" maybe. Use quote \"was only able to get partially out of the road\" exact? Narrative: \"I coasted for a short distance but was only able to get partially out of the road.\" yes. Kind safety.\n- component group quote? \"ELECTRICAL SYSTEM\" from component? The report narrative doesn't contain \"ELECTRICAL SYSTEM\" uppercase? The whole report includes component field \"ELECTRICAL SYSTEM\" but rules quote copied from report; report includes JSON fields. Could quote \"ELECTRICAL SYSTEM\" exact. But clues should be from report. It is in report. But maybe better quote narrative \"electrical system error message\". For component_group kind quote \"electrical system error message\". Hmm component_group evidence could be \"electrical system error message\". Use kind component_group quote \"electrical system error message\" but that's also symptom. Fine.\n\nNeed summary one line: \"2025 Porsche Taycan electrical system: sudden error and loss of acceleration at highway speed, repeated, battery cell fault found.\" Mention conditions.\n\nSymptom list plain words. Include \"electrical system error message\", \"loss of ability to accelerate\", \"vehicle stopped accelerating\", \"restart unsuccessful\", \"vehicle towed\", \"battery cell problem\". Symptoms should be symptoms not diagnosis? Battery cell problem is cause identified, not symptom. Could include as \"other\"? The schema symptoms plain words. We can include \"battery cell fault identified\" maybe not symptom. Better symptoms: [\"electrical system error message\", \"sudden loss of acceleration\", \"vehicle stopped accelerating\", \"failed restart attempts\", \"vehicle required towing\"]. Fault codes none.\n\nConditions: [\"intermittent\"]? The condition list includes \"intermittent\". It happened, came back, happened again. Include \"intermittent\". Also maybe \"highway\" not in conditions list. Conditions list fixed options: cold, moisture, heat, vibration, intermittent, after service, charging. We can include \"intermittent\". The narrative says medium-speed highway, not list. So conditions [\"intermittent\"]. But conditions are environmental/operational categories; \"intermittent\" fits. Could include none? The rule asks conditions array. Use [\"intermittent\"].\n\nMissing_info: date? It has received_at but not incident date. The analysis needs date. Use [\"date\"]. Maybe \"mileage\" present approx. conditions present? It says medium-speed highway. component present. symptom present. So [\"date\"].\n\nSafety_relevant true.\n\nClues array must include verbatim quotes. Need ensure not too many but enough. Include kind condition for \"driving on a medium-speed highway\"; symptom quotes; safety quote \"lost the ability to accelerate\" maybe kind safety? But same quote can be symptom. For safety, quote \"was only able to get partially out of the road\". Component group quote \"electrical system error message\". Fault code none. Other quote \"Porsche identified  problem with one of the battery cells\" maybe exact double space. To avoid double-space risk, use \"problem with one of the battery cells\" exact. Kind other. Also \"The car had to be towed.\" symptom? It's consequence. Kind symptom? \"vehicle required towing\" is symptom? Could be other. Use kind symptom for \"The car had to be towed.\" Maybe.\n\nNeed output JSON only. Ensure valid JSON no markdown. Let's craft.\n\nDouble-check quotes:\n- \"electrical system error message appeared suddenly\" exact? Narrative: \"when an electrical system error message appeared suddenly and the car lost...\" yes.\n- \"the car lost the ability to accelerate\" exact? yes.\n- \"unsuccessfully tried restarting it a few times\" exact? Narrative: \"and unsuccessfully tried restarting it a few times before it came back on\" yes.\n- \"the same thing happened\" exact? yes.\n- \"it suddenly stopped accelerating\" exact? Narrative: \"and it suddenly stopped accelerating.\" yes.\n- \"The car had to be towed.\" exact? yes.\n- \"problem with one of the battery cells\" exact? Narrative: \"Porsche identified  problem with one of the battery cells, and estimated...\" yes substring.\n- \"driving on a medium-speed highway\" exact? Narrative: \"I was driving on a medium-speed highway when...\" yes.\n- \"was only able to get partially out of the road\" exact? Narrative: \"but was only able to get partially out of the road.\" yes.\n\nNeed maybe safety quote \"lost the ability to accelerate\" could be safety. But we already use symptom. Can include duplicate quote with different kind? It says clues array kind; duplicates okay? Better no duplicate. For safety use \"was only able to get partially out of the road\". Good.\n\nSummary: \"2025 Porsche Taycan electrical system: sudden error message and loss of acceleration on highway, repeated after restart, battery cell fault identified.\" Good.\n\nNeed note \"safety_relevant\": true. \"fault_codes\": [].\n\nLet's produce.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531509,
+      "id": "eaae9150eb31692df0de9a7fc4d34b68",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2044,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1779,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00075948,
+          "billing_source": "go",
+          "list_cost": 0.0012658,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 255,
+            "output": 2044,
+            "reasoning": 1779
+          }
+        },
+        "prompt_tokens": 639,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2683
+      }
+    },
+    "text": "{\"summary\":\"2025 Porsche Taycan electrical system: sudden error message and loss of acceleration on highway, repeated after restart, battery cell fault identified.\",\"group\":\"electrical_general\",\"symptoms\":[\"electrical system error message\",\"sudden loss of acceleration\",\"vehicle stopped accelerating\",\"failed restart attempts\",\"vehicle required towing\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"electrical system error message\"},{\"kind\":\"symptom\",\"quote\":\"electrical system error message appeared suddenly\"},{\"kind\":\"symptom\",\"quote\":\"the car lost the ability to accelerate\"},{\"kind\":\"symptom\",\"quote\":\"unsuccessfully tried restarting it a few times\"},{\"kind\":\"symptom\",\"quote\":\"the same thing happened\"},{\"kind\":\"symptom\",\"quote\":\"it suddenly stopped accelerating\"},{\"kind\":\"symptom\",\"quote\":\"The car had to be towed.\"},{\"kind\":\"condition\",\"quote\":\"driving on a medium-speed highway\"},{\"kind\":\"safety\",\"quote\":\"was only able to get partially out of the road\"},{\"kind\":\"other\",\"quote\":\"problem with one of the battery cells\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00075948,
+      "cached_tokens": 384,
+      "cost_usd": 0.0012658,
+      "input_tokens": 639,
+      "list_cost_usd": 0.0012658,
+      "output_tokens": 2044,
+      "reasoning_tokens": 1779
+    }
+  }
+}

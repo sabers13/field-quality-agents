@@ -1,0 +1,66 @@
+{
+  "key": "ff44f512318290ba0370690a99bdd7e61012102d015668e255c801f93a52626e",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 8685,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"No rulebook entry matches; test the ADAS forward-collision/AEB system under low-speed grated-bridge and backed-up traffic conditions to reproduce the reported phantom activation.\",\"rationale\":\"The narrative reports unexpected automatic emergency braking while traveling at single-digit MPH over bridge deck grates in backed-up traffic, with more than a car length ahead. No recall, investigation, or rulebook match was returned, so this is not a targeted rulebook test. A similar IONIQ 6 case describes phantom braking with an emergency braking warning, supporting an ADAS reproduction test.\",\"group\":\"adas\",\"symptoms\":[\"unexpected automatic emergency braking activation\"],\"conditions\":[\"traveling over the bridge deck's grates in the left lane\",\"Traffic was backed up and traveling at single-digit MPH\",\"accelerating slightly to close the distance\"],\"fault_codes\":[],\"safety_relevant\":false,\"targeted\":false,\"test_name\":\"standard ADAS diagnostic scan and road test\",\"clues\":[{\"kind\":\"symptom\",\"quote\":\"my emergency braking activated\"},{\"kind\":\"condition\",\"quote\":\"traveling over the bridge deck's grates in the left lane\"},{\"kind\":\"condition\",\"quote\":\"Traffic was backed up and I was traveling in the single-digit MPH\"},{\"kind\":\"condition\",\"quote\":\"as I accelerated a little bit to close the distance\"},{\"kind\":\"other\",\"quote\":\"the car behind me was trailing by a little bit and was also traveling slowly\"}]}",
+            "reasoning_content": "We need answer JSON only. Need analyze. No rulebook matches, so targeted false. Test standard? The prompt says propose standard test if no targeted. But test_name field \"the targeted test the rulebook names\" - if no targeted, maybe standard test name? Need infer. It says answer with JSON. We need summary, rationale, group, symptoms, conditions, fault_codes, safety_relevant, targeted, test_name, clues. Use only facts. No rulebook matches, no recalls/investigations. Similar case phantom braking. Need clues quotes verbatim from narrative. We can include quotes copied from case narrative, not extraction? Rule: quote verbatim from case narrative. Narrative: \"I was crossing the Mackinac Bridge, northbound, this afternoon, at the time traveling over the bridge deck's grates in the left lane. Traffic was backed up and I was traveling in the single-digit MPH. There was more that a car's length between myself and the next car ahead, and as I accelerated a little bit to close the distance my emergency braking activated. Fortunately, the car behind me was trailing by a little bit and was also traveling slowly.\"\n\nNeed choose quotes exact. For component group quote? Narrative doesn't include \"FORWARD COLLISION AVOIDANCE...\"? Case component field has it, but narrative not. Rule quote from case narrative. So don't quote component group? Clues kinds can be symptom/condition etc. We can quote \"my emergency braking activated\" exact in narrative yes. \"traveling over the bridge deck's grates in the left lane\" yes. \"Traffic was backed up and I was traveling in the single-digit MPH\" yes. \"as I accelerated a little bit to close the distance\" yes. \"the car behind me was trailing by a little bit and was also traveling slowly\" yes. Good.\n\nTest_name: no rulebook. Could be \"standard test\" maybe \"standard ADAS diagnostic/road test\"? Need not propose action beyond test. The schema requires test_name. We should name standard test: \"standard ADAS functional road test\" or \"standard diagnostic scan and road test\". Since no rulebook, targeted false. Maybe \"standard test\" as generic. To be safe: \"standard ADAS diagnostic scan and road test\". But if rulebook names none, cannot name targeted. The instruction says test_name \"the targeted test the rulebook names\" but for non-targeted, we can set \"standard ADAS diagnostic road test\". Need rationale note no rulebook entry.\n\nSafety_relevant false? Narrative says fortunately car behind trailing slowly; no risk to people? Unexpected AEB could be risk, but no explicit injury. The rule says set safety when narrative shows risk to people. It mentions car behind; could have been rear-ended. But \"Fortunately...\" indicates avoided. Case safety false from extraction. We should set false. Targeted false.\n\nSummary one line: \"No rulebook match; test ADAS forward collision/AEB under low-speed grating/backed-up traffic conditions to reproduce phantom braking.\" Need concise.\n\nConditions array can list conditions from narrative: \"traveling over bridge deck's grates in left lane\", \"backed-up traffic at single-digit MPH\", \"accelerating slightly to close gap\". Symptoms: \"unexpected automatic emergency braking activation\". Fault codes [].\n\nClues include quotes. Could include \"my emergency braking activated\" as symptom; \"traveling over the bridge deck's grates in the left lane\" condition; \"Traffic was backed up and I was traveling in the single-digit MPH\" condition; \"as I accelerated a little bit to close the distance\" condition; \"the car behind me was trailing by a little bit and was also traveling slowly\" other. All exact? Check apostrophe \"deck's\" exact. Narrative has \"There was more that a car's length...\" irrelevant.\n\nNeed output JSON only. No markdown. Ensure no extra text.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529188,
+      "id": "0ad4d2c65ef13dc6be3bbc943693b3d9",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1112,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 804,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00048762,
+          "billing_source": "go",
+          "list_cost": 0.0008127,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 970,
+            "output": 1112,
+            "reasoning": 804
+          }
+        },
+        "prompt_tokens": 970,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 2082
+      }
+    },
+    "text": "{\"summary\":\"No rulebook entry matches; test the ADAS forward-collision/AEB system under low-speed grated-bridge and backed-up traffic conditions to reproduce the reported phantom activation.\",\"rationale\":\"The narrative reports unexpected automatic emergency braking while traveling at single-digit MPH over bridge deck grates in backed-up traffic, with more than a car length ahead. No recall, investigation, or rulebook match was returned, so this is not a targeted rulebook test. A similar IONIQ 6 case describes phantom braking with an emergency braking warning, supporting an ADAS reproduction test.\",\"group\":\"adas\",\"symptoms\":[\"unexpected automatic emergency braking activation\"],\"conditions\":[\"traveling over the bridge deck's grates in the left lane\",\"Traffic was backed up and traveling at single-digit MPH\",\"accelerating slightly to close the distance\"],\"fault_codes\":[],\"safety_relevant\":false,\"targeted\":false,\"test_name\":\"standard ADAS diagnostic scan and road test\",\"clues\":[{\"kind\":\"symptom\",\"quote\":\"my emergency braking activated\"},{\"kind\":\"condition\",\"quote\":\"traveling over the bridge deck's grates in the left lane\"},{\"kind\":\"condition\",\"quote\":\"Traffic was backed up and I was traveling in the single-digit MPH\"},{\"kind\":\"condition\",\"quote\":\"as I accelerated a little bit to close the distance\"},{\"kind\":\"other\",\"quote\":\"the car behind me was trailing by a little bit and was also traveling slowly\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00048762,
+      "cached_tokens": 0,
+      "cost_usd": 0.0008127,
+      "input_tokens": 970,
+      "list_cost_usd": 0.0008127,
+      "output_tokens": 1112,
+      "reasoning_tokens": 804
+    }
+  }
+}

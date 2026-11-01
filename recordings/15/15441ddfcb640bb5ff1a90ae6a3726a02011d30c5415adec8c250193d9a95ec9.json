@@ -1,0 +1,66 @@
+{
+  "key": "15441ddfcb640bb5ff1a90ae6a3726a02011d30c5415adec8c250193d9a95ec9",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12039,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"2022 Jeep Wrangler hybrid propulsion: hybrid and regular batteries inoperable, steering wobble and warning lights while driving, intermittent no-start; recurred after software update.\",\n  \"group\": \"ev_propulsion\",\n  \"symptoms\": [\n    \"hybrid battery became inoperable\",\n    \"regular battery failed to operate properly\",\n    \"steering wheel wobbled while driving\",\n    \"unknown warning lights illuminated and turned on and off\",\n    \"vehicle failed to start after an hour but eventually restarted\",\n    \"failure recurred after partial repair and software update\"\n  ],\n  \"conditions\": [\n    \"while driving\",\n    \"intermittent\",\n    \"after service\"\n  ],\n  \"fault_codes\": [\n    \"23V787000\"\n  ],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"ELECTRICAL SYSTEM:PROPULSION SYSTEM:HYBRID MANAGEMENT\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"hybrid battery became inoperable\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"regular battery failed to operate properly\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"steering wheel was wobbling\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"While driving at an undisclosed speed\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Several unknown warning lights were illuminated and were turning on and off\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"vehicle failed to start after an hour but eventually restarted\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"software update was completed\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"failure recurred\"\n    },\n    {\n      \"kind\": \"fault_code\",\n      \"quote\": \"NHTSA Campaign Number: 23V787000\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"steering wheel was wobbling\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize. Need extract component group ev_propulsion given. Summary one line component symptom conditions. Symptoms: hybrid battery inoperable, regular battery failed to operate properly, steering wheel wobbling while driving, unknown warning lights illuminated turning on/off, vehicle failed to start after an hour but eventually restarted, failure recurred after software update/partial repair. Conditions: driving, intermittent? warning lights turning on/off, after service? software update completed, partial repair, failure recurred. Cold/moisture/heat/vibration not mentioned. Charging? no. Safety relevant? Report mentions steering wheel wobbling while driving. Is that loss of control? It says safety_relevant false in source but rules set when mentions crash fire smoke injury loss of control stall at speed or another risk. Steering wheel wobbling while driving could be risk but not explicit loss of control. We need decide. \"another risk to people\" maybe wobbling steering while driving is risk. But source says false. Prompt says set when report mentions crash, fire, smoke, injury, loss of control, a stall at speed or another risk to people. Steering wheel wobble at undisclosed speed is a potential risk. Could set true? Need not invent. It mentions while driving at undisclosed speed steering wheel wobbling. That's a risk to control. I'd set safety_relevant true? But source field says false; but instructions override? We read report only user message includes safety_relevant false as metadata. \"Read only report\" includes JSON. Hmm. We should not blindly copy? The field is given. But rule says set when report mentions ... another risk. Wobbling steering could be safety. However if we set true contradict given safety_relevant false. The task likely expects use narrative. Need output valid schema.\n\nFault codes: NHTSA Campaign Number 23V787000. Is that fault code? It names campaign number, not fault code. \"fault_codes\": [\"23V787000\"]? It's a campaign number, not code. The field says code if report names one. It names campaign number. Could include maybe fault_codes [\"23V787000\"] but kind fault_code quote. But it's recall campaign, not diagnostic code. I'd include? The schema says fault_codes code if report names one. Campaign number is a code-like identifier. But may not be fault code. We can include as fault_code? Better include because evidence. Hmm.\n\nMissing_info: mileage present 30000; date? received_at present but incident date missing. component present. symptom present. conditions present? Some conditions: while driving, after software update, recurrence. Missing maybe date of failure. Also \"conditions\" needed? It has driving but not weather etc. The list allowed missing_info only component, symptom, conditions, mileage, date. We can list [\"date\"] because incident date absent. Conditions maybe sufficient? It says while driving; not cold/moisture etc. But conditions list not necessarily all. Missing_info maybe [\"date\"] only. Maybe \"conditions\" missing because no environmental conditions? But report has driving and after repair. I'd say date.\n\nClues: verbatim spans. Need copy exactly. Could include:\n- component_group: \"ELECTRICAL SYSTEM:PROPULSION SYSTEM:HYBRID MANAGEMENT\" from component? Is that in report? Yes JSON component field. Quote verbatim.\n- symptom: \"hybrid battery became inoperable\"\n- symptom: \"regular battery failed to operate properly\"\n- symptom: \"steering wheel was wobbling\"\n- condition: \"While driving at an undisclosed speed\"\n- symptom: \"Several unknown warning lights were illuminated and were turning on and off\"\n- symptom: \"vehicle failed to start after an hour but eventually restarted\"\n- condition: \"software update was completed\"\n- condition: \"failure recurred\" maybe after service.\n- fault_code: \"NHTSA Campaign Number: 23V787000\" exact. Could include.\n- safety: \"steering wheel was wobbling\" if safety true.\nNeed no other text.\n\nSummary one line: \"2022 Jeep Wrangler hybrid propulsion: hybrid and 12V batteries inoperable, steering wobble, warning lights, intermittent no-start; recurred after software update.\" Conditions? \"while driving; after software update\". Good.\n\nNeed ensure JSON only. Let's craft.\n\nPotential issue \"regular batter\" typo in narrative; quote \"regular battery failed to operate properly\" exact? Narrative: \"the regular battery failed to operate properly.\" Yes. \"The regular batter was also inoperable.\" typo. Use first.\n\n\"vehicle failed to start after an hour but eventually restarted\" exact includes \"The vehicle failed...\" We can quote substring \"vehicle failed to start after an hour but eventually restarted\" yes exact? Narrative: \"The vehicle failed to start after an hour but eventually restarted.\" substring starts at vehicle lower? Case matters; quote must be character for character. If we use \"vehicle failed...\" lower v but narrative has \"The vehicle...\" includes capital T then space v. The substring \"vehicle failed...\" does exist after \"The \"? Yes characters \"vehicle failed...\" are exact lower v. Good.\n\n\"failure recurred\" exact: narrative \"but the failure recurred.\" substring yes.\n\n\"NHTSA Campaign Number: 23V787000\" exact yes.\n\nSafety: If set true, include safety clue \"steering wheel was wobbling\" but that's also symptom. Could include kind safety. Maybe two same quote with different kinds? Fine.\n\nNeed missing_info maybe [\"date\"] not \"conditions\". The instructions list missing_info facts analysis needs. Date of incident missing. Conditions: has driving at undisclosed speed. Maybe \"conditions\" missing? It says conditions includes cold moisture heat vibration intermittent after service charging. Report indicates intermittent (warning lights turning on/off, failed start then restarted) and after service (software update). So conditions not missing. Mileage present. Component present. Symptom present. Date missing. Good.\n\nNeed \"group\": \"ev_propulsion\" or \"the electrical/electronic component group, or given group\". Given group ev_propulsion. Use that.\n\nNeed summary \"one line: component, symptom, conditions\". Good.\n\nLet's final JSON. Ensure no markdown? User says answer with one JSON object and no other text. We can output raw JSON. Use double quotes.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531521,
+      "id": "21359c131ccaeaf57252ad08a3ea4d5a",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1823,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1335,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0006828,
+          "billing_source": "go",
+          "list_cost": 0.001138,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 287,
+            "output": 1823,
+            "reasoning": 1335
+          }
+        },
+        "prompt_tokens": 671,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2494
+      }
+    },
+    "text": "{\n  \"summary\": \"2022 Jeep Wrangler hybrid propulsion: hybrid and regular batteries inoperable, steering wobble and warning lights while driving, intermittent no-start; recurred after software update.\",\n  \"group\": \"ev_propulsion\",\n  \"symptoms\": [\n    \"hybrid battery became inoperable\",\n    \"regular battery failed to operate properly\",\n    \"steering wheel wobbled while driving\",\n    \"unknown warning lights illuminated and turned on and off\",\n    \"vehicle failed to start after an hour but eventually restarted\",\n    \"failure recurred after partial repair and software update\"\n  ],\n  \"conditions\": [\n    \"while driving\",\n    \"intermittent\",\n    \"after service\"\n  ],\n  \"fault_codes\": [\n    \"23V787000\"\n  ],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"ELECTRICAL SYSTEM:PROPULSION SYSTEM:HYBRID MANAGEMENT\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"hybrid battery became inoperable\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"regular battery failed to operate properly\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"steering wheel was wobbling\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"While driving at an undisclosed speed\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Several unknown warning lights were illuminated and were turning on and off\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"vehicle failed to start after an hour but eventually restarted\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"software update was completed\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"failure recurred\"\n    },\n    {\n      \"kind\": \"fault_code\",\n      \"quote\": \"NHTSA Campaign Number: 23V787000\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"steering wheel was wobbling\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0006828,
+      "cached_tokens": 384,
+      "cost_usd": 0.001138,
+      "input_tokens": 671,
+      "list_cost_usd": 0.001138,
+      "output_tokens": 1823,
+      "reasoning_tokens": 1335
+    }
+  }
+}

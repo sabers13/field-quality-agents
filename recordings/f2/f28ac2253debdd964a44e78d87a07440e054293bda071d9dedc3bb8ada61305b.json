@@ -1,0 +1,66 @@
+{
+  "key": "f28ac2253debdd964a44e78d87a07440e054293bda071d9dedc3bb8ada61305b",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11613,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2021 Honda CR-V ADAS automatic emergency braking unexpectedly stops at highway speed with collision warning\",\"group\":\"adas\",\"symptoms\":[\"complete stop while driving at highway speeds without apparent reason\",\"warning of a possible collision\",\"abrupt stop\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"},{\"kind\":\"symptom\",\"quote\":\"it has come to a complete stop while driving at highway speeds without any apparent reason\"},{\"kind\":\"symptom\",\"quote\":\"accompanied by a warning of a possible collision\"},{\"kind\":\"condition\",\"quote\":\"On several occasions since I’ve owned the vehicle\"},{\"kind\":\"condition\",\"quote\":\"while driving at highway speeds\"},{\"kind\":\"safety\",\"quote\":\"If other vehicles had been nearby during any of these incidents, I believe it could have resulted in a serious accident.\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize. Component forward collision avoidance automatic emergency braking, group adas. Symptoms: complete stop while driving at highway speeds without apparent reason, warning possible collision, abrupt stop. Conditions: highway speeds? The allowed conditions list: cold moisture heat vibration intermittent after service charging. Report says on several occasions since owned, no specific temp. \"intermittent\" maybe several occasions. Need conditions maybe [\"intermittent\"]? Need be careful. Fault codes none. Safety_relevant true: complete stop at highway speeds, risk serious accident. Missing_info: mileage, date? Component present symptom present conditions? Conditions maybe not explicit but highway speed is condition not in list? Missing info only facts analysis needs: component symptom conditions mileage date. Mileage null, date? received_at but incident date missing. Conditions? It gives highway speeds, several occasions. Maybe conditions missing? The schema conditions only enumerated; report doesn't mention cold/moisture/heat/vibration/after service/charging. It mentions highway speeds. Should we list conditions as [] and missing_info include \"mileage\",\"date\",\"conditions\"? But \"conditions\" could be partially given highway speeds. Need decide. Summary one line: ADAS automatic emergency braking unexpectedly stops vehicle at highway speed with collision warning. Group adas. Symptoms list. Clues verbatim quotes. Need ensure quotes exact from narrative. Text includes curly apostrophe. We can copy spans. Need JSON no other text. Need include safety_relevant true. Clues:\n- component_group quote \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"? That is component field not narrative. It says read only report user message, includes component. Quote verbatim from report maybe can quote component field? \"verbatim span copied from the report\" includes whole JSON. But likely narrative. Use component quote exact from component field? Could. Need evidence for component_group: \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\" exact.\n- symptom: \"it has come to a complete stop while driving at highway speeds without any apparent reason\"\n- symptom: \"accompanied by a warning of a possible collision\"\n- condition: \"at highway speeds\" maybe kind condition? Allowed condition kind. But conditions array enumerated doesn't include highway. Clues can kind condition quote \"while driving at highway speeds\". Maybe okay.\n- safety: \"If other vehicles had been nearby during any of these incidents, I believe it could have resulted in a serious accident.\" exact. Or \"vehicle stopped so abruptly\". Need safety_relevant true.\n\nMissing_info: mileage and date (incident date). Conditions? The report has highway speeds and several occasions; not ambient conditions. For analysis of AEB false positives, conditions like weather/road, speed, following distance matter. But allowed missing_info list includes conditions. It lacks weather/road conditions. Could include \"conditions\". Component and symptom present. No fault code. Use [\"mileage\",\"date\",\"conditions\"]. But maybe conditions not missing because highway speeds given. However missing_info \"conditions\" means cold/moisture etc absent. Include.\n\nNeed JSON with no extra. Ensure valid JSON. Use quotes. For summary one line.\n\nNeed maybe include safety_relevant true. Good.\n\nNeed no markdown? User says answer with one JSON object and no other text. Final should just JSON. Use plain.\n\nNeed ensure all quote spans exact. Let's select exact substrings:\n\"it has come to a complete stop while driving at highway speeds without any apparent reason\" — In narrative: \"it has come to a complete stop while driving at highway speeds without any apparent reason\" yes preceded by \"it has\". Exact lowercase.\n\"accompanied by a warning of a possible collision\" exact.\n\"vehicle stopped so abruptly that I initially thought I had been rear-ended\" exact.\n\"If other vehicles had been nearby during any of these incidents, I believe it could have resulted in a serious accident.\" exact (includes period? Yes. Need quote exact with period. Good.)\n\"On several occasions since I’ve owned the vehicle\" exact with curly apostrophe. Could use as condition intermittent? Hmm kind condition quote \"On several occasions since I’ve owned the vehicle\" supports intermittent. But conditions array allowed includes intermittent. Is \"several occasions\" enough? It indicates recurring/intermittent. Include condition \"intermittent\" maybe. But clue quote for condition: \"On several occasions since I’ve owned the vehicle\" exact. Need copy curly apostrophe. Fine.\n\nCould include \"at highway speeds\" as condition? The conditions array is enumerated; only allowed values? It says conditions: [\"cold\", ...]. So don't include highway speeds in conditions array. But clues kind condition can quote \"while driving at highway speeds\" maybe. That's okay? The kind condition not necessarily enumerated. But conditions array cannot include \"highway speeds\" because not listed. Include intermittent only. Hmm \"highway speeds\" is an operating condition important. But schema restricts. Maybe missing_info conditions? Actually report gives speed condition. But not environmental. I think conditions [\"intermittent\"] and missing_info [\"mileage\",\"date\"]. But the schema says conditions array only enumerated, so yes.\n\nNeed clue for symptom complete stop and warning. Fault codes none. Component group quote.\n\nNeed safety clue quote. Good.\n\nFinal JSON. Ensure no markdown.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793525887,
+      "id": "38d8c8ae6ace1559f26783c1be88f0f9",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1334,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1108,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00050325,
+          "billing_source": "go",
+          "list_cost": 0.00083875,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 248,
+            "output": 1334,
+            "reasoning": 1108
+          }
+        },
+        "prompt_tokens": 632,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1966
+      }
+    },
+    "text": "{\"summary\":\"2021 Honda CR-V ADAS automatic emergency braking unexpectedly stops at highway speed with collision warning\",\"group\":\"adas\",\"symptoms\":[\"complete stop while driving at highway speeds without apparent reason\",\"warning of a possible collision\",\"abrupt stop\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"},{\"kind\":\"symptom\",\"quote\":\"it has come to a complete stop while driving at highway speeds without any apparent reason\"},{\"kind\":\"symptom\",\"quote\":\"accompanied by a warning of a possible collision\"},{\"kind\":\"condition\",\"quote\":\"On several occasions since I’ve owned the vehicle\"},{\"kind\":\"condition\",\"quote\":\"while driving at highway speeds\"},{\"kind\":\"safety\",\"quote\":\"If other vehicles had been nearby during any of these incidents, I believe it could have resulted in a serious accident.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00050325,
+      "cached_tokens": 384,
+      "cost_usd": 0.00083875,
+      "input_tokens": 632,
+      "list_cost_usd": 0.00083875,
+      "output_tokens": 1334,
+      "reasoning_tokens": 1108
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "d72abaecedf4ab1a610f3a9a570cef2f811a06ae588b0016a384a69786140360",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9556,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Test for intermittent restraint/electrical faults with a long-run power cycling test because the air-bag lamp, panic alarm, and backup camera all behave intermittently.\",\"rationale\":\"The case reports intermittent symptoms: the air-bag light only comes on sometimes, the panic alarm goes off at random times, and the backup camera sometimes works and sometimes glitches. The rulebook matches the 'intermittent' condition and names the long-run power cycling test for faults that appear after repeated wake and sleep cycles.\",\"group\":\"restraints\",\"symptoms\":[\"air bag light comes on intermittently\",\"panic alarm goes off at random times\",\"backup camera sometimes works and sometimes glitches\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":false,\"targeted\":true,\"test_name\":\"Long-run power cycling test\",\"clues\":[{\"kind\":\"symptom\",\"quote\":\"air bag light comes on sometimes not other\"},{\"kind\":\"symptom\",\"quote\":\"car panic alarm goes off at random times\"},{\"kind\":\"symptom\",\"quote\":\"backup camera sometimes work sometimes glitches\"},{\"kind\":\"condition\",\"quote\":\"sometimes\"}]}",
+            "reasoning_content": "We need answer JSON only. Need analyze. Case: 2016 Ford Fusion air bag light intermittent, panic alarm random, backup camera glitches. Conditions intermittent matched rulebook \"intermittent\" test \"Long-run power cycling test\". Need targeted true? Rulebook matched conditions. Safety_relevant? Narrative no risk to people? Air bag light could indicate airbag malfunction but no deployment/risk explicitly. Intake says false. We should set false. Group restraints. Symptoms from narrative quotes. Conditions intermittent. Fault codes none. Test name Long-run power cycling test. Clues verbatim spans from case narrative. Need copy exact. Narrative: \"air bag light comes on sometimes not other  car panic alarm goes off at random times  backup camera sometimes work sometimes glitches\". Note double spaces. Quotes can be substrings. Need ensure exact. Could quote \"air bag light comes on sometimes not other\", \"car panic alarm goes off at random times\", \"backup camera sometimes work sometimes glitches\", \"sometimes\". Component group quote? The narrative doesn't include \"AIR BAGS\" except component field not narrative? The rules say quote copied verbatim from case narrative. Case narrative string does not include AIR BAGS. It includes \"air bag light\". So component_group clue maybe quote \"air bag light comes on sometimes not other\" kind symptom. Can't cite extracted. Need clues only from narrative. Safety false, targeted true.\n\nSummary one line. Rationale condition and evidence. Mention rulebook intermittent matches repeated symptoms. Need maybe note random/intermittent. Since \"sometimes\" appears. Targeted test named. Could mention investigations/recalls? Not necessary. Do not cite ids unless in tool results? We can mention recall/investigation? Better avoid citing ids. Could mention no safety risk shown. Need output valid JSON no markdown.\n\nEnsure quotes verbatim:\n- \"air bag light comes on sometimes not other\" exact? Narrative: \"air bag light comes on sometimes not other  car panic...\" yes.\n- \"car panic alarm goes off at random times\" yes.\n- \"backup camera sometimes work sometimes glitches\" yes.\n- \"sometimes\" yes.\nCould include condition clue quote \"sometimes\". Symptom clue for each.\n\nMaybe include component_group clue quote \"air bag light comes on sometimes not other\" but kind component_group? Hmm no.\n\nNeed fields. targeted true. test_name \"Long-run power cycling test\". conditions [\"intermittent\"]. symptoms list. fault_codes [].\n\nRationale: \"The only rulebook match is the intermittent condition: the air-bag lamp, random panic alarm, and backup-camera glitches all appear only sometimes, so repeated wake/sleep power cycling is the targeted test.\" Good.\n\nSummary: \"Test for intermittent restraint/electrical faults with a long-run power cycling test because the air-bag lamp, panic alarm, and backup camera all behave intermittently.\"\n\nGroup \"restraints\".\n\nSafety_relevant false.\n\nClues maybe include 4. Need no extra text.\n\nCheck safety: air bag light intermittent might be safety relevant? Prompt says set when narrative shows risk to people. Narrative no. false.\n\nFinal.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793525453,
+      "id": "8645a7919d376760e714b358d785e350",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 892,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 644,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00064836,
+          "billing_source": "go",
+          "list_cost": 0.0010806,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 3636,
+            "output": 892,
+            "reasoning": 644
+          }
+        },
+        "prompt_tokens": 3636,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 4528
+      }
+    },
+    "text": "{\"summary\":\"Test for intermittent restraint/electrical faults with a long-run power cycling test because the air-bag lamp, panic alarm, and backup camera all behave intermittently.\",\"rationale\":\"The case reports intermittent symptoms: the air-bag light only comes on sometimes, the panic alarm goes off at random times, and the backup camera sometimes works and sometimes glitches. The rulebook matches the 'intermittent' condition and names the long-run power cycling test for faults that appear after repeated wake and sleep cycles.\",\"group\":\"restraints\",\"symptoms\":[\"air bag light comes on intermittently\",\"panic alarm goes off at random times\",\"backup camera sometimes works and sometimes glitches\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":false,\"targeted\":true,\"test_name\":\"Long-run power cycling test\",\"clues\":[{\"kind\":\"symptom\",\"quote\":\"air bag light comes on sometimes not other\"},{\"kind\":\"symptom\",\"quote\":\"car panic alarm goes off at random times\"},{\"kind\":\"symptom\",\"quote\":\"backup camera sometimes work sometimes glitches\"},{\"kind\":\"condition\",\"quote\":\"sometimes\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00064836,
+      "cached_tokens": 0,
+      "cost_usd": 0.0010806,
+      "input_tokens": 3636,
+      "list_cost_usd": 0.0010806,
+      "output_tokens": 892,
+      "reasoning_tokens": 644
+    }
+  }
+}

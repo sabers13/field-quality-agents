@@ -1,0 +1,66 @@
+{
+  "key": "d166551c46441064275a95eba30e801316871474ece4e56140ade9e850bacc31",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 7348,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2016 Ford Fusion in-dash backup camera stopped working about 2 years ago; random glitching, delayed activation, failure to switch off, dealer error pop-up, and reversed image 100% of the time.\",\"group\":\"electrical_general\",\"symptoms\":[\"backup camera stopped functioning\",\"glitching video\",\"delay in activating\",\"rearview camera not switching off while driving forward\",\"error code pop-up to contact the dealer\",\"image displayed in reverse\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"The in-dash backup camera stopped functioning about 2 years ago.\"},{\"kind\":\"condition\",\"quote\":\"The errors are random\"},{\"kind\":\"symptom\",\"quote\":\"glitching video\"},{\"kind\":\"symptom\",\"quote\":\"delay in activating\"},{\"kind\":\"symptom\",\"quote\":\"not switching off(driving forward with rearview camera activated)\"},{\"kind\":\"symptom\",\"quote\":\"error code pop-up to contact the dealer\"},{\"kind\":\"symptom\",\"quote\":\"100 percent of the time, the image is displayed in reverse making backing up impossible.\"}]}",
+            "reasoning_content": "We need answer one JSON only. Need normalize. Report component ELECTRICAL SYSTEM group electrical_general. Narrative: in-dash backup camera stopped functioning about 2 years ago. Errors random: glitching video, delay activating, not switching off (driving forward with rearview camera activated), error code pop-up contact dealer. 100% image displayed in reverse making backing up impossible. Need symptoms plain. Conditions: intermittent (random), maybe after service? no. cold/moisture/heat/vibration no. \"about 2 years ago\" date? missing_info: mileage (null), date? received date exists but incident date approximate \"about 2 years ago\"; missing exact date maybe. Component present, symptom present, conditions? conditions includes intermittent. Need fault_codes: none named (error code pop-up but no code). safety_relevant false (provided and no mention risk? backup camera image reverse makes backing impossible could be safety? Prompt says set safety when crash fire smoke injury loss control stall at speed or risk to people. Backup camera malfunction could risk but report doesn't mention crash etc. Given safety_relevant false. Need clues with verbatim quotes. Need ensure quotes exact. Let's craft.\n\nSummary one line: \"In-dash backup camera in 2016 Ford Fusion stopped working ~2 years ago; random glitching, delayed activation, failure to switch off, dealer error pop-up, and reversed image 100% of time.\" Need maybe \"component, symptom, conditions\". Good.\n\nGroup \"electrical_general\" or electrical/electronic component group? Given group electrical_general. Use \"electrical_general\" maybe acceptable. The schema says group \"the electrical/electronic component group, or the given group\". Given group. Use \"electrical_general\".\n\nSymptoms array: \"backup camera stopped functioning\"; \"glitching video\"; \"delay in activating\"; \"rearview camera not switching off while driving forward\"; \"error code pop-up to contact dealer\"; \"image displayed in reverse\". Need plain words. Fault codes empty. Safety false. missing_info: mileage? date? Conditions? We have intermittent. Component present. Symptom present. Missing exact mileage, exact date of onset? Need list only facts analysis needs: mileage, date. Maybe conditions? There are random/intermittent but no environmental conditions. But missing_info should include \"mileage\", \"date\". Could include \"conditions\" if no conditions? The rules list only facts analysis needs. Given no mileage and approximate date. Use [\"mileage\",\"date\"]. Maybe exact date not necessary? \"about 2 years ago\" relative to received_at. But missing exact date. Fine.\n\nClues: quotes verbatim:\n- \"The in-dash backup camera stopped functioning about 2 years ago.\" kind symptom\n- \"The errors are random\" kind condition? It says condition intermittent. quote \"The errors are random\" (verbatim). kind condition.\n- \"glitching video\" symptom\n- \"delay in activating\" symptom\n- \"not switching off(driving forward with rearview camera activated)\" symptom or condition? It's symptom. Quote exact includes no space before parenthesis as narrative: \"not switching off(driving forward with rearview camera activated)\" yes.\n- \"error code pop-up to contact the dealer\" symptom (no code named)\n- \"100 percent of the time, the image is displayed in reverse making backing up impossible.\" symptom\n- component group quote? \"ELECTRICAL SYSTEM\" is in component field not narrative. User message includes JSON with component. Quote can be from report? The report includes all fields. Could include {\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"}. Verbatim in report. Good.\nNeed avoid too many? Fine.\n\nNeed one JSON object no other text. Ensure valid JSON. Use false boolean. Let's final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530554,
+      "id": "46886d9e86281b565c708b818b8a2a9f",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1064,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 788,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00039921,
+          "billing_source": "go",
+          "list_cost": 0.00066535,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 172,
+            "output": 1064,
+            "reasoning": 788
+          }
+        },
+        "prompt_tokens": 556,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1620
+      }
+    },
+    "text": "{\"summary\":\"2016 Ford Fusion in-dash backup camera stopped working about 2 years ago; random glitching, delayed activation, failure to switch off, dealer error pop-up, and reversed image 100% of the time.\",\"group\":\"electrical_general\",\"symptoms\":[\"backup camera stopped functioning\",\"glitching video\",\"delay in activating\",\"rearview camera not switching off while driving forward\",\"error code pop-up to contact the dealer\",\"image displayed in reverse\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"The in-dash backup camera stopped functioning about 2 years ago.\"},{\"kind\":\"condition\",\"quote\":\"The errors are random\"},{\"kind\":\"symptom\",\"quote\":\"glitching video\"},{\"kind\":\"symptom\",\"quote\":\"delay in activating\"},{\"kind\":\"symptom\",\"quote\":\"not switching off(driving forward with rearview camera activated)\"},{\"kind\":\"symptom\",\"quote\":\"error code pop-up to contact the dealer\"},{\"kind\":\"symptom\",\"quote\":\"100 percent of the time, the image is displayed in reverse making backing up impossible.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00039921,
+      "cached_tokens": 384,
+      "cost_usd": 0.00066535,
+      "input_tokens": 556,
+      "list_cost_usd": 0.00066535,
+      "output_tokens": 1064,
+      "reasoning_tokens": 788
+    }
+  }
+}

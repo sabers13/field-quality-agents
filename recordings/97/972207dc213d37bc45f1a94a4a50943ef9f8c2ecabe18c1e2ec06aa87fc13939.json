@@ -1,0 +1,66 @@
+{
+  "key": "972207dc213d37bc45f1a94a4a50943ef9f8c2ecabe18c1e2ec06aa87fc13939",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 8832,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Verify odometer/instrument-cluster mileage integrity on a 2023 Ford Transit because the reported 20,813 at purchase versus 125,055 at registration indicates a mileage discrepancy; no rulebook targeted test matches, so use the standard test.\",\n  \"rationale\": \"The narrative alleges odometer fraud and states a mileage discrepancy: the vehicle showed 20,813 at dealer purchase but 125,055 at registration. The recalls include 2023 Transit instrument-cluster issues, but the rulebook has no matching entry and no targeted load test is named. Therefore the standard diagnostic/verification test is appropriate.\",\n  \"group\": \"instrumentation\",\n  \"symptoms\": [\n    \"odometer fraud allegation\",\n    \"mileage discrepancy\"\n  ],\n  \"conditions\": [\n    \"mileage discrepancy discovered at registration\",\n    \"dealer sale\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"targeted\": false,\n  \"test_name\": \"standard test\",\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Odometer Fraud.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"there was a mileage discrepancy\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"while attempting to register the vehicle\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"The vehicle was a dealer sale.\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"the vehicle mileage was 20,813\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"the mileage was 125,055\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer JSON only. Need analyze case. Odometer fraud, mileage discrepancy. Rulebook no matches, recalls present. Need decide targeted? No rulebook entry, so targeted false standard test. Test name? Maybe \"standard test\" but prompt says targeted test the rulebook names. Since no rulebook, targeted false, test_name maybe \"standard diagnostic test\" or empty? We need produce JSON. Summary one line what to test and why. Group instrumentation. Symptoms. Conditions. Fault codes empty. safety_relevant false. Clues verbatim quotes from narrative. Need quotes verbatim. Narrative: \"Odometer Fraud. The contact purchased a 2023 Ford Transit. The contact stated that while attempting to register the vehicle, it was discovered that there was a mileage discrepancy. The vehicle was a dealer sale. At the time of purchase, the vehicle mileage was 20,813 and at the time of registration, it was discovered that the mileage was 125,055.\"\n\nVerbatim quotes can include \"Odometer Fraud.\", \"there was a mileage discrepancy\", \"The vehicle was a dealer sale.\", \"the vehicle mileage was 20,813\", \"the mileage was 125,055\". Also component group quote? Narrative doesn't include component group. Clues must from narrative only. So include symptoms etc. Could include \"2023 Ford Transit\" component? kind other. Need not cite recall id in clues; but can mention recalls in rationale? Rules: Do not cite case recall investigation id that tool results do not contain. They do contain recall ids 25V339000, 22V791000. But maybe avoid citing ids. Rationale can reference recalls generally: two instrument cluster recalls for 2023 Transit; one about improper illumination warning lights/gauges. However case is odometer fraud/mileage discrepancy, not cluster illumination. Need condition and evidence. propose standard test? Since no rulebook entry, targeted false. Test_name maybe \"standard instrument cluster/odometer verification test\". But prompt says \"the targeted test the rulebook names\" only if targeted. For non-targeted, perhaps test_name can be \"standard test\". Need JSON object.\n\nNeed include \"targeted\": false. safety_relevant false.\n\nPotential issue: Odometer fraud is not an equipment fault; test? The desk never closes etc. We can propose diagnostic verification of odometer/instrument cluster and mileage records. But \"test_name\" should be targeted test rulebook names; none. Could set \"standard test\". Summary: \"Verify odometer/instrument cluster mileage integrity on 2023 Ford Transit because reported 20,813 at purchase vs 125,055 at registration suggests discrepancy; no rulebook targeted test matches, so standard test.\"\n\nRationale: \"Narrative alleges odometer fraud with a mileage discrepancy: 20,813 at dealer purchase vs 125,055 at registration. Recall results list instrument-cluster recalls for 2023 Transit but not an odometer-fraud remedy; rulebook has no matching entry. Therefore standard diagnostic/verification test rather than targeted load test.\" Need be careful \"not an odometer-fraud remedy\" okay. Conditions maybe [\"mileage discrepancy discovered at registration\", \"dealer sale\"]. Symptoms [\"odometer fraud allegation\", \"mileage discrepancy\"]. Fault codes [].\n\nClues array with verbatim spans:\n- {\"kind\":\"symptom\",\"quote\":\"Odometer Fraud.\"}\n- {\"kind\":\"symptom\",\"quote\":\"there was a mileage discrepancy\"}\n- {\"kind\":\"condition\",\"quote\":\"while attempting to register the vehicle\"}\n- {\"kind\":\"other\",\"quote\":\"The vehicle was a dealer sale.\"}\n- {\"kind\":\"other\",\"quote\":\"the vehicle mileage was 20,813\"}\n- {\"kind\":\"other\",\"quote\":\"the mileage was 125,055\"}\nNeed exact spans. \"while attempting to register the vehicle\" appears? Narrative: \"while attempting to register the vehicle, it was discovered\" yes exact. \"The vehicle was a dealer sale.\" exact. \"the vehicle mileage was 20,813\" exact? Narrative \"At the time of purchase, the vehicle mileage was 20,813 and...\" yes substring exact. \"the mileage was 125,055.\" includes period maybe quote \"the mileage was 125,055\" exact. Good.\n\nCould include component_group clue? Not from narrative; no.\n\nNeed no other text. Ensure valid JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793527546,
+      "id": "021c518819c822848251d927af2bcb21",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1270,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 903,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0005562,
+          "billing_source": "go",
+          "list_cost": 0.000927,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 1100,
+            "output": 1270,
+            "reasoning": 903
+          }
+        },
+        "prompt_tokens": 1100,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 2370
+      }
+    },
+    "text": "{\n  \"summary\": \"Verify odometer/instrument-cluster mileage integrity on a 2023 Ford Transit because the reported 20,813 at purchase versus 125,055 at registration indicates a mileage discrepancy; no rulebook targeted test matches, so use the standard test.\",\n  \"rationale\": \"The narrative alleges odometer fraud and states a mileage discrepancy: the vehicle showed 20,813 at dealer purchase but 125,055 at registration. The recalls include 2023 Transit instrument-cluster issues, but the rulebook has no matching entry and no targeted load test is named. Therefore the standard diagnostic/verification test is appropriate.\",\n  \"group\": \"instrumentation\",\n  \"symptoms\": [\n    \"odometer fraud allegation\",\n    \"mileage discrepancy\"\n  ],\n  \"conditions\": [\n    \"mileage discrepancy discovered at registration\",\n    \"dealer sale\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"targeted\": false,\n  \"test_name\": \"standard test\",\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Odometer Fraud.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"there was a mileage discrepancy\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"while attempting to register the vehicle\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"The vehicle was a dealer sale.\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"the vehicle mileage was 20,813\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"the mileage was 125,055\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0005562,
+      "cached_tokens": 0,
+      "cost_usd": 0.000927,
+      "input_tokens": 1100,
+      "list_cost_usd": 0.000927,
+      "output_tokens": 1270,
+      "reasoning_tokens": 903
+    }
+  }
+}

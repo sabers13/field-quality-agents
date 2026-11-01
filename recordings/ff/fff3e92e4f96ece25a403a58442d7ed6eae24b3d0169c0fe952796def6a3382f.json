@@ -1,0 +1,66 @@
+{
+  "key": "fff3e92e4f96ece25a403a58442d7ed6eae24b3d0169c0fe952796def6a3382f",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12671,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Forward collision avoidance / automatic emergency braking: after OTA telematics update, dash message 'place car in park to start' and violent stop in traffic while driving.\",\"group\":\"adas\",\"symptoms\":[\"dash message instructing to place car in park to start\",\"sudden violent stop in traffic\"],\"conditions\":[\"after service\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"},{\"kind\":\"condition\",\"quote\":\"over the air update to the telematics box module\"},{\"kind\":\"condition\",\"quote\":\"After update the vehicle\"},{\"kind\":\"condition\",\"quote\":\"while in drive and running, driving on a public road way\"},{\"kind\":\"symptom\",\"quote\":\"set off a dash message to “place car in park to start”\"},{\"kind\":\"symptom\",\"quote\":\"Then suddenly can to a very violent stop in traffic\"},{\"kind\":\"safety\",\"quote\":\"This could have cause an accident or loss of life.\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need normalise report. Read only report. Need summary one line: component, symptom, conditions. Group given adas or electrical/electronic component group? Prompt: \"group\": \"the electrical/electronic component group, or the given group\". Given group adas. Use adas. Symptoms plain words. Conditions list from allowed: cold, moisture, heat, vibration, intermittent, after service, charging. Report says after OTA update, while in drive/running, public road, sudden violent stop, dash message. Condition \"after service\"? OTA update is service? Allowed condition after service. Could include after service. Maybe intermittent? no. charging? 4xE hybrid but not charging. Conditions: after service. Maybe \"after service\" because update. Fault codes none. safety_relevant true: mentions accident or loss of life, violent stop in traffic. Missing_info: mileage null; date? received_at is 2025-10-12 but date of incident not specified. The missing_info allowed: component, symptom, conditions, mileage, date. Component present, symptom present, conditions partly present, mileage missing, date missing (incident date). Also maybe model etc not in missing list. So [\"mileage\",\"date\"]. Clues with verbatim quotes. Need ensure quotes exact. Narrative has curly quotes and \"can to\" typo. We can quote spans. Need JSON valid with escaped quotes maybe. Quotes:\n- component_group: \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\" (from component field? Is report? The user message includes JSON with component. Verbatim ok)\n- condition: \"over the air update to the telematics box module\"\n- condition: \"After update the vehicle\"\n- symptom: \"set off a dash message to “place car in park to start”\" Need exact quote includes curly quotes. We can include unicode. Verbatim.\n- symptom: \"suddenly can to a very violent stop in traffic\" exact? Narrative: \"Then suddenly can to a very violent stop in traffic.\" Yes.\n- safety: \"This could have cause an accident or loss of life.\"\n- condition: \"while in drive and running, driving on a public road way\" exact? Narrative: \"while in drive and running, driving on a public road way, set off\" yes.\n- maybe \"Vehicle is at jeep dealer waiting on fix.\" other? not needed.\nNeed summary one line: \"Forward collision avoidance / automatic emergency braking: after OTA telematics update, dash 'place car in park to start' and violent stop in traffic while driving.\" Conditions include after service. Good.\n\nNeed no other text. Ensure JSON. Could include safety_relevant true. \"symptoms\": [\"dash message instructing to place car in park to start\", \"sudden violent stop in traffic\"]. Fault codes empty. missing_info [\"mileage\",\"date\"]. clues list.\n\nNeed every quote copied verbatim. Let's verify exact narrative:\n\"Jeep performed over the air update to the telematics box module. After update the vehicle, while in drive and running, driving on a public road way, set off a dash message to \\u201cplace car in park to start\\u201d. Then suddenly can to a very violent stop in traffic. This could have cause an accident or loss of life. Vehicle is at jeep dealer waiting on fix. Thousands of 4xE hybrid jeeps are effected.\"\n\nQuotes:\n\"over the air update to the telematics box module\" yes.\n\"After update the vehicle\" yes.\n\"while in drive and running, driving on a public road way\" yes.\n\"set off a dash message to “place car in park to start”\" yes includes period? We can omit period. The quote up to closing curly quote. Exact substring: \"set off a dash message to \\u201cplace car in park to start\\u201d\" yes.\n\"Then suddenly can to a very violent stop in traffic.\" exact including period. Use without period? \"Then suddenly can to a very violent stop in traffic\" exact substring. Good.\n\"This could have cause an accident or loss of life.\" exact.\n\"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\" exact component value.\n\nNeed \"kind\": \"condition\" for after update/while driving; \"symptom\" for dash/violent stop; \"safety\" for accident/loss life; \"component_group\" for component. Good.\n\nNeed maybe include \"after service\" condition because OTA update = service. Conditions array allowed values exactly: [\"after service\"]. Could also include \"intermittent\"? No. \"charging\"? The vehicle is 4xE hybrid but no charging. No.\n\nNeed summary \"Forward collision avoidance: automatic emergency braking; after OTA telematics update, dash message 'place car in park to start' and violent stop in traffic while driving.\" Good.\n\nNeed JSON only.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531182,
+      "id": "735ac98264feb5f479476d0caeff1019",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1275,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1033,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00047841,
+          "billing_source": "go",
+          "list_cost": 0.00079735,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 208,
+            "output": 1275,
+            "reasoning": 1033
+          }
+        },
+        "prompt_tokens": 592,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1867
+      }
+    },
+    "text": "{\"summary\":\"Forward collision avoidance / automatic emergency braking: after OTA telematics update, dash message 'place car in park to start' and violent stop in traffic while driving.\",\"group\":\"adas\",\"symptoms\":[\"dash message instructing to place car in park to start\",\"sudden violent stop in traffic\"],\"conditions\":[\"after service\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"},{\"kind\":\"condition\",\"quote\":\"over the air update to the telematics box module\"},{\"kind\":\"condition\",\"quote\":\"After update the vehicle\"},{\"kind\":\"condition\",\"quote\":\"while in drive and running, driving on a public road way\"},{\"kind\":\"symptom\",\"quote\":\"set off a dash message to “place car in park to start”\"},{\"kind\":\"symptom\",\"quote\":\"Then suddenly can to a very violent stop in traffic\"},{\"kind\":\"safety\",\"quote\":\"This could have cause an accident or loss of life.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00047841,
+      "cached_tokens": 384,
+      "cost_usd": 0.00079735,
+      "input_tokens": 592,
+      "list_cost_usd": 0.00079735,
+      "output_tokens": 1275,
+      "reasoning_tokens": 1033
+    }
+  }
+}

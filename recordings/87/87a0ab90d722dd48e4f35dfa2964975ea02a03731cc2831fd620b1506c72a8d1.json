@@ -1,0 +1,66 @@
+{
+  "key": "87a0ab90d722dd48e4f35dfa2964975ea02a03731cc2831fd620b1506c72a8d1",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9656,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Electrical system on 2022 Kia EV6: error messages and 12V battery not charging after L2 charging; code P1A9096.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"check electrical system warning\",\n    \"stop vehicle and check power supply warning\",\n    \"12V battery stopped charging\",\n    \"12V state of charge down to 22%\"\n  ],\n  \"conditions\": [\n    \"charging\"\n  ],\n  \"fault_codes\": [\n    \"P1A9096\"\n  ],\n  \"safety_relevant\": false,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"After charging vehicle using L2 charger\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"vehicle threw two error messages on screen\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"check electrical system\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"stop vehicle and check power supply\"\n    },\n    {\n      \"kind\": \"fault_code\",\n      \"quote\": \"P1A9096\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"car stopped charging the 12V battery\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"12V state of charge was down to 22%\"\n    },\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"ELECTRICAL SYSTEM\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer single JSON. Need normalize. Extract component electrical system, group given electrical_general. Symptoms: error messages check electrical system, stop vehicle and check power supply; 12V battery not charging / state of charge down to 22%; fault code P1A9096. Conditions: after charging using L2 charger max 7kw; maybe charging. Safety relevant? Error \"stop vehicle and check power supply\" maybe risk? Rule mentions stall at speed etc. No crash/fire/smoke/injury/loss control. But \"stop vehicle\" could safety? We set false likely. Missing info: mileage null, date? received_at 2025-03-25 but report date maybe not incident date; missing_info list only facts analysis needs: component symptom conditions mileage date. Component present, symptom present, conditions present, mileage missing, date missing? The report has received_at but not incident date. Could include date? Need list missing_info [\"mileage\",\"date\"]? They might expect mileage and date. Safety false. Clues verbatim spans from narrative. Need exact quotes. Narrative includes escaped unicode curly quotes. We can quote plain substrings exactly. Need ensure verbatim: \"After charging vehicle using L2 charger\" exact. \"vehicle threw two error messages on screen\" exact. \"“check electrical system”\" includes curly quotes? In JSON string can include unicode. But quote must copied verbatim. Could quote \"check electrical system\" without quotes? That's substring within curly quotes but verbatim characters yes. \"stop vehicle and check power supply\" exact substring. \"error code P1A9096\" exact. \"car stopped charging the 12V battery\" exact. \"12V state of charge was down to 22%\" exact. \"I towed it to the dealer\" maybe other. Need clues kind. Include symptom, condition, fault_code, component_group, safety? Safety none. Component group quote? \"ELECTRICAL SYSTEM\" is component field not narrative. User says read only report in user message. The whole JSON is report. Quote can be from component? It says verbatim span copied from report. Could use \"ELECTRICAL SYSTEM\" from component. But clues generally from narrative. We can include component_group quote \"ELECTRICAL SYSTEM\". Is that verbatim? yes in JSON. But maybe okay. We should avoid unsupported.\n\nNeed summary one line: \"Electrical system on 2022 Kia EV6: error messages and 12V battery not charging after L2 charging; code P1A9096.\" Good.\n\nGroup: \"electrical_general\" or \"electrical/electronic component group\"? The prompt says group the electrical/electronic component group, or given group. Given group electrical_general. Use \"electrical_general\".\n\nSymptoms array plain words: \"check electrical system warning\", \"stop vehicle and check power supply warning\", \"12V battery stopped charging\", \"12V state of charge down to 22%\". Maybe \"vehicle threw two error messages\" general. Keep symptoms concise.\n\nConditions: [\"charging\"] maybe \"after charging\" not cold etc. Use \"charging\". Could include \"after service\"? no. \"intermittent\"? no. Conditions list allowed values: cold, moisture, heat, vibration, intermittent, after service, charging. So [\"charging\"].\n\nfault_codes [\"P1A9096\"].\n\nsafety_relevant false.\n\nmissing_info: [\"mileage\",\"date\"]. Maybe date: received_at present but not incident date. Could say date missing because only received_at. Mileage null. Conditions present. Component present. Symptom present. Good.\n\nClues: Must quote verbatim. Let's craft:\n- {\"kind\":\"condition\",\"quote\":\"After charging vehicle using L2 charger\"}\n- {\"kind\":\"symptom\",\"quote\":\"vehicle threw two error messages on screen\"}\n- {\"kind\":\"symptom\",\"quote\":\"check electrical system\"}\n- {\"kind\":\"symptom\",\"quote\":\"stop vehicle and check power supply\"}\n- {\"kind\":\"fault_code\",\"quote\":\"P1A9096\"}\n- {\"kind\":\"symptom\",\"quote\":\"car stopped charging the 12V battery\"}\n- {\"kind\":\"symptom\",\"quote\":\"12V state of charge was down to 22%\"}\n- {\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"}\nMaybe quote \"max 7kw\" condition? It is part charging. Could include \"max 7kw\" exact. But no need. Maybe include condition quote \"using L2 charger\" but exact \"using L2 charger\" is substring. Good.\n\nNeed valid JSON only. Ensure no markdown? They ask one JSON object and no other text. We can output raw JSON. Use double quotes. Unicode curly quotes not needed. Need \"safety_relevant\": false boolean.\n\nCheck if \"stop vehicle and check power supply\" is safety relevant? It instructs stop vehicle, could imply risk but not explicit. The rule: mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. \"stop vehicle and check power supply\" not explicit risk. But maybe \"stop vehicle\" warning could be safety. However safety_relevant should be when report mentions risk. It doesn't mention people. Keep false.\n\nNeed maybe include \"missing_info\": [\"mileage\", \"date\"] not \"conditions\" because conditions present. Good.\n\nFinal only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793525753,
+      "id": "e346b2216c61be8fe0a8cbf9cf33238c",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1475,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1116,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00055086,
+          "billing_source": "go",
+          "list_cost": 0.0009181,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 213,
+            "output": 1475,
+            "reasoning": 1116
+          }
+        },
+        "prompt_tokens": 597,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2072
+      }
+    },
+    "text": "{\n  \"summary\": \"Electrical system on 2022 Kia EV6: error messages and 12V battery not charging after L2 charging; code P1A9096.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"check electrical system warning\",\n    \"stop vehicle and check power supply warning\",\n    \"12V battery stopped charging\",\n    \"12V state of charge down to 22%\"\n  ],\n  \"conditions\": [\n    \"charging\"\n  ],\n  \"fault_codes\": [\n    \"P1A9096\"\n  ],\n  \"safety_relevant\": false,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"After charging vehicle using L2 charger\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"vehicle threw two error messages on screen\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"check electrical system\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"stop vehicle and check power supply\"\n    },\n    {\n      \"kind\": \"fault_code\",\n      \"quote\": \"P1A9096\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"car stopped charging the 12V battery\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"12V state of charge was down to 22%\"\n    },\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"ELECTRICAL SYSTEM\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00055086,
+      "cached_tokens": 384,
+      "cost_usd": 0.0009181,
+      "input_tokens": 597,
+      "list_cost_usd": 0.0009181,
+      "output_tokens": 1475,
+      "reasoning_tokens": 1116
+    }
+  }
+}

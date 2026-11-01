@@ -1,0 +1,66 @@
+{
+  "key": "fbd3978eee849cffac35a76663eee6a741747b674dd38a9ed581201f7876a862",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 6284,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Forward Collision Avoidance: Automatic Emergency Braking (ADAS): coolant bypass valve problem with several RAV4s; car unusable; no conditions stated.\",\"group\":\"adas\",\"symptoms\":[\"coolant bypass valve problem\",\"car unusable\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"},{\"kind\":\"symptom\",\"quote\":\"Coolant bypass valve problem with several rav4s.\"},{\"kind\":\"symptom\",\"quote\":\"My car is unusable and I need it to work.\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize report. Need read only report. Component field says FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING, group adas. Narrative: \"Coolant bypass valve problem with several rav4s. My car is unusable and I need it to work.\" Need summary one line: component, symptom, conditions. But narrative mentions coolant bypass valve problem, car unusable. Component from report is AEB/forward collision avoidance. Need not invent. We can say component: Forward Collision Avoidance: Automatic Emergency Braking (ADAS); symptom: coolant bypass valve problem, car unusable; conditions: none stated. But group? given group adas. Symptoms list: \"coolant bypass valve problem\", \"car unusable\". Conditions: none maybe empty. Fault codes empty. Safety relevant? report field safety_relevant false; narrative says car unusable but not crash/fire/smoke/injury/loss control/stall at speed. Is unusable safety? no. So false. Missing info: mileage, date? received_at 2025-07-09 is date? Report date received, not incident date. Analysis needs date maybe missing date. component present? component field present but narrative mismatch. symptom present. conditions missing. mileage null. So missing_info include mileage, date, conditions. Maybe component? There's component field, but narrative symptom about coolant bypass valve not AEB. The component field is present. Do not list component missing. But could note inconsistency? The JSON structure doesn't have a field for inconsistency except clues. Could include clue component_group quote? Need verbatim quote. Quotes must be from report. Can quote \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\" for component_group. Quote \"Coolant bypass valve problem with several rav4s.\" for symptom. Quote \"My car is unusable and I need it to work.\" for symptom/other. Conditions no quotes. fault_code none. safety no quote unless maybe \"unusable\" but not safety. Group \"adas\". Summary: \"Forward Collision Avoidance: Automatic Emergency Braking (ADAS): coolant bypass valve problem with several RAV4s; car unusable; no conditions stated.\" Need one line. But summary says component, symptom, conditions. Good.\n\nNeed ensure JSON valid no extra. Use exact quotes: \"Coolant bypass valve problem with several rav4s.\" From narrative exactly capital C, rav4s lowercase. \"My car is unusable and I need it to work.\" exact. \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\" exact from component. Maybe clue kind component_group quote exact. Symptom quote exact. Could include \"other\" for unusable. But symptom list includes \"car unusable\"; quote. Need not duplicate? clues: symptom quote for coolant; symptom quote for unusable; component_group quote. Conditions none. Missing info includes mileage, date, conditions. Should we include \"component\" missing? No.\n\nNeed decide safety_relevant false. Also mention no fault codes.\n\nFinal only JSON. Ensure no markdown? User says answer with one JSON object and no other text. We can output raw JSON. Use double quotes.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793528374,
+      "id": "f64e9e10d4e7f573f3e35c5a17a19330",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 834,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 675,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00031308,
+          "billing_source": "go",
+          "list_cost": 0.0005218,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 135,
+            "output": 834,
+            "reasoning": 675
+          }
+        },
+        "prompt_tokens": 519,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1353
+      }
+    },
+    "text": "{\"summary\":\"Forward Collision Avoidance: Automatic Emergency Braking (ADAS): coolant bypass valve problem with several RAV4s; car unusable; no conditions stated.\",\"group\":\"adas\",\"symptoms\":[\"coolant bypass valve problem\",\"car unusable\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"},{\"kind\":\"symptom\",\"quote\":\"Coolant bypass valve problem with several rav4s.\"},{\"kind\":\"symptom\",\"quote\":\"My car is unusable and I need it to work.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00031308,
+      "cached_tokens": 384,
+      "cost_usd": 0.0005218,
+      "input_tokens": 519,
+      "list_cost_usd": 0.0005218,
+      "output_tokens": 834,
+      "reasoning_tokens": 675
+    }
+  }
+}

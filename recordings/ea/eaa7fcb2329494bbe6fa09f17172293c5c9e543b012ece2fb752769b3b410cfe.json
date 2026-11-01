@@ -1,0 +1,66 @@
+{
+  "key": "eaa7fcb2329494bbe6fa09f17172293c5c9e543b012ece2fb752769b3b410cfe",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10487,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2008 Mercedes-Benz C300 ELECTRICAL SYSTEM: popping sound and smoke from speakers during car wash, with water inside taillight housings.\",\"group\":\"electrical_general\",\"symptoms\":[\"popping sound from the vehicle\",\"smoke coming from the speakers\",\"water inside the taillight housings\"],\"conditions\":[\"moisture\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"popping sound coming from the vehicle\"},{\"kind\":\"symptom\",\"quote\":\"smoke coming from the speakers\"},{\"kind\":\"condition\",\"quote\":\"at the car wash\"},{\"kind\":\"condition\",\"quote\":\"water inside the taillight housings\"},{\"kind\":\"safety\",\"quote\":\"called the Fire Department\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize report. Need include summary one line component symptom conditions. Group given electrical_general. Symptoms: popping sound from vehicle, smoke coming from speakers, water inside taillight housings. Conditions: car wash, moisture? cold? Not cold. \"at car wash\", water inside taillight housings -> moisture. Safety relevant true because smoke and Fire Department? Mentions smoke coming from speakers, called Fire Department. Rules safety when smoke. So true. Fault codes none. Missing_info? Component present ELECTRICAL SYSTEM, symptom present, conditions present (car wash/moisture), mileage present 180000, date? received_at 2025-08-01 but incident date not given. Missing date maybe date of incident? The analysis needs date. The report has received_at but not failure date. Should list \"date\" maybe. Also maybe component? It says electrical system but not specific component? Group given electrical_general. Missing_info can include date. Maybe no missing? The prompt says only facts analysis needs. Date missing. Could list [\"date\"]. Component broad maybe not missing? Symptom present. Conditions present. Mileage present. So missing_info [\"date\"].\n\nClues with verbatim quotes. Need exact spans from narrative. Quote \"popping sound coming from the vehicle\" yes. \"smoke coming from the speakers\" yes. \"called the Fire Department\" yes. \"at the car wash\" yes. \"water inside the taillight housings\" yes. \"ELECTRICAL SYSTEM\" from component? Quote must be copied from report. The report includes JSON component value \"ELECTRICAL SYSTEM\"; can quote that. For component_group clue quote \"ELECTRICAL SYSTEM\". For safety quote \"smoke coming from the speakers\" or \"called the Fire Department\". Conditions quote \"at the car wash\" and \"water inside the taillight housings\". Symptom quote both. Need maybe \"no warning light was illuminated\" no. Ensure exact case. Narrative: \"The contact stated while at the car wash and attempting to wash the vehicle, there was popping sound coming from the vehicle, and the contact saw smoke coming from the speakers and called the Fire Department however, no damages were found.\" Verbatim spans: \"at the car wash\" yes. \"popping sound coming from the vehicle\" yes. \"smoke coming from the speakers\" yes. \"called the Fire Department\" yes. \"water inside the taillight housings\" yes. \"ELECTRICAL SYSTEM\" yes in component field. Good.\n\nSummary: \"2008 Mercedes-Benz C300 electrical system: popping sound and smoke from speakers during car wash, water in taillight housings.\" Conditions list should include \"moisture\" and maybe \"after service\"? Not after service. \"charging\"? no. \"intermittent\"? no. \"heat\"? no. \"vibration\"? no. \"cold\"? no. Conditions array allowed examples but can include \"car wash\"? The schema says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. It seems categories, not arbitrary? It says conditions list with those examples? It lists specific values. Should use \"moisture\" because water. Could include \"car wash\" as condition? The schema examples don't include car wash, but rules say conditions array. Maybe use \"moisture\" only. But clue quote \"at the car wash\". Maybe conditions [\"moisture\"]; maybe \"car wash\" not allowed. But conditions in summary includes car wash. However conditions array should maybe contain \"moisture\" because water inside taillight housings. Could also include \"intermittent\"? no. The event occurred at car wash. \"moisture\" is appropriate. Maybe include \"moisture\" only. If include \"car wash\", might violate expected enum? No explicit enum, but examples. Better to stick to provided categories. Yet \"at the car wash\" is condition. The prompt says conditions [\"cold\", \"moisture\", ...] likely expected values from set. So [\"moisture\"]. But car wash is not exactly moisture? It is water exposure. Use moisture.\n\nSymptoms: [\"popping sound from the vehicle\", \"smoke coming from the speakers\", \"water inside the taillight housings\"]. Is water in taillight a symptom? Yes observed condition. Maybe \"no warning light illuminated\" not symptom. Could include \"no damages found\"? no. \"independent mechanic found no issues\" not symptom. Good.\n\nSafety relevant true.\n\nMissing_info: date. But report has received_at. It asks missing facts: mileage, date, conditions, component, symptom. Date of incident/failure not present. Could be date received 2025-08-01 but not failure date. The report says failure mileage but no failure date. So [\"date\"].\n\nNeed answer one JSON object no other text. Ensure valid JSON. Quotes exact. We should not include markdown? The instruction says answer with one JSON object and no other text. So final just JSON. Need maybe no code fence. Use proper escaping. Summary one line. Let's craft.\n\nCheck quote \"popping sound coming from the vehicle\" exact? Narrative: \"there was popping sound coming from the vehicle\" yes substring begins after was. Good.\n\"smoke coming from the speakers\" exact.\n\"called the Fire Department\" exact.\n\"water inside the taillight housings\" exact.\n\"at the car wash\" exact.\n\"ELECTRICAL SYSTEM\" exact in component.\n\nCould include clue kind condition quote \"water inside the taillight housings\" and \"at the car wash\"; kind symptom for popping and smoke. Safety quote \"smoke coming from the speakers\" duplicates but okay. component_group quote \"ELECTRICAL SYSTEM\".\n\nNeed group \"electrical_general\" given. Summary: \"2008 Mercedes-Benz C300 ELECTRICAL SYSTEM: popping sound and smoke from speakers during car wash; water in taillight housings.\" Good.\n\nFault_codes [].\nSafety true.\n\nMissing_info [\"date\"].\nClues include maybe \"other\" for \"no warning light was illuminated\"? Not needed.\n\nNeed consider \"The contact saw smoke coming from the speakers and called Fire Department\" safety. yes.\n\nFinal JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529147,
+      "id": "108e0769ac93566d06b69e55f87e106b",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1499,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1308,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00056292,
+          "billing_source": "go",
+          "list_cost": 0.0009382,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 251,
+            "output": 1499,
+            "reasoning": 1308
+          }
+        },
+        "prompt_tokens": 635,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2134
+      }
+    },
+    "text": "{\"summary\":\"2008 Mercedes-Benz C300 ELECTRICAL SYSTEM: popping sound and smoke from speakers during car wash, with water inside taillight housings.\",\"group\":\"electrical_general\",\"symptoms\":[\"popping sound from the vehicle\",\"smoke coming from the speakers\",\"water inside the taillight housings\"],\"conditions\":[\"moisture\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"popping sound coming from the vehicle\"},{\"kind\":\"symptom\",\"quote\":\"smoke coming from the speakers\"},{\"kind\":\"condition\",\"quote\":\"at the car wash\"},{\"kind\":\"condition\",\"quote\":\"water inside the taillight housings\"},{\"kind\":\"safety\",\"quote\":\"called the Fire Department\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00056292,
+      "cached_tokens": 384,
+      "cost_usd": 0.0009382,
+      "input_tokens": 635,
+      "list_cost_usd": 0.0009382,
+      "output_tokens": 1499,
+      "reasoning_tokens": 1308
+    }
+  }
+}

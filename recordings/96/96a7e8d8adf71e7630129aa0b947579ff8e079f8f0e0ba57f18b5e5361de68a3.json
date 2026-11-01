@@ -1,0 +1,66 @@
+{
+  "key": "96a7e8d8adf71e7630129aa0b947579ff8e079f8f0e0ba57f18b5e5361de68a3",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12236,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Lane departure assist / EyeSight intermittently stops working and gives false warnings/yellow lines regardless of weather.\",\"group\":\"adas\",\"symptoms\":[\"EyeSight Assist works intermittently\",\"assist stops working without apparent reason\",\"lane departure warning not working or malfunctioning at times\",\"false warning sounds while within the lane\",\"yellow lines shown on screen\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"LANE DEPARTURE: ASSIST\"},{\"kind\":\"symptom\",\"quote\":\"The EyeSight Assist appears to be working intermittently since the car was purchased.\"},{\"kind\":\"symptom\",\"quote\":\"It stops working without any apparent reason, regardless of whether it is a sunny day, cloudy, or rainy.\"},{\"kind\":\"symptom\",\"quote\":\"The lane departure warning also appears to be either not working or malfunctioning at times.\"},{\"kind\":\"symptom\",\"quote\":\"Even if I am within the lane, it still makes warning sounds at times and shows yellow lines on the screen.\"}]}",
+            "reasoning_content": "We need to produce JSON. Need parse narrative. Component \"LANE DEPARTURE: ASSIST\", group adas. Symptoms: EyeSight Assist intermittently working; stops working without apparent reason regardless weather sunny/cloudy/rainy; lane departure warning not working or malfunctioning at times; warns even within lane; shows yellow lines on screen. Conditions: intermittent; maybe weather conditions mentioned sunny, cloudy, rainy but \"regardless\" not specific. The conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. We can include intermittent. Could include \"rainy\" as moisture? Report says regardless whether sunny, cloudy, or rainy, so not a condition causing. But conditions list has moisture; We can include \"intermittent\" and maybe \"moisture\" because rain mentioned? Hmm quote \"regardless of whether it is a sunny day, cloudy, or rainy.\" That indicates weather variations. The desk conditions array perhaps include intermittent only. Could include \"moisture\" if rainy. But careful not invent. \"rainy\" is moisture. But since it says regardless, it's not a condition associated. However conditions are conditions under which symptom occurs; it occurs in all. Could list intermittent. We could include conditions: [\"intermittent\"] and maybe \"rainy/cloudy/sunny\" not allowed enum? The schema examples allowed list not strict? It says conditions [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. We should stick. Moisture is plausible from rainy. But symptom occurs regardless, so not specific. Better include intermittent only. But clue for condition could quote \"regardless of whether it is a sunny day, cloudy, or rainy\" kind condition? Hmm quote supports weather independence. Could include as condition \"moisture\"? no.\n\nFault codes none. safety_relevant false? Input says false. But symptoms lane departure malfunctioning could be safety relevant? The report mentions warning sounds and yellow lines, no crash/fire/loss control. Lane departure assist malfunction could be safety risk but rule says set when mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. It doesn't explicitly. Input has safety_relevant false. We can leave false. Missing info: mileage null, date? received date present, but date of incident not given. Component present, symptom present, conditions present? Conditions not specific (weather any). missing_info should include mileage and date maybe. The report lacks mileage and date of occurrence. Include [\"mileage\",\"date\"]. Maybe \"conditions\" no because conditions described (regardless weather) and intermittent. Could include mileage and date.\n\nNeed clues with verbatim quotes. Must ensure exact spans from narrative. Quotes:\n- \"The EyeSight Assist appears to be working intermittently since the car was purchased.\"\n- \"It stops working without any apparent reason, regardless of whether it is a sunny day, cloudy, or rainy.\"\n- \"The lane departure warning also appears to be either not working or malfunctioning at times.\"\n- \"Even if I am within the lane, it still makes warning sounds at times and shows yellow lines on the screen.\"\n- component group maybe quote \"LANE DEPARTURE: ASSIST\" from component field? The report includes component field. Is that part of report? User message includes JSON. Quote can be from report; component value is in report. Could use \"LANE DEPARTURE: ASSIST\" as component_group quote. But clues kind component_group quote. Also group \"adas\" not in narrative? It's in JSON. Could quote \"adas\". But component_group kind should quote \"LANE DEPARTURE: ASSIST\". Fine.\n- condition quote \"regardless of whether it is a sunny day, cloudy, or rainy\" for condition? this indicates weather variability. Kind condition. But conditions array only intermittent. Hmm clue kind condition can quote that. It is a condition related? It says regardless, so not a condition. Maybe skip.\n\nNeed summary one line: component, symptom, conditions. \"Lane departure assist / EyeSight intermittently stops working and warns/yellow lines at times regardless of weather.\" Good.\n\nNeed group \"adas\".\n\nSymptoms array plain words: \"EyeSight Assist works intermittently\"; \"assist stops working without apparent reason\"; \"lane departure warning not working or malfunctioning at times\"; \"false lane departure warnings while within lane\"; \"yellow lines shown on screen\". Could combine.\n\nNeed safety_relevant false.\n\nMissing_info: [\"mileage\",\"date\"].\n\nClues array. Ensure exact quotes. Let's verify narrative exact:\n\"The EyeSight Assist appears to be working intermittently since the car was purchased. It stops working without any apparent reason, regardless of whether it is a sunny day, cloudy, or rainy. The assist stops working without any proper reason. The lane departure warning also appears to be either not working or malfunctioning at times. Even if I am within the lane, it still makes warning sounds at times and shows yellow lines on the screen.\"\n\nQuotes:\n\"The EyeSight Assist appears to be working intermittently since the car was purchased.\" exact yes.\n\"It stops working without any apparent reason, regardless of whether it is a sunny day, cloudy, or rainy.\" exact yes.\n\"The lane departure warning also appears to be either not working or malfunctioning at times.\" exact yes.\n\"Even if I am within the lane, it still makes warning sounds at times and shows yellow lines on the screen.\" exact yes.\n\"LANE DEPARTURE: ASSIST\" exact from component.\nCould include \"The assist stops working without any proper reason.\" exact. Maybe no need.\n\nNeed kind \"symptom\" for first, second? second includes condition? We can mark second as symptom maybe. Third symptom. Fourth symptom. Component group.\n\nConditions array: [\"intermittent\"] because \"intermittently\", \"at times\". Could also include \"moisture\" because rainy but symptom regardless. I think only intermittent. Could include \"cold\"? no.\n\nFault codes [].\n\nSafety false. But maybe lane departure malfunction is safety risk? Rule says \"another risk to people.\" Could argue lane departure assist failure is not direct. Input says safety_relevant false. Use false.\n\nNeed output JSON only no other text. Ensure valid JSON. Use quotes. \"clues\" quote verbatim. \"component_group\" quote maybe. Good.\n\nDouble-check \"group\": \"adas\". The incoming group is \"adas\". Good.\n\nMissing info: mileage null, date? The report has received_at but not incident date. \"date\" missing. Conditions? There is weather but not specific. Good.\n\nNeed maybe \"summary\": \"Lane departure assist / EyeSight intermittently stops working and gives false warnings/yellow lines regardless of weather.\" Good.\n\nSymptom plain words. Keep concise.\n\nFinal.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529466,
+      "id": "85c19f0c5f713570e54ca513db0b3396",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1673,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1426,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00062007,
+          "billing_source": "go",
+          "list_cost": 0.00103345,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 190,
+            "output": 1673,
+            "reasoning": 1426
+          }
+        },
+        "prompt_tokens": 574,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2247
+      }
+    },
+    "text": "{\"summary\":\"Lane departure assist / EyeSight intermittently stops working and gives false warnings/yellow lines regardless of weather.\",\"group\":\"adas\",\"symptoms\":[\"EyeSight Assist works intermittently\",\"assist stops working without apparent reason\",\"lane departure warning not working or malfunctioning at times\",\"false warning sounds while within the lane\",\"yellow lines shown on screen\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"LANE DEPARTURE: ASSIST\"},{\"kind\":\"symptom\",\"quote\":\"The EyeSight Assist appears to be working intermittently since the car was purchased.\"},{\"kind\":\"symptom\",\"quote\":\"It stops working without any apparent reason, regardless of whether it is a sunny day, cloudy, or rainy.\"},{\"kind\":\"symptom\",\"quote\":\"The lane departure warning also appears to be either not working or malfunctioning at times.\"},{\"kind\":\"symptom\",\"quote\":\"Even if I am within the lane, it still makes warning sounds at times and shows yellow lines on the screen.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00062007,
+      "cached_tokens": 384,
+      "cost_usd": 0.00103345,
+      "input_tokens": 574,
+      "list_cost_usd": 0.00103345,
+      "output_tokens": 1673,
+      "reasoning_tokens": 1426
+    }
+  }
+}

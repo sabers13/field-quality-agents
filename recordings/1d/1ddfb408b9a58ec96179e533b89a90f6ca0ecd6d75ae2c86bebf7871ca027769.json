@@ -1,0 +1,66 @@
+{
+  "key": "1ddfb408b9a58ec96179e533b89a90f6ca0ecd6d75ae2c86bebf7871ca027769",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 7794,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system total power failure and complete inoperability, recurring within five weeks after full charging and a prior dealer service campaign.\",\"group\":\"electrical_general\",\"symptoms\":[\"total power failure\",\"complete inoperability with no start, no unlock, and no electrical response\",\"no warning lights or messages before the failure\"],\"conditions\":[\"charging\",\"after service\",\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"The vehicle experienced a total power failure resulting in complete inoperability (no start, no unlock, no electrical response).\"},{\"kind\":\"condition\",\"quote\":\"This is the second occurrence within approximately five weeks.\"},{\"kind\":\"condition\",\"quote\":\"The most recent incident occurred after the vehicle was fully charged and driven the day prior.\"},{\"kind\":\"symptom\",\"quote\":\"There were no warning lights or messages before the failure.\"},{\"kind\":\"condition\",\"quote\":\"The vehicle was previously inspected by an authorized dealer and a manufacturer service campaign related to the charging/low-voltage system was performed, after which the problem recurred.\"},{\"kind\":\"safety\",\"quote\":\"This condition can strand the driver without warning and poses a safety concern.\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize. Read report. Component electrical system, group electrical_general. Symptoms: total power failure, complete inoperability no start/no unlock/no electrical response, no warning lights/messages before failure, recurrence after service campaign. Conditions: after charging? \"after vehicle fully charged and driven day prior\" condition charging? intermittent recurrence. after service since dealer inspected/campaign performed then recurred. Safety relevant: report says poses safety concern, can strand driver without warning. Does it mention risk to people? \"poses a safety concern\" yes safety_relevant true per mention safety? Rule set when mentions crash fire smoke injury loss control stall at speed or another risk to people. Stranding driver could be risk? It explicitly says safety concern. Set true. Need clues verbatim. fault_codes none. missing_info: mileage null, date maybe received_at but incident date missing? Missing_info facts analysis needs: component, symptom, conditions, mileage, date. Component present, symptom present, conditions partly, mileage missing, date? Report has received_at 2025-12-21 but no incident date. Should list mileage and date? \"date\" missing likely incident date. Maybe conditions? It has after fully charged and day prior, previous inspection. I'd list [\"mileage\",\"date\"] perhaps. Need summary one line: component, symptom, conditions. \"Electrical system total power failure/inoperability, second occurrence in five weeks, after full charge and prior dealer service campaign.\" Good.\n\nNeed ensure quotes exactly from narrative. Let's extract exact spans:\n\"The vehicle experienced a total power failure resulting in complete inoperability (no start, no unlock, no electrical response).\"\n\"This is the second occurrence within approximately five weeks.\"\n\"The most recent incident occurred after the vehicle was fully charged and driven the day prior.\"\n\"There were no warning lights or messages before the failure.\"\n\"The vehicle was previously inspected by an authorized dealer and a manufacturer service campaign related to the charging/low-voltage system was performed, after which the problem recurred.\"\n\"This condition can strand the driver without warning and poses a safety concern.\"\n\nClues kind:\nsymptom quote total power failure...\nsymptom quote no warning lights...\ncondition quote fully charged...\ncondition quote after which problem recurred (after service)\ncondition intermittent? second occurrence quote.\nsafety quote poses safety concern.\ncomponent_group quote \"ELECTRICAL SYSTEM\" maybe from component field not narrative? Report includes field. Quote can be from report entire JSON? \"copied verbatim from the report\" likely narrative or fields. Use \"ELECTRICAL SYSTEM\" exact. But the user message is JSON; report includes component. Quote \"ELECTRICAL SYSTEM\" valid. However maybe quote only from narrative? It says report. Fine.\nfault_code none.\n\nNeed JSON only no markdown. Include safety_relevant true. missing_info maybe [\"mileage\", \"date\"]. Also maybe \"conditions\" not missing since some. \"component\" present, symptom present. Date missing incident date. Mileage null. Good.\n\nNeed summary one line. Group \"electrical_general\" or \"electrical/electronic component group\"? Given group. Use \"electrical_general\".\n\nSymptoms array plain words: \"total power failure\", \"complete inoperability (no start, no unlock, no electrical response)\", \"no warning lights or messages before failure\", \"recurrence after dealer service campaign\". Are these symptoms? Recurrence maybe condition. Keep symptoms first three maybe. Could include \"stranded driver without warning\"? That's consequence. Use plain.\n\nConditions: [\"charging\", \"after service\", \"intermittent\"]? \"fully charged and driven day prior\" is charging condition. \"second occurrence\" intermittent/recurring. \"after service\" yes. Cold/moisture/heat/vibration not present. Need conditions allowed list includes \"charging\", \"after service\", \"intermittent\". Yes.\n\nSafety true.\n\nClues must not overdo. Need quote verbatim. Use exact.\n\nCheck JSON valid. final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793533097,
+      "id": "6c8c75984df6a55cd4e801ef58a2e62a",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1105,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 824,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00041712,
+          "billing_source": "go",
+          "list_cost": 0.0006952,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 207,
+            "output": 1105,
+            "reasoning": 824
+          }
+        },
+        "prompt_tokens": 591,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1696
+      }
+    },
+    "text": "{\"summary\":\"Electrical system total power failure and complete inoperability, recurring within five weeks after full charging and a prior dealer service campaign.\",\"group\":\"electrical_general\",\"symptoms\":[\"total power failure\",\"complete inoperability with no start, no unlock, and no electrical response\",\"no warning lights or messages before the failure\"],\"conditions\":[\"charging\",\"after service\",\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"The vehicle experienced a total power failure resulting in complete inoperability (no start, no unlock, no electrical response).\"},{\"kind\":\"condition\",\"quote\":\"This is the second occurrence within approximately five weeks.\"},{\"kind\":\"condition\",\"quote\":\"The most recent incident occurred after the vehicle was fully charged and driven the day prior.\"},{\"kind\":\"symptom\",\"quote\":\"There were no warning lights or messages before the failure.\"},{\"kind\":\"condition\",\"quote\":\"The vehicle was previously inspected by an authorized dealer and a manufacturer service campaign related to the charging/low-voltage system was performed, after which the problem recurred.\"},{\"kind\":\"safety\",\"quote\":\"This condition can strand the driver without warning and poses a safety concern.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00041712,
+      "cached_tokens": 384,
+      "cost_usd": 0.0006952,
+      "input_tokens": 591,
+      "list_cost_usd": 0.0006952,
+      "output_tokens": 1105,
+      "reasoning_tokens": 824
+    }
+  }
+}

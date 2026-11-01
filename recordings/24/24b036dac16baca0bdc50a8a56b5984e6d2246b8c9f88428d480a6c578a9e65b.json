@@ -1,0 +1,66 @@
+{
+  "key": "24b036dac16baca0bdc50a8a56b5984e6d2246b8c9f88428d480a6c578a9e65b",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11138,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2021 Infiniti QX50 electrical system: automatic emergency braking unexpectedly applies at highway speeds with no visible vehicle ahead, warning light appears briefly and repeats; metal debris found in oil pan.\",\"group\":\"electrical_general\",\"symptoms\":[\"automatic emergency braking activates unexpectedly at highway speed\",\"emergency braking system warning light illuminates briefly\",\"no visible vehicle ahead when braking occurs\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"condition\",\"quote\":\"While driving on the highway\"},{\"kind\":\"condition\",\"quote\":\"having no visible vehicle in front of me\"},{\"kind\":\"symptom\",\"quote\":\"my car automatically slams on the breaks\"},{\"kind\":\"symptom\",\"quote\":\"Emergency Braking system light comes up on the dashboard briefly and then disappears\"},{\"kind\":\"condition\",\"quote\":\"This has occurred multiple times while driving on highway speeds.\"},{\"kind\":\"safety\",\"quote\":\"To me this is a safety concern.\"},{\"kind\":\"other\",\"quote\":\"They found a lot of metal debris inside the oil pan.\"}]}",
+            "reasoning_content": "We need to output JSON only. Need parse report. Component given ELECTRICAL SYSTEM group electrical_general. Summary: 2021 Infiniti QX50 electrical system, automatic emergency braking activates at highway speed with no vehicle ahead, light brief, multiple times; also metal debris in oil pan. Symptoms: car automatically slams on brakes; emergency braking system light appears briefly; no visible vehicle ahead. Conditions: highway driving, highway speeds, multiple times. Fault codes none. Safety relevant true because risk loss control? It says safety concern, abrupt braking at highway speeds. Also metal debris oil pan maybe other. Missing info: mileage, date (received_at is not incident date), maybe conditions? Conditions present highway speeds. Component present. Symptom present. Missing mileage and date. Also maybe \"date\" incident date. missing_info: [\"mileage\",\"date\"]. Clues verbatim quotes. Need ensure quotes exact from narrative. Use spans: \"While driving on the highway and having no visible vehicle in front of me\" exact? Narrative: \"While driving on the highway and having no visible vehicle in front of me; my car automatically slams on the breaks and the Emergency Braking system light comes up on the dashboard briefly and then disappears.\" Quote can be substring. Need exact. \"my car automatically slams on the breaks\" exact (typo breaks). \"Emergency Braking system light comes up on the dashboard briefly and then disappears\" exact? Narrative has \"the Emergency Braking system light comes up on the dashboard briefly and then disappears.\" yes substring starting after \"the\". \"This has occurred multiple times while driving on highway speeds.\" exact. \"To me this is a safety concern.\" exact. \"They found a lot of metal debris inside the oil pan.\" exact. Clues kind condition: \"While driving on the highway\" exact; \"driving on highway speeds\" exact substring of \"while driving on highway speeds\" maybe. Symptom quote. Safety quote. component_group quote? \"ELECTRICAL SYSTEM\" is not in narrative but component field? The report includes component field. Quotes from report maybe entire JSON includes component field. But rule says quote copied verbatim from report; may use \"ELECTRICAL SYSTEM\" from component field. But safer use narrative. For component_group kind maybe \"Emergency Braking system\" from narrative. Or \"ELECTRICAL SYSTEM\" from field. Since report includes component: \"ELECTRICAL SYSTEM\". Use that quote. Other for oil pan? kind other quote \"metal debris inside the oil pan\". Include.\n\nNeed group: \"electrical_general\" given group or electrical/electronic component group. The prompt says \"the electrical/electronic component group, or the given group\". Use \"electrical_general\".\n\nsymptoms: plain words. [\"automatic emergency braking activates unexpectedly at highway speed\", \"emergency braking system warning light illuminates briefly\"] Maybe \"no visible vehicle ahead when braking occurs\". symptoms list maybe includes symptom. Conditions list: [\"highway\", \"highway speeds\", \"intermittent\", \"multiple times\"]? Allowed conditions: [\"cold\",\"moisture\",\"heat\",\"vibration\",\"intermittent\",\"after service\",\"charging\"]. It says conditions array of those? The schema lists [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"] but maybe can include \"highway\"? Hm rule says conditions: [\"cold\", ...] in template, likely expected from that set. But report conditions include highway speeds, multiple times. \"intermittent\" applies because occurs multiple times briefly then disappears. Use [\"intermittent\"] maybe. But summary can mention highway. However the conditions list should capture conditions; only allowed values? The template indicates possible values. Use \"intermittent\". Could include \"highway speeds\" despite not allowed? The instructions: Conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. Probably must choose from list. Use [\"intermittent\"]. But then \"highway\" not captured except summary/clues. Good.\n\nfault_codes [].\n\nsafety_relevant true.\n\nmissing_info: mileage and date. The report has received_at 2025-08-14 but no incident date. Mileage null. Component and symptom present. Conditions present? yes highway. Use [\"mileage\",\"date\"].\n\nNeed JSON only. Ensure valid. No markdown. Let's craft.\n\nNeed include clues kind \"safety\" quote \"To me this is a safety concern.\" Good. \"condition\" quote \"While driving on the highway\" and \"highway speeds\". \"symptom\" quote exact \"my car automatically slams on the breaks\". \"symptom\" quote \"Emergency Braking system light comes up on the dashboard briefly and then disappears\". \"condition\" quote \"This has occurred multiple times while driving on highway speeds.\" \"other\" quote \"They found a lot of metal debris inside the oil pan.\" \"component_group\" quote \"ELECTRICAL SYSTEM\" maybe from field. Is that allowed? The report JSON includes \"component\": \"ELECTRICAL SYSTEM\". Quote is verbatim in report. Use. Need maybe \"other\" for no visible vehicle? \"having no visible vehicle in front of me\" exact? Narrative: \"having no visible vehicle in front of me\" yes. Use as symptom? It is condition/context. Could include condition quote \"having no visible vehicle in front of me\". But conditions allowed? kind condition. Fine.\n\nSummary one line. \"2021 Infiniti QX50 electrical system: automatic emergency braking unexpectedly applies at highway speeds with no visible vehicle ahead, warning light appears briefly and repeats; metal debris found in oil pan.\" Good.\n\nNeed ensure every quote exact. Let's verify each:\n- \"ELECTRICAL SYSTEM\" appears as component value, yes.\n- \"While driving on the highway\" appears in narrative: \"While driving on the highway and having...\" yes.\n- \"having no visible vehicle in front of me\" appears? Narrative: \"and having no visible vehicle in front of me;\" yes.\n- \"my car automatically slams on the breaks\" appears: \"; my car automatically slams on the breaks and...\" yes.\n- \"Emergency Braking system light comes up on the dashboard briefly and then disappears\" appears? Narrative: \"the Emergency Braking system light comes up on the dashboard briefly and then disappears.\" yes.\n- \"This has occurred multiple times while driving on highway speeds.\" appears yes.\n- \"To me this is a safety concern.\" appears yes.\n- \"They found a lot of metal debris inside the oil pan.\" appears yes.\n\nPotential issue: \"breaks\" typo. Use exact.\n\nMissing info: maybe \"date\" because received_at only. Good.\n\nFinal JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529502,
+      "id": "95cae9bf3553c32f9df4392095e899d0",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1661,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1403,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00062025,
+          "billing_source": "go",
+          "list_cost": 0.00103375,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 240,
+            "output": 1661,
+            "reasoning": 1403
+          }
+        },
+        "prompt_tokens": 624,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2285
+      }
+    },
+    "text": "{\"summary\":\"2021 Infiniti QX50 electrical system: automatic emergency braking unexpectedly applies at highway speeds with no visible vehicle ahead, warning light appears briefly and repeats; metal debris found in oil pan.\",\"group\":\"electrical_general\",\"symptoms\":[\"automatic emergency braking activates unexpectedly at highway speed\",\"emergency braking system warning light illuminates briefly\",\"no visible vehicle ahead when braking occurs\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"condition\",\"quote\":\"While driving on the highway\"},{\"kind\":\"condition\",\"quote\":\"having no visible vehicle in front of me\"},{\"kind\":\"symptom\",\"quote\":\"my car automatically slams on the breaks\"},{\"kind\":\"symptom\",\"quote\":\"Emergency Braking system light comes up on the dashboard briefly and then disappears\"},{\"kind\":\"condition\",\"quote\":\"This has occurred multiple times while driving on highway speeds.\"},{\"kind\":\"safety\",\"quote\":\"To me this is a safety concern.\"},{\"kind\":\"other\",\"quote\":\"They found a lot of metal debris inside the oil pan.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00062025,
+      "cached_tokens": 384,
+      "cost_usd": 0.00103375,
+      "input_tokens": 624,
+      "list_cost_usd": 0.00103375,
+      "output_tokens": 1661,
+      "reasoning_tokens": 1403
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "e7096ed63423d9f2b81ce9ccc2795b44a108d513e2cbc83d554c15bf1d185435",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 8159,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Run standard diagnostics for the reported coolant bypass valve problem; no ADAS rulebook match or targeted test applies.\",\"rationale\":\"The narrative reports a coolant bypass valve problem and that the car is unusable, while the case is filed under ADAS forward collision avoidance/automatic emergency braking. No recalls, investigations, or rulebook entries match, so no targeted load test is indicated.\",\"group\":\"adas\",\"symptoms\":[\"coolant bypass valve problem\",\"car unusable\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"targeted\":false,\"test_name\":\"standard diagnostic test\",\"clues\":[{\"kind\":\"symptom\",\"quote\":\"Coolant bypass valve problem with several rav4s.\"},{\"kind\":\"symptom\",\"quote\":\"My car is unusable and I need it to work.\"}]}",
+            "reasoning_content": "We need to answer JSON only. Need analyze case. The narrative: \"Coolant bypass valve problem with several rav4s. My car is unusable and I need it to work.\" Component group listed ADAS forward collision avoidance automatic emergency braking. But narrative symptom is coolant bypass valve problem, car unusable. No rulebook matches, no recalls/investigations. Similar cases are ADAS issues but not coolant. Extraction says group adas, safety false. Need propose test. Since no rulebook targeted test, standard test targeted false. Need summary one line. Rationale condition and evidence. Group \"adas\". Symptoms list from extraction maybe \"coolant bypass valve problem\", \"car unusable\". Conditions empty. Fault codes empty. safety_relevant false. targeted false. test_name? Rulebook names none. Need maybe \"standard diagnostic test\" or \"standard test\". The schema says test_name \"the targeted test the rulebook names\"; if not targeted maybe standard test. Could use \"standard diagnostic test\". Must avoid proposing desk actions. Clues: verbatim spans from case narrative. We can quote component group? Narrative doesn't include component group? The case narrative is \"Coolant bypass valve problem with several rav4s. My car is unusable and I need it to work.\" The component is separate field not narrative. Rule says every quote copied verbatim from case narrative. So only quotes from narrative. We can include symptom quotes: \"Coolant bypass valve problem with several rav4s.\" and \"My car is unusable and I need it to work.\" Kind symptom. Could include component_group? No, not in narrative. Could include \"other\" maybe no. Need maybe quote \"rav4s\" but not necessary.\n\nNeed mention mismatch: component labeled ADAS but narrative describes coolant bypass valve, likely wrong component group? But group field should be component group; extraction says adas. Should we set group \"adas\"? The case component is ADAS. But symptom coolant bypass valve is not ADAS. Could group be \"adas\" based on component. The schema \"group\": \"component group\". Use \"adas\". Rationale can mention no rulebook matches and narrative symptom does not align with ADAS group. But maybe test should target coolant bypass valve? Hmm. We must use facts only. The intake extraction group is adas. The reported component is ADAS. But narrative says coolant bypass valve. This is a data quality issue. The proposal: standard test, because no targeted load test rulebook entry. But could propose verifying component classification? The task asks analyse field-quality case. Summary: \"Test standard diagnostics for reported coolant bypass valve issue; no ADAS rulebook match, group mismatch.\" Need not overdo.\n\nNeed JSON only. Ensure valid. test_name maybe \"standard diagnostic test\". targeted false. safety false. Clues only verbatim. Let's craft.\n\nPotential issue: \"The desk never closes a case, scraps a part, returns a part or accepts a charge. Do not propose such an action.\" We don't.\n\nUse conditions [] fault_codes [].\n\nClues:\n- {\"kind\":\"symptom\",\"quote\":\"Coolant bypass valve problem with several rav4s.\"}\n- {\"kind\":\"symptom\",\"quote\":\"My car is unusable and I need it to work.\"}\n\nCould include kind \"component_group\" quote? No because not narrative. Maybe \"other\" quote \"rav4s\" not useful. Keep two.\n\nSummary one line: \"Run standard diagnostics for the reported coolant bypass valve problem; no ADAS rulebook match or targeted test applies.\"\n\nRationale: \"The narrative reports a coolant bypass valve problem and an unusable vehicle, while the case is filed under ADAS forward collision avoidance/automatic emergency braking. No recall, investigation, or rulebook entry matches, so no targeted load test is indicated; use the standard test and confirm the component classification.\" But rule says use only facts. \"confirm component classification\" is okay? It's a test? Hmm maybe not. Could say \"standard diagnostics\" not action beyond test. Need avoid proposing desk action. Fine.\n\nTest name \"standard diagnostic test\".\n\nNeed ensure safety_relevant false. targeted false.\n\nFinal only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793528383,
+      "id": "da1ae8d7facaa511ddaa28c359ba8765",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1041,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 863,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00049842,
+          "billing_source": "go",
+          "list_cost": 0.0008307,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 1374,
+            "output": 1041,
+            "reasoning": 863
+          }
+        },
+        "prompt_tokens": 1374,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 2415
+      }
+    },
+    "text": "{\"summary\":\"Run standard diagnostics for the reported coolant bypass valve problem; no ADAS rulebook match or targeted test applies.\",\"rationale\":\"The narrative reports a coolant bypass valve problem and that the car is unusable, while the case is filed under ADAS forward collision avoidance/automatic emergency braking. No recalls, investigations, or rulebook entries match, so no targeted load test is indicated.\",\"group\":\"adas\",\"symptoms\":[\"coolant bypass valve problem\",\"car unusable\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"targeted\":false,\"test_name\":\"standard diagnostic test\",\"clues\":[{\"kind\":\"symptom\",\"quote\":\"Coolant bypass valve problem with several rav4s.\"},{\"kind\":\"symptom\",\"quote\":\"My car is unusable and I need it to work.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00049842,
+      "cached_tokens": 0,
+      "cost_usd": 0.0008307,
+      "input_tokens": 1374,
+      "list_cost_usd": 0.0008307,
+      "output_tokens": 1041,
+      "reasoning_tokens": 863
+    }
+  }
+}

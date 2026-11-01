@@ -1,0 +1,66 @@
+{
+  "key": "1461acc250ae91782e11a3e63139526646668e320638e1539ffabb435038a130",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 13774,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2020 Honda Accord electrical fault: right front turn signal, FM/AM radio, and trunk release button do not work; mechanic says BCM is the issue and Honda says car is not in BCM recall.\",\"group\":\"electrical_general\",\"symptoms\":[\"right front turn signal does not work\",\"FM/AM radio does not work\",\"trunk release button on trunk does not work\"],\"conditions\":[\"after service\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"Right front turn signal does not work also fm/am radio does not work as well as trunk release button on trunk itself.\"},{\"kind\":\"condition\",\"quote\":\"Had both head lights replaced\"},{\"kind\":\"component_group\",\"quote\":\"BCM\"},{\"kind\":\"other\",\"quote\":\"was told by mechanic that BCM is the issue\"}]}",
+            "reasoning_content": "We need to parse the report and output JSON per schema. Need only report in user message. We must copy verbatim quotes. Let's identify component: ELECTRICAL SYSTEM, group electrical_general. Summary: Right front turn signal, FM/AM radio, trunk release button don't work; mechanic says BCM issue; not recall. Symptoms: turn signal doesn't work, radio doesn't work, trunk release button doesn't work. Conditions: none? Maybe \"after service\"? Headlights replaced thinking LED issue. Could include \"after service\" maybe due to replacement? But condition categories: cold, moisture, heat, vibration, intermittent, after service, charging. Report mentions had both headlights replaced. That's service but not necessarily condition causing fault. Could include \"after service\" as condition? The symptom persists? It says \"Had both head lights replaced thinking it was an LED issue with turn signal and was told by mechanic that BCM is the issue.\" So after service maybe. But careful not invent. Conditions list can be empty or include \"after service\"? The analysis needs conditions; report lacks environmental conditions. Maybe conditions: [] and missing_info includes \"conditions\"? But also mileage null, date received but not incident date? Missing info: mileage, date, conditions? Component and symptom present. Need list only facts analysis needs: component, symptom, conditions, mileage, date. Mileage missing (null), date? received_at 2025-06-14 is report date, not incident/failure date. Could include date missing? The report has received_at but not occurrence date. Conditions not stated. So missing_info: [\"mileage\",\"date\",\"conditions\"] maybe. Could also \"component\" not missing because given electrical system, and symptoms. Safety_relevant false (given and no mention risk). Fault codes none. Clues with verbatim spans:\n- symptom quote: \"Right front turn signal does not work\" (verbatim from narrative: \"Right front turn signal does not work also fm/am radio does not work as well as trunk release button on trunk itself.\") Need exact span. \n- symptom quote: \"fm/am radio does not work\" exact? Narrative: \"also fm/am radio does not work as well as trunk release button on trunk itself.\" So \"fm/am radio does not work\" copied exact.\n- symptom quote: \"trunk release button on trunk itself\" maybe not symptom phrase? Could quote \"trunk release button on trunk itself\" but to indicate doesn't work need span \"as well as trunk release button on trunk itself\" doesn't say doesn't work explicitly, but context \"does not work\" applies to list. Better quote full: \"Right front turn signal does not work also fm/am radio does not work as well as trunk release button on trunk itself.\" That covers all symptoms. But clues can be multiple. Use one symptom quote full sentence? It is verbatim. \n- fault_code? BCM? Is BCM a fault code? Not a code; component group maybe. Could clue kind component_group quote \"BCM\" or \"body control module\"? Report says BCM. Could include component_group quote \"BCM\". It's a module, electrical. But group already electrical_general. Maybe clue kind other quote \"BCM is the issue\" to indicate mechanic diagnosis. \n- other quote: \"Had both head lights replaced thinking it was an LED issue with turn signal\" verbatim? Check exact: \"Had both head lights replaced thinking it was an LED issue with turn signal and was told by mechanic that BCM is the issue.\" Note \"head lights\" two words. Yes. That indicates after service maybe. \n- condition clue? If include after service, quote \"Had both head lights replaced\" verbatim. \n- other quote: \"called Honda regarding the recall to the BCM\" maybe recall. \nNeed summary one line: \"2020 Honda Accord electrical: right front turn signal, FM/AM radio, and trunk release button inoperative; mechanic suspects BCM.\" Must not include facts not in report? Year/model/make in fields, okay. Summary says component, symptom, conditions. Conditions none. Could mention \"not covered by BCM recall\" maybe.\n\nNeed output JSON only. Ensure valid JSON. Need no markdown? User says answer with one JSON object and no other text. We'll provide JSON only. Need maybe no code fence. Good.\n\nLet's craft:\n{\n \"summary\": \"2020 Honda Accord electrical fault: right front turn signal, FM/AM radio, and trunk release button do not work; mechanic says BCM is the issue and Honda says car is not in BCM recall.\",\n \"group\": \"electrical_general\",\n \"symptoms\": [\"right front turn signal does not work\", \"FM/AM radio does not work\", \"trunk release button on trunk does not work\"],\n \"conditions\": [\"after service\"],\n \"fault_codes\": [],\n \"safety_relevant\": false,\n \"missing_info\": [\"mileage\", \"date\", \"conditions\"],\n \"clues\": [\n  {\"kind\":\"symptom\",\"quote\":\"Right front turn signal does not work also fm/am radio does not work as well as trunk release button on trunk itself.\"},\n  {\"kind\":\"condition\",\"quote\":\"Had both head lights replaced\"},\n  {\"kind\":\"component_group\",\"quote\":\"BCM\"},\n  {\"kind\":\"other\",\"quote\":\"was told by mechanic that BCM is the issue\"}\n ]\n}\n\nNeed check quote \"Right front turn signal does not work also fm/am radio does not work as well as trunk release button on trunk itself.\" Exact? Narrative: \"Right front turn signal does not work also fm/am radio does not work as well as trunk release button on trunk itself. Had both...\" Yes exact includes period. Good.\n\n\"Had both head lights replaced\" exact? Narrative: \"Had both head lights replaced thinking...\" yes.\n\n\"BCM\" appears exact. \"was told by mechanic that BCM is the issue\" exact? Narrative: \"and was told by mechanic that BCM is the issue.\" So substring \"was told by mechanic that BCM is the issue\" exact. Good.\n\nShould conditions include \"after service\"? The report says headlights replaced, but the fault may predate. \"after service\" condition category might imply fault after service; not necessarily. To avoid invent, maybe conditions empty. But condition clue \"Had both head lights replaced\" would then mismatch. Rules: conditions list from allowed tokens. We can include \"after service\" because service occurred in relation to symptom investigation, not necessarily causing. But \"conditions\" in report means circumstances. It's okay? Hmm. \"Had both head lights replaced thinking it was an LED issue\" means service action. It's a condition relevant to analysis? Could be. But if we include \"after service\", the fault might not occur only after service. The schema says conditions: [\"cold\", ... \"after service\"]. It doesn't require exact wording. I'd include \"after service\" because the vehicle had service. But then missing_info conditions maybe still? If we include a condition, conditions not missing? But environmental conditions still missing. The missing_info list \"conditions\" can still be missing because only service noted, no cold/moisture/etc. Could include conditions [\"after service\"] and missing_info [\"mileage\",\"date\",\"conditions\"]. That seems okay.\n\nNeed safety_relevant false. Report no safety risk. Good.\n\nPotential issue \"fault_codes\": BCM isn't a fault code. Empty.\n\nNeed \"component_group\" clue maybe quote \"ELECTRICAL SYSTEM\"? But user message includes component field; can quote from report? \"Read only the report in user message.\" The report includes JSON fields; quotes can be from any span? It says report in user message. Could quote \"ELECTRICAL SYSTEM\" from component. But clue component_group quote \"BCM\" is fine. Maybe include \"ELECTRICAL SYSTEM\" as component_group quote. But BCM is subcomponent. Use \"ELECTRICAL SYSTEM\" to support group. However group already given. But clues should evidence. We can include both? Maybe one component_group clue quote \"ELECTRICAL SYSTEM\". But BCM is more specific. The report names BCM, so include that. Could include \"ELECTRICAL SYSTEM\" too. But not necessary.\n\nLet's ensure JSON no trailing commas. Use no code fence. Final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793527660,
+      "id": "71147df748842c0d5399f8f91acfc9e2",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1931,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1731,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00071394,
+          "billing_source": "go",
+          "list_cost": 0.0011899,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 201,
+            "output": 1931,
+            "reasoning": 1731
+          }
+        },
+        "prompt_tokens": 585,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2516
+      }
+    },
+    "text": "{\"summary\":\"2020 Honda Accord electrical fault: right front turn signal, FM/AM radio, and trunk release button do not work; mechanic says BCM is the issue and Honda says car is not in BCM recall.\",\"group\":\"electrical_general\",\"symptoms\":[\"right front turn signal does not work\",\"FM/AM radio does not work\",\"trunk release button on trunk does not work\"],\"conditions\":[\"after service\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"Right front turn signal does not work also fm/am radio does not work as well as trunk release button on trunk itself.\"},{\"kind\":\"condition\",\"quote\":\"Had both head lights replaced\"},{\"kind\":\"component_group\",\"quote\":\"BCM\"},{\"kind\":\"other\",\"quote\":\"was told by mechanic that BCM is the issue\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00071394,
+      "cached_tokens": 384,
+      "cost_usd": 0.0011899,
+      "input_tokens": 585,
+      "list_cost_usd": 0.0011899,
+      "output_tokens": 1931,
+      "reasoning_tokens": 1731
+    }
+  }
+}

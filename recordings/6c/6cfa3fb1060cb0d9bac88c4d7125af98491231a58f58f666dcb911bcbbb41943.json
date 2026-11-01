@@ -1,0 +1,66 @@
+{
+  "key": "6cfa3fb1060cb0d9bac88c4d7125af98491231a58f58f666dcb911bcbbb41943",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 6782,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Exterior lighting report (2020 Jeep Wrangler): instrument cluster completely out; no conditions stated.\",\"group\":\"lighting\",\"symptoms\":[\"instrument cluster completely out\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"conditions\",\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"The instrument cluster has went completely out.\"},{\"kind\":\"safety\",\"quote\":\"safety and hazard for the driver\"},{\"kind\":\"other\",\"quote\":\"There is a currently open recall for 2018 - 2024 Jeep Wranglers (Recall #24V-652), but my VIN is not included.\"},{\"kind\":\"component_group\",\"quote\":\"EXTERIOR LIGHTING\"}]}",
+            "reasoning_content": "We need to parse report. Component exterior lighting but narrative instrument cluster out. Group lighting given. Need summary one line: component, symptom, conditions. Symptoms: instrument cluster completely out. Conditions? none explicit. Maybe \"open recall\" but not condition. Safety? Report says safety hazard but does it mention crash/fire/etc? It says safety and hazard for driver. Rule set safety_relevant when mentions crash, fire, smoke, injury, loss of control, stall at speed or other risk to people. \"safety and hazard for the driver\" is other risk? Hmm it explicitly says safety and hazard for driver. I'd set true? But source says safety_relevant false. We must follow rules not source. It mentions \"safety and hazard for the driver\" — yes risk to people. But no crash/fire. \"other risk to people\" includes hazard. Set true. Need quotes verbatim.\n\nFault codes: recall #24V-652? Is that a fault code? No, recall number. fault_codes list code if report names one. Not a fault code. Could include? likely no.\n\nMissing info: mileage (null), maybe date? received date exists but date of incident missing? The analysis needs conditions? Conditions not stated. Component mismatch? The component field says exterior lighting but symptom instrument cluster. Missing info component? Hmm given component exists but symptom concerns instrument cluster. We can list mileage and conditions? Also date? Report has received_at but no occurrence date. List \"mileage\", \"conditions\". Maybe \"date\" too. The prompt says missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Component given, symptom given. Conditions missing, mileage missing, date? Received_at isn't event date, so date missing. But maybe not. Use [\"mileage\",\"conditions\",\"date\"].\n\nClues: quote \"The instrument cluster has went completely out.\" kind symptom. \"There is a currently open recall for 2018 - 2024 Jeep Wranglers (Recall #24V-652), but my VIN is not included.\" kind other or fault_code? It's recall. kind other maybe. \"safety and hazard for the driver\" safety. \"According to FMVSS No. 571.101 (Controls and Displays)\" other? Maybe not needed. \"EXTERIOR LIGHTING\" component_group? But that's from component field not narrative. Quote must be from report; the whole JSON is report. But clues quote verbatim span from report. Could quote \"EXTERIOR LIGHTING\" as component_group? Hmm component group given as lighting, but narrative symptom instrument cluster. Better include component_group quote from component? The instruction \"Read only the report in user message\" includes fields. Quote from report can include field values. But safer use narrative spans. component_group quote \"EXTERIOR LIGHTING\" exists. But the symptom is instrument cluster, which is not exterior lighting. We can set group \"lighting\" given. But summary component maybe \"EXTERIOR LIGHTING / instrument cluster\"? The summary one line component, symptom, conditions. I'd write \"Exterior lighting report: instrument cluster completely out; no conditions stated.\" But component mismatch. Hmm.\n\nNeed output only JSON. Ensure valid JSON.\n\nLet's craft:\nsummary: \"Exterior lighting report (2020 Jeep Wrangler): instrument cluster completely out; no conditions stated.\"\ngroup: \"lighting\"\nsymptoms: [\"instrument cluster completely out\"]\nconditions: []\nfault_codes: []\nsafety_relevant: true\nmissing_info: [\"mileage\",\"conditions\",\"date\"]\nclues:\n- kind symptom quote \"The instrument cluster has went completely out.\"\n- kind safety quote \"safety and hazard for the driver\"\n- kind other quote \"There is a currently open recall for 2018 - 2024 Jeep Wranglers (Recall #24V-652), but my VIN is not included.\"\n- kind component_group quote \"EXTERIOR LIGHTING\" maybe. But quote exactly \"EXTERIOR LIGHTING\" appears. Include? Could be evidence for group. Yes.\nNeed no extra text.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530667,
+      "id": "7a311fed2aba781db98a7421c7e89520",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1024,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 859,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00038553,
+          "billing_source": "go",
+          "list_cost": 0.00064255,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 180,
+            "output": 1024,
+            "reasoning": 859
+          }
+        },
+        "prompt_tokens": 564,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1588
+      }
+    },
+    "text": "{\"summary\":\"Exterior lighting report (2020 Jeep Wrangler): instrument cluster completely out; no conditions stated.\",\"group\":\"lighting\",\"symptoms\":[\"instrument cluster completely out\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"conditions\",\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"The instrument cluster has went completely out.\"},{\"kind\":\"safety\",\"quote\":\"safety and hazard for the driver\"},{\"kind\":\"other\",\"quote\":\"There is a currently open recall for 2018 - 2024 Jeep Wranglers (Recall #24V-652), but my VIN is not included.\"},{\"kind\":\"component_group\",\"quote\":\"EXTERIOR LIGHTING\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00038553,
+      "cached_tokens": 384,
+      "cost_usd": 0.00064255,
+      "input_tokens": 564,
+      "list_cost_usd": 0.00064255,
+      "output_tokens": 1024,
+      "reasoning_tokens": 859
+    }
+  }
+}

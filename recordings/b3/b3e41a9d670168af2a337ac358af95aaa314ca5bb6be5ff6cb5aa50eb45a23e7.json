@@ -1,0 +1,66 @@
+{
+  "key": "b3e41a9d670168af2a337ac358af95aaa314ca5bb6be5ff6cb5aa50eb45a23e7",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 13403,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system: headlights out, multiple warning messages, radio/SYNC 3 failure, and vehicle slowing/turning off while driving at night.\",\"group\":\"electrical_general\",\"symptoms\":[\"headlights went out\",\"bulb outage or electrical issue message\",\"hill assist unavailable warning\",\"911 calling assistance unavailable\",\"radio no sound\",\"SYNC 3 system failed or malfunctioned\",\"vehicle acted as if turning off and slowing down\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"electrical system\"},{\"kind\":\"symptom\",\"quote\":\"my head lights went out\"},{\"kind\":\"symptom\",\"quote\":\"a message saying there’s a bulb outage or electrical issue appeared\"},{\"kind\":\"symptom\",\"quote\":\"the hill assist unavailable warning light appeared\"},{\"kind\":\"symptom\",\"quote\":\"the 911 calling assistance is unavailable as well\"},{\"kind\":\"symptom\",\"quote\":\"my radio is no longer producing sound\"},{\"kind\":\"symptom\",\"quote\":\"sync 3 system has also failed or malfunctioned\"},{\"kind\":\"condition\",\"quote\":\"about a week or so later then two days ago December 13,2025\"},{\"kind\":\"condition\",\"quote\":\"it was night time\"},{\"kind\":\"safety\",\"quote\":\"The safety of my children, my husband and myself put at risk\"},{\"kind\":\"safety\",\"quote\":\"I could no longer see the road\"},{\"kind\":\"symptom\",\"quote\":\"the car acted as if it was turning off and slowing down\"}]}",
+            "reasoning_content": "We need answer one JSON only. Need normalize. Need parse narrative. Component electrical system, group electrical_general given. Symptoms: headlights went out, bulb outage/electrical issue message, hill assist unavailable warning, 911 calling assistance unavailable, radio no sound, sync 3 failed/malfunctioned, car acted as turning off and slowing down. Conditions: night time? cold moisture heat vibration intermittent after service charging? None explicitly except intermittent? Car started acting as if nothing wrong about week later then two days ago recurrence -> intermittent maybe. Night time condition maybe \"night time\" qualifies? Conditions list given: cold, moisture, heat, vibration, intermittent, after service, charging. Night time not in list; can maybe not include. Safety relevant true: risk to children husband self, couldn't see road at night, car turning off/slowing down. Fault codes none. Missing info: mileage is null, date? received date and narrative date Dec 13 2025, so date present? The report has date occurrence Dec 13,2025. Mileage missing. Component present symptom present conditions? Conditions maybe present (night time) but allowed conditions list doesn't include night; maybe missing_info only mileage? Could include \"conditions\" because exact conditions not fully? The analysis needs conditions; narrative gives night time and driving. I'd say missing_info [\"mileage\"]. Need clues quotes verbatim. Need ensure exact spans from narrative. Quotes copied exactly. The narrative starts \"he freeway I notified...\" weird. We can quote spans.\n\nNeed JSON object no other text. Need valid escaping. Summary one line: component, symptom, conditions. \"Electrical system: headlights out, multiple warning messages, radio/SYNC 3 failure, vehicle slowing/turning off while driving at night.\" Conditions? at night while driving.\n\nGroup: \"electrical_general\" or \"electrical/electronic component group\"? Given group electrical_general. Use given group.\n\nSymptoms array plain words:\n- \"headlights went out\"\n- \"bulb outage or electrical issue message\"\n- \"hill assist unavailable warning\"\n- \"911 calling assistance unavailable\"\n- \"radio no sound\"\n- \"SYNC 3 system failed or malfunctioned\"\n- \"vehicle acted as if turning off and slowing down\"\n\nConditions: [\"intermittent\"] maybe because symptoms recurred after a week and then again. Is intermittent a condition? Yes. Night time not in list. Could include \"intermittent\". Do we include \"after service\"? No. \"charging\"? no.\n\nFault codes: [] none.\n\nSafety_relevant true.\n\nMissing_info: [\"mileage\"]. Date present? The report received_at and Dec 13 2025. Conditions present. Component/symptom present. Mileage null. So yes.\n\nClues: need every quote verbatim. Could include:\n{\"kind\":\"symptom\",\"quote\":\"my head lights went out\"}\n{\"kind\":\"symptom\",\"quote\":\"a message saying there\\u2019s a bulb outage or electrical issue appeared\"}\n{\"kind\":\"symptom\",\"quote\":\"the hill assist unavailable warning light appeared\"}\n{\"kind\":\"symptom\",\"quote\":\"the 911 calling assistance is unavailable as well\"}\n{\"kind\":\"symptom\",\"quote\":\"my radio is no longer producing sound\"}\n{\"kind\":\"symptom\",\"quote\":\"sync 3 system has also failed or malfunctioned\"}\n{\"kind\":\"condition\",\"quote\":\"it was night time\"}\n{\"kind\":\"safety\",\"quote\":\"The safety of my children, my husband and myself put at risk\"}\n{\"kind\":\"safety\",\"quote\":\"I could no longer see the road\"}\n{\"kind\":\"symptom\",\"quote\":\"the car acted as if it was turning off and slowing down\"}\n{\"kind\":\"condition\",\"quote\":\"about a week or so later then two days ago December 13,2025\"} maybe intermittent? Hmm quote demonstrates recurrence but not necessarily condition. Could include as other? Need kind condition? It's a timeframe. Maybe not.\n{\"kind\":\"component_group\",\"quote\":\"electrical system\"} But exact phrase \"component also electrical system\" contains. Need quote \"electrical system\" appears verbatim. Good.\n{\"kind\":\"other\",\"quote\":\"December 13,2025\"}? Date maybe.\n\nNeed avoid too many? Desired oververbosity 5. Clues enough.\n\nNeed ensure quote \"my head lights went out\" exact? Narrative: \"first my head lights went out and a message...\" yes substring \"my head lights went out\". Good.\n\"a message saying there\\u2019s a bulb outage or electrical issue appeared\" exact? Narrative: \"and a message saying there’s a bulb outage or electrical issue appeared and also...\" yes.\n\"the hill assist unavailable warning light appeared\" exact? Narrative: \"and also the hill assist unavailable warning light appeared , following...\" There is space before comma but substring \"the hill assist unavailable warning light appeared\" yes.\n\"the 911 calling assistance is unavailable as well\" exact? Narrative: \"following the 911 calling assistance is unavailable as well, and I also...\" substring \"the 911 calling assistance is unavailable as well\" yes.\n\"my radio is no longer producing sound\" exact yes.\n\"sync 3 system has also failed or malfunctioned\" Narrative lowercase \"sync 3 system has also failed or malfunctioned.\" yes.\n\"it was night time\" exact yes.\n\"The safety of my children, my husband and myself put at risk\" exact? Narrative: \"The safety of my children, my husband and myself put at risk being it was night time...\" yes. Note capitalization T.\n\"I could no longer see the road\" exact yes.\n\"the car acted as if it was turning off and slowing down\" exact? Narrative: \"the car acted as if it was turning off and slowing down..\" yes.\n\"electrical system\" exact yes.\nPotential quote \"about a week or so later then two days ago December 13,2025\" exact? Narrative: \"The car started acting as if nothing was wrong about a week or so later then two days ago December 13,2025 first...\" substring yes. Kind condition? It indicates intermittent recurrence. Could add {\"kind\":\"condition\",\"quote\":\"about a week or so later then two days ago December 13,2025\"} maybe not plain condition. Maybe use \"condition\" for intermittent? Hmm quote doesn't say intermittent. But recurrence implies. The rules quote as evidence. Fine.\n\nNeed maybe include \"driving\" condition? \"During the second occurrence I was driving\" exact. Condition? Maybe not in allowed list. Use other? Hmm.\n\nNeed summary no issue.\n\nNeed ensure JSON no markdown? User said answer with one JSON object and no other text. We can output raw JSON. Need not include code fence. Final only JSON.\n\nLet's craft valid JSON with Unicode curly apostrophe? We can use \\u2019 in strings to avoid? The quote must character for character; JSON escape \\u2019 is representation, okay. But if quote includes \"there’s\" in JSON, can include literal curly apostrophe. Fine. Need escape quotes? none.\n\nNeed include \"component_group\" clue quote \"electrical system\" maybe exact. The narrative contains \"component also electrical system\" yes.\n\nPotential issue \"group\": given group electrical_general. Good.\n\nMissing info: perhaps \"conditions\" because exact conditions not captured? The narrative says night time and driving. It doesn't mention weather/temp. But allowed conditions include cold moisture heat vibration intermittent after service charging. We set intermittent. No missing conditions? Could include \"conditions\" if no explicit cold/moisture etc? But analysis needs conditions; night time is condition though not in allowed list. They likely want missing_info only if not in report. The report has enough conditions? I'd leave only mileage. But maybe date? It says Dec 13 2025, received Dec 16. Date present. Good.\n\nNeed safety_relevant true. They already had true but prompt says set when mentions risk. yes.\n\nLet's final JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793532900,
+      "id": "229b37f5c1eaf36bccdee6b51b1a387e",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2006,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1658,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0007539,
+          "billing_source": "go",
+          "list_cost": 0.0012565,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 345,
+            "output": 2006,
+            "reasoning": 1658
+          }
+        },
+        "prompt_tokens": 729,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2735
+      }
+    },
+    "text": "{\"summary\":\"Electrical system: headlights out, multiple warning messages, radio/SYNC 3 failure, and vehicle slowing/turning off while driving at night.\",\"group\":\"electrical_general\",\"symptoms\":[\"headlights went out\",\"bulb outage or electrical issue message\",\"hill assist unavailable warning\",\"911 calling assistance unavailable\",\"radio no sound\",\"SYNC 3 system failed or malfunctioned\",\"vehicle acted as if turning off and slowing down\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"electrical system\"},{\"kind\":\"symptom\",\"quote\":\"my head lights went out\"},{\"kind\":\"symptom\",\"quote\":\"a message saying there’s a bulb outage or electrical issue appeared\"},{\"kind\":\"symptom\",\"quote\":\"the hill assist unavailable warning light appeared\"},{\"kind\":\"symptom\",\"quote\":\"the 911 calling assistance is unavailable as well\"},{\"kind\":\"symptom\",\"quote\":\"my radio is no longer producing sound\"},{\"kind\":\"symptom\",\"quote\":\"sync 3 system has also failed or malfunctioned\"},{\"kind\":\"condition\",\"quote\":\"about a week or so later then two days ago December 13,2025\"},{\"kind\":\"condition\",\"quote\":\"it was night time\"},{\"kind\":\"safety\",\"quote\":\"The safety of my children, my husband and myself put at risk\"},{\"kind\":\"safety\",\"quote\":\"I could no longer see the road\"},{\"kind\":\"symptom\",\"quote\":\"the car acted as if it was turning off and slowing down\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0007539,
+      "cached_tokens": 384,
+      "cost_usd": 0.0012565,
+      "input_tokens": 729,
+      "list_cost_usd": 0.0012565,
+      "output_tokens": 2006,
+      "reasoning_tokens": 1658
+    }
+  }
+}

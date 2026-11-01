@@ -1,0 +1,66 @@
+{
+  "key": "fe541fca8a50e9b37aa53722069842eb49b9f975622e70a14d6c6f3c46519a5d",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10673,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Forward collision avoidance/automatic emergency braking and ABS: brake system and master cylinder failed at 12K; lane departure, forward crash detection, blind spot and automatic braking all stopped working without warning.\",\"group\":\"adas\",\"symptoms\":[\"ABS brake system failed\",\"master cylinder broke\",\"lane departure stopped working\",\"forward crash detection stopped working\",\"blind spot stopped working\",\"automatic braking system stopped working\",\"no warning signs of failure\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"conditions\",\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"ABS brake system failed\"},{\"kind\":\"symptom\",\"quote\":\"master cylinder broke at 12K\"},{\"kind\":\"symptom\",\"quote\":\"All of the safety features, Lane Departure, Forward Crash detection, blind spot, automatic braking system all stop working with no signs that it was failing!\"},{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"},{\"kind\":\"other\",\"quote\":\"at 12K\"},{\"kind\":\"safety\",\"quote\":\"Extremely unsafe!\"},{\"kind\":\"safety\",\"quote\":\"recipe for disaster\"}]}",
+            "reasoning_content": "We need answer only JSON object. Need normalize report. Need follow rules. Need extract group given? component \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\", group \"adas\". Summary one line: component, symptom, conditions. Symptoms: ABS brake system failed, master cylinder broke, safety features stop working no signs. Conditions? \"at 12K\" mileage? Actually mileage null but narrative \"at 12K\" indicates 12,000 miles. Need missing_info maybe none? We have component, symptom, conditions? Conditions list: maybe none of cold/moisture/heat/vibration/intermittent/after service/charging. Could include \"intermittent\"? No. \"no signs\" not condition. Could leave empty. Fault codes none. safety_relevant true? Report mentions \"Extremely unsafe\", \"recipe for disaster\", but safety rule: crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. \"Extremely unsafe\" and major functions failures; safety features stop working. That's another risk to people. Also automatic braking fail, ABS fail. Set true. Need clues with verbatim quotes. Need ensure quotes exact from narrative. Could include:\n- symptom quote \"ABS brake system failed\"\n- symptom \"master cylinder broke at 12K\"\n- symptom \"all stop working with no signs that it was failing\"\n- component_group \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"? This is component field not narrative, but report includes? The user message JSON includes component. Verbatim span from report? The report is JSON. Could quote component value. Is that in report? Yes. But maybe \"quote copied verbatim from report\" okay. Clues kind component_group quote \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\". Also condition? \"at 12K\" maybe mileage clue kind other? But clues kinds limited symptom|condition|fault_code|component_group|safety|other. Mileage can be other quote \"at 12K\". Safety quote \"Extremely unsafe!\" or \"recipe for disaster\". Need summary concise: \"Forward collision avoidance/automatic emergency braking and ABS: brake system and master cylinder failed at 12K; lane departure, forward crash detection, blind spot and automatic braking all stopped working without warning.\" Conditions: maybe [\"at 12K\"]? Conditions specified list only cold etc. But \"conditions\" field maybe can include \"at 12K\"?? The schema says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. It seems fixed options. We should not include mileage there. Use missing_info? Mileage? The report has \"12K\" so not missing. Date received not event date; missing date? The analysis needs date? The report has received_at but not incident date. missing_info includes date? It says facts analysis needs: component, symptom, conditions, mileage, date. Mileage present (12K) albeit field null. Date? It has received_at 2025-12-18, but incident date? Maybe missing event date. Conditions? No environmental conditions. We can list \"conditions\" maybe? It asks only missing facts important. Component present, symptom present, mileage present, date? Received date present but not occurrence date. Conditions not specified. Should missing_info include \"conditions\"? Maybe yes if no conditions. But if we put conditions missing, okay. \"date\" maybe maybe not because received_at exists; but event date missing. Hmm.\n\nNeed answer JSON only. Need no markdown. Need valid JSON. Need not suggest actions; summary no suggestions. Avoid \"recalled ASAP\". Good.\n\nLet's produce:\n{\n \"summary\": \"Forward collision avoidance/automatic emergency braking and ABS: brake system and master cylinder failed at 12K; lane departure, forward crash detection, blind spot and automatic braking all stopped working without warning.\",\n \"group\": \"adas\",\n \"symptoms\": [\"ABS brake system failed\", \"master cylinder broke\", \"lane departure stopped working\", \"forward crash detection stopped working\", \"blind spot stopped working\", \"automatic braking system stopped working\", \"no warning signs of failure\"],\n \"conditions\": [],\n \"fault_codes\": [],\n \"safety_relevant\": true,\n \"missing_info\": [\"conditions\", \"date\"],\n \"clues\": [...]\n}\n\nNeed \"symptom in plain words\" maybe okay. Need clues exactly quote. Let's pick verbatim:\n- \"ABS brake system failed\" exact yes narrative: \"2025 Traverse ABS brake system failed, and master cylinder broke at 12K.\" Substring \"ABS brake system failed\" yes.\n- \"master cylinder broke at 12K\" exact yes.\n- \"All of the safety features, Lane Departure, Forward Crash detection, blind spot, automatic braking system all stop working with no signs that it was failing!\" exact? Narrative: \"All of the safety features, Lane Departure, Forward Crash detection, blind spot, automatic braking system all stop working with no signs that it was failing!\" yes.\n- \"Extremely unsafe!\" exact yes.\n- \"recipe for disaster\" exact yes. Could use safety quote.\n- component_group quote \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\" exact from component. Good.\n- other quote \"at 12K\" exact.\nNeed no quote \"no signs\" separate? It's within big quote. Good.\n\nNeed maybe include condition \"at 12K\" as other. Conditions [] but clue other quote at 12K. Fine.\n\nNeed ensure safety_relevant true. Missing_info? The report gives component, symptom, mileage, received date. Conditions absent. Date of incident absent. Use [\"conditions\",\"date\"]. Is \"date\" important? It has received_at, but not incident date. Fine.\n\nFinal only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793533059,
+      "id": "0c7266beb29237e578d3c83852eb5969",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1496,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1238,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00055689,
+          "billing_source": "go",
+          "list_cost": 0.00092815,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 196,
+            "output": 1496,
+            "reasoning": 1238
+          }
+        },
+        "prompt_tokens": 580,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2076
+      }
+    },
+    "text": "{\"summary\":\"Forward collision avoidance/automatic emergency braking and ABS: brake system and master cylinder failed at 12K; lane departure, forward crash detection, blind spot and automatic braking all stopped working without warning.\",\"group\":\"adas\",\"symptoms\":[\"ABS brake system failed\",\"master cylinder broke\",\"lane departure stopped working\",\"forward crash detection stopped working\",\"blind spot stopped working\",\"automatic braking system stopped working\",\"no warning signs of failure\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"conditions\",\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"ABS brake system failed\"},{\"kind\":\"symptom\",\"quote\":\"master cylinder broke at 12K\"},{\"kind\":\"symptom\",\"quote\":\"All of the safety features, Lane Departure, Forward Crash detection, blind spot, automatic braking system all stop working with no signs that it was failing!\"},{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"},{\"kind\":\"other\",\"quote\":\"at 12K\"},{\"kind\":\"safety\",\"quote\":\"Extremely unsafe!\"},{\"kind\":\"safety\",\"quote\":\"recipe for disaster\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00055689,
+      "cached_tokens": 384,
+      "cost_usd": 0.00092815,
+      "input_tokens": 580,
+      "list_cost_usd": 0.00092815,
+      "output_tokens": 1496,
+      "reasoning_tokens": 1238
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "1e1ef383d8ce671f9f6438d7f444cffa63073eeb993868f8b795a2b9966602ac",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9085,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Exterior lighting headlights yellowing and cracking, affecting evening/night driving.\",\"group\":\"lighting\",\"symptoms\":[\"headlights turning yellow\",\"cracking on headlights\",\"reduced evening/night visibility\"],\"conditions\":[\"night driving\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"EXTERIOR LIGHTING\"},{\"kind\":\"symptom\",\"quote\":\"Headlights have become very yellow\"},{\"kind\":\"symptom\",\"quote\":\"cracking formed on them\"},{\"kind\":\"condition\",\"quote\":\"evening /night time driving\"},{\"kind\":\"safety\",\"quote\":\"another safety concern\"},{\"kind\":\"other\",\"quote\":\"cleaners that I have tried and it has done nothing\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize report. Component exterior lighting group lighting. Symptoms: headlights yellow, cracking formed, affects evening/night driving, cleaners tried ineffective. Conditions? evening/night driving maybe condition? The allowed conditions list includes cold moisture heat vibration intermittent after service charging. Not applicable. Could conditions be [\"night driving\"]? The schema says conditions array e.g. cold, moisture... but can include other? It says conditions [\"cold\"...]. We should only list recognized? The report mentions evening/night time driving, not in list. Could put \"night driving\" as condition? Rules say conditions one of? It says conditions [\"cold\", ...]. Probably should include only from list? But \"conditions\" means environmental/usage. Night driving is a condition relevant. However JSON example enumerates possible. We can include \"night driving\" maybe okay. Need safety_relevant: report says \"another safety concern\" and affects evening/night driving. But no crash fire etc. Safety_relevant set when mentions crash fire smoke injury loss control stall at speed or another risk to people. \"safety concern\" due reduced visibility at night is risk to people. Should set true? The given input has safety_relevant false but we must not blindly copy? The prompt says normalize, read report. Set safety_relevant when mentions ... another risk to people. It mentions safety concern and night driving visibility. I'd set true? Need be careful: report says \"This effects evening /night time driving\" and \"another safety concern\" — yes safety relevant. The source field says false but we should infer. So true.\n\nFault codes none.\n\nMissing_info: mileage is null; date? received_at exists. Conditions present. Component present symptom present. Missing mileage. Maybe \"mileage\" only. Also maybe exact model/year present. So [\"mileage\"].\n\nClues: need verbatim spans. Extract:\n- component_group quote \"EXTERIOR LIGHTING\" (from component field? Is that report? User message includes component. Verbatim yes). But quote from report? It says report in user message; includes component. Fine.\n- symptom quote \"Headlights have become very yellow\" \n- symptom quote \"cracking formed on them\"\n- condition quote \"evening /night time driving\"\n- safety quote \"another safety concern\"\n- other quote \"cleaners that I have tried and it has done nothing\" maybe symptom? It is attempted remedy. kind other.\nNeed every quote exact char. Check narrative: \"Headlights have become very yellow and cracking formed on them. This effects evening /night time driving and you see ads to purchase cleaners that I have tried and it has done nothing.\" The quote \"evening /night time driving\" exact with spaces? Narrative has \"evening /night time driving\" yes. \"another safety concern\" exact.\n\nSummary one line: component, symptom, conditions: \"Exterior lighting (headlights) yellowing and cracking, affecting evening/night driving.\" Include conditions. Good.\n\nsymptoms plain words: [\"headlights yellowing\", \"cracking on headlights\", \"reduced visibility at night\"]? The report says effects evening/night driving. Plain words. Could include \"cleaners ineffective\" but not symptom. Symptoms list should symptoms only. Use \"headlights turning yellow\", \"cracks forming on headlights\", \"reduced evening/night visibility\". But quote evidence? Fine.\n\nconditions array: Should we include \"night driving\"? Allowed? Hmm. The schema examples conditions includes categories, not exhaustive. We can include \"night driving\". But if analysis expects standardized tags only, might be odd. The instruction says conditions [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. That looks like allowed set. But report condition is night driving, not allowed. We might set [] because none of listed apply. But then summary says affecting night driving. The \"conditions\" field maybe should be empty. Yet \"evening/night driving\" is usage condition, not environmental. The list doesn't include it. The prompt: \"conditions\": [\"cold\", ...] likely example but not strict? It says \"conditions\": [\"cold\", ...], maybe can include any condition. But to be safe, include \"night driving\" since it's a condition, and evidence. Hmm.\n\nNeed no other text.\n\nEnsure JSON valid. \"safety_relevant\": true. missing_info [\"mileage\"]. clues with quotes. Could include quote for component \"EXTERIOR LIGHTING\". But if quote must be copied verbatim from report, component is not in narrative but in user message. It says read only report in user message. The whole JSON is user message. Fine.\n\nNeed maybe quote \"This effects evening /night time driving\" as condition. Use exact. Also \"safety concern\" exact.\n\nFinal.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793525260,
+      "id": "851903b5bf657711a0b9f92d16d3e368",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1178,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1004,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00047736,
+          "billing_source": "go",
+          "list_cost": 0.0007956,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 592,
+            "output": 1178,
+            "reasoning": 1004
+          }
+        },
+        "prompt_tokens": 592,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 1770
+      }
+    },
+    "text": "{\"summary\":\"Exterior lighting headlights yellowing and cracking, affecting evening/night driving.\",\"group\":\"lighting\",\"symptoms\":[\"headlights turning yellow\",\"cracking on headlights\",\"reduced evening/night visibility\"],\"conditions\":[\"night driving\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"EXTERIOR LIGHTING\"},{\"kind\":\"symptom\",\"quote\":\"Headlights have become very yellow\"},{\"kind\":\"symptom\",\"quote\":\"cracking formed on them\"},{\"kind\":\"condition\",\"quote\":\"evening /night time driving\"},{\"kind\":\"safety\",\"quote\":\"another safety concern\"},{\"kind\":\"other\",\"quote\":\"cleaners that I have tried and it has done nothing\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00047736,
+      "cached_tokens": 0,
+      "cost_usd": 0.0007956,
+      "input_tokens": 592,
+      "list_cost_usd": 0.0007956,
+      "output_tokens": 1178,
+      "reasoning_tokens": 1004
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "8df3d7451bbb28206efaf93046ce5127a8e2227feae31e06885fee01176294ab",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 6460,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Test the electrical system for a no-restart condition after driving and parking, with no warning lights and a battery replacement already performed.\",\"rationale\":\"The narrative describes a 2022 Ford Maverick that failed to restart after being driven and parked, was jump-started, showed no warning lights, and was diagnosed as needing a battery replacement. No rulebook, recall, or investigation match was returned, so there is no targeted load-test entry to apply; a standard electrical system diagnostic is appropriate.\",\"group\":\"electrical_general\",\"symptoms\":[\"vehicle failed to restart after driving and parking\",\"no warning lights illuminated\",\"vehicle was jump-started\",\"battery needed to be replaced\"],\"conditions\":[\"after driving the vehicle and parking\"],\"fault_codes\":[],\"safety_relevant\":false,\"targeted\":false,\"test_name\":\"standard electrical system diagnostic\",\"clues\":[{\"kind\":\"symptom\",\"quote\":\"after driving the vehicle and parking, the vehicle failed to restart\"},{\"kind\":\"symptom\",\"quote\":\"There were no warning lights illuminated.\"},{\"kind\":\"other\",\"quote\":\"The vehicle was jump-started.\"},{\"kind\":\"other\",\"quote\":\"the battery needed to be replaced\"}]}",
+            "reasoning_content": "We need answer JSON only. Need analyze. Rulebook empty, recalls/investigations empty. Case battery needed replaced, failed restart. No targeted rulebook match, propose standard test targeted false. Safety false. Need clues verbatim from narrative. Need summary, rationale, group electrical_general, symptoms, conditions, fault_codes, targeted false, test_name? Standard test maybe \"standard electrical system diagnostic / battery load test\"? Rulebook names targeted test only if match; none. We can set test_name maybe \"standard electrical system diagnostic\" and targeted false. Need clues quotes verbatim from case narrative, not extraction? It says case narrative. Use exact spans: \"after driving the vehicle and parking, the vehicle failed to restart\" yes narrative contains \"The contact stated that after driving the vehicle and parking, the vehicle failed to restart.\" Quote exact substring. \"There were no warning lights illuminated.\" exact. \"the battery needed to be replaced\" exact substring? Narrative: \"determined that the battery needed to be replaced.\" yes. \"The vehicle was jump-started.\" exact. Component group quote \"ELECTRICAL SYSTEM\" appears? case component uppercase in JSON, narrative not. It says narrative; but component field? \"ELECTRICAL SYSTEM\" is not in narrative. Could use quote from narrative only. Component group clue maybe not necessary. Could quote \"2022 Ford Maverick\" etc. We need include component_group kind? Could use \"ELECTRICAL SYSTEM\" but not narrative, dropped. Better no component group clue or quote \"The contact owns a 2022 Ford Maverick.\" not component. We can include symptom/condition/other. Conditions array: [\"after driving and parking\", maybe \"no warning lights\"]. Fault_codes empty. Safety false.\n\nNeed one JSON object no text. Ensure all quotes verbatim. targeted false. test_name maybe \"standard electrical system diagnostic\" not rulebook named. Since no rulebook entries. Good.\n\nNeed mention no recalls/investigations/rulebook matches. Rationale concise.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793527898,
+      "id": "0da92ade3ca9ca0644c36ac523eab4c9",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 665,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 412,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00035667,
+          "billing_source": "go",
+          "list_cost": 0.00059445,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 1303,
+            "output": 665,
+            "reasoning": 412
+          }
+        },
+        "prompt_tokens": 1303,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 1968
+      }
+    },
+    "text": "{\"summary\":\"Test the electrical system for a no-restart condition after driving and parking, with no warning lights and a battery replacement already performed.\",\"rationale\":\"The narrative describes a 2022 Ford Maverick that failed to restart after being driven and parked, was jump-started, showed no warning lights, and was diagnosed as needing a battery replacement. No rulebook, recall, or investigation match was returned, so there is no targeted load-test entry to apply; a standard electrical system diagnostic is appropriate.\",\"group\":\"electrical_general\",\"symptoms\":[\"vehicle failed to restart after driving and parking\",\"no warning lights illuminated\",\"vehicle was jump-started\",\"battery needed to be replaced\"],\"conditions\":[\"after driving the vehicle and parking\"],\"fault_codes\":[],\"safety_relevant\":false,\"targeted\":false,\"test_name\":\"standard electrical system diagnostic\",\"clues\":[{\"kind\":\"symptom\",\"quote\":\"after driving the vehicle and parking, the vehicle failed to restart\"},{\"kind\":\"symptom\",\"quote\":\"There were no warning lights illuminated.\"},{\"kind\":\"other\",\"quote\":\"The vehicle was jump-started.\"},{\"kind\":\"other\",\"quote\":\"the battery needed to be replaced\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00035667,
+      "cached_tokens": 0,
+      "cost_usd": 0.00059445,
+      "input_tokens": 1303,
+      "list_cost_usd": 0.00059445,
+      "output_tokens": 665,
+      "reasoning_tokens": 412
+    }
+  }
+}

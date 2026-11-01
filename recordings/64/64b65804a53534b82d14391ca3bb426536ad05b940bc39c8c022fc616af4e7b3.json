@@ -1,0 +1,66 @@
+{
+  "key": "64b65804a53534b82d14391ca3bb426536ad05b940bc39c8c022fc616af4e7b3",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10579,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\": \"Test the ADAS/display system for electrical supply and configuration retention because displays switch language, settings reset, and FCW/PEB lamps illuminate without a disable path; no rulebook targeted test matches.\", \"rationale\": \"The case reports multiple concurrent electrical/configuration symptoms: Italian language selection, default resets for cluster and radio, inoperative auto door locks and paddle shifter, and PEB/FCW lamps on with no way to disable. The rulebook has no matching targeted test, so a standard diagnostic test is appropriate. A recall for the 2022 Grand Cherokee L covers center stack display transistor overheating affecting rearview camera display, but it does not fully match the broader configuration and ADAS lamp symptoms described here.\", \"group\": \"adas\", \"symptoms\": [\"displays switch into Italian language\", \"cluster and radio display settings revert to default\", \"auto door locks and paddle shifter become inoperative with no menu to enable\", \"pedestrian emergency brake lamp or forward collision warning lamp turns on with no way to disable\", \"units of measurement change\", \"other random settings change\"], \"conditions\": [], \"fault_codes\": [], \"safety_relevant\": false, \"targeted\": false, \"test_name\": \"standard ADAS diagnostic test\", \"clues\": [{\"kind\": \"symptom\", \"quote\": \"displays will switch into a language I do not speak or understand (Italian)\"}, {\"kind\": \"symptom\", \"quote\": \"cluster and radio display settings revert back to default settings\"}, {\"kind\": \"symptom\", \"quote\": \"auto door locks and paddle shifter becomes inoperative (with no menu to enable)\"}, {\"kind\": \"symptom\", \"quote\": \"pedestrian emergency brake (peb) lamp or forward collision warning (fcw) lamp turns on with no way to disable\"}, {\"kind\": \"symptom\", \"quote\": \"units of measurement including speed, temperature, etc. all change\"}, {\"kind\": \"symptom\", \"quote\": \"many other random settings change as well\"}]}",
+            "reasoning_content": "We need answer JSON only. Need analyze case. Rulebook empty, similar empty, investigations empty. Recall present for display transistor overheating preventing rearview camera image. Case narrative about display language switching, settings reset, FCW/PEB lamps, door locks/paddle shifter inoperative. Component group adas. No rulebook match, so targeted false standard test. safety_relevant? Narrative says pedestrian emergency brake lamp/FCW lamp on no way disable; that could be safety risk? But intake says false, case false. Prompt: set safety relevant when narrative shows risk to people. Does FCW lamp on with no way disable mean ADAS unavailable? PEB lamp on? It doesn't show direct risk to people. Also door locks inoperative, paddle shifter inoperative. Paddle shifter inoperative could affect driving? Auto door locks inoperative; no explicit risk. We can set false. Need test_name? Standard test maybe no rulebook. We need propose standard test. Since no named test, maybe \"standard ADAS diagnostic scan and verification test\" or \"standard electrical/display system test\". The schema requires test_name string. For targeted false, maybe \"standard test\". Need not invent rulebook name. \"standard test\" acceptable? We need include clues with verbatim quotes from narrative. Need ensure quotes exactly copied from narrative. We can use narrative spans:\n- \"displays will switch into a language I do not speak or understand (Italian)\" exact? Narrative: \"The instruments, gauges, and displays will switch into a language I do not speak or understand (Italian).\" So quote substring \"displays will switch into a language I do not speak or understand (Italian)\" yes.\n- \"cluster and radio display settings revert back to default settings\" exact yes.\n- \"auto door locks and paddle shifter becomes inoperative (with no menu to enable)\" exact yes.\n- \"pedestrian emergency brake (peb) lamp or forward collision warning (fcw) lamp turns on with no way to disable\" exact yes.\n- \"units of measurement including speed, temperature, etc. all change\" exact yes.\n- \"many other random settings change as well\" exact yes.\nNeed kind etc.\n\nSummary one line: \"Test ADAS/display electrical integrity and configuration retention because multiple displays/settings reset and FCW/PEB lamps illuminate without disable, though no rulebook targeted test matches.\" Good.\n\nRationale: mention no rulebook match; recalls show display transistor overheating recall but not exact? Can cite recall? Allowed cite recall id if in tool results. But maybe rationale mention recall 25V083000 for center stack display transistor overheating; relevant to display symptoms, but case complaint broader including FCW/PEB and config resets. However do not overstate. Need no targeted test due empty rulebook. Standard test. \"Component group\": adas or \"ADAS / forward collision avoidance warnings\". Use \"adas\".\n\nConditions maybe [] because extraction had none. Fault_codes [].\n\nsafety_relevant false.\n\ntargeted false.\n\ntest_name: \"standard ADAS display and configuration integrity test\" maybe not rulebook named. Since rulebook empty, standard test. \"standard test\" maybe too generic but okay. Could be \"standard diagnostic test\". The prompt says \"Otherwise propose the standard test (`targeted\": false`).\" So test_name can be \"standard test\". Maybe better \"standard ADAS diagnostic test\". Hmm.\n\nClues kind \"component_group\" quote \"FORWARD COLLISION AVOIDANCE: WARNINGS\" from case narrative? Actually component field, not narrative. Prompt says quote verbatim from case narrative. Component field isn't narrative. But extraction has component_group clue quote \"FORWARD COLLISION AVOIDANCE: WARNINGS\" which isn't in narrative. The code verifies against narrative and drops. We should not include component_group clue unless quote appears in narrative. Narrative has \"forward collision warning (fcw) lamp\". We can include kind condition? No. For component group clue quote \"forward collision warning (fcw) lamp\" yes. But kind component_group? Maybe. Include as fault code? It's symptom. We can include kind \"component_group\" quote \"forward collision warning (fcw) lamp\" to show ADAS. But component_group quote should identify component. Better not include component_group clue if not exact component name. We can include symptom \"forward collision warning (fcw) lamp turns on with no way to disable\". Good.\n\nNeed every quote verbatim. Let's craft JSON.\n\nRationale can mention recall but no ID cite? We can cite 25V083000 because tool result contains. But if rationale includes id not in clue? Rule: \"Do not cite a case, recall or investigation id that the tool results do not contain.\" It contains 25V083000, so okay. But maybe avoid to keep concise. We can mention recall without ID? Fine.\n\nNeed \"summary\": one line. \"Test the ADAS/display system for electrical supply and configuration retention because displays switch language, settings reset, and FCW/PEB lamps illuminate without a disable path; no rulebook targeted test matches.\" Good.\n\n\"conditions\": [].\n\"fault_codes\": [].\n\"clues\": include six symptom quotes. Maybe one \"other\" for \"many other random settings change as well\". Fine.\n\nNeed output only JSON. Ensure no markdown.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530280,
+      "id": "708befa8c6e6648bbd1a607aed456716",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1553,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1116,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00066276,
+          "billing_source": "go",
+          "list_cost": 0.0011046,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 1152,
+            "output": 1553,
+            "reasoning": 1116
+          }
+        },
+        "prompt_tokens": 1152,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 2705
+      }
+    },
+    "text": "{\"summary\": \"Test the ADAS/display system for electrical supply and configuration retention because displays switch language, settings reset, and FCW/PEB lamps illuminate without a disable path; no rulebook targeted test matches.\", \"rationale\": \"The case reports multiple concurrent electrical/configuration symptoms: Italian language selection, default resets for cluster and radio, inoperative auto door locks and paddle shifter, and PEB/FCW lamps on with no way to disable. The rulebook has no matching targeted test, so a standard diagnostic test is appropriate. A recall for the 2022 Grand Cherokee L covers center stack display transistor overheating affecting rearview camera display, but it does not fully match the broader configuration and ADAS lamp symptoms described here.\", \"group\": \"adas\", \"symptoms\": [\"displays switch into Italian language\", \"cluster and radio display settings revert to default\", \"auto door locks and paddle shifter become inoperative with no menu to enable\", \"pedestrian emergency brake lamp or forward collision warning lamp turns on with no way to disable\", \"units of measurement change\", \"other random settings change\"], \"conditions\": [], \"fault_codes\": [], \"safety_relevant\": false, \"targeted\": false, \"test_name\": \"standard ADAS diagnostic test\", \"clues\": [{\"kind\": \"symptom\", \"quote\": \"displays will switch into a language I do not speak or understand (Italian)\"}, {\"kind\": \"symptom\", \"quote\": \"cluster and radio display settings revert back to default settings\"}, {\"kind\": \"symptom\", \"quote\": \"auto door locks and paddle shifter becomes inoperative (with no menu to enable)\"}, {\"kind\": \"symptom\", \"quote\": \"pedestrian emergency brake (peb) lamp or forward collision warning (fcw) lamp turns on with no way to disable\"}, {\"kind\": \"symptom\", \"quote\": \"units of measurement including speed, temperature, etc. all change\"}, {\"kind\": \"symptom\", \"quote\": \"many other random settings change as well\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00066276,
+      "cached_tokens": 0,
+      "cost_usd": 0.0011046,
+      "input_tokens": 1152,
+      "list_cost_usd": 0.0011046,
+      "output_tokens": 1553,
+      "reasoning_tokens": 1116
+    }
+  }
+}

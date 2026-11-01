@@ -1,0 +1,66 @@
+{
+  "key": "f4a9f9c17dde8cc3e7a3feb888bea73aaf08e7eba8ee50bf622e03f31ed21129",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 7967,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system: complete electronics shutdown with loss of instrument cluster, center display, and rearview camera while driving after Recall 919A software update.\",\"group\":\"electrical_general\",\"symptoms\":[\"complete electronics shutdown\",\"loss of instrument cluster\",\"loss of center display\",\"loss of rearview camera\"],\"conditions\":[\"while driving\",\"after service\"],\"fault_codes\":[\"U111000\"],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"complete electronics shutdown\"},{\"kind\":\"symptom\",\"quote\":\"loss of the instrument cluster, center display, and rearview camera\"},{\"kind\":\"condition\",\"quote\":\"while driving\"},{\"kind\":\"condition\",\"quote\":\"after the recall 919A software update was applied\"},{\"kind\":\"fault_code\",\"quote\":\"fault code U111000 with symptom 7223\"},{\"kind\":\"safety\",\"quote\":\"safety of my self and others was put at risk\"},{\"kind\":\"other\",\"quote\":\"NHTSA Recall 24V344 / VW Recall 919A\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize. Read report. Component ELECTRICAL SYSTEM, group electrical_general. Symptoms: complete electronics shutdown, loss of instrument cluster, center display, rearview camera. Conditions: while driving, after recall 919A software update applied, after service? Recall repair applied. intermittent? no. charging? no. Fault code U111000 with symptom 7223. Safety relevant: report says safety of self and others at risk, complete electronics shutdown while driving including loss of instrument cluster/rearview camera -> yes. Missing info: mileage null, date? received_at exists but incident date missing. component given, symptom given, conditions given. missing_info [\"mileage\",\"date\"]. Clues verbatim quotes. Need ensure quotes exact from narrative. Could quote \"complete electronics shutdown\" yes exact? narrative: \"my vehicle experienced a complete electronics shutdown, including loss of the instrument cluster, center display, and rearview camera.\" Quote can be span. \"while driving\" exact. \"after the recall 919A software update was applied\" exact. \"fault code U111000 with symptom 7223\" exact. \"safety of my self and others was put at risk\" exact (note \"my self\" two words). Maybe quote \"NHTSA Recall 24V344 / VW Recall 919A\" exact. Component group clue? \"ELECTRICAL SYSTEM\" from component field, not narrative? Report includes component field. Quote must be from report; can quote \"ELECTRICAL SYSTEM\". kind component_group. Good.\n\nSummary one line: \"Electrical system: complete electronics shutdown (instrument cluster, center display, rearview camera loss) while driving after Recall 919A software update.\" Good.\n\nsymptoms array plain words: \"complete electronics shutdown\", \"loss of instrument cluster\", \"loss of center display\", \"loss of rearview camera\". Could include \"fault code U111000 with symptom 7223\" but fault_codes separate. Keep symptoms.\n\nconditions: \"while driving\", \"after service\" maybe recall software update applied. Also \"after recall repair\". Given allowed conditions list: cold, moisture, heat, vibration, intermittent, after service, charging. We can include \"after service\" for recall software update. \"while driving\" isn't in allowed list? The schema says conditions array examples? It lists [\"cold\", ...] but maybe conditions can include plain. Hmm prompt: \"conditions\": [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. It seems allowed set. But \"while driving\" is a condition important. Could include \"while driving\" despite not in list? The schema says conditions in array but examples. Better include \"while driving\" because report. But maybe adhere? It says conditions: [\"cold\", ...] likely controlled vocab. But no rule forbids other. However \"while driving\" crucial. Use conditions [\"while driving\", \"after service\"]. \"after service\" maps recall software update. Good.\n\nfault_codes [\"U111000\"] maybe symptom 7223? Fault code only U111000. Could include \"7223\" symptom? no.\n\nsafety_relevant true.\n\nmissing_info [\"mileage\",\"date\"]. Date? received_at 2025-09-08, but incident date missing. Yes.\n\nclues: Need each kind. \n- component_group quote \"ELECTRICAL SYSTEM\"\n- symptom quote \"complete electronics shutdown\"\n- symptom quote \"loss of the instrument cluster, center display, and rearview camera\" exact? Narrative has \"including loss of the instrument cluster, center display, and rearview camera.\" Yes quote can be \"loss of the instrument cluster, center display, and rearview camera\". Good.\n- condition quote \"while driving\"\n- condition quote \"after the recall 919A software update was applied\"\n- fault_code quote \"fault code U111000 with symptom 7223\"\n- safety quote \"safety of my self and others was put at risk\"\n- other quote \"NHTSA Recall 24V344 / VW Recall 919A\" maybe. Good.\n\nNeed JSON no other text. Ensure valid. No markdown? They say one JSON object no other text. We can output raw JSON. Use booleans. Quote exact. Check \"my self\" exactly in narrative: \"the safety of my self and others was put at risk.\" yes.\n\nNeed no closes. Final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530146,
+      "id": "e7e142ecfcbde93d6d6337a19715b194",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1172,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 922,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.000447,
+          "billing_source": "go",
+          "list_cost": 0.000745,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 271,
+            "output": 1172,
+            "reasoning": 922
+          }
+        },
+        "prompt_tokens": 655,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1827
+      }
+    },
+    "text": "{\"summary\":\"Electrical system: complete electronics shutdown with loss of instrument cluster, center display, and rearview camera while driving after Recall 919A software update.\",\"group\":\"electrical_general\",\"symptoms\":[\"complete electronics shutdown\",\"loss of instrument cluster\",\"loss of center display\",\"loss of rearview camera\"],\"conditions\":[\"while driving\",\"after service\"],\"fault_codes\":[\"U111000\"],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"complete electronics shutdown\"},{\"kind\":\"symptom\",\"quote\":\"loss of the instrument cluster, center display, and rearview camera\"},{\"kind\":\"condition\",\"quote\":\"while driving\"},{\"kind\":\"condition\",\"quote\":\"after the recall 919A software update was applied\"},{\"kind\":\"fault_code\",\"quote\":\"fault code U111000 with symptom 7223\"},{\"kind\":\"safety\",\"quote\":\"safety of my self and others was put at risk\"},{\"kind\":\"other\",\"quote\":\"NHTSA Recall 24V344 / VW Recall 919A\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.000447,
+      "cached_tokens": 384,
+      "cost_usd": 0.000745,
+      "input_tokens": 655,
+      "list_cost_usd": 0.000745,
+      "output_tokens": 1172,
+      "reasoning_tokens": 922
+    }
+  }
+}

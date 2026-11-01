@@ -1,0 +1,66 @@
+{
+  "key": "de2be3c74c2545777cb00cf85d39e74d21fa59b5f52a1edf2cc738adba5b3155",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10019,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Inspect and test the entry-door window attachment on the 2023 Winnebago Navion; no targeted rulebook entry or recall record was returned, so a standard test applies.\",\"rationale\":\"The narrative reports the window loosened at the Lippert Metallarte entry door. The rulebook returned no matching entry, and no recall or investigation records were returned, so no targeted load test is indicated; propose the standard test.\",\"group\":\"body_controls\",\"symptoms\":[\"window loosened at Lippert Metallarte entry door\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"targeted\":false,\"test_name\":\"standard test\",\"clues\":[{\"kind\":\"symptom\",\"quote\":\"Window is loosened at Lippert Metallarte entry door.\"},{\"kind\":\"other\",\"quote\":\"VIN has not been included in recall\"}]}",
+            "reasoning_content": "We need to produce JSON. The case: window loosened at entry door. No rulebook entries, no recalls in tool results (recalls result empty). The narrative mentions recall 24V824000 but tool results don't contain it — rule says do not cite a case, recall or investigation id that the tool results do not contain. So fault_codes should maybe be empty? Extraction has 24V824000. But the rule: \"Do not cite a case, recall or investigation id that the tool results do not contain.\" The recalls result is empty, so 24V824000 is not contained in tool results. So we should not include it in fault_codes. Hmm. But the extraction includes it. Better to omit to comply.\n\nTargeted: no rulebook match, so targeted false. test_name: standard test — but what standard test? No rulebook entry names one. We can leave test_name maybe \"standard test\" or empty? The schema expects string. Propose standard test. Since no rulebook, targeted false, test_name could be \"standard field-quality test\" or \"standard inspection\". I'll use \"standard test\".\n\nClues must be verbatim from case narrative. Narrative: \"Window is loosened at Lippert Metallarte entry door.  VIN has not been included in recall under 24V824000\". Note double space. Quotes verbatim. Can copy \"Window is loosened at Lippert Metallarte entry door.\" and \"VIN has not been included in recall under 24V824000\". Component group quote \"VISIBILITY/WIPER\" — is that in narrative? No, it's in component field, not narrative. Rule says quote copied verbatim from case narrative. So only narrative quotes allowed. So clues: symptom quote window loosened; other quote VIN not included. Could include fault_code quote \"24V824000\" which appears in narrative — yes it does appear in the narrative. So quote \"24V824000\" is verbatim from narrative. But citing a recall id that tool results don't contain? The rule says do not cite a case, recall or investigation id that the tool results do not contain. So safer not to include fault_code clue with that id. Hmm, but it's in narrative. To be safe, omit fault_codes entirely? But schema has fault_codes array. We can set empty [].\n\nSummary: what to test and why.\n\nSafety relevant false.\n\nGroup: body_controls.\n\nRationale mention no rulebook match, no recall records returned, so standard test.\n\nConditions: maybe empty.\n\nLet's craft:\n\nsummary: \"Inspect and test the entry-door window attachment on the 2023 Winnebago Navion; no targeted rulebook entry or recall record was returned, so a standard test applies.\"\n\nrationale: \"Narrative reports the window loosened at the Lippert Metallarte entry door. The rulebook returned no matching entry, and no recall or investigation records were returned, so no targeted load test is indicated; propose the standard test.\"\n\ntargeted: false, test_name: \"standard test\".\n\nclues: [\n {\"kind\":\"symptom\",\"quote\":\"Window is loosened at Lippert Metallarte entry door.\"},\n {\"kind\":\"other\",\"quote\":\"VIN has not been included in recall under 24V824000\"}\n]\n\nBut wait \"VIN has not been included in recall under 24V824000\" — includes recall id. Rule about not citing recall id that tool results don't contain. Including this quote cites the id. Hmm. But it's evidence of the condition. The rule likely means in fault_codes/rationale don't claim recall exists. To be safe, we could omit that clue. But then only one clue. That's fine. However the clue kind \"other\" with that quote might be considered citing. I'll include only the symptom quote to be safe? The instruction: \"Do not cite a case, recall or investigation id that the tool results do not contain.\" A quote containing the id is citing it. So omit. But then the JSON clues only one. Acceptable.\n\nCould include component_group clue quote \"VISIBILITY/WIPER\"? Not in narrative. Not allowed.\n\nSo clues: maybe just symptom. Also could include \"other\" quote \"VIN has not been included in recall\" without id? But must be verbatim span; \"VIN has not been included in recall\" is a verbatim span (substring). That avoids citing id. Good. Use quote \"VIN has not been included in recall\" — verbatim contiguous. Kind \"other\". That conveys recall status without id. Good.\n\nSo clues:\n- symptom: \"Window is loosened at Lippert Metallarte entry door.\"\n- other: \"VIN has not been included in recall\"\n\nfault_codes: [] (avoid id). conditions: [].\n\nSafety false. targeted false.\n\nSummary one line.\n\nRationale.\n\nTest name \"standard test\".\n\nEnsure JSON valid, no extra text.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793526425,
+      "id": "005d84833851afc478e6ae3b98caefa8",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1220,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1035,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00050607,
+          "billing_source": "go",
+          "list_cost": 0.00084345,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 743,
+            "output": 1220,
+            "reasoning": 1035
+          }
+        },
+        "prompt_tokens": 743,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 1963
+      }
+    },
+    "text": "{\"summary\":\"Inspect and test the entry-door window attachment on the 2023 Winnebago Navion; no targeted rulebook entry or recall record was returned, so a standard test applies.\",\"rationale\":\"The narrative reports the window loosened at the Lippert Metallarte entry door. The rulebook returned no matching entry, and no recall or investigation records were returned, so no targeted load test is indicated; propose the standard test.\",\"group\":\"body_controls\",\"symptoms\":[\"window loosened at Lippert Metallarte entry door\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"targeted\":false,\"test_name\":\"standard test\",\"clues\":[{\"kind\":\"symptom\",\"quote\":\"Window is loosened at Lippert Metallarte entry door.\"},{\"kind\":\"other\",\"quote\":\"VIN has not been included in recall\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00050607,
+      "cached_tokens": 0,
+      "cost_usd": 0.00084345,
+      "input_tokens": 743,
+      "list_cost_usd": 0.00084345,
+      "output_tokens": 1220,
+      "reasoning_tokens": 1035
+    }
+  }
+}

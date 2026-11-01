@@ -1,0 +1,66 @@
+{
+  "key": "11f416962ac2ad8c20245c7b7f9cd7c78dca1abc6d6f09c1fb9d9d44a45c47a7",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9275,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\": \"2021 RAM 1500 eTorque generator failure causing sudden power loss, steering loss, park engagement, engine-bay heat, and battery recharge failure with nightly charging.\", \"group\": \"electrical_general\", \"symptoms\": [\"eTorque generator failure\", \"sudden loss of power and vehicle stop\", \"loss of interior electrical components\", \"driving functions including power steering shut off\", \"transmission grinded into park\", \"engine bay very hot\", \"warning lights illuminated\", \"battery recharging function failed\", \"requires nightly charging\"], \"conditions\": [\"heat\", \"charging\"], \"fault_codes\": [], \"safety_relevant\": true, \"missing_info\": [\"mileage\", \"date\"], \"clues\": [{\"kind\": \"component_group\", \"quote\": \"ELECTRICAL SYSTEM\"}, {\"kind\": \"symptom\", \"quote\": \"ETorque Generator that failed\"}, {\"kind\": \"symptom\", \"quote\": \"suddenly stop and lose power\"}, {\"kind\": \"symptom\", \"quote\": \"lost all electrical components in the interior\"}, {\"kind\": \"symptom\", \"quote\": \"driving function shut off which includes the power steering\"}, {\"kind\": \"symptom\", \"quote\": \"it suddenly stopped and grinded into the park position of the transmission\"}, {\"kind\": \"condition\", \"quote\": \"The engine bay was very hot\"}, {\"kind\": \"safety\", \"quote\": \"I was surprised a fire didn't start\"}, {\"kind\": \"symptom\", \"quote\": \"Pretty much all of the warning lights came on\"}, {\"kind\": \"symptom\", \"quote\": \"unable to fix the function of recharging the batteries\"}, {\"kind\": \"condition\", \"quote\": \"put my truck on a charger every night\"}, {\"kind\": \"condition\", \"quote\": \"constant charging of the battery and electrical issues\"}]}",
+            "reasoning_content": "We need answer JSON only. Need parse report. Component electrical system group electrical_general given. Symptoms: eTorque generator failed; sudden stop and lose power; loss of all interior electrical components; driving function shut off including power steering; stopped and grinded into park; engine bay very hot; warning lights came on; unable to recharge batteries; needs charging nightly. Conditions: maybe heat (engine bay very hot), intermittent? no. \"constant charging\" is condition? charging listed condition includes charging. Need safety_relevant true: mentions suddenly stop and lose power, power steering shut off, surprised fire didn't start, risk. Fault codes none. Missing info: mileage is null, date? received date exists; date maybe missing? Report no incident date. Component present, symptom present, conditions present? Conditions maybe heat and charging. Missing info [\"mileage\",\"date\"] maybe. Need clues verbatim spans. Must quote exact from narrative. Ensure quote char for char. Could include \"ETorque Generator that failed\" exact? Narrative: \"My Ram has the ETorque Generator that failed.\" Quote can be \"ETorque Generator that failed\" yes substring. \"suddenly stop and lose power\" yes. \"lost all electrical components in the interior\" yes. \"driving function shut off which includes the power steering\" exact. \"it suddenly stopped and grinded into the park position of the transmission\" exact. \"The engine bay was very hot\" exact. \"I was surprised a fire didn't start\" exact. \"Pretty much all of the warning lights came on\" exact. \"unable to fix the function of recharging the batteries\" exact. \"put my truck on a charger every night\" exact. \"concerned with constant charging of the battery and electrical issues\" exact. Safety clue: \"fire didn't start\" maybe quote. Kind safety quote \"I was surprised a fire didn't start\". Conditions: \"The engine bay was very hot\" heat; \"put my truck on a charger every night\" charging. Could include \"constant charging of the battery\" charging. Symptoms list plain words. Need one-line summary: component, symptom, conditions. Summary: \"2021 RAM 1500 eTorque generator failure causing sudden power loss, steering loss, park engagement, overheating, and battery recharge failure.\" Conditions include heat/charging. Fine.\n\nNeed JSON only no markdown. Ensure valid JSON. Missing_info: mileage, date. Should \"date\" missing? There is received_at but not incident date. The schema missing_info includes date. Yes.\n\nNeed group \"electrical_general\" or \"electrical/electronic component group\"? Given group. Use \"electrical_general\".\n\nsymptoms array plain words: \"eTorque generator failure\", \"sudden loss of power and vehicle stop\", \"loss of interior electrical components\", \"driving functions including power steering shut off\", \"transmission grinded into park\", \"engine bay very hot\", \"warning lights illuminated\", \"battery recharging function failed\", \"requires nightly charging\". Is that too many? Fine.\n\nconditions: [\"heat\", \"charging\"]. Could \"intermittent\" no. \"after service\" no. \"vibration\" no. \"cold\" no, \"moisture\" no.\n\nfault_codes empty. safety_relevant true.\n\nClues: Must not overdo but enough. Kind values allowed symptom|condition|fault_code|component_group|safety|other. We can include component_group quote \"ELECTRICAL SYSTEM\"? Report in user includes component field, but quote must from report? It says report in user message; JSON includes component field. Could quote \"ELECTRICAL SYSTEM\" exact. But narrative has \"electrical components\" not component group. Use \"ELECTRICAL SYSTEM\" from component field? It is verbatim. But maybe safer from narrative. We can include component_group quote \"ELECTRICAL SYSTEM\". The quote is in report JSON. Good. But quote \"electrical components\" is symptom. Need exact. \n\nNeed ensure summary one line. Final JSON only.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793527908,
+      "id": "3e6fae33ccd62610270741809fcc7d69",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1241,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 836,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00048174,
+          "billing_source": "go",
+          "list_cost": 0.0008029,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 381,
+            "output": 1241,
+            "reasoning": 836
+          }
+        },
+        "prompt_tokens": 765,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2006
+      }
+    },
+    "text": "{\"summary\": \"2021 RAM 1500 eTorque generator failure causing sudden power loss, steering loss, park engagement, engine-bay heat, and battery recharge failure with nightly charging.\", \"group\": \"electrical_general\", \"symptoms\": [\"eTorque generator failure\", \"sudden loss of power and vehicle stop\", \"loss of interior electrical components\", \"driving functions including power steering shut off\", \"transmission grinded into park\", \"engine bay very hot\", \"warning lights illuminated\", \"battery recharging function failed\", \"requires nightly charging\"], \"conditions\": [\"heat\", \"charging\"], \"fault_codes\": [], \"safety_relevant\": true, \"missing_info\": [\"mileage\", \"date\"], \"clues\": [{\"kind\": \"component_group\", \"quote\": \"ELECTRICAL SYSTEM\"}, {\"kind\": \"symptom\", \"quote\": \"ETorque Generator that failed\"}, {\"kind\": \"symptom\", \"quote\": \"suddenly stop and lose power\"}, {\"kind\": \"symptom\", \"quote\": \"lost all electrical components in the interior\"}, {\"kind\": \"symptom\", \"quote\": \"driving function shut off which includes the power steering\"}, {\"kind\": \"symptom\", \"quote\": \"it suddenly stopped and grinded into the park position of the transmission\"}, {\"kind\": \"condition\", \"quote\": \"The engine bay was very hot\"}, {\"kind\": \"safety\", \"quote\": \"I was surprised a fire didn't start\"}, {\"kind\": \"symptom\", \"quote\": \"Pretty much all of the warning lights came on\"}, {\"kind\": \"symptom\", \"quote\": \"unable to fix the function of recharging the batteries\"}, {\"kind\": \"condition\", \"quote\": \"put my truck on a charger every night\"}, {\"kind\": \"condition\", \"quote\": \"constant charging of the battery and electrical issues\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00048174,
+      "cached_tokens": 384,
+      "cost_usd": 0.0008029,
+      "input_tokens": 765,
+      "list_cost_usd": 0.0008029,
+      "output_tokens": 1241,
+      "reasoning_tokens": 836
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "5d40e38dd88015d4b32d62183b30bed4687c06ab27edb515011b7b2ad5a66271",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10155,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"2018 Acura TLX ADAS: five simultaneous dash warnings (auto high beam, road departure mitigation, collision mitigation, lane keeping assist, adaptive cruise control) one week after random alarm triggering; owner plans windshield camera sensor replacement\",\n  \"group\": \"adas\",\n  \"symptoms\": [\n    \"five warning lights on dash at the same time\",\n    \"auto high beam problem message\",\n    \"road departure mitigation system problem message\",\n    \"collision mitigation system problem message\",\n    \"lane keeping assist problem message\",\n    \"adaptive cruise control problem message\",\n    \"car alarm going off randomly\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\"kind\": \"symptom\", \"quote\": \"I got 5 lights on my dash\"},\n    {\"kind\": \"symptom\", \"quote\": \"auto high beam problem\"},\n    {\"kind\": \"symptom\", \"quote\": \"road departure mitigation system problem\"},\n    {\"kind\": \"symptom\", \"quote\": \"collision mitigation system problem\"},\n    {\"kind\": \"symptom\", \"quote\": \"lane keeping assist problem\"},\n    {\"kind\": \"symptom\", \"quote\": \"adaptive cruise control problem\"},\n    {\"kind\": \"condition\", \"quote\": \"at the exact same time\"},\n    {\"kind\": \"condition\", \"quote\": \"this happened 1 week after my car alarm started going off randomly\"},\n    {\"kind\": \"component_group\", \"quote\": \"windshield camera sensor\"},\n    {\"kind\": \"other\", \"quote\": \"Seems like this is an issue with many Acura owners\"}\n  ]\n}",
+            "reasoning_content": "Let's parse the report.\n\nComponent: LANE DEPARTURE: ASSIST, group adas. Narrative mentions multiple warning lights: auto high beam, road departure mitigation, collision mitigation, lane keeping assist, adaptive cruise control — all at same time, one week after car alarm started going off randomly. Owner says will have to change windshield camera sensor. Suggests widespread issue among Acura owners.\n\nSafety relevant? Multiple ADAS failures — but no crash, fire, smoke, injury, loss of control, stall. The rules say safety_relevant when report mentions crash/fire/smoke/injury/loss of control/stall at speed or another risk to people. Loss of ADAS functions could be argued a risk, but no event mentioned. The input says safety_relevant: false. Hmm — but the field is given in input; we should judge from narrative. No incident occurred. I'd set false.\n\nMissing info: mileage is null → \"mileage\". Date? received_at exists (2025-10-05) but that's report date not incident date. The report doesn't give the date of occurrence. Conditions missing? Not much condition info. I'd include \"mileage\" and maybe \"date\". Conditions - the alarm going off randomly is a condition/clue but not the standard condition list... \"intermittent\" fits the random alarm. Hmm, \"intermittent\" is in the conditions list. The random alarm is intermittent behavior. I'll include \"intermittent\" as condition with quote \"my car alarm started going off randomly\".\n\nSymptoms: multiple warning lights; auto high beam problem; road departure mitigation problem; collision mitigation problem; lane keeping assist problem; adaptive cruise control problem; alarm going off randomly.\n\nClues with verbatim quotes. Careful with exact spans.\n\nQuotes:\n- \"I got 5 lights on my dash\" — verbatim.\n- \"auto high beam problem\" — verbatim.\n- \"road departure mitigation system problem\" — verbatim.\n- \"collision mitigation system problem\" — verbatim.\n- \"lane keeping assist problem\" — verbatim.\n- \"adaptive cruise control problem\" — verbatim.\n- \"at the exact same time\" — verbatim.\n- \"this happened 1 week after my car alarm started going off randomly\" — verbatim.\n- \"I will now have to change my windshield camera sensor\" — verbatim (component_group/other).\n\nmissing_info: mileage, date? The report lacks mileage. Date of incident. Keep [\"mileage\", \"date\"]. Conditions—there's some condition info (alarm). I'd list mileage and date.\n\nSummary one line.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530987,
+      "id": "cfee4bca4e4c2c9ad5bce29e70dd2bfc",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 928,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 544,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00035196,
+          "billing_source": "go",
+          "list_cost": 0.0005866,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 191,
+            "output": 928,
+            "reasoning": 544
+          }
+        },
+        "prompt_tokens": 575,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1503
+      }
+    },
+    "text": "{\n  \"summary\": \"2018 Acura TLX ADAS: five simultaneous dash warnings (auto high beam, road departure mitigation, collision mitigation, lane keeping assist, adaptive cruise control) one week after random alarm triggering; owner plans windshield camera sensor replacement\",\n  \"group\": \"adas\",\n  \"symptoms\": [\n    \"five warning lights on dash at the same time\",\n    \"auto high beam problem message\",\n    \"road departure mitigation system problem message\",\n    \"collision mitigation system problem message\",\n    \"lane keeping assist problem message\",\n    \"adaptive cruise control problem message\",\n    \"car alarm going off randomly\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\"kind\": \"symptom\", \"quote\": \"I got 5 lights on my dash\"},\n    {\"kind\": \"symptom\", \"quote\": \"auto high beam problem\"},\n    {\"kind\": \"symptom\", \"quote\": \"road departure mitigation system problem\"},\n    {\"kind\": \"symptom\", \"quote\": \"collision mitigation system problem\"},\n    {\"kind\": \"symptom\", \"quote\": \"lane keeping assist problem\"},\n    {\"kind\": \"symptom\", \"quote\": \"adaptive cruise control problem\"},\n    {\"kind\": \"condition\", \"quote\": \"at the exact same time\"},\n    {\"kind\": \"condition\", \"quote\": \"this happened 1 week after my car alarm started going off randomly\"},\n    {\"kind\": \"component_group\", \"quote\": \"windshield camera sensor\"},\n    {\"kind\": \"other\", \"quote\": \"Seems like this is an issue with many Acura owners\"}\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00035196,
+      "cached_tokens": 384,
+      "cost_usd": 0.0005866,
+      "input_tokens": 575,
+      "list_cost_usd": 0.0005866,
+      "output_tokens": 928,
+      "reasoning_tokens": 544
+    }
+  }
+}

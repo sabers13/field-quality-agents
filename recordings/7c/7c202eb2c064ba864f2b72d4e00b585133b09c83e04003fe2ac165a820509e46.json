@@ -1,0 +1,66 @@
+{
+  "key": "7c202eb2c064ba864f2b72d4e00b585133b09c83e04003fe2ac165a820509e46",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9464,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"12V/24V/48V battery caught fire while parked and charging; entire vehicle fire and total loss\",\"group\":\"power_and_wiring\",\"symptoms\":[\"battery caught on fire\",\"entire vehicle on fire\",\"thermal reaction in the battery\",\"vehicle total loss\"],\"conditions\":[\"charging\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM:12V/24V/48V BATTERY\"},{\"kind\":\"condition\",\"quote\":\"charging\"},{\"kind\":\"symptom\",\"quote\":\"while the vehicle was parked in the driveway and charging, the battery caught on fire\"},{\"kind\":\"symptom\",\"quote\":\"the entire vehicle was on fire\"},{\"kind\":\"other\",\"quote\":\"failure was due to a thermal reaction in the battery\"},{\"kind\":\"safety\",\"quote\":\"The vehicle was a total loss.\"},{\"kind\":\"other\",\"quote\":\"the fire department and Hazmat arrived\"}]}",
+            "reasoning_content": "We need answer only JSON object per schema. Need normalize report. Need identify summary component symptom conditions. Report: component electrical system battery, group power_and_wiring given. Symptoms: battery caught on fire while parked and charging; entire vehicle on fire; thermal reaction in battery; total loss. Conditions: charging, parked? Conditions allowed list: cold moisture heat vibration intermittent after service charging. We can include charging. Maybe \"parked\" not in allowed conditions? Schema says conditions array examples allowed? It says [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. We can include charging. Safety relevant true due fire. Fault codes none. Missing info? Mileage present 31000, date received, component, symptom, conditions present. Maybe missing date? Report has received_at but not incident date. Analysis needs date maybe missing? It says missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Incident date missing (not received date). Should list \"date\"? But report has received_at 2025-09-03, not failure date. Could include \"date\" because date of incident missing. But maybe not important? For fire investigation date matters. Need clue quotes verbatim. Need ensure quotes exactly copied. Let's craft.\n\nNeed quotes:\n- \"while the vehicle was parked in the driveway and charging, the battery caught on fire\" verbatim? Narrative: \"The contact stated that while the vehicle was parked in the driveway and charging, the battery caught on fire.\" We can quote substring exactly: \"while the vehicle was parked in the driveway and charging, the battery caught on fire\" yes.\n- \"the entire vehicle was on fire\" exact.\n- \"The contact stated that the failure was due to a thermal reaction in the battery.\" exact maybe quote.\n- \"The vehicle was a total loss.\" exact.\n- \"fire department and Hazmat arrived\" exact? Narrative: \"The contact stated that the fire department and Hazmat arrived.\" quote \"the fire department and Hazmat arrived\" yes.\n- component group? clue kind component_group quote maybe \"ELECTRICAL SYSTEM:12V/24V/48V BATTERY\" from component field, not narrative. Is that \"report\"? User message includes JSON. Quote from report can include component field? It says quote copied verbatim from report. The report includes component field. Could include. But clues likely narrative. We can include component_group quote \"ELECTRICAL SYSTEM:12V/24V/48V BATTERY\". Good.\n- safety clue quote \"the battery caught on fire\" or \"entire vehicle was on fire\". Good.\nNeed summary one line: \"2024 Jeep Wrangler 4xe 12V/24V/48V battery caught fire while parked and charging; vehicle total loss.\" This invents 4xe? Model is WRANGLER 4XE yes. Component says battery. Good.\n\nGroup: \"power_and_wiring\" given.\n\nSymptoms: [\"battery caught on fire\", \"entire vehicle on fire\", \"thermal reaction in battery\", \"vehicle total loss\"]? Symptom plain words. Maybe \"battery fire while charging\". Good.\n\nConditions: [\"charging\"] maybe also \"parked\" not allowed. Include charging only.\n\nFault_codes: [].\n\nsafety_relevant true.\n\nmissing_info: [\"date\"]? Need decide. The report has received_at, but incident date not present. The missing_info list allowed \"date\". Use [\"date\"]. Is mileage present yes. Conditions present charging. Component present. Symptom present. Date of incident missing. Good. But maybe they don't want date because received_at is date? The analysis needs date of failure; received_at not failure date. Include \"date\". Could include \"fire report not available\"? Not in allowed missing info. No.\n\nNeed output valid JSON only. No markdown? User says one JSON object and no other text. We can output raw JSON. Need ensure quotes exact.\n\nLet's ensure every quote is verbatim substring:\n- \"while the vehicle was parked in the driveway and charging, the battery caught on fire\" Narrative has \"The contact stated that while the vehicle was parked in the driveway and charging, the battery caught on fire.\" yes substring from after that. Good.\n- \"the entire vehicle was on fire\" Narrative: \"The contact stated that the entire vehicle was on fire.\" yes.\n- \"failure was due to a thermal reaction in the battery\" Narrative: \"The contact stated that the failure was due to a thermal reaction in the battery.\" yes substring.\n- \"The vehicle was a total loss.\" yes exact with period.\n- \"the fire department and Hazmat arrived\" exact.\n- \"ELECTRICAL SYSTEM:12V/24V/48V BATTERY\" exact component.\n- \"charging\" exact.\nNeed maybe \"battery caught on fire\" exact. Use in safety clue. Good.\n\nNeed no extra. JSON with arrays. Ensure \"safety_relevant\": true. \"missing_info\": [\"date\"].\n\nPotential issue symptoms \"thermal reaction in the battery\" is cause not symptom. But okay. Could include \"battery caught on fire\", \"entire vehicle on fire\", \"total loss\". Keep concise.\n\nNeed summary mention component, symptom, conditions. \"12V/24V/48V battery caught fire while parked and charging; entire vehicle fire and total loss.\" Good.\n\nLet's produce.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530072,
+      "id": "2191c41bd2dc85b68e12ebd1b6519f88",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1343,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1126,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00051072,
+          "billing_source": "go",
+          "list_cost": 0.0008512,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 295,
+            "output": 1343,
+            "reasoning": 1126
+          }
+        },
+        "prompt_tokens": 679,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2022
+      }
+    },
+    "text": "{\"summary\":\"12V/24V/48V battery caught fire while parked and charging; entire vehicle fire and total loss\",\"group\":\"power_and_wiring\",\"symptoms\":[\"battery caught on fire\",\"entire vehicle on fire\",\"thermal reaction in the battery\",\"vehicle total loss\"],\"conditions\":[\"charging\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM:12V/24V/48V BATTERY\"},{\"kind\":\"condition\",\"quote\":\"charging\"},{\"kind\":\"symptom\",\"quote\":\"while the vehicle was parked in the driveway and charging, the battery caught on fire\"},{\"kind\":\"symptom\",\"quote\":\"the entire vehicle was on fire\"},{\"kind\":\"other\",\"quote\":\"failure was due to a thermal reaction in the battery\"},{\"kind\":\"safety\",\"quote\":\"The vehicle was a total loss.\"},{\"kind\":\"other\",\"quote\":\"the fire department and Hazmat arrived\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00051072,
+      "cached_tokens": 384,
+      "cost_usd": 0.0008512,
+      "input_tokens": 679,
+      "list_cost_usd": 0.0008512,
+      "output_tokens": 1343,
+      "reasoning_tokens": 1126
+    }
+  }
+}

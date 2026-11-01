@@ -1,0 +1,66 @@
+{
+  "key": "5e7498feeafc6a42ff5606911bab0d6ba4aa7165b4b5de0a83e4431bb6ecf6d5",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12026,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2023 Chrysler Pacifica air bag recall 25V302000; recall repair part unavailable; no failure experienced\",\"group\":\"restraints\",\"symptoms\":[],\"conditions\":[],\"fault_codes\":[\"25V302000\"],\"safety_relevant\":false,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"fault_code\",\"quote\":\"NHTSA Campaign Number: 25V302000 (AIR BAGS)\"},{\"kind\":\"condition\",\"quote\":\"the part to do the recall repair was not yet available\"},{\"kind\":\"symptom\",\"quote\":\"The contact had not experienced a failure.\"},{\"kind\":\"other\",\"quote\":\"VIN tool confirms parts not available.\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize report. Need extract component AIR BAGS, group restraints. Summary one line component symptom conditions. Narrative says recall notification, part not available, no failure experienced. Symptom? No failure. Need symptoms maybe [] or [\"no failure experienced\"]? Rules symptom in plain words. Report says contact had not experienced a failure. That's not symptom. Could include symptom \"none reported\"? But symptoms array for symptoms. Better empty? Need clues quote verbatim. Conditions? recall? Not cold etc. Maybe none. fault_codes: NHTSA Campaign Number 25V302000? It is a campaign number, not fault code. The schema says fault_codes code if report names one. It names Campaign Number 25V302000. Could include as fault_code? Hmm \"fault_codes\": [\"code if report names one\"]. Campaign number isn't diagnostic fault code but is named code. The analysis might need campaign. But field is fault_codes. We can include? Need not invent. Quote \"NHTSA Campaign Number: 25V302000 (AIR BAGS)\". Maybe include fault_codes [\"25V302000\"]? Could be okay. But \"fault_code\" clue kind. The report names campaign number. The group given restraints. Safety_relevant false per input, but rules: set true when mentions crash fire etc. It doesn't. So false.\n\nMissing_info: analysis needs component? present. symptom? No failure, symptom missing? It says no failure experienced, but issue is recall part unavailable. The report lacks symptom because no failure. Mileage null. Date received present but incident date missing? The allowed missing_info facts: component, symptom, conditions, mileage, date. Mileage missing. Conditions? none. Date? Received_at present but event date not. Could list mileage and symptom? Need think. The report says no failure, so symptom absent. \"missing_info\": [\"mileage\", \"symptom\"]? But is symptom important? Since no failure experienced, the complaint is recall remedy unavailable; no symptom to analyze. However analysis maybe needs symptom. The schema expects list only facts analysis needs. It needs component/symptom/conditions/mileage/date. Component present. Symptom: no failure, so arguably none missing? Hmm.\n\nNeed summary: \"2023 Chrysler Pacifica air bag recall 25V302000; remedy part unavailable; no failure experienced.\" Conditions: maybe \"recall repair unavailable\" is condition? Allowed conditions list includes cold moisture heat vibration intermittent after service charging. Not those. No conditions. But \"after service\" no. So conditions [].\n\nClues: need verbatim spans. Include component group? Quote \"AIR BAGS\" from component? Verbatim in report? The report includes \"(AIR BAGS)\" yes. Quote \"AIR BAGS\". kind component_group? The group is restraints but quote AIR BAGS. Also symptom? \"The contact had not experienced a failure.\" kind symptom? It's absence. Maybe kind other. Condition? \"the part to do the recall repair was not yet available\" condition? Not in allowed condition categories but kind condition can quote. The clue kind condition can include any condition? Schema kind condition. Good. Fault code quote \"NHTSA Campaign Number: 25V302000 (AIR BAGS)\". Safety? no. Other quote \"manufacturer had exceeded a reasonable amount of time for the recall repair\". Need not overdo.\n\nNeed ensure quote exact character for character from narrative. Narrative: \"The contact owns a 2023 Chrysler Pacifica. The contact received notification of NHTSA Campaign Number: 25V302000 (AIR BAGS); however, the part to do the recall repair was not yet available. The local dealer was contacted. The contact stated that the manufacturer had exceeded a reasonable amount of time for the recall repair. The manufacturer was not made aware of the issue. The contact had not experienced a failure. VIN tool confirms parts not available.\"\n\nQuotes:\n- \"NHTSA Campaign Number: 25V302000 (AIR BAGS)\" exact yes.\n- \"the part to do the recall repair was not yet available\" exact yes (lowercase after however; span starts the). Good.\n- \"The contact had not experienced a failure.\" exact yes.\n- \"VIN tool confirms parts not available.\" exact yes.\n- \"AIR BAGS\" exact appears in parentheses.\n\nNeed JSON only. Summary \"2023 Chrysler Pacifica air bag recall 25V302000; remedy part unavailable; no failure experienced.\" Conditions [] maybe. symptoms []? Could maybe symptoms [\"no failure experienced\"] but that's not a symptom. Better [] and missing_info [\"mileage\",\"symptom\",\"conditions\"]? Hmm. The field expects symptoms array. If no symptom, missing_info should include symptom? The report explicitly says no failure experienced, so symptom info is \"none\". But analysis needs symptom to categorize? It can't because no failure. Maybe missing_info include mileage and conditions; not symptom because \"no failure\" is clear. But \"symptom\" missing because no symptom. The rules: List missing_info only for facts the analysis needs: component, symptom, conditions, mileage, date. Use empty when nothing important missing. Since report is recall availability, symptom not applicable. Mileage null. Conditions absent. Date received present; event date absent but not needed? Could include mileage. Conditions? The recall issue not condition-dependent. Maybe missing_info [\"mileage\"].\n\nNeed answer one JSON object. Let's craft with clues.\n\nPotential issue: safety_relevant in input false, but we set based on report. No safety. false.\n\nGroup: \"restraints\" given.\n\nFault_codes: [\"25V302000\"] maybe. Is campaign number a fault code? The schema says fault_codes code if report names one. It names campaign number. I'll include it; clue quote full. If strict fault code maybe not, but okay.\n\nSymptom: [] because no failure. But maybe \"recall repair part unavailable\" is symptom? Not component symptom. Hmm.\n\nSummary should mention component and symptom? \"Air bag recall 25V302000; repair part unavailable; no failure reported.\" Good.\n\nNeed no markdown? \"Answer with one JSON object and no other text\". final should be JSON only. Use valid JSON.\n\nLet's ensure no trailing commas.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793528597,
+      "id": "c140f6e5a46ed503d3b6dd6b2970686e",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1484,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1322,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00055266,
+          "billing_source": "go",
+          "list_cost": 0.0009211,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 197,
+            "output": 1484,
+            "reasoning": 1322
+          }
+        },
+        "prompt_tokens": 581,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2065
+      }
+    },
+    "text": "{\"summary\":\"2023 Chrysler Pacifica air bag recall 25V302000; recall repair part unavailable; no failure experienced\",\"group\":\"restraints\",\"symptoms\":[],\"conditions\":[],\"fault_codes\":[\"25V302000\"],\"safety_relevant\":false,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"fault_code\",\"quote\":\"NHTSA Campaign Number: 25V302000 (AIR BAGS)\"},{\"kind\":\"condition\",\"quote\":\"the part to do the recall repair was not yet available\"},{\"kind\":\"symptom\",\"quote\":\"The contact had not experienced a failure.\"},{\"kind\":\"other\",\"quote\":\"VIN tool confirms parts not available.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00055266,
+      "cached_tokens": 384,
+      "cost_usd": 0.0009211,
+      "input_tokens": 581,
+      "list_cost_usd": 0.0009211,
+      "output_tokens": 1484,
+      "reasoning_tokens": 1322
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "124fa2363918e971194444e6f84ce72669783244321c1824c2ddc23ab5b5f064",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 6872,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Test intermittent infotainment/instrument-panel power loss with a long-run power cycling test.\",\"rationale\":\"The narrative reports the instrument panel blinking on and off then going dark, and a blank infotainment screen while parked. The rulebook matches the intermittent condition to a long-run power cycling test, which reproduces faults after repeated wake and sleep cycles.\",\"group\":\"infotainment\",\"symptoms\":[\"instrument panel blinking on and off then going dark\",\"infotainment screen blank\"],\"conditions\":[\"intermittent\",\"while parked and seated in the vehicle\"],\"fault_codes\":[],\"safety_relevant\":false,\"targeted\":true,\"test_name\":\"Long-run power cycling test\",\"clues\":[{\"kind\":\"symptom\",\"quote\":\"instrument panel was blinking on and off several times before going dark\"},{\"kind\":\"symptom\",\"quote\":\"the infotainment system also displayed a blank screen\"},{\"kind\":\"condition\",\"quote\":\"while parked and seated in the vehicle\"},{\"kind\":\"component_group\",\"quote\":\"infotainment system\"}]}",
+            "reasoning_content": "We need answer JSON only. Need use facts. Case narrative quotes verbatim. Need propose targeted test rulebook names \"Long-run power cycling test\" because condition intermittent matches. targeted true. safety false. group infotainment. symptoms conditions fault_codes. clues quotes copied verbatim from case narrative. Need ensure quotes exact spans from narrative. Let's identify narrative text:\n\n\"The contact owns a 2025 Hyundai Santa FE. The contact stated that while parked and seated in the vehicle, the instrument panel was blinking on and off several times before going dark. The contact stated that the infotainment system also displayed a blank screen. A dealer was contacted. The vehicle was taken to the dealer for a recall repair, and the contact was informed that there was no failure with the instrument panel. The vehicle was not repaired. The manufacturer was not notified of the failure. The approximate failure mileage was 6,000.\"\n\nQuotes can include \"while parked and seated in the vehicle\" yes span. \"instrument panel was blinking on and off several times before going dark\" yes. \"the infotainment system also displayed a blank screen\" yes. Component group? Narrative doesn't contain \"EQUIPMENT:ELECTRICAL:INFOTAINMENT\" in narrative? It's in case component, not narrative. Rule says quote verbatim from case narrative. So cannot use component clue from extraction if not narrative. Could use \"infotainment system\" as component? Kind component_group quote \"the infotainment system\" verbatim. But maybe clue kind component_group with quote \"infotainment system\" exists. Need include perhaps. Also \"instrument panel\" symptom. Need summary one line.\n\nNeed output one JSON object no other text. Must not mention recall ids etc. Could mention no recall/investigation? Rationale can mention rulebook matched intermittent and test. Don't cite IDs? \"rulebook entry intermittent\" is id? Rule says do not cite case, recall or investigation id that tool results do not contain. Rulebook id is fine? It says case recall investigation id. We can mention intermittent condition without id. Maybe mention no recalls? Not necessary.\n\nNeed targeted true. Test_name exactly \"Long-run power cycling test\". Conditions [\"intermittent\", \"parked\"]? Extraction conditions [\"intermittent\"]; narrative condition \"while parked and seated in vehicle\" is condition but not extraction. We can include. Symptoms [\"instrument panel blinking on and off then going dark\", \"infotainment screen blank\"]. fault_codes []. safety_relevant false.\n\nClues array: all quote verbatim. Include symptom quote, symptom quote, condition quote, component_group quote maybe \"infotainment system\". Also maybe \"instrument panel\" as component. Need be careful quote \"infotainment system\" appears in narrative: \"the infotainment system also displayed...\" yes substring. \"instrument panel\" appears. But kind component_group quote can be \"infotainment system\". Fine.\n\nPotential issue quote \"instrument panel was blinking on and off several times before going dark\" yes exact. \"the infotainment system also displayed a blank screen\" exact. \"while parked and seated in the vehicle\" exact. \"the infotainment system\" exact. \"instrument panel\" exact.\n\nNeed rationale: \"The case reports intermittent instrument panel power loss and blank infotainment screen while parked; the rulebook matches the intermittent condition to a long-run power cycling test.\" Good.\n\nSummary one line: \"Test intermittent infotainment/instrument-panel power loss with a long-run power cycling test.\"\n\nEnsure no markdown? JSON only. Good.\n\nNeed consider safety_relevant false. Good.\n\nLet's craft final JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531867,
+      "id": "a7470dbeb33297a19fc90fe1f281544a",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 995,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 765,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00043875,
+          "billing_source": "go",
+          "list_cost": 0.00073125,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 895,
+            "output": 995,
+            "reasoning": 765
+          }
+        },
+        "prompt_tokens": 895,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 1890
+      }
+    },
+    "text": "{\"summary\":\"Test intermittent infotainment/instrument-panel power loss with a long-run power cycling test.\",\"rationale\":\"The narrative reports the instrument panel blinking on and off then going dark, and a blank infotainment screen while parked. The rulebook matches the intermittent condition to a long-run power cycling test, which reproduces faults after repeated wake and sleep cycles.\",\"group\":\"infotainment\",\"symptoms\":[\"instrument panel blinking on and off then going dark\",\"infotainment screen blank\"],\"conditions\":[\"intermittent\",\"while parked and seated in the vehicle\"],\"fault_codes\":[],\"safety_relevant\":false,\"targeted\":true,\"test_name\":\"Long-run power cycling test\",\"clues\":[{\"kind\":\"symptom\",\"quote\":\"instrument panel was blinking on and off several times before going dark\"},{\"kind\":\"symptom\",\"quote\":\"the infotainment system also displayed a blank screen\"},{\"kind\":\"condition\",\"quote\":\"while parked and seated in the vehicle\"},{\"kind\":\"component_group\",\"quote\":\"infotainment system\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00043875,
+      "cached_tokens": 0,
+      "cost_usd": 0.00073125,
+      "input_tokens": 895,
+      "list_cost_usd": 0.00073125,
+      "output_tokens": 995,
+      "reasoning_tokens": 765
+    }
+  }
+}

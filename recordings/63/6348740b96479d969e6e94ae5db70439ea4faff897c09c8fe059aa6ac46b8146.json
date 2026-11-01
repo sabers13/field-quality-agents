@@ -1,0 +1,66 @@
+{
+  "key": "6348740b96479d969e6e94ae5db70439ea4faff897c09c8fe059aa6ac46b8146",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 13681,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system: unintended full brake engagement at highway speeds from electronic parking brake/Auto Hold button defect; later brake pedal would not depress, occurring multiple times.\",\"group\":\"electrical_general\",\"symptoms\":[\"unintended full brake engagement at highway speeds\",\"brake pedal would not depress\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"electronic parking brake/Auto Hold button defect\"},{\"kind\":\"symptom\",\"quote\":\"Unintended full brake engagement at highway speeds\"},{\"kind\":\"symptom\",\"quote\":\"The system fully engaged the brakes without warning while traveling at highway speed\"},{\"kind\":\"condition\",\"quote\":\"This occurred multiple times.\"},{\"kind\":\"symptom\",\"quote\":\"the brake pedal would not depress at all\"},{\"kind\":\"other\",\"quote\":\"inside the electronic parking brake button\"},{\"kind\":\"safety\",\"quote\":\"Extreme risk of collision.\"},{\"kind\":\"safety\",\"quote\":\"Sudden, uncommanded braking at highway speeds can cause high-speed rear-end collisions.\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize. Need extract verbatim quotes from report. Need careful quotes exact spans. Report narrative includes summary. Need summary one line component symptom conditions. Component electrical system; symptom unintended full brake engagement at highway speeds, brake pedal would not depress, sticky substance inside EPB button. Conditions: highway speeds, multiple times? \"while traveling at highway speed\"; perhaps \"highway\" not in allowed conditions? conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. The report mentions multiple times -> intermittent? \"occurred multiple times\" indicates intermittent. Also dust/debris accumulation over time maybe not listed. Should we include \"intermittent\" only if fits. Conditions array should use allowed values. Could include \"intermittent\" due multiple times. Maybe no moisture because explicitly no liquid spills and minimal non-liquid debris; but \"sticky substance\" not moisture. No cold/heat/vibration/charging/after service. Could include \"intermittent\" because occurred multiple times and without warning. Need group given electrical_general or \"electrical/electronic component group\"? User says group the electrical/electronic component group, or given group. Given group \"electrical_general\". Use that.\n\nFault codes none. safety_relevant true (mentions extreme risk collision, risk rear-ended, life-threatening hazard, sudden uncommanded braking, crash?). Set true. missing_info: mileage is null and not mentioned. Date? narrative has redacted dates; received_at date but report date redacted. Missing date? The analysis needs date? They have received_at. But missing date maybe incident date redacted. Component present, symptom present, conditions present? Mileage missing. Date? Since [XXX] redacted, missing incident date. We can list mileage and date. Maybe conditions? Present. Component present. Symptom present. So [\"mileage\",\"date\"]. Need clues array with quotes. Must be verbatim spans copied from report. Need ensure exact text. Let's extract exact substrings from narrative:\n\n\"Unintended full brake engagement at highway speeds caused by electronic parking brake/Auto Hold button defect.\" This appears after Summary: exactly. Quote can be that. It includes symptom and component? Fine.\n\n\"Extreme risk of collision.\" exact.\n\n\"The system fully engaged the brakes without warning while traveling at highway speed\" exact? Narrative: \"The system fully engaged the brakes without warning while traveling at highway speed, scraping...\" yes. Quote exact.\n\n\"This occurred multiple times.\" exact.\n\n\"the brake pedal would not depress at all\" exact? Narrative: \"the brake pedal would not depress at all, rendering the vehicle undrivable.\" yes.\n\n\"sticky substance\" exact? Narrative has “a sticky substance” with curly quotes? It says diagnosed \\u201ca sticky substance\\u201d inside... The quote \"a sticky substance\" without quotes is verbatim inside. Could quote \"sticky substance\" exact substring yes. Better quote \"inside the electronic parking brake button\" exact.\n\n\"Sudden, uncommanded braking at highway speeds can cause high-speed rear-end collisions.\" exact.\n\n\"pose a life-threatening hazard to drivers and passengers\" Narrative: \"poses a life-threatening hazard to drivers and passengers.\" exact substring \"a life-threatening hazard to drivers and passengers\" maybe. Use exact.\n\nNeed include clues kind: symptom, condition, component_group, safety, other. For group clue quote \"ELECTRICAL SYSTEM\"? That's from component field, not narrative? The report in user message includes component. Is \"report\" entire JSON? We can quote from narrative or fields? Rules say report in user message. Could quote \"ELECTRICAL SYSTEM\" verbatim from component field. But every quote copied verbatim from report. It is in JSON. Accept. But maybe safer to use narrative only. For component_group quote could be \"electronic parking brake/Auto Hold button defect\" (component). But kind component_group. Good.\n\nNeed summary one line: \"Electrical system: unintended full brake engagement at highway speeds due to electronic parking brake/Auto Hold button defect; later brake pedal would not depress.\" Conditions include highway speeds, multiple times/intermittent. Need no extra.\n\nNeed ensure JSON valid no markdown? User says answer with one JSON object and no other text. Final should only JSON. Good.\n\nNeed decide safety_relevant true. Clues include safety quote \"Extreme risk of collision.\" and \"Sudden, uncommanded braking at highway speeds can cause high-speed rear-end collisions.\"\n\nNeed maybe mention \"stall at speed\"? no.\n\nNeed missing_info: mileage null, date redacted. Could include \"date\" because incident dates [XXX]. Maybe \"mileage\". Is \"conditions\" missing? No. Good.\n\nNeed quote \"The system fully engaged the brakes without warning while traveling at highway speed\" exact: Let's check narrative: \"The system fully engaged the brakes without warning while traveling at highway speed, scraping the brake rotors\" yes. Good.\n\nNeed quote \"The following day ([XXX], the brake pedal would not depress at all\" maybe bracket malformed in source. Use just short.\n\nNeed quote \"The defect can occur without visible warning and without any driver action.\" exact.\n\nNeed condition clue \"This occurred multiple times.\" kind condition with quote. Is multiple times => intermittent. condition list includes intermittent. Need clue for condition quote exact. Good.\n\nNeed maybe \"factory lubrication and normal dust/debris accumulation over time\" condition? Not allowed. Could kind other? No.\n\nNeed \"There have never been any liquid spills in this vehicle.\" This is a condition? moisture absence. But conditions list doesn't include dry. We can ignore. If include condition? no.\n\nNeed maybe \"at highway speeds\" condition? The allowed conditions are specific; highway speeds not in list. But summary can mention. Clues can have symptom quote.\n\nNeed output. Ensure no markdown. \nNeed exact quotes with punctuation. The report narrative is a JSON string with escaped unicode; the actual text has curly quotes. For quote \"a sticky substance\" no curly. Fine.\n\nNeed JSON object keys. Use arrays. Clues each with kind quote.\n\nLet's craft:\n\n{\n \"summary\":\"Electrical system: unintended full brake engagement at highway speeds from electronic parking brake/Auto Hold button defect; later brake pedal would not depress, occurring multiple times.\",\n \"group\":\"electrical_general\",\n \"symptoms\":[\"unintended full brake engagement at highway speeds\",\"brake pedal would not depress\"],\n \"conditions\":[\"intermittent\"],\n \"fault_codes\":[],\n \"safety_relevant\":true,\n \"missing_info\":[\"mileage\",\"date\"],\n \"clues\":[\n  {\"kind\":\"component_group\",\"quote\":\"electronic parking brake/Auto Hold button defect\"},\n  {\"kind\":\"symptom\",\"quote\":\"Unintended full brake engagement at highway speeds\"},\n  {\"kind\":\"symptom\",\"quote\":\"The system fully engaged the brakes without warning while traveling at highway speed\"},\n  {\"kind\":\"condition\",\"quote\":\"This occurred multiple times.\"},\n  {\"kind\":\"symptom\",\"quote\":\"the brake pedal would not depress at all\"},\n  {\"kind\":\"other\",\"quote\":\"inside the electronic parking brake button\"},\n  {\"kind\":\"safety\",\"quote\":\"Extreme risk of collision.\"},\n  {\"kind\":\"safety\",\"quote\":\"Sudden, uncommanded braking at highway speeds can cause high-speed rear-end collisions.\"}\n ]\n}\n\nNeed check quote \"Unintended full brake engagement at highway speeds\" exact substring: Summary starts \"Summary: Unintended full brake engagement at highway speeds caused...\" yes substring exists. Good.\n\nQuote \"electronic parking brake/Auto Hold button defect\" exact: \"Summary: Unintended full brake engagement at highway speeds caused by electronic parking brake/Auto Hold button defect.\" yes substring exists.\n\nQuote \"This occurred multiple times.\" exact yes.\n\nQuote \"inside the electronic parking brake button\" exact: \"inside the electronic parking brake button, located next...\" yes.\n\nNeed maybe include safety quote \"poses a life-threatening hazard to drivers and passengers\" exact? not needed.\n\nNeed ensure no \"group\" should be \"electrical/electronic component group\"? Given group is electrical_general. Use that. Good.\n\nPotential issue safety_relevant in input false but narrative clearly safety. We override true per rules. Good.\n\nNeed answer only JSON. \nFinal with JSON only.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529888,
+      "id": "0840862bba3950285c060cee3a8345cb",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1967,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1722,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00075579,
+          "billing_source": "go",
+          "list_cost": 0.00125965,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 522,
+            "output": 1967,
+            "reasoning": 1722
+          }
+        },
+        "prompt_tokens": 906,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2873
+      }
+    },
+    "text": "{\"summary\":\"Electrical system: unintended full brake engagement at highway speeds from electronic parking brake/Auto Hold button defect; later brake pedal would not depress, occurring multiple times.\",\"group\":\"electrical_general\",\"symptoms\":[\"unintended full brake engagement at highway speeds\",\"brake pedal would not depress\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"electronic parking brake/Auto Hold button defect\"},{\"kind\":\"symptom\",\"quote\":\"Unintended full brake engagement at highway speeds\"},{\"kind\":\"symptom\",\"quote\":\"The system fully engaged the brakes without warning while traveling at highway speed\"},{\"kind\":\"condition\",\"quote\":\"This occurred multiple times.\"},{\"kind\":\"symptom\",\"quote\":\"the brake pedal would not depress at all\"},{\"kind\":\"other\",\"quote\":\"inside the electronic parking brake button\"},{\"kind\":\"safety\",\"quote\":\"Extreme risk of collision.\"},{\"kind\":\"safety\",\"quote\":\"Sudden, uncommanded braking at highway speeds can cause high-speed rear-end collisions.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00075579,
+      "cached_tokens": 384,
+      "cost_usd": 0.00125965,
+      "input_tokens": 906,
+      "list_cost_usd": 0.00125965,
+      "output_tokens": 1967,
+      "reasoning_tokens": 1722
+    }
+  }
+}

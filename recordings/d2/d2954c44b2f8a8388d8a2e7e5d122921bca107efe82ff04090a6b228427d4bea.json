@@ -1,0 +1,66 @@
+{
+  "key": "d2954c44b2f8a8388d8a2e7e5d122921bca107efe82ff04090a6b228427d4bea",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 7104,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Air bags did not deploy in a 2019 Chevrolet Colorado after a ~32 mph rear-end collision with a stopped vehicle.\",\"group\":\"restraints\",\"symptoms\":[\"airbags did not deploy\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"The airbags did not deploy in my vehicle.\"},{\"kind\":\"condition\",\"quote\":\"I was travelling at approximately 32 miles per hour when I rear ended a vehicle that was in front of me\"},{\"kind\":\"safety\",\"quote\":\"rear ended a vehicle that was in front of me\"},{\"kind\":\"other\",\"quote\":\"Damage to the vehicle was substantial enough to declare the vehicle a total loss.\"}]}",
+            "reasoning_content": "We need answer only JSON object. Need normalize report. Need parse. Component AIR BAGS group restraints. Summary one line component symptom conditions. Symptoms: airbags did not deploy. Conditions: crash? Collision at ~32 mph rear-ended stopped vehicle. Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. Crash not in allowed conditions? The schema conditions examples list specific only. We should include conditions from allowed? It says conditions: [\"cold\", ...]. But report mentions travelling ~32 mph rear ended stopped vehicle. Could include \"vibration\"? no. Maybe conditions empty? But \"conditions\" needed? The allowed list doesn't include crash. Could include none. Safety relevant true due crash. Fault codes none. Missing info: mileage, date? received_at but not incident date. Component present symptom present conditions maybe collision condition given but not in list. Mileage null, date (incident date) missing. Maybe missing_info [\"mileage\", \"date\"]. Clues with verbatim quotes: symptom \"The airbags did not deploy in my vehicle.\" condition maybe \"I was travelling at approximately 32 miles per hour when I rear ended a vehicle that was in front of me\" or \"the vehicle in front of me was stopped\" kind condition? But conditions list doesn't have crash; clue kind condition can quote collision. component_group \"AIR BAGS\"? quote? component field not narrative. Need quote from report; report includes JSON fields. Verbatim span copied from report. Can quote \"AIR BAGS\"? Kind component_group. Safety quote \"rear ended a vehicle\" or \"total loss\"? Safety relevant due crash. Quote \"I rear ended a vehicle that was in front of me\" kind safety. Maybe \"Damage to the vehicle was substantial enough to declare the vehicle a total loss.\" other? Not safety? crash enough. Need no extra text. Summary: \"Air bags did not deploy in a 2019 Chevrolet Colorado after a ~32 mph rear-end collision with a stopped vehicle.\" Conditions maybe []? But summary includes conditions. The JSON conditions field should maybe [\"vibration\"]? No. Better empty list because none of enumerated conditions. But schema shows conditions array; can be empty. Missing info maybe [\"mileage\", \"date\"] because mileage null and incident date absent (received_at only). Component and symptom present. Conditions? Collision conditions present but not in enumerated list; no need missing. Clues: \n- symptom quote \"The airbags did not deploy in my vehicle.\"\n- condition quote \"I was travelling at approximately 32 miles per hour when I rear ended a vehicle that was in front of me\" (kind condition)\n- condition quote \"the vehicle in front of me was stopped\" maybe too much; one condition enough.\n- safety quote \"I rear ended a vehicle that was in front of me\" (kind safety)\n- component_group quote \"AIR BAGS\" (kind component_group)\n- other quote \"Damage to the vehicle was substantial enough to declare the vehicle a total loss.\" maybe kind other.\nNeed ensure exact quote from narrative. \"The airbags did not deploy in my vehicle.\" exact yes. \"I was travelling at approximately 32 miles per hour when I rear ended a vehicle that was in front of me\" exact? Narrative: \"I was travelling at approximately 32 miles per hour when I rear ended a vehicle that was in front of me, the vehicle...\" yes. Safety quote exact \"rear ended a vehicle that was in front of me\" exists. Component quote \"AIR BAGS\" exact in JSON. Good.\n\nNeed answer one JSON object no other text. final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793532887,
+      "id": "7e283d2e306d52aaf8047e83eef0ba1b",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 923,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 742,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0003471,
+          "billing_source": "go",
+          "list_cost": 0.0005785,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 157,
+            "output": 923,
+            "reasoning": 742
+          }
+        },
+        "prompt_tokens": 541,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1464
+      }
+    },
+    "text": "{\"summary\":\"Air bags did not deploy in a 2019 Chevrolet Colorado after a ~32 mph rear-end collision with a stopped vehicle.\",\"group\":\"restraints\",\"symptoms\":[\"airbags did not deploy\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"The airbags did not deploy in my vehicle.\"},{\"kind\":\"condition\",\"quote\":\"I was travelling at approximately 32 miles per hour when I rear ended a vehicle that was in front of me\"},{\"kind\":\"safety\",\"quote\":\"rear ended a vehicle that was in front of me\"},{\"kind\":\"other\",\"quote\":\"Damage to the vehicle was substantial enough to declare the vehicle a total loss.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0003471,
+      "cached_tokens": 384,
+      "cost_usd": 0.0005785,
+      "input_tokens": 541,
+      "list_cost_usd": 0.0005785,
+      "output_tokens": 923,
+      "reasoning_tokens": 742
+    }
+  }
+}

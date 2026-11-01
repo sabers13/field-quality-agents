@@ -1,0 +1,66 @@
+{
+  "key": "95c21940a9c7c14229b3cad7a5c654e664419835da535cc329e3d15f9c69bd1e",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 4777,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\": \"Test the rear wiper circuit with an installation check, since the wiper only works in reverse and persists after fuse replacement.\", \"rationale\": \"The narrative reports the rear wiper works only in reverse and the problem continues after the fuse was replaced. The rulebook matches the after-service condition and calls for an installation check before testing, focusing on connector seating, pin damage and correct part fit.\", \"group\": \"body_controls\", \"symptoms\": [\"rear wiper works only in reverse\", \"problem continues after fuse replacement\"], \"conditions\": [\"after service\"], \"fault_codes\": [], \"safety_relevant\": false, \"targeted\": true, \"test_name\": \"Installation check before test\", \"clues\": [{\"kind\": \"symptom\", \"quote\": \"Rear wiper works only in reverse\"}, {\"kind\": \"condition\", \"quote\": \"fuse was replaced\"}, {\"kind\": \"other\", \"quote\": \"problem still continues\"}]}",
+            "reasoning_content": "We need to produce JSON. The case: rear wiper works only in reverse, fuse replaced, problem persists. Rulebook matched after_service: \"Installation check before test\". Targeted? The rulebook names test \"Installation check before test\". Is it a targeted load test? Rule says prefer targeted load test when conditions match rulebook entry, otherwise standard test targeted false. Here the rulebook entry test is \"Installation check before test\" — that's the targeted test the rulebook names. So targeted true, test_name \"Installation check before test\". Safety_relevant false.\n\nClues must be verbatim from case narrative: \"Rear wiper works only in reverse\", \"fuse was replaced\", \"problem still continues\". Also component group quote? \"VISIBILITY/WIPER\" is from component field, not narrative. Rule: quote copied verbatim from case narrative. So clue for component_group maybe quote \"VISIBILITY/WIPER\"? Narrative doesn't contain it. So avoid. Use symptom quotes. Conditions: \"after service\" — narrative doesn't say after service explicitly? It says fuse was replaced, that's after service. Hmm \"after service\" not verbatim. Could use \"fuse was replaced\" as condition quote. Let's give clues with kind symptom for \"Rear wiper works only in reverse\", condition \"fuse was replaced\", other \"problem still continues\". Maybe also symptom \"problem still continues\".\n\nSummary one line. Rationale mention matched rulebook after_service and evidence.\n\nGroup: body_controls (component group). Symptoms list. conditions list [\"after service\"]. fault_codes []. targeted true. test_name \"Installation check before test\". safety_relevant false.\n\nEnsure JSON only.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529387,
+      "id": "6b588869d4e5915ffdeb68749d4e3da0",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 561,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 353,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00027,
+          "billing_source": "go",
+          "list_cost": 0.00045,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 756,
+            "output": 561,
+            "reasoning": 353
+          }
+        },
+        "prompt_tokens": 756,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 1317
+      }
+    },
+    "text": "{\"summary\": \"Test the rear wiper circuit with an installation check, since the wiper only works in reverse and persists after fuse replacement.\", \"rationale\": \"The narrative reports the rear wiper works only in reverse and the problem continues after the fuse was replaced. The rulebook matches the after-service condition and calls for an installation check before testing, focusing on connector seating, pin damage and correct part fit.\", \"group\": \"body_controls\", \"symptoms\": [\"rear wiper works only in reverse\", \"problem continues after fuse replacement\"], \"conditions\": [\"after service\"], \"fault_codes\": [], \"safety_relevant\": false, \"targeted\": true, \"test_name\": \"Installation check before test\", \"clues\": [{\"kind\": \"symptom\", \"quote\": \"Rear wiper works only in reverse\"}, {\"kind\": \"condition\", \"quote\": \"fuse was replaced\"}, {\"kind\": \"other\", \"quote\": \"problem still continues\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00027,
+      "cached_tokens": 0,
+      "cost_usd": 0.00045,
+      "input_tokens": 756,
+      "list_cost_usd": 0.00045,
+      "output_tokens": 561,
+      "reasoning_tokens": 353
+    }
+  }
+}

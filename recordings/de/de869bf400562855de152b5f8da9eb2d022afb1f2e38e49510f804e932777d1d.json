@@ -1,0 +1,66 @@
+{
+  "key": "de869bf400562855de152b5f8da9eb2d022afb1f2e38e49510f804e932777d1d",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 15401,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Exterior lighting: person-shaped dark shadow/image appears after dark while driving, shifts or enlarges, and causes panic braking.\",\"group\":\"lighting\",\"symptoms\":[\"dark shadow or image appears while driving\",\"shadow resembles the shape of a person\",\"shadow unexpectedly enlarges or shifts\",\"panic braking due to visual distortion\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"EXTERIOR LIGHTING\"},{\"kind\":\"symptom\",\"quote\":\"a dark shadow or image that appears while driving\"},{\"kind\":\"symptom\",\"quote\":\"This shadow often resembles the shape of a person and unexpectedly enlarges or shifts\"},{\"kind\":\"condition\",\"quote\":\"particularly noticeable after dark\"},{\"kind\":\"symptom\",\"quote\":\"applied the brakes suddenly\"},{\"kind\":\"condition\",\"quote\":\"especially when driving at higher speeds or in traffic\"},{\"kind\":\"condition\",\"quote\":\"recurring problem\"},{\"kind\":\"safety\",\"quote\":\"presents a significant safety hazard\"}]}",
+            "reasoning_content": "We need to produce JSON per rules. Need parse report. Component exterior lighting group lighting. Summary one line component symptom conditions. Symptoms: dark shadow/image appearing while driving, particularly after dark; resembles shape of person; unexpectedly enlarges or shifts; causes panic braking. Conditions: after dark? \"particularly noticeable after dark\"; at higher speeds or in traffic. Safety relevant true (report mentions risk, sudden braking, safety hazard). Fault codes none. Missing info: mileage null, date? received date but complaint since Dec 2024, no exact date? Missing mileage. Conditions present. Component present. Symptom present. So missing_info [\"mileage\"]. Maybe date? There is \"Since December 2024\" but not specific date; but date not necessarily missing. Need clues verbatim quotes. Need every quote copied. Use exact substrings. Need one JSON object no other text. Ensure quotes verbatim character for character. Let's craft.\n\nNeed \"group\": \"lighting\". Summary: \"Exterior lighting on 2023 Mercedes-Benz EQS SUV 450 4MATIC shows a person-shaped dark shadow/image after dark that shifts/enlarges, prompting panic braking.\" One line. Symptoms array plain words: [\"dark shadow or image appears while driving\", \"shadow resembles the shape of a person\", \"shadow unexpectedly enlarges or shifts\", \"panic braking due to visual distortion\"]. Conditions: [\"after dark\", \"higher speeds\", \"traffic\"]? The allowed conditions list includes cold moisture heat vibration intermittent after service charging. The schema says conditions: [\"cold\", ...] but maybe should use plain conditions? It says conditions: [\"cold\", \"moisture\",...]. But report conditions aren't in that list. Hmm rules: conditions list includes enumerated. But prompt says \"conditions\": [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. So should we only include those? Incoming has after dark, higher speeds, traffic, recurring. Could include \"intermittent\" because recurring? But not exactly. Maybe conditions should be [\"after dark\"]? But schema example enumerates. However instruction says answer JSON; \"conditions\": [\"cold\", ...]. It might expect only allowed values? The field \"conditions\" in schema shows allowed list. But user report has \"after dark\" not in list. Need decide. The prompt: \"conditions\": [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. It likely expects conditions from that set. We can include \"intermittent\" since recurring problem, but not clearly intermittent. \"after dark\" not in allowed list. Could put conditions as [\"intermittent\"]? But quote \"after dark\" can be clue kind condition. Hmm.\n\nClues: kind symptom quote \"a dark shadow or image that appears while driving\" exact? Report: \"a dark shadow or image that appears while driving, particularly noticeable after dark.\" Use exact span. \"This shadow often resembles the shape of a person and unexpectedly enlarges or shifts\" exact. \"applied the brakes suddenly\" exact? It says \"I have instinctively applied the brakes suddenly\". Quote that. condition quote \"particularly noticeable after dark\" exact. \"especially when driving at higher speeds or in traffic\" exact. safety quote \"presents a significant safety hazard\" exact. component_group quote \"EXTERIOR LIGHTING\" exact? component field is \"EXTERIOR LIGHTING\"; narrative not. Clue kind component_group quote \"EXTERIOR LIGHTING\" from component. Is that allowed? The report includes JSON field, yes. Verbatim from report. Good.\n\nNeed no markdown? It says one JSON object no other text. We can output raw JSON. Ensure quotes valid escaped. Let's produce concise. Need include missing_info [\"mileage\"]. safety_relevant true. fault_codes [].\n\nNeed summary mention component, symptom, conditions. \"Exterior lighting: person-shaped dark shadow/image appears after dark while driving, shifts/enlarges and causes panic braking.\" Good.\n\nCheck quote exact: \"a dark shadow or image that appears while driving\" appears? Narrative: \"a recurring problem with a dark shadow or image that appears while driving, particularly noticeable after dark.\" Yes exact substring \"a dark shadow or image that appears while driving\". Good.\n\"This shadow often resembles the shape of a person and unexpectedly enlarges or shifts\" exact? Narrative: \"This shadow often resembles the shape of a person and unexpectedly enlarges or shifts, creating...\" yes.\n\"particularly noticeable after dark\" exact.\n\"applied the brakes suddenly\" exact? Narrative: \"I have instinctively applied the brakes suddenly\" yes substring.\n\"especially when driving at higher speeds or in traffic\" exact? Narrative: \"especially when driving at higher speeds or in traffic.\" yes.\n\"presents a significant safety hazard\" exact? Narrative: \"which presents a significant safety hazard for both me and my family.\" yes.\n\"EXTERIOR LIGHTING\" exact from component.\n\nCould include \"recurring problem\" as condition? Not in allowed. But maybe clue kind condition quote \"recurring problem\". Hmm.\n\nNeed conditions array: Since conditions field allowed enumerated, but problem conditions \"after dark\" etc. If I put [\"intermittent\"] maybe false. Maybe put []? But analysis needs conditions; conditions are present. The schema's conditions examples might not be exhaustive? It says \"conditions\": [\"cold\", ...]. But \"after dark\" is a condition. I think include [\"after dark\", \"higher speeds\", \"traffic\"] despite enum? Hmm. The prompt says \"conditions\": [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"] under JSON template. That may be a closed list. But if a report mentions \"after dark\", not in list. The intake agent normalizes into standard condition tags. However \"after dark\" not standard. Could include \"intermittent\" because \"recurring\" and appears while driving? But no.\n\nMaybe conditions should be [\"intermittent\"] because recurring problem. But \"intermittent\" means not always. It says recurring problem and appears while driving particularly after dark. Hmm.\n\nNeed comply with exact schema values? Could set conditions: [\"intermittent\"] and clue for condition quote \"recurring problem\". But then misses after dark. Alternatively use conditions: [] and clues include after dark as condition. But missing_info? Conditions not missing because after dark present. Hmm.\n\nLet's read user: \"conditions\": [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. It might be illustrative of condition tags. They want normalize incoming field-quality report. The allowed tags are those. \"after dark\" isn't there. I'd rather not invent. But \"intermittent\" fits recurring. Use [\"intermittent\"] and include clue quote \"recurring problem\". But the symptom \"after dark\" is a condition but not tag. We can include clue kind condition quote \"particularly noticeable after dark\". That's evidence. Conditions array can be [\"intermittent\"]. Is that okay? It doesn't misrepresent? Recurring issue = intermittent. Fine.\n\nNeed missing_info: component present, symptom present, conditions? after dark present, mileage absent, date? received date but incident since Dec 2024; no exact date. The list includes date. Should missing_info include \"date\"? Report has \"Since December 2024\" but not exact date. It might be enough? The analysis needs date. But if they gave received_at, not incident date. Missing exact date? Hmm. \"Since December 2024\" gives month. Do we list \"date\"? The missing_info examples include \"date\". It says list missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. The report includes \"Since December 2024\" so date partially present. Mileage null. I'd include [\"mileage\"] only. If exact date needed, maybe include \"date\" too. But \"Since December 2024\" is date-ish. Missing_info can include mileage. Good.\n\nNeed safety_relevant true. Good.\n\nNeed final raw JSON. Use double quotes. Ensure no newline? Fine.\n\nLet's formulate.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793525677,
+      "id": "c765c2462add0a6cf54494c468acc528",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1970,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1735,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00075453,
+          "billing_source": "go",
+          "list_cost": 0.00125755,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 496,
+            "output": 1970,
+            "reasoning": 1735
+          }
+        },
+        "prompt_tokens": 880,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2850
+      }
+    },
+    "text": "{\"summary\":\"Exterior lighting: person-shaped dark shadow/image appears after dark while driving, shifts or enlarges, and causes panic braking.\",\"group\":\"lighting\",\"symptoms\":[\"dark shadow or image appears while driving\",\"shadow resembles the shape of a person\",\"shadow unexpectedly enlarges or shifts\",\"panic braking due to visual distortion\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"EXTERIOR LIGHTING\"},{\"kind\":\"symptom\",\"quote\":\"a dark shadow or image that appears while driving\"},{\"kind\":\"symptom\",\"quote\":\"This shadow often resembles the shape of a person and unexpectedly enlarges or shifts\"},{\"kind\":\"condition\",\"quote\":\"particularly noticeable after dark\"},{\"kind\":\"symptom\",\"quote\":\"applied the brakes suddenly\"},{\"kind\":\"condition\",\"quote\":\"especially when driving at higher speeds or in traffic\"},{\"kind\":\"condition\",\"quote\":\"recurring problem\"},{\"kind\":\"safety\",\"quote\":\"presents a significant safety hazard\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00075453,
+      "cached_tokens": 384,
+      "cost_usd": 0.00125755,
+      "input_tokens": 880,
+      "list_cost_usd": 0.00125755,
+      "output_tokens": 1970,
+      "reasoning_tokens": 1735
+    }
+  }
+}

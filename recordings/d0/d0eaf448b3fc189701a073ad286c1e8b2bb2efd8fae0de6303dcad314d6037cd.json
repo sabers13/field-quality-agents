@@ -1,0 +1,66 @@
+{
+  "key": "d0eaf448b3fc189701a073ad286c1e8b2bb2efd8fae0de6303dcad314d6037cd",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 4151,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "```json\n{\n  \"summary\": \"Electrical system on a 2024 Wrangler Hybrid shuts down while driving, requiring the driver to pull over, shut down and restart\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\"vehicle shuts down while driving\", \"vehicle requires shutdown and restart to recover\"],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\"mileage\", \"conditions\"],\n  \"clues\": [\n    {\"kind\": \"symptom\", \"quote\": \"Vehicle shuts down while driving.\"},\n    {\"kind\": \"symptom\", \"quote\": \"Driver had to pull over to shut vehicle down and then restart it.\"},\n    {\"kind\": \"safety\", \"quote\": \"Very dangerous situation.\"},\n    {\"kind\": \"component_group\", \"quote\": \"ELECTRICAL SYSTEM\"},\n    {\"kind\": \"other\", \"quote\": \"2024 Hybrid.\"}\n  ]\n}\n```",
+            "reasoning_content": "Let me produce the JSON.\n\nSummary: electrical system, vehicle shuts down while driving, restart required.\n\nConditions: \"intermittent\"? Not stated. No conditions mentioned explicitly other than driving. Conditions list should only include from allowed vocabulary: cold, moisture, heat, vibration, intermittent, after service, charging. None clearly stated. Hmm — shutting down while driving then restarting could be intermittent but that's not stated. Better leave empty.\n\nFault codes: none.\n\nSafety: \"Very dangerous situation\" and shuts down while driving — that's a loss of power at speed → safety_relevant true.\n\nMissing info: mileage (null), date? received_at present but build/incident date unknown. Mileage is null → missing. Conditions not stated. Component given. Symptom given. So missing_info: [\"mileage\", \"conditions\"].\n\nClues: quotes verbatim: \"Vehicle shuts down while driving.\" — narrative has \"2024 Hybrid. Vehicle shuts down while driving.\" Quote \"Vehicle shuts down while driving.\" is a verbatim span. \"Very dangerous situation.\" verbatim. \"Driver had to pull over to shut vehicle down and then restart it.\" verbatim. \"2024 Hybrid.\" for component? Use condition? Not in the allowed condition vocabulary... I'll use kind \"other\" for \"2024 Hybrid.\" maybe skip.\n\nComponent group: \"electrical_general\".",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531157,
+      "id": "867a87bb24ec8bb2b74917bd32f973e8",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 502,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 288,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0001932,
+          "billing_source": "go",
+          "list_cost": 0.000322,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 131,
+            "output": 502,
+            "reasoning": 288
+          }
+        },
+        "prompt_tokens": 515,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1017
+      }
+    },
+    "text": "```json\n{\n  \"summary\": \"Electrical system on a 2024 Wrangler Hybrid shuts down while driving, requiring the driver to pull over, shut down and restart\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\"vehicle shuts down while driving\", \"vehicle requires shutdown and restart to recover\"],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\"mileage\", \"conditions\"],\n  \"clues\": [\n    {\"kind\": \"symptom\", \"quote\": \"Vehicle shuts down while driving.\"},\n    {\"kind\": \"symptom\", \"quote\": \"Driver had to pull over to shut vehicle down and then restart it.\"},\n    {\"kind\": \"safety\", \"quote\": \"Very dangerous situation.\"},\n    {\"kind\": \"component_group\", \"quote\": \"ELECTRICAL SYSTEM\"},\n    {\"kind\": \"other\", \"quote\": \"2024 Hybrid.\"}\n  ]\n}\n```",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0001932,
+      "cached_tokens": 384,
+      "cost_usd": 0.000322,
+      "input_tokens": 515,
+      "list_cost_usd": 0.000322,
+      "output_tokens": 502,
+      "reasoning_tokens": 288
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "a1957c7eb5c688e2aa141dd51bf90d6299aae65e41569224b74f097abcdab35e",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11278,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Ford Ranger electrical system: steering assist fault and speedometer electric fault with jumping while in park.\",\"group\":\"electrical_general\",\"symptoms\":[\"steering assist fault\",\"electric fault on speedometer\",\"speedometer jumping up and down while in park\",\"causing an issue\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"steering assist fault\"},{\"kind\":\"symptom\",\"quote\":\"electric fault on the speedometer jumping up and down while its in park\"},{\"kind\":\"condition\",\"quote\":\"while its in park\"},{\"kind\":\"other\",\"quote\":\"causing an issue\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize report. Read user message only. Report fields: component ELECTRICAL SYSTEM, group electrical_general, id, make Ford, mileage null, model Ranger, narrative: \"ive had 2 seperate issues with my 2024 for ranger one is a steering assist fault the other is a electric fault on the speedometer jumping up and down while its in park and causing an issue\", received date, safety_relevant false (given), source.\n\nNeed output JSON with summary one line component symptom conditions. group given \"electrical_general\" or electrical/electronic component group. Since given group use electrical_general? Prompt says group: \"the electrical/electronic component group, or the given group\". We can use \"electrical_general\". Symptoms: steering assist fault; electric fault on speedometer jumping up and down while in park; causing an issue (vague). Conditions: in park? Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. \"in park\" not among conditions. Could include \"intermittent\"? Report says jumping up and down, 2 separate issues, maybe intermittent not explicit. Do not invent. Conditions maybe [] because in park not allowed condition category. But narrative says while its in park; conditions allowed list doesn't include park. Could include condition quote? The schema conditions array expects from list. We should not invent cold etc. So conditions []. Fault codes none. safety_relevant false (no crash fire etc). missing_info: mileage (null), date? received_at is date but report date? It has received_at 2025-07-29. Missing date maybe not needed? The analysis needs date? We have received date, not incident date. Could list \"mileage\" and maybe \"conditions\"? Component and symptom present. Conditions: \"while in park\" present but not allowed category. Maybe missing_info [\"mileage\"] only. But \"date\" maybe incident date missing. Prompt list missing only facts analysis needs: component, symptom, conditions, mileage, date. Mileage missing. Date? received_at present but incident date not; report has received_at. I'd include mileage and date? Hm. The field date is received_at, so not missing date? It is not incident date. But \"date\" maybe report date. Use [\"mileage\"] maybe safer. Conditions: in park is a condition but not in allowed set; still conditions array should include only allowed? It says conditions: [\"cold\", ...]. So no. Could mention in summary \"while in park\".\n\nClues: verbatim spans. Need quotes exactly from report. Candidate quotes:\n- \"steering assist fault\" (substring exact)\n- \"electric fault on the speedometer jumping up and down while its in park\" exact? Narrative: \"the other is a electric fault on the speedometer jumping up and down while its in park and causing an issue\". The substring \"electric fault on the speedometer jumping up and down while its in park\" exists exactly? Let's verify: \"the other is a electric fault on the speedometer jumping up and down while its in park and causing an issue\". Yes \"electric fault on the speedometer jumping up and down while its in park\" is contiguous. Good.\n- \"ELECTRICAL SYSTEM\" exact? component value yes in JSON. Quote from report? The report includes \"component\": \"ELECTRICAL SYSTEM\". Verbatim span can be from report. Use component_group quote \"ELECTRICAL SYSTEM\".\n- Maybe \"causing an issue\" exact for other/symptom vague.\n- \"2024 for ranger\" typo exact? Not necessary.\n\nNeed summary one line: \"Ford Ranger electrical system: steering assist fault and speedometer electric fault/jumping while in park.\" Conditions: in park maybe included in summary not conditions.\n\nNeed \"symptoms\": [\"steering assist fault\", \"electric fault on speedometer\", \"speedometer jumping up and down while in park\", \"causing an issue\"]? Symptom in plain words. Keep concise.\n\nNeed \"fault_codes\": [].\n\nsafety_relevant false. The report's safety_relevant is false; no safety mention. Fine.\n\nmissing_info: [\"mileage\"] maybe also \"date\"? Since received_at is date. I'd list mileage only. But \"conditions\" maybe not missing because in park. \"component\" present. \"symptom\" present. Date present as received_at. Good.\n\nClues array include kinds:\n{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"}\n{\"kind\":\"symptom\",\"quote\":\"steering assist fault\"}\n{\"kind\":\"symptom\",\"quote\":\"electric fault on the speedometer jumping up and down while its in park\"}\n{\"kind\":\"condition\",\"quote\":\"while its in park\"}? But conditions allowed list doesn't include park. Kind condition can quote. But quote \"while its in park\" exact substring? Narrative has \"while its in park\"; yes. But if conditions array doesn't include, clue kind condition maybe okay? The schema kind includes condition. But condition is not in allowed conditions list. Could include as clue to capture. It might be okay, not one of enumerated conditions but kind condition. Hmm. They want every quote verbatim; not necessarily condition values. But condition clue \"while its in park\" supports no allowed condition. I can include. But conditions field remains [].\n\n{\"kind\":\"other\",\"quote\":\"causing an issue\"} maybe not needed.\n\nNeed no markdown? They want one JSON object and no other text. Final should be raw JSON. Ensure valid JSON. Quotes with apostrophe? Narrative \"ive\" no apostrophe. \"its\" no apostrophe. Use exact. Use double quotes.\n\nNeed summary \"Ford Ranger electrical system: steering assist fault and speedometer electric fault with jumping while in park.\" That's one line.\n\nNeed group \"electrical_general\". Good.\n\nPotential issue: \"safety_relevant\" false but given field false. Good.\n\nLet's craft.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793528975,
+      "id": "39b75bb24880d50026923cfb7246bc6e",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1410,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1242,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00052134,
+          "billing_source": "go",
+          "list_cost": 0.0008689,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 145,
+            "output": 1410,
+            "reasoning": 1242
+          }
+        },
+        "prompt_tokens": 529,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1939
+      }
+    },
+    "text": "{\"summary\":\"Ford Ranger electrical system: steering assist fault and speedometer electric fault with jumping while in park.\",\"group\":\"electrical_general\",\"symptoms\":[\"steering assist fault\",\"electric fault on speedometer\",\"speedometer jumping up and down while in park\",\"causing an issue\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"steering assist fault\"},{\"kind\":\"symptom\",\"quote\":\"electric fault on the speedometer jumping up and down while its in park\"},{\"kind\":\"condition\",\"quote\":\"while its in park\"},{\"kind\":\"other\",\"quote\":\"causing an issue\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00052134,
+      "cached_tokens": 384,
+      "cost_usd": 0.0008689,
+      "input_tokens": 529,
+      "list_cost_usd": 0.0008689,
+      "output_tokens": 1410,
+      "reasoning_tokens": 1242
+    }
+  }
+}

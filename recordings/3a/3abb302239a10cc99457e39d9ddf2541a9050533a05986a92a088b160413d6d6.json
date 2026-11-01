@@ -1,0 +1,66 @@
+{
+  "key": "3abb302239a10cc99457e39d9ddf2541a9050533a05986a92a088b160413d6d6",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12471,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Automatic emergency braking and complete brake system failure while pulling into a parking lot, causing a collision and injuries; no warning lights.\",\n  \"group\": \"adas\",\n  \"symptoms\": [\n    \"complete brake system failure\",\n    \"braking system did not react or stop the car\",\n    \"automatic braking system did not function\",\n    \"no dashboard warning lights\",\n    \"vehicle collided into a wall\"\n  ],\n  \"conditions\": [\n    \"pulling in to a Starbucks parking lot\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Complete Brake System Failure\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Braking system did not react or stop the car.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Automatic braking system did not function either.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"No dashboard warning lights.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"while pulling in to a Starbucks parking lot\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"the car collided into a My Burger wall\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"Driver was taken to Urgent Care after sustaining soft tissue injuries affecting clavicle, sternum, neck and back.\"\n    }\n  ]\n}",
+            "reasoning_content": "We need to output JSON only. Need extract summary, group given \"adas\", symptoms, conditions, fault_codes, safety_relevant true, missing_info, clues verbatim quotes.\n\nReport: component FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING. Narrative: \"Honda Accord Hybrid Touring Edition 2022 [XXX] [XXX] Complete Brake System Failure while pulling in to a Starbucks parking lot in Wayzata, MN. Braking system did not react or stop the car. Automatic braking system did not function either. As a result the car collided into a My Burger wall. No dashboard warning lights. After collision police and ambulance arrived on the scene. Driver was taken to Urgent Care after sustaining soft tissue injuries affecting clavicle, sternum, neck and back. INFORMATION REDACTED...\"\n\nNeed summary one line: component, symptom, conditions. Component automatic emergency braking / brake system failure, conditions pulling into parking lot, collision, no warning lights. Maybe \"Automatic emergency braking and brake system failure while pulling into a parking lot, resulting in collision; no warning lights.\"\n\nGroup \"adas\".\n\nSymptoms: brake system failure, braking system did not react or stop car, automatic braking system did not function, collision, no dashboard warning lights? \"no dashboard warning lights\" is symptom? Could list. Soft tissue injuries? safety. Symptoms plain words.\n\nConditions: \"pulling in to a Starbucks parking lot\" maybe not among allowed list? Conditions array example has \"cold\", \"moisture\", etc. But can include context? It says conditions list. Could include \"parking lot maneuver\" or \"while pulling into parking lot\"? We should use short condition phrases. Allowed examples not exhaustive? It says conditions: [\"cold\", ...]. We can include \"parking lot maneuver\" but maybe better \"low speed\"? Not stated. We can include \"pulling into parking lot\". Verbatim quote \"while pulling in to a Starbucks parking lot\". Conditions: [\"pulling in to a Starbucks parking lot\"]? That is a condition. Also \"no dashboard warning lights\" is symptom/condition? Hmm.\n\nFault codes: none, [].\n\nsafety_relevant true.\n\nmissing_info: mileage null, date? received_at 2025-06-13 but event date not given. Component present, symptom present, conditions present. Missing mileage, date. Maybe \"mileage\", \"date\". The report has received date but not incident date. So [\"mileage\", \"date\"].\n\nClues: need verbatim quotes from report. Include:\n- component_group quote \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\" (from component field? Is that \"report\"? The user message includes JSON fields; narrative is report. But component is part of report object. The instruction says read only the report in user message. Quotes copied verbatim from the report. Could quote component field. Usually acceptable. But clue kind component_group quote exactly component value.\n- symptom quote \"Complete Brake System Failure\"\n- symptom quote \"Braking system did not react or stop the car.\"\n- symptom quote \"Automatic braking system did not function either.\"\n- symptom quote \"No dashboard warning lights.\"\n- condition quote \"while pulling in to a Starbucks parking lot\"\n- safety quote \"the car collided into a My Burger wall\"\n- safety quote \"Driver was taken to Urgent Care after sustaining soft tissue injuries affecting clavicle, sternum, neck and back.\"\n- safety quote \"police and ambulance arrived on the scene\" maybe not necessary.\nNeed quotes verbatim including punctuation. Ensure exact substrings. Narrative has \"Complete Brake System Failure while pulling in to a Starbucks parking lot in Wayzata, MN.\" So quote \"Complete Brake System Failure\" yes. \"Braking system did not react or stop the car.\" yes. \"Automatic braking system did not function either.\" yes. \"No dashboard warning lights.\" yes. \"while pulling in to a Starbucks parking lot\" yes. \"the car collided into a My Burger wall\" yes (narrative: \"As a result the car collided into a My Burger wall.\" substring yes). Injuries quote exact: \"Driver was taken to Urgent Care after sustaining soft tissue injuries affecting clavicle, sternum, neck and back.\" yes.\n\nNeed JSON object only no markdown? The prompt says answer with one JSON object and no other text. We can output raw JSON. Ensure valid.\n\nSummary maybe \"Automatic emergency braking and complete brake system failure while pulling into a parking lot, resulting in a collision and injuries; no warning lights.\" One line. It includes conditions. Good.\n\nSymptoms array: [\"complete brake system failure\", \"braking system did not react or stop the car\", \"automatic braking system did not function\", \"no dashboard warning lights\", \"collision\"]. Should \"collision\" be symptom? It's outcome/safety. Could include as symptom? Better symptoms only failure symptoms. Maybe include \"vehicle collided into wall\" as symptom? Symptom is observed failure. Let's include \"vehicle collided into a wall\" maybe. But \"symptom in plain words\" can include collision. We'll include but safety clue.\n\nConditions: The allowed examples include \"charging\" etc. We can include \"pulling in to a Starbucks parking lot\" as condition. Maybe \"parking lot maneuver\". To be safe, use exact phrase shortened? Conditions array not necessarily verbatim. Use [\"pulling into a parking lot\"]. But if quote need verbatim \"while pulling in to a Starbucks parking lot\". Fine.\n\nFault codes: [].\n\nMissing_info: [\"mileage\", \"date\"]. The report has year/model, component. Conditions present. Date absent (received date only). Good.\n\nClues kind values allowed: symptom|condition|fault_code|component_group|safety|other. Use component_group for component, symptom, condition, safety.\n\nNeed ensure \"safety_relevant\": true.\n\nPotential issue: \"group\": given group \"adas\" — output \"adas\".\n\nNeed not include explanation. Raw JSON.\n\nDouble-check all quotes exact:\n- \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\" — yes component field exactly.\n- \"Complete Brake System Failure\" — yes.\n- \"Braking system did not react or stop the car.\" — yes exact including period.\n- \"Automatic braking system did not function either.\" — yes.\n- \"No dashboard warning lights.\" — yes.\n- \"while pulling in to a Starbucks parking lot\" — narrative: \"Complete Brake System Failure while pulling in to a Starbucks parking lot in Wayzata, MN.\" substring exact yes.\n- \"the car collided into a My Burger wall\" — narrative \"As a result the car collided into a My Burger wall.\" substring exact yes.\n- \"Driver was taken to Urgent Care after sustaining soft tissue injuries affecting clavicle, sternum, neck and back.\" — exact yes. Note narrative has two spaces before \"After collision\"? Not relevant.\n- Could include \"police and ambulance arrived on the scene\" exact: narrative \"After collision police and ambulance arrived on the scene.\" substring yes. Maybe safety clue. Not necessary.\n\nNeed \"summary\" one line: \"Automatic emergency braking/brake system failure while pulling into a parking lot, causing a collision and injuries; no warning lights.\" Good.\n\nNeed no trailing commas. Output JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793527646,
+      "id": "740b075e9ec6e59cb760036f517938ca",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1923,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1538,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00071574,
+          "billing_source": "go",
+          "list_cost": 0.0011929,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 253,
+            "output": 1923,
+            "reasoning": 1538
+          }
+        },
+        "prompt_tokens": 637,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2560
+      }
+    },
+    "text": "{\n  \"summary\": \"Automatic emergency braking and complete brake system failure while pulling into a parking lot, causing a collision and injuries; no warning lights.\",\n  \"group\": \"adas\",\n  \"symptoms\": [\n    \"complete brake system failure\",\n    \"braking system did not react or stop the car\",\n    \"automatic braking system did not function\",\n    \"no dashboard warning lights\",\n    \"vehicle collided into a wall\"\n  ],\n  \"conditions\": [\n    \"pulling in to a Starbucks parking lot\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Complete Brake System Failure\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Braking system did not react or stop the car.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Automatic braking system did not function either.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"No dashboard warning lights.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"while pulling in to a Starbucks parking lot\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"the car collided into a My Burger wall\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"Driver was taken to Urgent Care after sustaining soft tissue injuries affecting clavicle, sternum, neck and back.\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00071574,
+      "cached_tokens": 384,
+      "cost_usd": 0.0011929,
+      "input_tokens": 637,
+      "list_cost_usd": 0.0011929,
+      "output_tokens": 1923,
+      "reasoning_tokens": 1538
+    }
+  }
+}

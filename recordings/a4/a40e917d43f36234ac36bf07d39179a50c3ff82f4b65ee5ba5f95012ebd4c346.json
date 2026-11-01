@@ -1,0 +1,66 @@
+{
+  "key": "a40e917d43f36234ac36bf07d39179a50c3ff82f4b65ee5ba5f95012ebd4c346",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10569,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Onboard charging cable/cord: ongoing charging defect over months; only charges on Level 1, fails Level 2/DC fast charging\",\"group\":\"ev_propulsion\",\"symptoms\":[\"only charges on Level 1\",\"fails to charge properly using Level 2 chargers\",\"fails to charge properly using DC fast chargers\"],\"conditions\":[\"charging\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM:PROPULSION SYSTEM:CHARGING:CABLE/CORD:ONBOARD\"},{\"kind\":\"symptom\",\"quote\":\"ongoing charging defect\"},{\"kind\":\"symptom\",\"quote\":\"only charges on Level 1\"},{\"kind\":\"symptom\",\"quote\":\"fails to charge properly using Level 2 or DC fast chargers\"},{\"kind\":\"condition\",\"quote\":\"charging defect\"},{\"kind\":\"safety\",\"quote\":\"I also feel like it’s a safety risk because I’m at risk of being stranded.\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize report. Need infer component group given ev_propulsion. Symptoms: only charges on Level 1; fails to charge properly using Level 2 or DC fast chargers; charging defect. Conditions: charging. Safety relevant? Report says feels safety risk risk of being stranded. Rule safety_relevant when mentions crash fire smoke injury loss control stall at speed or other risk to people. Being stranded could be risk? It says \"I also feel like it’s a safety risk because I’m at risk of being stranded.\" This is explicit safety risk, risk to people maybe. Should set true? The instruction: Set safety_relevant when report mentions ... or another risk to people. Stranding risk is safety risk but not necessarily people? It explicitly says safety risk. Need likely true. Fault codes none. Missing info mileage (null), date? It has received date, purchase date redacted. Analysis needs date? The report says purchased/leased on [XXX], over last couple months. Date maybe missing exact occurrence date. Mileage missing. Conditions present charging. Component present. Symptom present. missing_info [\"mileage\",\"date\"] maybe date? Need only facts analysis needs: component, symptom, conditions, mileage, date. Mileage missing; date? It gives received_at and \"over last couple months\", not exact onset. Could include date. But maybe date not missing because received date is available? The report date is received_at. Need likely missing mileage and date of incident/onset. Use [\"mileage\",\"date\"]. Summary one line: component, symptom, conditions. \"Onboard charging cable/cord: charging defect; only charges on Level 1, fails Level 2/DC fast; ongoing over months.\" Need group. \"ev_propulsion\" given. Could say \"ev_propulsion\". Symptoms array plain words: \"only charges on Level 1\", \"fails to charge properly using Level 2 chargers\", \"fails to charge properly using DC fast chargers\". Conditions [\"charging\"]. Fault codes []. safety_relevant true. Clues must verbatim quote spans from report. Need ensure exact substrings. Use quotes:\n- \"ongoing charging defect\" (exists)\n- \"it only charges on Level 1 but fails to charge properly using Level 2 or DC fast chargers\" (check exact: narrative: \"it only charges on Level 1 but fails to charge properly using Level 2 or DC fast chargers, which...\" Yes exact.)\n- \"I also feel like it’s a safety risk because I’m at risk of being stranded.\" Note curly apostrophe? Report has \"I also feel like it\\u2019s a safety risk because I\\u2019m at risk of being stranded.\" Use exact curly chars. Need quote verbatim. We can include as safety clue. \n- Component group quote? \"ELECTRICAL SYSTEM:PROPULSION SYSTEM:CHARGING:CABLE/CORD:ONBOARD\" is in component field, not narrative? User message report includes component field. It says quote copied verbatim from report. Report includes JSON; can quote component string? Probably yes? But clue kind component_group can quote \"ELECTRICAL SYSTEM:PROPULSION SYSTEM:CHARGING:CABLE/CORD:ONBOARD\" exact. Or \"2024 Hyundai Ioniq 5\" maybe. \nNeed answer JSON only. Ensure no markdown? User says one JSON object and no other text. Final should be JSON. \n\nNeed decide safety_relevant true. Since report explicitly \"safety risk\" and \"stranded\". Good.\n\nNeed summary include conditions. \"Onboard charging cable/cord: ongoing charging defect over months; only charges on Level 1, fails Level 2/DC fast; charging condition.\" One line.\n\nNeed missing_info: [\"mileage\",\"date\"] maybe. Does date missing? It says purchased/leased [XXX], over last couple months. Received date known. The analysis needs date? It might need incident date; exact onset missing. Include date. Mileage null. \n\nCould include \"component\" missing? No component given. \"conditions\" present charging. \"symptom\" present.\n\nNeed clues:\n1 kind symptom quote \"only charges on Level 1\" exact? Narrative has \"it only charges on Level 1 but...\" substring \"only charges on Level 1\" yes.\n2 kind symptom quote \"fails to charge properly using Level 2 or DC fast chargers\" exact? Narrative: \"fails to charge properly using Level 2 or DC fast chargers\" yes.\n3 kind condition quote \"charging defect\" exact? \"ongoing charging defect\" yes. Kind condition? condition charging. Could quote \"ongoing charging defect\".\n4 kind safety quote exact curly.\n5 kind component_group quote exact component string maybe.\n\nNeed not overdo. JSON valid. Use escaped? Curly apostrophe okay. Need ensure \"2019\" no. Final only JSON. \n\nNeed maybe \"group\": \"ev_propulsion\". Good.\n\nNeed no suggestions. Fine.\n\nDouble-check every quote verbatim:\n- \"only charges on Level 1\" yes in narrative.\n- \"fails to charge properly using Level 2 or DC fast chargers\" yes.\n- \"ongoing charging defect\" yes.\n- \"I also feel like it’s a safety risk because I’m at risk of being stranded.\" exact? Narrative: \"I also feel like it\\u2019s a safety risk because I\\u2019m at risk of being stranded.   INFORMATION...\" It includes period. Yes.\n- \"ELECTRICAL SYSTEM:PROPULSION SYSTEM:CHARGING:CABLE/CORD:ONBOARD\" exact component field. Good.\n\nNeed maybe \"safety_relevant\": true. Good.\n\nNeed final JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529047,
+      "id": "ded51bfcd69ef4d295c94f5a0e33d98c",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1440,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1206,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00054726,
+          "billing_source": "go",
+          "list_cost": 0.0009121,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 313,
+            "output": 1440,
+            "reasoning": 1206
+          }
+        },
+        "prompt_tokens": 697,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2137
+      }
+    },
+    "text": "{\"summary\":\"Onboard charging cable/cord: ongoing charging defect over months; only charges on Level 1, fails Level 2/DC fast charging\",\"group\":\"ev_propulsion\",\"symptoms\":[\"only charges on Level 1\",\"fails to charge properly using Level 2 chargers\",\"fails to charge properly using DC fast chargers\"],\"conditions\":[\"charging\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM:PROPULSION SYSTEM:CHARGING:CABLE/CORD:ONBOARD\"},{\"kind\":\"symptom\",\"quote\":\"ongoing charging defect\"},{\"kind\":\"symptom\",\"quote\":\"only charges on Level 1\"},{\"kind\":\"symptom\",\"quote\":\"fails to charge properly using Level 2 or DC fast chargers\"},{\"kind\":\"condition\",\"quote\":\"charging defect\"},{\"kind\":\"safety\",\"quote\":\"I also feel like it’s a safety risk because I’m at risk of being stranded.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00054726,
+      "cached_tokens": 384,
+      "cost_usd": 0.0009121,
+      "input_tokens": 697,
+      "list_cost_usd": 0.0009121,
+      "output_tokens": 1440,
+      "reasoning_tokens": 1206
+    }
+  }
+}

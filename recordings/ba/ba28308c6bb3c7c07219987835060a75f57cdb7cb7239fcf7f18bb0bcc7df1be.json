@@ -1,0 +1,66 @@
+{
+  "key": "ba28308c6bb3c7c07219987835060a75f57cdb7cb7239fcf7f18bb0bcc7df1be",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9154,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Exterior lighting: right side marker light error appears with headlights on while marker light works fine.\",\"group\":\"lighting\",\"symptoms\":[\"right side marker light error message comes on when headlights are on\",\"marker light is operating fine\"],\"conditions\":[\"when headlights are on\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"EXTERIOR LIGHTING\"},{\"kind\":\"symptom\",\"quote\":\"The \\\"right side marker light\\\" error message comes on when headlights are on\"},{\"kind\":\"condition\",\"quote\":\"when headlights are on\"},{\"kind\":\"symptom\",\"quote\":\"the marker light is operating fine\"},{\"kind\":\"other\",\"quote\":\"part of a recall on other Audi Q7 models\"}]}",
+            "reasoning_content": "We need answer only JSON object. Need normalize. Report component EXTERIOR LIGHTING group lighting. Summary component, symptom, conditions. Symptoms: right side marker light error message comes on when headlights are on, but marker light operating fine. Conditions: when headlights are on. Fault codes none. Safety false. Missing info: mileage? date? Report received_at exists but date? Missing component? component present symptom present conditions present. Mileage null missing. Maybe date? received_at is date of report, but date of incident missing? Rules missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Since mileage missing yes. Date? There is received_at but not incident date; but likely \"date\" missing? The report has received_at. But missing_info should include mileage maybe. Could include date? It says list missing_info only facts analysis needs. We have received_at, not occurrence date. But report mentions 2017. I think include \"mileage\" only. Need clues with verbatim quotes. Need exact quotes from narrative. We can quote \"right side marker light\" error message? Need verbatim span. Let's craft quotes:\n\n- symptom: \"The \\\"right side marker light\\\" error message comes on when headlights are on\" exact? Narrative: `The \"right side marker light\" error message comes on when headlights are on, but the marker light is operating fine.` Yes quote can include quotes. In JSON escape.\n- condition: \"when headlights are on\"\n- symptom: \"the marker light is operating fine\"\n- component_group: \"EXTERIOR LIGHTING\"? Quote must be from report. The component field is \"EXTERIOR LIGHTING\" in the report. Is that allowed? Yes report includes component. Quote \"EXTERIOR LIGHTING\".\n- other: \"part of a recall on other Audi Q7 models\" maybe relevant.\n- safety? no.\nNeed \"fault_codes\": [].\n\"conditions\": [\"when headlights are on\"]? The schema examples conditions list canonical: cold, moisture, heat, vibration, intermittent, after service, charging. But rules say conditions in plain? It says conditions array among canonical. But report condition is headlights on; not in canonical list. Hmm output conditions should list conditions from report? Prompt: \"conditions\": [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. It seems fixed categories. But if condition is \"when headlights are on\" maybe not canonical. Could include \"when headlights are on\" as condition? Need comply. The summary includes conditions. For conditions array, likely include conditions from report. But examples canonical. The field \"conditions\" should contain conditions. I can include \"headlights on\" not in canonical? But schema examples are illustrative? It says conditions: [\"cold\", ...]. Hmm. Need maybe \"conditions\": [\"when headlights are on\"]? But that violates example list? It says conditions array of condition strings. Rule: \"conditions\": [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. It likely wants canonical condition tags. However report's condition is headlights on; not among. Could omit conditions array? But symptom occurs when headlights on. Need include in summary. Could set conditions empty? But then missing_info conditions? No, condition present but not canonical. But analysis needs conditions; include \"headlights on\" as condition. I think better to include \"when headlights are on\" in conditions to preserve info. But strict JSON? They might expect canonical only. The prompt says \"conditions\": [\"cold\", ...] maybe enumeration. But \"conditions\" in output should be conditions. Since no canonical match, use empty? Hmm.\n\nNeed answer one JSON object no other text. Ensure valid JSON. No markdown. Need maybe quote exact spans. Let's produce.\n\nMissing_info: [\"mileage\"] maybe \"date\"? The report has received_at but not incident date. Rule missing facts analysis needs: component, symptom, conditions, mileage, date. Date of report is received_at. I'd not include date because we have received_at. Include mileage only.\n\nSummary one line: \"Exterior lighting: right side marker light error appears with headlights on while marker light works fine.\" Good.\n\nGroup: \"lighting\" or \"EXTERIOR LIGHTING\"? The given group is lighting. Use \"lighting\".\n\nSymptoms: [\"right side marker light error message comes on when headlights are on\", \"marker light is operating fine\"] Maybe second isn't symptom but observation. Keep symptom first. Could include \"false marker light error\". Plain words. But quotes evidence.\n\nSafety_relevant false.\n\nClues: \n{\"kind\":\"component_group\",\"quote\":\"EXTERIOR LIGHTING\"}\n{\"kind\":\"symptom\",\"quote\":\"The \\\"right side marker light\\\" error message comes on when headlights are on\"}\n{\"kind\":\"condition\",\"quote\":\"when headlights are on\"}\n{\"kind\":\"symptom\",\"quote\":\"the marker light is operating fine\"}\n{\"kind\":\"other\",\"quote\":\"part of a recall on other Audi Q7 models\"}\nNeed quote \"part of a recall on other Audi Q7 models\" exact? Narrative: \"I understand that this is part of a recall on other Audi Q7 models, but my 2017 does not appear to be within that recall.\" Yes substring exact: \"part of a recall on other Audi Q7 models\". Good.\n\nNeed escape quotes in JSON. Valid.\n\nPotential issue: \"The \\\"right side marker light\\\" error message comes on when headlights are on\" exact includes The. Yes.\n\nNeed no markdown. Final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531078,
+      "id": "96843d0a64b5e8f8530bf077e73cac6b",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1373,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1192,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00051666,
+          "billing_source": "go",
+          "list_cost": 0.0008611,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 241,
+            "output": 1373,
+            "reasoning": 1192
+          }
+        },
+        "prompt_tokens": 625,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1998
+      }
+    },
+    "text": "{\"summary\":\"Exterior lighting: right side marker light error appears with headlights on while marker light works fine.\",\"group\":\"lighting\",\"symptoms\":[\"right side marker light error message comes on when headlights are on\",\"marker light is operating fine\"],\"conditions\":[\"when headlights are on\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"EXTERIOR LIGHTING\"},{\"kind\":\"symptom\",\"quote\":\"The \\\"right side marker light\\\" error message comes on when headlights are on\"},{\"kind\":\"condition\",\"quote\":\"when headlights are on\"},{\"kind\":\"symptom\",\"quote\":\"the marker light is operating fine\"},{\"kind\":\"other\",\"quote\":\"part of a recall on other Audi Q7 models\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00051666,
+      "cached_tokens": 384,
+      "cost_usd": 0.0008611,
+      "input_tokens": 625,
+      "list_cost_usd": 0.0008611,
+      "output_tokens": 1373,
+      "reasoning_tokens": 1192
+    }
+  }
+}

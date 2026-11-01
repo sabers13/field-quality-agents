@@ -1,0 +1,66 @@
+{
+  "key": "ff5d5f2e8643b8120bfd5e121ebb1d492241fd412b76bb3e72193938911ebacb",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 15190,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2023 Kia Sportage electrical system: instrument panel failed to display pertinent information while driving 70 MPH; dealer could not diagnose or repair unless VIN was under recall.\",\"group\":\"electrical_general\",\"symptoms\":[\"instrument panel failed to display pertinent information\"],\"conditions\":[],\"fault_codes\":[\"23V298000\"],\"safety_relevant\":false,\"missing_info\":[\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"instrument panel failed to display pertinent information\"},{\"kind\":\"condition\",\"quote\":\"while driving 70 MPH\"},{\"kind\":\"fault_code\",\"quote\":\"NHTSA Campaign Number: 23V298000\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize. Component electrical system, group given electrical_general. Symptoms: instrument panel failed to display pertinent information. Conditions: while driving 70 MPH? Conditions allowed: cold, moisture, heat, vibration, intermittent, after service, charging. Driving at speed not in list? Could include \"intermittent\"? No. Conditions list only those terms. Maybe no conditions? But symptom occurred while driving 70 mph; not in allowed conditions. Could include \"other\" clue? The schema conditions array only allowed listed terms. We shouldn't invent. Maybe empty conditions. Fault codes: recall number 23V298000 named. Is fault code? It is recall campaign number, report names a code? \"fault_codes\": [\"23V298000\"] maybe yes code if report names one. Safety_relevant: The report mentions driving 70 MPH instrument panel failed display; is that risk? Prompt says set safety when crash fire smoke injury loss control stall at speed or another risk to people. Instrument panel failure at 70 mph could be risk? It doesn't explicitly mention loss of control. The input has safety_relevant false. But must decide. \"while driving 70 MPH, the instrument panel failed to display pertinent information\" could be safety relevant? It's not crash/fire etc. But loss of pertinent info at speed is a risk? The instruction says another risk to people. Hmm. Could set true? The report doesn't mention crash/fire/etc. However \"instrument panel failed to display pertinent information\" at 70 MPH may impair driver awareness, but not explicit. Need be careful. Since given safety_relevant false from source maybe but we should not blindly copy? The prompt says set safety_relevant when report mentions... It doesn't mention explicit risk. I'd set false. Missing_info: component present, symptom present, conditions maybe present? Mileage present, date present (received_at but not incident date? \"date\" maybe missing? There is no occurrence date. The report has received_at, failure mileage. Missing info? Need list only facts analysis needs: component, symptom, conditions, mileage, date. Component yes, symptom yes, conditions yes? Conditions not fully explicit? It says while driving 70 MPH. Mileage yes. Date? No incident date, only received_at. Should missing_info include \"date\"? The report lacks date of failure. But source data has received_at. The instructions: missing_info list for facts analysis needs. Date maybe yes. But if we include date, okay. Conditions? It has driving at 70 mph but no environmental conditions. Could include \"conditions\" because no cold/moisture/etc. But maybe condition is driving. Hmm. Need one JSON. Clues with verbatim quotes. Need quote exact spans. quotes:\n- \"instrument panel failed to display pertinent information\" exact from narrative? Narrative: \"the instrument panel failed to display pertinent information.\" The quote can be substring \"instrument panel failed to display pertinent information\" yes verbatim (case lower? narrative has \"the instrument panel...\" after \"stated while driving 70 MPH, the instrument panel failed...\" Yes exact substring with lowercase instrument? Actually \"the instrument panel failed...\" includes \"instrument panel failed...\" yes).\n- condition: \"while driving 70 MPH\" exact substring? Narrative: \"The contact stated while driving 70 MPH, the instrument panel...\" Yes \"while driving 70 MPH\" exact.\n- fault_code: \"NHTSA Campaign Number: 23V298000\" exact? Narrative has \"NHTSA Campaign Number: 23V298000 (ELECTRICAL SYSTEM)\" yes.\n- component_group: \"ELECTRICAL SYSTEM\" exact from component field? The report JSON has component \"ELECTRICAL SYSTEM\". Narrative has \"(ELECTRICAL SYSTEM)\" too. Use quote \"ELECTRICAL SYSTEM\".\n- safety maybe no.\n- other: \"VIN was not included in the recall\" maybe not needed.\n- symptom maybe \"vehicle could not be repaired unless the VIN was under recall\" not symptom. No.\n\nSummary: \"2023 Kia Sportage electrical system: instrument panel failed to display pertinent information while driving 70 MPH; dealer could not diagnose/repair unless VIN under recall.\" One line. Need group \"electrical_general\". Symptoms [\"instrument panel failed to display pertinent information\"]. Conditions []? Could include \"intermittent\"? No. Conditions allowed list. Since \"while driving 70 MPH\" not allowed. But maybe conditions can include \"other\"? No. So empty. Fault codes [\"23V298000\"]. safety_relevant false. missing_info [\"date\", \"conditions\"]? Let's think. The report has mileage and date received. The incident date missing. Conditions: only speed, no weather/road. Analysis may need conditions? The prompt says missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. We have component, symptom, mileage. Date missing. Conditions? We know driving 70 mph; but not cold/moisture etc. I'd include \"conditions\" because no environmental/operating conditions beyond speed. But maybe \"while driving 70 MPH\" is a condition. However allowed condition categories don't include speed. For missing_info, \"conditions\" means whether cold/moisture/etc. It doesn't mention. So yes include conditions. But if include both date and conditions, okay. Could include \"date\" only? Hmm.\n\nNeed no other text. Ensure JSON valid. Use quotes exact. Let's craft.\n\nNeed maybe \"safety_relevant\": false. \"clues\": include kind \"component_group\" quote \"ELECTRICAL SYSTEM\"; kind \"symptom\" quote \"instrument panel failed to display pertinent information\"; kind \"condition\" quote \"while driving 70 MPH\"; kind \"fault_code\" quote \"NHTSA Campaign Number: 23V298000\". Is \"while driving 70 MPH\" a condition? kind condition allowed even if not in conditions array? It's a clue kind condition, okay. But conditions array empty. That's okay? Maybe inconsistent but fine. Could set conditions [\"intermittent\"]? No.\n\nPotential issue: fault_codes should include code if report names one. It names \"23V298000\". Good.\n\nMissing_info: \"date\" because no incident date. \"conditions\" maybe. Let's include both. Could include \"component\" no, \"symptom\" no, \"mileage\" no. Good.\n\nNeed summary one line. Done.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793527501,
+      "id": "c728949a084671c70cdf864590a4067b",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1500,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1339,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00056526,
+          "billing_source": "go",
+          "list_cost": 0.0009421,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 273,
+            "output": 1500,
+            "reasoning": 1339
+          }
+        },
+        "prompt_tokens": 657,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2157
+      }
+    },
+    "text": "{\"summary\":\"2023 Kia Sportage electrical system: instrument panel failed to display pertinent information while driving 70 MPH; dealer could not diagnose or repair unless VIN was under recall.\",\"group\":\"electrical_general\",\"symptoms\":[\"instrument panel failed to display pertinent information\"],\"conditions\":[],\"fault_codes\":[\"23V298000\"],\"safety_relevant\":false,\"missing_info\":[\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"instrument panel failed to display pertinent information\"},{\"kind\":\"condition\",\"quote\":\"while driving 70 MPH\"},{\"kind\":\"fault_code\",\"quote\":\"NHTSA Campaign Number: 23V298000\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00056526,
+      "cached_tokens": 384,
+      "cost_usd": 0.0009421,
+      "input_tokens": 657,
+      "list_cost_usd": 0.0009421,
+      "output_tokens": 1500,
+      "reasoning_tokens": 1339
+    }
+  }
+}

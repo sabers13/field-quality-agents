@@ -1,0 +1,66 @@
+{
+  "key": "734c2966628d90ded40eab749e95684b29c7e45c8ab1bfa1fe86faae8033b1a5",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11582,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2018 Jeep Grand Cherokee ABS warning light: wheels locked at 10 MPH, vehicle spun and hit a guardrail; driver injured.\",\"group\":\"safety_systems\",\"symptoms\":[\"wheels locked up\",\"vehicle spun in circles\",\"crashed into guardrail\",\"ABS warning light illuminated\"],\"conditions\":[\"driving at 10 MPH\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"SERVICE BRAKES, AIR:ANTILOCK:ABS WARNING LIGHT\"},{\"kind\":\"condition\",\"quote\":\"while driving at 10 MPH\"},{\"kind\":\"symptom\",\"quote\":\"the wheels locked up\"},{\"kind\":\"symptom\",\"quote\":\"The vehicle began spinning in circles, and the vehicle crashed into a guardrail\"},{\"kind\":\"symptom\",\"quote\":\"The ABS warning light was illuminated\"},{\"kind\":\"safety\",\"quote\":\"the driver sustained injuries to the head and lower back\"},{\"kind\":\"safety\",\"quote\":\"The air bags did not deploy\"},{\"kind\":\"other\",\"quote\":\"NHTSA Campaign Number: 24V838000\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize report. Need extract summary, group given safety_systems, symptoms, conditions, fault_codes (none named? Recall number not fault code? NHTSA Campaign Number 24V838000 is recall not fault code; likely fault_codes empty. Could include? Rule code if report names one. It names NHTSA Campaign Number, not fault code. Better empty. Safety true. missing_info? Component present, symptom present, conditions present (driving at 10 MPH, wheels locked), mileage present 98000, date received but incident date not given. missing_info maybe [\"date\"] because date of incident missing? Analysis needs date? Report received_at present, failure mileage. They ask missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Date of incident missing. But date in received_at. Hmm likely list \"date\" if incident date absent. Also maybe component? present. Conditions present. Mileage present. Could include date. Need clues with verbatim quotes. Need quote exact spans from narrative or fields? \"report\" includes JSON fields. Quotes should be verbatim from report. Can quote narrative phrases: \"while driving at 10 MPH, the wheels locked up\"; \"The vehicle began spinning in circles, and the vehicle crashed into a guardrail\"; \"The ABS warning light was illuminated\"; \"the driver sustained injuries to the head and lower back\"; \"The air bags did not deploy\"; \"There was no reported fire\"; \"NHTSA Campaign Number: 24V838000\"; \"The approximate failure mileage was 98,000.\" Need kind mapping.\n\nSummary one line: ABS warning light / wheel lockup at 10 mph causing spin, guardrail crash, injury. Component: SERVICE BRAKES, AIR:ANTILOCK:ABS WARNING LIGHT. group safety_systems.\n\nSymptoms plain words: wheels locked up; vehicle spun in circles; crashed into guardrail; ABS warning light illuminated; air bags did not deploy? Is airbag non-deploy a symptom? Maybe safety. Symptoms: \"wheels locked up\", \"vehicle spun in circles\", \"ABS warning light illuminated\". Could include \"air bags did not deploy\" but not symptom of component maybe. Also injuries not symptom. Conditions: cold? no. moisture? no. heat? no. vibration? no. intermittent? no. after service? no. charging? no. Conditions allowed list? \"driving at 10 MPH\" isn't in enumerated list. The schema examples conditions list categorical. It says conditions: [\"cold\", ...] But report has driving at 10 MPH. Should we include \"driving at 10 MPH\"? The instruction says conditions list with examples? It says conditions: [\"cold\", ...]. Could include plain condition \"driving at 10 MPH\"? Need normalize. Better include \"driving at 10 MPH\" because relevant. But allowed values? The prompt includes list of condition labels; maybe not strict? It says conditions: [\"cold\", ...]. It might expect from these. But report explicitly conditions. Hmm.\n\nWe need output one JSON object no other text. Ensure valid JSON. Quotes exact. Need be careful character for character. Let's craft.\n\nPotential issue: \"SERVICE BRAKES, AIR:ANTILOCK:ABS WARNING LIGHT\" component group maybe \"safety_systems\" given. Good.\n\nFault codes: [] (recall number not fault code). Clues include recall number as other? Could include {\"kind\":\"other\",\"quote\":\"NHTSA Campaign Number: 24V838000\"} maybe. And safety clue quote injury. Symptoms clue. Condition clue quote \"while driving at 10 MPH\" exact. Component group clue quote \"SERVICE BRAKES, AIR:ANTILOCK:ABS WARNING LIGHT\" exact from component field. Safety quote \"the driver sustained injuries to the head and lower back\". Good.\n\nMissing info: [\"date\"]? Since received_at is date, but incident date missing. Is \"date\" important? Yes. Could include \"date\" only. Maybe \"conditions\" not missing. Mileage present. Component present. Symptom present. Good.\n\nNeed summary one line: \"2018 Jeep Grand Cherokee ABS warning light: wheels locked at 10 MPH, vehicle spun and hit guardrail; driver injured.\" That's one line.\n\nSymptoms array: [\"wheels locked up\", \"vehicle spun in circles\", \"crashed into guardrail\", \"ABS warning light illuminated\"]. Should \"crashed into guardrail\" be symptom? It's outcome. But symptom in plain words. Could include. \"air bags did not deploy\" maybe symptom? Hmm component is ABS warning light, airbags not deploy safety clue. But symptoms should include reported symptoms. Could include \"air bags did not deploy\" as symptom? It is an observation. But not component symptom. Maybe include under clues safety/other. Keep symptoms concise.\n\nConditions: [\"driving at 10 MPH\"]. Is \"driving\" a condition? yes.\n\nClues:\n- symptom quote \"the wheels locked up\"\n- symptom quote \"The vehicle began spinning in circles, and the vehicle crashed into a guardrail\"\n- symptom quote \"The ABS warning light was illuminated\"\n- condition quote \"while driving at 10 MPH\"\n- safety quote \"the driver sustained injuries to the head and lower back\"\n- safety quote \"The air bags did not deploy\" maybe risk? Not exactly. Could include kind safety? Airbag nondeploy is safety relevant. \n- other quote \"NHTSA Campaign Number: 24V838000\" (recall)\n- component_group quote \"SERVICE BRAKES, AIR:ANTILOCK:ABS WARNING LIGHT\"\nNeed quote exact: In narrative \"The contact stated that while driving at 10 MPH, the wheels locked up.\" Quote \"while driving at 10 MPH, the wheels locked up\" includes comma exact? Narrative has \"while driving at 10 MPH, the wheels locked up.\" yes. Good.\n\nNeed ensure JSON only. Final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793525416,
+      "id": "c44d51cc6f43eb11fb3a22dfd435f701",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1497,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1246,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00060165,
+          "billing_source": "go",
+          "list_cost": 0.00100275,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 697,
+            "output": 1497,
+            "reasoning": 1246
+          }
+        },
+        "prompt_tokens": 697,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 2194
+      }
+    },
+    "text": "{\"summary\":\"2018 Jeep Grand Cherokee ABS warning light: wheels locked at 10 MPH, vehicle spun and hit a guardrail; driver injured.\",\"group\":\"safety_systems\",\"symptoms\":[\"wheels locked up\",\"vehicle spun in circles\",\"crashed into guardrail\",\"ABS warning light illuminated\"],\"conditions\":[\"driving at 10 MPH\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"SERVICE BRAKES, AIR:ANTILOCK:ABS WARNING LIGHT\"},{\"kind\":\"condition\",\"quote\":\"while driving at 10 MPH\"},{\"kind\":\"symptom\",\"quote\":\"the wheels locked up\"},{\"kind\":\"symptom\",\"quote\":\"The vehicle began spinning in circles, and the vehicle crashed into a guardrail\"},{\"kind\":\"symptom\",\"quote\":\"The ABS warning light was illuminated\"},{\"kind\":\"safety\",\"quote\":\"the driver sustained injuries to the head and lower back\"},{\"kind\":\"safety\",\"quote\":\"The air bags did not deploy\"},{\"kind\":\"other\",\"quote\":\"NHTSA Campaign Number: 24V838000\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00060165,
+      "cached_tokens": 0,
+      "cost_usd": 0.00100275,
+      "input_tokens": 697,
+      "list_cost_usd": 0.00100275,
+      "output_tokens": 1497,
+      "reasoning_tokens": 1246
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "167e48a6b8e31c0d0f3adb70976fb0862fced4879881f080c29104a4218f4731",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 15334,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Rear camera (VISIBILITY/WIPER) image freezes for several moments in reverse, misleading rear distance perception and prompting driver avoidance.\",\"group\":\"body_controls\",\"symptoms\":[\"rear camera image freezes for several moments\",\"misleading rear-view distance perception\"],\"conditions\":[\"reverse\",\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"rear-camera’s image oftentimes freezes for several moments\"},{\"kind\":\"condition\",\"quote\":\"When having the vehicle in reverse\"},{\"kind\":\"safety\",\"quote\":\"causes unreal expectations of what is actually in the rear and how close objects actually are\"},{\"kind\":\"safety\",\"quote\":\"prefers not to drive the vehicle\"},{\"kind\":\"component_group\",\"quote\":\"body_controls\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize. Report component VISIBILITY/WIPER group body_controls. Narrative about rear camera freezes in reverse, causes unreal expectations, fear, prefers not drive. Need summary component symptom conditions. Component given visibility/wiper odd but rear camera. Group given body_controls. Symptoms: rear camera image freezes intermittently? \"oftentimes freezes for several moments\" plain. Conditions: reverse? Maybe \"in reverse\" condition. Intermittent? \"oftentimes\" not exactly intermittent but freezes. Safety relevant? Prompt says set true when crash fire smoke injury loss control stall at speed or another risk to people. Narrative mentions fear, prefers not drive, unreal expectations of what is behind and closeness. Is that risk to people? It is safety-relevant due to impaired rear visibility? But original safety_relevant false. Need decide. The rules: safety_relevant when mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. Fear and avoiding driving due to unresolved issue could be risk? Rear camera freeze while reversing causes incorrect distance perception, potential risk. But no explicit crash/injury. \"another risk to people\" maybe yes because reversing visibility impaired. Need be careful. We shouldn't invent. The narrative states causes unreal expectations of what is actually in rear and how close objects are. That's a safety risk. So safety_relevant true likely. But source says false; prompt says read only report, but input includes safety_relevant false. We can override? It's a field. The intake agent normalises; should set based on report. The report has risk. I'll set true? Need consider expected maybe they want false because no explicit crash/fire. But \"another risk to people\" includes backup camera freeze misleading proximity. Hmm.\n\nFault codes none. Missing info: mileage null, date? received_at present but incident date missing. Conditions? It has reverse but not weather. Could list mileage and date. Component? Given but narrative mismatch? The component field says VISIBILITY/WIPER but symptom rear camera. Is component missing? Actually component is rear camera not wiper. But intake should use given component group. Missing_info only facts analysis needs. Mileage missing, date of incident missing. Conditions maybe not fully specified? It says when in reverse; enough. Component maybe system is rear camera, but given component inconsistent. Could list component? The report names component VISIBILITY/WIPER but narrative is rear camera. Analysis needs accurate component. Maybe missing_info includes \"component\" because given component doesn't match symptom? But rule says list missing only facts analysis needs. I think missing_info [\"mileage\",\"date\"] maybe plus \"component\" due mismatch? Need not overdo.\n\nClues: quote verbatim spans. Need include symptom quote \"rear-camera’s image oftentimes freezes for several moments\" exact. Note curly apostrophe. Condition \"When having the vehicle in reverse\" exact. Safety quote \"causes unreal expectations of what is actually in the rear and how close objects actually are\" exact. Other quote \"prefers not to drive the vehicle\" maybe safety. Component group? No verbatim component group? \"VISIBILITY/WIPER\" from field not narrative? Quote must be copied from report; report includes component field? The user message includes JSON with component. It says read only report in user message. Quotes can be from entire report? \"verbatim span copied from the report\" likely narrative or fields. We can quote \"VISIBILITY/WIPER\" if component. But kind component_group quote should be group? \"body_controls\" is in report. But clue kind component_group quote \"body_controls\" maybe okay. But quotes should evidence. Use narrative only? We'll include quotes from narrative.\n\nNeed JSON no other text. Summary one line: \"Rear camera image freezes while reversing, causing misleading rear proximity perception and driver avoidance.\" Component? \"rear camera (reported under VISIBILITY/WIPER)\". But summary one line component, symptom, conditions. \"Rear camera (VISIBILITY/WIPER) image freezes for moments in reverse, misleading distance perception.\" Conditions includes reverse.\n\nGroup \"body_controls\" given.\n\nSymptoms array: [\"rear camera image freezes for several moments\", \"misleading rear-view distance perception\"] But second is consequence not symptom. Use symptom plain: \"rear camera image freezes for several moments\". Also \"driver fear/avoidance\" maybe not symptom. Keep one.\n\nConditions: [\"reverse\"]? Allowed conditions list: cold moisture heat vibration intermittent after service charging. Hmm conditions field should use allowed list? Prompt says conditions array with examples? It lists [\"cold\",\"moisture\",\"heat\",\"vibration\",\"intermittent\",\"after service\",\"charging\"]. Does it restrict to those? It says conditions: [\"cold\", ...]. Likely choose from list. Reverse not in list. But narrative condition is reverse. Hmm. The schema conditions examples are environmental/use conditions. \"intermittent\" maybe fits freezes oftentimes? It freezes for several moments when in reverse, not necessarily intermittent? \"oftentimes\" suggests intermittent. But \"reverse\" is important. Should we include \"reverse\" even not in list? The rules not strict? It says conditions: [\"cold\", ...]. It may expect only those tokens. But \"reverse\" is a condition. The prompt says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. This seems canonical set, but not explicitly \"only\". We can include \"reverse\" maybe. But if validator expects canonical? Hmm. Need answer useful. We can include \"reverse\" and \"intermittent\"? Is it intermittent? \"oftentimes freezes\" yes. Conditions: [\"reverse\",\"intermittent\"]. But canonical list doesn't include reverse. Could put reverse in summary and clue. Conditions field maybe [\"intermittent\"]. But the key condition is reverse; missing if not. I'll include \"reverse\" and \"intermittent\" maybe accepted? The prompt gave examples but not strict. However \"conditions\" is list of conditions like cold etc; reverse is operating condition. I think include \"reverse\" as condition. But if strict expected, maybe not. Hmm.\n\nFault codes [].\n\nSafety relevant true? Need decide. If false, no safety clue. The narrative says fear and avoids driving. That is a risk? \"another risk to people\" yes because rear camera freeze can cause incorrect distance while reversing. I'll set true. But original safety_relevant false in input. The intake agent should set according to rules. Good.\n\nMissing_info: mileage, date. Maybe conditions? The report doesn't specify how often/under what weather, but has reverse. I'd list [\"mileage\",\"date\"]. Date of incident missing; received_at is date received not incident. Good.\n\nClues:\n- {\"kind\":\"symptom\",\"quote\":\"rear-camera’s image oftentimes freezes for several moments\"}\n- {\"kind\":\"condition\",\"quote\":\"When having the vehicle in reverse\"}\n- {\"kind\":\"safety\",\"quote\":\"causes unreal expectations of what is actually in the rear and how close objects actually are\"}\n- {\"kind\":\"safety\",\"quote\":\"prefers not to drive the vehicle\"}\n- {\"kind\":\"component_group\",\"quote\":\"body_controls\"}? Is body_controls in report yes. But kind component_group quote \"body_controls\". Maybe include.\n- {\"kind\":\"other\",\"quote\":\"unresolved issue\"} maybe not.\n\nNeed exact quotes: Narrative has \"rear-camera’s image oftentimes freezes for several moments which causes unreal expectations...\" The quote \"rear-camera’s image oftentimes freezes for several moments\" is exact substring? Yes includes hyphen and curly apostrophe. \"When having the vehicle in reverse\" exact. \"causes unreal expectations of what is actually in the rear and how close objects actually are\" exact substring? Narrative: \"which causes unreal expectations of what is actually in the rear and how close objects actually are.\" Yes substring starts causes. \"prefers not to drive the vehicle\" exact substring. \"body_controls\" field exact.\n\nNeed no markdown? They ask one JSON object and no other text. We can output raw JSON. Ensure valid JSON no trailing. Use double quotes. Curly apostrophe okay UTF-8. Need maybe summary \"Rear camera (VISIBILITY/WIPER) image freezes for several moments in reverse, misleading rear distance perception and prompting driver avoidance.\" Good.\n\nCheck safety_relevant: true. Missing info includes \"mileage\",\"date\". Could include \"conditions\" because weather? no.\n\nNeed maybe group \"body_controls\". Good.\n\nFinal.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793525088,
+      "id": "8127cfc679b7a56d88b3115579d593f3",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2001,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1811,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00077022,
+          "billing_source": "go",
+          "list_cost": 0.0012837,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 554,
+            "output": 2001,
+            "reasoning": 1811
+          }
+        },
+        "prompt_tokens": 554,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 2555
+      }
+    },
+    "text": "{\"summary\":\"Rear camera (VISIBILITY/WIPER) image freezes for several moments in reverse, misleading rear distance perception and prompting driver avoidance.\",\"group\":\"body_controls\",\"symptoms\":[\"rear camera image freezes for several moments\",\"misleading rear-view distance perception\"],\"conditions\":[\"reverse\",\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"rear-camera’s image oftentimes freezes for several moments\"},{\"kind\":\"condition\",\"quote\":\"When having the vehicle in reverse\"},{\"kind\":\"safety\",\"quote\":\"causes unreal expectations of what is actually in the rear and how close objects actually are\"},{\"kind\":\"safety\",\"quote\":\"prefers not to drive the vehicle\"},{\"kind\":\"component_group\",\"quote\":\"body_controls\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00077022,
+      "cached_tokens": 0,
+      "cost_usd": 0.0012837,
+      "input_tokens": 554,
+      "list_cost_usd": 0.0012837,
+      "output_tokens": 2001,
+      "reasoning_tokens": 1811
+    }
+  }
+}

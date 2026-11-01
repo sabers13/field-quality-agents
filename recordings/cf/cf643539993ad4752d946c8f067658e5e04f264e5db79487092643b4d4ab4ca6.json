@@ -1,0 +1,66 @@
+{
+  "key": "cf643539993ad4752d946c8f067658e5e04f264e5db79487092643b4d4ab4ca6",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10225,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Recall 24V834000 air bag inflator remedy is unavailable due to a back-ordered part; no failure is reported, so verify recall status and use the standard restraint test.\",\"rationale\":\"The narrative says the owner received notice of NHTSA Campaign Number 24V834000 for air bags, but the recall repair part was unavailable and on back order. The owner had not experienced a failure. No rulebook entry matches these facts, so a targeted load test is not indicated and the standard test is proposed.\",\"group\":\"restraints\",\"symptoms\":[],\"conditions\":[\"recall repair part unavailable\",\"part currently on back order\",\"manufacturer exceeded reasonable amount of time for recall repair\"],\"fault_codes\":[\"24V834000\"],\"safety_relevant\":false,\"targeted\":false,\"test_name\":\"standard test\",\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"fault_code\",\"quote\":\"NHTSA Campaign Number: 24V834000 (AIR BAGS)\"},{\"kind\":\"condition\",\"quote\":\"the part to do the recall repair was unavailable\"},{\"kind\":\"condition\",\"quote\":\"the part was currently on back order\"},{\"kind\":\"condition\",\"quote\":\"the manufacturer had exceeded a reasonable amount of time for the recall repair\"},{\"kind\":\"other\",\"quote\":\"The contact had not experienced a failure.\"},{\"kind\":\"other\",\"quote\":\"Parts distribution disconnect.\"}]}",
+            "reasoning_content": "We need answer JSON only. Need analyze case. Case is recall 24V834000 air bag inflator, part unavailable/back order, no failure. Rulebook empty. Need propose test? The instruction: prefer targeted load test when conditions match rulebook entry; otherwise standard test targeted false. Here no rulebook matches. Component group restraints. Symptoms? No failure experienced. Conditions: recall remedy unavailable, part back order. Fault codes 24V834000. Safety relevant? Narrative no risk to people? Recall is safety but contact had not experienced failure. The schema case safety_relevant false. Could set false. Targeted? false. test_name? Standard test? If targeted false, maybe test_name \"standard test\" or something. Need \"the targeted test the rulebook names\" only if targeted. If not targeted, maybe empty string? We need valid JSON. Summary one line.\n\nNeed clues verbatim quotes from case narrative. Can include extraction clues but quotes must match narrative. Narrative: \"The contact owns a 2013 Volkswagen Passat. The contact received notification of NHTSA Campaign Number: 24V834000 (AIR BAGS); however, the part to do the recall repair was unavailable. The contact stated that the manufacturer had exceeded a reasonable amount of time for the recall repair. The manufacturer was made aware of the issue, and informed the contact that the part was currently on back order. The contact had not experienced a failure. Parts distribution disconnect.\"\n\nNeed clue quotes exact spans. E.g. \"NHTSA Campaign Number: 24V834000 (AIR BAGS)\" exact yes. \"the part to do the recall repair was unavailable\" exact? Narrative has \"however, the part to do the recall repair was unavailable\" yes substring. \"the part was currently on back order\" exact substring? \"informed the contact that the part was currently on back order\" yes. \"The contact had not experienced a failure.\" exact yes. \"Parts distribution disconnect.\" exact yes. \"AIR BAGS\" exact? It appears in \"(AIR BAGS)\" and component not narrative? Narrative includes \"(AIR BAGS)\" so quote \"AIR BAGS\" matches. Good.\n\nNeed rationale condition and evidence. Group \"restraints\". Symptoms [] maybe. Conditions [\"recall repair part unavailable\", \"part on back order\", \"manufacturer exceeded reasonable time\"]. Fault codes [\"24V834000\"]. safety_relevant false. targeted false. test_name? Maybe \"standard test\" or \"\"? The instruction says test_name targeted test rulebook names. Since no targeted, perhaps null? It expects string. Could set \"standard test\". But test_name field maybe should be empty? The prompt example indicates string. \"Otherwise propose the standard test (\\\"targeted\\\": false).\" So test_name likely \"standard test\". We can set \"standard test\". But maybe better \"standard field-quality test\". Hmm.\n\nNeed \"summary\": \"Recall 24V834000 air bag inflator remedy unavailable due to back-ordered part; no failure, so verify recall status and standard restraint function.\" concise.\n\nRationale: \"No rulebook entry matches; narrative reports a recall repair part is unavailable/back-ordered and no failure. Because there is no experienced failure and no targeted rule, propose standard test, not targeted.\"\n\nNeed ensure no proposing action like closing etc. Test not action? Fine.\n\nCould mention investigations EA18003/RQ17009/PE15010? But rationale maybe not necessary. Do not cite ids? The rule says do not cite a case, recall or investigation id that tool results do not contain. We can cite 24V834000 recall because contained. Could cite investigations? But not needed. Use 24V834000 as fault code. Fine.\n\nNeed output one JSON object no other text. Let's craft.\n\nPotential issue: \"safety_relevant\": The recall is air bag inflator may explode; but contact has not experienced failure. The case's safety_relevant false. The prompt says set when narrative shows risk to people. The narrative is about recall and part unavailable, but safety risk underlying? It does not explicitly show risk to people except recall. Since no failure, false. Good.\n\n\"conditions\": include \"part to do recall repair unavailable\" etc. \"symptoms\": maybe none. But perhaps symptom \"recall repair unavailable\" is condition not symptom. Fine.\n\n\"clues\": include component_group quote \"AIR BAGS\"; fault_code quote campaign; condition quotes; other no failure, parts disconnect. Need quote kind fault_code \"NHTSA Campaign Number: 24V834000 (AIR BAGS)\" exactly. Good.\n\nNeed JSON valid. Use no markdown.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793527357,
+      "id": "a98ac763bf6c119e390db0cf11ad39fc",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1257,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 958,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00137754,
+          "billing_source": "go",
+          "list_cost": 0.0022959,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 10278,
+            "output": 1257,
+            "reasoning": 958
+          }
+        },
+        "prompt_tokens": 10278,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 11535
+      }
+    },
+    "text": "{\"summary\":\"Recall 24V834000 air bag inflator remedy is unavailable due to a back-ordered part; no failure is reported, so verify recall status and use the standard restraint test.\",\"rationale\":\"The narrative says the owner received notice of NHTSA Campaign Number 24V834000 for air bags, but the recall repair part was unavailable and on back order. The owner had not experienced a failure. No rulebook entry matches these facts, so a targeted load test is not indicated and the standard test is proposed.\",\"group\":\"restraints\",\"symptoms\":[],\"conditions\":[\"recall repair part unavailable\",\"part currently on back order\",\"manufacturer exceeded reasonable amount of time for recall repair\"],\"fault_codes\":[\"24V834000\"],\"safety_relevant\":false,\"targeted\":false,\"test_name\":\"standard test\",\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"fault_code\",\"quote\":\"NHTSA Campaign Number: 24V834000 (AIR BAGS)\"},{\"kind\":\"condition\",\"quote\":\"the part to do the recall repair was unavailable\"},{\"kind\":\"condition\",\"quote\":\"the part was currently on back order\"},{\"kind\":\"condition\",\"quote\":\"the manufacturer had exceeded a reasonable amount of time for the recall repair\"},{\"kind\":\"other\",\"quote\":\"The contact had not experienced a failure.\"},{\"kind\":\"other\",\"quote\":\"Parts distribution disconnect.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00137754,
+      "cached_tokens": 0,
+      "cost_usd": 0.0022959,
+      "input_tokens": 10278,
+      "list_cost_usd": 0.0022959,
+      "output_tokens": 1257,
+      "reasoning_tokens": 958
+    }
+  }
+}

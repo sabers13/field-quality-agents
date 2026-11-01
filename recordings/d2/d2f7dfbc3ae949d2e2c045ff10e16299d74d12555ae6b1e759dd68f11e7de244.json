@@ -1,0 +1,66 @@
+{
+  "key": "d2f7dfbc3ae949d2e2c045ff10e16299d74d12555ae6b1e759dd68f11e7de244",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 14693,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Instrument panel speedometer/odometer on a 2016 Nissan Altima; odometer fraud/mileage discrepancy discovered after a collision; airbags did not deploy.\",\"group\":\"instrumentation\",\"symptoms\":[\"odometer fraud\",\"mileage discrepancy\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\"},{\"kind\":\"symptom\",\"quote\":\"Odometer Fraud.\"},{\"kind\":\"symptom\",\"quote\":\"there was a mileage discrepancy\"},{\"kind\":\"safety\",\"quote\":\"causing a collision\"},{\"kind\":\"safety\",\"quote\":\"The driver-side and passenger-side airbags did not deploy.\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize report. Component electrical instrument panel speedometer/odometer group instrumentation. Summary one line: component, symptom, conditions. Report: odometer fraud, mileage discrepancy discovered after collision; vehicle 2016 Nissan Altima; collision due other vehicle head on causing swerve; airbags did not deploy; no injuries; police report; total loss. Safety relevant true given crash/collision. Symptoms: odometer fraud / mileage discrepancy. Conditions: maybe \"after service\"? No. \"collision\" not in enumerated conditions? condition list: cold, moisture, heat, vibration, intermittent, after service, charging. We should only use those? It says conditions array [\"cold\",...]. Could include none. But maybe \"collision\" not allowed? The schema condition list fixed. We can leave empty. Fault codes none. Missing_info: mileage? It has mileage at purchase and accident but failure mileage unknown; report has mileage values. date? received date but incident date missing. conditions? Maybe missing date. component present. symptom present. missing_info likely [\"date\"] because date of incident not given; maybe mileage? failure mileage unknown but has odometer discrepancy. The analysis needs mileage, date, conditions. We can list \"date\", \"conditions\"? But conditions not relevant? Hmm. Need be careful. Missing_info only facts analysis needs. Component and symptom provided. Mileage: report contains 120k and 300k but failure mileage unknown. Date missing (incident date). Conditions maybe not applicable. Missing info could include \"date\" and maybe \"mileage\" due failure mileage unknown. But not overdo. The report explicitly says failure mileage unknown. So missing_info [\"mileage\",\"date\"] maybe.\n\nClues: need verbatim spans. Need quote exact from narrative. Could include:\n- symptom: \"Odometer Fraud.\" (verbatim)\n- symptom: \"it was discovered that there was a mileage discrepancy\" (verbatim substring? Check exact: \"it was discovered that there was a mileage discrepancy.\" yes)\n- condition? \"while her son was driving at an unknown speed\" maybe condition not enumerated. Could kind condition? Hmm quote \"when another vehicle suddenly appeared to drive head on, causing the contact's son to swerve, causing a collision.\" This is safety/other. Kind safety quote \"causing a collision\" or full. \n- safety: \"The driver-side and passenger-side airbags did not deploy.\"? Not exactly risk? Crash is safety. Quote \"causing a collision\" sufficient. \n- safety: \"The insurance company deemed the vehicle a total loss.\" maybe not.\n- component_group: quote \"instrument panel\" not in narrative but component field? Rule read only report in user message; the JSON includes component. Quotes from report? It says report in user message includes fields. But \"quote copied verbatim from the report\" can quote component value? Better quote narrative only. For component_group, quote \"2016 Nissan Altima\" not component. Hmm we can omit component_group clue or quote \"instrument panel\" from component field? It is verbatim in the report JSON. But \"report\" includes component field. Could use quote \"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\" exact. Kind component_group. Is that okay? Yes.\n\nNeed summary: \"Instrument panel speedometer/odometer on 2016 Nissan Altima; odometer fraud/mileage discrepancy discovered after collision; no airbag deployment.\" Conditions: maybe \"collision\" but not in list. Since conditions array allowed predefined. Could include none [] because no listed conditions. But \"while driving\" not. The schema conditions examples not exhaustive? It says conditions: [\"cold\",\"moisture\",\"heat\",\"vibration\",\"intermittent\",\"after service\",\"charging\"]. Likely use only those. We can set [].\n\nNeed safety_relevant true.\n\nNeed group \"instrumentation\".\n\nFault_codes [].\n\nClues must be exact. Let's ensure quotes:\n\"Odometer Fraud.\" exact.\n\"there was a mileage discrepancy\" exact substring.\n\"causing a collision\" exact.\n\"The driver-side and passenger-side airbags did not deploy.\" exact.\n\"the contact's son to swerve\" exact? \"causing the contact's son to swerve\" exact yes.\n\"failure mileage was  unknown\" note two spaces? Narrative: \"The failure mileage was  unknown.\" has double space before unknown? It says \"was  unknown.\" yes two spaces. Could quote \"failure mileage was  unknown\" exactly includes double. Hmm not needed.\n\nClues kinds:\nsymptom quote \"Odometer Fraud.\"\nsymptom quote \"there was a mileage discrepancy\"\nsafety quote \"causing a collision\"\nsafety quote \"The driver-side and passenger-side airbags did not deploy.\"\ncomponent_group quote \"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\"\nother quote \"The vehicle was a dealer sale.\" maybe not.\n\nNeed maybe condition clue for \"while her son was driving at an unknown speed\" kind condition. But conditions list doesn't include driving. Could still kind condition? It says kind symptom|condition|fault_code|component_group|safety|other. Conditions are contextual. We can include \"while her son was driving at an unknown speed\" as condition? But not in conditions array. Might be okay but no need.\n\nNeed JSON only. Ensure no markdown. Final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793526073,
+      "id": "c507dccd827baf7009468d9932ca54f8",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1319,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1138,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00050262,
+          "billing_source": "go",
+          "list_cost": 0.0008377,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 301,
+            "output": 1319,
+            "reasoning": 1138
+          }
+        },
+        "prompt_tokens": 685,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2004
+      }
+    },
+    "text": "{\"summary\":\"Instrument panel speedometer/odometer on a 2016 Nissan Altima; odometer fraud/mileage discrepancy discovered after a collision; airbags did not deploy.\",\"group\":\"instrumentation\",\"symptoms\":[\"odometer fraud\",\"mileage discrepancy\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\"},{\"kind\":\"symptom\",\"quote\":\"Odometer Fraud.\"},{\"kind\":\"symptom\",\"quote\":\"there was a mileage discrepancy\"},{\"kind\":\"safety\",\"quote\":\"causing a collision\"},{\"kind\":\"safety\",\"quote\":\"The driver-side and passenger-side airbags did not deploy.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00050262,
+      "cached_tokens": 384,
+      "cost_usd": 0.0008377,
+      "input_tokens": 685,
+      "list_cost_usd": 0.0008377,
+      "output_tokens": 1319,
+      "reasoning_tokens": 1138
+    }
+  }
+}

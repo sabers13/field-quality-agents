@@ -1,0 +1,66 @@
+{
+  "key": "79ed397e5a59beaef9267327707f3fadc1a00cc193409435b7e75198ef14872a",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 7829,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Infotainment system shows a black screen and glitches when attempting to start while parked; intermittent on two occasions.\",\"group\":\"infotainment\",\"symptoms\":[\"infotainment system displays a black screen and glitched\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"infotainment system\"},{\"kind\":\"symptom\",\"quote\":\"infotainment system displays a black screen and glitched\"},{\"kind\":\"condition\",\"quote\":\"while parked and occupied\"},{\"kind\":\"condition\",\"quote\":\"attempting to start the vehicle\"},{\"kind\":\"condition\",\"quote\":\"failure has occurred on two different occasions\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize report. Need infer component group infotainment. Symptoms: infotainment system displays black screen and glitched while attempting to start vehicle, intermittent occurred two occasions. Conditions: parked and occupied, attempting to start, intermittent. Fault codes none. Safety false? Report has no crash etc. Missing info: maybe date? It has received_at but not incident date. Conditions present. Component present. Symptom present. Mileage present. Missing date likely. Need clues verbatim quotes. Ensure quotes exact substrings. Need quote from narrative. \"infotainment system displays a black screen and glitched\" exact? Narrative: \"attempting to start the vehicle infotainment system displays a black screen and glitched.\" Quote can be \"infotainment system displays a black screen and glitched\". Yes. \"while parked and occupied\" exact. \"failure has occurred on two different occasions\" exact? Narrative: \"The contact mention the failure has occurred on two different occasions.\" substring \"failure has occurred on two different occasions\" yes. Component group clue quote? \"infotainment system\" exact. Safety? no quote maybe none. Missing date. Need summary one line component, symptom, conditions. \"Infotainment system black screen and glitch when attempting to start while parked; intermittent on two occasions.\" JSON only.\n\nNeed maybe missing_info: [\"date\"] because no incident date. Could include? mileage given. Conditions given. Component given. Symptom given. Date missing. Use []? Analysis needs date? Prompt says list only facts analysis needs: component, symptom, conditions, mileage, date. Date missing yes. But received_at exists, not failure date. So include \"date\".\n\nNeed conditions list include \"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\" allowed values? It says conditions: [\"cold\", ...]. But report conditions \"parked\", \"attempting to start\" not in list. Hmm schema suggests conditions enum. But rules say conditions list. Need maybe include \"intermittent\" only? The report says while parked and occupied, attempting to start. The enum doesn't include parked/start. But \"intermittent\" fits two occasions. Could include \"intermittent\". Summary mention parked/start. Clues for condition quote \"while parked and occupied\" kind condition? Kind condition quote can be any condition. It says kind symptom|condition|fault_code|component_group|safety|other. So include condition quote \"while parked and occupied\" and \"attempting to start the vehicle\"? But conditions array maybe only allowed list; include \"intermittent\" because exact in list? It says conditions [\"cold\",...], not necessarily restricted? It lists examples? It says \"conditions\": [\"cold\", ...]. Probably should use those. But \"while parked and occupied\" is a condition relevant. Maybe include \"intermittent\". Could include \"attempting to start\" not in list. Hm.\n\nNeed answer with one JSON object no other text. Ensure valid JSON. Use safety_relevant false.\n\nLet's craft:\n\n{\n \"summary\": \"Infotainment system shows black screen and glitches when attempting to start while parked; intermittent on two occasions.\",\n \"group\": \"infotainment\",\n \"symptoms\": [\"infotainment system displays a black screen and glitched\"],\n \"conditions\": [\"intermittent\"],\n \"fault_codes\": [],\n \"safety_relevant\": false,\n \"missing_info\": [\"date\"],\n \"clues\": [\n   {\"kind\":\"component_group\",\"quote\":\"infotainment system\"},\n   {\"kind\":\"symptom\",\"quote\":\"infotainment system displays a black screen and glitched\"},\n   {\"kind\":\"condition\",\"quote\":\"while parked and occupied\"},\n   {\"kind\":\"condition\",\"quote\":\"attempting to start the vehicle\"},\n   {\"kind\":\"condition\",\"quote\":\"failure has occurred on two different occasions\"}\n ]\n}\n\nCheck quote \"attempting to start the vehicle\" exact in narrative: \"while parked and occupied in the vehicle, attempting to start the vehicle infotainment system...\" yes substring \"attempting to start the vehicle\" exact. \"failure has occurred on two different occasions\" exact yes. \"infotainment system\" exact. Good.\n\nNeed maybe symptom plain words: \"black screen and glitch on infotainment system\". Fine.\n\nNeed no extra text. Final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531875,
+      "id": "c8b080b41fad39623e3cb62a1bcde70b",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1089,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 924,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00041361,
+          "billing_source": "go",
+          "list_cost": 0.00068935,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 232,
+            "output": 1089,
+            "reasoning": 924
+          }
+        },
+        "prompt_tokens": 616,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1705
+      }
+    },
+    "text": "{\"summary\":\"Infotainment system shows a black screen and glitches when attempting to start while parked; intermittent on two occasions.\",\"group\":\"infotainment\",\"symptoms\":[\"infotainment system displays a black screen and glitched\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"infotainment system\"},{\"kind\":\"symptom\",\"quote\":\"infotainment system displays a black screen and glitched\"},{\"kind\":\"condition\",\"quote\":\"while parked and occupied\"},{\"kind\":\"condition\",\"quote\":\"attempting to start the vehicle\"},{\"kind\":\"condition\",\"quote\":\"failure has occurred on two different occasions\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00041361,
+      "cached_tokens": 384,
+      "cost_usd": 0.00068935,
+      "input_tokens": 616,
+      "list_cost_usd": 0.00068935,
+      "output_tokens": 1089,
+      "reasoning_tokens": 924
+    }
+  }
+}

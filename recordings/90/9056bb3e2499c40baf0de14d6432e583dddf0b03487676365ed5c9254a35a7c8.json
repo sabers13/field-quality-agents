@@ -1,0 +1,66 @@
+{
+  "key": "9056bb3e2499c40baf0de14d6432e583dddf0b03487676365ed5c9254a35a7c8",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 22198,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2014 Mercedes-Benz C350 air bag system: air bag and driver’s side air bag malfunction service required warning lights illuminated while attempting to start; dealer determined air bags needed replacement.\",\"group\":\"restraints\",\"symptoms\":[\"air bag malfunction service required warning light illuminated\",\"driver’s side air bag malfunction service required warning light illuminated\",\"air bags needed replacement\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"air bag and the driver’s side air bag malfunction service required warning light illuminated\"},{\"kind\":\"condition\",\"quote\":\"while attempting to start the vehicle\"},{\"kind\":\"other\",\"quote\":\"air bags needed to be replaced\"},{\"kind\":\"safety\",\"quote\":\"air bag and the driver’s side air bag malfunction service required warning light illuminated\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize. Report component AIR BAGS group restraints. Summary one line component symptom conditions. Symptoms: air bag and driver's side air bag malfunction service required warning light illuminated while attempting to start. Conditions? \"while attempting to start the vehicle\" maybe condition? Allowed conditions list cold moisture heat vibration intermittent after service charging. \"while attempting to start\" not in list perhaps not include. Could include \"intermittent\"? No. Conditions empty. Fault codes none. Safety_relevant? Air bags malfunction warning; report no crash/fire etc. Given false. But airbag malfunction could be safety relevant? Rules set when mentions crash fire smoke injury loss control stall at speed or other risk to people. Airbag malfunction is safety risk? They say \"or another risk to people.\" Airbag system malfunction warning light is a safety risk potentially. But source says safety_relevant false; prompt says set when report mentions... It mentions air bags needed replaced, warning light. Does that constitute risk to people? likely yes? Need decide. The field safety_relevant given false maybe ignore? We should infer. Airbag malfunction service required is safety relevant because airbags may not deploy. But rules specifically \"when report mentions a crash, fire, smoke, injury, loss of control, a stall at speed or another risk to people.\" Air bag malfunction is another risk to people. So set true? But maybe conservative? The input has safety_relevant false from source. We should not invent. The report mentions air bag malfunction warning; that's a safety system fault. I'd set safety_relevant true with quote \"air bag and the driver’s side air bag malfunction service required warning light illuminated\" maybe evidence. Need missing_info: mileage present 64000, date received_at present? date of failure not explicit, but received_at. Conditions missing? They say list only facts analysis needs: component, symptom, conditions, mileage, date. Component present, symptom present, mileage present, date? received_at exists but failure date? The report has received_at. Missing maybe conditions (driving/start attempt?) Actually condition \"while attempting to start\" present but not in allowed conditions list. Missing_info likely [] or [\"conditions\"]? The analysis needs conditions; we have start attempt but not environmental. Maybe list \"conditions\" if none of cold/moisture/etc. But report includes condition while attempting to start, though not in list. Hmm.\n\nNeed clues array with verbatim quotes. Need copy character for character. Narrative has \"driver\\u2019s\" curly apostrophe. We can include quote with curly apostrophe. Need ensure valid JSON. Could include quotes:\n- component_group: \"AIR BAGS\" (from component? Report field component \"AIR BAGS\"; narrative \"air bag\")\n- symptom: \"air bag and the driver’s side air bag malfunction service required warning light illuminated\" exact substring? Narrative: \"the air bag and the driver\\u2019s side air bag malfunction service required warning light illuminated.\" It starts after \"the \". substring yes \"air bag and the driver’s side air bag malfunction service required warning light illuminated\". Need use curly apostrophe as \\u2019 perhaps JSON escape. Verbatim if escaped? In JSON string \\u2019 renders curly. OK.\n- condition: \"while attempting to start the vehicle\" exact.\n- other: \"air bags needed to be replaced\" exact? Narrative: \"it was determined that the air bags needed to be replaced.\" substring \"air bags needed to be replaced\" yes.\n- safety: maybe same symptom quote. Could include kind safety with quote \"air bag and the driver’s side air bag malfunction service required warning light illuminated\". Or \"air bags needed to be replaced\".\n\nNeed summary: \"2014 Mercedes-Benz C350 air bag system: air bag and driver's side air bag malfunction service required warning light illuminated while attempting to start; dealer said air bags needed replacement.\" One line. Must not too long? okay.\n\nGroup: restraints.\n\nSymptoms: \"air bag malfunction service required warning light illuminated\", \"driver's side air bag malfunction service required warning light illuminated\" or combined. Plain words. Could list [\"air bag warning light illuminated\", \"driver's side air bag warning light illuminated\", \"air bags diagnosed as needing replacement\"]. But symptom in plain words.\n\nConditions: maybe [] because allowed conditions don't include start attempt. But could include \"intermittent\"? No. \"while attempting to start\" not allowed. The schema conditions examples are list of strings; not strict? It says conditions: [\"cold\", ...]. Could include \"while attempting to start\"? But \"conditions\" maybe should use allowed categories. Hm. The instructions \"conditions\": [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"] suggests categorical. So leave empty. But clues can include condition quote.\n\nFault codes [].\n\nsafety_relevant true? Need final. Let's think. The report is about airbag malfunction warning. Airbags are safety restraints. The prompt says set safety_relevant when report mentions ... another risk to people. An airbag malfunction is a risk to people. But in NHTSA data, \"safety_relevant\": false may be provided. We are intake agent normalizing; could rely? The user says \"Read only report... Do not invent facts.\" It includes safety_relevant false in raw. But the schema asks determine safety_relevant. The raw field maybe source metadata; but we should output based on rules. It explicitly mentions air bag malfunction requiring replacement. That is safety-relevant. I'd set true. But perhaps they expect false because no crash/fire. The rule includes \"another risk to people\"; airbag not deploying is risk. So true.\n\nMissing_info: The report lacks date of failure? It has received_at 2025-08-28. \"date\" maybe present as received_at. It lacks exact failure date. Mileage present. Conditions? It says while attempting to start. Component/symptom present. So missing_info []? But \"date\" might mean incident date, not received. The report gives approximate failure mileage but no failure date. Should list \"date\". Also conditions? We know start attempt. The analysis needs conditions; environmental not given. But \"conditions\" in missing_info maybe if no relevant conditions. It does include \"while attempting to start\" but not in categories. Hmm.\n\nMaybe missing_info [\"date\"] only. The prompt says list only for facts analysis needs: component, symptom, conditions, mileage, date. Date missing (only received_at). Mileage present. Conditions present? Start attempt. Component/symptom present. So [\"date\"]. But if they consider received_at date, then []. The report includes \"received_at\" but not failure date. \"The approximate failure mileage was 64,000.\" No failure date. I'd include \"date\".\n\nBut careful: \"date\" in missing_info can be satisfied by received_at? It is a date. But analysis usually needs incident date, not report received. I'd include date. If missing_info includes date, okay.\n\nNeed quotes exactly. Let's craft JSON. Ensure no extra text.\n\nPotential JSON:\n{\n \"summary\": \"2014 Mercedes-Benz C350 air bag system: air bag and driver’s side air bag malfunction service required warning lights illuminated while attempting to start; dealer determined air bags needed replacement.\",\n \"group\": \"restraints\",\n \"symptoms\": [\"air bag malfunction service required warning light illuminated\", \"driver’s side air bag malfunction service required warning light illuminated\", \"air bags needed replacement\"],\n \"conditions\": [],\n \"fault_codes\": [],\n \"safety_relevant\": true,\n \"missing_info\": [\"date\"],\n \"clues\": [\n   {\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},\n   {\"kind\":\"symptom\",\"quote\":\"air bag and the driver’s side air bag malfunction service required warning light illuminated\"},\n   {\"kind\":\"condition\",\"quote\":\"while attempting to start the vehicle\"},\n   {\"kind\":\"other\",\"quote\":\"air bags needed to be replaced\"},\n   {\"kind\":\"safety\",\"quote\":\"air bag and the driver’s side air bag malfunction service required warning light illuminated\"}\n ]\n}\n\nCheck quote \"AIR BAGS\" from component field not narrative? The report includes component field \"AIR BAGS\". Verbatim from report yes. Good.\n\nIs \"air bags needed to be replaced\" exact? Narrative: \"the air bags needed to be replaced.\" Yes substring. Contains \"air bags\" lower. Good.\n\nPotential issue with curly apostrophe in \"driver’s\"; in JSON we can write literal UTF-8 curly apostrophe. It's verbatim. Good. The narrative had \\u2019. Rendering same.\n\nNeed maybe include summary line no action. Fine.\n\nNeed final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529924,
+      "id": "f8ee832456c905d18f058d08cb6171a6",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2023,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1823,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00074742,
+          "billing_source": "go",
+          "list_cost": 0.0012457,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 205,
+            "output": 2023,
+            "reasoning": 1823
+          }
+        },
+        "prompt_tokens": 589,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2612
+      }
+    },
+    "text": "{\"summary\":\"2014 Mercedes-Benz C350 air bag system: air bag and driver’s side air bag malfunction service required warning lights illuminated while attempting to start; dealer determined air bags needed replacement.\",\"group\":\"restraints\",\"symptoms\":[\"air bag malfunction service required warning light illuminated\",\"driver’s side air bag malfunction service required warning light illuminated\",\"air bags needed replacement\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"air bag and the driver’s side air bag malfunction service required warning light illuminated\"},{\"kind\":\"condition\",\"quote\":\"while attempting to start the vehicle\"},{\"kind\":\"other\",\"quote\":\"air bags needed to be replaced\"},{\"kind\":\"safety\",\"quote\":\"air bag and the driver’s side air bag malfunction service required warning light illuminated\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00074742,
+      "cached_tokens": 384,
+      "cost_usd": 0.0012457,
+      "input_tokens": 589,
+      "list_cost_usd": 0.0012457,
+      "output_tokens": 2023,
+      "reasoning_tokens": 1823
+    }
+  }
+}

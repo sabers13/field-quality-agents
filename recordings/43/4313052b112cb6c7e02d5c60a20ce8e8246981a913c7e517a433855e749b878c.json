@@ -1,0 +1,66 @@
+{
+  "key": "4313052b112cb6c7e02d5c60a20ce8e8246981a913c7e517a433855e749b878c",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12362,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"SEAT BELTS: seatbelt did not lock and airbags did not deploy in a 60–70 mph rear-end collision with front impact; vehicle total loss.\",\"group\":\"restraints\",\"symptoms\":[\"seatbelt did not lock up\",\"airbags did not deploy\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"SEAT BELTS\"},{\"kind\":\"symptom\",\"quote\":\"my seatbelt did not lock up\"},{\"kind\":\"symptom\",\"quote\":\"none of my airbags went off\"},{\"kind\":\"condition\",\"quote\":\"I was rear ended\"},{\"kind\":\"condition\",\"quote\":\"We were still going about 60-70mph when he hit me\"},{\"kind\":\"safety\",\"quote\":\"I had an accident on I-85\"},{\"kind\":\"safety\",\"quote\":\"The car is a total loss\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize. Need inspect narrative. Component seat belts group restraints. Symptoms: seatbelt did not lock up, airbags did not deploy. Conditions? accident, rear ended, pushed into car in front, speed 60-70 mph. Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. None apply? Maybe no conditions. But \"conditions\" in schema maybe can include speed? Rules say conditions array [\"cold\",\"moisture\",...]. Need only listed? It says conditions list. We can include \"crash\"? Hmm allowed examples include cold etc. The report mentions accident, rear ended, impact. \"conditions\" likely environmental/operating. Could leave [] maybe. But summary one line component symptom conditions. Need missing_info: mileage is null, date? received_at but date of accident not given. Component given symptom given. Conditions maybe crash details enough. Missing info: mileage, date? The report does not provide accident date. Need list missing_info facts analysis needs: mileage, date. Conditions? We have speed and crash. Could include \"date\" and \"mileage\". Maybe \"conditions\" not missing because crash conditions described. No fault codes. Safety relevant true because accident/crash. Clues verbatim quotes. Need every quote exact from narrative. Need copy substrings exactly. Let's ensure verbatim from narrative. Narrative has double spaces? Let's parse exact:\n\n\"I had an accident on I-85 I was rear ended after traffic slammed on breaks and the car behind had been riding my bumper for miles. He went through my trunk and almost came into my backseat. I was also pushed into the car infront of me which his directly on the drivers side of my car. My front end is completely pushed on the drivers side into to where you can see the metal frame. On the rear, the bumper and metal frame completely came off.   I was hit directly on impact sensors on both ends and none of my airbags went off. And my seatbelt did not lock up.   We were still going about 60-70mph when he hit me. The car is a total loss.\"\n\nQuotes:\n- \"I had an accident on I-85\"\n- \"I was rear ended\"\n- \"none of my airbags went off\"\n- \"my seatbelt did not lock up\"\n- \"We were still going about 60-70mph when he hit me\"\n- \"The car is a total loss\"\n- maybe \"I was hit directly on impact sensors on both ends\" for component? \nNeed clues kinds. symptom: quote \"my seatbelt did not lock up\" and \"none of my airbags went off\". condition: \"I was rear ended\" maybe condition? safety: \"I had an accident on I-85\" / \"We were still going about 60-70mph when he hit me\". component_group: maybe \"SEAT BELTS\" not in narrative, but component field? Rule quote copied from report. Report includes component field \"SEAT BELTS\" yes user message JSON has component. Quote can be from report entire object? It says report. Could quote \"SEAT BELTS\". But clue quote from report. We can include component_group quote \"SEAT BELTS\". That is in report. Symptom plain words: \"seatbelt did not lock up\", \"airbags did not deploy during collision\". Need maybe \"front/rear impact sensor hit\" is symptom? Not necessarily. Summary: \"Seat belts: seatbelt did not lock and airbags did not deploy in a 60–70 mph rear-end collision with front impact; total loss.\" Conditions: maybe [\"crash\"] not in allowed? The schema's conditions examples not exhaustive? It says conditions: [\"cold\", ...]. But conditions can include \"crash\"? Hmm likely expects standardized condition tags. We should only include allowed ones that apply. None apply. But summary conditions includes crash speed. Could conditions list be empty? Yes. But \"conditions\" in missing_info? It has crash conditions. So missing_info [\"mileage\",\"date\"]. If date of accident missing; received_at date present but not incident. Mileage null. Good.\n\nNeed output one JSON object no other text. Ensure valid JSON, arrays. safety_relevant true. group \"restraints\". fault_codes [].\n\nNeed maybe include \"symptoms\": [\"seatbelt did not lock up\", \"airbags did not deploy\"]. In plain words. Conditions [] because no environmental condition. But maybe \"after service\" no. \"intermittent\" no. \"vibration\" no. \"charging\" no.\n\nNeed clues. Include exact quote. Let's craft with quotes exact. Need \"I was hit directly on impact sensors on both ends and none of my airbags went off.\" Could quote combined? Exact substring includes. We can use \"none of my airbags went off\". Good.\n\nPotential issue \"breaks\" typo but not needed.\n\nNeed summary one line: \"SEAT BELTS: seatbelt did not lock and airbags did not deploy in a 60–70 mph rear-end collision with front impact; vehicle total loss.\" Conditions included. Good.\n\nNeed missing_info: [\"mileage\",\"date\"]. Is date missing? yes. Could include \"conditions\" because no weather/road? But report gives crash. The analysis needs conditions? It gives speed and crash type. Not missing. Maybe \"component\" no.\n\nNeed safety_relevant true. Clues:\n{\"kind\":\"component_group\",\"quote\":\"SEAT BELTS\"}\n{\"kind\":\"symptom\",\"quote\":\"my seatbelt did not lock up\"}\n{\"kind\":\"symptom\",\"quote\":\"none of my airbags went off\"}\n{\"kind\":\"condition\",\"quote\":\"I was rear ended\"}\n{\"kind\":\"condition\",\"quote\":\"We were still going about 60-70mph when he hit me\"}\n{\"kind\":\"safety\",\"quote\":\"I had an accident on I-85\"}\n{\"kind\":\"safety\",\"quote\":\"The car is a total loss\"}\n\nNeed \"I was rear ended\" exact? narrative: \"I had an accident on I-85 I was rear ended after...\" yes substring \"I was rear ended\" exact. \"We were still going about 60-70mph when he hit me\" exact? Narrative: \"We were still going about 60-70mph when he hit me.\" yes. \"The car is a total loss.\" exact. Good.\n\nCould include symptom \"I was hit directly on impact sensors on both ends\" as other? Not needed.\n\nNeed answer only JSON. Ensure no markdown? They said one JSON object no other text. We can output raw JSON. Good.\n\nNeed consider \"fault_codes\": [] no code. Good.\n\nLet's final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793526132,
+      "id": "275679b194cd3a0296851b16bf59747c",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1603,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1395,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00060036,
+          "billing_source": "go",
+          "list_cost": 0.0010006,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 251,
+            "output": 1603,
+            "reasoning": 1395
+          }
+        },
+        "prompt_tokens": 635,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2238
+      }
+    },
+    "text": "{\"summary\":\"SEAT BELTS: seatbelt did not lock and airbags did not deploy in a 60–70 mph rear-end collision with front impact; vehicle total loss.\",\"group\":\"restraints\",\"symptoms\":[\"seatbelt did not lock up\",\"airbags did not deploy\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"SEAT BELTS\"},{\"kind\":\"symptom\",\"quote\":\"my seatbelt did not lock up\"},{\"kind\":\"symptom\",\"quote\":\"none of my airbags went off\"},{\"kind\":\"condition\",\"quote\":\"I was rear ended\"},{\"kind\":\"condition\",\"quote\":\"We were still going about 60-70mph when he hit me\"},{\"kind\":\"safety\",\"quote\":\"I had an accident on I-85\"},{\"kind\":\"safety\",\"quote\":\"The car is a total loss\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00060036,
+      "cached_tokens": 384,
+      "cost_usd": 0.0010006,
+      "input_tokens": 635,
+      "list_cost_usd": 0.0010006,
+      "output_tokens": 1603,
+      "reasoning_tokens": 1395
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "45e500b9741168b92ca67dbc6d5f804e3ecbbbc94e91ac7d4f05cd21df8485f0",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11693,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system: refrigerator detached and fell into cabin while traveling in heavy traffic, and flames were seen from an AC unit while the RV was parked; recall not rectified before sale.\",\"group\":\"electrical_general\",\"symptoms\":[\"refrigerator detached from wall and fell into cabin\",\"driver had to swerve suddenly\",\"flames coming from AC unit\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"refrigerator detached from the wall and fell into the cabin\"},{\"kind\":\"symptom\",\"quote\":\"forcing my husband to swerve suddenly and nearly causing an accident\"},{\"kind\":\"condition\",\"quote\":\"while traveling in our FR3 RV to a funeral in Ohio\"},{\"kind\":\"condition\",\"quote\":\"heavy traffic in Cincinnati\"},{\"kind\":\"symptom\",\"quote\":\"flames coming from one of the RV’s AC units\"},{\"kind\":\"condition\",\"quote\":\"where our vehicle was parked\"},{\"kind\":\"other\",\"quote\":\"AC units were the subject of a recall issued in November 2024\"},{\"kind\":\"other\",\"quote\":\"purchased our RV brand new in March 2025\"},{\"kind\":\"other\",\"quote\":\"The dealership failed to rectify the recall before it was sold to us.\"},{\"kind\":\"safety\",\"quote\":\"serious safety failure\"},{\"kind\":\"safety\",\"quote\":\"could have resulted in death or injury\"}]}",
+            "reasoning_content": "We need to produce JSON per instructions. Need normalize report. Component given ELECTRICAL SYSTEM, group electrical_general. Symptoms: refrigerator detached from wall and fell into cabin; swerve; flames from AC unit; recall not rectified. Conditions? traveling, heavy traffic, while parked? \"while returning\" etc. Need conditions list from allowed: cold, moisture, heat, vibration, intermittent, after service, charging. None explicitly? Flames could heat but not condition. Maybe no conditions. Fault codes none. Safety relevant true. Missing info: mileage null, date redacted? Date? \"On [XXX]\" date missing. Conditions? maybe missing conditions? Need list only facts analysis needs: component, symptom, conditions, mileage, date. Component present, symptom present, conditions maybe not specified (driving heavy traffic is condition but not in allowed? Conditions field expects environmental/operational conditions; could list \"traveling\" not in allowed list? Hmm allowed conditions are enumerated. We should only use those? It says conditions: [\"cold\", ...]. Probably choose from list. No cold etc. missing_info includes \"conditions\"? It might be useful. Mileage missing, date missing (redacted). Component is given. Symptom present. So missing_info [\"mileage\",\"date\",\"conditions\"]? Need decide. Conditions not explicit like weather/use. The narrative says while traveling, heavy traffic, parked at RV park. Those are conditions but not the enumerated ones. Could include \"conditions\" missing because no environmental condition. But maybe conditions not needed? The desk needs conditions. I'd include \"mileage\", \"date\", \"conditions\". However date maybe received_at 2025-09-18 but incident date redacted. Date missing. Mileage null. Conditions? It describes driving and parked, but not cold/moisture etc. Use \"conditions\" missing. Clues verbatim quotes. Need all quotes exact from narrative. We can use spans. Need ensure character-for-character. Narrative has \"On [XXX], while traveling in our FR3 RV to a funeral in Ohio, we experienced a serious safety failure.\" Quote \"refrigerator detached from the wall and fell into the cabin\" exact? Narrative: \"the refrigerator detached from the wall and fell into the cabin\" yes. Quote \"forcing my husband to swerve suddenly and nearly causing an accident\" exact. Quote \"flames coming from one of the RV’s AC units\" note curly apostrophe in RV’s. Need copy exact. Use that. Quote \"AC units were the subject of a recall issued in November 2024\" exact? Narrative: \"these AC units were the subject of a recall issued in November 2024.\" yes. Quote \"purchased our RV brand new in March 2025\" exact. Quote \"The dealership failed to rectify the recall before it was sold to us.\" exact. Safety quote \"could have resulted in death or injury\" exact. \"serious safety failure\" exact. Need group as \"electrical_general\" or \"electrical/electronic component group\"? Given group electrical_general. Use \"electrical_general\". Summary one line: \"Electrical system: refrigerator detached and AC unit flames; occurred while traveling in heavy traffic and while parked; recall not rectified.\" Need mention component? The component is electrical system. Symptoms include refrigerator detachment (not electrical?) and AC flames. Summary okay. Symptoms list plain words: \"refrigerator detached from wall and fell into cabin\", \"driver swerved to avoid accident\", \"flames seen coming from AC unit\", \"recall not rectified before sale\". Is recall not rectified a symptom? maybe other. Symptoms should be symptoms. Could include \"AC unit fire\" and \"refrigerator detachment\". \"Recall not rectified\" is condition/other not symptom. But report names recall. Fault codes none.\n\nNeed output only JSON. Ensure valid JSON. Use quotes. No markdown. Let's craft.\n\nNeed conditions: allowed values. Could include \"after service\"? No. \"vibration\"? No. \"heat\"? Flames but not condition. I'd set conditions [] and missing_info include conditions? Hmm if conditions empty but missing_info says conditions, okay. But if no conditions specified, missing_info includes \"conditions\". It might be more accurate: conditions not specified. Good.\n\nClues: kind symptom for refrigerator, swerve, flames. kind condition? \"while traveling in our FR3 RV to a funeral in Ohio\" maybe condition \"traveling\" not in allowed but clue kind condition can quote. Also \"while traveling\" and \"heavy traffic in Cincinnati\" as condition. \"while returning from the funeral\" and \"vehicle was parked\" as condition. Use kind \"condition\" quote \"heavy traffic in Cincinnati\" exact? Narrative: \"As we drove through heavy traffic in Cincinnati\" yes. Quote \"while traveling in our FR3 RV to a funeral in Ohio\" exact. \"while returning from the funeral\" exact. \"vehicle was parked\" exact? Narrative: \"where our vehicle was parked\" yes. Kind safety for \"serious safety failure\", \"nearly causing an accident\", \"could have resulted in death or injury\". Fault_code none. Component_group quote? Could use \"ELECTRICAL SYSTEM\" from component not narrative? The report includes component field. Quote must be copied from report. The report includes \"ELECTRICAL SYSTEM\" in JSON. Could use quote \"ELECTRICAL SYSTEM\" as component_group. But rules \"report\" includes whole user message? likely yes. But safe use narrative only? It says read only report. The component field is report. Use \"ELECTRICAL SYSTEM\" exact. But clue quote can be from report. Fine. Also \"electrical_general\" group? Not in narrative but in report. Could use. But not necessary.\n\nNeed missing_info: \"mileage\", \"date\", \"conditions\". Maybe \"date\" because [XXX]. Good.\n\nNeed safety_relevant true.\n\nNeed summary one line: \"Electrical system: refrigerator detached and fell into cabin while traveling in heavy traffic, and flames seen from recalled AC unit while parked; recall not rectified.\" Good.\n\nNeed symptoms array maybe \"refrigerator detached from wall and fell into cabin\", \"driver had to swerve suddenly\", \"flames coming from AC unit\". Could include \"recall not rectified\" as symptom? no.\n\nNeed fault_codes [].\n\nNeed conditions []? But clue condition quotes. The conditions field can be empty even if clue kind condition? Hmm maybe inconsistent. Could include conditions not in allowed list? Prompt says conditions: [\"cold\", ...] enumerated. Probably we should only list those. If none, empty. Clues can include condition quotes even if not mapped? kind condition yes. Fine.\n\nNeed JSON only. Ensure curly apostrophe in quote exact. In JSON string, curly apostrophe fine. Use “RV’s” exact. The narrative has \"RV\\u2019s\" which is curly right single quote. We'll include literal ’. Good.\n\nNeed quote \"The dealership failed to rectify the recall before it was sold to us.\" exact includes The. Good.\n\nPotential issue: Summary says \"recalled AC unit\" but recall issued Nov 2024; okay. \"while parked\" from other campers reported flames. Good.\n\nNeed no other text. Final JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530535,
+      "id": "456840909e4a5bc653beb4b9f18eaf07",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1837,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1508,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00069369,
+          "billing_source": "go",
+          "list_cost": 0.00115615,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 352,
+            "output": 1837,
+            "reasoning": 1508
+          }
+        },
+        "prompt_tokens": 736,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2573
+      }
+    },
+    "text": "{\"summary\":\"Electrical system: refrigerator detached and fell into cabin while traveling in heavy traffic, and flames were seen from an AC unit while the RV was parked; recall not rectified before sale.\",\"group\":\"electrical_general\",\"symptoms\":[\"refrigerator detached from wall and fell into cabin\",\"driver had to swerve suddenly\",\"flames coming from AC unit\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"refrigerator detached from the wall and fell into the cabin\"},{\"kind\":\"symptom\",\"quote\":\"forcing my husband to swerve suddenly and nearly causing an accident\"},{\"kind\":\"condition\",\"quote\":\"while traveling in our FR3 RV to a funeral in Ohio\"},{\"kind\":\"condition\",\"quote\":\"heavy traffic in Cincinnati\"},{\"kind\":\"symptom\",\"quote\":\"flames coming from one of the RV’s AC units\"},{\"kind\":\"condition\",\"quote\":\"where our vehicle was parked\"},{\"kind\":\"other\",\"quote\":\"AC units were the subject of a recall issued in November 2024\"},{\"kind\":\"other\",\"quote\":\"purchased our RV brand new in March 2025\"},{\"kind\":\"other\",\"quote\":\"The dealership failed to rectify the recall before it was sold to us.\"},{\"kind\":\"safety\",\"quote\":\"serious safety failure\"},{\"kind\":\"safety\",\"quote\":\"could have resulted in death or injury\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00069369,
+      "cached_tokens": 384,
+      "cost_usd": 0.00115615,
+      "input_tokens": 736,
+      "list_cost_usd": 0.00115615,
+      "output_tokens": 1837,
+      "reasoning_tokens": 1508
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "bed447d635d181bda2b0bfafead9f1e9662d890a834e672adcc582e015fcbd6b",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10652,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2023 Subaru Legacy adaptive cruise control/forward collision avoidance; center console display fails on cold start, disabling infotainment, climate, Eyesight and cruise; fogged windows reduce visibility; intermittent recovery after hours locked.\",\"group\":\"adas\",\"symptoms\":[\"center console display won't start on cold start\",\"infotainment, climate, Eyesight and cruise do not work\",\"climate control cannot be operated\",\"fog builds up on all windows\",\"visibility is significantly reduced at times\",\"ignition off and lock-unlock sequences do not help\",\"system boots normally after sitting locked for a few hours\"],\"conditions\":[\"cold\",\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"condition\",\"quote\":\"cold start in the morning\"},{\"kind\":\"symptom\",\"quote\":\"the center console display won't start\"},{\"kind\":\"symptom\",\"quote\":\"This affected infotainment, climate, eyesight, cruise etc.\"},{\"kind\":\"symptom\",\"quote\":\"The system didn't work during the entire trip of 3 5 hours\"},{\"kind\":\"symptom\",\"quote\":\"inability to operate climate control caused the car to build up fog on all windows reducing visibility significantly at times.\"},{\"kind\":\"safety\",\"quote\":\"reducing visibility significantly at times\"},{\"kind\":\"symptom\",\"quote\":\"Turning ignition off, lock-unlock sequences didn't help the issue.\"},{\"kind\":\"condition\",\"quote\":\"The system booted normally after it sat locked for few hours upon arrival.\"},{\"kind\":\"other\",\"quote\":\"A visit to dealer didn't find any issues.\"},{\"kind\":\"other\",\"quote\":\"the car needed software update\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize. Need read report. Component forward collision avoidance adaptive cruise control group adas. Need symptoms: center console display won't start on cold start; affected infotainment, climate, eyesight, cruise; system didn't work entire trip 3-5 hours; inability to operate climate control caused fog on windows reducing visibility; turning ignition off lock-unlock didn't help; system booted after locked few hours; dealer no issue software update unverified. Conditions: cold, intermittent? It says cold start in morning, after sitting locked few hours. Maybe \"cold\", \"intermittent\" because booted later and dealer no issue. Maybe \"after service\"? dealer visit not service? no. \"moisture\"? fog on windows not moisture condition? Hmm fog build up due climate inability. Could include cold only. Safety_relevant? Report mentions reduced visibility significantly at times. Is that risk to people? The prompt says safety_relevant when crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. Reduced visibility significantly at times is risk to people. But input has safety_relevant false from source; we must set based on report. I think true because reduced visibility significantly. Need fault_codes empty. missing_info: mileage null, date? date received exists but incident date not? missing_info facts analysis needs: component, symptom, conditions, mileage, date. Component and symptom present. Conditions present cold. Mileage missing. Date? The report says trip back from Nashville, no exact date. received_at 2025-03-02. Incident date missing. Should list mileage and date? Maybe yes. Could also missing component? no. Need clues quotes verbatim. Need quote exact spans. We can include quotes:\n- \"Upon cold start in the morning the center console display won't start.\" symptom/condition? Quote includes both. Kind symptom maybe.\n- \"This affected infotainment, climate, eyesight, cruise etc.\" symptom\n- \"The system didn't work during the entire trip of 3 5 hours\" note weird \"3 5 hours\" verbatim. Could be \"3 5 hours\". Need exact. Narrative: \"The system didn't work during the entire trip of 3 5 hours  and inability...\" There are two spaces? It says \"3 5 hours  and inability\" maybe. For quote choose \"The system didn't work during the entire trip of 3 5 hours\" exact.\n- \"inability to operate climate control caused the car to build up fog on all windows reducing visibility significantly at times.\" exact.\n- \"Turning ignition off, lock-unlock sequences didn't help the issue.\" symptom/other.\n- \"The system booted normally after it sat locked for few hours upon arrival.\" condition intermittent? kind condition maybe.\n- \"A visit to dealer didn't find any issues.\" other.\n- \"the car needed software update\" other maybe.\nNeed summary one line: \"2023 Subaru Legacy adaptive cruise control/forward collision avoidance; center console display fails on cold start, disabling infotainment, climate, Eyesight and cruise; fogged windows reduce visibility; intermittent recovery after hours locked.\" That's one line though semicolons. Good.\n\nGroup \"adas\". Symptoms array plain words. Conditions array: [\"cold\", \"intermittent\"] maybe. Do we include \"after service\"? Dealer visit didn't find issues, not after service. Maybe no.\n\nSafety relevant true due reduced visibility. Clues include safety quote.\n\nNeed output valid JSON only. Ensure no markdown? User says Answer with one JSON object and no other text. We can output raw JSON. Need exactly fields. Missing_info list [\"mileage\",\"date\"] maybe. Is date missing important? It says started on trip back from Nashville, received at date. Incident date not given. Yes.\n\nNeed maybe fault_codes empty. Ensure summary one line no newline? JSON string can contain no newline. Good.\n\nNeed every quote verbatim. Let's verify exact text:\n\"This issue started on the trip back from Nashville. Upon cold start in the morning the center console display won't start. This affected infotainment, climate, eyesight, cruise etc. The system didn't work during the entire trip of 3 5 hours  and inability to operate climate control caused the car to build up fog on all windows reducing visibility significantly at times. Turning ignition off, lock-unlock sequences didn't help the issue.   The system booted normally after it sat locked for few hours upon arrival. A visit to dealer didn't find any issues. The usual comment the car needed software update, which I couldn't verify.\"\nNotice triple spaces before The system. Quote can span exactly if needed but choose no multi spaces. \"The system booted normally after it sat locked for few hours upon arrival.\" exact. \"A visit to dealer didn't find any issues.\" exact. \"the car needed software update\" exact within \"The usual comment the car needed software update, which I couldn't verify.\" Quote \"the car needed software update\" exact. Good.\n\nPotential issue: \"eyesight\" lower. Fine.\n\nNeed kind for safety: quote about reduced visibility. \"reducing visibility significantly at times\" exact substring but maybe quote full. Kind safety.\n\nNeed maybe condition \"cold\" quote \"cold start in the morning\" exact substring. Good.\n\nNeed missing_info only facts analysis needs. Could also conditions? We know cold. Mileage missing, date missing. Could include \"mileage\",\"date\". Good.\n\nNeed output.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793525205,
+      "id": "2f80f11f848b764a2d42e4c9515d1188",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1520,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1152,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00060363,
+          "billing_source": "go",
+          "list_cost": 0.00100605,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 627,
+            "output": 1520,
+            "reasoning": 1152
+          }
+        },
+        "prompt_tokens": 627,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 2147
+      }
+    },
+    "text": "{\"summary\":\"2023 Subaru Legacy adaptive cruise control/forward collision avoidance; center console display fails on cold start, disabling infotainment, climate, Eyesight and cruise; fogged windows reduce visibility; intermittent recovery after hours locked.\",\"group\":\"adas\",\"symptoms\":[\"center console display won't start on cold start\",\"infotainment, climate, Eyesight and cruise do not work\",\"climate control cannot be operated\",\"fog builds up on all windows\",\"visibility is significantly reduced at times\",\"ignition off and lock-unlock sequences do not help\",\"system boots normally after sitting locked for a few hours\"],\"conditions\":[\"cold\",\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"condition\",\"quote\":\"cold start in the morning\"},{\"kind\":\"symptom\",\"quote\":\"the center console display won't start\"},{\"kind\":\"symptom\",\"quote\":\"This affected infotainment, climate, eyesight, cruise etc.\"},{\"kind\":\"symptom\",\"quote\":\"The system didn't work during the entire trip of 3 5 hours\"},{\"kind\":\"symptom\",\"quote\":\"inability to operate climate control caused the car to build up fog on all windows reducing visibility significantly at times.\"},{\"kind\":\"safety\",\"quote\":\"reducing visibility significantly at times\"},{\"kind\":\"symptom\",\"quote\":\"Turning ignition off, lock-unlock sequences didn't help the issue.\"},{\"kind\":\"condition\",\"quote\":\"The system booted normally after it sat locked for few hours upon arrival.\"},{\"kind\":\"other\",\"quote\":\"A visit to dealer didn't find any issues.\"},{\"kind\":\"other\",\"quote\":\"the car needed software update\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00060363,
+      "cached_tokens": 0,
+      "cost_usd": 0.00100605,
+      "input_tokens": 627,
+      "list_cost_usd": 0.00100605,
+      "output_tokens": 1520,
+      "reasoning_tokens": 1152
+    }
+  }
+}

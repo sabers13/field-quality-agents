@@ -1,0 +1,66 @@
+{
+  "key": "db92a3a7af871ff233a81297937d55e52c7e658f1154637a71cd13ab8d5d305b",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 6168,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Run a long-run power-cycling test because the false \\\"shift into park\\\" warning/chime is intermittent and the rulebook maps intermittent faults to that test.\",\"rationale\":\"The narrative reports the warning light and chime occurring while the Blazer is in Park, happening 5 or 6 times in the past couple days, and stopping when the shifter handle is jiggled. The extracted condition is intermittent, which matches the rulebook entry requiring a long-run power-cycling test to reproduce faults after repeated wake/sleep cycles.\",\"group\":\"electrical_general\",\"symptoms\":[\"warning light and chime to shift into park while the vehicle is in Park\",\"chime stops when the shifter handle is jiggled\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":false,\"targeted\":true,\"test_name\":\"Long-run power cycling test\",\"clues\":[{\"kind\":\"symptom\",\"quote\":\"when you put your Blazer in Park you get the warning light and chime to 'shift it into park'.\"},{\"kind\":\"condition\",\"quote\":\"5 or 6 times in the past couple days\"},{\"kind\":\"symptom\",\"quote\":\"I can jiggle the shifter handle to get the chime to stop\"}]}",
+            "reasoning_content": "We need answer JSON only. Need analyze. Case: 2020 Chevy Blazer, electrical general, false shift to park warning/chime while in Park, intermittent, jiggle shifter stops chime. Rulebook matched intermittent -> Long-run power cycling test. Need targeted? Rulebook entry matched conditions, so targeted true, test_name \"Long-run power cycling test\". Group electrical_general. Safety_relevant false? Narrative says concerned but no risk to people. However shift-to-park may prevent shutdown? This narrative only chime/light while in Park, jiggle stops. No safety risk. Use quotes verbatim from narrative (not extraction). Need clues quote exact spans from case narrative. Narrative text includes \"when you put your Blazer in Park you get the warning light and chime to 'shift it into park'.\" and \"5 or 6 times in the past couple days\" and \"I can jiggle the shifter handle to get the chime to stop\". Component group quote? \"ELECTRICAL SYSTEM\" appears in component field but not narrative. Rule says quote copied verbatim from case narrative. Could include \"Blazer\" maybe component? We need component_group clue? We can include kind component_group quote maybe \"Blazer\" not enough. But extraction had \"ELECTRICAL SYSTEM\" from component not narrative. Since code verifies against narrative, don't use. We can include symptom and condition quotes. Maybe \"warning light and chime to 'shift it into park'\" exact. Need ensure verbatim. Narrative has apostrophes? Let's copy exact substrings. \n\nSummary one line: \"Run a long-run power-cycling test because the false Park warning/chime is intermittent and the rulebook maps intermittent faults to that test.\" Rationale: condition intermittent, repeated 5-6 times over couple days, jiggle shifter stops chime; matched rulebook. Targeted true. Test name exact.\n\nJSON object only. Ensure no extra text.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793527126,
+      "id": "fd5ca2458326553eda9cae04aa90f802",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 680,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 407,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00037458,
+          "billing_source": "go",
+          "list_cost": 0.0006243,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 1442,
+            "output": 680,
+            "reasoning": 407
+          }
+        },
+        "prompt_tokens": 1442,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 2122
+      }
+    },
+    "text": "{\"summary\":\"Run a long-run power-cycling test because the false \\\"shift into park\\\" warning/chime is intermittent and the rulebook maps intermittent faults to that test.\",\"rationale\":\"The narrative reports the warning light and chime occurring while the Blazer is in Park, happening 5 or 6 times in the past couple days, and stopping when the shifter handle is jiggled. The extracted condition is intermittent, which matches the rulebook entry requiring a long-run power-cycling test to reproduce faults after repeated wake/sleep cycles.\",\"group\":\"electrical_general\",\"symptoms\":[\"warning light and chime to shift into park while the vehicle is in Park\",\"chime stops when the shifter handle is jiggled\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":false,\"targeted\":true,\"test_name\":\"Long-run power cycling test\",\"clues\":[{\"kind\":\"symptom\",\"quote\":\"when you put your Blazer in Park you get the warning light and chime to 'shift it into park'.\"},{\"kind\":\"condition\",\"quote\":\"5 or 6 times in the past couple days\"},{\"kind\":\"symptom\",\"quote\":\"I can jiggle the shifter handle to get the chime to stop\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00037458,
+      "cached_tokens": 0,
+      "cost_usd": 0.0006243,
+      "input_tokens": 1442,
+      "list_cost_usd": 0.0006243,
+      "output_tokens": 680,
+      "reasoning_tokens": 407
+    }
+  }
+}

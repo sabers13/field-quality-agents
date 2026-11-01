@@ -1,0 +1,66 @@
+{
+  "key": "e50e995b5d4756befe31d915a20bb88235caaf3d4128751dfeab79b307dc4405",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9219,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\": \"Run standard odometer/instrument-cluster verification because the private-sale vehicle showed a 9,000-mile discrepancy at registration.\", \"rationale\": \"The narrative reports odometer fraud and a mileage discrepancy: 119,000 at private purchase versus 128,000 at registration. No rulebook, recall, investigation or similar case was returned, so no targeted load test is named; propose the standard field-quality test.\", \"group\": \"instrumentation\", \"symptoms\": [\"odometer fraud\", \"mileage discrepancy\"], \"conditions\": [\"private sale\", \"discrepancy discovered while attempting to register the vehicle\"], \"fault_codes\": [], \"safety_relevant\": false, \"targeted\": false, \"test_name\": \"standard odometer/instrument-cluster verification\", \"clues\": [{\"kind\": \"symptom\", \"quote\": \"Odometer Fraud\"}, {\"kind\": \"symptom\", \"quote\": \"mileage discrepancy\"}, {\"kind\": \"condition\", \"quote\": \"while attempting to register the vehicle\"}, {\"kind\": \"other\", \"quote\": \"private sale\"}, {\"kind\": \"other\", \"quote\": \"the mileage was 119,000\"}, {\"kind\": \"other\", \"quote\": \"the mileage was 128,000\"}]}",
+            "reasoning_content": "We need to produce JSON. Case is odometer fraud, mileage discrepancy. No rulebook matches, no recalls/investigations/similar. Targeted false (no rulebook entry). Safety_relevant false (financial/fraud, not risk to people). Quotes verbatim from narrative. Need test_name: standard test? Since no rulebook, targeted false, propose standard test. What is \"standard test\"? Prompt says \"Otherwise propose the standard test (`\"targeted\": false`).\" Test_name can be something like \"standard field-quality test\" or \"odometer/instrument cluster verification\"? Need be careful: test_name \"the targeted test the rulebook names\" but no rulebook. For non-targeted, maybe \"standard test\". Could set test_name \"standard test\" or \"odometer verification test\". The schema requires test_name. We can say \"standard odometer/instrument cluster verification\". But rulebook doesn't name it. Ensure no unsupported action. No closing etc.\n\nClues quotes must be verbatim spans from case narrative. Narrative text: \"Odometer Fraud. The contact purchased a 2011 GMC Sierra 1500. The contact stated that while attempting to register the vehicle, it was discovered that there was a mileage discrepancy. The vehicle was a private sale. At the time of purchase, the mileage was 119,000, and at the time of registration, it was discovered that the mileage was 128,000.\"\n\nVerbatim quotes: \"Odometer Fraud\", \"mileage discrepancy\", \"private sale\", \"the mileage was 119,000\", \"the mileage was 128,000\". For component group quote \"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\" is from component field not narrative. Prompt says quote copied from case narrative. The component string appears in case.component, not narrative. Maybe don't include component_group clue? But extraction has it. We need clues quotes from case narrative. The narrative doesn't contain component string. Could include \"instrument panel\"? Not in narrative. So skip component_group clue or use symptom only. We can include condition \"private sale\" as other. Symptoms: \"odometer fraud\", \"mileage discrepancy\". Conditions: \"private sale\", \"registration discovered mileage discrepancy\"? Conditions array should be strings not quotes? It's fine.\n\nSummary one line: what to test and why. \"Test odometer/instrument cluster integrity because a private-sale vehicle showed a 9,000-mile discrepancy between purchase and registration.\" Rationale: no rulebook/recall/investigation matches; evidence of mileage discrepancy; targeted false standard test.\n\nNeed maybe mention no safety risk. safety_relevant false.\n\nGroup \"instrumentation\". fault_codes [].\n\nClues include kind symptom quote \"Odometer Fraud\"; symptom quote \"mileage discrepancy\"; other quote \"private sale\"; other quote \"the mileage was 119,000\"; other quote \"the mileage was 128,000\". Note \"the mileage was 119,000\" includes \"the\". Narrative: \"At the time of purchase, the mileage was 119,000\" yes exact substring \"the mileage was 119,000\" exists. \"the mileage was 128,000\" exists. Good.\n\nMaybe include condition clue \"while attempting to register the vehicle\" exact substring? Narrative: \"while attempting to register the vehicle\" yes. Could include kind condition. But conditions array maybe.\n\nNeed answer only JSON. Ensure no extra text. Use proper JSON. targeted false. test_name maybe \"standard odometer/instrument cluster verification\". Is that proposing an action? It's a test. Fine. No \"inspect\" maybe okay. The desk never scraps etc. Test booking is okay except safety.\n\nNeed include \"safety_relevant\": false.\n\nLet's craft concise.\n\nRationale: \"The narrative reports odometer fraud/mileage discrepancy: 119,000 at private purchase vs 128,000 at registration. No rulebook, recall, investigation or similar case was returned, so this does not match a targeted load test; propose the standard field-quality test.\"\n\nSummary: \"Run standard odometer/instrument-cluster verification because the private-sale vehicle showed a 9,000-mile discrepancy at registration.\"\n\nClues maybe include \"Odometer Fraud\" and \"mileage discrepancy\", \"private sale\", mileage values. Good.\n\nFinal JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793526119,
+      "id": "b68d02a8a4385f5cabc35af770c921bd",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1174,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 903,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00049662,
+          "billing_source": "go",
+          "list_cost": 0.0008277,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 822,
+            "output": 1174,
+            "reasoning": 903
+          }
+        },
+        "prompt_tokens": 822,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 1996
+      }
+    },
+    "text": "{\"summary\": \"Run standard odometer/instrument-cluster verification because the private-sale vehicle showed a 9,000-mile discrepancy at registration.\", \"rationale\": \"The narrative reports odometer fraud and a mileage discrepancy: 119,000 at private purchase versus 128,000 at registration. No rulebook, recall, investigation or similar case was returned, so no targeted load test is named; propose the standard field-quality test.\", \"group\": \"instrumentation\", \"symptoms\": [\"odometer fraud\", \"mileage discrepancy\"], \"conditions\": [\"private sale\", \"discrepancy discovered while attempting to register the vehicle\"], \"fault_codes\": [], \"safety_relevant\": false, \"targeted\": false, \"test_name\": \"standard odometer/instrument-cluster verification\", \"clues\": [{\"kind\": \"symptom\", \"quote\": \"Odometer Fraud\"}, {\"kind\": \"symptom\", \"quote\": \"mileage discrepancy\"}, {\"kind\": \"condition\", \"quote\": \"while attempting to register the vehicle\"}, {\"kind\": \"other\", \"quote\": \"private sale\"}, {\"kind\": \"other\", \"quote\": \"the mileage was 119,000\"}, {\"kind\": \"other\", \"quote\": \"the mileage was 128,000\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00049662,
+      "cached_tokens": 0,
+      "cost_usd": 0.0008277,
+      "input_tokens": 822,
+      "list_cost_usd": 0.0008277,
+      "output_tokens": 1174,
+      "reasoning_tokens": 903
+    }
+  }
+}

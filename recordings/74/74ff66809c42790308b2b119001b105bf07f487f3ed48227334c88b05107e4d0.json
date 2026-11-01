@@ -1,0 +1,66 @@
+{
+  "key": "74ff66809c42790308b2b119001b105bf07f487f3ed48227334c88b05107e4d0",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10479,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"AIR BAGS recall repair unavailable; no failure reported.\",\"group\":\"restraints\",\"symptoms\":[],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"other\",\"quote\":\"NHTSA Campaign Number: 23V865000 (AIR BAGS)\"},{\"kind\":\"other\",\"quote\":\"the part to do the recall repair was not yet available\"},{\"kind\":\"symptom\",\"quote\":\"The contact had not experienced a failure.\"},{\"kind\":\"other\",\"quote\":\"VIN tool confirms parts not available.\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize report. Component AIR BAGS group restraints. Narrative: recall campaign 23V865000 air bags, part not available, dealer contacted, manufacturer exceeded reasonable time, manufacturer aware, no failure experienced. VIN tool confirms parts not available. Symptoms? No failure. So symptoms empty? Could say no symptom/failure reported. Conditions? none. Fault codes? 23V865000 is campaign number not fault code? The schema fault_codes code if report names one. It names NHTSA Campaign Number: 23V865000. Is that a fault code? Probably not a diagnostic fault code. But maybe include? Need be careful. \"fault_codes\": [\"code if report names one\"]. Campaign number isn't fault code. Could include in clues kind fault_code? Hmm. Better not as fault code; clue \"other\" quote for campaign. missing_info: mileage is null; date? received_at exists. Conditions? no failure. Component present. Symptom? no failure. Maybe missing_info [\"mileage\"] only? Analysis needs mileage? Since no failure, mileage maybe not important? But field null. Include mileage. Also maybe \"symptom\" missing because no failure. But report explicitly no failure; not missing, absent. Conditions missing? No conditions relevant. missing_info maybe [\"mileage\"]. Need safety_relevant false. Summary one line: AIR BAGS recall repair unavailable; no failure. Conditions empty. symptoms empty. clues verbatim. Need quote exact spans. Use quotes from narrative: \"NHTSA Campaign Number: 23V865000 (AIR BAGS)\" exactly? Narrative has \"NHTSA Campaign Number: 23V865000 (AIR BAGS)\" yes. \"the part to do the recall repair was not yet available\" exact substring? Narrative: \"however, the part to do the recall repair was not yet available.\" yes. \"The contact had not experienced a failure.\" exact. \"VIN tool confirms parts not available.\" exact. Component group clue? \"AIR BAGS\" from component? The report in user message includes JSON component \"AIR BAGS\"; quote must be verbatim from report. It is in report. kind component_group quote \"AIR BAGS\". Maybe \"restraints\" group given, but quote from report? The JSON has \"group\": \"restraints\" yes. Could quote \"restraints\" as component_group? Hmm group is given. But clue component_group should quote \"AIR BAGS\". Good.\n\nNeed JSON only no markdown. Ensure valid. Summary maybe \"AIR BAGS recall repair unavailable; no failure reported.\" Conditions empty. Symptoms empty? Could include \"no failure experienced\" as symptom? It's not symptom. Better symptoms [].\n\nFault_codes: [] or maybe [\"23V865000\"]? The instruction \"fault_codes\": [\"code if the report names one\"]. A recall campaign number is a code named in report. But \"fault_codes\" likely DTC. If include, might be considered not fault code. The report names NHTSA Campaign Number 23V865000. Could include as fault_code? Hmm. The intake normalizes field-quality report; fault_codes are diagnostic codes. Campaign number is not fault code. But a clue kind \"fault_code\" could be used? The kind includes fault_code. If we don't include, still quote in other. I'd put fault_codes [] and clue kind \"other\" for campaign. But maybe expected include campaign as fault code? Let's parse: \"fault_codes\": [\"code if the report names one\"]—campaign number is a code. But \"fault code\" specifically. To avoid inventing, use [] and clue \"other\". However, if analysis wants recall number, clue suffices. Could include \"23V865000\" in fault_codes? It is a code, not fault. Hmm.\n\nMissing_info: mileage null. Date received exists. Conditions? The report no conditions, but no failure. List only mileage. The instructions \"List missing_info only for facts the analysis needs: component, symptom, conditions, mileage, date. Use empty when nothing important missing.\" Since mileage null, include. Component and symptom clear. Conditions? There's no event conditions, but not needed because no failure. Date present.\n\nSafety_relevant false: no crash/fire etc. Good.\n\nNeed answer with one JSON object no other text. Use exact quotes. Let's craft.\n\nClues:\n- {\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"}\n- {\"kind\":\"other\",\"quote\":\"NHTSA Campaign Number: 23V865000 (AIR BAGS)\"}\n- {\"kind\":\"condition\",\"quote\":\"the part to do the recall repair was not yet available\"}? Is that condition? It's condition of recall repair availability. Kind condition? Conditions field only cold/moisture etc. But clue kind condition could capture. Hmm maybe kind \"other\" for part unavailable. Better kind \"other\".\n- {\"kind\":\"symptom\",\"quote\":\"The contact had not experienced a failure.\"} This is a negative symptom, not a symptom. Kind symptom? It indicates no symptom. Could use kind \"symptom\" quote. It is relevant. Fine.\n- {\"kind\":\"other\",\"quote\":\"VIN tool confirms parts not available.\"}\nCould include \"The manufacturer was made aware of the issue.\" no need.\n\nNeed no markdown. Final JSON only.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793525810,
+      "id": "03c5dc01bc51b06fa50d4556665cfe8e",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1270,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1127,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00047526,
+          "billing_source": "go",
+          "list_cost": 0.0007921,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 193,
+            "output": 1270,
+            "reasoning": 1127
+          }
+        },
+        "prompt_tokens": 577,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1847
+      }
+    },
+    "text": "{\"summary\":\"AIR BAGS recall repair unavailable; no failure reported.\",\"group\":\"restraints\",\"symptoms\":[],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"other\",\"quote\":\"NHTSA Campaign Number: 23V865000 (AIR BAGS)\"},{\"kind\":\"other\",\"quote\":\"the part to do the recall repair was not yet available\"},{\"kind\":\"symptom\",\"quote\":\"The contact had not experienced a failure.\"},{\"kind\":\"other\",\"quote\":\"VIN tool confirms parts not available.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00047526,
+      "cached_tokens": 384,
+      "cost_usd": 0.0007921,
+      "input_tokens": 577,
+      "list_cost_usd": 0.0007921,
+      "output_tokens": 1270,
+      "reasoning_tokens": 1127
+    }
+  }
+}

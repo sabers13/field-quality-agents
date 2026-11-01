@@ -1,0 +1,66 @@
+{
+  "key": "3302679fd661fe4502071fe3a428d9d53bc47c7cbe659d0c025cb064222ed98b",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12986,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system: car does not accelerate in stop-and-go traffic, gas pedal response is delayed about 20 seconds, and engine sometimes flutters; recurring for about a year.\",\"group\":\"electrical_general\",\"symptoms\":[\"car not accelerating in stop and go traffic\",\"gas pedal moves car a little then it will not go for about 20 seconds\",\"engine flutter\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"car not accelerating in stop and go traffic\"},{\"kind\":\"symptom\",\"quote\":\"I push the gas pedal and it moves a little then will not go for about 20 seconds.\"},{\"kind\":\"symptom\",\"quote\":\"Sometimes the engine will flutter.\"},{\"kind\":\"condition\",\"quote\":\"For about a year I have had issues\"},{\"kind\":\"other\",\"quote\":\"no diagnostic codes show\"},{\"kind\":\"safety\",\"quote\":\"I have almost caused several accidents in traffic due to not being able to drive.\"},{\"kind\":\"safety\",\"quote\":\"this is very dangerous not only for myself but other commuters as well.\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize report. Need read only report. Need extract component group? Given component ELECTRICAL SYSTEM, group electrical_general. Summary one line component symptom conditions. Symptoms: car not accelerating in stop and go traffic; push gas pedal moves little then will not go for about 20 seconds; engine flutter; issue worsening; near accidents due inability to drive. Conditions: stop and go traffic; intermittent? about a year; after? no. charging no. cold moisture heat vibration no. \"intermittent\" maybe sometimes engine flutter? The conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. We can include \"intermittent\" if report says \"Sometimes\" and about a year recurring. Need safety_relevant true because \"almost caused several accidents in traffic due to not being able to drive\", dangerous. Fault codes: report says no diagnostic codes show, so none named. Could maybe fault_codes [] not \"no diagnostic codes show\". Missing_info: mileage null, date? received_at present but report date? The analysis needs date maybe received_at is date. Mileage missing. Conditions present. Component present. Symptom present. So missing_info [\"mileage\"]. Maybe date? There is received_at 2025-09-13 not incident date. But missing_info list facts analysis needs: component, symptom, conditions, mileage, date. Date of occurrence? Report says for about a year. But no specific date. Could include \"date\" if needed? The prompt asks missing_info only facts analysis needs. Date maybe not crucial? But likely include mileage only. Need clues with verbatim quotes from report. Need ensure quotes exact character spans. Could include:\n- symptom quote: \"car not accelerating in stop and go traffic\" exact? Narrative: \"issues with my car not accelerating in stop and go traffic.\" substring \"car not accelerating in stop and go traffic\" yes.\n- symptom quote: \"I push the gas pedal and it moves a little then will not go for about 20 seconds.\" exact.\n- symptom quote: \"Sometimes the engine will flutter.\" exact.\n- condition quote: \"in stop and go traffic\" exact? It appears \"not accelerating in stop and go traffic\" and \"accidents in traffic\". Use \"stop and go traffic\" exact.\n- condition intermittent quote: \"For about a year I have had issues\" exact? This indicates recurring. Kind condition quote \"For about a year I have had issues\" maybe.\n- safety quote: \"I have almost caused several accidents in traffic due to not being able to drive.\" exact. Also \"very dangerous not only for myself but other commuters as well.\" exact.\n- fault_code? \"no diagnostic codes show\" exact but fault_codes list empty. Clue kind fault_code? Could include quote \"no diagnostic codes show\" as fault_code? It's a statement no code. Maybe kind other? Better include under other? The schema kind fault_code if report names one. It doesn't name. But clue could be \"fault_code\" with quote no diagnostic codes show? Hmm it's evidence that no codes. Kind fault_code maybe acceptable but fault_codes empty? Could confuse. Use kind \"other\" for diagnostic statement? But kind options include other. Quote \"no diagnostic codes show\" exact. \n- component_group quote? \"ELECTRICAL SYSTEM\" is from component field not narrative. Is that report? User message includes JSON with component. \"Read only the report in user message\" includes component. Quote verbatim from report can include \"ELECTRICAL SYSTEM\". But clues quote should be verbatim span copied from report. Yes component field. Group given. Could include component_group quote \"ELECTRICAL SYSTEM\". But summary component maybe \"electrical system\". However symptom is acceleration, likely powertrain not electrical. But given component group electrical_general. We should not override? Rule: group = electrical/electronic component group, or given group. Given group electrical_general. Use given. Summary \"Electrical system: car fails to accelerate in stop-and-go traffic, pedal response delayed ~20 seconds, engine flutter; recurring for about a year.\" Need one line.\n\nNeed output valid JSON no markdown? They said answer with one JSON object and no other text. We should output raw JSON. Ensure no code fence? Probably no. Need include all fields.\n\nLet's craft:\n{\n \"summary\":\"Electrical system: car does not accelerate in stop-and-go traffic, gas pedal response is delayed about 20 seconds, and engine sometimes flutters; recurring for about a year.\",\n \"group\":\"electrical_general\",\n \"symptoms\":[\"car not accelerating in stop and go traffic\",\"gas pedal moves car a little then it will not go for about 20 seconds\",\"engine flutter\"],\n \"conditions\":[\"intermittent\"],\n \"fault_codes\":[],\n \"safety_relevant\":true,\n \"missing_info\":[\"mileage\"],\n \"clues\":[\n  {\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},\n  {\"kind\":\"symptom\",\"quote\":\"car not accelerating in stop and go traffic\"},\n  {\"kind\":\"symptom\",\"quote\":\"I push the gas pedal and it moves a little then will not go for about 20 seconds.\"},\n  {\"kind\":\"symptom\",\"quote\":\"Sometimes the engine will flutter.\"},\n  {\"kind\":\"condition\",\"quote\":\"For about a year I have had issues\"},\n  {\"kind\":\"other\",\"quote\":\"no diagnostic codes show\"},\n  {\"kind\":\"safety\",\"quote\":\"I have almost caused several accidents in traffic due to not being able to drive.\"},\n  {\"kind\":\"safety\",\"quote\":\"this is very dangerous not only for myself but other commuters as well.\"}\n ]\n}\n\nNeed conditions maybe \"intermittent\" only. Is \"stop and go traffic\" not in allowed conditions; don't include as condition? The schema says conditions list with enumerated examples? It says `\"conditions\": [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]` likely allowed values, so cannot include stop and go. But summary can include. Clue condition quote \"For about a year...\" to support intermittent? Hmm \"intermittent\" because recurring and sometimes. But quote \"Sometimes the engine will flutter\" better for intermittent. But kind symptom already. Could include condition quote \"Sometimes\" exact? Use {\"kind\":\"condition\",\"quote\":\"Sometimes the engine will flutter.\"}? That quote contains symptom and intermittent. But kind condition. Fine. Need every quote exact. The quote \"For about a year I have had issues\" exact? Narrative: \"For about a year I have had issues with my car...\" yes. Good.\n\nPotential issue: summary says \"electrical system\" component but symptom not electrical. It's given. Fine.\n\nNeed no other text. Final raw JSON. Ensure JSON booleans lowercase. Good.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530367,
+      "id": "1f7e99b967b8541d97af1d632b8b4dac",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1700,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1433,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00063924,
+          "billing_source": "go",
+          "list_cost": 0.0010654,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 295,
+            "output": 1700,
+            "reasoning": 1433
+          }
+        },
+        "prompt_tokens": 679,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2379
+      }
+    },
+    "text": "{\"summary\":\"Electrical system: car does not accelerate in stop-and-go traffic, gas pedal response is delayed about 20 seconds, and engine sometimes flutters; recurring for about a year.\",\"group\":\"electrical_general\",\"symptoms\":[\"car not accelerating in stop and go traffic\",\"gas pedal moves car a little then it will not go for about 20 seconds\",\"engine flutter\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"car not accelerating in stop and go traffic\"},{\"kind\":\"symptom\",\"quote\":\"I push the gas pedal and it moves a little then will not go for about 20 seconds.\"},{\"kind\":\"symptom\",\"quote\":\"Sometimes the engine will flutter.\"},{\"kind\":\"condition\",\"quote\":\"For about a year I have had issues\"},{\"kind\":\"other\",\"quote\":\"no diagnostic codes show\"},{\"kind\":\"safety\",\"quote\":\"I have almost caused several accidents in traffic due to not being able to drive.\"},{\"kind\":\"safety\",\"quote\":\"this is very dangerous not only for myself but other commuters as well.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00063924,
+      "cached_tokens": 384,
+      "cost_usd": 0.0010654,
+      "input_tokens": 679,
+      "list_cost_usd": 0.0010654,
+      "output_tokens": 1700,
+      "reasoning_tokens": 1433
+    }
+  }
+}

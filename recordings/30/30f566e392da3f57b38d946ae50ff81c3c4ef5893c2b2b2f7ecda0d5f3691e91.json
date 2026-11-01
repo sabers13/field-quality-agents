@@ -1,0 +1,66 @@
+{
+  "key": "30f566e392da3f57b38d946ae50ff81c3c4ef5893c2b2b2f7ecda0d5f3691e91",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10685,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\": \"AIR BAGS: open recall remedy unavailable since June 2024; passenger detection and air bag deployment in an accident.\", \"group\": \"restraints\", \"symptoms\": [\"no remedy available for open recall announced June 2024\", \"passenger detection and air bag deployment concern in an accident\"], \"conditions\": [], \"fault_codes\": [], \"safety_relevant\": true, \"missing_info\": [\"mileage\"], \"clues\": [{\"kind\": \"component_group\", \"quote\": \"AIR BAGS\"}, {\"kind\": \"symptom\", \"quote\": \"Manufacturer still does not have a remedy for open recall\"}, {\"kind\": \"safety\", \"quote\": \"passenger detection and air bag deployment in the event of an accident\"}, {\"kind\": \"condition\", \"quote\": \"in the event of an accident\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize report. Component AIR BAGS group restraints. Narrative: manufacturer no remedy for open recall announced June 2024. Passenger detection and air bag deployment in event of accident, 9 months no remedy unacceptable. Need summary one line component symptom conditions. Symptoms: no remedy for open recall? passenger detection and air bag deployment concern? Conditions: maybe none? \"in the event of an accident\" is condition? Conditions list allowed: cold moisture heat vibration intermittent after service charging. None. Safety relevant: report mentions air bag deployment in accident, risk? Rules safety_relevant when mentions crash, fire, smoke, injury, loss control, stall at speed or another risk to people. It mentions accident and air bag deployment/passenger detection. This is safety relevant true likely. But given input safety_relevant false; we should set based on rules. Fault codes none. Missing_info: mileage? It's null, but is mileage important? Analysis needs component symptom conditions mileage date. Component present, symptom present (no remedy/open recall, passenger detection/airbag deployment), conditions maybe none; mileage missing. date? received date present, recall date June 2024 mentioned. Missing info: mileage. Maybe conditions? Hmm \"conditions\" could be accident event, but allowed condition list doesn't include accident. Missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Since no specific conditions? But not necessarily missing. Mileage null, so include \"mileage\". Maybe \"conditions\" because no environmental/operating conditions. But in report, condition is accident event. It's not one of allowed conditions? We can put conditions []? But safety. Clues: verbatim quotes. Need quote exact spans from narrative. Could quote \"Manufacturer still does not have a remedy for open recall that was announced June 2024.\" For symptom. \"passenger detection and air bag deployment in the event of an accident\" for symptom/safety. Need ensure verbatim substring. Narrative: \"Manufacturer still does not have a remedy for open recall that was announced June 2024. Since this regards passenger detection and air bag deployment in the event of an accident, 9 months and still no remedy is unacceptable\" Exact. Clues kind symptom quote \"Manufacturer still does not have a remedy for open recall\" is substring? yes. condition quote \"in the event of an accident\" substring yes but condition kind? allowed kind condition. safety quote same? Could include safety kind quote \"passenger detection and air bag deployment in the event of an accident\" substring yes. component_group quote \"AIR BAGS\"? Is in component field, user says report includes JSON. Report? \"Read only the report in user message\" includes component. Verbatim span copied from report. Could quote \"AIR BAGS\" yes. But clues quotes from report maybe narrative only? It says report. We can include component_group quote \"AIR BAGS\". Need no other text.\n\nNeed group \"restraints\" given. summary one line: \"AIR BAGS: open recall remedy unavailable since June 2024; passenger detection and airbag deployment in accident.\" Good.\n\nSymptoms plain words: \"no remedy available for open recall announced June 2024\", \"passenger detection and air bag deployment concern in an accident\". Conditions: [] because allowed list none. Fault_codes []. safety_relevant true. missing_info [\"mileage\"] maybe date? Date? received_at and recall date June 2024. Mileage null. Maybe missing_info includes \"mileage\". Is \"date\" missing? There is received_at and recall announced June 2024. No. Conditions missing? It lacks specific conditions; but not necessary. Could include \"conditions\" because no environmental conditions. But analysis needs conditions. Yet narrative has event accident. I think include mileage only.\n\nNeed answer one JSON object no other text. Ensure valid JSON. Use booleans. Let's craft.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793525353,
+      "id": "84a2222aeb2e62bc311bbe10e42a39bc",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 989,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 808,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00040365,
+          "billing_source": "go",
+          "list_cost": 0.00067275,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 529,
+            "output": 989,
+            "reasoning": 808
+          }
+        },
+        "prompt_tokens": 529,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 1518
+      }
+    },
+    "text": "{\"summary\": \"AIR BAGS: open recall remedy unavailable since June 2024; passenger detection and air bag deployment in an accident.\", \"group\": \"restraints\", \"symptoms\": [\"no remedy available for open recall announced June 2024\", \"passenger detection and air bag deployment concern in an accident\"], \"conditions\": [], \"fault_codes\": [], \"safety_relevant\": true, \"missing_info\": [\"mileage\"], \"clues\": [{\"kind\": \"component_group\", \"quote\": \"AIR BAGS\"}, {\"kind\": \"symptom\", \"quote\": \"Manufacturer still does not have a remedy for open recall\"}, {\"kind\": \"safety\", \"quote\": \"passenger detection and air bag deployment in the event of an accident\"}, {\"kind\": \"condition\", \"quote\": \"in the event of an accident\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00040365,
+      "cached_tokens": 0,
+      "cost_usd": 0.00067275,
+      "input_tokens": 529,
+      "list_cost_usd": 0.00067275,
+      "output_tokens": 989,
+      "reasoning_tokens": 808
+    }
+  }
+}

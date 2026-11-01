@@ -1,0 +1,66 @@
+{
+  "key": "f1cdcc65467d98bf33bbeab29f0e0c43304ee7ad336f81d8448eba192453a23a",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9815,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Electrical system: fuel door makes noise when unlocking and sometimes fails to unlock.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"fuel door makes a noise when unlocking the vehicle\",\n    \"fuel door sometimes does not unlock\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"missing_info\": [\n    \"mileage\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"ELECTRICAL SYSTEM\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Fuel door is making a noise when I unlock my vehicle\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"sometimes fuel door doesn’t unlock.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"sometimes\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"when I unlock my vehicle\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer JSON only. Need normalize. Report: component ELECTRICAL SYSTEM, group electrical_general, make Honda Civic 2016, narrative: \"Fuel door is making a noise when I unlock my vehicle and sometimes fuel door doesn’t unlock.\" mileage null, received date. safety false. Need summary one line component symptom conditions. Group given electrical_general. Symptoms plain words: fuel door makes noise when unlocking vehicle; fuel door sometimes fails to unlock. Conditions: when unlocking vehicle? Category list includes charging etc. Could include \"intermittent\" because sometimes. \"after service\"? no. \"cold\" no. Conditions maybe [\"intermittent\"]. Also maybe \"when unlocking vehicle\" is condition but not in enumerated list? conditions array expected from list? It says conditions: [\"cold\",\"moisture\",\"heat\",\"vibration\",\"intermittent\",\"after service\",\"charging\"]. Use intermittent. Fault codes none. safety false. missing_info: mileage? date given, conditions? component given, symptom given. Mileage missing. Maybe conditions missing? We have when unlocking and intermittent. Missing mileage only. Clues verbatim quote. Need include symptom, condition, component_group? Quote for component_group must be verbatim span from report. The narrative doesn't say electrical system; but component field is \"ELECTRICAL SYSTEM\" in report. Is that \"report\"? User message JSON includes component. Quote copied verbatim from report. Could quote \"ELECTRICAL SYSTEM\" for component_group. It is in report object. Also symptom quotes: \"Fuel door is making a noise when I unlock my vehicle\" and \"sometimes fuel door doesn’t unlock.\" Need exact character: narrative has \"Fuel door is making a noise when I unlock my vehicle and sometimes fuel door doesn\\u2019t unlock.\" The quote can be \"Fuel door is making a noise when I unlock my vehicle\" and \"sometimes fuel door doesn’t unlock.\" Note unicode apostrophe. Need ensure verbatim. Use curly apostrophe in JSON? JSON supports Unicode. Yes. Conditions clue for intermittent: quote \"sometimes\" verbatim. Safety? no.\n\nNeed no extra text. JSON only. Ensure summary one line: \"Electrical system: fuel door makes noise when unlocking and sometimes fails to unlock.\" Component? ELECTRICAL SYSTEM. group electrical_general. symptoms array plain words. missing_info [\"mileage\"]. Could also missing \"date\" no date given yes received_at but not incident date? Hmm field received_at is date report received, not necessarily event date. The analysis needs date; report has received_at 2025-10-16. But \"date\" likely event date? It gives received_at. The prompt says read report; missing_info list includes date. Does received_at count? It's report received date not failure date. But maybe date is present. Need decide. Usually if received_at present, date not missing? The schema date could mean report date. We can leave mileage only. If we include date as missing, maybe okay? But they provided received_at. Missing info facts analysis needs: component, symptom, conditions, mileage, date. Date is present as received_at. So not missing. Mileage null. So [\"mileage\"].\n\nNeed clues include quote for \"other\"? no.\n\nPotential issue: \"component_group\" quote \"ELECTRICAL SYSTEM\" is not narrative but field. The rule says quote copied verbatim from report; report includes component. Good.\n\nNeed \"conditions\": [\"intermittent\"] because \"sometimes\". Maybe also \"when unlocking vehicle\" isn't in allowed list. Could put in symptoms? Conditions list restricted? Schema shows allowed examples. Use intermittent.\n\nNeed summary mention conditions: \"when unlocking vehicle; intermittent\". Good.\n\nNeed JSON no markdown? They said one JSON object and no other text. Final should just JSON. Ensure valid JSON. Use straight apostrophe? Verbatim quote must match report. Report narrative has \"doesn\\u2019t\" = doesn’t. If I write \"doesn’t\" with curly apostrophe, okay. Need quote \"sometimes fuel door doesn’t unlock.\" It appears exact substring? Narrative: \"and sometimes fuel door doesn\\u2019t unlock.\" Yes \"sometimes fuel door doesn’t unlock.\" exact. First quote exact. \"sometimes\" exact. \"ELECTRICAL SYSTEM\" exact.\n\nNeed maybe clue kind \"condition\" quote \"when I unlock my vehicle\"? That's condition but not in allowed conditions list. It is trigger condition. Kind condition can quote. But conditions array doesn't include \"unlock\". Hmm clue kind condition can evidence \"when I unlock my vehicle\". Also intermittent quote \"sometimes\". That's fine. Include both? Clue list can include. But if quote \"when I unlock my vehicle\" exact yes. However conditions array only [\"intermittent\"]; clue \"when I unlock my vehicle\" may suggest condition not listed. But the schema's condition clue kind can include any condition. We can include it as other? It is condition. But conditions array should list cold moisture etc. Not exhaustive? It says conditions: [\"cold\", ...]. It might expect standardized. Could include \"when unlocking\" not allowed. Better not include clue for trigger? But evidence for symptom includes. Fine.\n\nNeed maybe \"safety_relevant\": false.\n\nFinal concise.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531293,
+      "id": "3ad3b41a8daf9e3a94edf138794ad72b",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1322,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1091,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00048777,
+          "billing_source": "go",
+          "list_cost": 0.00081295,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 124,
+            "output": 1322,
+            "reasoning": 1091
+          }
+        },
+        "prompt_tokens": 508,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1830
+      }
+    },
+    "text": "{\n  \"summary\": \"Electrical system: fuel door makes noise when unlocking and sometimes fails to unlock.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"fuel door makes a noise when unlocking the vehicle\",\n    \"fuel door sometimes does not unlock\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"missing_info\": [\n    \"mileage\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"ELECTRICAL SYSTEM\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Fuel door is making a noise when I unlock my vehicle\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"sometimes fuel door doesn’t unlock.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"sometimes\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"when I unlock my vehicle\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00048777,
+      "cached_tokens": 384,
+      "cost_usd": 0.00081295,
+      "input_tokens": 508,
+      "list_cost_usd": 0.00081295,
+      "output_tokens": 1322,
+      "reasoning_tokens": 1091
+    }
+  }
+}

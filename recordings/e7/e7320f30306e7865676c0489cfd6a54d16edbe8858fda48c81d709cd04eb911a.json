@@ -1,0 +1,66 @@
+{
+  "key": "e7320f30306e7865676c0489cfd6a54d16edbe8858fda48c81d709cd04eb911a",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 7307,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"ELECTRICAL SYSTEM: uncommanded braking during a left turn on a green arrow caused a violent stop, near rear-end, and back/neck injuries.\",\"group\":\"electrical_general\",\"symptoms\":[\"brakes slammed on without notice\",\"violent stop\",\"back and neck injuries\",\"near rear-end collision\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"condition\",\"quote\":\"While making a left turn on a green left turn arrow\"},{\"kind\":\"symptom\",\"quote\":\"the vehicle for no reason slammed on the brakes without any notice.\"},{\"kind\":\"symptom\",\"quote\":\"Causing the car to come to a violent stop.\"},{\"kind\":\"symptom\",\"quote\":\"almost causing us to be rear ended.\"},{\"kind\":\"safety\",\"quote\":\"The violent stop caused both of us injuries to our backs and necks.\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize report. Component electrical system group electrical_general. Symptoms: vehicle slammed on brakes without notice while making left turn on green arrow, violent stop, injuries backs/necks, almost rear ended. Conditions: left turn, green left turn arrow? Maybe \"while making a left turn\", \"green left turn arrow\". Safety relevant true due injuries, violent stop, risk rear ended. Fault codes none. Missing info: mileage, date? Report received_at date but no incident date. Conditions maybe already. Component present. Symptom present. Missing mileage, date. Clues verbatim spans. Need quotes character for character. Need include safety clue quote \"The violent stop caused both of us injuries to our backs and necks.\" And symptom quote \"the vehicle for no reason slammed on the brakes without any notice.\" Condition quote \"While making a left turn on a green left turn arrow\". Component group quote? \"ELECTRICAL SYSTEM\" from component. summary one line: ELECTRICAL SYSTEM: brakes slammed without notice during left turn, violent stop with injuries. Need not invent \"brakes\" from \"slammed on the brakes\". Good.\n\nEnsure JSON only. `symptoms`: [\"brakes slammed on without notice\", \"violent stop\", \"back and neck injuries\", \"near rear-end collision\"] But symptoms in plain words. Could include almost rear ended as symptom? Maybe \"near rear-end collision\" is consequence. Clues have kinds. Conditions list: \"left turn\", maybe \"green left turn arrow\" not among allowed? Allowed conditions: cold, moisture, heat, vibration, intermittent, after service, charging. Hmm conditions field constrained? It says conditions: [\"cold\", ...]. But report conditions are left turn/green arrow not in list. We should perhaps use []? But clues can include condition quote. The schema says conditions array of recognized conditions. We shouldn't invent words outside list? The prompt says conditions: [\"cold\", ...] list. So maybe conditions [] because none of those apply. But summary can mention left turn. Clues condition quote can capture. Need missing_info conditions? Conditions present? Hmm \"List missing_info only for facts analysis needs: component, symptom, conditions, mileage, date.\" Conditions here include turn context, but not environmental. Would missing_info include \"conditions\"? The report gives left turn and green arrow; conditions enough. Mileage missing, date missing. Since received_at not incident date. Missing \"mileage\", \"date\". Should component? no. symptom? no.\n\nNeed quotes verbatim:\n- \"While making a left turn on a green left turn arrow\"\n- \"the vehicle for no reason slammed on the brakes without any notice.\"\n- \"Causing the car to come to a violent stop.\"\n- \"almost causing us to be rear ended.\"\n- \"The violent stop caused both of us injuries to our backs and necks.\"\n- \"ELECTRICAL SYSTEM\" component group.\nCould include safety quote. Need exactly verbatim. \"And almost causing us to be rear ended.\" quote includes And? Use \"almost causing us to be rear ended.\" That's substring yes. \"The violent stop caused both of us injuries to our backs and necks.\" exact. Good.\n\nNeed summary one line: \"ELECTRICAL SYSTEM: uncommanded braking during left turn on green arrow caused violent stop, near rear-end, back/neck injuries.\" That's concise.\n\nGroup: \"electrical_general\" or \"the electrical/electronic component group, or the given group\". Given group electrical_general. Use \"electrical_general\".\n\nFault_codes [].\n\nSafety true.\n\nMissing_info [\"mileage\",\"date\"] maybe \"conditions\"? There is no date of incident. Good.\n\nNeed final only JSON. Ensure no markdown.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793533066,
+      "id": "9b807d603add278194cf52ae39a815e1",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 990,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 775,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00037149,
+          "billing_source": "go",
+          "list_cost": 0.00061915,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 160,
+            "output": 990,
+            "reasoning": 775
+          }
+        },
+        "prompt_tokens": 544,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1534
+      }
+    },
+    "text": "{\"summary\":\"ELECTRICAL SYSTEM: uncommanded braking during a left turn on a green arrow caused a violent stop, near rear-end, and back/neck injuries.\",\"group\":\"electrical_general\",\"symptoms\":[\"brakes slammed on without notice\",\"violent stop\",\"back and neck injuries\",\"near rear-end collision\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"condition\",\"quote\":\"While making a left turn on a green left turn arrow\"},{\"kind\":\"symptom\",\"quote\":\"the vehicle for no reason slammed on the brakes without any notice.\"},{\"kind\":\"symptom\",\"quote\":\"Causing the car to come to a violent stop.\"},{\"kind\":\"symptom\",\"quote\":\"almost causing us to be rear ended.\"},{\"kind\":\"safety\",\"quote\":\"The violent stop caused both of us injuries to our backs and necks.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00037149,
+      "cached_tokens": 384,
+      "cost_usd": 0.00061915,
+      "input_tokens": 544,
+      "list_cost_usd": 0.00061915,
+      "output_tokens": 990,
+      "reasoning_tokens": 775
+    }
+  }
+}

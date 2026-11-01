@@ -1,0 +1,66 @@
+{
+  "key": "0f6f34944b80e37f8a0715cdbed56e5ddaefa986f8f092af7fb985c79badc66b",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12124,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Exterior lighting: driver-side headlight condensation caused headlight and blinker failure and multiple driver-assist warning lights.\",\"group\":\"lighting\",\"symptoms\":[\"condensation in driver side headlight\",\"headlight stopped working\",\"blinker stopped working\",\"warning lights on dash\",\"Driver Attention Warning System not working\",\"Forward Safety System not working\",\"Lane Change Assist system not working\",\"Lane Departure Warning System not working\",\"High Beam Assist not working\"],\"conditions\":[\"moisture\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"EXTERIOR LIGHTING\"},{\"kind\":\"condition\",\"quote\":\"Condensation has appeared in the driver side headlight.\"},{\"kind\":\"symptom\",\"quote\":\"It has caused the headlight and blinker to stop working.\"},{\"kind\":\"symptom\",\"quote\":\"several warning lights have appeared on the dash\"},{\"kind\":\"symptom\",\"quote\":\"Driver Attention Warning System, Forward Safety System, Lane Change Assist system, Lane Departure Warning System and High Beam Assist\"},{\"kind\":\"safety\",\"quote\":\"the lack of headlight and blinker are, in my opinion, safety issues\"}]}",
+            "reasoning_content": "We need answer one JSON object no other text. Need normalize report. Need parse component EXTERIOR LIGHTING group lighting. Narrative: condensation driver side headlight caused headlight and blinker stop working. Warning lights for Driver Attention Warning System, Forward Safety System, Lane Change Assist, Lane Departure Warning, High Beam Assist. Owner says lack headlight/blinker safety issues, wouldn't pass inspection/register. Safety relevant? Prompt says set safety_relevant when report mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. Here mentions safety issues, headlight/blinker not working, warning lights. \"another risk to people\" likely yes headlight failure at night? Need maybe true. Conditions: moisture (condensation), maybe intermittent? Not stated. \"cold\"? no. \"after service\"? no. \"charging\"? no. Symptoms: condensation in driver side headlight; headlight not working; blinker not working; warning lights on dash; systems not working listed. Fault codes none. Missing info: mileage null; date? Received_at provided but report date? missing mileage, maybe date? The analysis needs conditions? Conditions present moisture. component present. symptom present. missing_info: [\"mileage\"] maybe date? received_at is date but maybe event date not present. Prompt says missing_info list only facts analysis needs: component, symptom, conditions, mileage, date. Mileage missing. Date? received_at given but not incident date? Could include \"date\" because no date of occurrence? But report has received_at 2025-10-14. Hmm \"date\" likely date of report? Given. Missing mileage only. Could include \"conditions\" maybe condensation is condition. Component group present. So [\"mileage\"].\n\nClues: quote verbatim spans. Need ensure exact substrings. Could quote \"Condensation has appeared in the driver side headlight.\" exact. \"It has caused the headlight and blinker to stop working.\" exact. \"several warning lights have appeared on the dash\" exact lowercase? Narrative: \"In addition, several warning lights have appeared on the dash indicating the following operations are no longer working....\" The quote \"several warning lights have appeared on the dash\" yes. \"Driver Attention Warning System, Forward Safety System, Lane Change Assist system, Lane Departure Warning System and High Beam Assist.\" exact? Narrative: \"Driver Attention Warning System, Forward Safety System, Lane Change Assist system, Lane Departure Warning System and High Beam Assist.\" yes. \"lack of headlight and blinker are, in my opinion, safety issues\" exact? Narrative: \"the lack of headlight and blinker are, in my opinion, safety issues.\" Could quote that. \"safety recall\" maybe safety clue but quote. Need kind symptom/condition/fault_code/component_group/safety/other. Component group clue quote \"EXTERIOR LIGHTING\" from component? Is that in report? The report includes component field \"EXTERIOR LIGHTING\"; yes verbatim from JSON. But \"report\" includes all fields? likely yes. We can quote \"EXTERIOR LIGHTING\" as component_group. Condition moisture quote \"Condensation\". Symptom quote. Safety quote.\n\nNeed summary one line: \"Exterior lighting (driver-side headlight) condensation causing headlight and blinker failure and multiple driver-assist warning lights.\" Conditions moisture. Group \"lighting\". Symptoms list plain words. Conditions [\"moisture\"]. safety_relevant true. fault_codes []. missing_info [\"mileage\"]. clues list.\n\nNeed no other text. JSON valid. Ensure quotes exactly from narrative. Let's craft.\n\nPotential issue \"driver side\" no hyphen in narrative. Use exact.\n\nClues:\n{\"kind\":\"component_group\",\"quote\":\"EXTERIOR LIGHTING\"}\n{\"kind\":\"condition\",\"quote\":\"Condensation has appeared in the driver side headlight.\"}\n{\"kind\":\"symptom\",\"quote\":\"It has caused the headlight and blinker to stop working.\"}\n{\"kind\":\"symptom\",\"quote\":\"several warning lights have appeared on the dash\"}\n{\"kind\":\"symptom\",\"quote\":\"Driver Attention Warning System, Forward Safety System, Lane Change Assist system, Lane Departure Warning System and High Beam Assist\"}\n{\"kind\":\"safety\",\"quote\":\"the lack of headlight and blinker are, in my opinion, safety issues\"}\nMaybe quote includes period? exact \"the lack of headlight and blinker are, in my opinion, safety issues.\" yes. Could include.\n\nNeed summary no invented. \"Driver-side headlight condensation caused headlight and blinker failure and multiple warning lights for driver-assist systems.\" component exterior lighting.\n\nMissing info maybe \"mileage\". Date present. Conditions present. Good.\n\nFinal only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531257,
+      "id": "34610fde89beb688cd8231e0ed44c300",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1246,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 982,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00047454,
+          "billing_source": "go",
+          "list_cost": 0.0007909,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 281,
+            "output": 1246,
+            "reasoning": 982
+          }
+        },
+        "prompt_tokens": 665,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1911
+      }
+    },
+    "text": "{\"summary\":\"Exterior lighting: driver-side headlight condensation caused headlight and blinker failure and multiple driver-assist warning lights.\",\"group\":\"lighting\",\"symptoms\":[\"condensation in driver side headlight\",\"headlight stopped working\",\"blinker stopped working\",\"warning lights on dash\",\"Driver Attention Warning System not working\",\"Forward Safety System not working\",\"Lane Change Assist system not working\",\"Lane Departure Warning System not working\",\"High Beam Assist not working\"],\"conditions\":[\"moisture\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"EXTERIOR LIGHTING\"},{\"kind\":\"condition\",\"quote\":\"Condensation has appeared in the driver side headlight.\"},{\"kind\":\"symptom\",\"quote\":\"It has caused the headlight and blinker to stop working.\"},{\"kind\":\"symptom\",\"quote\":\"several warning lights have appeared on the dash\"},{\"kind\":\"symptom\",\"quote\":\"Driver Attention Warning System, Forward Safety System, Lane Change Assist system, Lane Departure Warning System and High Beam Assist\"},{\"kind\":\"safety\",\"quote\":\"the lack of headlight and blinker are, in my opinion, safety issues\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00047454,
+      "cached_tokens": 384,
+      "cost_usd": 0.0007909,
+      "input_tokens": 665,
+      "list_cost_usd": 0.0007909,
+      "output_tokens": 1246,
+      "reasoning_tokens": 982
+    }
+  }
+}

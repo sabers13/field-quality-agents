@@ -1,0 +1,66 @@
+{
+  "key": "9926db2a0e846d1140b132344b9aa6669d271435bcb15a777e01dbca300ef8b9",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9830,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"2017 Subaru Forester ADAS/adaptive cruise control with intermittent airbag warning, cruise disengagement near vehicles ahead, and EyeSight not working warning.\",\n  \"group\": \"adas\",\n  \"symptoms\": [\n    \"airbag warning light comes on intermittently\",\n    \"adaptive cruise control disengages near the vehicle in front\",\n    \"hard braking needed to avoid a serious accident\",\n    \"EyeSight not working warning\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Airbag warning light comes on intermittently often\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"cruise control is malfunctioning where it gets disengaged near the vehicle in front\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"I have to apply brake hard to avoid serious accident\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"EyeSight NOT working warning has started showing lately\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"intermittently\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"serious accident\"\n    }\n  ]\n}",
+            "reasoning_content": "We need to output JSON only. Need normalize report. Extract: component: FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL, group adas. Symptoms: airbag warning light intermittently; cruise control malfunctioning/disengaging near vehicle in front requiring hard brake to avoid serious accident; EyeSight NOT working warning. Conditions: intermittent. Fault codes none. Safety relevant: yes because mentions \"serious accident\" and hard brake to avoid; also loss of ADAS function. Missing info: mileage? Report says 44K miles, so not missing. Date? Mentions August 12 2025 and received 2025-08-22; not missing. Conditions present intermittent. Component present. Symptom present. Maybe missing_info empty. But maybe \"mileage\" is included in narrative \"44K miles\". So empty.\n\nClues quotes verbatim. Need exact spans from narrative. Let's copy carefully.\n\nNarrative: \"Lately, Airbag warning light comes on intermittently often. Sierra subaru would not fix without charging me for inspection for $240 and then cost of rapair. Also cruise control is malfunctioning where it gets disengaged near the vehicle in front where I have to apply brake hard to avoid serious accident. Also the EyeSight NOT working warning has started showing lately.  My forester 2017 at 44K miles showing airbag light at times along with cruise control disengaing near front car and eyeSight not available mentioned above.   Detail on airbag fix at Sierra Subaru in Monrovia, California. On August 12, 2025, I want to get this intermittent error fixed under warranty. on August 12, 2025 Alexander in service told me that it will be $240 approximately of charge to inspect. Kindly let me know if the airbag warning light at such low milage not going to be covered for warranty. Please Note that I bought the Forester at Sierra Subaru Monrovia Ca and had every single service done there. Lately I have been charged in thousands of dollars at such low mileage to own the 2017 Subaru Forester\"\n\nQuotes should be exact. Use:\n- \"Airbag warning light comes on intermittently often\"\n- \"cruise control is malfunctioning where it gets disengaged near the vehicle in front\"\n- \"I have to apply brake hard to avoid serious accident\"\n- \"EyeSight NOT working warning has started showing lately\"\n- condition quote \"intermittently\"\n- safety quote \"serious accident\"\n- component_group quote maybe \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\" but that's from component field not narrative? Report includes component field. Rule says read report in user message. Quote verbatim from report. Could quote component field value. But clues kind component_group quote \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\" is in report JSON. That's okay. Or use \"EyeSight\" as component. Need not overdo.\n\nSummary: one line: component, symptom, conditions. \"2017 Subaru Forester ADAS (adaptive cruise control/EyeSight) with intermittent airbag warning, cruise disengagement near vehicles, and EyeSight not working warning.\" Good.\n\nGroup: \"adas\" given group. Use \"adas\".\n\nSymptoms array plain words:\n- \"airbag warning light intermittently\"\n- \"adaptive cruise control disengages near vehicle ahead\"\n- \"hard braking needed to avoid collision\"\n- \"EyeSight not working warning\"\n\nConditions: [\"intermittent\"] maybe also \"after service\"? No. \"cold\"? no. \"moisture\"? no. \"heat\"? no. \"vibration\"? no. \"charging\"? no. So [\"intermittent\"].\n\nFault_codes: [].\n\nSafety_relevant true.\n\nMissing_info: []? Need consider component? Present. symptom present. conditions present intermittent. mileage present \"44K miles\". date present. So empty.\n\nClues array kind values. Use valid kinds. Need quotes verbatim. Let's ensure exact substring. \"Airbag warning light comes on intermittently often\" appears exactly: \"Lately, Airbag warning light comes on intermittently often.\" Yes substring. \"cruise control is malfunctioning where it gets disengaged near the vehicle in front\" appears exactly? Original: \"Also cruise control is malfunctioning where it gets disengaged near the vehicle in front where I have to apply brake hard to avoid serious accident.\" Yes. \"I have to apply brake hard to avoid serious accident\" appears exactly? It is \"where I have to apply brake hard to avoid serious accident.\" Substring \"I have to apply brake hard to avoid serious accident\" yes. \"EyeSight NOT working warning has started showing lately\" appears exactly: \"Also the EyeSight NOT working warning has started showing lately.\" yes. \"intermittently\" appears. \"serious accident\" appears. \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\" from component field exact. \"44K miles\" exact? \"44K miles\" appears in \"at 44K miles\". Could include missing info? no. Condition clue \"intermittent error\" maybe. Use \"intermittently\". Safety quote \"serious accident\". Maybe include \"crash\" no.\n\nNeed output one JSON object no other text. Ensure valid JSON. Use curly. No markdown? User said answer with one JSON object and no other text. Could just output raw JSON. Good.\n\nPotential issue: \"safety_relevant\" in input false but we set true. Okay.\n\nNeed include \"clues\" maybe component_group quote. Ensure not too many. Fine.\n\nLet's craft final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529661,
+      "id": "c52139eb9316033b6e5a593760c59df9",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1531,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1190,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00058407,
+          "billing_source": "go",
+          "list_cost": 0.00097345,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 358,
+            "output": 1531,
+            "reasoning": 1190
+          }
+        },
+        "prompt_tokens": 742,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2273
+      }
+    },
+    "text": "{\n  \"summary\": \"2017 Subaru Forester ADAS/adaptive cruise control with intermittent airbag warning, cruise disengagement near vehicles ahead, and EyeSight not working warning.\",\n  \"group\": \"adas\",\n  \"symptoms\": [\n    \"airbag warning light comes on intermittently\",\n    \"adaptive cruise control disengages near the vehicle in front\",\n    \"hard braking needed to avoid a serious accident\",\n    \"EyeSight not working warning\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Airbag warning light comes on intermittently often\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"cruise control is malfunctioning where it gets disengaged near the vehicle in front\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"I have to apply brake hard to avoid serious accident\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"EyeSight NOT working warning has started showing lately\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"intermittently\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"serious accident\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00058407,
+      "cached_tokens": 384,
+      "cost_usd": 0.00097345,
+      "input_tokens": 742,
+      "list_cost_usd": 0.00097345,
+      "output_tokens": 1531,
+      "reasoning_tokens": 1190
+    }
+  }
+}

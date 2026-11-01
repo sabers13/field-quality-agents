@@ -1,0 +1,66 @@
+{
+  "key": "a4065535e949e65d155250f52e2128bbe921d043c35c539ecad67afe646ab9dc",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 15683,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2021 Toyota RAV4 air bag recall 23V865000: remedy parts unavailable, no failure experienced.\",\"group\":\"restraints\",\"symptoms\":[],\"conditions\":[],\"fault_codes\":[\"23V865000\"],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"symptom\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"fault_code\",\"quote\":\"NHTSA Campaign Number: 23V865000\"},{\"kind\":\"other\",\"quote\":\"the part to do the recall repair was not yet available\"},{\"kind\":\"symptom\",\"quote\":\"The contact had not experienced a failure.\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize. Component air bags group restraints. Narrative says recall parts unavailable, no failure experienced. Symptoms? No symptom/failure. Conditions? none. Fault codes none. Safety relevant? It mentions air bags recall but no crash/fire etc; \"contact had not experienced a failure.\" Safety_relevant false per given? We can set false. Missing info: mileage null, maybe date? received_at exists. Conditions missing? component present symptom? There is no symptom. Missing_info should list facts analysis needs: mileage, symptom? Component present. Conditions maybe not important? The report is recall parts availability not failure. We should include \"mileage\" and \"symptom\" maybe \"conditions\"? Need exact. Summary one line: AIR BAGS recall parts unavailable, no failure experienced. Clues with verbatim spans. Need quote exact. Could include component_group quote \"AIR BAGS\"? But report narrative doesn't include AIR BAGS? The report JSON has component field but user message includes component. \"Read only the report in user message\" includes fields. Quote from report: \"The contact had not experienced a failure.\" symptom? It's no symptom. Clue kind symptom maybe quote \"The contact had not experienced a failure.\" other? For component_group quote \"AIR BAGS\" from component field. Condition quote \"parts were not yet available\" maybe other/condition? Conditions list should only cold/moisture/heat/vibration/intermittent/after service/charging. None. So empty. Fault codes none. safety false. missing_info [\"mileage\",\"symptom\"] maybe conditions? Need think: For analysis, no symptom because no failure. But missing symptom. Mileage missing. Date present received_at, but maybe date of incident missing? \"date\" maybe event date not received. Could include date? But not necessary? The rules: List missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. Use empty when nothing important missing. Here mileage null. Symptom absent. Conditions absent but recall availability not condition. Date? received_at 2025-03-21, no incident date. Since no failure. Missing_info [\"mileage\",\"symptom\"]. Maybe \"date\" too? Hm.\n\nNeed output JSON only. Ensure valid JSON no markdown? They said answer with one JSON object and no other text. We'll output raw JSON.\n\nNeed summary concise. \"Air bags recall remedy parts unavailable; no failure experienced.\" Good.\n\nClues: \n- {\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"}\n- {\"kind\":\"other\",\"quote\":\"the part to do the recall repair was not yet available\"}\n- {\"kind\":\"symptom\",\"quote\":\"The contact had not experienced a failure.\"} Is that symptom? It's absence of symptom. Kind symptom maybe okay? But quote is a statement no failure. Maybe kind \"other\" better. But clues expected evidence. Could use kind \"symptom\" for no failure? Hmm. It is relevant. But symptom list empty. Clue kind symptom with quote \"The contact had not experienced a failure.\" It indicates no symptom. Accept? \n- {\"kind\":\"condition\",\"quote\":\"parts were not yet available\"} But conditions enumerated don't include. Kind condition can be general? They defined conditions list limited. But clue kind condition can quote. However if we include condition quote but conditions empty maybe inconsistent. Avoid.\n- {\"kind\":\"other\",\"quote\":\"manufacturer had exceeded a reasonable amount of time for the recall repair\"} maybe.\n\nNeed no invented. JSON.\n\nNeed decide safety_relevant. User's input has \"safety_relevant\": false. But instruction says set when mentions crash fire smoke injury loss control stall at speed or other risk to people. Air bag recall could be risk, but report says no failure. Does recall for air bags imply safety? It mentions NHTSA campaign Air Bags. But no specific risk. Given safety_relevant false in metadata. We'll set false.\n\nNeed missing_info maybe [\"mileage\", \"symptom\"]. But component present, conditions not relevant, date? Report has received_at but not failure date. Since no failure, date not important. Mileage null. Good.\n\nNeed maybe summary mention Toyota RAV4 2021? one line component symptom conditions. \"2021 Toyota RAV4 air bag recall: remedy parts unavailable, no failure experienced.\" Good.\n\nNeed exact quote \"The contact received notification of NHTSA Campaign Number: 23V865000 (Air Bags); however, the part to do the recall repair was not yet available.\" Could include. Verbatim from narrative. But quote long okay. Need character for character. It has semicolon. Good. Fault code? NHTSA Campaign Number 23V865000 is a recall number, not fault code. Should fault_codes include? Rule: fault_codes [\"code if report names one\"]. It names campaign number. Is that a fault code? It's recall campaign number, not diagnostic fault code. Better not include? Hmm \"fault_codes\": code if report names one. The report names NHTSA Campaign Number: 23V865000. But that is recall code, not fault code. The schema says fault_codes. Could include \"23V865000\"? The desk may treat as fault code? It says fault code if report names one. Campaign number is a code. But \"fault_codes\" maybe diagnostic trouble codes. I'd lean include \"23V865000\" as named code? But it's not fault code. However the report says \"NHTSA Campaign Number: 23V865000 (Air Bags)\"—this is a recall identifier. Should we put in fault_codes? Maybe yes as code if report names one. But label fault_codes might mislead. The instructions: fault_codes [\"code if the report names one\"]. It doesn't say only DTC. I can include \"23V865000\". But clue kind fault_code quote \"NHTSA Campaign Number: 23V865000\". Is that acceptable? It is a code. Hm.\n\nNeed output. We'll include fault_codes [\"23V865000\"]? This might be considered invent? It's in report. Good.\n\nNeed summary maybe \"Air bags: recall 23V865000 remedy parts unavailable; no failure experienced.\" Conditions none. Symptom? \"no failure experienced\" is not symptom. symptoms [].\n\nNeed missing_info: mileage, symptom. Maybe date? The report has received date but no incident date. Since no failure, no incident. Missing_info includes mileage and symptom. Could include \"conditions\" because none? But conditions are not relevant. The analysis needs conditions to assess? Maybe report is recall availability, conditions not applicable. We can omit. Use [\"mileage\",\"symptom\"].\n\nNeed clues:\n- component_group quote \"AIR BAGS\"\n- fault_code quote \"NHTSA Campaign Number: 23V865000\" (exact substring? Narrative: \"notification of NHTSA Campaign Number: 23V865000 (Air Bags)\" yes contains \"NHTSA Campaign Number: 23V865000\". Good)\n- other quote \"the part to do the recall repair was not yet available\"\n- symptom? quote \"The contact had not experienced a failure.\" kind symptom? Hmm if symptoms empty, maybe clue kind other. But kind symptom could evidence absence. I think use kind \"symptom\" with quote. But the schema kinds include symptom. It says symptom in plain words. But clue can be symptom. It's okay.\n\nNeed ensure quote exact: \"The contact had not experienced a failure.\" appears exactly. Yes.\n\nNeed no markdown. Final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793525662,
+      "id": "09815c4b49a15177c302970051b6dcf9",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1745,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1598,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00064806,
+          "billing_source": "go",
+          "list_cost": 0.0010801,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 213,
+            "output": 1745,
+            "reasoning": 1598
+          }
+        },
+        "prompt_tokens": 597,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2342
+      }
+    },
+    "text": "{\"summary\":\"2021 Toyota RAV4 air bag recall 23V865000: remedy parts unavailable, no failure experienced.\",\"group\":\"restraints\",\"symptoms\":[],\"conditions\":[],\"fault_codes\":[\"23V865000\"],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"symptom\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"fault_code\",\"quote\":\"NHTSA Campaign Number: 23V865000\"},{\"kind\":\"other\",\"quote\":\"the part to do the recall repair was not yet available\"},{\"kind\":\"symptom\",\"quote\":\"The contact had not experienced a failure.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00064806,
+      "cached_tokens": 384,
+      "cost_usd": 0.0010801,
+      "input_tokens": 597,
+      "list_cost_usd": 0.0010801,
+      "output_tokens": 1745,
+      "reasoning_tokens": 1598
+    }
+  }
+}

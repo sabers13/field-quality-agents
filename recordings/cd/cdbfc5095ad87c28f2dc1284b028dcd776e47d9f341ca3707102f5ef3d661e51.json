@@ -1,0 +1,66 @@
+{
+  "key": "cdbfc5095ad87c28f2dc1284b028dcd776e47d9f341ca3707102f5ef3d661e51",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 17081,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Electrical system / ICCU sudden power loss with 'check electrical system' and 'power limited' warnings after ICCU recalls, under 15,000 miles and two days after a long road trip.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\"sudden loss of power\", \"check electrical system warning\", \"power limited warning\", \"ICCU failure\"],\n  \"conditions\": [\"after service\"],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\"mileage\", \"date\"],\n  \"clues\": [\n    {\"kind\": \"symptom\", \"quote\": \"suddenly lost power\"},\n    {\"kind\": \"symptom\", \"quote\": \"“check electrical system” and “power limited” lights flashing\"},\n    {\"kind\": \"condition\", \"quote\": \"Have gotten all recalls fixed associated with the ICCU\"},\n    {\"kind\": \"component_group\", \"quote\": \"ICCU failure\"},\n    {\"kind\": \"safety\", \"quote\": \"We were put at risk due to the sudden change of status\"},\n    {\"kind\": \"other\", \"quote\": \"had just arrived back 2 days before from a long road trip\"}\n  ]\n}",
+            "reasoning_content": "We need answer only JSON object. Need normalize. Need inspect report. Component ELECTRICAL SYSTEM, group electrical_general. Narrative: recalls ICCU fixed; less than 15000 miles; suddenly lost power; check electrical system and power limited lights flashing; no warning; just arrived back 2 days before from long road trip; towed; took 3 business days diagnose issue (ICCU failure); put at risk due to sudden change status and inability access contents after power died including toddler car seat. Safety relevant? Mentions risk to people? \"put at risk due to sudden change of status\" and lost power. Also toddler car seat inaccessible not injury. Safety_relevant true? Rule: crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. Sudden loss of power is risk; \"put at risk\" explicitly. So true. Need summary one line: component, symptom, conditions. \"Electrical system (ICCU) sudden loss of power with 'check electrical system' and 'power limited' warnings after recalls, <15k miles, two days after long road trip.\" Keep one line.\n\nSymptoms: sudden loss of power; check electrical system warning; power limited warning; ICCU failure. Conditions: after service? recalls fixed associated with ICCU = after service? The rule conditions include \"after service\". Yes it was after recalls fixed. Also \"intermittent\"? No. \"heat\"? no. \"cold\"? no. \"moisture\"? no. \"vibration\"? no. \"charging\"? no (ICCU related charging but not explicit charging condition). \"after service\" because recalls fixed. Maybe \"long road trip\" not in list. Conditions only enumerated? We can include \"after service\". Could include \"after long road trip\"? conditions array examples, maybe include? They said conditions: [\"cold\", ...]. Use listed terms if applicable. \"after service\" yes. Maybe \"intermittent\" no.\n\nFault_codes: none named (ICCU is component not code). Maybe no fault codes. missing_info: mileage? Report says less than 15000 miles but mileage null. Is mileage missing? It gives approximate less than 15000; analysis needs exact? List mileage? Hmm missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Mileage field null but narrative says less than 15000. Exact mileage missing maybe list \"mileage\". Date? received_at but event date not given. Could list \"date\" as event date missing. Component present, symptom present, conditions present. Need include mileage? The narrative has less than 15000, but exact mileage absent. Since report's mileage null, likely missing_info [\"mileage\", \"date\"]? But \"date\" of incident not given. Need decide. The schema says missing_info [\"mileage\",\"date\",\"conditions\",\"component\",\"symptom\"]. It asks only for facts analysis needs. Mileage has approximate but no exact. Date missing. Could include both. But if less than 15000 is enough? The field mileage is null. I think include \"mileage\", \"date\". Maybe conditions present (after recalls, road trip). Component present. Symptom present. So missing_info [\"mileage\",\"date\"].\n\nClues: Need verbatim spans. Include:\n- symptom: \"suddenly lost power\"\n- symptom: \"“check electrical system” and “power limited” lights flashing\" (verbatim has curly quotes? In JSON string need match exact? We can copy text with \\u201c? Output can include actual curly quotes. Need verbatim span. The narrative has \\u201ccheck electrical system\\u201d and \\u201cpower limited\\u201d lights flashing. We can quote \"suddenly lost power, \\u201ccheck electrical system\\u201d and \\u201cpower limited\\u201d lights flashing\" maybe exact span. In JSON, curly quotes can be characters. Need ensure exact. Since user message JSON has unicode escaped but content is curly quotes. We can output actual curly quotes or escapes. Verbatim character-for-character? Escaped unicode in JSON represents same char, okay? Better use actual curly quotes in string? Could use \\u201c in JSON string; that's a representation of quote char. Verbatim semantics? Fine. But to be safe, use exact substring from narrative? Let's copy: \"suddenly lost power, \\u201ccheck electrical system\\u201d and \\u201cpower limited\\u201d lights flashing\" includes comma. Good.\n- condition: \"Have gotten all recalls fixed associated with the ICCU\" = after service.\n- condition: \"had just arrived back 2 days before from a long road trip\" maybe condition? Not in enumerated but could clue condition? Maybe \"other\" or condition. The conditions list doesn't include road trip, but clue kind condition can quote. But conditions array only enumerated terms. Could include as other? Hmm.\n- fault_code? none.\n- component_group: \"ICCU failure\" component? kind component_group? quote \"ICCU failure\".\n- safety: \"We were put at risk due to the sudden change of status\" quote.\n- symptom: \"inability to access the contents of our car after the power died\" maybe other? Symptom? It is consequence, not symptom. Could include as safety? \"including my toddlers car seat\" risk? Maybe safety clue quote \"We were put at risk due to the sudden change of status\". Good.\n- other: \"took 3 business days to diagnose the issue (ICCU failure)\" maybe not needed.\n\nNeed summary. Need group: given group electrical_general, but schema says \"the electrical/electronic component group, or the given group\". Should we use electrical_general or \"electrical_general\"? yes.\n\nNeed safety_relevant true.\n\nNeed output only JSON no markdown. Ensure valid JSON. Use no trailing commas. Need quote arrays.\n\nLet's craft:\n\n{\n  \"summary\": \"Electrical system / ICCU sudden power loss with 'check electrical system' and 'power limited' warnings after ICCU recalls, under 15,000 miles and two days after a long road trip.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\"sudden loss of power\", \"check electrical system warning\", \"power limited warning\", \"ICCU failure\"],\n  \"conditions\": [\"after service\"],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\"mileage\", \"date\"],\n  \"clues\": [\n    {\"kind\": \"symptom\", \"quote\": \"suddenly lost power\"},\n    {\"kind\": \"symptom\", \"quote\": \"\\u201ccheck electrical system\\u201d and \\u201cpower limited\\u201d lights flashing\"},\n    {\"kind\": \"condition\", \"quote\": \"Have gotten all recalls fixed associated with the ICCU\"},\n    {\"kind\": \"component_group\", \"quote\": \"ICCU failure\"},\n    {\"kind\": \"safety\", \"quote\": \"We were put at risk due to the sudden change of status\"},\n    {\"kind\": \"other\", \"quote\": \"had just arrived back 2 days before from a long road trip\"}\n  ]\n}\n\nCheck quote \"suddenly lost power\" exact: narrative \"and suddenly lost power, \\u201ccheck...\" yes substring. Good.\n\n\"Have gotten all recalls fixed associated with the ICCU\" exact substring? Narrative: \"Have gotten all recalls fixed associated with the ICCU; car has...\" yes.\n\n\"ICCU failure\" exact: \"(ICCU failure)\" yes.\n\n\"We were put at risk due to the sudden change of status\" exact substring? Narrative: \"We were put at risk due to the sudden change of status and inability...\" yes.\n\n\"had just arrived back 2 days before from a long road trip\" exact substring? Narrative: \"and had just arrived back 2 days before from a long road trip.\" yes.\n\nCould include condition \"after service\" but clue quote supports recalls fixed. Good.\n\nShould missing_info include conditions? We have after service but not weather etc. Not necessary.\n\nNeed if \"date\" missing although received_at. Incident date not. Good.\n\nNeed no other text. Final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793526034,
+      "id": "76bfc6ea150f0d194c72ad95123ff309",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1978,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1715,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00073509,
+          "billing_source": "go",
+          "list_cost": 0.00122515,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 248,
+            "output": 1978,
+            "reasoning": 1715
+          }
+        },
+        "prompt_tokens": 632,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2610
+      }
+    },
+    "text": "{\n  \"summary\": \"Electrical system / ICCU sudden power loss with 'check electrical system' and 'power limited' warnings after ICCU recalls, under 15,000 miles and two days after a long road trip.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\"sudden loss of power\", \"check electrical system warning\", \"power limited warning\", \"ICCU failure\"],\n  \"conditions\": [\"after service\"],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\"mileage\", \"date\"],\n  \"clues\": [\n    {\"kind\": \"symptom\", \"quote\": \"suddenly lost power\"},\n    {\"kind\": \"symptom\", \"quote\": \"“check electrical system” and “power limited” lights flashing\"},\n    {\"kind\": \"condition\", \"quote\": \"Have gotten all recalls fixed associated with the ICCU\"},\n    {\"kind\": \"component_group\", \"quote\": \"ICCU failure\"},\n    {\"kind\": \"safety\", \"quote\": \"We were put at risk due to the sudden change of status\"},\n    {\"kind\": \"other\", \"quote\": \"had just arrived back 2 days before from a long road trip\"}\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00073509,
+      "cached_tokens": 384,
+      "cost_usd": 0.00122515,
+      "input_tokens": 632,
+      "list_cost_usd": 0.00122515,
+      "output_tokens": 1978,
+      "reasoning_tokens": 1715
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "461c356d23a9fe06ceef03c72996e791778a1366f2632911fa4dd9b7a98f50d1",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10602,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2021 Ford EcoSport electrical coolant temperature sensor/wiring fault causing over-temperature and Service Engine Soon warnings, limp mode with reduced power, and sudden power loss at highway speed; recurring after repair.\",\"group\":\"electrical_general\",\"symptoms\":[\"engine coolant over-temperature warning\",\"Service Engine Soon warning\",\"faulty engine coolant temperature sensor/wiring\",\"limp mode with reduced power/acceleration\",\"sudden loss of power at highway speed\"],\"conditions\":[\"intermittent\",\"after service\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"Engine Coolant Over-Temperature and Service Engine Soon Warning\"},{\"kind\":\"symptom\",\"quote\":\"sensor/wiring is faulty\"},{\"kind\":\"symptom\",\"quote\":\"limp mode with reduced power/acceleration\"},{\"kind\":\"condition\",\"quote\":\"at highway speeds\"},{\"kind\":\"condition\",\"quote\":\"after the repair, the same issue reoccurs\"},{\"kind\":\"safety\",\"quote\":\"suddenly loses power in limp-mode\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize report. Need infer group given electrical_general or component group. Report has component ELECTRICAL SYSTEM, group electrical_general. Need summary one line component, symptom, conditions. Symptoms: Engine Coolant Over-Temperature warning, Service Engine Soon Warning, faulty sensor/wiring, limp mode reduced power/acceleration, sudden loss of power at highway speed. Conditions: highway speeds, accelerating onto highway, after service? Repeated after repair. Intermittent? Reoccurs. Charging no. Cold moisture heat vibration no. Fault codes none named. Safety relevant true? Report mentions sudden loses power in limp-mode at highway speed forcing move over/pull over. Risk to people? Loss of power at speed yes safety. Even source safety_relevant false but we set based rules. Missing info mileage null, date? received_at date but incident date missing. Conditions present. Component present symptom present. missing_info [\"mileage\",\"date\"] maybe. Need clues quotes verbatim. Ensure quotes exact substrings. Need be careful quote \"over six times now\" exists? text: \"same issue reoccurs (over six times now).\" Quote can be \"over six times now\" yes. \"sometimes at highway speeds or when accelerating onto the highway.\" exact. \"car suddenly loses power in limp-mode\" exact? text \"then the car suddenly loses power in limp-mode forcing me...\" yes quote \"suddenly loses power in limp-mode\". \"Engine is not actually experiencing an over-temp issue, it is just that the sensor/wiring is faulty.\" exact. \"replaced the engine coolant temperature sensor and/or its associated wiring\" exact. \"Engine Coolant Over-Temperature and Service Engine Soon Warning\" exact.\n\nNeed summary one line. group \"electrical_general\" perhaps. symptoms array plain words. Include \"engine coolant over-temperature warning\", \"service engine soon warning\", \"faulty coolant temperature sensor/wiring\", \"limp mode with reduced power/acceleration\", \"sudden loss of power at highway speed\". conditions array allowed values: \"cold\",\"moisture\",\"heat\",\"vibration\",\"intermittent\",\"after service\",\"charging\". Which apply? \"after service\" because reoccurs after repair. \"intermittent\" because reoccurs in each instance? It occurs intermittently? \"When issue occurs\" yes. Maybe \"after service\" and \"intermittent\". Highway speed isn't allowed condition; could put clue kind condition quote. Conditions array only allowed values? It says conditions: [\"cold\", ...]. Use allowed. Maybe no \"heat\" despite coolant overtemp? Actual over-temp not happening; warning heat-related. But condition \"heat\" maybe not environmental. I'd include \"after service\", \"intermittent\". Could include \"heat\"? Hmm symptoms include over-temperature warning but engine not actually overheat. Conditions are environmental/operational. Highway speeds not in allowed list. We can include clue condition quote \"at highway speeds\". But array conditions only allowed. Use after service and intermittent.\n\nsafety_relevant true. missing_info [\"mileage\",\"date\"] because mileage null, date of incidents missing though received date present. Could also \"conditions\" but conditions have highway speeds. So only mileage, date.\n\nNeed final JSON no markdown? User says one JSON object and no other text. We should output raw JSON. Ensure valid. Quote exact. Need include clues. Clue kind can be symptom/condition/fault_code/component_group/safety/other. For safety quote \"suddenly loses power in limp-mode\" maybe. Component group quote \"ELECTRICAL SYSTEM\". Condition quote \"at highway speeds\" exact? text has \"sometimes at highway speeds or when accelerating onto the highway.\" substring \"at highway speeds\" yes. \"after the repair, the same issue reoccurs\" exact? text \"In a short time after the repair, the same issue reoccurs\" substring \"after the repair, the same issue reoccurs\" yes. Symptom quote \"Engine Coolant Over-Temperature and Service Engine Soon Warning\" exact. Symptom quote \"sensor/wiring is faulty\" exact substring? text \"it is just that the sensor/wiring is faulty.\" yes. Symptom quote \"limp mode with reduced power/acceleration\" exact? text \"put into limp mode with reduced power/acceleration,\" yes. Good.\n\nNeed summary maybe \"2021 Ford EcoSport electrical coolant temperature sensor/wiring fault causing over-temp and service engine warnings, limp mode and sudden power loss, recurring after repair and at highway speed.\" One line. Good.\n\nCheck JSON. Use false? safety true. source says false but rules override. No fault codes. \"fault_codes\": [].\n\nNeed no extra text.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793526690,
+      "id": "4f4fab306890dda49589dfeabcbeb134",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1226,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 978,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00046518,
+          "billing_source": "go",
+          "list_cost": 0.0007753,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 257,
+            "output": 1226,
+            "reasoning": 978
+          }
+        },
+        "prompt_tokens": 641,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1867
+      }
+    },
+    "text": "{\"summary\":\"2021 Ford EcoSport electrical coolant temperature sensor/wiring fault causing over-temperature and Service Engine Soon warnings, limp mode with reduced power, and sudden power loss at highway speed; recurring after repair.\",\"group\":\"electrical_general\",\"symptoms\":[\"engine coolant over-temperature warning\",\"Service Engine Soon warning\",\"faulty engine coolant temperature sensor/wiring\",\"limp mode with reduced power/acceleration\",\"sudden loss of power at highway speed\"],\"conditions\":[\"intermittent\",\"after service\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"Engine Coolant Over-Temperature and Service Engine Soon Warning\"},{\"kind\":\"symptom\",\"quote\":\"sensor/wiring is faulty\"},{\"kind\":\"symptom\",\"quote\":\"limp mode with reduced power/acceleration\"},{\"kind\":\"condition\",\"quote\":\"at highway speeds\"},{\"kind\":\"condition\",\"quote\":\"after the repair, the same issue reoccurs\"},{\"kind\":\"safety\",\"quote\":\"suddenly loses power in limp-mode\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00046518,
+      "cached_tokens": 384,
+      "cost_usd": 0.0007753,
+      "input_tokens": 641,
+      "list_cost_usd": 0.0007753,
+      "output_tokens": 1226,
+      "reasoning_tokens": 978
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "e07f38e6eb9b11fc9f39fbde4a15444e3937f2591cceb75f3c8f23ba53af0014",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 13195,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2017 Chrysler Pacifica restraints: rear passenger seat belt and waist strap failed to restrain in a rear-end crash; occupant thrown forward and injured; air bag deployment caused leg pain and bruises.\",\"group\":\"restraints\",\"symptoms\":[\"rear passenger seat belt did not restrain\",\"waist strap did not restrain\",\"rear passenger thrown forward\",\"injuries to neck, back, and shoulders\",\"severe pain and bruises to both legs from air bag deployment\"],\"conditions\":[\"crash\",\"rear-ended another vehicle\",\"nearby vehicle suddenly applied brakes\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"condition\",\"quote\":\"while the contact's husband was driving at an undisclosed speed, the contact's vehicle was involved in a crash\"},{\"kind\":\"condition\",\"quote\":\"a nearby vehicle drove in front of the contact's vehicle and then suddenly applied the brakes\"},{\"kind\":\"condition\",\"quote\":\"the contact vehicle rear-ended another vehicle\"},{\"kind\":\"symptom\",\"quote\":\"the rear passenger seat belt did not restrain\"},{\"kind\":\"symptom\",\"quote\":\"the waist strap did not restrain\"},{\"kind\":\"symptom\",\"quote\":\"was thrown forward\"},{\"kind\":\"symptom\",\"quote\":\"sustained injuries to his neck, back, and right and left shoulders\"},{\"kind\":\"symptom\",\"quote\":\"the contact sustained severe pain and bruises to both legs from the air bag deployment\"},{\"kind\":\"safety\",\"quote\":\"the contact's vehicle was involved in a crash\"}]}",
+            "reasoning_content": "We need answer one JSON only. Need parse report. Component AIR BAGS group restraints. Summary one line: component, symptom, conditions. Symptoms: rear passenger seat belt did not restrain; waist strap did not restrain; son thrown forward/injuries; air bag deployment caused pain/bruises? Conditions: crash, rear-ended, vehicle in front braked suddenly. Safety relevant true. Fault codes none. Missing info? Component given, symptom given, conditions given, mileage given, date? received_at 2025-12-09 but incident date not specified. Missing_info maybe [\"date\"] because crash date not given. Need clues quotes verbatim. Need include safety quote crash/injuries. Quotes exactly from narrative. Need ensure quotes verbatim. Let's extract exact spans:\n- \"while the contact's husband was driving at an undisclosed speed, the contact's vehicle was involved in a crash\" yes.\n- \"a nearby vehicle drove in front of the contact's vehicle and then suddenly applied the brakes\" yes.\n- \"the contact vehicle rear-ended another vehicle\" yes.\n- \"the rear passenger seat belt did not restrain\" yes.\n- \"the waist strap did not restrain\" yes.\n- \"was thrown forward\" yes maybe symptom.\n- \"sustained injuries to his neck, back, and right and left shoulders\" exact? Narrative: \"however sustained injuries to his neck, back, and right and left shoulders.\" Quote can be \"sustained injuries to his neck, back, and right and left shoulders\" yes.\n- \"the contact sustained severe pain and bruises to both legs from the air bag deployment\" exact.\n- \"The vehicle was condemned as a total loss.\" maybe other/safety? Could include.\n- \"A Police report was filed.\" other.\n- \"The failure mileage was approximately 165,000.\" condition? maybe mileage not condition. Not needed.\n- \"unknown seat belt recall\" fault_code? no code. Could clue other? Maybe mention recall. But fault_codes empty.\n\nNeed output JSON. Summary: \"2017 Chrysler Pacifica air bags/seat belts: rear passenger seat belt and waist strap failed to restrain in a rear-end crash; son thrown forward and injured; driver/passenger air bag deployment bruises.\" Conditions list: \"crash\", \"rear-ended\", \"sudden braking\"? The allowed conditions examples include cold moisture heat vibration intermittent after service charging. But conditions can be plain? The schema says conditions [\"cold\", ...] but may allow. We should list \"crash\" and \"rear-ended\"? It asks conditions array maybe not restricted? The examples are environmental/operational. For crash, safety. Maybe conditions: [\"crash\", \"rear-ended\"]. But the prompt says conditions: [\"cold\", \"moisture\", ...] but not exhaustive. Include \"crash\". Maybe \"sudden braking\" as condition. Need not overdo.\n\nMissing_info: date (incident date) only. Mileage present. Component present. Symptom present. Conditions present (crash). Maybe VIN? not in list. So [\"date\"].\n\nClues: Must have kind symptom|condition|fault_code|component_group|safety|other. Include component_group quote? Quote \"AIR BAGS\" is in component field not narrative. Report includes component field. Rule read report, quote verbatim from report. It says from report. Can quote \"AIR BAGS\" from component? It says quote copied verbatim from the report; report includes JSON component. Probably okay? But maybe narrative only. To be safe, component_group quote could be \"AIR BAGS\" because report has component. But quote from report includes entire JSON? It says report in user message. It includes component. Fine. But if quote not in narrative? It is in report. Include. Or skip. Need evidence.\n\nNeed ensure JSON valid. No markdown. Only JSON. Use false boolean. \"safety_relevant\": true. Summary one line.\n\nNeed decide symptoms: [\"rear passenger seat belt did not restrain\", \"waist strap did not restrain\", \"rear passenger thrown forward\", \"injuries to neck, back, and shoulders\", \"severe pain and bruises to both legs from air bag deployment\"]. Could include \"severe pain in lap area\". Good.\n\nConditions: [\"crash\", \"rear-ended another vehicle\", \"nearby vehicle suddenly applied brakes\"]. The schema examples lowercase. Fine.\n\nClues array with verbatim quotes:\n- {\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"}\n- {\"kind\":\"condition\",\"quote\":\"while the contact's husband was driving at an undisclosed speed, the contact's vehicle was involved in a crash\"}\n- {\"kind\":\"condition\",\"quote\":\"a nearby vehicle drove in front of the contact's vehicle and then suddenly applied the brakes\"}\n- {\"kind\":\"condition\",\"quote\":\"the contact vehicle rear-ended another vehicle\"}\n- {\"kind\":\"symptom\",\"quote\":\"the rear passenger seat belt did not restrain\"}\n- {\"kind\":\"symptom\",\"quote\":\"the waist strap did not restrain\"}\n- {\"kind\":\"symptom\",\"quote\":\"was thrown forward\"}\n- {\"kind\":\"symptom\",\"quote\":\"sustained injuries to his neck, back, and right and left shoulders\"}\n- {\"kind\":\"symptom\",\"quote\":\"the contact sustained severe pain and bruises to both legs from the air bag deployment\"}\n- {\"kind\":\"safety\",\"quote\":\"The vehicle was condemned as a total loss.\"} Is total loss safety? maybe other. Safety quote better \"involved in a crash\" or injuries. We can include safety quote \"involved in a crash\" but already condition. Kind safety quote \"sustained injuries to his neck, back, and right and left shoulders\" duplicate? Fine. Need not duplicate? Could include safety with \"The contact's son did not receive medical attention; however sustained injuries...\" exact. Use quote \"sustained injuries to his neck, back, and right and left shoulders\" as safety? But kind symptom. Could have same quote different kind? Probably okay but maybe avoid duplicate. Use safety quote \"the contact's vehicle was involved in a crash\" exact? Narrative: \"the contact's vehicle was involved in a crash\" yes. Good. \n- other: \"The failure mileage was approximately 165,000.\" maybe not needed. Could include other for recall: \"unknown seat belt recall\". Hmm.\n\nNeed missing_info date. The incident date not provided; received_at 2025-12-09. Good.\n\nNeed no extra text.\n\nLet's craft final JSON. Ensure quote \"the contact's vehicle was involved in a crash\" exactly appears? Narrative: \"while the contact's husband was driving at an undisclosed speed, the contact's vehicle was involved in a crash.\" Yes substring \"the contact's vehicle was involved in a crash\" appears. Good. Quote \"sustained injuries to his neck, back, and right and left shoulders\" exact? Narrative: \"however sustained injuries to his neck, back, and right and left shoulders.\" Yes substring includes no period. Good. \"the contact sustained severe pain and bruises to both legs from the air bag deployment\" exact. Good.\n\nNeed summary maybe \"2017 Chrysler Pacifica air bag/seat belt: rear passenger seat belt and waist strap failed to restrain in a rear-end crash; occupant thrown forward and injured; air bag deployment caused leg pain/bruises.\" It says summary one line component, symptom, conditions. Good.\n\nNeed group \"restraints\". good.\n\nPotential issue: \"fault_codes\": [] because no code. Good.\n\nNeed missing_info maybe [\"date\"] only. Good.\n\nFinal.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793532743,
+      "id": "e2abeb3699b8afd54f75a134f9b43a7d",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1911,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1572,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0007242,
+          "billing_source": "go",
+          "list_cost": 0.001207,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 395,
+            "output": 1911,
+            "reasoning": 1572
+          }
+        },
+        "prompt_tokens": 779,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2690
+      }
+    },
+    "text": "{\"summary\":\"2017 Chrysler Pacifica restraints: rear passenger seat belt and waist strap failed to restrain in a rear-end crash; occupant thrown forward and injured; air bag deployment caused leg pain and bruises.\",\"group\":\"restraints\",\"symptoms\":[\"rear passenger seat belt did not restrain\",\"waist strap did not restrain\",\"rear passenger thrown forward\",\"injuries to neck, back, and shoulders\",\"severe pain and bruises to both legs from air bag deployment\"],\"conditions\":[\"crash\",\"rear-ended another vehicle\",\"nearby vehicle suddenly applied brakes\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"condition\",\"quote\":\"while the contact's husband was driving at an undisclosed speed, the contact's vehicle was involved in a crash\"},{\"kind\":\"condition\",\"quote\":\"a nearby vehicle drove in front of the contact's vehicle and then suddenly applied the brakes\"},{\"kind\":\"condition\",\"quote\":\"the contact vehicle rear-ended another vehicle\"},{\"kind\":\"symptom\",\"quote\":\"the rear passenger seat belt did not restrain\"},{\"kind\":\"symptom\",\"quote\":\"the waist strap did not restrain\"},{\"kind\":\"symptom\",\"quote\":\"was thrown forward\"},{\"kind\":\"symptom\",\"quote\":\"sustained injuries to his neck, back, and right and left shoulders\"},{\"kind\":\"symptom\",\"quote\":\"the contact sustained severe pain and bruises to both legs from the air bag deployment\"},{\"kind\":\"safety\",\"quote\":\"the contact's vehicle was involved in a crash\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0007242,
+      "cached_tokens": 384,
+      "cost_usd": 0.001207,
+      "input_tokens": 779,
+      "list_cost_usd": 0.001207,
+      "output_tokens": 1911,
+      "reasoning_tokens": 1572
+    }
+  }
+}

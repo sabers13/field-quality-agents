@@ -1,0 +1,66 @@
+{
+  "key": "1929812414ceb9bf71587dbb4c5e99a4b47d6c5588774060aa74077d7557968c",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11872,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2021 Ford Mustang Mach-E charging with an Enel X JuiceBox 40; burning plastic smell, melted/charred charger plug and NEMA outlet, small fire and sparks.\",\"group\":\"ev_propulsion\",\"symptoms\":[\"burning plastic smell\",\"charger plug partially melted and very hot to touch\",\"small fire and sparks from the NEMA outlet\",\"outlet plastic shell melted and inner metal charred\",\"matching charring and melting on the charger plug\"],\"conditions\":[\"charging\",\"heat\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"a burning plastic smell was noted\"},{\"kind\":\"condition\",\"quote\":\"While charging my electric vehicle with this Enel X JuiceBox 40 charger\"},{\"kind\":\"symptom\",\"quote\":\"it appeared partially melted and very to touch\"},{\"kind\":\"safety\",\"quote\":\"a small fire and sparks flew out of the NEMA outlet\"},{\"kind\":\"symptom\",\"quote\":\"The right half of the outlet's plastic shell was melted and the inner metal was charred\"},{\"kind\":\"symptom\",\"quote\":\"Same charring and melting was noted on the corresponding side of the Enel X plug\"},{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM:PROPULSION SYSTEM:CHARGING:MODULE:ACCESSORY\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize. Need include summary, group, symptoms, conditions, fault_codes, safety_relevant, missing_info, clues verbatim.\n\nReport: component electrical propulsion charging accessory. Group ev_propulsion given. Symptoms: burning plastic smell, charger plug partially melted and very hot to touch (text says \"very to touch\" typo maybe quote), small fire and sparks from NEMA outlet, outlet plastic shell melted, inner metal charred, corresponding plug charring/melting. Conditions: charging. Safety relevant true fire smoke? burning plastic smell, fire sparks. Missing info: mileage null, date? received_at but no incident date. Conditions present charging. Component present. Symptom present. Mileage missing, date missing. Maybe missing_info [\"mileage\",\"date\"]. Fault codes none. Clues quotes verbatim. Need character-for-character. Use exact spans from narrative. Need be careful quotes. Narrative: \"While charging my electric vehicle with this Enel X JuiceBox 40 charger, a burning plastic smell was noted.  Upon examining the Enel X charger plug that was attached to my home's NEMA 14-50, it appeared partially melted and very to touch.  Using a towel, the plug was removed and a small fire and sparks flew out of the NEMA outlet.  The right half of the outlet's plastic shell was melted and the inner metal was charred.  Same charring and melting was noted on the corresponding side of the Enel X plug.  I turned the circuit breaker off and the sparks and fire subsided. Model of JuiceBox: 2JBO401RNA-PJWX-300\"\n\nQuotes must be exact. Could quote \"a burning plastic smell was noted\" yes exact lowercase? It appears after comma \" a burning plastic smell was noted.\" quote without leading? Verbatim span can start at a. Good.\n\"it appeared partially melted and very to touch\" exact? Narrative: \"it appeared partially melted and very to touch.\" yes.\n\"a small fire and sparks flew out of the NEMA outlet\" exact.\n\"The right half of the outlet's plastic shell was melted and the inner metal was charred\" exact.\n\"Same charring and melting was noted on the corresponding side of the Enel X plug\" exact.\n\"While charging my electric vehicle with this Enel X JuiceBox 40 charger\" exact.\nMaybe clue component_group quote \"ELECTRICAL SYSTEM:PROPULSION SYSTEM:CHARGING:MODULE:ACCESSORY\" but that's component field not narrative? Report includes component. Rule quote copied from report. The report includes JSON field component. But \"report\" user message includes all. Could quote component string. But clues from narrative enough. Need group clue? kind component_group quote \"ELECTRICAL SYSTEM:PROPULSION SYSTEM:CHARGING:MODULE:ACCESSORY\". Is that verbatim in report yes in component value. But quote maybe okay. Use maybe no need. Need include safety clue quote \"a small fire and sparks flew out\" exact? Narrative has \"a small fire and sparks flew out of the NEMA outlet\". Good.\n\nSummary one line: \"EV charging accessory (Enel X JuiceBox 40) on 2021 Ford Mustang Mach-E; burning plastic smell, melted/charred plug and NEMA outlet, fire/sparks while charging.\" Include conditions. Good.\n\nSymptoms array plain words: \"burning plastic smell\", \"charger plug partially melted and hot\", \"small fire and sparks from NEMA outlet\", \"outlet plastic shell melted and inner metal charred\", \"matching charring/melting on charger plug\". Is \"very to touch\" likely \"very hot to touch\" but don't invent hot? It says \"very to touch\" missing hot. Could say \"plug appeared partially melted and very [hot] to touch\" but avoid invent. Use \"charger plug partially melted and very to touch\" weird. Plain words can say \"charger plug partially melted and too hot to touch\"? That invents \"hot\" but implied. Better \"charger plug partially melted and very [hot] to touch\" maybe bracket. But answer JSON no explanation. Symptoms plain words can include \"charger plug partially melted and very hot to touch\" as normalization. Okay.\n\nConditions: [\"charging\"]. Maybe \"after service\"? no. \"heat\" because melted/charred? Conditions list includes heat; report implies heat? But condition categories are cold, moisture, heat, vibration, intermittent, after service, charging. The incident occurred while charging, heat/fire. Should include \"charging\" and \"heat\"? It mentions melted, charred, fire. \"heat\" is a condition? It's consequence. But condition list includes heat; could include \"heat\" because burning/melting. But evidence quote \"partially melted\" indicates heat. Hmm conditions should be conditions present: charging. Heat maybe yes as thermal event. But don't over-invent. Include \"charging\" only maybe. But safety relevant. Could include \"heat\" due to melting/fire. The prompt asks conditions from list. We can include \"charging\", \"heat\". Is \"heat\" a condition in report? Burning plastic smell, fire, melted = heat. Okay.\n\nFault codes: [] (no code). Model number not fault code.\n\nMissing_info: mileage and date. Date: received_at but no incident date. Could include \"date\". Mileage null. Component and symptom present, conditions present. Good.\n\nClues list with kind. Need exact quotes. Let's craft.\n\nNeed ensure JSON valid no extra text. Quotes with apostrophe \"home's\" okay. JSON string with apostrophe no issue. \"NEMA 14-50\" etc. Need escape? no.\n\nClues:\n{\"kind\":\"symptom\",\"quote\":\"a burning plastic smell was noted\"}\n{\"kind\":\"condition\",\"quote\":\"While charging my electric vehicle with this Enel X JuiceBox 40 charger\"}\n{\"kind\":\"symptom\",\"quote\":\"it appeared partially melted and very to touch\"}\n{\"kind\":\"safety\",\"quote\":\"a small fire and sparks flew out of the NEMA outlet\"}\n{\"kind\":\"symptom\",\"quote\":\"The right half of the outlet's plastic shell was melted and the inner metal was charred\"}\n{\"kind\":\"symptom\",\"quote\":\"Same charring and melting was noted on the corresponding side of the Enel X plug\"}\n{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM:PROPULSION SYSTEM:CHARGING:MODULE:ACCESSORY\"}\nMaybe safety also \"small fire\" enough. \"burning plastic smell\" could safety? We have fire.\n\nNeed summary \"2021 Ford Mustang Mach-E charging with Enel X JuiceBox 40; burning plastic smell, melted/charred plug and NEMA outlet, small fire and sparks.\" Good. Component maybe accessory. \n\nNeed no other text. Ensure \"safety_relevant\": true.\n\nNeed final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793532912,
+      "id": "91d1bedb027c47c790299d0ff2f68dbc",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1746,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1443,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00065355,
+          "billing_source": "go",
+          "list_cost": 0.00108925,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 270,
+            "output": 1746,
+            "reasoning": 1443
+          }
+        },
+        "prompt_tokens": 654,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2400
+      }
+    },
+    "text": "{\"summary\":\"2021 Ford Mustang Mach-E charging with an Enel X JuiceBox 40; burning plastic smell, melted/charred charger plug and NEMA outlet, small fire and sparks.\",\"group\":\"ev_propulsion\",\"symptoms\":[\"burning plastic smell\",\"charger plug partially melted and very hot to touch\",\"small fire and sparks from the NEMA outlet\",\"outlet plastic shell melted and inner metal charred\",\"matching charring and melting on the charger plug\"],\"conditions\":[\"charging\",\"heat\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"a burning plastic smell was noted\"},{\"kind\":\"condition\",\"quote\":\"While charging my electric vehicle with this Enel X JuiceBox 40 charger\"},{\"kind\":\"symptom\",\"quote\":\"it appeared partially melted and very to touch\"},{\"kind\":\"safety\",\"quote\":\"a small fire and sparks flew out of the NEMA outlet\"},{\"kind\":\"symptom\",\"quote\":\"The right half of the outlet's plastic shell was melted and the inner metal was charred\"},{\"kind\":\"symptom\",\"quote\":\"Same charring and melting was noted on the corresponding side of the Enel X plug\"},{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM:PROPULSION SYSTEM:CHARGING:MODULE:ACCESSORY\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00065355,
+      "cached_tokens": 384,
+      "cost_usd": 0.00108925,
+      "input_tokens": 654,
+      "list_cost_usd": 0.00108925,
+      "output_tokens": 1746,
+      "reasoning_tokens": 1443
+    }
+  }
+}

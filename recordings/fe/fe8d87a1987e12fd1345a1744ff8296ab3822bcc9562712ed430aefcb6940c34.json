@@ -1,0 +1,66 @@
+{
+  "key": "fe8d87a1987e12fd1345a1744ff8296ab3822bcc9562712ed430aefcb6940c34",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 8642,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system fault: horn does not sound and electrical connections/reprogramming are needed.\",\"group\":\"electrical_general\",\"symptoms\":[\"horn does not sound\",\"electrical system needs reconnection and reprogramming\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"Electrical needs to be reconnected a reprogrammed.\"},{\"kind\":\"symptom\",\"quote\":\"Steering wheel horn doesn’t blow.\"}]}",
+            "reasoning_content": "We need answer JSON only. Need parse report. Component ELECTRICAL SYSTEM group electrical_general. Narrative: \"Electrical needs to be reconnected a reprogrammed. Steering wheel horn doesn’t blow.\" Symptoms: horn doesn't blow / electrical needs reconnected and reprogrammed. Conditions none. Fault codes none. safety_relevant? Horn inoperative could be safety? Prompt says safety when crash fire smoke injury loss control stall at speed or other risk to people. Horn not blowing maybe safety risk but report doesn't mention crash etc. The input has safety_relevant false but we decide? It says set when mentions crash/fire/smoke/injury/loss control/stall or other risk to people. Horn doesn't blow could be risk but not explicit. Keep false. Missing info: mileage, date? received date present, date maybe incident date? It asks missing facts analysis needs: component symptom conditions mileage date. Component present, symptom present, conditions absent maybe missing conditions. Mileage null -> missing mileage. Date? received_at present but maybe date of incident missing. We can include \"conditions\", \"mileage\", maybe \"date\" if no occurrence date. Need not overdo. Summary one line: Electrical system; horn inoperative; needs reconnection/reprogramming. No conditions.\n\nClues verbatim: quote \"Electrical needs to be reconnected a reprogrammed.\" kind symptom? It's more symptom/other. \"Steering wheel horn doesn’t blow.\" symptom. component_group quote? \"ELECTRICAL SYSTEM\" is in report? Yes component field but user report includes JSON. Can quote \"ELECTRICAL SYSTEM\". But clue kind component_group. Need quotes verbatim from report. Note apostrophe is curly: \"doesn’t\". Copy exactly. Summary. group \"electrical_general\" or \"ELECTRICAL SYSTEM\"? The schema says \"the electrical/electronic component group, or the given group\". Given group electrical_general. Use \"electrical_general\". Symptoms plain: \"horn does not sound\", \"electrical system needs reconnection and reprogramming\". Conditions empty. fault_codes empty. safety false. missing_info [\"mileage\",\"conditions\"]. Date? received_at present, but no incident date. Could include \"date\" maybe. The report has received_at. Missing_info facts analysis needs: date could be received date but not incident date. Include \"date\"? Hmm. Prompt says missing_info [\"mileage\", \"date\", \"conditions\", \"component\", \"symptom\"]. Since date field absent? There is received_at. But report date is received_at. I'd include mileage and conditions; not date because received_at exists. But incident date not. Be conservative.\n\nNeed JSON only. Ensure no markdown? They said answer with one JSON object and no other text. We can output raw JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793526645,
+      "id": "75581dcc2a8c8d312ea2b480c6dd3d02",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 710,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 578,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00026718,
+          "billing_source": "go",
+          "list_cost": 0.0004453,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 121,
+            "output": 710,
+            "reasoning": 578
+          }
+        },
+        "prompt_tokens": 505,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1215
+      }
+    },
+    "text": "{\"summary\":\"Electrical system fault: horn does not sound and electrical connections/reprogramming are needed.\",\"group\":\"electrical_general\",\"symptoms\":[\"horn does not sound\",\"electrical system needs reconnection and reprogramming\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"Electrical needs to be reconnected a reprogrammed.\"},{\"kind\":\"symptom\",\"quote\":\"Steering wheel horn doesn’t blow.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00026718,
+      "cached_tokens": 384,
+      "cost_usd": 0.0004453,
+      "input_tokens": 505,
+      "list_cost_usd": 0.0004453,
+      "output_tokens": 710,
+      "reasoning_tokens": 578
+    }
+  }
+}

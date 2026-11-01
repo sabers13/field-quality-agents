@@ -1,0 +1,66 @@
+{
+  "key": "c2102126cfb64595c8899fbc842d8de53916afb010712b722dfe2a7c41b0222e",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10054,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Test the recurring ABS/HVAC/radio electrical fault with a long-run power cycling test because the rulebook matches the intermittent condition.\",\"rationale\":\"The narrative reports recurring ABS flashing and bing noise while driving, with radio and HVAC misbehavior tied to the ABS event. The rulebook matches the extracted intermittent condition to the long-run power cycling test, which can reproduce faults that appear only after repeated wake and sleep cycles.\",\"group\":\"electrical_general\",\"symptoms\":[\"ABS flashing\",\"bing noise while driving\",\"radio cuts out during ABS flashing\",\"HVAC goes full blast during ABS flashing and binging\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":false,\"targeted\":true,\"test_name\":\"Long-run power cycling test\",\"clues\":[{\"kind\":\"symptom\",\"quote\":\"KEEPS FLASHING ABS.\"},{\"kind\":\"symptom\",\"quote\":\"IT SOUNDS A BING NOISE THE WHOLE TIME I DRIVE IT.\"},{\"kind\":\"symptom\",\"quote\":\"THE RADIO CUTS OUT ALL THE TIME WHEN THE ABS IN FLASHING\"},{\"kind\":\"symptom\",\"quote\":\"THE AIR CONDITIONING OR HEAT GOES FULL BLAST WHEN THE ABS IN FLASHING AND BINGING.\"},{\"kind\":\"condition\",\"quote\":\"ALL THE TIME\"}]}",
+            "reasoning_content": "We need answer one JSON only. Need follow rules. Need analyze. Case electrical general, intermittent ABS flashing, bing, radio cuts, HVAC full blast. Rulebook matched intermittent -> Long-run power cycling test targeted true. Safety relevant? Narrative no risk to people, maybe ABS issue but no explicit safety risk. Extraction false. So safety_relevant false. targeted true. test_name \"Long-run power cycling test\". group \"electrical_general\". symptoms list. conditions [\"intermittent\"]. fault_codes []. clues quotes verbatim from narrative. Need ensure quotes exact. Narrative: \"KEEPS FLASHING ABS.  IT SOUNDS A BING NOISE THE WHOLE TIME I DRIVE IT.  SINCE I DRIVE OVER 2 HOURS A DAY IT IS REALLY FRUSTRATING AND 5 HOURS ON THE WEEKEND.  ALSO, THE RADIO CUTS OUT ALL THE TIME WHEN THE ABS IN FLASHING THE AIR CONDITIONING OR HEAT GOES FULL BLAST WHEN THE ABS IN FLASHING AND BINGING.  HOW CAN YOU NOT HAVE A FIX FOR THIS YET! I PAID A LOT OF MONEY FOR THIS TRUCK AND IT IS THE BIGGEST [XXX] RIGHT NOW!!! I REALLY WANT AN ANSWER ASAP!!! BEFORE I HIRE AN ATTORNEY TO SUE CHRYSLER/DODGE. [XXX] CUSTOMER [XXX]INFORMATION REDACTED PURSUANT TO THE FREEDOM OF INFORMATION ACT (FOIA), 5 U.S.C. 552(B)(6)\"\n\nNeed quote verbatim span copied. Can include \"KEEPS FLASHING ABS.\" exact? Yes. \"IT SOUNDS A BING NOISE THE WHOLE TIME I DRIVE IT.\" exact. \"THE RADIO CUTS OUT ALL THE TIME WHEN THE ABS IN FLASHING\" exact? Narrative has \"ALSO, THE RADIO CUTS OUT ALL THE TIME WHEN THE ABS IN FLASHING THE AIR CONDITIONING...\" So substring \"THE RADIO CUTS OUT ALL THE TIME WHEN THE ABS IN FLASHING\" yes. \"THE AIR CONDITIONING OR HEAT GOES FULL BLAST WHEN THE ABS IN FLASHING AND BINGING.\" yes. \"ALL THE TIME\" yes but condition quote maybe from narrative. \"ELECTRICAL SYSTEM\" is component? Not narrative, case component field not narrative. Tool says every quote copied from case narrative. So don't cite ELECTRICAL SYSTEM unless narrative doesn't include it. It doesn't. We can include component_group? Need clues kind component_group quote from narrative? If no quote no. Maybe omit component_group clue. But schema allows clues array. Need use only facts. Could include symptom clues. Condition \"ALL THE TIME\". Should we include \"intermittent\" quote? Narrative doesn't say intermittent. But \"ALL THE TIME\" suggests intermittent? Actually condition from extraction is intermittent. We can clue condition quote \"ALL THE TIME\". That exact phrase appears. Good. fault codes none. Safety false. Summary one line: \"Test the intermittent ABS/HVAC/radio electrical fault with a long-run power cycling test because the rulebook matches the intermittent condition.\" Rationale mention repeated wake/sleep cycles reproduce faults only after power cycles, and narrative reports recurring while driving. Need JSON valid.\n\nNeed think if targeted true. Rulebook matched intermittent. Yes.\n\nNeed no extra text. Ensure JSON fields exactly. Use booleans.\n\nPotential issue: test_name \"Long-run power cycling test\" exact. Good.\n\nClues: include kinds symptom and condition. Maybe also \"other\" for frustration? Not needed. Avoid irrelevant.\n\nLet's craft concise. Summary one line.\n\nNeed maybe \"symptoms\": [\"ABS flashing\", \"bing noise while driving\", \"radio cuts out during ABS flashing\", \"HVAC goes full blast during ABS flashing and binging\"]. Conditions [\"intermittent\"]. Group electrical_general. targeted true. safety_relevant false. fault_codes [].\n\nNeed rationale: \"The narrative reports recurring ABS flashing and bing noise while driving, with radio and HVAC misbehavior tied to the ABS event. The rulebook matches the extracted intermittent condition to the Long-run power cycling test; repeated wake/sleep cycles can reproduce faults that appear only intermittently.\" Good.\n\nNeed clues quote exact. Use:\n{\"kind\":\"symptom\",\"quote\":\"KEEPS FLASHING ABS.\"}\n{\"kind\":\"symptom\",\"quote\":\"IT SOUNDS A BING NOISE THE WHOLE TIME I DRIVE IT.\"}\n{\"kind\":\"symptom\",\"quote\":\"THE RADIO CUTS OUT ALL THE TIME WHEN THE ABS IN FLASHING\"}\n{\"kind\":\"symptom\",\"quote\":\"THE AIR CONDITIONING OR HEAT GOES FULL BLAST WHEN THE ABS IN FLASHING AND BINGING.\"}\n{\"kind\":\"condition\",\"quote\":\"ALL THE TIME\"}\n\nCheck quote \"ALL THE TIME\" appears in \"THE RADIO CUTS OUT ALL THE TIME\" and \"BING NOISE THE WHOLE TIME\" no. It appears. Fine. Is condition \"intermittent\" not verbatim, but clue quote all the time. Good.\n\nCould include \"SINCE I DRIVE OVER 2 HOURS A DAY\" as condition? It supports long duration. Maybe clue kind condition quote \"SINCE I DRIVE OVER 2 HOURS A DAY\" exact. But not necessary. It might support long-run test. Could include. But conditions list is intermittent. Maybe include condition quote \"SINCE I DRIVE OVER 2 HOURS A DAY\" to indicate long duration. But it's not a condition per extraction? It is narrative fact. It may be helpful. However rules: use facts. Could include. But don't overdo. \"ALL THE TIME\" enough.\n\nNeed maybe safety_relevant false despite ABS. No risk to people stated. Good.\n\nAnswer JSON only.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529334,
+      "id": "2394a1fc169cbf6c4b42f281602429bf",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1524,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1237,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00069696,
+          "billing_source": "go",
+          "list_cost": 0.0011616,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 1648,
+            "output": 1524,
+            "reasoning": 1237
+          }
+        },
+        "prompt_tokens": 1648,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 3172
+      }
+    },
+    "text": "{\"summary\":\"Test the recurring ABS/HVAC/radio electrical fault with a long-run power cycling test because the rulebook matches the intermittent condition.\",\"rationale\":\"The narrative reports recurring ABS flashing and bing noise while driving, with radio and HVAC misbehavior tied to the ABS event. The rulebook matches the extracted intermittent condition to the long-run power cycling test, which can reproduce faults that appear only after repeated wake and sleep cycles.\",\"group\":\"electrical_general\",\"symptoms\":[\"ABS flashing\",\"bing noise while driving\",\"radio cuts out during ABS flashing\",\"HVAC goes full blast during ABS flashing and binging\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":false,\"targeted\":true,\"test_name\":\"Long-run power cycling test\",\"clues\":[{\"kind\":\"symptom\",\"quote\":\"KEEPS FLASHING ABS.\"},{\"kind\":\"symptom\",\"quote\":\"IT SOUNDS A BING NOISE THE WHOLE TIME I DRIVE IT.\"},{\"kind\":\"symptom\",\"quote\":\"THE RADIO CUTS OUT ALL THE TIME WHEN THE ABS IN FLASHING\"},{\"kind\":\"symptom\",\"quote\":\"THE AIR CONDITIONING OR HEAT GOES FULL BLAST WHEN THE ABS IN FLASHING AND BINGING.\"},{\"kind\":\"condition\",\"quote\":\"ALL THE TIME\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00069696,
+      "cached_tokens": 0,
+      "cost_usd": 0.0011616,
+      "input_tokens": 1648,
+      "list_cost_usd": 0.0011616,
+      "output_tokens": 1524,
+      "reasoning_tokens": 1237
+    }
+  }
+}

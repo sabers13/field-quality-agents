@@ -1,0 +1,66 @@
+{
+  "key": "2edc1371646bc0b2fe5919943c07076a02bdf14de96c5ee2931fcb9aa2a98191",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 7022,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Front windshield adhesive separating and windshield delaminating, causing a driving hazard in direct sun.\",\n  \"group\": \"body_controls\",\n  \"symptoms\": [\n    \"windshield adhesive separating from the front windshield\",\n    \"windshield delaminating\",\n    \"driving hazard in direct sun\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\",\n    \"conditions\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The adhesive that attaches the front windshield is separating from the front windshield\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"the actual windshield is delaminating\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"This is causing a hazzard to driving.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"Especially when the sun is coming right at the vehicle.\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize report. Read report. Component VISIBILITY/WIPER group body_controls. Narrative: adhesive attaching front windshield separating; windshield delaminating; causing hazard to driving especially sun coming right at vehicle. Need summary one line component symptom conditions. Group given body_controls. Symptoms plain words: windshield adhesive separating, windshield delaminating, glare hazard when sun direct? Conditions: maybe heat? Not explicitly. Sun? conditions list includes cold moisture heat vibration intermittent after service charging. Report mentions sun coming right at vehicle, not heat exactly. Conditions maybe []? Could include \"heat\"? No, don't invent. It mentions sun, but allowed conditions only list? Prompt says conditions [\"cold\",\"moisture\",\"heat\",\"vibration\",\"intermittent\",\"after service\",\"charging\"] likely choose from list. Sun not in list. Could use [] or maybe \"heat\" not stated. Safety_relevant: narrative says hazard to driving, especially sun. Is that risk to people? \"hazzard to driving\" yes safety_relevant true? Rule set safety_relevant when report mentions crash fire smoke injury loss control stall at speed or another risk to people. \"hazard to driving\" is another risk. So true. Fault codes none. Missing_info: mileage null, date? received_at exists but maybe date of incident missing. Conditions? component/symptom present. Need list only facts analysis needs: mileage, date, conditions maybe. Since mileage missing, date? The report has received_at but not incident date. missing_info [\"mileage\",\"date\",\"conditions\"] perhaps. Clues with verbatim quotes. Need quotes exactly from report. Narrative has typos. Need quote spans. Clues:\n- symptom quote \"The adhesive that attaches the front windshield is separating from the front windshield\"\n- symptom quote \"the actual windshield is delaminating\"\n- safety quote \"This is causing a hazzard to driving.\"\n- condition quote \"Especially when the sun is coming right at the vehicle.\" kind condition? Sun condition not in list but clue kind condition can quote. Maybe use kind \"condition\". Also component_group quote \"VISIBILITY/WIPER\"? That is in component field, report includes JSON. Verbatim span from report? Whole user message JSON includes \"VISIBILITY/WIPER\". Could quote. But maybe not needed. Need every quote copied character for character. Use exact. Summary one line: \"Front windshield adhesive separating and glass delaminating, causing driving hazard in direct sun.\" Component maybe \"front windshield\". Conditions maybe [\"heat\"]? Hmm \"sun\" could imply heat but no. Use conditions []? The schema conditions array. Maybe include \"heat\" only if report names sun? Not exactly. Better not invent. But clues can include sun. The condition list likely controlled vocabulary. Since no listed condition present. conditions: []. Missing_info includes conditions because conditions not explicit? Hmm.\n\nNeed answer only JSON no markdown? \"Answer with one JSON object and no other text\". We can output raw JSON. Ensure valid JSON. Safety_relevant true. Missing_info: mileage, date, conditions. But component present, symptom present. Date? received_at given; report date? The date field maybe missing date of occurrence. They said list missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. Mileage null yes. Date? received_at is present but not incident date. Could include date. Conditions not specified beyond sun. Missing conditions maybe yes. Is \"conditions\" missing if no cold/moisture etc? I'd include conditions. But if include conditions and also clue condition sun, conflict? Not necessarily: specific environmental conditions missing; sun direct mentioned. Hmm.\n\nNeed ensure no extra text. Final JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530833,
+      "id": "c3f0cb875390f9e728a6ad06c8554ec9",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1012,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 777,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00037842,
+          "billing_source": "go",
+          "list_cost": 0.0006307,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 149,
+            "output": 1012,
+            "reasoning": 777
+          }
+        },
+        "prompt_tokens": 533,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1545
+      }
+    },
+    "text": "{\n  \"summary\": \"Front windshield adhesive separating and windshield delaminating, causing a driving hazard in direct sun.\",\n  \"group\": \"body_controls\",\n  \"symptoms\": [\n    \"windshield adhesive separating from the front windshield\",\n    \"windshield delaminating\",\n    \"driving hazard in direct sun\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\",\n    \"conditions\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The adhesive that attaches the front windshield is separating from the front windshield\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"the actual windshield is delaminating\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"This is causing a hazzard to driving.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"Especially when the sun is coming right at the vehicle.\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00037842,
+      "cached_tokens": 384,
+      "cost_usd": 0.0006307,
+      "input_tokens": 533,
+      "list_cost_usd": 0.0006307,
+      "output_tokens": 1012,
+      "reasoning_tokens": 777
+    }
+  }
+}

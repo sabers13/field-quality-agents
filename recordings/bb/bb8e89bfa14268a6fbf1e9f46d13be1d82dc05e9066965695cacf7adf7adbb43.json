@@ -1,0 +1,66 @@
+{
+  "key": "bb8e89bfa14268a6fbf1e9f46d13be1d82dc05e9066965695cacf7adf7adbb43",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 6216,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"No failure or symptom to reproduce; confirm recall 24V700000 remedy availability before any standard electrical system inspection.\",\"rationale\":\"The narrative reports only that the owner was notified of NHTSA Campaign Number 24V700000 for the electrical system, that the recall repair part was unavailable, and that no failure had been experienced. There is no rulebook match, fault code, symptom, or reported condition that supports a targeted load test, so the standard test is appropriate.\",\"group\":\"electrical_general\",\"symptoms\":[],\"conditions\":[\"recall repair part unavailable\"],\"fault_codes\":[],\"safety_relevant\":false,\"targeted\":false,\"test_name\":\"standard electrical system inspection\",\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"other\",\"quote\":\"NHTSA Campaign Number: 24V700000\"},{\"kind\":\"condition\",\"quote\":\"the part to do the recall repair was unavailable\"},{\"kind\":\"other\",\"quote\":\"The contact had not experienced a failure.\"}]}",
+            "reasoning_content": "We need answer one JSON only. Need analyze case. Narrative: recall notification 24V700000 electrical system, part unavailable, no failure. Extraction clues. No rulebook entries, recalls empty, investigations empty. Similar cases include battery fire etc but not directly relevant. Need propose test? The case is no failure, recall part unavailable. We need likely targeted false, no specific test. But instructions: \"Prefer a targeted load test when reported conditions match a rulebook entry. Otherwise propose standard test.\" Rulebook empty, so targeted false. test_name? Maybe standard test? We don't know exact standard test name. Could be \"standard electrical system inspection\" or \"standard test\". The schema asks test_name \"the targeted test the rulebook names\". Since no targeted rulebook, maybe \"standard electrical system inspection\". Need be careful. Summary one line what to test and why. But no failure and recall part unavailable. Could say \"No failure reported; verify recall remedy availability rather than book a load test.\" But test_name maybe \"standard electrical system inspection\". We need include clues verbatim quotes from narrative only, not extraction. Quote \"ELECTRICAL SYSTEM\" appears in narrative? Narrative says \"(ELECTRICAL SYSTEM)\" yes. \"NHTSA Campaign Number: 24V700000\" appears? Narrative: \"NHTSA Campaign Number: 24V700000 (ELECTRICAL SYSTEM)\" yes exact includes. \"the part to do the recall repair was unavailable\" exact? Narrative: \"however, the part to do the recall repair was unavailable.\" yes. \"The contact had not experienced a failure.\" exact. Need maybe safety_relevant false. targeted false. conditions maybe [\"recall repair part unavailable\"]? Symptoms empty, fault_codes empty. group electrical_general. Summary \"No failure or symptom to reproduce; confirm recall 24V700000 remedy availability before any electrical test.\" Rationale mention no rulebook match, no failure, part unavailable. test_name maybe \"standard electrical system inspection\". But if no test needed? The prompt says propose standard test. Could set test_name \"standard electrical system inspection\". targeted false.\n\nNeed ensure JSON valid. No extra text. Include clues with kinds. Could include component_group quote \"ELECTRICAL SYSTEM\", condition \"the part to do the recall repair was unavailable\", other recall number, other no failure. Since code verifies quotes. All exact. Do not cite IDs. Good.\n\nNeed maybe safety_relevant false. targeted true? Instructions: \"Prefer a targeted load test when reported conditions match a rulebook entry. Otherwise propose the standard test (targeted: false).\" So false.\n\nFinal one JSON object.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793528029,
+      "id": "0c70e3d134ba21aeaca7c632db07ee48",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 764,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 544,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00036114,
+          "billing_source": "go",
+          "list_cost": 0.0006019,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 949,
+            "output": 764,
+            "reasoning": 544
+          }
+        },
+        "prompt_tokens": 1333,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2097
+      }
+    },
+    "text": "{\"summary\":\"No failure or symptom to reproduce; confirm recall 24V700000 remedy availability before any standard electrical system inspection.\",\"rationale\":\"The narrative reports only that the owner was notified of NHTSA Campaign Number 24V700000 for the electrical system, that the recall repair part was unavailable, and that no failure had been experienced. There is no rulebook match, fault code, symptom, or reported condition that supports a targeted load test, so the standard test is appropriate.\",\"group\":\"electrical_general\",\"symptoms\":[],\"conditions\":[\"recall repair part unavailable\"],\"fault_codes\":[],\"safety_relevant\":false,\"targeted\":false,\"test_name\":\"standard electrical system inspection\",\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"other\",\"quote\":\"NHTSA Campaign Number: 24V700000\"},{\"kind\":\"condition\",\"quote\":\"the part to do the recall repair was unavailable\"},{\"kind\":\"other\",\"quote\":\"The contact had not experienced a failure.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00036114,
+      "cached_tokens": 384,
+      "cost_usd": 0.0006019,
+      "input_tokens": 1333,
+      "list_cost_usd": 0.0006019,
+      "output_tokens": 764,
+      "reasoning_tokens": 544
+    }
+  }
+}

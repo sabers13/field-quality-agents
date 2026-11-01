@@ -1,0 +1,66 @@
+{
+  "key": "9f1a603953d46074802e19044a73b90c27c83f469962939fdc67d0e66abb739b",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9826,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2015 BMW 528I electrical system: vehicle jerked and coolant leaked while driving at various speeds; no warning light illuminated.\",\"group\":\"electrical_general\",\"symptoms\":[\"vehicle jerked\",\"coolant leaking from the vehicle\",\"no warning light illuminated\"],\"conditions\":[\"driving at various speeds\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"condition\",\"quote\":\"driving at various speeds\"},{\"kind\":\"symptom\",\"quote\":\"the vehicle jerked\"},{\"kind\":\"symptom\",\"quote\":\"coolant leaking from the vehicle\"},{\"kind\":\"other\",\"quote\":\"no warning light illuminated\"},{\"kind\":\"other\",\"quote\":\"The failure mileage was unknown.\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize report. Need extract component etc. Component is ELECTRICAL SYSTEM, group electrical_general. Symptoms: vehicle jerked, coolant leaking, no warning light? Symptom plain words. Conditions: various speeds? driving at various speeds. Fault codes none. Safety_relevant? Report mentions jerked while driving at various speeds, coolant leaking. No crash/fire/smoke/injury/loss control/stall at speed? \"jerked\" could risk? Safety relevant only when crash fire smoke injury loss control stall at speed another risk to people. Jerking at various speeds and coolant leak maybe not explicit risk? We need decide. The schema says set true when mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. Jerking at various speeds could be risk? But not explicit loss of control. Coolant leaking maybe not safety. likely false. But input says safety_relevant false already. Use false.\n\nMissing_info: mileage unknown? The report says failure mileage unknown, mileage null. Analysis needs mileage? Could list mileage. Date? received date exists, incident date not given. Conditions? driving at various speeds given. Component present. Symptom present. So missing_info [\"mileage\", \"date\"]? The rules list facts analysis needs. Date maybe not in report (occurrence date) missing. Mileage explicitly unknown. Could include mileage, date. But maybe \"date\" not necessary? It says list only for facts analysis needs: component, symptom, conditions, mileage, date. Use missing_info [\"mileage\",\"date\"] perhaps. Need clues with verbatim spans. Need include symptom, condition, component_group maybe safety? Let's craft.\n\nSummary: \"2015 BMW 528I electrical system: vehicle jerked and coolant leaked at various speeds; no warning light.\" One line component symptom conditions.\n\nGroup: \"electrical_general\" or \"electrical/electronic component group\"? Given group electrical_general. Use \"electrical_general\".\n\nSymptoms: [\"vehicle jerked\", \"coolant leaking from the vehicle\", \"no warning light illuminated\"] Is no warning light a symptom? Could include as other? The symptoms array plain words. maybe include \"no warning light\". Conditions: [\"various speeds\"] maybe \"driving at various speeds\". Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. But report conditions \"various speeds\" not one of those. The schema says conditions array with those examples; can include \"various speeds\"? It says conditions: [\"cold\", ...]. Could include \"various speeds\" as condition? It says conditions list. We can put \"various speeds\". But perhaps only allowed categories? The examples may be not exhaustive. I'd use [\"various speeds\"].\n\nFault codes: [] because campaign number not fault code? It names NHTSA Campaign Number 24V608000. Is that a fault code? No, recall campaign. Do not include in fault_codes? It says code if report names one. Could include? It's not a fault code. Better empty. But maybe clue kind fault_code? No.\n\nClues: Need verbatim spans. \n- component_group quote \"ELECTRICAL SYSTEM\" (component field? But report narrative? The user message includes component. Quote verbatim from report? \"report\" includes JSON? We can quote \"ELECTRICAL SYSTEM\". But narrative doesn't contain. It is in report. They said read report in user message. Should be okay. Use quote \"ELECTRICAL SYSTEM\".\n- symptom quote \"the vehicle jerked\"\n- symptom quote \"coolant leaking from the vehicle\"\n- condition quote \"driving at various speeds\"\n- other quote \"no warning light illuminated\"\n- maybe other quote \"The failure mileage was unknown.\"? For missing_info? Clue kind other. But missing_info not require quote. Could include quote \"The failure mileage was unknown.\" as other evidence. \nNeed ensure quotes exact. Narrative: \"while her husband was driving at various speeds, the vehicle jerked, and there was coolant leaking from the vehicle. There was no warning light illuminated.\" Exact spans:\n\"driving at various speeds\"\n\"the vehicle jerked\"\n\"coolant leaking from the vehicle\"\n\"no warning light illuminated\" — exact substring? It has \"There was no warning light illuminated.\" yes substring \"no warning light illuminated\" exists.\n\"The failure mileage was unknown.\" exact.\n\"NHTSA Campaign Number: 24V608000\" maybe other clue.\n\nNeed safety_relevant false. If \"vehicle jerked\" at various speeds could be safety? Hmm. The instructions: \"another risk to people.\" A vehicle jerking while driving could be risk. But not explicitly loss of control. The source field says safety_relevant false. But we shouldn't rely? It is in report. We can set false. If true, would need clue quote. I think false.\n\nNeed missing_info maybe [\"mileage\", \"date\"]. Date: report has received_at but not failure date. The analysis needs date? It says date. Include. Mileage unknown. \"conditions\" present \"various speeds\". Component present. Symptom present. Good.\n\nNeed summary one line. No other text. Ensure valid JSON. Use double quotes. Final only JSON.\n\nNeed maybe include \"group\": \"electrical_general\". Fine.\n\nLet's final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793526312,
+      "id": "1a8e62f1d25ad7553d29caa2af58a7ac",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1283,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1107,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00048453,
+          "billing_source": "go",
+          "list_cost": 0.00080755,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 244,
+            "output": 1283,
+            "reasoning": 1107
+          }
+        },
+        "prompt_tokens": 628,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1911
+      }
+    },
+    "text": "{\"summary\":\"2015 BMW 528I electrical system: vehicle jerked and coolant leaked while driving at various speeds; no warning light illuminated.\",\"group\":\"electrical_general\",\"symptoms\":[\"vehicle jerked\",\"coolant leaking from the vehicle\",\"no warning light illuminated\"],\"conditions\":[\"driving at various speeds\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"condition\",\"quote\":\"driving at various speeds\"},{\"kind\":\"symptom\",\"quote\":\"the vehicle jerked\"},{\"kind\":\"symptom\",\"quote\":\"coolant leaking from the vehicle\"},{\"kind\":\"other\",\"quote\":\"no warning light illuminated\"},{\"kind\":\"other\",\"quote\":\"The failure mileage was unknown.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00048453,
+      "cached_tokens": 384,
+      "cost_usd": 0.00080755,
+      "input_tokens": 628,
+      "list_cost_usd": 0.00080755,
+      "output_tokens": 1283,
+      "reasoning_tokens": 1107
+    }
+  }
+}

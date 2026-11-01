@@ -1,0 +1,66 @@
+{
+  "key": "10d9d12091e7540edb061978cc570f43ada65c9d0dc570a500da9de5b66d3960",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 18120,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2023 Dodge Hornet ADAS/rearview braking: car went into reverse instead of forward causing damage; dealer notified 9/27/23; issue now in recall without remedy.\",\"group\":\"adas\",\"symptoms\":[\"car went into reverse instead of forward\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"BACK OVER PREVENTION: REARVIEW SYSTEM BRAKING\"},{\"kind\":\"symptom\",\"quote\":\"The car went into reverse instead of forward\"},{\"kind\":\"safety\",\"quote\":\"causing significant damage to another car we own .\"},{\"kind\":\"other\",\"quote\":\"Notified dealer roughly 9/27/23 of issues with dodge hornet .\"},{\"kind\":\"other\",\"quote\":\"are in recall without a remedy to fix .\"}]}",
+            "reasoning_content": "We need answer one JSON only. Need normalize report. Component given \"BACK OVER PREVENTION: REARVIEW SYSTEM BRAKING\", group adas. Narrative: \"Notified dealer roughly 9/27/23 of issues with dodge hornet . The car went into reverse instead of forward causing significant damage to another car we own . Dodge pulled the black box and gave findings that they weren\\u2019t liable however here we are in 2025 an issues we complained about are in recall without a remedy to fix .\" Need summary one line component symptom conditions. Group adas. Symptoms plain words: car went into reverse instead of forward; issue complained about in recall without remedy? Maybe symptom \"vehicle selected reverse instead of forward\". Conditions: maybe none? \"after service\"? Notified dealer. No cold moisture heat vibration intermittent charging. Missing info: mileage, date? Date received and dealer notified 9/27/23 but no exact incident date? Analysis needs date, mileage. Component given. symptom given. conditions? Could list missing_info [\"mileage\",\"date\"]? The prompt says list missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. We have component, symptom. Conditions maybe not stated; but can omit? Need decide. The narrative mentions \"The car went into reverse instead of forward\" not conditions. Missing conditions maybe important? Could include \"conditions\". But maybe not necessary. Need safety_relevant true due significant damage? It mentions damage to another car, not crash? \"causing significant damage to another car we own\" implies collision? Risk? Set true. Fault codes none. Clues with verbatim quotes. Need quotes exact from narrative. Must copy verbatim including \"9/27/23\", \"dodge hornet .\" There are spaces before periods. Need use exact substrings. Can quote \"The car went into reverse instead of forward causing significant damage to another car we own .\" That's verbatim? Narrative: \"The car went into reverse instead of forward causing significant damage to another car we own .\" Yes includes space before period. Need quote \"Notified dealer roughly 9/27/23 of issues with dodge hornet .\" exact. \"issues we complained about are in recall without a remedy to fix .\" exact? Narrative: \"an issues we complained about are in recall without a remedy to fix .\" There is \"an issues\" typo. If quote full, exact. Use maybe \"are in recall without a remedy to fix .\" exact substring? Narrative has \"are in recall without a remedy to fix .\" Yes. Clues kind symptom, safety, component_group? component_group quote \"BACK OVER PREVENTION: REARVIEW SYSTEM BRAKING\" is not in report? It is in component field not narrative. User message includes JSON with component. \"Read only the report in user message\" includes full JSON. Quote can be from report? The report includes component field. But rules say quote copied verbatim from report. Could quote \"BACK OVER PREVENTION: REARVIEW SYSTEM BRAKING\" yes from component field. But maybe safer only narrative. For component_group clue maybe quote component. Need include \"adas\"? Not verbatim? group field \"adas\" in report. But quote \"adas\" is in JSON. Hmm.\n\nNeed output one JSON object no other text. Need ensure valid JSON. Summary: \"2023 Dodge Hornet rearview braking/ADAS: vehicle went into reverse instead of forward, causing damage; dealer notified 9/27/23, issue now in recall without remedy.\" Conditions maybe []? Missing_info maybe [\"mileage\",\"date\",\"conditions\"]? Date: there is dealer notification date, received date, but no incident date. Analysis needs incident date. Mileage null. Conditions not specified. Include those. But \"conditions\" as missing? The report mentions reverse/forward, not environmental. It might be enough. I'd include [\"mileage\",\"date\",\"conditions\"]. But rules say use empty when nothing important missing. Mileage and date are missing important. Conditions maybe not. Maybe missing_info [\"mileage\",\"date\"]? The schema includes conditions. Since not stated, include conditions. But the symptom is operational, conditions may not needed. Hm.\n\nNeed symptoms list: \"vehicle went into reverse instead of forward\", \"issue remains in recall without remedy\" maybe second isn't symptom. Use only symptom. Maybe \"significant damage to another car\" not symptom. Symptoms: [\"car went into reverse instead of forward\"].\n\nConditions: [] because no cold etc. Fault_codes [].\n\nClues:\n- {\"kind\":\"symptom\",\"quote\":\"The car went into reverse instead of forward\"}\n- {\"kind\":\"other\",\"quote\":\"causing significant damage to another car we own .\"} maybe safety? kind safety quote same. Safety relevant due damage. Use kind safety with quote \"causing significant damage to another car we own .\" But safety rule mentions crash, fire, smoke, injury, loss of control, stall at speed or risk. Significant damage to another car could imply collision. Quote includes damage. Use safety.\n- {\"kind\":\"condition\",\"quote\":\"Notified dealer roughly 9/27/23 of issues with dodge hornet .\"}? That's not condition; maybe other.\n- {\"kind\":\"other\",\"quote\":\"are in recall without a remedy to fix .\"} \n- component_group quote \"BACK OVER PREVENTION: REARVIEW SYSTEM BRAKING\" kind component_group. Need exact from report. Good.\nNeed no suggestion action. \"recall without remedy\" is report. summary can mention. Do not suggest.\n\nNeed ensure quote \"The car went into reverse instead of forward\" exactly? Narrative: \"The car went into reverse instead of forward causing...\" yes.\n\nNeed maybe include \"Dodge pulled the black box and gave findings that they weren’t liable\" quote has unicode apostrophe. Not needed.\n\nNeed output JSON. Use double quotes. safety_relevant true.\n\nNeed missing_info: If include \"date\" despite received_at and dealer notified 9/27/23? The incident date missing. Yes.\n\nNeed summary one line. \"2023 Dodge Hornet ADAS/rearview braking: car went into reverse instead of forward causing damage; dealer notified 9/27/23; issue now in recall without remedy.\" Good.\n\nGroup \"adas\".\n\nNeed \"conditions\": [] but maybe \"after service\"? Notified dealer not after service. No.\n\nLet's final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793528557,
+      "id": "63dc91b5757adb722fc577044fd89895",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1525,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1330,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00056589,
+          "billing_source": "go",
+          "list_cost": 0.00094315,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 180,
+            "output": 1525,
+            "reasoning": 1330
+          }
+        },
+        "prompt_tokens": 564,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2089
+      }
+    },
+    "text": "{\"summary\":\"2023 Dodge Hornet ADAS/rearview braking: car went into reverse instead of forward causing damage; dealer notified 9/27/23; issue now in recall without remedy.\",\"group\":\"adas\",\"symptoms\":[\"car went into reverse instead of forward\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"BACK OVER PREVENTION: REARVIEW SYSTEM BRAKING\"},{\"kind\":\"symptom\",\"quote\":\"The car went into reverse instead of forward\"},{\"kind\":\"safety\",\"quote\":\"causing significant damage to another car we own .\"},{\"kind\":\"other\",\"quote\":\"Notified dealer roughly 9/27/23 of issues with dodge hornet .\"},{\"kind\":\"other\",\"quote\":\"are in recall without a remedy to fix .\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00056589,
+      "cached_tokens": 384,
+      "cost_usd": 0.00094315,
+      "input_tokens": 564,
+      "list_cost_usd": 0.00094315,
+      "output_tokens": 1525,
+      "reasoning_tokens": 1330
+    }
+  }
+}

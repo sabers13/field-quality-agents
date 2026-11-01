@@ -1,0 +1,66 @@
+{
+  "key": "b315ee392b49ba91e905dab8f436f91037774e11f50c10abed1d4cb476672705",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 13198,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Wireless charging pad in electrical system overheated phone, causing intense burning and momentary loss of control while driving.\",\"group\":\"electrical_general\",\"symptoms\":[\"wireless charging pad malfunctioned\",\"phone back overheated\",\"intense unexpected burning\",\"momentary loss of control\",\"swerved into oncoming traffic\"],\"conditions\":[\"charging\",\"heat\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"condition\",\"quote\":\"wireless charging pad\"},{\"kind\":\"symptom\",\"quote\":\"The charging component malfunctioned and overheated the back of my phone\"},{\"kind\":\"condition\",\"quote\":\"while driving\"},{\"kind\":\"condition\",\"quote\":\"at a stop light\"},{\"kind\":\"symptom\",\"quote\":\"The burning was so intense and unexpected\"},{\"kind\":\"safety\",\"quote\":\"I swerved into oncoming traffic and lost control, momentarily of the vehicle.\"},{\"kind\":\"other\",\"quote\":\"the issue is still active\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize report. Need parse component electrical system group electrical_general. Summary one line: component, symptom, conditions. Symptoms: wireless charging pad malfunctioned and overheated back of phone; burning intense; swerved into oncoming traffic lost control momentarily. Conditions: driving, stop light? \"while driving\", \"at a stop light\", \"when light changed\"; intermittent? no. after service? no. charging? yes wireless charging pad. Fault codes none. Safety relevant true due loss of control, swerved into oncoming traffic. Missing info: mileage null, date? received date but incident date missing. component maybe provided. symptom provided. conditions provided. Need missing_info only facts analysis needs: mileage, date. Maybe conditions? They gave driving, stop light. Component given. Symptom given. So [\"mileage\",\"date\"].\n\nClues with verbatim quotes. Need quote exact spans from narrative. Need be careful with punctuation/case. Quotes:\n\n- component group: \"ELECTRICAL SYSTEM\" is in component field but report? \"Read only report in user message\" includes component. Quote verbatim from report. Could quote \"The wireless charging pad in the vehicle below the climate control system.\" for component? kind component_group quote \"ELECTRICAL SYSTEM\" from component field. It's in user message. Verbatim. But \"report\" maybe narrative. We can include.\n- symptom: \"The charging component malfunctioned and overheated the back of my phone\" exact? Narrative: \"The charging component malfunctioned and overheated the back of my phone when it was set in the console while driving.\" Yes quote span \"The charging component malfunctioned and overheated the back of my phone\" verbatim.\n- symptom: \"The burning was so intense and unexpected\" exact.\n- safety: \"I swerved into oncoming traffic and lost control, momentarily of the vehicle.\" Exact? Narrative: \"I swerved into oncoming traffic and lost control, momentarily of the vehicle.\" yes.\n- condition: \"while driving\" exact.\n- condition: \"at a stop light\" exact.\n- condition: \"when the light changed\" exact.\n- condition charging: \"wireless charging pad\" exact? It appears \"The wireless charging pad in the vehicle below the climate control system.\" and later \"all 3 have had the wireless charging pad\". Use \"wireless charging pad\" verbatim? In narrative first occurrence has \"wireless charging pad\" lowercase? \"The wireless charging pad\" yes. But quote can be span \"wireless charging pad\". Good.\n- fault code none.\n\nNeed summary one line: \"Wireless charging pad (electrical system) overheated phone, causing intense burning and momentary loss of control while driving.\" Conditions include driving/stop light. Good.\n\nNeed group \"electrical_general\" given group or component group? Prompt says group: electrical/electronic component group, or given group. Given group electrical_general. Use \"electrical_general\".\n\nNeed symptoms array plain words. Include \"wireless charging pad malfunctioned\", \"phone back overheated\", \"intense unexpected burning\", \"momentary loss of control\", \"swerved into oncoming traffic\". Is \"symptom\" maybe component symptom. Fine.\n\nConditions array allowed values: [\"cold\",\"moisture\",\"heat\",\"vibration\",\"intermittent\",\"after service\",\"charging\"]. We can only use these exact? It says conditions list examples? It lists allowed? The schema says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. Likely choose from those. Report conditions: charging (wireless charging pad), heat (overheated/burning), intermittent? no (still active reproducible). Driving not in list. \"after service\" no. So conditions [\"charging\",\"heat\"]. Maybe \"heat\" due overheated/burning. Do not include \"driving\" because not in allowed? But prompt says conditions examples? Actually JSON schema shows exact list values? It says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. We should use only these. So [\"charging\",\"heat\"].\n\nSafety_relevant true.\n\nMissing_info: [\"mileage\",\"date\"] because mileage null and incident date not specified. Maybe \"conditions\" not missing? They gave driving and stop light. Component given. Symptom given. Good.\n\nClues must include quotes. Need ensure every quote is exact substring. Let's verify narrative exact:\n\n\"The wireless charging pad in the vehicle below the climate control system. Yes, it is.  The charging component malfunctioned and overheated the back of my phone when it was set in the console while driving. I had no intention of charging my phone, but instead place my phone down while driving. When I picked up my phone at a stop light, I laid it in my inner thigh when the light changed. The burning was so intense and unexpected I swerved into oncoming traffic and lost control, momentarily of the vehicle.  I have recreated the incident in a controlled environment myself and the issue is still active. I am happy to have the issue confirmed independently.  I gave notice to the dealership after it happened with no concern or further investigation.  No, the vehicle has not.  No, no warning at all. In fact this is my 3rd GMC Yukon since 2016 and all 3 have had the wireless charging pad, I have had the same phone as my last one. I never had an issue or experienced anything like this.\"\n\nQuote \"The charging component malfunctioned and overheated the back of my phone\" exact starts after \"The\". Yes. \"when it was set in the console while driving\" exact? yes but for condition while driving use \"while driving\". \"at a stop light\" exact appears \"When I picked up my phone at a stop light\" yes. \"when the light changed\" exact. \"The burning was so intense and unexpected\" exact. \"I swerved into oncoming traffic and lost control, momentarily of the vehicle.\" exact. \"wireless charging pad\" exact in first sentence? \"The wireless charging pad\" yes substring \"wireless charging pad\" exact. \"overheated\" exact. \"The issue is still active\" exact? Narrative: \"the issue is still active\" lowercase i. Use \"the issue is still active\" exact.\n\nNeed maybe clue kind \"condition\" quote \"while driving\"; \"at a stop light\"; \"when the light changed\". But conditions array doesn't include driving; still clue can quote condition. Fine.\n\nNeed no other text. Ensure valid JSON. No markdown? User says one JSON object and no other text. We can output raw JSON. Good.\n\nNeed maybe summary one line only. Use no newline? JSON string. Fine.\n\nPotential concern: \"symptoms\" plain words maybe include \"loss of control\" as symptom. Good.\n\nMissing info: date? received_at present 2025-11-04 but incident date missing. The analysis needs date. So yes. Mileage null. Maybe \"conditions\" not missing because driving/stop light. Good.\n\nLet's craft final. Ensure quote with \"momentarily of the vehicle\" exactly; it's odd but exact. Good.\n\nNeed maybe include \"fault_codes\": [].\n\nClues list maybe:\n{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"}\n{\"kind\":\"condition\",\"quote\":\"wireless charging pad\"}\n{\"kind\":\"symptom\",\"quote\":\"The charging component malfunctioned and overheated the back of my phone\"}\n{\"kind\":\"condition\",\"quote\":\"while driving\"}\n{\"kind\":\"condition\",\"quote\":\"at a stop light\"}\n{\"kind\":\"symptom\",\"quote\":\"The burning was so intense and unexpected\"}\n{\"kind\":\"safety\",\"quote\":\"I swerved into oncoming traffic and lost control, momentarily of the vehicle.\"}\n{\"kind\":\"condition\",\"quote\":\"the issue is still active\"}\n\nDoes \"the issue is still active\" indicate intermittent? No, active persistent. Could be other. Kind \"other\". But condition? It's condition of reproducibility. Use \"other\" maybe. Need not include too many. Good.\n\nNeed quote \"ELECTRICAL SYSTEM\" from component field. It is in report. Good.\n\nFinal.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531796,
+      "id": "0e72c2e86ce5c7aa6a7b26423bbe8508",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1948,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1718,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00073059,
+          "billing_source": "go",
+          "list_cost": 0.00121765,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 318,
+            "output": 1948,
+            "reasoning": 1718
+          }
+        },
+        "prompt_tokens": 702,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2650
+      }
+    },
+    "text": "{\"summary\":\"Wireless charging pad in electrical system overheated phone, causing intense burning and momentary loss of control while driving.\",\"group\":\"electrical_general\",\"symptoms\":[\"wireless charging pad malfunctioned\",\"phone back overheated\",\"intense unexpected burning\",\"momentary loss of control\",\"swerved into oncoming traffic\"],\"conditions\":[\"charging\",\"heat\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"condition\",\"quote\":\"wireless charging pad\"},{\"kind\":\"symptom\",\"quote\":\"The charging component malfunctioned and overheated the back of my phone\"},{\"kind\":\"condition\",\"quote\":\"while driving\"},{\"kind\":\"condition\",\"quote\":\"at a stop light\"},{\"kind\":\"symptom\",\"quote\":\"The burning was so intense and unexpected\"},{\"kind\":\"safety\",\"quote\":\"I swerved into oncoming traffic and lost control, momentarily of the vehicle.\"},{\"kind\":\"other\",\"quote\":\"the issue is still active\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00073059,
+      "cached_tokens": 384,
+      "cost_usd": 0.00121765,
+      "input_tokens": 702,
+      "list_cost_usd": 0.00121765,
+      "output_tokens": 1948,
+      "reasoning_tokens": 1718
+    }
+  }
+}

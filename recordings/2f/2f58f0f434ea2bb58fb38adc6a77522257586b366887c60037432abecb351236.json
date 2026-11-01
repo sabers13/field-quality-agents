@@ -1,0 +1,66 @@
+{
+  "key": "2f58f0f434ea2bb58fb38adc6a77522257586b366887c60037432abecb351236",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11082,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Rear electrical system/battery overheating, melted orange box, burned hole, sparks at rear battery, ABS/brake warnings, leak, no start.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"battery overheating and melting an orange box on top of the battery\",\n    \"burned hole through the battery area\",\n    \"sparks in the rear battery compartment during start attempt\",\n    \"ABS warning\",\n    \"brake warning\",\n    \"leak\",\n    \"will not start\"\n  ],\n  \"conditions\": [\n    \"heat\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"The componet that failed is the cars electric system in the rear.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Battery gets so hot its melted a 2nd orange box on top of the battery.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"Battery gets so hot\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Burned a hole right through.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"now it's throwing big sparks in the rear battery compartment.\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"now it's throwing big sparks in the rear battery compartment.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"ABS warnings, brake warnings, it leaks.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"It will not start again!\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"Atleast 7 open, very dangerous recalls on this vehicle.\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"My car is a death trap according to bmw.\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer one JSON only. Need normalize. Need identify component electrical system rear battery. Symptoms: battery gets so hot melted orange box, burned hole, sparks in rear battery compartment on start attempt, ABS warnings, brake warnings, leaks, will not start. Conditions? heat? maybe \"battery gets so hot\" heat. intermittent? no. after service? no. charging? no. Safety relevant: yes mentions dangerous recalls, death trap, sparks, fire risk? \"big sparks\", melted, burned hole. Set true. Fault codes none. Group given electrical_general. Missing info: mileage null, date? received_at given but report date? missing date maybe no incident date; mileage missing. Component? present. Symptom present. Conditions maybe missing? Need list only important missing: mileage, date maybe. Conditions? report has heat. Maybe missing_info [\"mileage\",\"date\"]. Clues verbatim quotes. Need quote exact spans. Need be careful quotes copied character-for-character. Narrative has typos. Choose quotes:\n- \"The componet that failed is the cars electric system in the rear.\" (verbatim includes typo componet)\n- \"Battery gets so hot its melted a 2nd orange box on top of the battery.\"\n- \"Burned a hole right through.\"\n- \"now it's throwing big sparks in the rear battery compartment.\"\n- \"ABS warnings, brake warnings, it leaks.\"\n- \"It will not start again!\"\n- \"Atleast 7 open, very dangerous recalls on this vehicle.\"\n- \"My car is a death trap according to bmw.\"\nNeed kind mappings: component_group quote first? symptom for battery heat/melt, burned hole, sparks, warnings, leaks, no start. condition heat maybe quote \"Battery gets so hot\". safety quote dangerous recalls/death trap/sparks. Fault code none.\nSummary one line: rear electrical system/battery overheating melted box, sparks, warnings, no start. Include conditions? \"heat\". \nSafety_relevant true.\nMissing_info: mileage, date. Is date missing? There is received_at but no incident date. The schema missing_info includes date. Yes.\nNeed ensure JSON valid. No other text. Quotes must be exact. Let's verify exact narrative:\n\"The componet that failed is the cars electric system in the rear. Battery gets so hot its melted a 2nd orange box on top of the battery. Burned a hole right through. Attempted to start the vehicle, now it's throwing big sparks in the rear battery compartment. ABS warnings, brake warnings, it leaks.  It will not start again! We have no transportation. Noone seems to be very concerned about the matter. Atleast 7 open, very dangerous recalls on this vehicle.  How come someone has to die from the companies failure to fix what they know is wrong? This vehicle is paid for, owned by a Middle/lower  class hard working single mom. I've seen to many cases of people who aren't financially threatening get delt a ball full of crap. All walks of life pay really good money for bmws cars. How about bmw returns the favor and keeps their word. My car is a death trap according to bmw. What do we do if the company won't cooperate\"\nDouble spaces after leaks and before How. Quote \"ABS warnings, brake warnings, it leaks.\" exact yes includes period. \"It will not start again!\" exact after double space? It appears \".  It will\" two spaces. Quote starts at It. Fine.\nNeed maybe \"Battery gets so hot its melted...\" exact. Good.\n\"Symptoms\": plain words. [\"battery overheating and melting an orange box on top of battery\",\"burn hole through battery area\",\"sparks in rear battery compartment during start attempt\",\"ABS warning\",\"brake warning\",\"leak\",\"will not start\"] Good.\nConditions: [\"heat\"] maybe \"heat\". Could include \"intermittent\"? no. Safety? no condition.\nGroup: \"electrical_general\".\nFault_codes [].\nClues: each quote. Kind condition for \"Battery gets so hot\" maybe quote full. Need every quote verbatim. Could include multiple clues same quote? okay.\nNeed maybe quote \"The componet that failed is the cars electric system in the rear.\" kind component_group. Also \"Battery gets so hot its melted a 2nd orange box on top of the battery.\" kind symptom/condition? Use symptom. For heat condition quote \"Battery gets so hot\" but that's substring of previous. It is verbatim. Use kind condition. Good.\nSafety clue quote \"now it's throwing big sparks in the rear battery compartment.\" and \"Atleast 7 open, very dangerous recalls on this vehicle.\" and \"My car is a death trap according to bmw.\" Kind safety.\nNeed note \"safety_relevant\" only report mentions crash fire smoke injury loss control stall at speed or risk. Sparks/melted/burned/dangerous/death trap risk yes.\nNeed no suggestions.\n\nLet's craft JSON. Ensure no trailing commas. Use exact casing. \"summary\": \"Rear electrical system/battery overheating, melted orange box, burned hole, sparks at rear battery, ABS/brake warnings, leak, no start.\" one line. Conditions mention heat. Good.\n\nNeed not include date received? missing info date yes. Mileage null. Maybe \"conditions\" not missing? It says heat. Good.\nCould missing_info include \"mileage\", \"date\". Fine.\n\nNeed valid JSON object only.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793533048,
+      "id": "775b6062a409419b33393f58937d414c",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1587,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1134,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0006,
+          "billing_source": "go",
+          "list_cost": 0.001,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 311,
+            "output": 1587,
+            "reasoning": 1134
+          }
+        },
+        "prompt_tokens": 695,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2282
+      }
+    },
+    "text": "{\n  \"summary\": \"Rear electrical system/battery overheating, melted orange box, burned hole, sparks at rear battery, ABS/brake warnings, leak, no start.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"battery overheating and melting an orange box on top of the battery\",\n    \"burned hole through the battery area\",\n    \"sparks in the rear battery compartment during start attempt\",\n    \"ABS warning\",\n    \"brake warning\",\n    \"leak\",\n    \"will not start\"\n  ],\n  \"conditions\": [\n    \"heat\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"The componet that failed is the cars electric system in the rear.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Battery gets so hot its melted a 2nd orange box on top of the battery.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"Battery gets so hot\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Burned a hole right through.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"now it's throwing big sparks in the rear battery compartment.\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"now it's throwing big sparks in the rear battery compartment.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"ABS warnings, brake warnings, it leaks.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"It will not start again!\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"Atleast 7 open, very dangerous recalls on this vehicle.\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"My car is a death trap according to bmw.\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0006,
+      "cached_tokens": 384,
+      "cost_usd": 0.001,
+      "input_tokens": 695,
+      "list_cost_usd": 0.001,
+      "output_tokens": 1587,
+      "reasoning_tokens": 1134
+    }
+  }
+}

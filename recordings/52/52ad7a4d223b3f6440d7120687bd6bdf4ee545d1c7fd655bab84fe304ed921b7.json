@@ -1,0 +1,66 @@
+{
+  "key": "52ad7a4d223b3f6440d7120687bd6bdf4ee545d1c7fd655bab84fe304ed921b7",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 16104,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Sun/moon roof assembly fractured without impact while driving 75 MPH; glass fell and caused cuts.\",\"group\":\"body_controls\",\"symptoms\":[\"sunroof fractured without impact\",\"fractured glass fell onto occupant and interior\",\"cuts from fractured glass\"],\"conditions\":[\"driving at 75 MPH\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"VISIBILITY:SUN/MOON ROOF ASSEMBLY\"},{\"kind\":\"symptom\",\"quote\":\"sunroof fractured without impact\"},{\"kind\":\"symptom\",\"quote\":\"the fractured glass fell onto the contact and all over the interior of the vehicle\"},{\"kind\":\"condition\",\"quote\":\"while driving 75 MPH\"},{\"kind\":\"safety\",\"quote\":\"The contact sustained cuts from the fractured glass.\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize. Need read report. Component visibility sun/moon roof assembly group body_controls. Symptoms: sunroof fractured without impact; fractured glass fell onto contact and interior; contact sustained cuts. Conditions: while driving 75 MPH. Is \"at speed\"? safety_relevant true due injury cuts, glass falling. Fault codes none. missing_info? mileage given 109000, date received 2025-04-25, conditions given, component given, symptom given. Maybe missing date? We have received_at but not incident date. The schema missing_info includes date. Report doesn't give incident date. Should list date? \"facts analysis needs\" date maybe. But source received_at is date? The report includes received_at 2025-04-25 not narrative. But incoming field includes received_at. Does \"date\" mean incident date? Could list \"date\" because not incident date. However rules list missing only facts analysis needs. We have mileage. Component symptom conditions. Date of incident missing. But maybe not necessary? Let's decide. Also maybe missing \"whether medical treatment\" no. We need clues verbatim from report. Need quote exact spans. Narrative has double spaces? \"The contact stated while driving 75 MPH, the sunroof fractured without impact.\" Quote \"sunroof fractured without impact\" exact. \"the fractured glass fell onto the contact and all over the interior of the vehicle\" exact? Narrative: \"Additionally, the fractured glass fell onto the contact and all over the interior of the vehicle.\" Yes. \"The contact sustained cuts from the fractured glass.\" exact. \"while driving 75 MPH\" exact. Component group maybe quote \"VISIBILITY:SUN/MOON ROOF ASSEMBLY\" exact from component. Safety clue quote maybe \"sustained cuts\" exact? Need kind safety quote verbatim. Could use \"The contact sustained cuts from the fractured glass.\" for safety. Also symptom. We need summary one line: component, symptom, conditions. \"Sun/moon roof assembly fractured without impact at 75 MPH, glass fell and caused cuts.\" Good.\n\nNeed ensure JSON only. `symptoms`: [\"sunroof fractured without impact\", \"fractured glass fell onto occupant and interior\", \"cuts from fractured glass\"]. Conditions: [\"while driving 75 MPH\"]? The allowed examples are cold, moisture, heat, vibration, intermittent, after service, charging. But conditions should list conditions. It says conditions [\"cold\",...] examples. For this, condition is driving at speed. We can include \"driving 75 MPH\" maybe. The schema says conditions array, likely allowed free strings. Use [\"driving at 75 MPH\"]. But clue quote must exact \"while driving 75 MPH\". Summary conditions. Safety true.\n\nGroup given body_controls. Fault codes [].\n\nMissing info: maybe [\"date\"]? Since incident date missing. But the report has received_at and failure mileage. It may not need date? The analysis could need date to assess. The prompt says list missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. Date absent in narrative. Received_at isn't incident date. So include \"date\". But if we include date, fine. Is \"medical treatment\" missing? Not in list. No. Could include date only. But maybe they don't consider received_at as date, so date missing. Let's include [\"date\"]. But maybe date is present via received_at. Hmm. They include received_at field; perhaps date is not missing? The \"date\" might be report date; received_at is date. But incident date unknown. Need not overthink. The prompt says read only report in user message. The user message includes received_at 2025-04-25. That is a date. But missing_info \"date\" likely means incident date. If include date, could be accepted? Need exact.\n\nClues: include kind component_group quote \"VISIBILITY:SUN/MOON ROOF ASSEMBLY\". symptom quotes. condition quote \"while driving 75 MPH\". safety quote \"The contact sustained cuts from the fractured glass.\" Might duplicate. That's fine.\n\nNeed no other text. Use valid JSON. Ensure quotes exact character for character. Let's verify narrative exact:\n\n\"The contact owns a 2020 Ford Explorer. The contact stated while driving 75 MPH, the sunroof fractured without impact. Additionally, the fractured glass fell onto the contact and all over the interior of the vehicle. The contact sustained cuts from the fractured glass. The contact had not received medical treatment. The vehicle was not diagnosed or repaired by an independent mechanic or the dealer.  The manufacturer was not made aware of the failure. The failure mileage was approximately 109,000.\"\n\nQuotes:\n- \"sunroof fractured without impact\" yes substring.\n- \"the fractured glass fell onto the contact and all over the interior of the vehicle\" yes after \"Additionally, \" exact lower t? It starts \"the\" after comma. Substring yes.\n- \"The contact sustained cuts from the fractured glass.\" exact.\n- \"while driving 75 MPH\" exact.\n- \"VISIBILITY:SUN/MOON ROOF ASSEMBLY\" exact.\n\nSummary: \"Sun/moon roof assembly fractured without impact while driving 75 MPH; glass fell and caused cuts.\" Good.\n\nSafety true. missing_info [\"date\"] maybe. Let's produce.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793526338,
+      "id": "19d43e1c3cf440684076d8bd671ace83",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1304,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1115,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00048912,
+          "billing_source": "go",
+          "list_cost": 0.0008152,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 211,
+            "output": 1304,
+            "reasoning": 1115
+          }
+        },
+        "prompt_tokens": 595,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1899
+      }
+    },
+    "text": "{\"summary\":\"Sun/moon roof assembly fractured without impact while driving 75 MPH; glass fell and caused cuts.\",\"group\":\"body_controls\",\"symptoms\":[\"sunroof fractured without impact\",\"fractured glass fell onto occupant and interior\",\"cuts from fractured glass\"],\"conditions\":[\"driving at 75 MPH\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"VISIBILITY:SUN/MOON ROOF ASSEMBLY\"},{\"kind\":\"symptom\",\"quote\":\"sunroof fractured without impact\"},{\"kind\":\"symptom\",\"quote\":\"the fractured glass fell onto the contact and all over the interior of the vehicle\"},{\"kind\":\"condition\",\"quote\":\"while driving 75 MPH\"},{\"kind\":\"safety\",\"quote\":\"The contact sustained cuts from the fractured glass.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00048912,
+      "cached_tokens": 384,
+      "cost_usd": 0.0008152,
+      "input_tokens": 595,
+      "list_cost_usd": 0.0008152,
+      "output_tokens": 1304,
+      "reasoning_tokens": 1115
+    }
+  }
+}

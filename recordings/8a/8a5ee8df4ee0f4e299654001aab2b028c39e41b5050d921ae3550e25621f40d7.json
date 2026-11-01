@@ -1,0 +1,66 @@
+{
+  "key": "8a5ee8df4ee0f4e299654001aab2b028c39e41b5050d921ae3550e25621f40d7",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 14017,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Air bags (restraints); park brake, ABS and steering control lights come on intermittently while driving.\",\"group\":\"restraints\",\"symptoms\":[\"park brake warning light comes on\",\"ABS warning light comes on\",\"steering control warning light comes on\",\"warning lights come on intermittently while driving\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"park brake abs and steering control lights come on\"},{\"kind\":\"condition\",\"quote\":\"intermittently when driving the vehicle\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize. Report component AIR BAGS, group restraints given. Narrative: \"When driving the vehicle the park brake abs and steering control lights come on the vehicle intermittently when driving the vehicle\". Symptom: warning lights (park brake, ABS, steering control) come on intermittently while driving. Conditions: intermittent. Fault codes none. Safety relevant? Report has no crash/fire/smoke/injury/loss control/stall. But steering control light? Not loss of control. Set false? The input says safety_relevant false. Need no invent. Missing info: mileage null, date? received_at exists but date of incident missing. Component? component is air bags but narrative is not airbag symptom; maybe missing info? Hmm the analysis needs component, symptom, conditions, mileage, date. Component field says AIR BAGS, but narrative symptoms are brake/ABS/steering. Is component missing? Not exactly; component given but inconsistent. We need maybe missing_info includes mileage and date. Maybe conditions? Conditions present intermittent. Symptom present. Component present. Date received but not event date. Include \"mileage\", \"date\". Maybe \"component\" because air bags doesn't match symptoms? But rule: only facts analysis needs; component is given as AIR BAGS though likely inconsistent. Could include component? Need be careful. The \"component\" field is AIR BAGS; group restraints. Narrative symptoms don't mention airbags. But we shouldn't invent. missing_info maybe [\"mileage\",\"date\"]. The summary: \"Air bags (restraints); park brake, ABS and steering control lights come on intermittently while driving.\" That includes component. Conditions [\"intermittent\"]. Symptoms plain words: \"park brake warning light comes on\", \"ABS warning light comes on\", \"steering control warning light comes on\", \"warning lights come on intermittently while driving\" maybe. Fault_codes empty.\n\nClues: need verbatim spans. Could quote \"park brake abs and steering control lights come on\" and \"intermittently when driving the vehicle\". Also component group quote? \"AIR BAGS\" is in component not narrative? The report field includes component. Quote verbatim from report in user message? Yes can quote \"AIR BAGS\". But clues kind component_group quote \"AIR BAGS\". Need safety? No quote maybe. Conditions quote \"intermittently\". Symptom quote exact spans. Need ensure quotes char-for-char. Narrative lowercase: \"When driving the vehicle the park brake abs and steering control lights come on the vehicle intermittently when driving the vehicle\". Quotes: \"park brake abs and steering control lights come on\" exact substring yes. \"intermittently when driving the vehicle\" exact yes. \"When driving the vehicle\" exact yes. Component quote \"AIR BAGS\" yes. Group \"restraints\" maybe quote? It is in JSON field group. But clue component_group can quote \"AIR BAGS\" or \"restraints\". Use \"AIR BAGS\". Summary one line. JSON only. Need no markdown? They said one JSON object no other text. We can output raw JSON. Ensure valid.\n\nNeed decide safety_relevant false. Missing_info: maybe [\"mileage\",\"date\"]. Maybe \"conditions\" not missing because intermittent. \"component\" not missing but mismatch? Hmm.\n\nPotential issue: source report component \"AIR BAGS\" but symptoms are ABS/park brake/steering. The group \"restraints\" given. The intake normalizes incoming field-quality report. We should not correct/invent. We can note missing_info \"component\" if symptom doesn't align? But component is present. Maybe missing_info includes \"component\" because the narrative lacks airbag symptom? But the component field names AIR BAGS. The analysis needs actual component; the report gives component. Hmm.\n\nCould include missing_info [\"mileage\", \"date\"] only. If date received_at 2025-10-27, but no incident date. Good.\n\nNeed \"symptoms\" array: [\"park brake warning light comes on\", \"ABS warning light comes on\", \"steering control warning light comes on\", \"warning lights come on intermittently while driving\"]. Plain words. Good.\n\nConditions [\"intermittent\"] only. Maybe \"driving\" not in list? The allowed conditions list includes cold, moisture, heat, vibration, intermittent, after service, charging. So only intermittent.\n\nFault_codes [].\n\nClues:\n- {\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"}\n- {\"kind\":\"symptom\",\"quote\":\"park brake abs and steering control lights come on\"}\n- {\"kind\":\"condition\",\"quote\":\"intermittently\"}\n- {\"kind\":\"other\",\"quote\":\"When driving the vehicle\"}? Maybe condition? \"driving\" not allowed. Kind other. Could include to support driving. But not necessary. Use exact. Maybe \"steering control lights\" as symptom separate? Need every quote exact. Could include \"park brake abs and steering control lights come on\" one quote covers all. Another \"intermittently when driving the vehicle\" condition. Good.\n\nNeed no safety clue.\n\nFinal JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531583,
+      "id": "ce0f60cceebe68f4cb75b4a9f38534ef",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1201,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1052,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00044403,
+          "billing_source": "go",
+          "list_cost": 0.00074005,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 122,
+            "output": 1201,
+            "reasoning": 1052
+          }
+        },
+        "prompt_tokens": 506,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1707
+      }
+    },
+    "text": "{\"summary\":\"Air bags (restraints); park brake, ABS and steering control lights come on intermittently while driving.\",\"group\":\"restraints\",\"symptoms\":[\"park brake warning light comes on\",\"ABS warning light comes on\",\"steering control warning light comes on\",\"warning lights come on intermittently while driving\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"park brake abs and steering control lights come on\"},{\"kind\":\"condition\",\"quote\":\"intermittently when driving the vehicle\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00044403,
+      "cached_tokens": 384,
+      "cost_usd": 0.00074005,
+      "input_tokens": 506,
+      "list_cost_usd": 0.00074005,
+      "output_tokens": 1201,
+      "reasoning_tokens": 1052
+    }
+  }
+}

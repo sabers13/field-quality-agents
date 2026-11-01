@@ -1,0 +1,66 @@
+{
+  "key": "ecd2e8ca4aabb40eb0411935d00aa3b24c4893fd368aef825f01b75da2efdf98",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 7405,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Forward collision avoidance / automatic emergency braking on a 2022 Tesla Model 3: while stopped at a red light in FSD, the car accelerated into the vehicle ahead when it nudged forward; AEB engaged too late.\",\"group\":\"adas\",\"symptoms\":[\"vehicle accelerated into the car ahead while FSD was active\",\"automatic emergency braking engaged too late\",\"front sensors failed to recognize the vehicle ahead\"],\"conditions\":[\"stopped at red light\",\"FSD active\",\"vehicle ahead nudged forward\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"condition\",\"quote\":\"While at a red light, my car was stopped with Tesla Full Self-Driving (FSD) on.\"},{\"kind\":\"condition\",\"quote\":\"When the car in front of me nudged forward, my car, still in FSD , accelerated and drove into the car in front.\"},{\"kind\":\"symptom\",\"quote\":\"the automatic emergency break did engage but too late\"},{\"kind\":\"symptom\",\"quote\":\"the sensors in front failed to recognize the vehicle ahead\"},{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"},{\"kind\":\"safety\",\"quote\":\"drove into the car in front\"}]}",
+            "reasoning_content": "We need answer only JSON object. Need normalize report. Component forward collision avoidance automatic emergency braking, group adas. Summary one line component symptom conditions. Symptoms: vehicle accelerated from stop into car ahead while FSD on; AEB engaged too late; sensors failed recognize vehicle ahead. Conditions: stopped at red light, FSD on, car ahead nudged forward. Safety relevant true (crash). Fault codes none. Missing info: mileage? report mileage null. Maybe missing mileage. Date? received_at 2025-09-29 but incident date not given. Conditions present. Component present. Symptom present. missing_info [\"mileage\",\"date\"]? Analysis needs date? yes incident date not given. mileage null. Need quotes verbatim. Ensure quotes exact spans from narrative. Need JSON only.\n\nNeed clues kind symptom etc with quotes. Quotes:\n- \"While at a red light, my car was stopped with Tesla Full Self-Driving (FSD) on.\" condition maybe.\n- \"When the car in front of me nudged forward, my car, still in FSD , accelerated and drove into the car in front.\" symptom/condition. Note double space before comma? Narrative has \"FSD , accelerated\" yes exact includes space before comma. Quote exact.\n- \"the automatic emergency break did engage but too late\" symptom maybe.\n- \"the sensors in front failed to recognize the vehicle ahead\" symptom.\n- component_group quote? \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\" is component field not narrative? Report includes component in JSON. The rule read report, quote verbatim span. Can quote component value. It is in report. Use kind component_group. Safety quote? \"drove into the car in front\" indicates crash. Could use safety kind quote \"drove into the car in front\". It's verbatim in narrative. Good.\nNeed group \"adas\". summary \"Tesla Model 3 forward collision avoidance/AEB: while stopped at red light in FSD, car accelerated into vehicle ahead when it nudged forward; AEB engaged too late.\" Conditions list: maybe \"stopped at red light\", \"FSD on\" not among allowed? The schema conditions examples [\"cold\",\"moisture\",\"heat\",\"vibration\",\"intermittent\",\"after service\",\"charging\"]. But can include other? It says conditions array with examples? It says conditions: [\"cold\", ...]. Hmm likely use plain words conditions. Could include \"stopped at red light\", \"FSD active\". Need not restrict? Prompt says conditions array with those example values. We can include \"stopped at red light\" and \"FSD active\"? Might be acceptable. It says symptoms plain words, conditions array. Include \"stopped at red light\", \"FSD active\". Maybe \"car ahead nudged forward\" is condition. But could be too many. Need concise.\n\nsafety_relevant true. missing_info: mileage, date. Maybe \"date\" because incident date not provided. Mileage null. Component and symptom present. Conditions present.\n\nNeed no other text. JSON valid. Ensure quotes exact. Let's craft.\n\nNeed summary one line. Could include component, symptom, conditions. \"Forward collision avoidance / automatic emergency braking on 2022 Tesla Model 3: while stopped at a red light in FSD, the car accelerated into the vehicle ahead when it nudged forward; AEB engaged too late.\" Good.\n\nClues array:\n{\"kind\":\"condition\",\"quote\":\"While at a red light, my car was stopped with Tesla Full Self-Driving (FSD) on.\"}\n{\"kind\":\"symptom\",\"quote\":\"my car, still in FSD , accelerated and drove into the car in front\"}\n{\"kind\":\"symptom\",\"quote\":\"the automatic emergency break did engage but too late\"}\n{\"kind\":\"symptom\",\"quote\":\"the sensors in front failed to recognize the vehicle ahead\"}\n{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"}\n{\"kind\":\"safety\",\"quote\":\"drove into the car in front\"}\nMaybe quote \"When the car in front of me nudged forward\" condition. Could include. Ensure exact: \"When the car in front of me nudged forward, my car, still in FSD , accelerated and drove into the car in front.\" yes. Use full? Fine.\n\nNeed perhaps fault_codes empty. missing_info [\"mileage\",\"date\"]. Conditions array maybe [\"stopped at red light\",\"FSD active\",\"vehicle ahead nudged forward\"]. Symptoms array [\"vehicle accelerated into car ahead while FSD active\",\"AEB engaged too late\",\"front sensors failed to recognize vehicle ahead\"] but \"vehicle accelerated into car ahead\" okay. Plain words. Could include \"crash into car ahead\" but symptom. Good.\n\nNeed JSON only.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530804,
+      "id": "c9db7edae3aa5378cd4332046db46ae1",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1280,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 997,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00047895,
+          "billing_source": "go",
+          "list_cost": 0.00079825,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 194,
+            "output": 1280,
+            "reasoning": 997
+          }
+        },
+        "prompt_tokens": 578,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1858
+      }
+    },
+    "text": "{\"summary\":\"Forward collision avoidance / automatic emergency braking on a 2022 Tesla Model 3: while stopped at a red light in FSD, the car accelerated into the vehicle ahead when it nudged forward; AEB engaged too late.\",\"group\":\"adas\",\"symptoms\":[\"vehicle accelerated into the car ahead while FSD was active\",\"automatic emergency braking engaged too late\",\"front sensors failed to recognize the vehicle ahead\"],\"conditions\":[\"stopped at red light\",\"FSD active\",\"vehicle ahead nudged forward\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"condition\",\"quote\":\"While at a red light, my car was stopped with Tesla Full Self-Driving (FSD) on.\"},{\"kind\":\"condition\",\"quote\":\"When the car in front of me nudged forward, my car, still in FSD , accelerated and drove into the car in front.\"},{\"kind\":\"symptom\",\"quote\":\"the automatic emergency break did engage but too late\"},{\"kind\":\"symptom\",\"quote\":\"the sensors in front failed to recognize the vehicle ahead\"},{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"},{\"kind\":\"safety\",\"quote\":\"drove into the car in front\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00047895,
+      "cached_tokens": 384,
+      "cost_usd": 0.00079825,
+      "input_tokens": 578,
+      "list_cost_usd": 0.00079825,
+      "output_tokens": 1280,
+      "reasoning_tokens": 997
+    }
+  }
+}

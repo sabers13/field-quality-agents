@@ -1,0 +1,66 @@
+{
+  "key": "fc805e312255a3a19ecba6946eefd7716a667e1217c551d916ff7fc4e8ca914f",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 14179,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"12V/24V/48V battery: underhood smoke and fire from the top of the battery while driven at 5 MPH in a residential driveway.\",\"group\":\"power_and_wiring\",\"symptoms\":[\"smoke from under the hood\",\"fire from the top of the battery\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM:12V/24V/48V BATTERY\"},{\"kind\":\"symptom\",\"quote\":\"smoke started to be emitted from under the hood\"},{\"kind\":\"symptom\",\"quote\":\"fire primarily emitting from the top of the battery\"},{\"kind\":\"condition\",\"quote\":\"driven at 5 MPH in the residential driveway\"},{\"kind\":\"safety\",\"quote\":\"fire primarily emitting from the top of the battery\"},{\"kind\":\"other\",\"quote\":\"Investigation ID: PE24024\"}]}",
+            "reasoning_content": "We need answer one JSON only. Need normalize report. Must copy quotes verbatim. Need identify component group given \"power_and_wiring\" but prompt says \"the electrical/electronic component group, or given group\"; likely use given group. Summary one line component symptom conditions. Symptoms: smoke from under hood, fire from top of battery. Conditions: driven at 5 MPH residential driveway, occupied? cold? no. Maybe \"driven at 5 MPH\" condition? Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. Only relevant maybe heat? Fire not necessarily condition. Could include \"heat\" if fire? But conditions are environmental/operational; report says smoke/fire. It doesn't mention cold/moisture/heat/vibration/intermittent/after service/charging. Could leave empty. But maybe \"while vehicle occupied and driven at 5 MPH\" is condition but not in allowed list. We can include conditions empty. Fault codes: none; but \"Investigation ID: PE24024\" maybe not fault code, could be other clue. Safety relevant true due fire/smoke. Missing info: date? received_at exists but not incident date. Mileage present 4000. Component present. Symptom present. Conditions? We could list \"date\" maybe missing incident date. Need missing_info only important facts: date missing (incident date). Conditions? We know driven 5 mph; no environmental. Could list \"date\". Maybe \"conditions\" not missing? Hmm.\n\nClues: need verbatim spans. Include symptom quotes: \"smoke started to be emitted from under the hood\", \"fire primarily emitting from the top of the battery\". Condition: \"driven at 5 MPH in the residential driveway\" (kind condition though not allowed? Clue kind condition okay). Fault code? \"Investigation ID: PE24024\" kind fault_code? It's not fault code, but investigation ID. Kind \"other\" maybe. Component group quote? \"ELECTRICAL SYSTEM:12V/24V/48V BATTERY\" is from component field, not narrative, but report includes JSON field. Quote must be from report; the report includes component value. Could include component_group quote \"ELECTRICAL SYSTEM:12V/24V/48V BATTERY\". Safety quote: \"smoke started to be emitted from under the hood\" or \"fire primarily emitting from the top of the battery\"; also \"There were no injuries sustained.\" Safety relevant due fire. Use fire quote.\n\nNeed ensure quotes exact character for character. Narrative has \"The contact stated that while the vehicle was occupied and driven at 5 MPH in the residential driveway, smoke started to be emitted from under the hood.\" So quote \"smoke started to be emitted from under the hood\" exact substring yes. \"fire primarily emitting from the top of the battery\" exact. \"driven at 5 MPH in the residential driveway\" exact. \"Investigation ID: PE24024\" exact? Narrative: \"The contact referenced Investigation ID: PE24024 for Subject: Underhood fires.\" yes exact substring. Component quote exact from component field: \"ELECTRICAL SYSTEM:12V/24V/48V BATTERY\" yes.\n\nSummary: \"2022 Jeep Gladiator battery underhood fire and smoke while driven at 5 MPH in driveway.\" Component: 12V/24V/48V battery. Symptoms: smoke from under hood; fire from top of battery. Conditions: maybe \"driven at 5 MPH in residential driveway\". But conditions array allowed list only? The schema says conditions: [\"cold\", ...]. It doesn't say only those? It says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. Probably use those. We can leave empty; put driving in clues as condition. But summary includes conditions. Maybe conditions empty. But missing_info maybe \"conditions\" because no environmental conditions? Hmm.\n\nNeed output JSON only. No markdown? The instruction: Answer with one JSON object and no other text. So final should be raw JSON.\n\nNeed include missing_info: likely [\"date\"] because incident date not given. Mileage present 4000; component present; symptom present; conditions? We know some driving condition but not full. Could include \"conditions\" maybe no. The desk analysis needs conditions; report has \"driven at 5 MPH in residential driveway\" but not weather/temp. Is that missing? Maybe not important. \"date\" missing is important for pattern. Maybe also \"conditions\" missing because no environmental conditions. But the report gives operational condition. I'd list [\"date\"] only.\n\nNeed \"group\": \"power_and_wiring\" given. \"safety_relevant\": true.\n\nNeed clues include kind values allowed symptom|condition|fault_code|component_group|safety|other. Use \"safety\" for fire quote maybe. But symptom and safety same quote? Could include fire as symptom and safety? Each clue one kind. We can include smoke as symptom, fire as safety. Also \"There were no injuries sustained\" not safety? It is safety relevant but no injury. Could include.\n\nPotential issue: \"fault_codes\": [] because PE24024 is investigation ID not fault code. But maybe include? Prompt says fault_codes: code if report names one. PE24024 is an Investigation ID, not a fault code. Could be useful but not fault code. Put in clues kind other. Good.\n\nNeed maybe \"symptoms\": [\"smoke from under the hood\", \"fire from the top of the battery\"]. Plain words.\n\nNeed summary one line: \"12V/24V/48V battery: underhood smoke and fire from top of battery while driven at 5 MPH in residential driveway.\" This includes component, symptom, conditions.\n\nNeed ensure no extraneous text. Final JSON.\n\nLet's craft:\n{\n  \"summary\": \"12V/24V/48V battery: underhood smoke and fire from the top of the battery while driven at 5 MPH in a residential driveway.\",\n  \"group\": \"power_and_wiring\",\n  \"symptoms\": [\"smoke from under the hood\", \"fire from the top of the battery\"],\n  \"conditions\": [\"driven at 5 MPH in a residential driveway\"],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\"date\"],\n  \"clues\": [\n    {\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM:12V/24V/48V BATTERY\"},\n    {\"kind\":\"symptom\",\"quote\":\"smoke started to be emitted from under the hood\"},\n    {\"kind\":\"symptom\",\"quote\":\"fire primarily emitting from the top of the battery\"},\n    {\"kind\":\"condition\",\"quote\":\"driven at 5 MPH in the residential driveway\"},\n    {\"kind\":\"safety\",\"quote\":\"fire primarily emitting from the top of the battery\"},\n    {\"kind\":\"other\",\"quote\":\"Investigation ID: PE24024\"}\n  ]\n}\n\nBut conditions array allowed maybe includes non-allowed \"driven at...\"? The schema examples use allowed list; but not strict? The prompt says conditions: [\"cold\", ...]. It may expect only those. To be safe, conditions should be [] and put driving condition in clues only. But summary says conditions. Hmm. \"conditions\" field likely meant to classify known conditions among list. Since none of listed conditions, use []. But \"driven at 5 MPH\" is a condition but not in taxonomy. The prompt says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. It likely wants only those tags. Use [].\n\nNeed maybe \"heat\" due fire? No, fire is symptom, not condition. Use [].\n\nNeed missing_info: if conditions empty, maybe missing \"conditions\"? But the report gives driving context; not environmental. The desk analysis might need conditions; maybe list \"conditions\" because no cold/moisture/etc. But that may be overclaim. Hmm.\n\nThe rules: \"List missing_info only for facts the analysis needs: component, symptom, conditions, mileage, date.\" Since conditions not specified in allowed taxonomy, maybe missing_info [\"date\",\"conditions\"]? But report says while driven at 5 mph residential driveway; that's a condition. It doesn't say ambient. I'd list [\"date\"] only. But if conditions array empty, maybe missing conditions. The field conditions could be empty because no matching condition, not missing. Fine.\n\nNeed maybe \"date\" missing because received_at exists but incident date not. Good.\n\nNeed final raw JSON. Ensure quotes exact. The component quote includes colon and slashes. Yes.\n\nNeed no mention \"dealer\" etc.\n\nFinal.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793525857,
+      "id": "e6ac4c8c2a7580c744d45cbb9bd8f1c8",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2045,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1836,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00077073,
+          "billing_source": "go",
+          "list_cost": 0.00128455,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 376,
+            "output": 2045,
+            "reasoning": 1836
+          }
+        },
+        "prompt_tokens": 760,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2805
+      }
+    },
+    "text": "{\"summary\":\"12V/24V/48V battery: underhood smoke and fire from the top of the battery while driven at 5 MPH in a residential driveway.\",\"group\":\"power_and_wiring\",\"symptoms\":[\"smoke from under the hood\",\"fire from the top of the battery\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM:12V/24V/48V BATTERY\"},{\"kind\":\"symptom\",\"quote\":\"smoke started to be emitted from under the hood\"},{\"kind\":\"symptom\",\"quote\":\"fire primarily emitting from the top of the battery\"},{\"kind\":\"condition\",\"quote\":\"driven at 5 MPH in the residential driveway\"},{\"kind\":\"safety\",\"quote\":\"fire primarily emitting from the top of the battery\"},{\"kind\":\"other\",\"quote\":\"Investigation ID: PE24024\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00077073,
+      "cached_tokens": 384,
+      "cost_usd": 0.00128455,
+      "input_tokens": 760,
+      "list_cost_usd": 0.00128455,
+      "output_tokens": 2045,
+      "reasoning_tokens": 1836
+    }
+  }
+}

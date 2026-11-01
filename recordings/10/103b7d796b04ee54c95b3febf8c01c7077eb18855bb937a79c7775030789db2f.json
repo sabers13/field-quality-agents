@@ -1,0 +1,66 @@
+{
+  "key": "103b7d796b04ee54c95b3febf8c01c7077eb18855bb937a79c7775030789db2f",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 13812,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2022 Ram 1500 ESC/brake failure at 15-20 mph approaching a stop light: brake pedal applied but brakes did not engage; vehicle went through stoplight and was struck, causing injuries.\",\"group\":\"safety_systems\",\"symptoms\":[\"brake pedal applied but brakes failed to engage\",\"vehicle did not stop\",\"air bags did not deploy\"],\"conditions\":[],\"fault_codes\":[\"24V653000\"],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRONIC STABILITY CONTROL (ESC)\"},{\"kind\":\"symptom\",\"quote\":\"the brakes failed to engage and the vehicle did not stop\"},{\"kind\":\"condition\",\"quote\":\"while driving at approximately 15-20 MPH coming to a stop light\"},{\"kind\":\"safety\",\"quote\":\"another vehicle crashed into the driver's side of the vehicle\"},{\"kind\":\"safety\",\"quote\":\"The contact received injuries to the right arm, right thumb, and back.\"},{\"kind\":\"fault_code\",\"quote\":\"NHTSA Campaign Number: 24V653000\"}]}",
+            "reasoning_content": "We need parse report. Need output JSON only. We must normalize incoming field-quality report. Component ESC group safety_systems given. Need summary one line component symptom conditions. Symptoms: brakes failed to engage, vehicle did not stop, crash, airbags did not deploy? Conditions: driving 15-20 MPH coming to stop light. Safety relevant true. Fault codes: none named? NHTSA Campaign Number 24V653000 maybe not fault code. Could list? \"fault_codes\": [\"24V653000\"]? The schema says code if report names one. Campaign number is not diagnostic fault code. But it is a code. Hmm \"fault_codes\": [\"code if the report names one\"]. It names NHTSA Campaign Number: 24V653000. Could include? It's a campaign number, not fault code. But potentially relevant. The field is fault_codes. Better maybe include \"24V653000\"? Need decide. Since named code, yes maybe. But grouping safety. Missing_info: date? Received_at and failure date not explicitly; date missing. Conditions? It gives speed and scenario. Mileage given. Component given. Symptom given. Missing date only? Could include \"date\" because no incident date. Maybe conditions? enough. So missing_info [\"date\"]. Clues verbatim quotes. Need include component group quote? \"ELECTRONIC STABILITY CONTROL (ESC)\" from component? The report includes component field, not narrative? User message includes JSON with component. It says read only report. Quotes can be verbatim from report. Component string is in report. Include component_group quote \"ELECTRONIC STABILITY CONTROL (ESC)\" maybe. Symptom quote: \"brakes failed to engage and the vehicle did not stop\" exact? Narrative: \"the brakes failed to engage and the vehicle did not stop.\" We can quote without trailing period: \"the brakes failed to engage and the vehicle did not stop\". Condition quote: \"while driving at approximately 15-20 MPH coming to a stop light\". Safety quote: \"another vehicle crashed into the driver's side of the vehicle\" and injuries. Fault code quote: \"NHTSA Campaign Number: 24V653000\". Need ensure verbatim: narrative says \"NHTSA Campaign Number: 24V653000 (Service Brakes, Hydraulics, Electronic Stability Control (ESC))\". Quote \"NHTSA Campaign Number: 24V653000\" is verbatim contiguous yes. Safety quote \"The contact received injuries to the right arm, right thumb, and back.\" exact? Narrative: \"The contact received injuries to the right arm, right thumb, and back.\" yes. Clue kind safety. Maybe \"another vehicle crashed into the driver's side of the vehicle\" exact? Narrative \"another vehicle crashed into the driver's side of the vehicle.\" yes.\n\nSummary: \"2022 Ram 1500 ESC/brake failure: at 15–20 mph approaching stop light, brake pedal applied but brakes did not engage; vehicle ran stoplight and was struck, with injuries.\" Conditions include driving at 15-20 mph coming to stop light; crash. Could mention airbags did not deploy? Summary maybe include. Need one line.\n\nGroup given safety_systems. Symptoms plain words: [\"brakes failed to engage\", \"vehicle did not stop\", \"air bags did not deploy\"]? Airbags did not deploy is symptom? It's outcome. Could include as symptom? The component is ESC but failure brakes. Maybe symptom \"brake pedal applied but brakes failed to engage\"; \"vehicle did not stop and went through stoplight\"; \"air bags did not deploy\". Conditions list allowed values: cold, moisture, heat, vibration, intermittent, after service, charging. The report conditions don't match these. Schema conditions array example. But rules say conditions [\"cold\", ...]? It seems predefined. We should use only allowed? The instructions list conditions as enum? It says \"conditions\": [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. This appears options. Report has driving at speed approaching stoplight; not in list. So conditions []? But summary can mention speed. Conditions in JSON should be allowed condition tags; none. But maybe \"conditions\" should include scenario? Hmm. They explicitly list condition vocabulary. Use [] because none. But then missing_info conditions? Conditions are given? It gives driving condition but not environmental. The allowed condition tags absent; not missing? Probably missing_info no conditions because report states conditions? The analysis needs conditions maybe? It has speed and stop light. Not cold/moisture etc. Maybe no.\n\nNeed not include suggestions. Output JSON only.\n\nNeed ensure no extra text. Let's craft.\n\nSummary one line: \"2022 Ram 1500 ESC/brake failure at 15–20 mph approaching a stop light: brake pedal applied but brakes did not engage; vehicle proceeded through stoplight and was struck, causing injuries.\" Component maybe \"Electronic Stability Control (ESC)\". But failure is brakes. Summary component ESC. Conditions \"approaching stop light at 15-20 mph\". Good.\n\nSymptoms: [\"brake pedal applied but brakes failed to engage\", \"vehicle did not stop\", \"air bags did not deploy\"]? Could \"another vehicle crashed into driver's side\" is event not symptom. Keep first two maybe. Airbags no deploy is outcome/safety. Could include.\n\nFault_codes: [\"24V653000\"]? Is campaign number. I think include. But if \"fault_codes\" expects DTC, campaign is not fault code. Yet \"code if report names one\" yes. Could include quote. Maybe list [] to avoid misrepresent? Hmm. The report names NHTSA Campaign Number 24V653000, which is a code relevant to recall. The schema says fault_codes, not recall codes. But \"code if report names one\" broad. I'd include \"24V653000\". It may be useful.\n\nMissing_info: [\"date\"] maybe also \"component\"? given. \"symptom\" given. \"conditions\" given enough. Mileage given. Date not. Use [\"date\"].\n\nClues: kind symptom quote \"the brakes failed to engage and the vehicle did not stop\"; kind condition quote \"while driving at approximately 15-20 MPH coming to a stop light\"; kind safety quote \"another vehicle crashed into the driver's side of the vehicle\"; kind safety quote \"The contact received injuries to the right arm, right thumb, and back.\"; kind fault_code quote \"NHTSA Campaign Number: 24V653000\"; kind component_group quote \"ELECTRONIC STABILITY CONTROL (ESC)\". Maybe quote from component field exact uppercase. Good.\n\nNeed valid JSON. No markdown? User says one JSON object and no other text. So plain JSON. Ensure quotes escaped. Summary contains apostrophe? \"driver's\" not in summary. Use en dash? Could use hyphen. JSON okay.\n\nNeed consider \"safety_relevant\": true. Good.\n\nPotential issue: \"conditions\" array should include scenario? The schema says conditions tags. Use []? But then summary has conditions. Maybe include \"intermittent\"? No. No.\n\nNeed maybe missing_info includes \"conditions\" because environmental conditions not present. But report conditions driving scenario; analysis might need. The prompt says list missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Conditions? We know speed and scenario, but not weather/road. Is that important? Maybe not. Missing date. I will include [\"date\"]. Maybe also \"conditions\" because no environmental condition? But report states conditions. Hmm.\n\nNeed final only JSON. Ensure no trailing commas.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793527316,
+      "id": "5b610674802565a1d8faf1157b22acdd",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1838,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1598,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00069153,
+          "billing_source": "go",
+          "list_cost": 0.00115255,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 324,
+            "output": 1838,
+            "reasoning": 1598
+          }
+        },
+        "prompt_tokens": 708,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2546
+      }
+    },
+    "text": "{\"summary\":\"2022 Ram 1500 ESC/brake failure at 15-20 mph approaching a stop light: brake pedal applied but brakes did not engage; vehicle went through stoplight and was struck, causing injuries.\",\"group\":\"safety_systems\",\"symptoms\":[\"brake pedal applied but brakes failed to engage\",\"vehicle did not stop\",\"air bags did not deploy\"],\"conditions\":[],\"fault_codes\":[\"24V653000\"],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRONIC STABILITY CONTROL (ESC)\"},{\"kind\":\"symptom\",\"quote\":\"the brakes failed to engage and the vehicle did not stop\"},{\"kind\":\"condition\",\"quote\":\"while driving at approximately 15-20 MPH coming to a stop light\"},{\"kind\":\"safety\",\"quote\":\"another vehicle crashed into the driver's side of the vehicle\"},{\"kind\":\"safety\",\"quote\":\"The contact received injuries to the right arm, right thumb, and back.\"},{\"kind\":\"fault_code\",\"quote\":\"NHTSA Campaign Number: 24V653000\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00069153,
+      "cached_tokens": 384,
+      "cost_usd": 0.00115255,
+      "input_tokens": 708,
+      "list_cost_usd": 0.00115255,
+      "output_tokens": 1838,
+      "reasoning_tokens": 1598
+    }
+  }
+}

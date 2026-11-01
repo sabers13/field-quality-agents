@@ -1,0 +1,66 @@
+{
+  "key": "199f8c586fd792966e9975119f5b58612cfc9cf43917559ed39df601e4824c01",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12311,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"ADAS automatic emergency braking/ABS engages unexpectedly on uneven surfaces at low speed while braking, causing a skid and crash alarm.\",\"group\":\"adas\",\"symptoms\":[\"ABS engaging when it should not\",\"skid\",\"crash alarm\"],\"conditions\":[\"uneven surfaces\",\"low speed\",\"pulling into driveway\",\"car drop off line\",\"braking\",\"vehicle in front stopped\",\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"},{\"kind\":\"symptom\",\"quote\":\"ABS is engaging on uneven surfaces when it should not\"},{\"kind\":\"symptom\",\"quote\":\"causing a skid\"},{\"kind\":\"condition\",\"quote\":\"uneven surfaces\"},{\"kind\":\"condition\",\"quote\":\"pulling into my driveway\"},{\"kind\":\"condition\",\"quote\":\"car drop off line\"},{\"kind\":\"condition\",\"quote\":\"no more than 5mph\"},{\"kind\":\"condition\",\"quote\":\"I hit the brakes\"},{\"kind\":\"condition\",\"quote\":\"the car in front of me stopped\"},{\"kind\":\"safety\",\"quote\":\"causing a skid\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize. Report: component FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING group adas. Narrative ABS engaging on uneven surfaces when should not, occurs pulling into driveway and car drop off line, no more than 5mph, car in front stopped, hit brakes ABS engaged along with crash alarm causing skid. No accident occurred, unsettling. Need summary one line: component, symptom, conditions. Group given adas. Symptoms: \"ABS engaging when it should not\", \"skid\", \"crash alarm\" maybe symptom? Conditions: uneven surfaces, low speed (<=5mph), pulling into driveway, car drop off line, car in front stopped, braking. Fault codes none. safety_relevant? Mentions skid, crash alarm, no accident. Does it mention crash/fire/smoke/injury/loss of control/stall at speed/risk to people? Skid could be loss of control? \"causing a skid\" at 5mph. Safety relevant likely true? Prompt says set safety_relevant when report mentions a crash, fire, smoke, injury, loss of control, a stall at speed or another risk to people. Skid is potential loss of control / risk. \"crash alarm\" maybe not actual crash. No accident. But \"causing a skid\" is a risk. I'd set true? Need be careful: field has safety_relevant false but we should normalize, not blindly trust. The incident at 5 mph causing skid is unsettling, no accident. Safety relevant could be true because unintended ABS and skid is risk. However \"loss of control\" not explicitly. \"another risk to people\" maybe yes. But if no people risk? Hmm. Need decide. Safety_relevant likely true due to unintended braking/ABS engagement and skid near car in drop-off line. But \"No accident occurred\" but crash alarm. The instruction says mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk. \"crash alarm\" isn't crash. \"skid\" is loss of traction/control. I'd set true. Need clues with verbatim quotes. Summary: \"2025 Hyundai Palisade ADAS automatic emergency braking/ABS engages unexpectedly on uneven surfaces at low speed when braking, causing skid and crash alarm.\" Need include component? One line component, symptom, conditions. Good.\n\nSymptoms list: [\"ABS engages when it should not\", \"skid\", \"crash alarm sounds\"] but crash alarm is maybe symptom. Plain words. Conditions: [\"uneven surfaces\", \"low speed\", \"pulling into driveway\", \"car drop off line\", \"braking\", \"vehicle in front stopped\"] but allowed conditions list given? The schema says conditions [\"cold\",\"moisture\",\"heat\",\"vibration\",\"intermittent\",\"after service\",\"charging\"] maybe examples? It says conditions: [\"cold\", ...]. We can include plain conditions? The prompt says conditions array. Probably include relevant conditions even if not in fixed list? It says \"conditions\": [\"cold\", ...] maybe expected categories. But rules missing_info conditions. Could include \"uneven surfaces\", \"low speed\", \"braking\". The fixed list doesn't include those. Hmm. In similar tasks, conditions should be from that list? But report conditions are uneven surfaces etc. The template shows list of condition tags; maybe only those tags. But \"intermittent\" applies: multiple instances. Also \"after service\"? no. \"vibration\"? no. Could include \"intermittent\". But conditions should capture \"uneven surfaces\" and \"low speed\" maybe not in fixed list. The rule says conditions: [\"cold\", ...] not explicitly \"only\". But likely expected to choose from these. However evidence clues can include condition quotes. We can include \"intermittent\" and maybe \"uneven surfaces\" despite not in list? Need satisfy analysis. I think include plain conditions plus tags? But JSON schema doesn't restrict. Desired answer maybe conditions [\"intermittent\", \"uneven surfaces\", \"low speed\", \"braking\"]. Missing_info: mileage null. Date present. Component present. Symptom present. Conditions present. Missing mileage only. Maybe \"mileage\". Safety true. Fault_codes [].\n\nClues: Need verbatim spans. Use exact substrings:\n- \"ABS is engaging on uneven surfaces when it should not\" (check narrative exact: \"In multiple instances, the ABS is engaging on uneven surfaces when it should not.\" yes substring)\n- \"It occurs when pulling into my driveway\"\n- \"just happened this morning in the car drop off line\"\n- \"I was going no more than 5mph\"\n- \"the car in front of me stopped\"\n- \"I hit the brakes and the ABS engaged (along with the crash alarm) causing a skid\"\n- \"No accident occurred\"\n- \"it was unsettling\"\n- component group quote? \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\" from component not narrative? Report includes component field. Quote can be copied from report. Kind component_group quote \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\". Safety clue quote \"causing a skid\" or \"crash alarm\"? For safety, quote \"causing a skid\" demonstrates. Maybe include safety quote \"causing a skid\". But if safety_relevant true, need clue kind safety. Use quote \"causing a skid\" exact.\n- condition quote for uneven surfaces: \"uneven surfaces\".\nNeed every quote exact. Ensure \"ABS is engaging on uneven surfaces when it should not\" is exact? Narrative: \"In multiple instances, the ABS is engaging on uneven surfaces when it should not.\" Contains exact. Good.\n\"causing a skid\" exact from \"(along with the crash alarm) causing a skid.\" yes.\n\"crash alarm\" exact.\n\nNeed JSON only no markdown? User says answer with one JSON object and no other text. We should output raw JSON. Ensure valid JSON. Summary one line.\n\nNeed decide safety_relevant. Let's reason: The report says ABS engaged causing skid. ABS engaging unexpectedly can increase stopping distance and skid; at low speed. Safety relevant? \"another risk to people\" yes. Set true. If the dataset safety_relevant false is provided but instruction says normalize. We don't just copy. Good.\n\nGroup \"adas\". Symptoms: \"ABS engaging when it should not\", \"skid\", \"crash alarm\". Conditions: \"uneven surfaces\", \"low speed\", \"pulling into driveway\", \"car drop off line\", \"braking\", \"intermittent\". Maybe \"vehicle in front stopped\" condition. The conditions array in template likely fixed tags. Maybe not include \"low speed\" as condition? It's a condition. Fine.\n\nMissing_info: [\"mileage\"]. Date present received_at. Component present. Symptom present. Conditions present.\n\nFault codes empty.\n\nClues with kind:\n- component_group quote component\n- symptom quote \"ABS is engaging on uneven surfaces when it should not\"\n- symptom quote \"causing a skid\"\n- condition quote \"uneven surfaces\"\n- condition quote \"pulling into my driveway\"\n- condition quote \"car drop off line\"\n- condition quote \"no more than 5mph\"\n- condition quote \"I hit the brakes\"\n- condition quote \"the car in front of me stopped\"\n- safety quote \"causing a skid\" maybe duplicate. Could include \"crash alarm\" as safety? It says crash alarm not actual crash. But safety relevant due skid. Use safety quote \"causing a skid\". Duplicate quote kind okay? Maybe not. Could use safety quote \"crash alarm\" but crash alarm implies risk? Hmm. Better safety quote \"causing a skid\". Duplicate with symptom but different kind acceptable? It says clues kind. Could include both. Need not overdo. Include 8 clues.\n\nNeed summary: \"ADAS automatic emergency braking/ABS engages unexpectedly on uneven surfaces at low speed while braking, causing a skid and crash alarm.\" It includes component symptom conditions. Good.\n\nNeed ensure no other text. Final raw JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530470,
+      "id": "c8c40662363ebc40929cfb0210e9f7f0",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1975,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1709,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00072924,
+          "billing_source": "go",
+          "list_cost": 0.0012154,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 195,
+            "output": 1975,
+            "reasoning": 1709
+          }
+        },
+        "prompt_tokens": 579,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2554
+      }
+    },
+    "text": "{\"summary\":\"ADAS automatic emergency braking/ABS engages unexpectedly on uneven surfaces at low speed while braking, causing a skid and crash alarm.\",\"group\":\"adas\",\"symptoms\":[\"ABS engaging when it should not\",\"skid\",\"crash alarm\"],\"conditions\":[\"uneven surfaces\",\"low speed\",\"pulling into driveway\",\"car drop off line\",\"braking\",\"vehicle in front stopped\",\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"},{\"kind\":\"symptom\",\"quote\":\"ABS is engaging on uneven surfaces when it should not\"},{\"kind\":\"symptom\",\"quote\":\"causing a skid\"},{\"kind\":\"condition\",\"quote\":\"uneven surfaces\"},{\"kind\":\"condition\",\"quote\":\"pulling into my driveway\"},{\"kind\":\"condition\",\"quote\":\"car drop off line\"},{\"kind\":\"condition\",\"quote\":\"no more than 5mph\"},{\"kind\":\"condition\",\"quote\":\"I hit the brakes\"},{\"kind\":\"condition\",\"quote\":\"the car in front of me stopped\"},{\"kind\":\"safety\",\"quote\":\"causing a skid\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00072924,
+      "cached_tokens": 384,
+      "cost_usd": 0.0012154,
+      "input_tokens": 579,
+      "list_cost_usd": 0.0012154,
+      "output_tokens": 1975,
+      "reasoning_tokens": 1709
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "ff157c101646f39e01d8ec9c2436b37d449d572fd06f5d18ab9695d2f124ee4f",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12646,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2023 Toyota Highlander Hybrid air bags did not deploy after loss of traction and a tree crash in heavy snow at about 40 MPH.\",\"group\":\"restraints\",\"symptoms\":[\"air bags did not deploy\",\"loss of traction\",\"loss of control\",\"crash into a tree\"],\"conditions\":[\"cold\",\"moisture\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"No air bags deployed.\"},{\"kind\":\"symptom\",\"quote\":\"the vehicle lost traction\"},{\"kind\":\"condition\",\"quote\":\"heavy snow weather condition\"},{\"kind\":\"safety\",\"quote\":\"lose control of the vehicle and crash into a tree\"},{\"kind\":\"safety\",\"quote\":\"The contact sustained injuries to his neck, chest, and shoulder.\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize report. Need include summary one line component symptom conditions. Group restraints. Symptoms: air bags did not deploy, loss of control/crash? Symptoms plain words. Conditions: heavy snow weather condition, loss of traction? Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. Heavy snow implies cold/moisture? We can include \"cold\", \"moisture\" as conditions inferred? Rules: read only report, do not invent facts. Conditions array from allowed list. Report says heavy snow weather condition; that maps to cold/moisture. Need safety_relevant true. missing_info: none? It has component symptom conditions mileage date? Date received but not incident date. Missing date? They list missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Component given, symptom given, conditions given, mileage given, date? received_at is 2025-03-31, but incident date missing. Should we list \"date\"? The report lacks date of incident, but has received_at. Analysis needs date? Maybe yes. But \"date\" likely event date. However prompt asks missing_info only important missing. We can include \"date\" because no incident date. But maybe received_at counts date. Hmm. Need be precise. Also fault_codes empty. Clues verbatim spans. Need quote exact from narrative. Need include safety quote about injuries, crash, loss control. Need quotes exact. Let's craft.\n\nSummary: \"2023 Toyota Highlander Hybrid air bags did not deploy after loss of control and tree crash in heavy snow at ~40 MPH.\" That's one line. Is summary allowed to synthesize? Yes. But no invented facts. Good.\n\nSymptoms: [\"air bags did not deploy\", \"loss of control\", \"vehicle crashed into a tree\"]? Symptoms field should symptoms plain words. Could include \"no air bag deployment\". Also \"loss of traction\". The component is airbags, symptom no deployment. But safety events. Need include.\n\nConditions: [\"cold\",\"moisture\"]? Heavy snow weather condition. Could include \"cold\" and \"moisture\". No \"intermittent\". Maybe condition \"heavy snow\" not in allowed list. Allowed list includes cold moisture. We map.\n\nFault_codes: [].\n\nSafety_relevant: true.\n\nMissing_info: [\"date\"]? Need decide. The report has received_at but not incident date. It says while driving approx 40 MPH on heavy snow. No date. Analysis might need date. Include \"date\". But maybe \"missing_info\" should be empty? It asks only facts analysis needs: component, symptom, conditions, mileage, date. Date missing. Yes include \"date\". Could also missing \"component\"? no. \"conditions\" present. \"mileage\" present. Good.\n\nClues: Need exact spans from narrative. We can quote:\n- {\"kind\":\"symptom\",\"quote\":\"No air bags deployed.\"}\n- {\"kind\":\"condition\",\"quote\":\"heavy snow weather condition\"}\n- {\"kind\":\"safety\",\"quote\":\"lost control of the vehicle and crash into a tree\"}\n- {\"kind\":\"safety\",\"quote\":\"The contact sustained injuries to his neck, chest, and shoulder.\"}\n- maybe {\"kind\":\"symptom\",\"quote\":\"the vehicle lost traction\"}\n- {\"kind\":\"other\",\"quote\":\"The failure mileage was approximately 50,000.\"}? Not needed.\nNeed quotes verbatim character for character. Check narrative: \"The contact stated that while driving at approximately 40 MPH on a heavy snow weather condition, the vehicle lost traction, causing the contact to lose control of the vehicle and crash into a tree, where the vehicle came to a stop. No warning lights were illuminated. No air bags deployed. The contact sustained injuries to his neck, chest, and shoulder. The contact sought medical attention. A police report was filed. The vehicle was towed by the insurance provided for further investigation.  The local dealer was contacted. The vehicle was not diagnosed or repaired. The manufacturer was made aware of the failure. The failure mileage was approximately 50,000.\"\n\nQuotes exact: \"heavy snow weather condition\" yes substring. \"No air bags deployed.\" yes. \"lost control of the vehicle and crash into a tree\" yes substring? Narrative: \"causing the contact to lose control of the vehicle and crash into a tree\" contains \"lose control\" not \"lost control\". Wait exact: \"causing the contact to lose control of the vehicle and crash into a tree\". So quote should be \"lose control of the vehicle and crash into a tree\". Good. \"The contact sustained injuries to his neck, chest, and shoulder.\" exact. \"the vehicle lost traction\" exact? Narrative: \"the vehicle lost traction\" yes.\n\nNeed include component_group clue maybe quote \"AIR BAGS\"? But quote from report? Component field not narrative. It says quote copied verbatim from report. The report includes component \"AIR BAGS\". Could quote \"AIR BAGS\" from component. But quote from report? Yes. Kind component_group. But maybe not necessary. We can include {\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"}. Is \"AIR BAGS\" verbatim from report? Yes component field. Good.\n\nNeed ensure JSON only no markdown. Use exact. Desired oververbosity 5 but must JSON only. We need produce valid JSON.\n\nNeed consider \"safety_relevant\": true. Good.\n\nPotential issue \"symptoms\" should include \"no air bags deployed\" as symptom; \"loss of control\" is event not symptom? But plain words. Fine.\n\nNeed \"missing_info\": maybe [\"date\"] exact. But if they expect empty? Let's think. The report includes received_at date. The incident date is absent. Analysis needs date? For field-quality report, missing_info list for facts analysis needs. Date of incident is important. Include \"date\". It won't hurt? If evaluator expects? Hmm.\n\nNeed maybe include \"conditions\": [\"cold\", \"moisture\"] only. The allowed list has \"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\". Heavy snow maps to cold and moisture. Could also include \"intermittent\"? No.\n\nNeed \"fault_codes\": [] no code named.\n\nNeed \"clues\" list every quote exact. Let's build:\n\n{\n  \"summary\": \"2023 Toyota Highlander Hybrid air bags did not deploy after loss of traction and a tree crash in heavy snow at about 40 MPH.\",\n  \"group\": \"restraints\",\n  \"symptoms\": [\"air bags did not deploy\", \"loss of traction\", \"loss of control\", \"crash into a tree\"],\n  \"conditions\": [\"cold\", \"moisture\"],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\"date\"],\n  \"clues\": [\n    {\"kind\": \"component_group\", \"quote\": \"AIR BAGS\"},\n    {\"kind\": \"symptom\", \"quote\": \"No air bags deployed.\"},\n    {\"kind\": \"symptom\", \"quote\": \"the vehicle lost traction\"},\n    {\"kind\": \"condition\", \"quote\": \"heavy snow weather condition\"},\n    {\"kind\": \"safety\", \"quote\": \"lose control of the vehicle and crash into a tree\"},\n    {\"kind\": \"safety\", \"quote\": \"The contact sustained injuries to his neck, chest, and shoulder.\"}\n  ]\n}\n\nNeed check quote \"lose control of the vehicle and crash into a tree\" exact substring yes: \"causing the contact to lose control of the vehicle and crash into a tree\" yes. Good.\n\nCould include \"No warning lights were illuminated\" not needed.\n\nNeed JSON only. Final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793525843,
+      "id": "5ab186b9c373755d993cb6409a92e453",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1814,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1622,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00067596,
+          "billing_source": "go",
+          "list_cost": 0.0011266,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 247,
+            "output": 1814,
+            "reasoning": 1622
+          }
+        },
+        "prompt_tokens": 631,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2445
+      }
+    },
+    "text": "{\"summary\":\"2023 Toyota Highlander Hybrid air bags did not deploy after loss of traction and a tree crash in heavy snow at about 40 MPH.\",\"group\":\"restraints\",\"symptoms\":[\"air bags did not deploy\",\"loss of traction\",\"loss of control\",\"crash into a tree\"],\"conditions\":[\"cold\",\"moisture\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"No air bags deployed.\"},{\"kind\":\"symptom\",\"quote\":\"the vehicle lost traction\"},{\"kind\":\"condition\",\"quote\":\"heavy snow weather condition\"},{\"kind\":\"safety\",\"quote\":\"lose control of the vehicle and crash into a tree\"},{\"kind\":\"safety\",\"quote\":\"The contact sustained injuries to his neck, chest, and shoulder.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00067596,
+      "cached_tokens": 384,
+      "cost_usd": 0.0011266,
+      "input_tokens": 631,
+      "list_cost_usd": 0.0011266,
+      "output_tokens": 1814,
+      "reasoning_tokens": 1622
+    }
+  }
+}

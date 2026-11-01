@@ -1,0 +1,66 @@
+{
+  "key": "a0f771b34cbbf0d2ff805d425ac13fe34942c6a9fb8c00a57d9c81bb8a621f35",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9866,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\": \"VISIBILITY/WIPER: rear hatch glass spontaneously shattered when entering the vehicle and closing the driver's door\", \"group\": \"body_controls\", \"symptoms\": [\"rear hatch glass spontaneously shattered\"], \"conditions\": [], \"fault_codes\": [], \"safety_relevant\": false, \"missing_info\": [\"mileage\", \"date\"], \"clues\": [{\"kind\": \"symptom\", \"quote\": \"Rear Hatch Glass spontaneously Shattered\"}, {\"kind\": \"condition\", \"quote\": \"when entering the vehicle and closing the drivers door\"}, {\"kind\": \"component_group\", \"quote\": \"VISIBILITY/WIPER\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize report. Narrative: \"Rear Hatch Glass spontaneously Shattered when entering the vehicle and closing the drivers door.\" Component visibility/wiper, group body_controls. Symptoms: rear hatch glass spontaneously shattered. Conditions: maybe entering vehicle and closing drivers door. Is that a condition? Not cold/moisture etc. Could include \"when entering the vehicle and closing the drivers door\" as condition? The allowed conditions list: cold, moisture, heat, vibration, intermittent, after service, charging. Not exactly. We can leave conditions empty or maybe \"vibration\" from closing door? Don't invent. Could include condition quote \"closing the drivers door\" kind condition but conditions array only from list? Schema says conditions: [\"cold\",...]. We should include only listed if applicable. Closing door could cause vibration but not explicitly. Better empty conditions. fault_codes empty. safety_relevant? Prompt says set true when crash fire smoke injury loss control stall at speed or other risk to people. Shattered glass could be risk but report's safety_relevant false; but we should decide based on rules. \"spontaneously Shattered\" glass could pose injury risk? The schema safety_relevant boolean. Report has safety_relevant false. But rules say set when mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. Shattered glass is risk? It doesn't mention injury but shattered glass is a risk to people. Hmm. Need be faithful. The input has safety_relevant false but we are normalizing. \"spontaneously shattered\" could be safety relevant? It says set safety_relevant when report mentions ... another risk to people. Shattered rear hatch glass is a potential risk. But not explicitly injury. Maybe true? Need infer. \"spontaneously Shattered\" while entering/closing door could shatter and injure. But the given field says false. Intake should not invent. I'd set safety_relevant true? Let's examine expected likely: They want JSON. They may expect safety_relevant false because source says false and no explicit injury. But rule says risk to people; glass shattering is risk. Yet \"another risk to people\" broad. Hmm. Since report explicitly says safety_relevant false, but prompt says read only report. The report includes safety_relevant false. But that is structured metadata. Should we trust? It says \"Set safety_relevant when the report mentions...\" The narrative doesn't mention crash/fire/smoke/injury/loss of control/stall. Shattered glass is not necessarily risk? It is a safety defect. But to avoid inventing, maybe false. We can include clue \"spontaneously Shattered\" kind symptom. Missing_info: mileage is null, date? received_at exists but event date missing. Conditions? They are present? \"when entering vehicle and closing drivers door\" is condition. Component present. Symptom present. Mileage missing. Date? The report has received_at but not incident date. Missing_info include \"mileage\", \"date\" maybe. Also conditions? It has conditions. Component group given. So missing_info [\"mileage\",\"date\"]. Summary one line: \"Rear hatch glass spontaneously shattered on entering vehicle and closing driver's door.\" Component? VISIBILITY/WIPER but symptom is rear hatch glass. Group body_controls. Symptoms array: \"rear hatch glass spontaneously shattered\". Conditions: maybe \"closing the drivers door\" but not in allowed list. The conditions array can include \"vibration\"? No. Better [].\nClues: kind symptom quote \"Rear Hatch Glass spontaneously Shattered\"; kind condition quote \"when entering the vehicle and closing the drivers door\"; kind component_group quote? \"VISIBILITY/WIPER\" is in component field not narrative. The quote must be copied verbatim from report. User message includes full JSON with component. We can quote \"VISIBILITY/WIPER\" kind component_group. Also \"body_controls\" maybe. Safety clue? none. Could include other quote \"2025\"? no.\n\nNeed no other text. Ensure valid JSON. Summary maybe includes component \"VISIBILITY/WIPER: Rear hatch glass spontaneously shattered when entering vehicle and closing driver's door.\" One line.\n\nNeed \"group\": \"body_controls\". \"symptoms\": [\"rear hatch glass spontaneously shattered\"]. \"conditions\": [] or maybe [\"vibration\"]? Don't invent. \"fault_codes\": []. \"safety_relevant\": false. \"missing_info\": [\"mileage\",\"date\"]. \"clues\": [{\"kind\":\"symptom\",\"quote\":\"Rear Hatch Glass spontaneously Shattered\"},{\"kind\":\"condition\",\"quote\":\"when entering the vehicle and closing the drivers door\"},{\"kind\":\"component_group\",\"quote\":\"VISIBILITY/WIPER\"}].\n\nCheck quote exact: Narrative: \"Rear Hatch Glass spontaneously Shattered when entering the vehicle and closing the drivers door.\" Capitalization exact. \"drivers\" no apostrophe. Good.\n\nShould include \"other\" for model? no.\n\nNeed maybe include safety_relevant false despite possible. Good.\n\nFinal only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531975,
+      "id": "a25157649b4d38cff4480707d4f1feaa",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1200,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1058,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00044349,
+          "billing_source": "go",
+          "list_cost": 0.00073915,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 120,
+            "output": 1200,
+            "reasoning": 1058
+          }
+        },
+        "prompt_tokens": 504,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1704
+      }
+    },
+    "text": "{\"summary\": \"VISIBILITY/WIPER: rear hatch glass spontaneously shattered when entering the vehicle and closing the driver's door\", \"group\": \"body_controls\", \"symptoms\": [\"rear hatch glass spontaneously shattered\"], \"conditions\": [], \"fault_codes\": [], \"safety_relevant\": false, \"missing_info\": [\"mileage\", \"date\"], \"clues\": [{\"kind\": \"symptom\", \"quote\": \"Rear Hatch Glass spontaneously Shattered\"}, {\"kind\": \"condition\", \"quote\": \"when entering the vehicle and closing the drivers door\"}, {\"kind\": \"component_group\", \"quote\": \"VISIBILITY/WIPER\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00044349,
+      "cached_tokens": 384,
+      "cost_usd": 0.00073915,
+      "input_tokens": 504,
+      "list_cost_usd": 0.00073915,
+      "output_tokens": 1200,
+      "reasoning_tokens": 1058
+    }
+  }
+}

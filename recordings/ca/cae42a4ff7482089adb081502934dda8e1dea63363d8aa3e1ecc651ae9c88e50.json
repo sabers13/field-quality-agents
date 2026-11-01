@@ -1,0 +1,66 @@
+{
+  "key": "cae42a4ff7482089adb081502934dda8e1dea63363d8aa3e1ecc651ae9c88e50",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11027,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system: black smoke from rear seats while driving, vehicle caught fire with possible trunk origin; occupants evacuated and smoke inhalation ER visit.\",\"group\":\"electrical_general\",\"symptoms\":[\"black smoke from rear seats\",\"vehicle caught on fire\",\"fire possibly originated from trunk\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"black smoke coming from the rear seats of the vehicle\"},{\"kind\":\"symptom\",\"quote\":\"the entire vehicle then caught on fire\"},{\"kind\":\"symptom\",\"quote\":\"might have originated from the trunk of the vehicle\"},{\"kind\":\"safety\",\"quote\":\"took her sons out of the vehicle\"},{\"kind\":\"safety\",\"quote\":\"transported the driver and her sons to the emergency room due to smoke inhalation\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize. Need follow rules. Report is about fire, smoke, possible smoke inhalation ER. Component electrical system group electrical_general. Summary one line component symptom conditions. Symptoms: black smoke from rear seats, vehicle caught on fire, possible origin trunk. Conditions? It mentions while driving at undisclosed speed, occupants in rear car seats, fire extinguished by FD. Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. None mentioned. Could maybe \"heat\" due fire? But conditions are predefined environmental/operational conditions; fire/smoke are symptoms not conditions. Do not invent. So conditions empty. Fault codes none. safety_relevant true. missing_info: mileage unknown, date? received date but failure date unknown? The report says failure mileage unknown, date not given. Component given. Symptom given. Conditions? Conditions not given (speed undisclosed, but that's not listed? missing_info can include conditions maybe yes). Need list only facts analysis needs: component, symptom, conditions, mileage, date. Missing: mileage, date, conditions? Since conditions list none, but report lacks conditions. Could include \"conditions\" because driving at undisclosed speed not specific. Also date of incident missing. Component is broad but present. Symptom present. So missing_info [\"mileage\",\"date\",\"conditions\"] maybe. But if conditions aren't necessary? The schema says list only facts analysis needs. For fire, conditions may matter. Include.\n\nClues: verbatim quotes. Need ensure exact substrings. Use quotes from narrative. kind symptom: \"black smoke coming from the rear seats of the vehicle\" exact? Narrative: \"noticed black smoke coming from the rear seats of the vehicle.\" Yes. \"the entire vehicle then caught on fire\" exact. \"The fire was extinguished by the Fire Department\" exact. \"might have originated from the trunk of the vehicle\" exact. Safety: \"transported the driver and her sons to the emergency room due to smoke inhalation\" exact. \"took her sons out of the vehicle\" exact? Safety. \"driver's sons were in car seats in the rear seats\" exact. Need not too many. Include component_group quote: \"ELECTRICAL SYSTEM\" from component field? The report includes component \"ELECTRICAL SYSTEM\" in JSON. Verbatim from report? The \"report\" is the whole JSON. Quote \"ELECTRICAL SYSTEM\" is present. But clue kind component_group quote could be \"ELECTRICAL SYSTEM\". Also condition maybe \"while her granddaughter was driving at an undisclosed speed\" exact? Narrative: \"while her granddaughter was driving at an undisclosed speed\" yes. But condition categories don't include driving. Could clue kind condition? Maybe \"driving\" is condition? The allowed conditions list doesn't include driving. Avoid.\n\nNeed output JSON only no markdown? They say answer with one JSON object and no other text. So final should be pure JSON.\n\nNeed summary: \"Electrical system: black smoke from rear seats while driving, vehicle caught fire, possible trunk origin; occupants evacuated, smoke inhalation ER.\" It says one line component symptom conditions. Conditions maybe \"while driving\". Good.\n\nNeed group: \"electrical_general\" given group. The schema says group \"the electrical/electronic component group, or the given group\". Given group electrical_general. Use that.\n\nsymptoms: [\"black smoke from rear seats\", \"vehicle caught on fire\", \"fire possibly originated from trunk\"]. Plain words.\n\nconditions: [] or maybe [\"while driving\"]? Allowed conditions list includes only cold, moisture, heat, vibration, intermittent, after service, charging. The instructions say conditions: [\"cold\", ...]. But could include other? It says conditions array examples? The schema lists those as possible. Better only allowed values. None. But \"while driving\" isn't in list; don't include. Could include \"heat\" due fire? No, fire is symptom. Use empty.\n\nfault_codes: [].\n\nsafety_relevant true.\n\nmissing_info: [\"mileage\", \"date\", \"conditions\"]? Hmm \"date\" failure date unknown. They gave received_at 2025-06-03, but incident date not given. Mileage null and \"failure mileage was unknown\". Conditions missing because undisclosed speed, no weather etc. Include.\n\nClues:\n- {\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"}\n- {\"kind\":\"symptom\",\"quote\":\"black smoke coming from the rear seats of the vehicle\"}\n- {\"kind\":\"symptom\",\"quote\":\"the entire vehicle then caught on fire\"}\n- {\"kind\":\"symptom\",\"quote\":\"might have originated from the trunk of the vehicle\"}\n- {\"kind\":\"safety\",\"quote\":\"transported the driver and her sons to the emergency room due to smoke inhalation\"}\n- {\"kind\":\"safety\",\"quote\":\"took her sons out of the vehicle\"} maybe redundant. Could include \"driver's sons were in car seats in the rear seats of the vehicle\" as safety? Fine.\nNeed not include too many. Ensure exact quotes. Check narrative exact: \"The driver immediately pulled over to the side of the road, exited the vehicle, and took her sons out of the vehicle.\" Quote \"took her sons out of the vehicle\" exact. Good.\n\"driver's sons were in car seats in the rear seats of the vehicle\" exact? Narrative: \"the driver's sons were in car seats in the rear seats of the vehicle.\" Yes.\n\"transported the driver and her sons to the emergency room due to smoke inhalation\" exact? Narrative: \"The driver's mother transported the driver and her sons to the emergency room due to smoke inhalation.\" Yes.\n\nMaybe include \"The contact stated that the entire vehicle then caught on fire.\" Quote \"the entire vehicle then caught on fire\" exact. Good.\n\nCould mention \"black smoke coming from the rear seats of the vehicle\" exact. Good.\n\nNeed \"summary\" one line. No newline? JSON string can contain. Fine.\n\nPotential issue: \"safety_relevant\" in input true, output true.\n\nNeed no other text. Final JSON.\n\nLet's craft valid JSON. Ensure quotes escaped? No special except apostrophe. JSON double quotes. Good.\n\nNeed \"group\": \"electrical_general\".\n\nLet's final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793527473,
+      "id": "0b26fd825099706ea1d6b151b6a0610a",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1507,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1301,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00057327,
+          "billing_source": "go",
+          "list_cost": 0.00095545,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 334,
+            "output": 1507,
+            "reasoning": 1301
+          }
+        },
+        "prompt_tokens": 718,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2225
+      }
+    },
+    "text": "{\"summary\":\"Electrical system: black smoke from rear seats while driving, vehicle caught fire with possible trunk origin; occupants evacuated and smoke inhalation ER visit.\",\"group\":\"electrical_general\",\"symptoms\":[\"black smoke from rear seats\",\"vehicle caught on fire\",\"fire possibly originated from trunk\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"black smoke coming from the rear seats of the vehicle\"},{\"kind\":\"symptom\",\"quote\":\"the entire vehicle then caught on fire\"},{\"kind\":\"symptom\",\"quote\":\"might have originated from the trunk of the vehicle\"},{\"kind\":\"safety\",\"quote\":\"took her sons out of the vehicle\"},{\"kind\":\"safety\",\"quote\":\"transported the driver and her sons to the emergency room due to smoke inhalation\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00057327,
+      "cached_tokens": 384,
+      "cost_usd": 0.00095545,
+      "input_tokens": 718,
+      "list_cost_usd": 0.00095545,
+      "output_tokens": 1507,
+      "reasoning_tokens": 1301
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "302a87c7ccca15503f4befc57fb2436b47b6e9d54667ac4f37dc4e455d342841",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10568,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system: sudden unintended acceleration with braking override and erratic RPM at a stop light, resulting in collision.\",\"group\":\"electrical_general\",\"symptoms\":[\"sudden unintended acceleration\",\"loss of control\",\"collision\",\"erratic RPM behavior\",\"braking system override\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"sudden unintended acceleration\"},{\"kind\":\"symptom\",\"quote\":\"accelerated of its own accord\"},{\"kind\":\"symptom\",\"quote\":\"erratic RPM behavior\"},{\"kind\":\"condition\",\"quote\":\"I was at a stop light preparing to turn right\"},{\"kind\":\"safety\",\"quote\":\"I had lost control over the vehicle\"},{\"kind\":\"safety\",\"quote\":\"crashing into the vehicle in front of me\"},{\"kind\":\"other\",\"quote\":\"override the braking system\"}]}",
+            "reasoning_content": "We need answer one JSON only. Need normalize report. Must not invent. Need parse.\n\nComponent: ELECTRICAL SYSTEM, group electrical_general. Summary one line component symptom conditions. Symptoms: sudden unintended acceleration, loss of control, collision, erratic RPM behavior, braking override? Need plain words. Conditions: report mentions at stop light preparing to turn right, foot on brake, vehicle in drive, put into neutral. Conditions allowed list: cold, moisture, heat, vibration, intermittent, after service, charging. None apply? \"at stop light\" not in list. Could include \"intermittent\"? Erratic RPM? But rule conditions array from listed? It says conditions [\"cold\",\"moisture\",\"heat\",\"vibration\",\"intermittent\",\"after service\",\"charging\"]. We can include \"intermittent\" if erratic? Hmm report says sudden unintended acceleration, erratic RPM behavior. Intermittent perhaps yes? But be careful not invent. Conditions field should list conditions from report matching allowed. It occurred at stop light, but not in allowed. Maybe empty. But \"intermittent\" is not explicitly stated. Avoid.\n\nFault codes: none. safety_relevant true (crash, loss control). missing_info: mileage null, date? received_at date but not incident date. missing_info list only facts analysis needs: mileage, date, conditions? Component and symptom present. Mileage missing. Date missing (incident date). Conditions? maybe present enough? We can list mileage, date. Maybe conditions? It gives at stop light; no weather. But allowed missing_info includes conditions. Analysis might need conditions like cold/moisture etc. But report has some conditions. Hmm list \"mileage\", \"date\". Could include \"conditions\" because no environmental conditions? But instructions: only facts analysis needs: component, symptom, conditions, mileage, date. Since conditions field empty, missing_info could include \"conditions\". However report gives operational conditions. Maybe not.\n\nClues: need verbatim quotes. Include symptom quote \"sudden unintended acceleration\" exact? Narrative: \"My car experienced sudden unintended acceleration.\" Quote can be \"sudden unintended acceleration\". It is verbatim substring. Condition? \"I was at a stop light preparing to turn right\" maybe kind condition but not in allowed? Clue kind condition can be any? It says kind symptom|condition|fault_code|component_group|safety|other. Condition quote can be at stop light? It's a condition but not in conditions array? We can include. Safety quote \"crashing into the vehicle in front of me\" or \"I had lost control over the vehicle\". Component group quote \"ELECTRICAL SYSTEM\" from component field? The report includes component field. Quote verbatim from report? The \"report\" includes JSON fields. We can quote \"ELECTRICAL SYSTEM\". Symptom quote \"accelerated of its own accord\" exact? Narrative says \"my car accelerated of its own accord crashing into the vehicle in front of me.\" Good. Another symptom \"erratic RPM behavior\". Quote exact \"erratic RPM behavior\". Safety \"crashing into the vehicle in front of me\". Loss control quote \"I had lost control over the vehicle\". Need maybe \"collided into the vehicle a second time\". Avoid too many.\n\nSummary: \"Electrical system: sudden unintended acceleration with braking override and erratic RPM at a stop light, resulting in collision.\" Need one line. Conditions includes \"at stop light\" maybe. Good.\n\nNeed JSON. No markdown? User says answer one JSON object and no other text. We can output raw JSON. Ensure valid. Quotes exact. Check quotes:\n- \"ELECTRICAL SYSTEM\" in component value yes exact.\n- \"sudden unintended acceleration\" appears exact in narrative? \"My car experienced sudden unintended acceleration.\" yes substring.\n- \"accelerated of its own accord\" appears? Narrative: \"when my car accelerated of its own accord crashing\" yes exact substring.\n- \"I had lost control over the vehicle\" appears exact? Narrative: \"but I had lost control over the vehicle.\" yes.\n- \"crashing into the vehicle in front of me\" exact? Narrative: \"accelerated of its own accord crashing into the vehicle in front of me.\" yes.\n- \"erratic RPM behavior\" exact? Narrative: \"However, the erratic RPM behavior and the vehicle's continued acceleration while braking\" yes.\n- \"I was at a stop light preparing to turn right\" exact? Narrative: \"I was at a stop light preparing to turn right when my car accelerated\" yes.\nMaybe \"braking system\" quote? \"override the braking system\" exact? \"override the braking system enough\" yes.\n\nFault codes empty. missing_info [\"mileage\",\"date\"] maybe also \"conditions\"? I'd include mileage and date. Since received_at is date report received, not incident date. Maybe \"date\" means incident date. Missing.\n\nsafety_relevant true.\n\nNeed group maybe \"electrical_general\" given group. Summary one line.\n\nNeed possibly symptoms array include \"unintended acceleration\", \"loss of control\", \"collision\", \"erratic RPM\", \"braking override\". Plain words. OK.\n\nConditions array: Allowed list only. Since no cold etc. Empty. But clue condition \"at stop light...\" in clues despite conditions empty? That might be inconsistent. Clue kind condition can include any condition. But conditions array should list conditions from allowed. Hmm if we include condition clue, maybe conditions array should include? It won't because not in allowed. But clue kind condition is okay? Maybe not. To avoid inconsistency, maybe use kind \"other\" for stop light? But it's condition. The schema kind condition. The conditions array is standardized; clue condition can quote any condition. Fine.\n\nNeed no action suggestions. Good.\n\nFinal raw JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529524,
+      "id": "6233ff15e76491d1f76b51da32745cff",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1409,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1195,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00055383,
+          "billing_source": "go",
+          "list_cost": 0.00092305,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 510,
+            "output": 1409,
+            "reasoning": 1195
+          }
+        },
+        "prompt_tokens": 894,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2303
+      }
+    },
+    "text": "{\"summary\":\"Electrical system: sudden unintended acceleration with braking override and erratic RPM at a stop light, resulting in collision.\",\"group\":\"electrical_general\",\"symptoms\":[\"sudden unintended acceleration\",\"loss of control\",\"collision\",\"erratic RPM behavior\",\"braking system override\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"sudden unintended acceleration\"},{\"kind\":\"symptom\",\"quote\":\"accelerated of its own accord\"},{\"kind\":\"symptom\",\"quote\":\"erratic RPM behavior\"},{\"kind\":\"condition\",\"quote\":\"I was at a stop light preparing to turn right\"},{\"kind\":\"safety\",\"quote\":\"I had lost control over the vehicle\"},{\"kind\":\"safety\",\"quote\":\"crashing into the vehicle in front of me\"},{\"kind\":\"other\",\"quote\":\"override the braking system\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00055383,
+      "cached_tokens": 384,
+      "cost_usd": 0.00092305,
+      "input_tokens": 894,
+      "list_cost_usd": 0.00092305,
+      "output_tokens": 1409,
+      "reasoning_tokens": 1195
+    }
+  }
+}

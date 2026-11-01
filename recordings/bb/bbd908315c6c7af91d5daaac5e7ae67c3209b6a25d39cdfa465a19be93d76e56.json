@@ -1,0 +1,66 @@
+{
+  "key": "bbd908315c6c7af91d5daaac5e7ae67c3209b6a25d39cdfa465a19be93d76e56",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11729,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Test the charging/electrical supply path with an electrical load test because multiple system malfunctions appeared after restart with a low starting battery and a jump start.\",\"rationale\":\"The narrative reports Pre-Collision, Hybrid and AWD system malfunctions suddenly on restart after a low starting battery was jump-started, and the dealer attributed the CPU failure to the jump start. This matches the rulebook charging condition, so an electrical load test is the targeted test.\",\"group\":\"adas\",\"symptoms\":[\"Pre-Collision System Malfunction\",\"Hybrid System Malfunction\",\"AWD System Malfunction\"],\"conditions\":[\"charging\",\"jump start\",\"starting-battery was low\",\"when restarting the vehicle\"],\"fault_codes\":[],\"safety_relevant\":false,\"targeted\":true,\"test_name\":\"Electrical load test\",\"clues\":[{\"kind\":\"symptom\",\"quote\":\"Pre-Collision System Malfunction\"},{\"kind\":\"symptom\",\"quote\":\"Hybrid System Malfunction\"},{\"kind\":\"symptom\",\"quote\":\"AWD System Malfunction\"},{\"kind\":\"condition\",\"quote\":\"when restarting the vehicle\"},{\"kind\":\"condition\",\"quote\":\"jump start\"},{\"kind\":\"condition\",\"quote\":\"starting-battery was low\"},{\"kind\":\"other\",\"quote\":\"Toyota of Downtown LA Service tells me that the CPU on my relative new Sienna 2022 was fried from jump start\"}]}",
+            "reasoning_content": "We need to produce JSON object. Need use only facts. The rulebook matched charging condition -> Electrical load test. Targeted true? Rulebook entry names test \"Electrical load test\". Conditions match charging. But narrative is about jump start, low battery, alleged CPU fried. The component group is adas. Need summary, rationale, group, symptoms, conditions, fault_codes, safety_relevant false, targeted true, test_name \"Electrical load test\", clues with verbatim quotes from case narrative. Must ensure quotes exact substrings from narrative.\n\nNarrative: \"Pre-Collision System Malfunction, Hybrid System Malfunction, AWD System Malfunction suddenly when restarting the vehicle.  Towed to Toyota of Downtown LA dealership.  Toyota of Downtown LA Service tells me that the CPU on my relative new Sienna 2022 was fried from jump start when Sienna starting-battery was low.  It was done by a AAA professional, I doubt that is the reason for the fried CPU.  I believe Toyota engineers would not design/allow the CPU vulnerable to being fried from a jump start.  This is a horrific design flaw if it is this way.  This happens now, just 6 months after the 3 year warranty coverage.  Toyota of Downtown LA Service is telling me it is going to cost me $2900 to replace this CPU.  I find this unacceptable.\"\n\nNeed clues kind and quote. Could include symptom quotes \"Pre-Collision System Malfunction\", \"Hybrid System Malfunction\", \"AWD System Malfunction\", condition \"when restarting the vehicle\", \"jump start\", \"starting-battery was low\", component_group maybe \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\" from case component? Wait narrative doesn't contain that exact string? It has \"Pre-Collision System Malfunction\". The component field is not narrative? Instruction says quotes copied verbatim from case narrative. So cannot use component field \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\" unless narrative contains it. It doesn't. So for component_group clue, maybe omit or use narrative phrase? The clue kind component_group quote should be from narrative. Could use \"Pre-Collision System Malfunction\" as symptom. Need no component_group clue if not verbatim. But maybe \"group\" field anyway. Could have \"other\" quote about CPU. Need cite no IDs.\n\nNeed rationale: The reported condition is a low starting battery and jump start, which matched the rulebook's charging condition; charging/high-current loads stress supply path, connectors and protection circuits. Test electrical load test. Targeted true. Need maybe mention sudden multiple system malfunctions on restart. Safety false because no risk to people shown. The case flagged safety false. Could there be risk? Jump start, CPU fried, multiple malfunctions, but no injury/risk. So false.\n\nNeed ensure JSON only. Summary one line. \"Test the charging/electrical supply path with an electrical load test because multiple system malfunctions appeared after restart with a low starting battery and a jump start.\" Good.\n\nNeed symptoms array: exactly from extraction maybe \"Pre-Collision System Malfunction\", \"Hybrid System Malfunction\", \"AWD System Malfunction\". Conditions: \"charging\"? Could use conditions [\"charging\", \"jump start\", \"low starting battery\", \"restart\"]? The schema conditions likely array. Use extraction conditions and narrative. Maybe \"charging\", \"jump start\", \"starting-battery was low\", \"when restarting the vehicle\". But conditions should be strings. Fine.\n\nFault codes empty.\n\nTargeted true.\n\nclues list include:\n- symptom quote \"Pre-Collision System Malfunction\"\n- symptom quote \"Hybrid System Malfunction\"\n- symptom quote \"AWD System Malfunction\"\n- condition quote \"when restarting the vehicle\"\n- condition quote \"jump start\"\n- condition quote \"starting-battery was low\"\n- other quote \"CPU on my relative new Sienna 2022 was fried from jump start\" (verbatim? It appears \"the CPU on my relative new Sienna 2022 was fried from jump start\". Exact substring yes). Could include full \"Toyota of Downtown LA Service tells me that the CPU on my relative new Sienna 2022 was fried from jump start\" yes exact substring? Narrative: \"Toyota of Downtown LA Service tells me that the CPU on my relative new Sienna 2022 was fried from jump start when Sienna starting-battery was low.\" Yes.\n- Maybe component_group quote? None. Could use \"Pre-Collision System Malfunction\" but already symptom. No need.\n\nNeed \"group\": \"adas\". Good.\n\nPotential issue: rulebook says targeted load test when reported conditions match rulebook entry. Yes. \"test_name\": \"Electrical load test\". Good.\n\nNeed no additional text. Final must be JSON object only.\n\nEnsure valid JSON no markdown. Use double quotes. Need quote with \"starting-battery\" includes hyphen. Good.\n\nLet's craft concise rationale. Rationale mention evidence. \"The narrative reports Pre-Collision, Hybrid and AWD malfunctions on restart after a low starting battery was jump-started, and the dealer attributed the CPU failure to the jump start. This matches the rulebook charging condition, so an electrical load test is the targeted test.\" Good.\n\nSafety_relevant false. targeted true.\n\nClues quote exact: \"Pre-Collision System Malfunction\" appears with comma after? Narrative: \"Pre-Collision System Malfunction, Hybrid System Malfunction, AWD System Malfunction suddenly...\" substring yes. \"Hybrid System Malfunction\" yes. \"AWD System Malfunction\" yes. \"when restarting the vehicle\" yes. \"jump start\" appears multiple times; exact substring yes. \"starting-battery was low\" appears \"when Sienna starting-battery was low.\" substring yes. \"Toyota of Downtown LA Service tells me that the CPU on my relative new Sienna 2022 was fried from jump start\" exact? Narrative has two spaces after period? It has \"dealership.  Toyota...\" It says \"Toyota of Downtown LA Service tells me that the CPU on my relative new Sienna 2022 was fried from jump start when Sienna starting-battery was low.\" Yes exact. Good.\n\nMaybe include \"other\" quote \"fried from jump start\" but full is fine. Need kind \"other\".\n\nShould we include \"condition\" quote \"starting-battery was low\" not \"low starting battery\"? Use exact. Good.\n\nNeed \"conditions\" array maybe [\"charging\", \"jump start\", \"starting-battery was low\", \"when restarting the vehicle\"]. Fine.\n\nSummary one line. Good.\n\nFinal.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530250,
+      "id": "0a7797a4a0302aebb02b1b5284327b96",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1716,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1413,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00076266,
+          "billing_source": "go",
+          "list_cost": 0.0012711,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 1610,
+            "output": 1716,
+            "reasoning": 1413
+          }
+        },
+        "prompt_tokens": 1610,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 3326
+      }
+    },
+    "text": "{\"summary\":\"Test the charging/electrical supply path with an electrical load test because multiple system malfunctions appeared after restart with a low starting battery and a jump start.\",\"rationale\":\"The narrative reports Pre-Collision, Hybrid and AWD system malfunctions suddenly on restart after a low starting battery was jump-started, and the dealer attributed the CPU failure to the jump start. This matches the rulebook charging condition, so an electrical load test is the targeted test.\",\"group\":\"adas\",\"symptoms\":[\"Pre-Collision System Malfunction\",\"Hybrid System Malfunction\",\"AWD System Malfunction\"],\"conditions\":[\"charging\",\"jump start\",\"starting-battery was low\",\"when restarting the vehicle\"],\"fault_codes\":[],\"safety_relevant\":false,\"targeted\":true,\"test_name\":\"Electrical load test\",\"clues\":[{\"kind\":\"symptom\",\"quote\":\"Pre-Collision System Malfunction\"},{\"kind\":\"symptom\",\"quote\":\"Hybrid System Malfunction\"},{\"kind\":\"symptom\",\"quote\":\"AWD System Malfunction\"},{\"kind\":\"condition\",\"quote\":\"when restarting the vehicle\"},{\"kind\":\"condition\",\"quote\":\"jump start\"},{\"kind\":\"condition\",\"quote\":\"starting-battery was low\"},{\"kind\":\"other\",\"quote\":\"Toyota of Downtown LA Service tells me that the CPU on my relative new Sienna 2022 was fried from jump start\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00076266,
+      "cached_tokens": 0,
+      "cost_usd": 0.0012711,
+      "input_tokens": 1610,
+      "list_cost_usd": 0.0012711,
+      "output_tokens": 1716,
+      "reasoning_tokens": 1413
+    }
+  }
+}

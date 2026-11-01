@@ -1,0 +1,66 @@
+{
+  "key": "d6e49e8e1573f32d604f0b884615b8dba506928903e16df91e25bf81d81c5882",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 5867,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\": \"Run a long-run power cycling test on the ADAS/infotainment system because multiple ADAS failure messages and intermittent static occur while driving.\", \"rationale\": \"The case reports Adaptive Cruise Control Failure, Lane Keep Assist Failure, and Forward Collision Avoidance Failure messages plus an intermittent loud static sound from the infotainment system. The reported condition is intermittent, which matches the rulebook entry for a long-run power-cycling test that reproduces faults appearing after repeated wake and sleep cycles.\", \"group\": \"adas\", \"symptoms\": [\"Adaptive Cruise Control Failure message displayed\", \"Lane Keep Assist Failure message displayed\", \"Forward Collision Avoidance Failure message displayed\", \"infotainment system made an abnormal, loud, startling, static sound intermittently while driving\"], \"conditions\": [\"intermittent\"], \"fault_codes\": [], \"safety_relevant\": false, \"targeted\": true, \"test_name\": \"Long-run power cycling test\", \"clues\": [{\"kind\": \"symptom\", \"quote\": \"Adaptive Cruise Control Failure\"}, {\"kind\": \"symptom\", \"quote\": \"Lane Keep Assist Failure\"}, {\"kind\": \"symptom\", \"quote\": \"Forward Collision Avoidance Failure\"}, {\"kind\": \"symptom\", \"quote\": \"abnormal, loud, startling, and static sound intermittently while driving\"}, {\"kind\": \"condition\", \"quote\": \"intermittently while driving\"}]}",
+            "reasoning_content": "We need answer JSON only. Need analyze. Case: 2016 Accord, ADAS warnings ACC/LKAS/FCA failures, infotainment static intermittent. Rulebook matched intermittent -> targeted Long-run power cycling test. Safety? Narrative no risk to people? Static startling, warnings but no direct safety risk. Extraction safety false. Set safety_relevant false. targeted true. test_name exact \"Long-run power cycling test\". Summary one line. Rationale condition and evidence. Group adas. Symptoms list, conditions [\"intermittent\"], fault_codes []. clues with quotes verbatim from narrative. Need ensure quotes exact spans present in narrative. Possible quotes: \"Adaptive Cruise Control Failure\", \"Lane Keep Assist Failure\", \"Forward Collision Avoidance Failure\", \"abnormal, loud, startling, and static sound intermittently while driving\", \"intermittently while driving\". Component group quote? Narrative doesn't contain \"FORWARD COLLISION AVOIDANCE\" in narrative? It does? Narrative: \"The contact owns a 2016 Honda Accord...\" Does not include component uppercase. The case component field has it but rules say quote copied from case narrative. So don't include component_group quote unless appears. Could include \"Forward Collision Avoidance Failure\" as symptom/other? Kind symptom. Could include \"intermittently while driving\" condition. Need no ids? Can cite similar cases? Not necessary. Do not cite ids absent tool results? We can avoid.\n\nNeed JSON object no extra. Need maybe \"summary\": \"Run a long-run power cycling test on the ADAS/infotainment system because multiple ADAS failure messages and intermittent static occur.\" rationale mention matched rulebook intermittent. targeted true. test_name. clues array. Ensure every quote verbatim. Let's craft valid JSON. No markdown.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530181,
+      "id": "9a12b66e64b797eaec558c1f4726f6cf",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 684,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 373,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00038205,
+          "billing_source": "go",
+          "list_cost": 0.00063675,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 1509,
+            "output": 684,
+            "reasoning": 373
+          }
+        },
+        "prompt_tokens": 1509,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 2193
+      }
+    },
+    "text": "{\"summary\": \"Run a long-run power cycling test on the ADAS/infotainment system because multiple ADAS failure messages and intermittent static occur while driving.\", \"rationale\": \"The case reports Adaptive Cruise Control Failure, Lane Keep Assist Failure, and Forward Collision Avoidance Failure messages plus an intermittent loud static sound from the infotainment system. The reported condition is intermittent, which matches the rulebook entry for a long-run power-cycling test that reproduces faults appearing after repeated wake and sleep cycles.\", \"group\": \"adas\", \"symptoms\": [\"Adaptive Cruise Control Failure message displayed\", \"Lane Keep Assist Failure message displayed\", \"Forward Collision Avoidance Failure message displayed\", \"infotainment system made an abnormal, loud, startling, static sound intermittently while driving\"], \"conditions\": [\"intermittent\"], \"fault_codes\": [], \"safety_relevant\": false, \"targeted\": true, \"test_name\": \"Long-run power cycling test\", \"clues\": [{\"kind\": \"symptom\", \"quote\": \"Adaptive Cruise Control Failure\"}, {\"kind\": \"symptom\", \"quote\": \"Lane Keep Assist Failure\"}, {\"kind\": \"symptom\", \"quote\": \"Forward Collision Avoidance Failure\"}, {\"kind\": \"symptom\", \"quote\": \"abnormal, loud, startling, and static sound intermittently while driving\"}, {\"kind\": \"condition\", \"quote\": \"intermittently while driving\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00038205,
+      "cached_tokens": 0,
+      "cost_usd": 0.00063675,
+      "input_tokens": 1509,
+      "list_cost_usd": 0.00063675,
+      "output_tokens": 684,
+      "reasoning_tokens": 373
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "0b9a18ce9054c0c200a4118c5313d1f991ebc3f7258ed13a48fe16b6f5acb444",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10715,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2020 Honda Odyssey ADAS/forward collision avoidance: multiple camera-based safety system warnings and deactivation after a hotter day, intermittent over past year, now persistent\",\"group\":\"adas\",\"symptoms\":[\"Adaptive cruise control problem\",\"Collision mitigation system problem\",\"Lane keeping assist problem\",\"Road departure mitigation system problem\",\"Auto high beam problem\",\"Advanced safety features using front camera and sensors are deactivated\"],\"conditions\":[\"heat\",\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"Adaptive cruise control problem\"},{\"kind\":\"symptom\",\"quote\":\"Collision mitigation system problem\"},{\"kind\":\"symptom\",\"quote\":\"Lane keeping assist problem\"},{\"kind\":\"symptom\",\"quote\":\"Road departure mitigation system problem\"},{\"kind\":\"symptom\",\"quote\":\"Auto high beam problem\"},{\"kind\":\"symptom\",\"quote\":\"All of the advanced safety features which utilize the front camera and sensors are deactivated.\"},{\"kind\":\"condition\",\"quote\":\"Today was 15 degrees hotter than yesterday.\"},{\"kind\":\"condition\",\"quote\":\"This specific issue has happened 5 times over the past year.\"},{\"kind\":\"safety\",\"quote\":\"All of the advanced safety features which utilize the front camera and sensors are deactivated.\"},{\"kind\":\"component_group\",\"quote\":\"advanced safety features\"}]}",
+            "reasoning_content": "We need to produce JSON per schema. Need parse report. Component: forward collision avoidance automatic emergency braking, group adas. Symptoms: multiple warnings: adaptive cruise control problem, collision mitigation system problem, lane keeping assist problem, road departure mitigation system problem, auto high beam problem, advanced safety features deactivated. Conditions: heat (15 degrees hotter), parked for 1 day, intermittent (happened 5 times over past year), after restart warnings remain. Fault codes none. Safety relevant? It mentions safety features deactivated; any crash/fire/injury/loss of control/stall? It says advanced safety features deactivated, but is that safety_relevant? Prompt: set safety_relevant when report mentions crash, fire, smoke, injury, loss of control, a stall at speed or another risk to people. Deactivation of AEB/ADAS is a risk to people? It is safety system failure. But explicit? \"All of the advanced safety features which utilize the front camera and sensors are deactivated.\" This is a safety risk. The given safety_relevant false in input but we should assess. I think true because safety features deactivated = risk to people. Need missing_info: mileage null; date? received_at 2025-05-08 but no event date; conditions? They gave heat. component present, symptom present. Missing mileage and date. Maybe missing_info [\"mileage\",\"date\"]. Clues with verbatim quotes. Need ensure quotes exact substrings. Let's inspect narrative exact:\n\n\"Turned on the car.  It was parked for 1 day after the last driving event with no issues. Today was 15 degrees hotter than yesterday.  The following errors popped up on the dashboard: Adaptive cruise control problem  Collision mitigation system problem  Lane keeping assist problem  Road departure mitigation system problem  Auto high beam problem   All of the advanced safety features which utilize the front camera and sensors are deactivated.  Car was turned off and restarted multiple times, windshield cleaned, and car cooled down, but the warnings remain each time.  This specific issue has happened 5 times over the past year.  The dealer was never able to replicate the issue as it would go away as soon as the car was restarted.  This time, the warning lights would not go away.\"\n\nQuotes can be exact spans. For symptoms: \"Adaptive cruise control problem\", \"Collision mitigation system problem\", \"Lane keeping assist problem\", \"Road departure mitigation system problem\", \"Auto high beam problem\", \"All of the advanced safety features which utilize the front camera and sensors are deactivated.\" Need note multiple spaces? The narrative has double spaces between phrases. For each quote, if extracted as substring exactly? The phrase \"Adaptive cruise control problem\" appears in \"dashboard: Adaptive cruise control problem  Collision...\" yes substring. \"Collision mitigation system problem\" substring. \"All of the advanced safety features which utilize the front camera and sensors are deactivated.\" includes period? In narrative: \"Auto high beam problem   All of the advanced safety features which utilize the front camera and sensors are deactivated.  Car...\" So substring with period exact yes.\n\nConditions: \"Today was 15 degrees hotter than yesterday.\" heat. \"parked for 1 day after the last driving event with no issues\" maybe not condition. \"Car was turned off and restarted multiple times\" after service? no. \"happened 5 times over the past year\" intermittent. \"car cooled down\" heat. Quotes: \"Today was 15 degrees hotter than yesterday.\" and \"This specific issue has happened 5 times over the past year.\" Maybe \"windshield cleaned\" no. Condition list should include \"heat\", \"intermittent\". Also \"after service\"? no. \"charging\"? no. Could include \"parked\"? Not in allowed conditions list. The schema conditions examples include cold, moisture, heat, vibration, intermittent, after service, charging. Use heat and intermittent.\n\nFault codes none. Clues: symptom and condition, component_group maybe \"adas\"? Need quote for component group? Could use \"All of the advanced safety features which utilize the front camera and sensors are deactivated.\" kind symptom or component_group? We can include clue kind component_group quote \"advanced safety features\" but must be exact substring. \"advanced safety features\" appears. Safety clue: quote \"All of the advanced safety features which utilize the front camera and sensors are deactivated.\" kind safety. But same quote can be symptom and safety? Allowed; but maybe avoid duplicate? We can include.\n\nSummary one line: \"2020 Honda Odyssey ADAS/forward collision avoidance: multiple camera-based safety system warnings and deactivation after hot day, intermittent over past year, now persistent.\" Need component, symptom, conditions. Good.\n\nGroup \"adas\" given.\n\nNeed answer only JSON. Ensure valid JSON. No markdown? User says answer with one JSON object and no other text. So final just JSON.\n\nNeed decide safety_relevant true. Let's make true.\n\nMissing_info: mileage, date. Maybe event date? The report received date but no incident date. Include \"date\". Conditions present, component present, symptom present. Mileage missing.\n\nClues array. Need every quote verbatim. Let's craft:\n\n{\"kind\":\"symptom\",\"quote\":\"Adaptive cruise control problem\"}\n...\n{\"kind\":\"symptom\",\"quote\":\"All of the advanced safety features which utilize the front camera and sensors are deactivated.\"}\n{\"kind\":\"condition\",\"quote\":\"Today was 15 degrees hotter than yesterday.\"}\n{\"kind\":\"condition\",\"quote\":\"This specific issue has happened 5 times over the past year.\"}\n{\"kind\":\"safety\",\"quote\":\"All of the advanced safety features which utilize the front camera and sensors are deactivated.\"}\n{\"kind\":\"component_group\",\"quote\":\"advanced safety features\"} maybe.\n\nNeed be careful quote \"advanced safety features\" appears in \"All of the advanced safety features which...\" yes. Good.\n\nCould include \"front camera and sensors\" component? not needed.\n\nSummary should mention \"2020 Honda Odyssey\" maybe facts from report. It includes make/model/year. Okay.\n\nNeed no invalid extra. Ensure \"safety_relevant\": true.\n\nLet's final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793526814,
+      "id": "93373bae25ddcb25b8b8a00ec4ac3a01",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1578,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1279,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00059343,
+          "billing_source": "go",
+          "list_cost": 0.00098905,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 274,
+            "output": 1578,
+            "reasoning": 1279
+          }
+        },
+        "prompt_tokens": 658,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2236
+      }
+    },
+    "text": "{\"summary\":\"2020 Honda Odyssey ADAS/forward collision avoidance: multiple camera-based safety system warnings and deactivation after a hotter day, intermittent over past year, now persistent\",\"group\":\"adas\",\"symptoms\":[\"Adaptive cruise control problem\",\"Collision mitigation system problem\",\"Lane keeping assist problem\",\"Road departure mitigation system problem\",\"Auto high beam problem\",\"Advanced safety features using front camera and sensors are deactivated\"],\"conditions\":[\"heat\",\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"Adaptive cruise control problem\"},{\"kind\":\"symptom\",\"quote\":\"Collision mitigation system problem\"},{\"kind\":\"symptom\",\"quote\":\"Lane keeping assist problem\"},{\"kind\":\"symptom\",\"quote\":\"Road departure mitigation system problem\"},{\"kind\":\"symptom\",\"quote\":\"Auto high beam problem\"},{\"kind\":\"symptom\",\"quote\":\"All of the advanced safety features which utilize the front camera and sensors are deactivated.\"},{\"kind\":\"condition\",\"quote\":\"Today was 15 degrees hotter than yesterday.\"},{\"kind\":\"condition\",\"quote\":\"This specific issue has happened 5 times over the past year.\"},{\"kind\":\"safety\",\"quote\":\"All of the advanced safety features which utilize the front camera and sensors are deactivated.\"},{\"kind\":\"component_group\",\"quote\":\"advanced safety features\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00059343,
+      "cached_tokens": 384,
+      "cost_usd": 0.00098905,
+      "input_tokens": 658,
+      "list_cost_usd": 0.00098905,
+      "output_tokens": 1578,
+      "reasoning_tokens": 1279
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "de987a8533b1e7f22825a971cfddde6fcf79740de689b9447fe573782a48a238",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 17643,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system battery failure causing loss of power steering and safety functions while driving, with risk of accident.\",\"group\":\"electrical_general\",\"symptoms\":[\"battery unexpectedly failed\",\"complete loss of power steering\",\"loss of all safety functions\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"safety\",\"quote\":\"critical safety defect\"},{\"kind\":\"safety\",\"quote\":\"severe risk to my pregnant wife while she was driving\"},{\"kind\":\"symptom\",\"quote\":\"battery unexpectedly failed\"},{\"kind\":\"symptom\",\"quote\":\"complete loss of power steering and all safety functions\"},{\"kind\":\"condition\",\"quote\":\"while she was driving\"},{\"kind\":\"safety\",\"quote\":\"hazardous situation in the middle of the roadway\"},{\"kind\":\"safety\",\"quote\":\"could have led to a serious accident\"},{\"kind\":\"safety\",\"quote\":\"risk of injury or fatality\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize. Need extract verbatim quotes. Report: component ELECTRICAL SYSTEM group electrical_general. Narrative mentions battery unexpectedly failed, complete loss of power steering and all safety functions, hazardous situation middle roadway could have led serious accident, pregnant wife driving. Safety relevant true due loss of power steering / risk accident. Symptoms: battery unexpectedly failed; complete loss of power steering; loss of all safety functions. Conditions? Driving; middle of roadway; maybe not cold/moisture/heat/vibration/intermittent/after service/charging. Conditions list allowed values: cold, moisture, heat, vibration, intermittent, after service, charging. Maybe \"while she was driving\" isn't in list. Could include \"intermittent\"? Not stated. \"unexpectedly failed\" could be intermittent? No. Conditions empty? The schema conditions array from allowed list. We can leave []. Fault codes none. missing_info: mileage (null), date? Received date present but incident date missing? The analysis needs date maybe date of incident absent. Component present symptom present conditions? Conditions not explicit? We might list mileage, date. Maybe conditions? Report has driving condition but not environmental. missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Component present, symptom present, conditions maybe missing? It says \"while driving\" but no weather/temp. Could list \"mileage\", \"date\". Also \"conditions\" perhaps missing environmental conditions. But avoid over. Safety true. Clues with verbatim quotes. Need quote exact spans from narrative. Ensure character for character. Use quotes:\n- \"battery unexpectedly failed\"\n- \"complete loss of power steering and all safety functions\"\n- \"hazardous situation in the middle of the roadway\"\n- \"could have led to a serious accident\"\n- \"while she was driving\"\n- maybe \"critical safety defect\" for safety.\nNeed kind for each. symptom for battery failed, power steering loss. condition for while driving? kind condition quote \"while she was driving\". safety for \"critical safety defect\" or \"serious accident\". component_group? Maybe \"ELECTRICAL SYSTEM\" from component field? The report has component field \"ELECTRICAL SYSTEM\"; quote verbatim from report? The report includes JSON. We can quote \"ELECTRICAL SYSTEM\" yes. But clues quote copied from report. Good.\n\nSummary: one line: Electrical system battery failure causing loss of power steering and safety functions while driving; safety risk. Keep concise.\n\nNeed JSON only no markdown? User says one JSON object and no other text. We can output raw JSON. Ensure valid JSON.\n\nNeed conditions array maybe [\"driving\"]? But allowed examples not strict? The prompt says conditions: [\"cold\", ...] examples. \"driving\" not in allowed list but could be condition. Rules say conditions list. It doesn't explicitly restrict to listed. But likely use list values. Maybe include \"intermittent\"? No. \"after service\"? No. \"charging\"? Battery failed but not charging. Use [] or [\"driving\"]? Since conditions in schema examples are canonical. I'd set conditions: [] because none of canonical listed. But narrative has driving; maybe condition. The schema says conditions [\"cold\", ...] maybe allowed values. Hmm.\n\nNeed missing_info: mileage, date. Date received_at present, but incident date absent. Also maybe conditions missing. The report says while driving; no weather. I think include \"mileage\", \"date\". Maybe \"conditions\" too? It asks only facts analysis needs: component, symptom, conditions, mileage, date. Conditions might be present (driving). But not environmental. However if missing info list includes conditions, could be useful. But if we include conditions in clues, not missing. Hmm.\n\nNeed \"group\": \"electrical_general\" given. Or \"ELECTRICAL SYSTEM\"? The prompt says \"the electrical/electronic component group, or the given group\". Given group is electrical_general. Use \"electrical_general\". Summary mention component.\n\nNeed safety_relevant true even input false? Yes set based on report. Do not invent facts. It mentions risk to pregnant wife, loss of power steering, hazardous, serious accident. Safety true.\n\nNeed quotes exact. Let's copy carefully from narrative:\n\"I am filing a formal complaint regarding a critical safety defect in my 2019 Ram eTorque, which posed a severe risk to my pregnant wife while she was driving. The vehicle’s battery unexpectedly failed, resulting in a complete loss of power steering and all safety functions, creating a hazardous situation in the middle of the roadway that could have led to a serious accident. This defect is not isolated. My truck has been at the repair shop for over two months, as the necessary replacement part is on backorder due to over 3,000 reported vehicles affected by the same issue. The widespread nature of this defect and the unavailability of parts amplify the risk of injury or fatality to drivers and passengers. I urge the Safety Advisory Board to investigate this defect urgently, focusing on the significant safety implications and the high number of affected vehicles. Immediate action is needed to prevent potential harm.\"\n\nQuotes:\n\"critical safety defect\" exact.\n\"severe risk to my pregnant wife while she was driving\" exact.\n\"The vehicle’s battery unexpectedly failed\" includes curly apostrophe. If quote include \"battery unexpectedly failed\" no apostrophe issue.\n\"complete loss of power steering and all safety functions\" exact.\n\"hazardous situation in the middle of the roadway\" exact.\n\"could have led to a serious accident\" exact.\n\"risk of injury or fatality\" exact.\n\"while she was driving\" exact.\n\nNeed kind \"condition\" quote \"while she was driving\" maybe. \"symptom\" quote battery. \"symptom\" quote loss power steering. \"safety\" quote critical safety defect. \"safety\" serious accident. \"other\" maybe \"pregnant wife\" not needed.\n\nNeed fault_codes [].\nNeed symptoms array maybe [\"battery unexpectedly failed\", \"complete loss of power steering\", \"loss of all safety functions\"]. Plain words. Conditions maybe [\"driving\"]? But allowed? Could put [\"driving\"] as plain condition; but schema examples include not driving. Hmm. Maybe conditions [\"while driving\"] not canonical. The prompt says conditions: [\"cold\", ...] not exhaustive? It lists canonical. I can include \"driving\" because report mentions. But to adhere, maybe conditions: [] and clue condition. However if condition clue but conditions array empty inconsistent. But conditions array likely normalized canonical conditions; driving isn't in list. I'd use [] and include condition clue? Maybe not. The clue kind condition can quote \"while she was driving\". That's okay.\n\nMissing_info: Since component, symptom present. Mileage null. Date? received_at present but incident date missing. \"date\" missing. Conditions? There is while driving but no environmental; not necessarily needed. List [\"mileage\", \"date\"]. Maybe also \"conditions\" because not enough? The report says while driving but no weather/road? For electrical battery failure, conditions maybe not relevant. Use [\"mileage\",\"date\"].\n\nNeed answer one JSON object no other text. Ensure no trailing. Use double quotes. Curly apostrophe in quote okay in JSON UTF-8. Need valid.\n\nLet's craft final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793526789,
+      "id": "93db415f40603c506fe26acabbd7216c",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1744,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1517,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00065364,
+          "billing_source": "go",
+          "list_cost": 0.0010894,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 279,
+            "output": 1744,
+            "reasoning": 1517
+          }
+        },
+        "prompt_tokens": 663,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2407
+      }
+    },
+    "text": "{\"summary\":\"Electrical system battery failure causing loss of power steering and safety functions while driving, with risk of accident.\",\"group\":\"electrical_general\",\"symptoms\":[\"battery unexpectedly failed\",\"complete loss of power steering\",\"loss of all safety functions\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"safety\",\"quote\":\"critical safety defect\"},{\"kind\":\"safety\",\"quote\":\"severe risk to my pregnant wife while she was driving\"},{\"kind\":\"symptom\",\"quote\":\"battery unexpectedly failed\"},{\"kind\":\"symptom\",\"quote\":\"complete loss of power steering and all safety functions\"},{\"kind\":\"condition\",\"quote\":\"while she was driving\"},{\"kind\":\"safety\",\"quote\":\"hazardous situation in the middle of the roadway\"},{\"kind\":\"safety\",\"quote\":\"could have led to a serious accident\"},{\"kind\":\"safety\",\"quote\":\"risk of injury or fatality\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00065364,
+      "cached_tokens": 384,
+      "cost_usd": 0.0010894,
+      "input_tokens": 663,
+      "list_cost_usd": 0.0010894,
+      "output_tokens": 1744,
+      "reasoning_tokens": 1517
+    }
+  }
+}

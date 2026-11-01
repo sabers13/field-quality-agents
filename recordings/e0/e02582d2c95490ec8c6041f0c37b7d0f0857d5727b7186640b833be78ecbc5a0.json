@@ -1,0 +1,66 @@
+{
+  "key": "e02582d2c95490ec8c6041f0c37b7d0f0857d5727b7186640b833be78ecbc5a0",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 8617,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2023 Kia Niro PHEV electrical/general: sudden unintended acceleration while slowly entering garage, collision with wall/fence, airbags deployed, minor injuries.\",\"group\":\"electrical_general\",\"symptoms\":[\"sudden unintended acceleration\",\"vehicle surged forward on its own\",\"no warning before event\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"component\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"surged forward\"},{\"kind\":\"condition\",\"quote\":\"going very slowly\"},{\"kind\":\"safety\",\"quote\":\"triggering air bags\"},{\"kind\":\"safety\",\"quote\":\"bruised ribs\"},{\"kind\":\"other\",\"quote\":\"There was no warning of any kind\"},{\"kind\":\"other\",\"quote\":\"total loss\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize. Extract summary component symptom conditions. Report: 2023 Kia Niro PHEV, slow into garage, sudden unintended acceleration surged forward, hit wall airbags, ricocheted struck fence, injuries bruised ribs, no warning. Safety relevant true. Group given electrical_general. Symptoms: sudden unintended acceleration / vehicle surged forward on its own. Conditions: \"going very slowly\", \"into my garage after running an errand\" maybe not cold etc. Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. None? Could include \"going very slowly\" not in allowed. We can include conditions [] perhaps. Fault codes none. Missing info: mileage, date? received date exists but incident date missing. component? component given electrical system but maybe specific component missing. The instruction list missing_info only facts needed: component, symptom, conditions, mileage, date. Mileage null, date missing (incident date not received), component vague. But symptom present. Conditions partially. We can list mileage, date, component. Need clues with verbatim quotes. Every quote copied exactly. Need quote spans. Use exact substrings from narrative. Need ensure character for character. Let's craft quotes:\n\n\"2023 Kia Niro PHEV\" appears in narrative \"my 2023 Kia Niro PHEV into my garage\" yes quote exact \"2023 Kia Niro PHEV\" exists.\n\"surged forward\" exact.\n\"going very slowly\" exact.\n\"triggering air bags\" exact.\n\"my injuries were found to be limited to bruised ribs\" exact.\n\"There was no warning of any kind\" exact.\n\"total loss\" exact.\n\nNeed summary one line: \"2023 Kia Niro PHEV electrical/general: sudden unintended acceleration while slowly entering garage, collision with wall/fence, airbags, minor injuries.\" That's okay.\n\nGroup: \"electrical_general\" given. Symptoms array plain words: \"sudden unintended acceleration\", \"vehicle surged forward on its own\", maybe \"no warning\". Conditions array: allowed list; maybe include \"intermittent\"? No. \"going very slowly\" not allowed but can be in clues kind condition? The schema says conditions list from allowed set. Could include [] since none of named. But condition \"going very slowly\" is a condition, but allowed list doesn't include slow. Rule says conditions: [\"cold\", ...]. likely use only those. We can include [] or maybe \"intermittent\" not justified. Keep [].\n\nSafety_relevant true.\n\nMissing_info: [\"mileage\",\"date\",\"component\"]? Component is \"ELECTRICAL SYSTEM\" vague, analysis needs specific component. Date: received_at 2025-07-18 but incident date absent. Mileage null. Conditions? There is some condition (slow garage). Maybe not missing. Use [\"mileage\",\"date\",\"component\"].\n\nFault codes [].\n\nClues: kind symptom quote \"surged forward\"; kind condition quote \"going very slowly\"; kind safety quote \"triggering air bags\"; kind safety quote \"bruised ribs\"; kind other quote \"There was no warning of any kind\"; kind component_group quote \"ELECTRICAL SYSTEM\"? But quote must be from report. component field \"ELECTRICAL SYSTEM\" is part of report object, not narrative? The report in user message includes JSON with component. \"Read only report in user message\" includes component field. Verbatim span from report can be from any field? likely yes. But clue quote should be from narrative? It says report. We can quote \"ELECTRICAL SYSTEM\" from component field. But maybe not necessary. Include component_group quote \"ELECTRICAL SYSTEM\" exact. Also \"2023 Kia Niro PHEV\" component? Kind component_group? Hmm.\n\nNeed no other text. Ensure JSON valid. Use exact quotes. The narrative has \"--\" etc. Quotes simple.\n\nPotential issue: summary says electrical/general but symptom is unintended acceleration likely not electrical? But group given. Fine.\n\nNeed include \"safety_relevant\": true.\n\nLet's produce.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793528787,
+      "id": "bff3c12d5e6a16547f4ee4e0391ec466",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1042,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 852,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0004065,
+          "billing_source": "go",
+          "list_cost": 0.0006775,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 341,
+            "output": 1042,
+            "reasoning": 852
+          }
+        },
+        "prompt_tokens": 725,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1767
+      }
+    },
+    "text": "{\"summary\":\"2023 Kia Niro PHEV electrical/general: sudden unintended acceleration while slowly entering garage, collision with wall/fence, airbags deployed, minor injuries.\",\"group\":\"electrical_general\",\"symptoms\":[\"sudden unintended acceleration\",\"vehicle surged forward on its own\",\"no warning before event\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"component\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"surged forward\"},{\"kind\":\"condition\",\"quote\":\"going very slowly\"},{\"kind\":\"safety\",\"quote\":\"triggering air bags\"},{\"kind\":\"safety\",\"quote\":\"bruised ribs\"},{\"kind\":\"other\",\"quote\":\"There was no warning of any kind\"},{\"kind\":\"other\",\"quote\":\"total loss\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0004065,
+      "cached_tokens": 384,
+      "cost_usd": 0.0006775,
+      "input_tokens": 725,
+      "list_cost_usd": 0.0006775,
+      "output_tokens": 1042,
+      "reasoning_tokens": 852
+    }
+  }
+}

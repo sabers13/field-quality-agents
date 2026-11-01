@@ -1,0 +1,66 @@
+{
+  "key": "16f90fc3b6e46995158b822c22bf036569f413cc8c6dd0c4781df88a25862a79",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 7837,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\": \"Test the 2024 Ford Ranger's electrical system for a steering assist fault and a speedometer that jumps while in park, since no rulebook entry supports a targeted load test.\", \"rationale\": \"The narrative reports two separate electrical complaints: a steering assist fault and a speedometer electric fault where the speedometer jumps up and down while the vehicle is in park. The rulebook returned no matching entries, recalls and investigations returned no supporting documents, and similar cases returned no results, so the standard non-targeted electrical diagnostic test is appropriate rather than a targeted load test.\", \"group\": \"electrical_general\", \"symptoms\": [\"steering assist fault\", \"electric fault on the speedometer jumping up and down while its in park\", \"causing an issue\"], \"conditions\": [\"while its in park\"], \"fault_codes\": [], \"safety_relevant\": false, \"targeted\": false, \"test_name\": \"standard electrical diagnostic test\", \"clues\": [{\"kind\": \"symptom\", \"quote\": \"steering assist fault\"}, {\"kind\": \"symptom\", \"quote\": \"electric fault on the speedometer jumping up and down while its in park\"}, {\"kind\": \"condition\", \"quote\": \"while its in park\"}, {\"kind\": \"other\", \"quote\": \"causing an issue\"}]}",
+            "reasoning_content": "We need to output JSON only. Rulebook empty, so targeted false. Safety_relevant false. Clues must be verbatim quotes from narrative. Narrative: \"ive had 2 seperate issues with my 2024 for ranger one is a steering assist fault the other is a electric fault on the speedometer jumping up and down while its in park and causing an issue\"\n\nVerbatim spans: \"steering assist fault\", \"electric fault on the speedometer jumping up and down while its in park\", \"while its in park\". \"causing an issue\" also verbatim. Component group \"ELECTRICAL SYSTEM\" — narrative doesn't contain that; the case component is separate field. Clue quotes must be from narrative. So component_group quote can't be \"ELECTRICAL SYSTEM\" unless in narrative — it isn't. So drop that or use no component group clue. We can include clues only with verbatim narrative quotes. Maybe condition \"while its in park\".\n\nGroup: electrical_general. Symptoms list. Conditions list. Fault codes empty. Safety false. targeted false. test_name: standard test? Rulebook names nothing, so test_name maybe \"standard electrical system diagnostic test\". Since rulebook empty, no named test. Provide test_name \"standard electrical diagnostic test\".\n\nSummary one line.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793528983,
+      "id": "7b1f58c8d1196654c3b21562a4a41cf2",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 548,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 266,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00027585,
+          "billing_source": "go",
+          "list_cost": 0.00045975,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 873,
+            "output": 548,
+            "reasoning": 266
+          }
+        },
+        "prompt_tokens": 873,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 1421
+      }
+    },
+    "text": "{\"summary\": \"Test the 2024 Ford Ranger's electrical system for a steering assist fault and a speedometer that jumps while in park, since no rulebook entry supports a targeted load test.\", \"rationale\": \"The narrative reports two separate electrical complaints: a steering assist fault and a speedometer electric fault where the speedometer jumps up and down while the vehicle is in park. The rulebook returned no matching entries, recalls and investigations returned no supporting documents, and similar cases returned no results, so the standard non-targeted electrical diagnostic test is appropriate rather than a targeted load test.\", \"group\": \"electrical_general\", \"symptoms\": [\"steering assist fault\", \"electric fault on the speedometer jumping up and down while its in park\", \"causing an issue\"], \"conditions\": [\"while its in park\"], \"fault_codes\": [], \"safety_relevant\": false, \"targeted\": false, \"test_name\": \"standard electrical diagnostic test\", \"clues\": [{\"kind\": \"symptom\", \"quote\": \"steering assist fault\"}, {\"kind\": \"symptom\", \"quote\": \"electric fault on the speedometer jumping up and down while its in park\"}, {\"kind\": \"condition\", \"quote\": \"while its in park\"}, {\"kind\": \"other\", \"quote\": \"causing an issue\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00027585,
+      "cached_tokens": 0,
+      "cost_usd": 0.00045975,
+      "input_tokens": 873,
+      "list_cost_usd": 0.00045975,
+      "output_tokens": 548,
+      "reasoning_tokens": 266
+    }
+  }
+}

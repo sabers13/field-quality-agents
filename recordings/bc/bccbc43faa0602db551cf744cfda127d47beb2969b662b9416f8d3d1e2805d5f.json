@@ -1,0 +1,66 @@
+{
+  "key": "bccbc43faa0602db551cf744cfda127d47beb2969b662b9416f8d3d1e2805d5f",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12941,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2020 Subaru Outback electrical system: repeated battery drain/failure and third battery at 49k miles; car died again today.\",\"group\":\"electrical_general\",\"symptoms\":[\"battery drain\",\"battery failure and replacement\",\"third battery at 49k miles\",\"car died\",\"jump start required\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"on our 3rd battery at only 49k miles\"},{\"kind\":\"symptom\",\"quote\":\"The car died again today.\"},{\"kind\":\"symptom\",\"quote\":\"battery drain, failure and replacement\"},{\"kind\":\"symptom\",\"quote\":\"Thankfully AAA was able to jump it\"},{\"kind\":\"other\",\"quote\":\"known Data Communications Module (DCM) issue\"}]}",
+            "reasoning_content": "We need answer only JSON object. Need normalize. Need read report. Component electrical system group given electrical_general. Symptoms: battery drain, failure and replacement, car died again, jumped. Conditions: maybe intermittent? No cold moisture etc. Mileage given in narrative 49k miles but mileage field null; missing_info? The analysis needs mileage? It is in narrative \"49k miles\", so not missing? The field is null but report includes 49k. We can include missing_info empty? Date? Received_at 2025-02-19 but incident date not explicit (\"today\"). Could list date? They ask missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Component present, symptom present, conditions? No specific conditions. Mileage present as 49k. Date: appt tomorrow, report received date, \"today\" no exact date but received date available. Conditions missing? Conditions might be not specified; should list \"conditions\"? Hmm. The schema conditions list likely tags. If no environmental conditions, perhaps missing_info [\"conditions\"]. But \"conditions\" could mean when symptom occurs; report says battery died today, 3rd battery at 49k. No cold/moisture/heat/vibration. Should we list conditions missing? The rules: List missing_info only for facts the analysis needs: component, symptom, conditions, mileage, date. Use empty when nothing important missing. Conditions is important for electrical drain? Could be \"conditions\" missing since no environmental/operating conditions. But we have \"after service\"? No. \"charging\"? Battery drain/failure relates charging? Conditions list includes \"charging\" as condition? The allowed conditions: cold, moisture, heat, vibration, intermittent, after service, charging. The report mentions battery drain/failure, jump start. Is \"charging\" a condition? It says battery drain, not charging. No. Could include \"intermittent\" because died again? Not really intermittent? It died again today, repeated battery failures. \"after service\"? No. So conditions empty.\n\nFault codes: none named. DCM issue is not code. safety_relevant false (no crash/fire etc). Missing info: maybe none? Mileage in narrative. Date? received_at and \"today\" relative. Component and symptom present. Conditions not specified but maybe not necessary? Hmm.\n\nNeed clues with verbatim quotes. We need quote exact spans. Include symptom quote: \"we are on our 3rd battery at only 49k miles\" or \"The car died again today.\" Need exact verbatim including capitalization. \"we are on our 3rd battery at only 49k miles\" is verbatim? Narrative: \"For our 2020 Subaru Outback, we are on our 3rd battery at only 49k miles. The car died again today. Thankfully AAA was able to jump it after a friend tried unsuccessfully. We suspect all of this battery drain, failure and replacement has been due to the known Data Communications Module (DCM) issue on recent Subaru\\u2019s. I have an appt w the dealer in Santa Monica tomorrow morning to have it diagnosed.\"\n\nQuotes: \"on our 3rd battery at only 49k miles\" verbatim yes. \"The car died again today.\" verbatim. \"battery drain, failure and replacement\" verbatim. \"Data Communications Module (DCM) issue\" verbatim. Component group clue: maybe \"ELECTRICAL SYSTEM\" from component field, not narrative? The report includes component field; quote can be from report? It says quote verbatim from report. Report is JSON includes component. We can quote \"ELECTRICAL SYSTEM\". Kind component_group. Or \"known Data Communications Module (DCM) issue\" as component_group? Hmm.\n\nNeed summary one line: \"2020 Subaru Outback electrical system: repeated battery drain/failure, third battery at 49k miles, car died again today.\" Conditions none.\n\nNeed group: electrical_general.\n\nSymptoms plain words: [\"battery drain\", \"battery failure/replacement\", \"vehicle died\", \"needs jump start\"]. Maybe \"3rd battery at 49k miles\" is symptom? Plain words.\n\nConditions: [].\n\nFault codes: [].\n\nsafety_relevant false.\n\nmissing_info: maybe [] because all key facts present? But date not exact. Conditions not specified. However report has received_at date and \"today\". Mileage 49k. Component symptom. So empty. The prompt says missing_info list only facts analysis needs. Conditions? For battery drain, conditions maybe not essential. Use [].\n\nClues:\n- {\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"}\n- {\"kind\":\"symptom\",\"quote\":\"on our 3rd battery at only 49k miles\"}\n- {\"kind\":\"symptom\",\"quote\":\"The car died again today.\"}\n- {\"kind\":\"symptom\",\"quote\":\"battery drain, failure and replacement\"}\n- {\"kind\":\"other\",\"quote\":\"Data Communications Module (DCM) issue\"}? Kind fault_code? It's not code; component_group? Could be component_group because DCM is module. But kind component_group quote DCM. Also \"suspected cause\" other.\n- {\"kind\":\"condition\",\"quote\":\"Thankfully AAA was able to jump it\"}? Condition? jump start maybe condition? Kind other. But condition list not include jump. Could use other.\n\nNeed ensure no extra text. JSON only. Need no markdown? They ask one JSON object and no other text. We can output raw JSON. Should we include code fences? No.\n\nNeed quote with curly apostrophe? Avoid.\n\nLet's craft. Need summary one line. \"2020 Subaru Outback electrical system: repeated battery drain/failure and third battery at 49k miles; car died again today.\" Good.\n\nSymptoms array: \"battery drain\", \"battery failure and replacement\", \"car died\", \"jump start required\". Maybe \"third battery at 49k miles\" as symptom? Could include.\n\nConditions empty. Fault codes empty. missing_info []? Let's decide. There is no explicit date? received_at 2025-02-19, narrative \"today\", appt tomorrow. That's enough date context. Mileage 49k. Conditions maybe no. Empty.\n\nClues quotes verbatim:\n\"ELECTRICAL SYSTEM\" exact from component.\n\"on our 3rd battery at only 49k miles\" exact.\n\"The car died again today.\" exact.\n\"battery drain, failure and replacement\" exact.\n\"Data Communications Module (DCM) issue\" exact (narrative has \"known Data Communications Module (DCM) issue on recent Subaru’s\"). Yes substring.\n\"Thankfully AAA was able to jump it\" exact? Narrative: \"Thankfully AAA was able to jump it after a friend tried unsuccessfully.\" Yes.\n\nNeed kind for jump: \"other\" or \"condition\"? Conditions allowed list doesn't include jump; but clue kind can be condition. The kind enum allows condition. Could label jump as condition? It is a symptom/condition. But conditions array empty. If clue condition quote jump, then conditions should include? Hmm. Conditions array is normalized tags; jump start not in allowed condition tags. Better kind \"symptom\" for jump start. Quote \"Thankfully AAA was able to jump it\" kind symptom. Good.\n\nCould include clue for DCM as component_group? It names a suspected component. Kind component_group. But group already electrical_general. Use kind \"component_group\" for DCM? The quote is a component. But the kind \"component_group\" maybe group not specific. Could use \"other\" for suspected cause. The clue kind list includes component_group. DCM is component, not group. \"other\" safe. Need maybe include quote \"known Data Communications Module (DCM) issue\" as other.\n\nNeed exact \"Data Communications Module (DCM) issue\" has no \"known\"? We can quote \"known Data Communications Module (DCM) issue\" exact. Good.\n\nPotential issue: \"3rd\" not \"third\" in summary. Fine.\n\nNeed maybe safety_relevant false. Good.\n\nFinal answer raw JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793525047,
+      "id": "b6b0d1b36e10d207c903d65d6a0e0b7f",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1902,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1701,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0007371,
+          "billing_source": "go",
+          "list_cost": 0.0012285,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 582,
+            "output": 1902,
+            "reasoning": 1701
+          }
+        },
+        "prompt_tokens": 582,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 2484
+      }
+    },
+    "text": "{\"summary\":\"2020 Subaru Outback electrical system: repeated battery drain/failure and third battery at 49k miles; car died again today.\",\"group\":\"electrical_general\",\"symptoms\":[\"battery drain\",\"battery failure and replacement\",\"third battery at 49k miles\",\"car died\",\"jump start required\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"on our 3rd battery at only 49k miles\"},{\"kind\":\"symptom\",\"quote\":\"The car died again today.\"},{\"kind\":\"symptom\",\"quote\":\"battery drain, failure and replacement\"},{\"kind\":\"symptom\",\"quote\":\"Thankfully AAA was able to jump it\"},{\"kind\":\"other\",\"quote\":\"known Data Communications Module (DCM) issue\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0007371,
+      "cached_tokens": 0,
+      "cost_usd": 0.0012285,
+      "input_tokens": 582,
+      "list_cost_usd": 0.0012285,
+      "output_tokens": 1902,
+      "reasoning_tokens": 1701
+    }
+  }
+}

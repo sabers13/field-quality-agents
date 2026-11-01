@@ -1,0 +1,66 @@
+{
+  "key": "7adde1f33bfd17f333f6d05567a56d1a90db21beb485542d6acdd8adc1983c8d",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10234,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2022 Honda Pilot lane departure assist: radar camera went out, shutting off safety features including LKAS, power steering, collision control and power brakes.\",\"group\":\"adas\",\"symptoms\":[\"radar camera went out\",\"all safety features shut off\",\"lane keeping assist system (LKAS) disabled\",\"power steering disabled\",\"collision control disabled\",\"power brakes disabled\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"LANE DEPARTURE: ASSIST\"},{\"kind\":\"symptom\",\"quote\":\"Radar camera went out\"},{\"kind\":\"safety\",\"quote\":\"shutting off all safety features\"},{\"kind\":\"symptom\",\"quote\":\"power steering\"},{\"kind\":\"symptom\",\"quote\":\"collision control\"},{\"kind\":\"symptom\",\"quote\":\"power breaks\"}]}",
+            "reasoning_content": "We need to output JSON only. Need parse narrative: \"Radar camera went out shutting off all safety features lkas, power steering , collision control, power breaks etc\". Component LANE DEPARTURE: ASSIST group adas. Symptoms: radar camera went out; all safety features shut off; lkas off; power steering off; collision control off; power brakes off. Conditions? none explicit. Fault codes none. Safety relevant? It mentions all safety features shutting off including power steering, collision control, power breaks — this is risk? The prompt says safety_relevant when report mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. Loss of power steering and collision control could be risk to people, but not explicit crash. \"all safety features\" shutting off implies risk. However incoming says safety_relevant false; we should normalize based on rules. It's a safety system failure. I'd set true? Need be careful: \"safety_relevant\" when report mentions ... \"another risk to people\". Loss of power steering and collision control is a risk. But is it \"mentions\" a risk? It says shutting off all safety features. I think true. But could be considered safety relevant. Missing info: mileage null, date? received date given but incident date missing. Conditions missing. Component given, symptom given. So missing_info [\"mileage\",\"date\",\"conditions\"]. Clues verbatim spans. Need quote exact: \"Radar camera went out shutting off all safety features lkas, power steering , collision control, power breaks etc\". We can quote spans. Need ensure quotes are substrings. \"Radar camera went out\" yes. \"shutting off all safety features\" yes? The exact text \"shutting off all safety features lkas\" includes. \"power steering\" yes. \"collision control\" yes. \"power breaks\" yes (typo). Safety clue quote \"shutting off all safety features\" kind safety. Summary one line: \"2022 Honda Pilot lane departure assist; radar camera went out, disabling safety features, LKAS, power steering, collision control and power brakes.\" Conditions list empty. Symptoms list plain words: [\"radar camera went out\", \"all safety features shut off\", \"lane keeping assist system (LKAS) disabled\", \"power steering disabled\", \"collision control disabled\", \"power brakes disabled\"]. But \"lkas\" maybe acronym. Fine.\n\nGroup \"adas\". Fault codes [].\n\nNeed output JSON only. Ensure no markdown? User says answer with one JSON object and no other text. So final just JSON.\n\nNeed check \"clues\" kind enum. Use symptom, condition, fault_code, component_group, safety, other. For component group quote? Could quote \"LANE DEPARTURE: ASSIST\" from component? It's in report? The input has component field, yes. But \"report\" includes component. Quote verbatim \"LANE DEPARTURE: ASSIST\". kind component_group. Fine.\n\nSafety true? Let's decide. The prompt says set safety_relevant when report mentions crash, fire, smoke, injury, loss of control, a stall at speed or another risk to people. It mentions safety features shutting off including power steering and collision control; that is another risk to people. Set true. But if incoming says false, we can override. Yes.\n\nMissing_info: mileage null, date missing (incident date not given; received_at is not incident date). conditions missing. Component/symptom present. Good.\n\nNeed exact quotes: \"Radar camera went out\" appears. \"shutting off all safety features\" appears? Narrative: \"Radar camera went out shutting off all safety features lkas, power steering , collision control, power breaks etc\" yes substring \"shutting off all safety features\" exactly. \"power steering\" appears with spaces? \"power steering ,\" yes substring. \"collision control\" yes. \"power breaks\" yes. \"LANE DEPARTURE: ASSIST\" from component. Good.\n\nNeed maybe \"lkas\" quote. Could include symptom quote \"lkas\". But plain symptom list okay. Clues quotes only verbatim. Include \"lkas\" maybe not necessary.\n\nSummary one line no extra. JSON valid. Ensure no trailing. Final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529199,
+      "id": "953758542d586758343de57e7220e4dc",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1084,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 885,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00040227,
+          "billing_source": "go",
+          "list_cost": 0.00067045,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 126,
+            "output": 1084,
+            "reasoning": 885
+          }
+        },
+        "prompt_tokens": 510,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1594
+      }
+    },
+    "text": "{\"summary\":\"2022 Honda Pilot lane departure assist: radar camera went out, shutting off safety features including LKAS, power steering, collision control and power brakes.\",\"group\":\"adas\",\"symptoms\":[\"radar camera went out\",\"all safety features shut off\",\"lane keeping assist system (LKAS) disabled\",\"power steering disabled\",\"collision control disabled\",\"power brakes disabled\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"LANE DEPARTURE: ASSIST\"},{\"kind\":\"symptom\",\"quote\":\"Radar camera went out\"},{\"kind\":\"safety\",\"quote\":\"shutting off all safety features\"},{\"kind\":\"symptom\",\"quote\":\"power steering\"},{\"kind\":\"symptom\",\"quote\":\"collision control\"},{\"kind\":\"symptom\",\"quote\":\"power breaks\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00040227,
+      "cached_tokens": 384,
+      "cost_usd": 0.00067045,
+      "input_tokens": 510,
+      "list_cost_usd": 0.00067045,
+      "output_tokens": 1084,
+      "reasoning_tokens": 885
+    }
+  }
+}

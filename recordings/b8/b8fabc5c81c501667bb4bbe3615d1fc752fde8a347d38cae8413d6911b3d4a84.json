@@ -1,0 +1,66 @@
+{
+  "key": "b8fabc5c81c501667bb4bbe3615d1fc752fde8a347d38cae8413d6911b3d4a84",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 14299,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2018 Ford Fusion front driver seat belt retractor did not buckle/retract in a 65 MPH rear-end crash; airbags deployed and the occupant was injured.\",\"group\":\"restraints\",\"symptoms\":[\"front driver side seat belt did not buckle appropriately\",\"seat belt did not retract the contact\",\"occupant sustained a concussion and eyes swelled shut\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"SEAT BELTS:FRONT:RETRACTOR\"},{\"kind\":\"symptom\",\"quote\":\"the front driver side seat belt did not buckle appropriately\"},{\"kind\":\"symptom\",\"quote\":\"the seat belt did not retract the contact\"},{\"kind\":\"condition\",\"quote\":\"while driving at 65 MPH\"},{\"kind\":\"condition\",\"quote\":\"the other vehicle abruptly depressed on the brakes causing the contact to rear end him\"},{\"kind\":\"safety\",\"quote\":\"The contact sustained a concussion and his eyes swelled shut.\"},{\"kind\":\"other\",\"quote\":\"side air bags did deploy\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize. Need parse report. Component seat belts front retractor, group restraints. Summary one line component symptom conditions. Symptoms: front driver side seat belt did not buckle appropriately; seat belt did not retract the contact; injury concussion eyes swelled shut; air bags deployed? Maybe symptom is seat belt did not buckle appropriately, did not retract, injury. Conditions: driving at 65 MPH, crash/rear end, airbags deployed. Need conditions list allowed values: cold, moisture, heat, vibration, intermittent, after service, charging. None apply. Could include? Conditions from allowed list; crash not in list. But clues kind condition can quote \"while driving at 65 MPH\" maybe condition? Hmm schema conditions array only those values. It says conditions [\"cold\",\"moisture\",\"heat\",\"vibration\",\"intermittent\",\"after service\",\"charging\"]. The report has no such. So empty conditions. Fault codes none. safety_relevant true. missing_info maybe date? We have received_at but not incident date. mileage present 89000. Component present. Symptom present. Conditions? Maybe missing \"date\" of incident. But report received_at available; incident date missing. List missing_info [\"date\"] maybe. Need not include conditions? It says only for facts analysis needs: component, symptom, conditions, mileage, date. We have component, symptom, mileage. Conditions not one of allowed? The incident conditions are crash, speed; but \"conditions\" as environmental? Could say missing_info [\"date\"] because incident date absent. But maybe conditions missing? There is condition driving at 65 MPH and crash. Hmm.\n\nNeed clues with verbatim quotes. Must copy exact. Need include safety quote e.g. \"The contact sustained a concussion and his eyes swelled shut.\" Also \"causing the contact to be injured\". Symptom quotes: \"the front driver side seat belt did not buckle appropriately\"; \"the seat belt did not retract the contact\". Component group quote? \"SEAT BELTS:FRONT:RETRACTOR\" from component field? The report? The user message is JSON with component. Quote can be from report; likely yes entire JSON. Use \"SEAT BELTS:FRONT:RETRACTOR\". Condition quote \"while driving at 65 MPH\" maybe condition kind. Fault code none. Other \"air bags did deploy\" maybe other/safety. Need no invented. Summary: \"2018 Ford Fusion front driver seat belt retractor failed to buckle/retract during 65 MPH rear-end crash, causing injury.\" Good.\n\nNeed output valid JSON no markdown? They said one JSON object and no other text. We should output raw JSON. Ensure quotes exact including apostrophe? Narrative has \"driver\\u2019s\" curly. We can avoid those. Verbatim spans: \"the front driver side seat belt did not buckle appropriately\" appears exactly? Narrative: \"the front driver side seat belt did not buckle appropriately,\" yes. \"the seat belt did not retract the contact\" appears exactly? \"however the seat belt did not retract the contact, causing the contact to be injured.\" yes. \"The contact sustained a concussion and his eyes swelled shut.\" exact. \"while driving at 65 MPH\" exact. \"the other vehicle abruptly depressed on the brakes causing the contact to rear end him\" exact? Narrative: \"and the other vehicle abruptly depressed on the brakes causing the contact to rear end him.\" yes. \"The driver\\u2019s and passenger\\u2019s side air bags did deploy\" contains curly. Could quote \"air bags did deploy\" exact? It appears \"side air bags did deploy\" yes substring. Use \"side air bags did deploy\". Safety. Component group \"SEAT BELTS:FRONT:RETRACTOR\" exact in component field. Good.\n\nNeed maybe include \"fault_codes\": [].\n\nNeed missing_info: Could be [\"date\"] only. But maybe \"conditions\" missing because no weather/road? Actually analysis needs conditions but we have speed and crash. However allowed condition list doesn't include crash. It asks missing_info facts the analysis needs: component, symptom, conditions, mileage, date. We can list \"date\" because no incident date. Maybe \"conditions\" too? There are conditions: driving at 65 MPH, rear-end collision. So not missing. Mileage present. Component present. Symptom present. So [\"date\"]. But received_at is date of report not incident. Good.\n\nNeed summary one line: \"2018 Ford Fusion front driver seat belt retractor did not buckle/retract in 65 MPH rear-end crash; airbags deployed and occupant injured.\" This is one line.\n\nNeed group \"restraints\" given group. Good.\n\nNeed conditions array: allowed list none. Could be [] because no cold/moisture/heat/vibration/intermittent/after service/charging. Good.\n\nNeed clues includes kind \"condition\" quote \"while driving at 65 MPH\" though conditions array empty? That's okay? Hmm condition kind can be broader. But if conditions array empty and clue condition, maybe inconsistent. Could avoid condition clue? But clue can quote speed/crash. Kind condition. It's okay.\n\nNeed ensure no suggestion of closing/scrapping/charges. None.\n\nNeed answer only JSON. Use proper escaping. Final no code fence? \"Answer with one JSON object and no other text\" so raw JSON. Good.\n\nLet's craft:\n\n{\n  \"summary\": \"2018 Ford Fusion front driver seat belt retractor did not buckle/retract in a 65 MPH rear-end crash; airbags deployed and the occupant was injured.\",\n  \"group\": \"restraints\",\n  \"symptoms\": [\"front driver side seat belt did not buckle appropriately\", \"seat belt did not retract the contact\", \"occupant sustained a concussion and eyes swelled shut\"],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\"date\"],\n  \"clues\": [\n    {\"kind\":\"component_group\",\"quote\":\"SEAT BELTS:FRONT:RETRACTOR\"},\n    {\"kind\":\"symptom\",\"quote\":\"the front driver side seat belt did not buckle appropriately\"},\n    {\"kind\":\"symptom\",\"quote\":\"the seat belt did not retract the contact\"},\n    {\"kind\":\"condition\",\"quote\":\"while driving at 65 MPH\"},\n    {\"kind\":\"condition\",\"quote\":\"the other vehicle abruptly depressed on the brakes causing the contact to rear end him\"},\n    {\"kind\":\"safety\",\"quote\":\"The contact sustained a concussion and his eyes swelled shut.\"},\n    {\"kind\":\"other\",\"quote\":\"side air bags did deploy\"}\n  ]\n}\n\nNeed verify \"the other vehicle abruptly depressed on the brakes causing the contact to rear end him\" exact? Narrative: \"and the other vehicle abruptly depressed on the brakes causing the contact to rear end him.\" yes substring exact. Good.\n\nPotential issue symptoms plain words, \"seat belt did not retract the contact\" is not plain? It's quote maybe okay. Could phrase \"seat belt failed to retract and restrain the contact\" but evidence quote separate. Symptoms array can be plain. Use \"seat belt did not retract/restrain the contact\". But they said symptom in plain words. Fine.\n\nNeed safety relevance true. Good.\n\nNeed \"conditions\" allowed list; empty. Good.\n\nNeed \"missing_info\" maybe include \"date\" only. Could include \"conditions\" because no environmental conditions? But analysis needs conditions; there is crash condition. Hmm.\n\nNeed final only JSON. \nWait \"Read only the report in the user message. Do not invent facts.\" We do not.\n\nNeed no other text. Final. \nNeed consider if \"summary\" says \"airbags deployed\" fact yes. Good.\n\nLet's final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793525624,
+      "id": "49fef461f0afd89f8d7a1e8e05d54a05",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1863,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1624,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00070314,
+          "billing_source": "go",
+          "list_cost": 0.0011719,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 353,
+            "output": 1863,
+            "reasoning": 1624
+          }
+        },
+        "prompt_tokens": 737,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2600
+      }
+    },
+    "text": "{\"summary\":\"2018 Ford Fusion front driver seat belt retractor did not buckle/retract in a 65 MPH rear-end crash; airbags deployed and the occupant was injured.\",\"group\":\"restraints\",\"symptoms\":[\"front driver side seat belt did not buckle appropriately\",\"seat belt did not retract the contact\",\"occupant sustained a concussion and eyes swelled shut\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"SEAT BELTS:FRONT:RETRACTOR\"},{\"kind\":\"symptom\",\"quote\":\"the front driver side seat belt did not buckle appropriately\"},{\"kind\":\"symptom\",\"quote\":\"the seat belt did not retract the contact\"},{\"kind\":\"condition\",\"quote\":\"while driving at 65 MPH\"},{\"kind\":\"condition\",\"quote\":\"the other vehicle abruptly depressed on the brakes causing the contact to rear end him\"},{\"kind\":\"safety\",\"quote\":\"The contact sustained a concussion and his eyes swelled shut.\"},{\"kind\":\"other\",\"quote\":\"side air bags did deploy\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00070314,
+      "cached_tokens": 384,
+      "cost_usd": 0.0011719,
+      "input_tokens": 737,
+      "list_cost_usd": 0.0011719,
+      "output_tokens": 1863,
+      "reasoning_tokens": 1624
+    }
+  }
+}

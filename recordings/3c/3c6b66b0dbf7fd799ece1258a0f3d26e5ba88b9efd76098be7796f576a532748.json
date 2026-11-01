@@ -1,0 +1,66 @@
+{
+  "key": "3c6b66b0dbf7fd799ece1258a0f3d26e5ba88b9efd76098be7796f576a532748",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 16966,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2024 GMC Yukon XL: after 7-10 days parked, service transmission message, check engine light, flashing dash, door lock cycling/chimes, vehicle locks up after 5-8 ft; PIP6069 valve body/battery.\",\"group\":\"electrical_general\",\"symptoms\":[\"service transmission message displayed\",\"check engine light on\",\"dash flashing\",\"door locks going up and down\",\"alarms chiming\",\"vehicle moves about 5-8 ft then locks up and stops\",\"vehicle repeat starts and stops\"],\"conditions\":[\"parked for extended period, 7-10 days\"],\"fault_codes\":[\"PIP6069\"],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"condition\",\"quote\":\"vehicle parked for extended period, 7-10 days\"},{\"kind\":\"symptom\",\"quote\":\"service transmission appeared in display\"},{\"kind\":\"symptom\",\"quote\":\"check engine light on\"},{\"kind\":\"symptom\",\"quote\":\"dash flashing and door locks going up and down and chiming of alarms\"},{\"kind\":\"symptom\",\"quote\":\"vehicle would move approx 5-8 ft, lock up and stop, start again and repeat\"},{\"kind\":\"fault_code\",\"quote\":\"GM Service bulletin # PIP6069\"},{\"kind\":\"safety\",\"quote\":\"unable to use vehicle due safety issue with transmission\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize report. Need extract summary, group given electrical_general, symptoms, conditions, fault_codes, safety_relevant, missing_info, clues verbatim.\n\nNeed read narrative. Component ELECTRICAL SYSTEM. Group electrical_general. Symptoms: service transmission appeared in display, check engine light on, dash flashing, door locks going up and down, chiming alarms, vehicle moves approx 5-8 ft then locks up and stops, repeat; unable to use vehicle due safety issue with transmission. Also battery needs replacement? That's diagnosis not symptom maybe. Conditions: vehicle parked for extended period, 7-10 days. Cold? date 12/05/25 maybe December but not explicitly cold. \"parked for extended period, 7-10 days\" condition. \"after service\"? no. intermittent? perhaps repeat lock up/start again, but not explicitly intermittent. Symptoms list plain words.\n\nFault codes: GM Service bulletin # PIP6069. It's not fault code but named code/bulletin. The schema fault_codes [\"code if report names one\"]. Could include \"PIP6069\" as code/bulletin? It names GM Service bulletin # PIP6069. Fault codes likely include PIP6069? It's a service bulletin not DTC. But field fault_codes can include code if report names one. Quote for fault_code \"GM Service bulletin # PIP6069\". Maybe include \"PIP6069\". Need clues quotes verbatim.\n\nSafety_relevant: Report mentions \"unable to use vehicle due safety issue with transmission\" and vehicle locks up and stops while moving, but did not mention crash/fire/injury/loss of control/stall at speed. It says safety issue with transmission. Rules set safety_relevant when report mentions ... another risk to people. \"due safety issue with transmission\" is explicit safety. Also \"vehicle would move approx 5-8 ft, lock up and stop\" could be risk. Set true. The source JSON says safety_relevant false but we're to normalize? It says read report in user message; source includes safety_relevant false, but we can set based on narrative. The narrative explicitly says safety issue. Set true.\n\nMissing_info: mileage null missing. Date? Received_at and narrative date 12/05/25. Conditions present. Component present. Symptom present. Mileage missing. Maybe date missing? The report has date of incident 12/05/25, received 2025-12-10, so not missing. Mileage missing only. Could include \"mileage\". Maybe component? It's electrical system but actual issue transmission; component given. no.\n\nSummary one line: 2024 GMC Yukon XL electrical/transmission symptoms after 7-10 day parked: service transmission, check engine, dash flashing, door locks/chimes, locks up after 5-8 ft; PIP6069 valve body/battery. Need one line. \"2024 GMC Yukon XL: after 7-10 days parked, service transmission message, check engine light, flashing dash, door lock cycling/chimes, vehicle locks up after 5-8 ft; PIP6069 valve body/battery.\" Good.\n\nGroup: \"electrical_general\" given. Could use \"electrical_general\". The instruction says group \"the electrical/electronic component group, or the given group\". Use given group exactly.\n\nSymptoms array plain words:\n- \"service transmission message displayed\"\n- \"check engine light on\"\n- \"dash flashing\"\n- \"door locks cycling up and down\"\n- \"alarm chiming\"\n- \"vehicle moves about 5-8 ft then locks up and stops\"\n- \"vehicle unable to be used due safety issue with transmission\" maybe symptom? It's consequence.\nNeed be careful no invented. \"door locks going up and down\" quote. Plain words can paraphrase. Fine.\n\nConditions: [\"parked for extended period\", \"7-10 days\"]? They are same. Could list both? The schema conditions list expected categories: cold, moisture, heat, vibration, intermittent, after service, charging. But this report condition is parked extended. It says conditions array can include those? Prompt: conditions: [\"cold\", ...]. But also clues kind condition. Hmm It says conditions list maybe categorical conditions. Should we include \"parked for extended period\" as condition? The schema example conditions are fixed categories. But report condition not in list. The instructions: conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. It seems allowed values? It says \"conditions\": list. We can include \"parked for extended period\" maybe not in enum? But must reflect report. Better include \"parked for extended period\" and \"7-10 days\"? But if strict, maybe conditions should use categories only. However no matching category except maybe \"intermittent\" due repeat? Not exactly. But \"parked for extended period\" is a condition. The schema example not exhaustive? It says conditions [\"cold\",...]. Hmm. The clue kind condition quote can capture. For conditions array, use [\"parked for extended period\"]. Could include \"7-10 days\" too but redundant. Maybe [\"parked for extended period\", \"7-10 days\"]? It's a condition. I'd include \"parked for extended period, 7-10 days\" as one string? But list of conditions. Better [\"parked for extended period (7-10 days)\"]. But plain. However desired output oververbosity 5. Need exact JSON.\n\nFault_codes: [\"PIP6069\"]? The report names \"GM Service bulletin # PIP6069\". Is that a fault code? It's a bulletin. The schema says fault_codes [\"code if report names one\"]. Could include \"PIP6069\". It is a code-like identifier. Include.\n\nClues: Need verbatim spans. List:\n- {\"kind\":\"symptom\",\"quote\":\"service transmission appeared in display\"}\n- {\"kind\":\"symptom\",\"quote\":\"check engine light on\"}\n- {\"kind\":\"symptom\",\"quote\":\"dash flashing and door locks going up and down and chiming of alarms\"}\n- {\"kind\":\"symptom\",\"quote\":\"vehicle would move approx 5-8 ft, lock up and stop, start again and repeat\"}\n- {\"kind\":\"condition\",\"quote\":\"vehicle parked for extended period, 7-10 days\"}\n- {\"kind\":\"fault_code\",\"quote\":\"GM Service bulletin # PIP6069\"}\n- {\"kind\":\"safety\",\"quote\":\"unable to use vehicle due safety issue with transmission\"}\n- {\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"}? The report has component field not narrative. Is quote from report? The whole JSON is report. \"ELECTRICAL SYSTEM\" appears in component. That is verbatim. Could include. But clues quote copied from report. Okay.\n- {\"kind\":\"other\",\"quote\":\"needed a new battery\"}? Maybe not.\n- {\"kind\":\"symptom\",\"quote\":\"vehicle would move approx 5-8 ft, lock up and stop\"} already.\n- {\"kind\":\"other\",\"quote\":\"transmission valve body replaced\"}? Diagnosis. Not needed.\n- {\"kind\":\"condition\",\"quote\":\"12/05/25\"}? Date not condition. Could omit.\nNeed not too many clues. But include evidence.\n\nNeed ensure every quote exact. Let's copy carefully from narrative:\n\"vehicle parked for extended period, 7-10 days, entered vehicle on 12/05/25 and proceeded to start - immediately service transmission appeared in display, check engine light on, dash flashing and door locks going up and down and chiming of alarms.\"\nQuote \"service transmission appeared in display\" exact? Yes substring: \"immediately service transmission appeared in display\" includes. \"service transmission appeared in display\" exact (lowercase). Good.\n\"check engine light on\" exact.\n\"dash flashing and door locks going up and down and chiming of alarms\" exact.\n\"vehicle would move approx 5-8 ft, lock up and stop, start again and repeat\" exact? Narrative: \"vehicle would move approx 5-8 ft, lock up and stop, start again and repeat, etc..\" substring yes.\n\"vehicle parked for extended period, 7-10 days\" exact.\n\"GM Service bulletin # PIP6069\" exact? Narrative: \"GM Service bulletin # PIP6069 (which i pulled up online)\" yes.\n\"unable to use vehicle due safety issue with transmission\" exact? Narrative: \"waiting on part delivery and unable to use vehicle due safety issue with transmission.\" substring yes.\n\"ELECTRICAL SYSTEM\" exact in component.\nMaybe \"12/05/25\" not.\n\nNeed summary includes \"2024 GMC Yukon XL\" facts from fields. Is that invent? Report has year 2024 make GMC model YUKON XL. Okay.\n\nNeed answer only JSON no markdown. Ensure JSON valid with escapes if any. Use lowercase? Fine.\n\nPotential issue: safety_relevant should be true due \"safety issue\" and lock up. Good.\n\nMissing_info: [\"mileage\"]. Could include \"date\"? But date present. No.\n\nNeed maybe symptoms include \"unable to use vehicle\" as symptom? Maybe not. But as safety. Good.\n\nNeed group \"electrical_general\". Good.\n\nLet's craft final JSON. No extra text.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793532785,
+      "id": "2fda74f8a64f5143b4209ff6686676e5",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2279,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1966,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00085569,
+          "billing_source": "go",
+          "list_cost": 0.00142615,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 384,
+            "output": 2279,
+            "reasoning": 1966
+          }
+        },
+        "prompt_tokens": 768,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 3047
+      }
+    },
+    "text": "{\"summary\":\"2024 GMC Yukon XL: after 7-10 days parked, service transmission message, check engine light, flashing dash, door lock cycling/chimes, vehicle locks up after 5-8 ft; PIP6069 valve body/battery.\",\"group\":\"electrical_general\",\"symptoms\":[\"service transmission message displayed\",\"check engine light on\",\"dash flashing\",\"door locks going up and down\",\"alarms chiming\",\"vehicle moves about 5-8 ft then locks up and stops\",\"vehicle repeat starts and stops\"],\"conditions\":[\"parked for extended period, 7-10 days\"],\"fault_codes\":[\"PIP6069\"],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"condition\",\"quote\":\"vehicle parked for extended period, 7-10 days\"},{\"kind\":\"symptom\",\"quote\":\"service transmission appeared in display\"},{\"kind\":\"symptom\",\"quote\":\"check engine light on\"},{\"kind\":\"symptom\",\"quote\":\"dash flashing and door locks going up and down and chiming of alarms\"},{\"kind\":\"symptom\",\"quote\":\"vehicle would move approx 5-8 ft, lock up and stop, start again and repeat\"},{\"kind\":\"fault_code\",\"quote\":\"GM Service bulletin # PIP6069\"},{\"kind\":\"safety\",\"quote\":\"unable to use vehicle due safety issue with transmission\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00085569,
+      "cached_tokens": 384,
+      "cost_usd": 0.00142615,
+      "input_tokens": 768,
+      "list_cost_usd": 0.00142615,
+      "output_tokens": 2279,
+      "reasoning_tokens": 1966
+    }
+  }
+}

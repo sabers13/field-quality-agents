@@ -1,0 +1,66 @@
+{
+  "key": "d8590f9e1fd82fbf613255bc5568a2b892cf1f48d6a1aa46e069f84ca0305cb8",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10813,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Electrical system: MBUX would not turn on with blind spot/Parktronic warnings and battery not charging after charge/service.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"MBUX system would not turn on\",\n    \"Blind Spot warning inoperable\",\n    \"Parktronic not operatable\",\n    \"unable to access features through MBUX\",\n    \"battery light comes on after charging\",\n    \"battery not charging\",\n    \"recurring warning lights\"\n  ],\n  \"conditions\": [\n    \"charging\",\n    \"after service\",\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"ELECTRICAL SYSTEM\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"MBUX system would not turn on.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Warnings of Blind Spot in operatable, Parktronic not operatable.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Was not able to access any features through MBUX.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"after being on charge\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"after a day\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"battery still isn't charging\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"come back on\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"It was a safety issue because the battery light comes on, after being on charge, and without access to MBUX, you do not know if the car will stall on the freeway, or at a stop light.\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"recalls on 12v rewiring\"\n    }\n  ]\n}",
+            "reasoning_content": "We need to produce JSON only. Need parse report. Component given ELECTRICAL SYSTEM group electrical_general. Narrative: MBUX system would not turn on. Warnings Blind Spot inoperatable, Parktronic not operatable. Unable access features through MBUX. Climate Control, convertible top, Maps all through MBUX. Safety issue because battery light comes on after being on charge, without MBUX access don't know if car will stall on freeway or stop light. Safety issues around front lift without cameras access. Inspected at dealer fixed but after day battery still isn't charging after attempts and recalls on 12v rewiring. Since bought many warning lights come on, fixed and come back.\n\nNeed summary one line: component, symptom, conditions. Group electrical_general. Symptoms list plain words: MBUX system would not turn on; blind spot warning inoperable; Parktronic inoperable; unable to access features through MBUX; battery light comes on after charging; battery not charging; warning lights recurring. Conditions: after service? mentioned inspected and fixed, after a day battery still isn't charging. Also charging. cold no. moisture no. heat no. vibration no. intermittent? warning lights come and go? \"come back on\" maybe intermittent. \"after service\" dealer fixed it, after a day. Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. Include \"charging\", \"after service\", maybe \"intermittent\" due recurring warnings. Safety_relevant true (mentions safety issue, stall on freeway). Fault codes none. Missing info: mileage is null. Date? received_at exists; report date not given? The missing_info allowed mileage, date, conditions, component, symptom. Mileage missing. Conditions maybe present. Component present. Symptom present. Date? received_at is 2025-03-04, but that's intake date not incident date. Could list mileage only. Need clues with verbatim quotes. Must copy character for character. Need quotes from narrative. Could quote \"MBUX system would not turn on.\" Exact includes period? Narrative: \"MBUX system would not turn on. Warnings...\" yes. Quote \"Warnings of Blind Spot in operatable, Parktronic not operatable.\" Note typo \"in operatable\" exact. \"Was not able to access any features through MBUX.\" \"It was a safety issue because the battery light comes on, after being on charge, and without access to MBUX, you do not know if the car will stall on the freeway, or at a stop light.\" \"after a day, the battery still isn't charging after numerous attempts and recalls on 12v rewiring.\" \"many warning lights have always come on, been ficed and then come back on.\" Note \"ficed\" typo exact. Need kind mapping. For component_group quote maybe \"ELECTRICAL SYSTEM\" is not in narrative but field? Prompt says report in user message includes component field. Quote can be from report, likely any. But quote verbatim. Could quote \"ELECTRICAL SYSTEM\". kind component_group. Safety quote. Condition quote \"after being on charge\" or \"after a day\". Need ensure exact span. \"after being on charge\" appears in safety sentence. \"after a day\" appears. \"after numerous attempts and recalls on 12v rewiring\" etc. Condition \"charging\" quote \"battery still isn't charging\". For intermittent quote \"come back on\" or \"have always come on, been ficed and then come back on\". Use exact.\n\nNeed JSON no other text. Ensure valid. Summary should mention component, symptom, conditions. e.g. \"Electrical system: MBUX would not turn on with blind spot/Parktronic warnings and battery not charging after charge/service.\" Conditions: charging, after service, intermittent. Symptoms: maybe \"MBUX system would not turn on\", \"Blind Spot warning inoperable\", \"Parktronic not operatable\", \"unable to access MBUX features\", \"battery light comes on after charging\", \"battery not charging\", \"recurring warning lights\". Need not overdo.\n\nMissing_info: [\"mileage\"]? Maybe also \"date\" because no incident date? But received_at is date. The analysis needs date? The report has received_at. Rule list missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Mileage null. Date maybe received_at present but event date not. Could include \"mileage\" only. Maybe \"date\" no. Good.\n\nSafety_relevant true despite input false? We infer from report. yes.\n\nClues list every kind. Need include symptom, condition, fault_code none, component_group, safety, other. Maybe no fault_code. Need quotes exact. Let's craft.\n\nClues:\n{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"}\n{\"kind\":\"symptom\",\"quote\":\"MBUX system would not turn on.\"}\n{\"kind\":\"symptom\",\"quote\":\"Warnings of Blind Spot in operatable, Parktronic not operatable.\"} Wait exact phrase: \"Warnings of Blind Spot in operatable, Parktronic not operatable.\" Yes.\n{\"kind\":\"symptom\",\"quote\":\"Was not able to access any features through MBUX.\"}\n{\"kind\":\"condition\",\"quote\":\"after being on charge\"}\n{\"kind\":\"condition\",\"quote\":\"after a day\"}\n{\"kind\":\"condition\",\"quote\":\"battery still isn't charging\"}\n{\"kind\":\"condition\",\"quote\":\"come back on\"}\n{\"kind\":\"safety\",\"quote\":\"It was a safety issue because the battery light comes on, after being on charge, and without access to MBUX, you do not know if the car will stall on the freeway, or at a stop light.\"}\n{\"kind\":\"other\",\"quote\":\"recalls on 12v rewiring\"} maybe.\n\nNeed ensure quote \"after being on charge\" appears exactly in \"after being on charge, and\". yes. \"after a day\" in \"but after a day, the battery\". yes. \"battery still isn't charging\" exact? Narrative: \"the battery still isn't charging after numerous attempts\" yes. \"come back on\" appears in \"then come back on.\" yes.\n\nNeed maybe summary one line. Output only JSON. Use booleans true. No markdown? User says answer with one JSON object and no other text. So final just JSON. Ensure no trailing commas.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793525237,
+      "id": "c145e96047ac81994652c62e57f5c24b",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1794,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1337,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00070542,
+          "billing_source": "go",
+          "list_cost": 0.0011757,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 662,
+            "output": 1794,
+            "reasoning": 1337
+          }
+        },
+        "prompt_tokens": 662,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 2456
+      }
+    },
+    "text": "{\n  \"summary\": \"Electrical system: MBUX would not turn on with blind spot/Parktronic warnings and battery not charging after charge/service.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"MBUX system would not turn on\",\n    \"Blind Spot warning inoperable\",\n    \"Parktronic not operatable\",\n    \"unable to access features through MBUX\",\n    \"battery light comes on after charging\",\n    \"battery not charging\",\n    \"recurring warning lights\"\n  ],\n  \"conditions\": [\n    \"charging\",\n    \"after service\",\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"ELECTRICAL SYSTEM\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"MBUX system would not turn on.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Warnings of Blind Spot in operatable, Parktronic not operatable.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Was not able to access any features through MBUX.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"after being on charge\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"after a day\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"battery still isn't charging\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"come back on\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"It was a safety issue because the battery light comes on, after being on charge, and without access to MBUX, you do not know if the car will stall on the freeway, or at a stop light.\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"recalls on 12v rewiring\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00070542,
+      "cached_tokens": 0,
+      "cost_usd": 0.0011757,
+      "input_tokens": 662,
+      "list_cost_usd": 0.0011757,
+      "output_tokens": 1794,
+      "reasoning_tokens": 1337
+    }
+  }
+}

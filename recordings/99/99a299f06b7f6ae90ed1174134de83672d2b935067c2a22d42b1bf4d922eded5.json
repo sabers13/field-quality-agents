@@ -1,0 +1,66 @@
+{
+  "key": "99a299f06b7f6ae90ed1174134de83672d2b935067c2a22d42b1bf4d922eded5",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 8774,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"ELECTRICAL SYSTEM main display glitchy or blank, failing to show fuel level and odometer, especially in colder weather\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"glitchy main display\",\n    \"blank main display\",\n    \"fuel level not displayed\",\n    \"odometer not displayed\"\n  ],\n  \"conditions\": [\n    \"cold\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"missing_info\": [\n    \"mileage\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"glitchy and/or blank main display\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"fails to show important information such as fuel level, odometer\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"especially in colder weather\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"Driving with an inoperative display can increase the risk of being stranded somewhere without fuel.\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer only JSON. Need normalize. Component electrical system group electrical_general. Narrative: glitchy and/or blank main display often fails to show important info fuel level odometer especially colder weather. Driving inoperative display can increase risk stranded without fuel. Safety relevant? Mentions risk being stranded without fuel, not crash/fire etc. Probably false? Prompt set safety_relevant when mentions crash, fire, smoke, injury, loss control, stall at speed or another risk to people. \"increase risk of being stranded somewhere without fuel\" is risk? Not direct risk to people maybe stranded. Could be safety? Hmm \"another risk to people\" stranded without fuel could be risk. But given input safety_relevant false. We should not invent, but can set based report. I'd keep false? Need consider. The narrative explicitly \"increase the risk of being stranded somewhere without fuel\" could be safety-relevant? It's not crash/fire/injury but risk to people? Being stranded can be hazardous. But normalizing maybe safety_relevant false because no crash/fire. They already provide safety_relevant false. Use false.\n\nSymptoms: glitchy main display, blank main display, fails to show fuel level, fails to show odometer. Conditions: cold (colder weather). Fault codes none. missing_info: mileage? date? date received exists but report date? \"date\" maybe event date missing? Mileage null. Component present, symptom present, conditions present. Missing mileage and date? The report received_at 2025-04-28, so date present? It's received date not incident date. Rule list missing_info facts analysis needs: component, symptom, conditions, mileage, date. Mileage missing. Date? received_at present. Maybe date not missing? If incident date needed, but \"date\" could mean report date. I'd list mileage only? But input has mileage null. Need missing_info [\"mileage\"]. Could include \"date\" if incident date missing, but not explicit. Better only mileage.\n\nClues with verbatim quotes. Need exact spans from narrative. Quotes:\n- \"glitchy and/or blank main display\" symptom\n- \"fails to show important information such as fuel level, odometer\" symptom\n- \"especially in colder weather\" condition\n- \"increase the risk of being stranded somewhere without fuel\" maybe safety/other? If safety false maybe other. But clue kind safety? If quote indicates risk but safety_relevant false? Avoid safety quote? Maybe include as other? The schema kind other. Could include \"Driving with an inoperative display can increase the risk of being stranded somewhere without fuel.\" as other. But if safety false, maybe skip. Yet it is relevant. We can include \"other\" quote.\n\nNeed summary one line: ELECTRICAL SYSTEM main display glitchy/blank, missing fuel/odometer, cold weather. Group exactly \"electrical_general\" or \"electrical/electronic component group\"? Given group. Use given group.\n\nNeed JSON no other text. Ensure quotes character-for-character. Narrative has \"A glitchy and/or blank main display often fails to show important information such as fuel level, odometer, etc., especially in colder weather. Driving with an inoperative display can increase the risk of being stranded somewhere without fuel.\"\n\nVerbatim spans:\n\"glitchy and/or blank main display\" yes substring? \"A glitchy and/or blank main display\" includes. \"glitchy and/or blank main display\" exact lower? Narrative \"A glitchy...\" so \"glitchy\" lowercase yes after A. Good.\n\"fails to show important information such as fuel level, odometer\" yes exact? Narrative: \"often fails to show important information such as fuel level, odometer, etc.\" substring \"fails to show important information such as fuel level, odometer\" yes.\n\"especially in colder weather\" exact.\n\"Driving with an inoperative display can increase the risk of being stranded somewhere without fuel.\" exact includes period. Good.\n\nSymptoms plain words: \"glitchy main display\", \"blank main display\", \"fuel level not displayed\", \"odometer not displayed\". Good.\n\nConditions: [\"cold\"]. Could include \"colder weather\" as cold. No moisture etc.\n\nFault codes [].\n\nSafety false.\n\nMissing_info [\"mileage\"].\n\nNeed answer one JSON object. No markdown? User says JSON object and no other text. We can output raw JSON. Ensure valid.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793526459,
+      "id": "7f872e917faaf20ce437ce4dddfebd52",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1164,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 921,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00043305,
+          "billing_source": "go",
+          "list_cost": 0.00072175,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 148,
+            "output": 1164,
+            "reasoning": 921
+          }
+        },
+        "prompt_tokens": 532,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1696
+      }
+    },
+    "text": "{\n  \"summary\": \"ELECTRICAL SYSTEM main display glitchy or blank, failing to show fuel level and odometer, especially in colder weather\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"glitchy main display\",\n    \"blank main display\",\n    \"fuel level not displayed\",\n    \"odometer not displayed\"\n  ],\n  \"conditions\": [\n    \"cold\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"missing_info\": [\n    \"mileage\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"glitchy and/or blank main display\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"fails to show important information such as fuel level, odometer\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"especially in colder weather\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"Driving with an inoperative display can increase the risk of being stranded somewhere without fuel.\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00043305,
+      "cached_tokens": 384,
+      "cost_usd": 0.00072175,
+      "input_tokens": 532,
+      "list_cost_usd": 0.00072175,
+      "output_tokens": 1164,
+      "reasoning_tokens": 921
+    }
+  }
+}

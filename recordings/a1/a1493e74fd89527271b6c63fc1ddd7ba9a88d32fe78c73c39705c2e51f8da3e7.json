@@ -1,0 +1,66 @@
+{
+  "key": "a1493e74fd89527271b6c63fc1ddd7ba9a88d32fe78c73c39705c2e51f8da3e7",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12537,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\": \"ELECTRICAL SYSTEM — driver instrument screen shut off and went black while driving, leaving gear and speed unreadable\", \"group\": \"electrical_general\", \"symptoms\": [\"driver instrument screen suddenly shut off and went black\", \"unable to see gear selection or vehicle speed\"], \"conditions\": [\"while driving\"], \"fault_codes\": [], \"safety_relevant\": true, \"missing_info\": [\"mileage\", \"date\"], \"clues\": [{\"kind\": \"component_group\", \"quote\": \"ELECTRICAL SYSTEM\"}, {\"kind\": \"symptom\", \"quote\": \"the screen behind the driver steering wheel suddenly shut off and went black\"}, {\"kind\": \"symptom\", \"quote\": \"I was unable to see if I am in Drive or reverse or what my speed is.\"}, {\"kind\": \"condition\", \"quote\": \"while driving\"}, {\"kind\": \"safety\", \"quote\": \"what my speed is\"}]}",
+            "reasoning_content": "We need answer JSON only. Need parse report. Component ELECTRICAL SYSTEM, group electrical_general. Narrative: screen behind driver steering wheel suddenly shut off and went black while driving; unable to see if in Drive or reverse or speed. Symptoms: display screen shut off/went black; unable to see gear selection or speed. Conditions: while driving. Safety relevant? The report mentions loss of speed/gear visibility while driving—risk to people? Rule set safety_relevant when report mentions crash fire smoke injury loss of control stall at speed or another risk to people. Here loss of instrument display while driving may be safety risk, though given safety_relevant false. We should set true? Need assess: unable to see speed and gear while driving is a risk. \"another risk to people\" yes. But input has safety_relevant false; we should not blindly copy? The instruction says set safety_relevant when report mentions... It mentions driving and inability to see speed/gear, arguably safety risk. Need likely true. Missing_info: mileage null, date? received_at exists but event date missing? The report has no event date, only received. Missing info: mileage, date maybe. Conditions present \"while driving\". Component present. Symptom present. So missing_info [\"mileage\", \"date\"]. Fault codes none. Clues verbatim spans: \"ELECTRICAL SYSTEM\" component_group? Actually component field. quote from report? The \"report\" includes JSON fields; verbatim span from report can include component value. Clue kind component_group quote \"ELECTRICAL SYSTEM\". Symptom quote \"the screen behind the driver steering wheel suddenly shut off and went black\" and \"I was unable to see if I am in Drive or reverse or what my speed is.\" Condition quote \"while driving\". Safety clue? \"while driving\" plus inability to see speed. Quote \"what my speed is\" maybe safety. Need exact verbatim. Let's craft.\n\nNeed one JSON object no other text. Ensure quotes exact substrings. Narrative: \"Today while driving the screen behind the driver steering wheel suddenly shut off and went black. I was unable to see if I am in Drive or reverse or what my speed is.\" Quote \"while driving\" exists. \"the screen behind the driver steering wheel suddenly shut off and went black\" exact? Narrative: \"Today while driving the screen behind the driver steering wheel suddenly shut off and went black.\" Yes substring starts after \"driving \". It includes lowercase screen. Good. \"I was unable to see if I am in Drive or reverse or what my speed is.\" exact. \"ELECTRICAL SYSTEM\" exact from component. \"what my speed is\" exact. Summary one line: ELECTRICAL SYSTEM — driver instrument screen shut off and went black while driving, unable to see gear or speed. Group electrical_general. Symptoms array plain words. Conditions [\"while driving\"]? The schema examples have cold moisture heat vibration intermittent after service charging. But conditions can be free? It says conditions [\"cold\"...]. We can include \"while driving\" as condition. Maybe \"driving\" not in list but valid. Since schema examples, but should represent. Use \"while driving\". Fault_codes []. safety_relevant true. Missing_info [\"mileage\",\"date\"]. Clues list.\n\nNeed final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793525365,
+      "id": "988a597b0d5d09abd152a57a2e305f9b",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 881,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 675,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00036396,
+          "billing_source": "go",
+          "list_cost": 0.0006066,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 520,
+            "output": 881,
+            "reasoning": 675
+          }
+        },
+        "prompt_tokens": 520,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 1401
+      }
+    },
+    "text": "{\"summary\": \"ELECTRICAL SYSTEM — driver instrument screen shut off and went black while driving, leaving gear and speed unreadable\", \"group\": \"electrical_general\", \"symptoms\": [\"driver instrument screen suddenly shut off and went black\", \"unable to see gear selection or vehicle speed\"], \"conditions\": [\"while driving\"], \"fault_codes\": [], \"safety_relevant\": true, \"missing_info\": [\"mileage\", \"date\"], \"clues\": [{\"kind\": \"component_group\", \"quote\": \"ELECTRICAL SYSTEM\"}, {\"kind\": \"symptom\", \"quote\": \"the screen behind the driver steering wheel suddenly shut off and went black\"}, {\"kind\": \"symptom\", \"quote\": \"I was unable to see if I am in Drive or reverse or what my speed is.\"}, {\"kind\": \"condition\", \"quote\": \"while driving\"}, {\"kind\": \"safety\", \"quote\": \"what my speed is\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00036396,
+      "cached_tokens": 0,
+      "cost_usd": 0.0006066,
+      "input_tokens": 520,
+      "list_cost_usd": 0.0006066,
+      "output_tokens": 881,
+      "reasoning_tokens": 675
+    }
+  }
+}

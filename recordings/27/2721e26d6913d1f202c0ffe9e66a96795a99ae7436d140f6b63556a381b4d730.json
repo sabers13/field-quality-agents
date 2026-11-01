@@ -1,0 +1,66 @@
+{
+  "key": "2721e26d6913d1f202c0ffe9e66a96795a99ae7436d140f6b63556a381b4d730",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 13607,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"ADAS / Lane Departure Assist: FSD malfunction caused a sudden right turn at excessive speed without adequate steering input, barrier collision, loss of control, and injury.\",\"group\":\"adas\",\"symptoms\":[\"FSD system malfunction\",\"sudden right turn onto a freeway on-ramp\",\"excessive speed\",\"without adequate steering input\",\"loss of control\",\"collision with left-side barrier\",\"no warning lamps, messages, or alerts before or during incident\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"Full Self-Driving (FSD) system\"},{\"kind\":\"symptom\",\"quote\":\"The Full Self-Driving (FSD) system malfunctioned.\"},{\"kind\":\"symptom\",\"quote\":\"the vehicle initiated a sudden right turn onto a freeway on-ramp at excessive speed and without adequate steering input.\"},{\"kind\":\"symptom\",\"quote\":\"This resulted in the vehicle colliding with the left-side barrier.\"},{\"kind\":\"safety\",\"quote\":\"The unexpected maneuver caused the vehicle to lose control and strike the barrier, placing both the driver and other motorists at risk.\"},{\"kind\":\"safety\",\"quote\":\"The driver sustained a whiplash injury along with left shoulder and right chest pain.\"},{\"kind\":\"symptom\",\"quote\":\"No warning lamps, messages, or alerts were displayed prior to or during the incident.\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize report. Need include summary component symptom conditions. Report: component LANE DEPARTURE: ASSIST group adas. Narrative FSD malfunction, sudden right turn onto freeway on-ramp at excessive speed without adequate steering input, collided left-side barrier. Loss control, injury whiplash etc. Safety true. Fault codes none. Conditions? \"with flow of traffic in middle lane of surface street\", sudden, no warning. Conditions list allowed: cold moisture heat vibration intermittent after service charging. None clearly. Could say [] conditions. Symptoms: sudden right turn / excessive speed / no adequate steering input / collision with barrier / loss of control / no warning lamps/messages. Need plain words symptoms. Clues verbatim quotes. Must include quotes exact. Need safety quote. missing_info: mileage (null). date? received_at exists but incident date not given. Conditions maybe not given? The analysis needs conditions; narrative has surface street middle lane, flow traffic but not weather etc. Missing info likely mileage, date. Component present, symptom present, conditions? Hmm conditions list includes \"cold, moisture, heat, vibration, intermittent, after service, charging\" not applicable. We can list missing_info [\"mileage\",\"date\"] maybe \"conditions\" no because no environmental conditions? The report states no warning lamps prior/during; not specific. We need not overinclude. Summary one line: \"adas / Lane Departure Assist: FSD initiated sudden right turn at excessive speed without adequate steering input, causing barrier collision and injury.\" Good.\n\nNeed JSON with keys exactly. Clues array. Every quote verbatim span copied. Need quote exact from narrative. We can use:\n- \"The Full Self-Driving (FSD) system malfunctioned.\" kind symptom or component_group? symptom.\n- \"the vehicle initiated a sudden right turn onto a freeway on-ramp at excessive speed and without adequate steering input\" exact? Narrative: \"the vehicle initiated a sudden right turn onto a freeway on-ramp at excessive speed and without adequate steering input.\" yes.\n- \"This resulted in the vehicle colliding with the left-side barrier.\" symptom? other? symptom.\n- \"The unexpected maneuver caused the vehicle to lose control and strike the barrier\" safety? symptom? quote includes no period maybe exact substring: \"The unexpected maneuver caused the vehicle to lose control and strike the barrier, placing both the driver and other motorists at risk.\" Use shorter exact substring. kind safety.\n- \"The driver sustained a whiplash injury along with left shoulder and right chest pain.\" safety.\n- \"No warning lamps, messages, or alerts were displayed prior to or during the incident.\" symptom? condition? symptom maybe.\n- component group quote? \"Full Self-Driving (FSD) system\" maybe component_group? But component given is lane departure assist; group adas. Could quote \"The Full Self-Driving (FSD) system malfunctioned.\" Not component_group. We can include component_group quote \"Full Self-Driving (FSD) system\" exact substring? In narrative \"The Full Self-Driving (FSD) system malfunctioned.\" so substring yes. kind component_group. But maybe duplicate. Fine.\n\nNeed not include safety_relevant quote? Use safety kind.\n\nNeed conditions maybe [] because none of allowed. Could include \"with the flow of traffic\" as condition? Allowed conditions array only enumerated? The schema conditions: [\"cold\", \"moisture\", ...]. It says list conditions. Should choose from list? likely yes. None. So [].\n\nSymptoms: [\"sudden right turn onto freeway on-ramp\", \"excessive speed\", \"without adequate steering input\", \"loss of control\", \"collision with left-side barrier\", \"no warning lamps or messages before or during incident\", \"driver injury\"]. Is injury symptom? It's outcome not symptom. Maybe include \"driver sustained whiplash and shoulder/chest pain\" as symptom? The symptom of component? Hmm.\n\nNeed group \"adas\".\n\nFault codes [].\n\nMissing_info: [\"mileage\",\"date\"] maybe \"conditions\"? There is no date of incident. Received_at 2025-10-02 but incident date absent. Mileage null. Component and symptom present. Conditions? It says middle lane surface street with flow of traffic, but no weather/road conditions; not required perhaps. But \"conditions\" in missing_info could be important for ADAS. The report gives some context but not weather. However rules: missing_info only facts analysis needs: component, symptom, conditions, mileage, date. We can include \"conditions\" if no cold/moisture/heat etc. But conditions list maybe not relevant. Given report has surface street and traffic flow, maybe conditions present partially. To be safe include [\"mileage\",\"date\"] only. They might expect missing_info includes mileage due null, date due no incident date. Good.\n\nNeed summary concise. Ensure JSON valid. No markdown. Let's craft.\n\nCheck quotes exact: \n1 \"The Full Self-Driving (FSD) system malfunctioned.\" yes.\n2 \"the vehicle initiated a sudden right turn onto a freeway on-ramp at excessive speed and without adequate steering input\" yes (no period? In narrative it continues \"This resulted...\" There is period after input. Substring without period okay? It says verbatim span copied character for character. A span can omit trailing period? It must be exact contiguous substring. Yes substring exact. But to be safe include period? \"the vehicle initiated a sudden right turn onto a freeway on-ramp at excessive speed and without adequate steering input.\" includes period after? Narrative: \"...without adequate steering input. This resulted...\" yes period. Include period. \n3 \"This resulted in the vehicle colliding with the left-side barrier.\" yes.\n4 \"The unexpected maneuver caused the vehicle to lose control and strike the barrier, placing both the driver and other motorists at risk.\" yes exact sentence? Narrative: \"The unexpected maneuver caused the vehicle to lose control and strike the barrier, placing both the driver and other motorists at risk.\" yes.\n5 \"The driver sustained a whiplash injury along with left shoulder and right chest pain.\" yes.\n6 \"No warning lamps, messages, or alerts were displayed prior to or during the incident.\" exact? Narrative: \"No warning lamps, messages, or alerts were displayed prior to or during the incident.\" yes.\n7 component group quote \"Full Self-Driving (FSD) system\" exact substring yes. But not necessary.\n\nNeed kind values allowed: symptom|condition|fault_code|component_group|safety|other. Use safety for injury/loss control? Loss control is safety. Use symptom for no warnings? Could be symptom. Conditions none.\n\nAnswer no other text. Ensure no markdown code fence? User says answer one JSON object and no other text. So just JSON.\n\nNeed maybe \"summary\": \"ADAS / Lane Departure Assist: FSD malfunction caused sudden right turn at excessive speed without adequate steering input, barrier collision, loss of control and injury.\" Fine.\n\nLet's final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530874,
+      "id": "ecedd391b604921ecf50303f3f406e31",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1774,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1463,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00068118,
+          "billing_source": "go",
+          "list_cost": 0.0011353,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 465,
+            "output": 1774,
+            "reasoning": 1463
+          }
+        },
+        "prompt_tokens": 849,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2623
+      }
+    },
+    "text": "{\"summary\":\"ADAS / Lane Departure Assist: FSD malfunction caused a sudden right turn at excessive speed without adequate steering input, barrier collision, loss of control, and injury.\",\"group\":\"adas\",\"symptoms\":[\"FSD system malfunction\",\"sudden right turn onto a freeway on-ramp\",\"excessive speed\",\"without adequate steering input\",\"loss of control\",\"collision with left-side barrier\",\"no warning lamps, messages, or alerts before or during incident\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"Full Self-Driving (FSD) system\"},{\"kind\":\"symptom\",\"quote\":\"The Full Self-Driving (FSD) system malfunctioned.\"},{\"kind\":\"symptom\",\"quote\":\"the vehicle initiated a sudden right turn onto a freeway on-ramp at excessive speed and without adequate steering input.\"},{\"kind\":\"symptom\",\"quote\":\"This resulted in the vehicle colliding with the left-side barrier.\"},{\"kind\":\"safety\",\"quote\":\"The unexpected maneuver caused the vehicle to lose control and strike the barrier, placing both the driver and other motorists at risk.\"},{\"kind\":\"safety\",\"quote\":\"The driver sustained a whiplash injury along with left shoulder and right chest pain.\"},{\"kind\":\"symptom\",\"quote\":\"No warning lamps, messages, or alerts were displayed prior to or during the incident.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00068118,
+      "cached_tokens": 384,
+      "cost_usd": 0.0011353,
+      "input_tokens": 849,
+      "list_cost_usd": 0.0011353,
+      "output_tokens": 1774,
+      "reasoning_tokens": 1463
+    }
+  }
+}

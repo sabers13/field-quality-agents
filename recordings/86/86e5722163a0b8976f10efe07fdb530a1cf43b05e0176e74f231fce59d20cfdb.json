@@ -1,0 +1,66 @@
+{
+  "key": "86e5722163a0b8976f10efe07fdb530a1cf43b05e0176e74f231fce59d20cfdb",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 13636,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2019 Nissan Leaf electrical system recall 24V700000; recall repair parts unavailable, no failure experienced\",\"group\":\"electrical_general\",\"symptoms\":[],\"conditions\":[],\"fault_codes\":[\"24V700000\"],\"safety_relevant\":false,\"missing_info\":[],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"Electrical System\"},{\"kind\":\"fault_code\",\"quote\":\"NHTSA Campaign Number: 24V700000\"},{\"kind\":\"other\",\"quote\":\"the part to do the recall repair was unavailable\"},{\"kind\":\"other\",\"quote\":\"The contact had not experienced a failure\"}]}",
+            "reasoning_content": "We need answer only JSON object. Need normalize report. Read only report. Need summary one line component symptom conditions. Report: 2019 Nissan Leaf, recall campaign electrical system, part unavailable, manufacturer exceeded reasonable time, no failure experienced. Component electrical system group electrical_general given. Symptoms? The report says no failure experienced. So symptoms likely empty list? Could include \"recall repair part unavailable\" as symptom? Need plain words symptom. It's not a failure symptom. Conditions? Maybe none. Fault codes? Campaign number 24V700000 is recall campaign, not fault code? The schema fault_codes \"code if report names one\". It names NHTSA Campaign Number: 24V700000. Is that a fault code? Probably not a diagnostic fault code. But could include? \"fault_codes\": [\"24V700000\"]? Hmm. Report names campaign number, not fault code. The field says fault_codes code if report names one. Campaign number is not a fault code; but maybe \"fault_codes\" can include recall code? Need decide. Clues quote verbatim. Safety_relevant: report has no crash/fire etc. Given safety_relevant false. Could mention no failure. Set false. Missing_info: The analysis needs component, symptom, conditions, mileage, date. Component present. Symptom? Report says no failure experienced; so no symptom. Is symptom missing? Since no failure, symptom is \"none / no failure experienced\" not missing. Conditions? None mentioned; maybe missing? Mileage is 0? The input has mileage 0. Is that missing? 0 maybe unknown? Report doesn't mention mileage. But field provides mileage 0. Rule read only report in user message includes JSON with mileage 0. We can consider mileage present? It says mileage 0 likely missing/unknown. But missing_info should facts analysis needs. Since report is recall part unavailability, no failure, mileage maybe not important? Date present received_at 2025-05-09. Conditions not mentioned. Component present. Symptom not applicable/no failure. Missing_info maybe [] or [\"conditions\",\"mileage\"]? Need infer expected. We need normalise one incoming field-quality report. For recall part unavailable with no failure, missing_info: maybe [\"symptom\", \"conditions\", \"mileage\"]? But symptom explicitly \"had not experienced a failure\", so not missing; it's no symptom. Conditions absent. Mileage is 0 in input, but report narrative doesn't mention. Missing_info only facts analysis needs. Since no failure, conditions/mileage maybe not needed. But the desk might analyze field quality. Hmm.\n\nNeed output JSON. Summary: \"2019 Nissan Leaf electrical system recall 24V700000; repair parts unavailable, no failure experienced.\" Group \"electrical_general\". Symptoms: [] maybe because no failure. Conditions: [] maybe. Fault_codes: [\"24V700000\"]? Let's think. The rules mention fault_codes \"code if the report names one\". NHTSA Campaign Number is a code named. It is not a fault code but it's a code. The clue kind fault_code can quote \"NHTSA Campaign Number: 24V700000\". If included, okay. But maybe fault_codes should only diagnostic trouble codes. The report names a campaign number. The schema says fault_codes: [\"code if the report names one\"] not \"DTC\". I'd include 24V700000 because it's a named code relevant. But is that inventing? No. It might be expected to capture recall code. However \"fault_codes\" might be for fault codes; recall campaign number is not a fault. But in absence of DTC, could leave empty. Need decide. The instruction: \"fault_codes\": [\"code if the report names one\"]. It names a code. Include. Clues can include quote for fault_code. Good.\n\nSymptoms: The report has \"The contact had not experienced a failure.\" Could include symptom \"no failure experienced\" but symptom list should be symptoms; \"no failure\" is not symptom. Empty.\n\nConditions: none. Empty.\n\nSafety_relevant false.\n\nMissing_info: What facts missing? Component present. Symptom? no failure (not missing). Conditions? none mentioned. Mileage? input mileage 0, narrative no mileage. Date present. For analysis, recall repair part unavailable, no failure; conditions and mileage not crucial. But missing_info list facts analysis needs. If no failure, conditions not needed. Could be empty. But maybe \"conditions\" missing because no conditions stated. The prompt says list missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. Use empty when nothing important missing. Since component and symptom (no failure) present; date present; mileage is 0 (likely unknown), conditions absent. Is mileage important? For recall part availability, not really. Conditions not important. So empty. But if they want field-quality report, missing conditions/mileage maybe. Hmm.\n\nNeed clues with verbatim quotes. Need ensure quotes character-for-character from narrative. Narrative exact:\n\"The contact owns a 2019 Nissan Leaf. The contact received notification of NHTSA Campaign Number: 24V700000 (Electrical System); however, the part to do the recall repair was unavailable. The contact stated that the manufacturer had exceeded a reasonable amount of time for the recall repair. The manufacturer was made aware of the issue. The contact had not experienced a failure. VIN tool confirms parts not available.\"\n\nQuotes:\n- component_group: \"Electrical System\" (appears in parentheses with capital E S). But component group is \"electrical_general\"; quote can be \"Electrical System\".\n- fault_code: \"NHTSA Campaign Number: 24V700000\"\n- symptom? \"The contact had not experienced a failure\" maybe kind symptom? But not symptom. Could use kind \"other\" quote. Or maybe \"no failure\" not symptom. Need clues list maybe condition? \"part to do the recall repair was unavailable\" kind other. \"manufacturer had exceeded a reasonable amount of time for the recall repair\" other. \"VIN tool confirms parts not available\" other. Need not overdo. The evidence should support summary. Include fault code, component group, other for part unavailable/no failure. Safety? no.\n\nNeed output only JSON. No markdown? The prompt says answer with one JSON object and no other text. We can output raw JSON. Ensure valid. Let's craft:\n{\n  \"summary\": \"2019 Nissan Leaf electrical system recall 24V700000; recall repair parts unavailable, no failure experienced\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [],\n  \"conditions\": [],\n  \"fault_codes\": [\"24V700000\"],\n  \"safety_relevant\": false,\n  \"missing_info\": [],\n  \"clues\": [\n    {\"kind\":\"component_group\",\"quote\":\"Electrical System\"},\n    {\"kind\":\"fault_code\",\"quote\":\"NHTSA Campaign Number: 24V700000\"},\n    {\"kind\":\"other\",\"quote\":\"the part to do the recall repair was unavailable\"},\n    {\"kind\":\"other\",\"quote\":\"The contact had not experienced a failure\"}\n  ]\n}\nNeed check quote \"the part to do the recall repair was unavailable\" exact substring? Narrative: \"however, the part to do the recall repair was unavailable.\" yes substring starts after however comma. Good. \"The contact had not experienced a failure\" exact. Good. \"Electrical System\" exact in parentheses. Good.\n\nWould \"fault_codes\" include 24V700000 but clue quote includes prefix. Fine.\n\nMaybe missing_info should include \"conditions\" and \"mileage\"? Hmm. If empty, is that acceptable? The report lacks conditions and mileage. But no failure, so not needed. The prompt: \"List missing_info only for facts the analysis needs: component, symptom, conditions, mileage, date. Use an empty list when nothing important is missing.\" The analysis of recall part unavailability doesn't need conditions/mileage. Empty okay. But \"symptom\" is not missing because no failure. Good.\n\nNeed safety_relevant false; report says no failure. Good.\n\nPotential issue: The input has \"safety_relevant\": false and \"status\": new. We don't include. Fine.\n\nNeed final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793526827,
+      "id": "e7cc7cf88635f629f2d4e521913298e9",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1870,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1735,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00069072,
+          "billing_source": "go",
+          "list_cost": 0.0011512,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 187,
+            "output": 1870,
+            "reasoning": 1735
+          }
+        },
+        "prompt_tokens": 571,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2441
+      }
+    },
+    "text": "{\"summary\":\"2019 Nissan Leaf electrical system recall 24V700000; recall repair parts unavailable, no failure experienced\",\"group\":\"electrical_general\",\"symptoms\":[],\"conditions\":[],\"fault_codes\":[\"24V700000\"],\"safety_relevant\":false,\"missing_info\":[],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"Electrical System\"},{\"kind\":\"fault_code\",\"quote\":\"NHTSA Campaign Number: 24V700000\"},{\"kind\":\"other\",\"quote\":\"the part to do the recall repair was unavailable\"},{\"kind\":\"other\",\"quote\":\"The contact had not experienced a failure\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00069072,
+      "cached_tokens": 384,
+      "cost_usd": 0.0011512,
+      "input_tokens": 571,
+      "list_cost_usd": 0.0011512,
+      "output_tokens": 1870,
+      "reasoning_tokens": 1735
+    }
+  }
+}

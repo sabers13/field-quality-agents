@@ -1,0 +1,66 @@
+{
+  "key": "93eebe309aa96d5ecfbb2dfb091051d37cd8924c95369d0c5a3418e79ae95435",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11748,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Power tailgate on 2012 Chevrolet Equinox opens fully, reverses about 12 inches, then closes forcefully, nearly trapping an occupant and overpowering the user.\",\"group\":\"electrical_general\",\"symptoms\":[\"tailgate opens all the way then immediately comes back down about 12 inches\",\"tailgate goes back up then immediately comes all the way down\",\"tailgate closing cannot be stopped and substantially overpowers a person\",\"occupant nearly trapped between tailgate and storage compartment floor\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"Rear tailgate.\"},{\"kind\":\"symptom\",\"quote\":\"When opening the tailgate with the external switch it opens all the way and immediately comes back down about 12 inches or so then it immediately goes back up and immediately comes all the way down.\"},{\"kind\":\"safety\",\"quote\":\"My wife was almost trapped between the bottom of the tailgate and the floor of the storage compartment.\"},{\"kind\":\"symptom\",\"quote\":\"it was impossible for me to stop the tailgate from closing.\"},{\"kind\":\"safety\",\"quote\":\"It substantially overpowered me.\"},{\"kind\":\"safety\",\"quote\":\"There is a PROBABILITY that it could have broken her back or strangled her.\"},{\"kind\":\"other\",\"quote\":\"The vehicle has a little over 84K miles\"}]}",
+            "reasoning_content": "We need answer one JSON. Need parse. Component electrical system group electrical_general. Narrative rear tailgate power liftgate? Symptoms: tailgate opens fully then comes back down ~12 inches then up then all way down; almost trapped wife; overpowered person; cannot stop closing. Conditions? maybe \"intermittent\"? Not explicitly intermittent but repeated? \"When opening... it opens...\". Conditions list allowed cold moisture heat vibration intermittent after service charging. None? Could say intermittent? The behavior occurs when opening with external switch. Not among allowed except maybe intermittent? Better empty conditions? But conditions field should list from set? Could include none. Safety relevant true: mentions almost trapped, could have broken back or strangled, risk to people, overpowered. Fault codes none. Missing info: date? received_at exists but not incident date. mileage in narrative \"little over 84K\" so mileage not missing, though field null. Component present? Electrical system but actual tailgate actuator/liftgate; component maybe specified. Symptom present. Conditions? missing maybe conditions. date missing. Need missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Mileage given in narrative, so not missing. Date missing (incident date). Conditions missing? They mention opening with external switch, borrowed vehicle trip. Could be conditions not much. Maybe missing_info [\"date\",\"conditions\"]? Need be careful. Component \"ELECTRICAL SYSTEM\" but actual component is tailgate/liftgate; maybe component is present. So missing_info [\"date\", \"conditions\"]? The analysis needs conditions, not given except external switch. Could list conditions. But prompt says list only facts analysis needs. Could include \"date\". Let's craft summary: \"Power tailgate/liftgate on 2012 Chevrolet Equinox opens fully, reverses ~12 inches, then closes forcefully; nearly trapped occupant and overpowered user.\" Group electrical_general. Symptoms plain words: \"tailgate opens fully then immediately comes back down about 12 inches\"; \"tailgate goes back up then immediately closes all the way\"; \"tailgate closing cannot be stopped and overpowers a person\"; \"occupant nearly trapped between tailgate and storage compartment floor\". Conditions: [] maybe. Fault codes []. safety_relevant true. missing_info [\"date\", \"conditions\"]? Hmm \"conditions\" maybe not missing? It describes when opening with external switch, so condition is external switch. But allowed conditions categories don't include that. Could list [] if not necessary? But date definitely missing. The missing_info list only for facts analysis needs; date is relevant. Maybe [\"date\"]. But \"conditions\" also needed to understand cold etc. The report gives no weather/temp. But we can include \"conditions\". Does this violate? no.\n\nClues with verbatim quotes. Need exact substrings. Use narrative text. Quote \"Rear tailgate.\" kind component_group? Actually component. \"When opening the tailgate with the external switch it opens all the way and immediately comes back down about 12 inches or so then it immediately goes back up and immediately comes all the way down.\" kind symptom. \"My wife was almost trapped between the bottom of the tailgate and the floor of the storage compartment.\" kind safety. \"it was impossible for me to stop the tailgate from closing.\" symptom/safety. \"It substantially overpowered me.\" safety. \"There is a PROBABILITY that it could have broken her back or strangled her.\" safety. \"The vehicle has a little over 84K miles\" other maybe mileage. \"I tried to hold it up when it started down for the second time\" symptom? Could include. Need all quotes exactly.\n\nNeed ensure JSON only. Use booleans. Safety true. Summary one line. Group given \"electrical_general\". Good.\n\nNeed maybe \"component_group\" clue quote \"ELECTRICAL SYSTEM\"? That's from component field not narrative? User says report in user message includes JSON; quote verbatim from report can be from entire JSON? It says report; likely can quote narrative. Safer quote narrative only. But component_group clue can quote \"Rear tailgate.\" It's component group? kind component_group. It is verbatim. Good.\n\nNeed decide missing_info. If mileage present in narrative, not missing. Date missing incident date. Conditions? They describe external switch but not environmental. Maybe \"conditions\" is missing because no weather/usage conditions. But the prompt examples include conditions. I'll include [\"date\", \"conditions\"]. However missing_info should only facts analysis needs. It needs incident date and conditions. Good.\n\nConditions array: Should we include \"intermittent\"? The issue is not intermittent; it happens when opening. No. Empty.\n\nFault codes empty.\n\nNeed no other text. Final only JSON. Ensure valid JSON no markdown? User says answer with one JSON object and no other text. We can output raw JSON. Good.\n\nLet's construct:\n\n{\n \"summary\": \"Power tailgate on 2012 Chevrolet Equinox opens fully, reverses about 12 inches, then closes forcefully, nearly trapping an occupant and overpowering the user.\",\n \"group\": \"electrical_general\",\n \"symptoms\": [\n   \"tailgate opens all the way then immediately comes back down about 12 inches\",\n   \"tailgate goes back up then immediately comes all the way down\",\n   \"tailgate closing cannot be stopped and substantially overpowers a person\",\n   \"occupant nearly trapped between tailgate and storage compartment floor\"\n ],\n \"conditions\": [],\n \"fault_codes\": [],\n \"safety_relevant\": true,\n \"missing_info\": [\"date\",\"conditions\"],\n \"clues\": [\n  {\"kind\":\"component_group\",\"quote\":\"Rear tailgate.\"},\n  {\"kind\":\"symptom\",\"quote\":\"When opening the tailgate with the external switch it opens all the way and immediately comes back down about 12 inches or so then it immediately goes back up and immediately comes all the way down.\"},\n  {\"kind\":\"safety\",\"quote\":\"My wife was almost trapped between the bottom of the tailgate and the floor of the storage compartment.\"},\n  {\"kind\":\"symptom\",\"quote\":\"it was impossible for me to stop the tailgate from closing.\"},\n  {\"kind\":\"safety\",\"quote\":\"It substantially overpowered me.\"},\n  {\"kind\":\"safety\",\"quote\":\"There is a PROBABILITY that it could have broken her back or strangled her.\"},\n  {\"kind\":\"other\",\"quote\":\"The vehicle has a little over 84K miles\"}\n ]\n}\n\nNeed quote \"it was impossible...\" starts lowercase in narrative: \"When I tried it, I tried to hold it up when it started down for the second time and it was impossible for me to stop the tailgate from closing.\" The substring \"it was impossible for me to stop the tailgate from closing.\" appears exactly? Narrative: \"...and it was impossible for me to stop the tailgate from closing.\" Yes includes lowercase it. Good.\n\nQuote \"The vehicle has a little over 84K miles\" exact? Narrative: \"The vehicle has a little over 84K miles and is in excellent condition.\" Yes.\n\nSafety quote exact \"There is a PROBABILITY that it could have broken her back or strangled her.\" yes.\n\nPotential issue: \"component_group\" quote \"Rear tailgate.\" is verbatim? Narrative starts \"Rear tailgate.  Borrowed...\" yes.\n\nNeed maybe no conditions. Good.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531169,
+      "id": "6cf544bb56e4bb6f3999f54120f65ae6",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1832,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1528,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00069297,
+          "billing_source": "go",
+          "list_cost": 0.00115495,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 364,
+            "output": 1832,
+            "reasoning": 1528
+          }
+        },
+        "prompt_tokens": 748,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2580
+      }
+    },
+    "text": "{\"summary\":\"Power tailgate on 2012 Chevrolet Equinox opens fully, reverses about 12 inches, then closes forcefully, nearly trapping an occupant and overpowering the user.\",\"group\":\"electrical_general\",\"symptoms\":[\"tailgate opens all the way then immediately comes back down about 12 inches\",\"tailgate goes back up then immediately comes all the way down\",\"tailgate closing cannot be stopped and substantially overpowers a person\",\"occupant nearly trapped between tailgate and storage compartment floor\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"Rear tailgate.\"},{\"kind\":\"symptom\",\"quote\":\"When opening the tailgate with the external switch it opens all the way and immediately comes back down about 12 inches or so then it immediately goes back up and immediately comes all the way down.\"},{\"kind\":\"safety\",\"quote\":\"My wife was almost trapped between the bottom of the tailgate and the floor of the storage compartment.\"},{\"kind\":\"symptom\",\"quote\":\"it was impossible for me to stop the tailgate from closing.\"},{\"kind\":\"safety\",\"quote\":\"It substantially overpowered me.\"},{\"kind\":\"safety\",\"quote\":\"There is a PROBABILITY that it could have broken her back or strangled her.\"},{\"kind\":\"other\",\"quote\":\"The vehicle has a little over 84K miles\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00069297,
+      "cached_tokens": 384,
+      "cost_usd": 0.00115495,
+      "input_tokens": 748,
+      "list_cost_usd": 0.00115495,
+      "output_tokens": 1832,
+      "reasoning_tokens": 1528
+    }
+  }
+}

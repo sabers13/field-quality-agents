@@ -1,0 +1,66 @@
+{
+  "key": "dcdbc7caf124be8897c67452cbd1f5c922fd2dbe9d1c6ae2cbfde44c0d102dd3",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 7839,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"ESC on 2020 GMC Terrain: shaking and loss of motive power at 65 MPH with traction control, check engine, and stability warning lights after an oil change.\",\"group\":\"safety_systems\",\"symptoms\":[\"vehicle and steering wheel shaking abnormally\",\"loss of motive power\",\"traction control, check engine, and stability control warning lights illuminated\"],\"conditions\":[\"vibration\",\"after service\",\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"vehicle and steering wheel started shaking abnormally\"},{\"kind\":\"symptom\",\"quote\":\"the vehicle lost motive power\"},{\"kind\":\"symptom\",\"quote\":\"traction control, check engine, and stabili-trak control warning lights were illuminated\"},{\"kind\":\"condition\",\"quote\":\"taken to a dealer for an oil change\"},{\"kind\":\"condition\",\"quote\":\"approximately 5 weeks after returning the oil change\"},{\"kind\":\"condition\",\"quote\":\"failure reoccurred three weeks later\"},{\"kind\":\"safety\",\"quote\":\"while driving at approximately 65 MPH, the vehicle and steering wheel started shaking abnormally and the vehicle lost motive power\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize. Component ESC but narrative includes engine no oil, shaking, lost motive power, warning lights traction control/check engine/stabli-trak, after oil change ~5 weeks, recurred three weeks later. Safety relevant? Mentions loss of motive power at 65 MPH, steering wheel shaking abnormally. That is risk to people, loss of control? It says vehicle and steering wheel started shaking abnormally and vehicle lost motive power at 65 MPH. Safety_relevant true. Conditions include after service? Taken for oil change, ~5 weeks after returning oil change. Not exactly after service? \"after service\" condition yes. Intermittent? reoccurred. Could include intermittent? It reoccurred three weeks later, so intermittent maybe. Vibration: shaking. Missing info? Mileage given, date? Received date given, but incident date not given. Component given ESC? Symptom present. Conditions present? Maybe date missing (failure date). Missing_info: [\"date\"] perhaps. Need group: given group safety_systems or electrical/electronic component group? Component is ESC safety system. The schema says group \"the electrical/electronic component group, or the given group\". Since given group safety_systems, use safety_systems. Symptoms plain words: \"vehicle and steering wheel shaking abnormally\", \"loss of motive power\", \"warning lights illuminated\" (traction control, check engine, stability control). Fault codes none. Clues quote verbatim spans. Need exact quotes from report. Use spans from narrative. For symptom: \"vehicle and steering wheel started shaking abnormally\"; \"the vehicle lost motive power\"; \"traction control, check engine, and stabili-trak control warning lights were illuminated\". Conditions: \"taken to a dealer for an oil change\"; \"approximately 5 weeks after returning the oil change\"; \"failure reoccurred three weeks later\". Safety: \"while driving at approximately 65 MPH, the vehicle and steering wheel started shaking abnormally and the vehicle lost motive power\" maybe quote. Need ensure verbatim character for character. Let's copy exact: \"while driving at approximately 65 MPH, the vehicle and steering wheel started shaking abnormally and the vehicle lost motive power.\" This includes period? Fine. Clue kind safety. Other maybe component_group quote \"ELECTRONIC STABILITY CONTROL (ESC)\"? Not in narrative but report field. Rules quote copied verbatim from report; field values are report. Could include. But clues should from report. Maybe component group quote \"ELECTRONIC STABILITY CONTROL (ESC)\". That's verbatim in component. But maybe don't need. Fault code none. Summary one line: \"ESC/2020 GMC Terrain: shaking and loss of motive power at 65 MPH with traction/check engine/stability lights after oil change.\" Conditions include cold? no moisture? no heat? no vibration? yes shaking but condition list has vibration. Should conditions include \"vibration\" because shaking? The allowed conditions list includes vibration. Include \"vibration\", \"after service\", \"intermittent\". Maybe not \"charging\". \"after service\" because oil change. \"intermittent\" because reoccurred. Could include \"vibration\" because shaking. Safety relevant true. Missing_info: date? The report has received_at and failure mileage, but no failure date. Analysis needs date? yes missing date. Maybe \"conditions\" not missing because conditions described. \"component\" not missing. Symptom present. Mileage present. So [\"date\"]. Could also \"fault_codes\" not in missing_info options? no. So date only.\n\nNeed output valid JSON no other text. Ensure no trailing.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793528048,
+      "id": "4a73c2dfa6139b20849b13c649e7e8cc",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1016,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 755,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00038994,
+          "billing_source": "go",
+          "list_cost": 0.0006499,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 261,
+            "output": 1016,
+            "reasoning": 755
+          }
+        },
+        "prompt_tokens": 645,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1661
+      }
+    },
+    "text": "{\"summary\":\"ESC on 2020 GMC Terrain: shaking and loss of motive power at 65 MPH with traction control, check engine, and stability warning lights after an oil change.\",\"group\":\"safety_systems\",\"symptoms\":[\"vehicle and steering wheel shaking abnormally\",\"loss of motive power\",\"traction control, check engine, and stability control warning lights illuminated\"],\"conditions\":[\"vibration\",\"after service\",\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"vehicle and steering wheel started shaking abnormally\"},{\"kind\":\"symptom\",\"quote\":\"the vehicle lost motive power\"},{\"kind\":\"symptom\",\"quote\":\"traction control, check engine, and stabili-trak control warning lights were illuminated\"},{\"kind\":\"condition\",\"quote\":\"taken to a dealer for an oil change\"},{\"kind\":\"condition\",\"quote\":\"approximately 5 weeks after returning the oil change\"},{\"kind\":\"condition\",\"quote\":\"failure reoccurred three weeks later\"},{\"kind\":\"safety\",\"quote\":\"while driving at approximately 65 MPH, the vehicle and steering wheel started shaking abnormally and the vehicle lost motive power\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00038994,
+      "cached_tokens": 384,
+      "cost_usd": 0.0006499,
+      "input_tokens": 645,
+      "list_cost_usd": 0.0006499,
+      "output_tokens": 1016,
+      "reasoning_tokens": 755
+    }
+  }
+}

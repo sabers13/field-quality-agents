@@ -1,0 +1,66 @@
+{
+  "key": "e63e63342fff7c8b1d6d7b37278d11604e5035a8bb7110c768464bc81ea87110",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9184,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Exterior lighting: bulbs blow regularly and bulb connections catch fire/explode, recurring over two years, suspected electrical fault\",\"group\":\"lighting\",\"symptoms\":[\"bulbs blowing regularly\",\"bulb connections catching fire\",\"bulb connections exploding\",\"recurrence despite new fittings\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"EXTERIOR LIGHTING\"},{\"kind\":\"symptom\",\"quote\":\"bulbs have been blowing on a regular basis for two years\"},{\"kind\":\"symptom\",\"quote\":\"some of the bulb connections are catching fire and exploding\"},{\"kind\":\"symptom\",\"quote\":\"Ive changed on numerous occasions\"},{\"kind\":\"symptom\",\"quote\":\"even with new fittings\"},{\"kind\":\"other\",\"quote\":\"obviously an electric problem\"},{\"kind\":\"safety\",\"quote\":\"catching fire and exploding\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize incoming report. Need quote verbatim from report. Need parse narrative. Component EXTERIOR LIGHTING group lighting. Symptoms: bulbs blowing regularly, bulb connections catching fire and exploding, recurring despite replacements/new fittings, suspected electrical problem. Conditions? cold/moisture/heat/vibration/intermittent/after service/charging none explicitly? \"regular basis for two years\" maybe intermittent? No. Could list intermittent? Not stated. Better empty. Fault codes none. Safety relevant true due fire/exploding. Missing info: mileage null? Yes mileage missing. Date? received date exists, maybe date of incident missing? The schema missing_info allowed mileage, date, conditions, component, symptom. Component/symptom present. Conditions not specified? Could list conditions? The analysis needs conditions maybe. But missing_info only facts analysis needs. We have component, symptom. Mileage missing. Date? report received_at exists but not incident date. Maybe \"date\" missing. Conditions not given. Should we include conditions? The report says regular basis for two years, no environmental conditions. We can include conditions, mileage, date. Need not overdo. Quotes: need verbatim spans. Narrative has \"My cars bulbs have been blowing on a regular basis for two years..some of the bulb connections are catching fire and exploding .Ive changed on numerous occasions but doesn\\u2019t matter even with new fittings\\u2026obviously an electric problem\". Need quote exact substrings. Quotes can include punctuation. Need ensure verbatim char-for-char. The JSON escaping apostrophe? Use \\u2019 for curly apostrophe? In quote, need match report. The report has \"doesn\\u2019t\" in JSON representation, actual curly apostrophe. We can copy as \"doesn’t\" if output UTF-8. But to be safe use exact substring with curly apostrophe? The prompt says verbatim. We can quote simpler spans: \"bulbs have been blowing on a regular basis for two years\" exact? Narrative starts \"My cars bulbs have been blowing...\" substring \"bulbs have been blowing on a regular basis for two years\" yes. \"some of the bulb connections are catching fire and exploding\" exact? Narrative: \"..some of the bulb connections are catching fire and exploding .\" substring yes no leading spaces? \"some of the bulb connections are catching fire and exploding\" exact. \"obviously an electric problem\" exact. \"even with new fittings\" exact. \"changed on numerous occasions\" exact? \"Ive changed on numerous occasions\" includes Ive. Use \"changed on numerous occasions\" exact. Need clues kinds. symptom quote for blowing; symptom quote for catching fire exploding; condition? Maybe \"regular basis for two years\" as condition? It's duration, not listed condition. Could kind other. component_group quote \"EXTERIOR LIGHTING\" from component field? The report includes component. We can quote \"EXTERIOR LIGHTING\" verbatim from JSON. Safety quote \"catching fire and exploding\" or \"catching fire\". Good.\n\nNeed summary one line: Exterior lighting: bulbs blow regularly, connections catch fire/explode, recurring over two years, suspected electrical fault. Group lighting. Symptoms array plain words: \"bulbs blowing regularly\", \"bulb connections catching fire\", \"bulb connections exploding\", \"recurrence despite new fittings/bulbs\" maybe. Conditions: empty. Fault codes empty. Safety true. Missing info: [\"mileage\",\"date\",\"conditions\"] maybe. But if date? received_at given. Missing date of occurrence. Include. Conditions not specified. Could include mileage. Need no extra text.\n\nNeed ensure JSON valid. Use curly apostrophe? In JSON string values okay. Need escape? Curly apostrophe no. But quote \"doesn’t matter even with new fittings\" includes curly apostrophe. Could avoid. Use exact simple quotes without curly. Need quote \"Ive changed on numerous occasions\" no curly. That is exact? Narrative \" .Ive changed on numerous occasions but doesn’t matter even with new fittings…\" Yes \"Ive changed on numerous occasions\" exact (capital I). Use that. Need quote \"even with new fittings\" exact. Good.\n\nNeed include component_group clue quote \"EXTERIOR LIGHTING\" exact from component. Kind component_group. Safety clue quote \"catching fire and exploding\" exact. Condition? Maybe no condition clues. Could include \"for two years\" as other? Kind other. But not necessary. Need maybe clue for safety: \"catching fire and exploding\". Good.\n\nNeed output only JSON. Ensure no markdown. Final answer JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529619,
+      "id": "7a36582e0d56678a8857ec002e9c7556",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1177,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 966,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.000438,
+          "billing_source": "go",
+          "list_cost": 0.00073,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 151,
+            "output": 1177,
+            "reasoning": 966
+          }
+        },
+        "prompt_tokens": 535,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1712
+      }
+    },
+    "text": "{\"summary\":\"Exterior lighting: bulbs blow regularly and bulb connections catch fire/explode, recurring over two years, suspected electrical fault\",\"group\":\"lighting\",\"symptoms\":[\"bulbs blowing regularly\",\"bulb connections catching fire\",\"bulb connections exploding\",\"recurrence despite new fittings\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"EXTERIOR LIGHTING\"},{\"kind\":\"symptom\",\"quote\":\"bulbs have been blowing on a regular basis for two years\"},{\"kind\":\"symptom\",\"quote\":\"some of the bulb connections are catching fire and exploding\"},{\"kind\":\"symptom\",\"quote\":\"Ive changed on numerous occasions\"},{\"kind\":\"symptom\",\"quote\":\"even with new fittings\"},{\"kind\":\"other\",\"quote\":\"obviously an electric problem\"},{\"kind\":\"safety\",\"quote\":\"catching fire and exploding\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.000438,
+      "cached_tokens": 384,
+      "cost_usd": 0.00073,
+      "input_tokens": 535,
+      "list_cost_usd": 0.00073,
+      "output_tokens": 1177,
+      "reasoning_tokens": 966
+    }
+  }
+}

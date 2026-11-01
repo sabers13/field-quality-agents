@@ -1,0 +1,66 @@
+{
+  "key": "5dca9f0df579a912d061dd4713d799a4b755188a612368af7e73bed9c4e0cef7",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 7410,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"AIR BAGS: passenger sensing device failing intermittently; service airbag light periodic and passenger Airbag ON light fails with a passenger over 100 lbs\",\"group\":\"restraints\",\"symptoms\":[\"passenger sensing device failing intermittently\",\"service airbag light coming on periodically\",\"passenger Airbag ON light fails to illuminate with a passenger over 100 lbs in the seat\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"Passenger sensing device for the passenger seat is failing intermittently.\"},{\"kind\":\"condition\",\"quote\":\"failing intermittently\"},{\"kind\":\"symptom\",\"quote\":\"Service airbag light is coming on periodically\"},{\"kind\":\"safety\",\"quote\":\"the passenger \\\"Airbag ON\\\" light fails to illuminate even if a passenger over 100 lbs is in the seat.\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize. Component AIR BAGS group restraints. Symptoms: passenger sensing device failing intermittently; service airbag light coming on periodically; passenger Airbag ON light fails to illuminate with passenger over 100 lbs. Conditions: intermittent. Fault codes none. Safety relevant? Report mentions airbag light and passenger airbag ON light fails illuminate even passenger over 100 lbs. Is that safety relevant? Rules set safety_relevant when mentions crash fire smoke injury loss control stall at speed or another risk to people. Airbag malfunction could be risk to people; \"another risk to people\" yes airbag not illuminating could mean airbag suppressed. But source has safety_relevant false, but we shouldn't blindly. Need determine. Report says airbag ON light fails to illuminate even if passenger over 100 lbs in seat — passenger airbag may be off, safety risk. Should set true. Need quotes verbatim spans. Summary one line component, symptom, conditions. Missing_info: mileage null? date received exists, conditions? Report says intermittent and long recurring. Component present symptom present. Mileage missing. Date present received_at. Conditions maybe not specific ambient. missing_info [\"mileage\"] maybe. Clues: symptom quote \"Passenger sensing device for the passenger seat is failing intermittently.\" condition quote \"intermittently\"? Must verbatim span. fault code none. component_group quote \"AIR BAGS\"? kind component_group quote \"AIR BAGS\". safety quote \"passenger \\\"Airbag ON\\\" light fails to illuminate even if a passenger over 100 lbs is in the seat.\" Need exact includes escaped quotes in JSON. Verbatim from narrative: and, when it does, the passenger \"Airbag ON\" light fails to illuminate even if a passenger over 100 lbs is in the seat. We can quote substring: \"the passenger \\\"Airbag ON\\\" light fails to illuminate even if a passenger over 100 lbs is in the seat.\" That's verbatim. Good.\n\nNeed JSON only. Ensure valid. summary: \"AIR BAGS: passenger sensing device failing intermittently; service airbag light periodic and passenger Airbag ON light fails with >100 lb passenger.\" Conditions [\"intermittent\"]. Symptoms array plain words. missing_info [\"mileage\"]. Clues include symptom, condition, safety, component_group. Maybe quote \"Service airbag light is coming on periodically\" symptom. Quote exact. Condition quote \"failing intermittently\" exact? Narrative: \"is failing intermittently.\" quote \"failing intermittently\" verbatim. safety quote exact as above. component_group quote \"AIR BAGS\". group restraints.\n\nNeed no other text.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793525509,
+      "id": "16ca421bc3da0f015bfa586119b6f907",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 751,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 539,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00028599,
+          "billing_source": "go",
+          "list_cost": 0.00047665,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 166,
+            "output": 751,
+            "reasoning": 539
+          }
+        },
+        "prompt_tokens": 550,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1301
+      }
+    },
+    "text": "{\"summary\":\"AIR BAGS: passenger sensing device failing intermittently; service airbag light periodic and passenger Airbag ON light fails with a passenger over 100 lbs\",\"group\":\"restraints\",\"symptoms\":[\"passenger sensing device failing intermittently\",\"service airbag light coming on periodically\",\"passenger Airbag ON light fails to illuminate with a passenger over 100 lbs in the seat\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"Passenger sensing device for the passenger seat is failing intermittently.\"},{\"kind\":\"condition\",\"quote\":\"failing intermittently\"},{\"kind\":\"symptom\",\"quote\":\"Service airbag light is coming on periodically\"},{\"kind\":\"safety\",\"quote\":\"the passenger \\\"Airbag ON\\\" light fails to illuminate even if a passenger over 100 lbs is in the seat.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00028599,
+      "cached_tokens": 384,
+      "cost_usd": 0.00047665,
+      "input_tokens": 550,
+      "list_cost_usd": 0.00047665,
+      "output_tokens": 751,
+      "reasoning_tokens": 539
+    }
+  }
+}

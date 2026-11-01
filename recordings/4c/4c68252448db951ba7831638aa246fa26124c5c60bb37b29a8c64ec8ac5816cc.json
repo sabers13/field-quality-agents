@@ -1,0 +1,66 @@
+{
+  "key": "4c68252448db951ba7831638aa246fa26124c5c60bb37b29a8c64ec8ac5816cc",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 13928,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2018 GMC Acadia electrical system: frequent “Shift to Park” message in park prevents complete shutdown and drains battery; fire/rollaway risk claimed.\",\"group\":\"electrical_general\",\"symptoms\":[\"Shift to Park message displayed while vehicle is in park and shifter fully engaged\",\"vehicle cannot be turned off completely\",\"electrical systems remain running and ignition stays on\",\"battery drains\",\"risk of car rolling unexpectedly if gear position is misread\",\"stranded with dead vehicle\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"electrical system\"},{\"kind\":\"symptom\",\"quote\":\"the car has frequently displayed a “Shift to Park” message even when the vehicle is in park and the gear shifter is fully engaged\"},{\"kind\":\"symptom\",\"quote\":\"This message prevents the car from turning off completely, leaving electrical systems running, the ignition on, and draining the battery.\"},{\"kind\":\"condition\",\"quote\":\"This issue has persisted nearly daily for the past five years.\"},{\"kind\":\"condition\",\"quote\":\"The dealership could not reproduce the issue, but it continued regularly afterward.\"},{\"kind\":\"safety\",\"quote\":\"could pose a fire hazard or lead to the car rolling unexpectedly if the system misreads the gear position\"},{\"kind\":\"safety\",\"quote\":\"The constant battery drain has left me stranded with a dead vehicle multiple times.\"}]}",
+            "reasoning_content": "We need answer one JSON only. Need normalize. Need parse report. Component electrical system, group electrical_general. Symptoms: \"Shift to Park\" message even when in park and shifter fully engaged; prevents car turning off completely; electrical systems running/ignition on/battery drain; unable to turn off properly; intermittent? It persisted nearly daily, worsened. Conditions: intermittent? It says frequently, nearly daily, could not reproduce at dealership. Cold/moisture/heat/vibration no. \"after service\"? brought to dealership, inspected. Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. We can include intermittent? The message frequently displayed, not necessarily intermittent. Could include \"after service\" because brought to dealership? That's not condition. Better conditions maybe [] or [\"intermittent\"] if issue not reproduced but continued regularly. Need safety_relevant true because mentions fire hazard, rolling unexpectedly, stuck in unsafe areas, stranded. Rule set when mentions crash, fire, smoke, injury, loss of control, stall at speed or risk. It mentions fire hazard and car rolling unexpectedly. So true.\n\nFault codes: none named. Missing info: mileage? It's null and report doesn't state mileage. Date? received_at exists; narrative dates. Conditions? Maybe conditions not explicit (weather etc) but not important? Component/symptom present. Mileage missing important. Date? received date present, purchase dates. Maybe mileage only. Could include \"conditions\" if environmental conditions absent? But analysis needs conditions; report doesn't state weather/temp. However conditions may not be crucial? Prompt says list missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. Use empty when nothing important missing. Component and symptom present. Mileage missing. Date present. Conditions absent but not necessarily important? Hmm likely include mileage. Maybe conditions? It has \"nearly daily for past five years\" and after dealership, but not environmental. I'd include [\"mileage\"] maybe \"conditions\" too? Need not overinclude. Since conditions field asks cold/moisture/heat/vibration/intermittent/after service/charging. None explicitly except intermittent? The issue is frequent/regular, not intermittent? But dealership couldn't reproduce = intermittent. Could set conditions [\"intermittent\"] and no missing conditions. Mileage missing.\n\nClues with verbatim quotes. Need quote exact spans from narrative. Need ensure quotes exactly copied. Could include:\n- component_group: \"electrical system\" from narrative? Exact lowercase? Narrative has \"Transmission selector / electrical system (“Shift to Park” defect)\" includes \"electrical system\". Quote \"electrical system\" is verbatim substring yes.\n- symptom: \"the car has frequently displayed a “Shift to Park” message even when the vehicle is in park and the gear shifter is fully engaged\" Need exact includes curly quotes. Copy exact.\n- symptom: \"This message prevents the car from turning off completely, leaving electrical systems running, the ignition on, and draining the battery.\" exact.\n- condition: \"has persisted nearly daily for the past five years\" exact? Narrative: \"This issue has persisted nearly daily for the past five years.\" quote substring \"has persisted nearly daily for the past five years\" yes.\n- condition intermittent? \"The dealership could not reproduce the issue, but it continued regularly afterward.\" exact.\n- safety: \"could pose a fire hazard or lead to the car rolling unexpectedly if the system misreads the gear position\" exact? Narrative: \"which could pose a fire hazard or lead to the car rolling unexpectedly if the system misreads the gear position.\" quote can start \"could pose...\" yes.\n- safety: \"The constant battery drain has left me stranded with a dead vehicle multiple times.\" exact.\n- other: \"I am now paying nearly $900 out of pocket to have it repaired.\" Maybe not needed. Clues should evidence summary/group/symptoms/conditions/safety. Include enough.\n\nNeed summary one line: \"2018 GMC Acadia electrical system: intermittent 'Shift to Park' message in park prevents full shutdown and drains battery; fire/rollaway risk claimed.\" That's okay.\n\nGroup: given group electrical_general. Should group be \"electrical_general\" or electrical/electronic component group? The prompt: \"group\": \"the electrical/electronic component group, or the given group\". Given group electrical_general. Use that.\n\nSymptoms array plain words:\n- \"Shift to Park message displayed while vehicle is in park and shifter fully engaged\"\n- \"vehicle cannot be turned off completely\"\n- \"electrical systems remain running and ignition stays on\"\n- \"battery drains\"\n- \"car may roll unexpectedly if gear position misread\" maybe safety symptom? It's risk.\n- \"stranded with dead vehicle\" maybe symptom.\nNeed avoid inventing. Plain words.\n\nConditions: [\"intermittent\"]? Also \"after service\" because dealership inspected? Hmm the condition \"after service\" means issue after service? It was brought to dealership but not repaired. Not useful. Could include \"intermittent\" due cannot reproduce. Maybe \"after service\" if inspecting? No.\n\nSafety_relevant true.\n\nMissing_info: [\"mileage\"]. Maybe \"conditions\" because no weather/driving conditions. But there is condition \"nearly daily\" and intermittent. Hmm.\n\nNeed JSON only. Ensure valid JSON with curly quotes in strings okay. Need escape? Curly quotes no. Double quotes around strings; curly quotes are not quote delimiters. Fine.\n\nNeed not mention \"desk never closes...\" no.\n\nLet's craft final JSON. Ensure quotes exact verbatim. Need check quote \"the car has frequently displayed a “Shift to Park” message even when the vehicle is in park and the gear shifter is fully engaged\" appears exactly? Narrative: \"Since I purchased the vehicle used in June 2019, the car has frequently displayed a “Shift to Park” message even when the vehicle is in park and the gear shifter is fully engaged.\" Yes substring starts \"the car...\" good.\n\nQuote \"This message prevents the car from turning off completely, leaving electrical systems running, the ignition on, and draining the battery.\" exact.\n\nQuote \"This issue has persisted nearly daily for the past five years.\" exact.\n\nQuote \"The dealership could not reproduce the issue, but it continued regularly afterward.\" exact.\n\nQuote \"could pose a fire hazard or lead to the car rolling unexpectedly if the system misreads the gear position\" exact.\n\nQuote \"The constant battery drain has left me stranded with a dead vehicle multiple times.\" exact.\n\nQuote \"electrical system\" exact? Narrative has \"electrical system\" in \"Transmission selector / electrical system (“Shift to Park” defect)\" yes.\n\nMaybe quote for component group \"ELECTRICAL SYSTEM\" from component field? User report JSON has component field \"ELECTRICAL SYSTEM\". But quote should be from report? It says from the report, could include component field. But clues quote verbatim from report. We can quote \"ELECTRICAL SYSTEM\" from component value. That's safer? The narrative has lowercase. Use \"electrical system\". Good.\n\nNeed include fault_codes empty.\n\nNeed answer only JSON. No markdown? The prompt says one JSON object and no other text. We can output raw JSON. Good.\n\nNeed decide conditions: Include [\"intermittent\"] because dealership could not reproduce but continued regularly. But \"intermittent\" is a condition allowed. Good.\n\nMissing_info: mileage only. But maybe date? received_at present, narrative purchase/inspection dates. No.\n\nSafety true.\n\nNeed summary one line. Good.\n\nFinal.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793528719,
+      "id": "4994fccc587437e4142f828116f82176",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1886,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1573,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00072663,
+          "billing_source": "go",
+          "list_cost": 0.00121105,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 522,
+            "output": 1886,
+            "reasoning": 1573
+          }
+        },
+        "prompt_tokens": 906,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2792
+      }
+    },
+    "text": "{\"summary\":\"2018 GMC Acadia electrical system: frequent “Shift to Park” message in park prevents complete shutdown and drains battery; fire/rollaway risk claimed.\",\"group\":\"electrical_general\",\"symptoms\":[\"Shift to Park message displayed while vehicle is in park and shifter fully engaged\",\"vehicle cannot be turned off completely\",\"electrical systems remain running and ignition stays on\",\"battery drains\",\"risk of car rolling unexpectedly if gear position is misread\",\"stranded with dead vehicle\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"electrical system\"},{\"kind\":\"symptom\",\"quote\":\"the car has frequently displayed a “Shift to Park” message even when the vehicle is in park and the gear shifter is fully engaged\"},{\"kind\":\"symptom\",\"quote\":\"This message prevents the car from turning off completely, leaving electrical systems running, the ignition on, and draining the battery.\"},{\"kind\":\"condition\",\"quote\":\"This issue has persisted nearly daily for the past five years.\"},{\"kind\":\"condition\",\"quote\":\"The dealership could not reproduce the issue, but it continued regularly afterward.\"},{\"kind\":\"safety\",\"quote\":\"could pose a fire hazard or lead to the car rolling unexpectedly if the system misreads the gear position\"},{\"kind\":\"safety\",\"quote\":\"The constant battery drain has left me stranded with a dead vehicle multiple times.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00072663,
+      "cached_tokens": 384,
+      "cost_usd": 0.00121105,
+      "input_tokens": 906,
+      "list_cost_usd": 0.00121105,
+      "output_tokens": 1886,
+      "reasoning_tokens": 1573
+    }
+  }
+}

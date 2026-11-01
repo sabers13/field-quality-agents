@@ -1,0 +1,66 @@
+{
+  "key": "071304945763f2b664df56c26706fd2e704ce23f740fe20c191d0c255a340eb3",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12511,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Driver's side window shattered twice with loud boom/pop; windshield cracked; recurrence after regulator/window repair and while driving on freeway.\",\"group\":\"electrical_general\",\"symptoms\":[\"driver's side window shattered\",\"loud boom or pop before shattering\",\"windshield cracked\",\"glass fell into door\"],\"conditions\":[\"intermittent\",\"after service\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"My driver's side window shattered out of nowhere\"},{\"kind\":\"symptom\",\"quote\":\"I heard this really loud boom then the window shattered !\"},{\"kind\":\"condition\",\"quote\":\"I took it in the have the regulator replaced and the window.\"},{\"kind\":\"symptom\",\"quote\":\"once again my window shattered and my winshield cracked\"},{\"kind\":\"condition\",\"quote\":\"not even a year later\"},{\"kind\":\"safety\",\"quote\":\"i was driving on the freeway\"},{\"kind\":\"symptom\",\"quote\":\"glass fell in to the door driver's side window\"}]}",
+            "reasoning_content": "We need answer only JSON. Need parse report. Component electrical system group electrical_general. Symptom: driver's side window shattered, loud boom/pop, regulator replaced, windshield cracked, glass fell into door. Conditions: driving on freeway? intermittent? \"shattered out of nowhere\", not cold moisture heat vibration? Could include \"intermittent\" because repeated? Maybe conditions list only from allowed: cold, moisture, heat, vibration, intermittent, after service, charging. Report mentions after service? first repair then again not even year later. That is after service? It says took it in have regulator replaced and window, then August 2025 once again shattered. Could include after service. Driving freeway condition not in list. We can include intermittent? Recurring twice. Safety relevant: mentions window shattered while driving on freeway, glass fell into door; risk? It is safety risk to people? \"loss of control\" not mentioned, crash? \"the crash\" means sound? It says \"I heard a big pop the crash and in tiny pieces of glass fell...\" Not crash vehicle. Safety maybe true because window shattering while driving can distract/risk. Rule says set when report mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. Shattered window while driving freeway is another risk to people. So true. Fault codes none. missing_info: date? received_at 2025-06-08 but narrative events Oct 2024 Aug 2025 (future relative received? weird). Mileage missing. Component present, symptom present, conditions present? Conditions maybe not explicit enough. We can list mileage only. Need clues verbatim spans. Must be exact from narrative. Quotes: \"driver's side window shattered out of nowhere\" exact? Text: \"My driver's side window shattered out of nowhere for no apparent reason!\" quote can be substring exact including apostrophe. \"I heard this really loud boom then the window shattered !\" exact with space before !. \"I took it in the have the regulator replaced and the window.\" exact. \"Then in August of 2025 not even a year later and once again my window shattered and my winshield cracked.\" exact. \"This time i was driving on the freeway and I heard a big pop the crash and in tiny pieces mof glass fell in to the door driver's side window .\" exact. Need JSON only. Summary one line: driver's side window shattered repeatedly, loud boom/pop, windshield cracked, freeway driving after regulator replacement. Group electrical_general. Symptoms list plain words: \"driver's side window shattered\", \"loud boom/pop before shattering\", \"windshield cracked\", \"glass fell into door\". Conditions: \"intermittent\", \"after service\"? Also maybe \"vibration\"? Not. Could include \"after service\" due repair before recurrence. \"driving on freeway\" not allowed list. Fault_codes []. safety true. missing_info [\"mileage\"]. Clues include kind symptom/condition/safety/component_group/other. Need quotes exact. For component group quote? \"ELECTRICAL SYSTEM\" appears in component not narrative. The report includes component field. Quote can be from report entire JSON? It says report in user message; quote verbatim from report. Could quote \"ELECTRICAL SYSTEM\" yes from JSON. But clues should be from narrative? It says quote verbatim span copied from report. Can include component field. But avoid if not needed. Need kind component_group quote \"ELECTRICAL SYSTEM\". Safety quote \"i was driving on the freeway\" exact substring? Text has \"This time i was driving on the freeway...\" yes. Or \"glass fell in to the door driver's side window\" exact? It has \"mof glass fell in to the door driver's side window .\" We can quote \"glass fell in to the door driver's side window\" exact substring yes. Safety clue maybe \"driving on the freeway\" exact. Condition after service quote \"I took it in the have the regulator replaced and the window.\" exact. Intermittent quote \"once again my window shattered\" exact. Symptom quote \"my winshield cracked\" exact (misspelled). Need no other text.\n\nNeed ensure JSON valid. Summary one line. Use double quotes. Apostrophe fine. No markdown? User said answer with one JSON object and no other text. So final only JSON. Need maybe not code fence. Good.\n\nNeed consider safety_relevant field in input says false, but we determine true. Fine.\n\nLet's craft:\n\n{\n \"summary\": \"Driver's side window shattered twice with loud boom/pop; windshield cracked; recurrence after regulator/window repair and while driving on freeway.\",\n \"group\": \"electrical_general\",\n \"symptoms\": [\"driver's side window shattered\", \"loud boom or pop before shattering\", \"windshield cracked\", \"glass fell into door\"],\n \"conditions\": [\"intermittent\", \"after service\"],\n \"fault_codes\": [],\n \"safety_relevant\": true,\n \"missing_info\": [\"mileage\"],\n \"clues\": [\n  {\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},\n  {\"kind\":\"symptom\",\"quote\":\"My driver's side window shattered out of nowhere\"},\n  {\"kind\":\"symptom\",\"quote\":\"I heard this really loud boom then the window shattered !\"},\n  {\"kind\":\"condition\",\"quote\":\"I took it in the have the regulator replaced and the window.\"},\n  {\"kind\":\"symptom\",\"quote\":\"once again my window shattered and my winshield cracked\"},\n  {\"kind\":\"condition\",\"quote\":\"not even a year later\"},\n  {\"kind\":\"safety\",\"quote\":\"i was driving on the freeway\"},\n  {\"kind\":\"symptom\",\"quote\":\"glass fell in to the door driver's side window\"}\n ]\n}\n\nCheck quotes exact:\n- \"My driver's side window shattered out of nowhere\" exact substring? Text: \"In Oct of 2024 My driver's side window shattered out of nowhere for no apparent reason!\" yes.\n- \"I heard this really loud boom then the window shattered !\" exact includes \"then the window shattered !\" yes.\n- \"I took it in the have the regulator replaced and the window.\" exact yes. Typo \"the have\" included.\n- \"once again my window shattered and my winshield cracked\" exact? Text: \"once again my window shattered and my winshield cracked.\" yes.\n- \"not even a year later\" exact yes.\n- \"i was driving on the freeway\" exact? Text: \"This time i was driving on the freeway\" lowercase i yes.\n- \"glass fell in to the door driver's side window\" exact? Text: \"mof glass fell in to the door driver's side window .\" Substring \"glass fell in to the door driver's side window\" yes.\n\nCould include \"shattered out of nowhere\" as condition? no.\n\nNeed maybe missing_info includes date? The report has received_at but event dates in narrative. Analysis needs date? It has dates. Mileage missing. Good.\n\nNeed avoid suggesting action. Fine.\n\nFinal only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793527559,
+      "id": "f70e0567d2460c0906d5e87fd078743d",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1740,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1490,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00064707,
+          "billing_source": "go",
+          "list_cost": 0.00107845,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 222,
+            "output": 1740,
+            "reasoning": 1490
+          }
+        },
+        "prompt_tokens": 606,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2346
+      }
+    },
+    "text": "{\"summary\":\"Driver's side window shattered twice with loud boom/pop; windshield cracked; recurrence after regulator/window repair and while driving on freeway.\",\"group\":\"electrical_general\",\"symptoms\":[\"driver's side window shattered\",\"loud boom or pop before shattering\",\"windshield cracked\",\"glass fell into door\"],\"conditions\":[\"intermittent\",\"after service\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"My driver's side window shattered out of nowhere\"},{\"kind\":\"symptom\",\"quote\":\"I heard this really loud boom then the window shattered !\"},{\"kind\":\"condition\",\"quote\":\"I took it in the have the regulator replaced and the window.\"},{\"kind\":\"symptom\",\"quote\":\"once again my window shattered and my winshield cracked\"},{\"kind\":\"condition\",\"quote\":\"not even a year later\"},{\"kind\":\"safety\",\"quote\":\"i was driving on the freeway\"},{\"kind\":\"symptom\",\"quote\":\"glass fell in to the door driver's side window\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00064707,
+      "cached_tokens": 384,
+      "cost_usd": 0.00107845,
+      "input_tokens": 606,
+      "list_cost_usd": 0.00107845,
+      "output_tokens": 1740,
+      "reasoning_tokens": 1490
+    }
+  }
+}

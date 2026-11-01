@@ -1,0 +1,66 @@
+{
+  "key": "38f93d4bef54e9261f96840e99616ed73312b8dccc2cc13cf984db2fcf5b2c3d",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 8703,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system: control screen randomly blanks/NO SIGNAL and warning/emergency braking faults, in rain/freeway and after service.\",\"group\":\"electrical_general\",\"symptoms\":[\"control screen randomly goes blank\",\"NO SIGNAL message appears\",\"control screen lights stay on after car off\",\"lane assist malfunction\",\"warning system not working properly\",\"emergency brakes stop abruptly without reason\"],\"conditions\":[\"moisture\",\"intermittent\",\"after service\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"Control screen keeps going randomly blank\"},{\"kind\":\"symptom\",\"quote\":\"Sometimes the sentence NO SIGNAL shows up\"},{\"kind\":\"symptom\",\"quote\":\"Sometimes all the lights of the control screen light up\"},{\"kind\":\"symptom\",\"quote\":\"The lane assist is also malfunctioning\"},{\"kind\":\"symptom\",\"quote\":\"Twice the car emergency brakes stopped the car abruptly without a reason to do so\"},{\"kind\":\"condition\",\"quote\":\"when raining\"},{\"kind\":\"condition\",\"quote\":\"after 2 days the problem was back\"},{\"kind\":\"safety\",\"quote\":\"putting the driver at risk\"},{\"kind\":\"safety\",\"quote\":\"the car is absolutely unsafe and unreliable\"},{\"kind\":\"safety\",\"quote\":\"someone will get hurt\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize. Need parse report. Component electrical system group electrical_general. Summary one line: component, symptom, conditions. Symptoms: control screen randomly blank, NO SIGNAL, all lights on after off, lane assist malfunction warning system, emergency brakes abrupt without reason. Conditions: rain, freeway, after service? Report mentions dealership service 4 times, after 2 days problem back; maybe \"after service\". intermittent (randomly, sometimes). charging no. heat cold no. moisture? raining yes maybe condition \"moisture\"? rules conditions list includes cold moisture heat vibration intermittent after service charging. We can include \"moisture\" only if report mentions raining? It mentions freeways when raining. Is raining = moisture? Could include condition \"moisture\" with quote \"when raining\" but condition label must one of list. Need safety_relevant true because mentions risk, unsafe, emergency brakes almost hit, someone hurt. Fault codes none. Missing info: mileage null, date? received_at exists but report date? missing_info only facts analysis needs: component present, symptom present, conditions present? mileage missing, date maybe date of incident missing. Could list mileage, date. Not component/symptom/conditions. Clues with verbatim quotes. Need ensure quotes exact from narrative. Include symptom quote \"Control screen keeps going randomly blank\"; \"Sometimes the sentence NO SIGNAL shows up\"; \"Sometimes all the lights of the control screen light up\"; \"The lane assist is also malfunctioning\"; \"Twice the car emergency brakes stopped the car abruptly without a reason to do so\". Condition quote \"when raining\"; \"in freeways\"; \"after 2 days the problem was back\"; \"randomly\" maybe symptom/condition. Safety quote \"putting the driver at risk\"; \"absolutely unsafe and unreliable\"; \"someone will get hurt\". Need group electrical_general. Summary mention electrical system control screen blank/NO SIGNAL, lane assist and emergency braking faults, in rain/freeway, after service. Avoid inventing. JSON only. Need quotes character for character. Check exact: narrative has \"Control screen keeps going randomly blank, for different periods of time, putting the driver at risk, because...\" Quote \"Control screen keeps going randomly blank\" exact? yes substring. \"Sometimes the sentence NO SIGNAL shows up.\" exact. \"Sometimes all the lights of the control screen light up\" exact substring? Narrative: \"Sometimes all the lights of the control screen light up, with no reason...\" yes. \"The lane assist is also malfunctioning\" exact. \"Twice the car emergency brakes stopped the car abruptly without a reason to do so\" exact substring? Narrative: \"Twice the car emergency brakes stopped the car abruptly without a reason to do so (no risk...\" yes. Condition \"when raining\" exact? Narrative \"specially in freeways when raining\" yes. \"after 2 days the problem was back\" exact? \"and after 2 days the problem was back, even worse.\" yes. Safety quotes exact: \"putting the driver at risk\" yes; \"the car is absolutely unsafe and unreliable\" exact? Narrative: \"but the car is absolutely unsafe and unreliable.\" yes substring. \"someone will get hurt\" exact. Need maybe \"I had experienced several scary situations\" exact. Fine.\n\nNeed output one JSON object no other text. Ensure valid JSON. Use false/true. missing_info array. Let's craft. Summary one line: \"Electrical system: control screen randomly blanks/NO SIGNAL and warning/emergency braking faults, in rain/freeway and after service.\" This includes component symptom conditions. Good.\n\nNeed maybe \"group\": \"electrical_general\". symptoms list plain words. Include \"control screen randomly goes blank\", \"NO SIGNAL message appears\", \"control screen lights stay on after car off\", \"lane assist malfunction\", \"warning system not working properly\", \"emergency brakes stop abruptly without reason\". Conditions: [\"moisture\",\"intermittent\",\"after service\"]? \"freeway\" not in allowed list. Could include \"heat\"? no. \"vibration\"? no. \"charging\"? no. \"cold\"? no. Use \"moisture\" based on raining? Maybe condition label \"moisture\" is inferred not explicit. The quote \"when raining\" supports. Include \"intermittent\" because randomly/sometimes. Include \"after service\" because dealership service and problem back. Maybe include \"freeway\" not allowed. Conditions array should list allowed values only; no freeway. Good.\n\nFault_codes empty.\n\nSafety true.\n\nClues: need all relevant. Could include component_group quote? \"ELECTRICAL SYSTEM\" is in component field not narrative? Report includes component. The quote should be verbatim from report; user message JSON has \"component\": \"ELECTRICAL SYSTEM\". We can quote \"ELECTRICAL SYSTEM\" exact. That's okay from report? \"report\" includes field. Use. But clues quote can be from report. Good. Include condition quote \"when raining\", \"after 2 days the problem was back\". Include safety quotes. Good.\n\nNeed no extra text. Final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530856,
+      "id": "6901020ebc401a61bb40d16689a70afa",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1369,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1061,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00053241,
+          "billing_source": "go",
+          "list_cost": 0.00088735,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 432,
+            "output": 1369,
+            "reasoning": 1061
+          }
+        },
+        "prompt_tokens": 816,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2185
+      }
+    },
+    "text": "{\"summary\":\"Electrical system: control screen randomly blanks/NO SIGNAL and warning/emergency braking faults, in rain/freeway and after service.\",\"group\":\"electrical_general\",\"symptoms\":[\"control screen randomly goes blank\",\"NO SIGNAL message appears\",\"control screen lights stay on after car off\",\"lane assist malfunction\",\"warning system not working properly\",\"emergency brakes stop abruptly without reason\"],\"conditions\":[\"moisture\",\"intermittent\",\"after service\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"Control screen keeps going randomly blank\"},{\"kind\":\"symptom\",\"quote\":\"Sometimes the sentence NO SIGNAL shows up\"},{\"kind\":\"symptom\",\"quote\":\"Sometimes all the lights of the control screen light up\"},{\"kind\":\"symptom\",\"quote\":\"The lane assist is also malfunctioning\"},{\"kind\":\"symptom\",\"quote\":\"Twice the car emergency brakes stopped the car abruptly without a reason to do so\"},{\"kind\":\"condition\",\"quote\":\"when raining\"},{\"kind\":\"condition\",\"quote\":\"after 2 days the problem was back\"},{\"kind\":\"safety\",\"quote\":\"putting the driver at risk\"},{\"kind\":\"safety\",\"quote\":\"the car is absolutely unsafe and unreliable\"},{\"kind\":\"safety\",\"quote\":\"someone will get hurt\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00053241,
+      "cached_tokens": 384,
+      "cost_usd": 0.00088735,
+      "input_tokens": 816,
+      "list_cost_usd": 0.00088735,
+      "output_tokens": 1369,
+      "reasoning_tokens": 1061
+    }
+  }
+}

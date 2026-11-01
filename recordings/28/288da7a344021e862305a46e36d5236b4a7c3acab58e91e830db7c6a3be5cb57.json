@@ -1,0 +1,66 @@
+{
+  "key": "288da7a344021e862305a46e36d5236b4a7c3acab58e91e830db7c6a3be5cb57",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 19727,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"EPB module warning with Park Brake indicator; park brake will not release so car cannot be driven; driving safety issue with abrupt stop and brake not disengaging; recurrence after prior repair.\",\"group\":\"adas\",\"symptoms\":[\"Park Brake indicator warning\",\"unable to release park brake\",\"unable to drive car\",\"stops abruptly when driving\",\"cannot disengage safety brake\"],\"conditions\":[\"after service\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"component\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"Electronic parking brake (EPB) module.\"},{\"kind\":\"symptom\",\"quote\":\"Warning Park Brake indicator.\"},{\"kind\":\"symptom\",\"quote\":\"Unable to release out of Park Brake which in turn, unable to drive car.\"},{\"kind\":\"safety\",\"quote\":\"Safety issue when driving, stops abruptly, can't disengage safety brake.\"},{\"kind\":\"condition\",\"quote\":\"First time was Sept 2024 was fixed.\"},{\"kind\":\"other\",\"quote\":\"This is the second time happening.\"}]}",
+            "reasoning_content": "We need answer only JSON object. Need normalize report. Need parse component given FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING but narrative EPB module, warning Park Brake indicator, unable release out of Park Brake unable drive, safety issue when driving stops abruptly can't disengage safety brake. Group given adas? But component actual? Rules group: \"the electrical/electronic component group, or the given group\". We can use given group \"adas\" or infer \"brake\"? Need output fields. Summary one line component symptom conditions. Symptoms plain words. Conditions from list: cold moisture heat vibration intermittent after service charging. Narrative says second time, first Sept 2024 fixed -> after service? It was fixed, recurrence, \"after service\" maybe applies? It says first time was Sept 2024 was fixed. Could include after service. Intermittent? second time not necessarily intermittent. Safety_relevant true because \"Safety issue when driving, stops abruptly\" risk. Missing_info: mileage null, date? received_at and first time Sept 2024 but no exact date? Analysis needs mileage, date maybe missing. Component? Component present but mismatch? Symptom present. Conditions? conditions present? Maybe missing mileage, date. Also \"component\" maybe ambiguous? But given component is FCAAEB, narrative EPB. Could list missing_info [\"mileage\",\"date\"] maybe also \"component\" because report component field mismatched? But rule only facts analysis needs. Since component field provided but narrative describes EPB, not forward collision avoidance. Hmm answer should not invent. Could say missing_info [\"mileage\",\"date\"] only. Fault_codes empty. Clues: quote verbatim spans. Need ensure quotes exactly from narrative. Quotes:\n- \"Electronic parking brake (EPB) module.\" kind component_group? or symptom? component_group maybe. But group adas weird. Could include component_group quote.\n- \"Warning Park Brake indicator.\" symptom\n- \"Unable to release out of Park Brake which in turn, unable to drive car.\" symptom\n- \"Safety issue when driving, stops abruptly, can't disengage safety brake.\" safety\n- \"This is the second time happening.\" condition? intermittent? Maybe condition \"intermittent\" not exact. Could quote kind condition with \"This is the second time happening.\" But condition value list doesn't include recurrence. Maybe \"after service\" with quote \"First time was Sept 2024 was fixed.\" That is after service? It was fixed. Hmm.\n- \"Yes confirmed by a independent service center.\" other maybe.\n\nNeed JSON only. Summary: \"EPB module / Park Brake indicator; unable to release park brake and drive; safety issue stops abruptly, cannot disengage; recurrence after prior fix.\" Conditions array: [\"after service\"]? Maybe no cold etc. Include \"after service\" if quote supports fixed then recurring. But cautious: The condition list includes \"after service\" and narrative says first time fixed. Since recurrence after service, yes. Could include [\"after service\"]. Maybe \"intermittent\"? second time happening not intermittent. No.\n\nNeed group: \"adas\" given. But if actual component EPB, group maybe \"brake\" not in list? Prompt says group: \"the electrical/electronic component group, or the given group\". Given group is adas. Use \"adas\". Could maybe \"brake\" because EPB module. But user gave group \"adas\"; no allowed set. Hmm \"the electrical/electronic component group, or the given group\" means if you can identify group use it, else given. The narrative indicates EPB module, a brake system electronic module; group could be \"brake\" or \"chassis/brake\". But to avoid invent, use given \"adas\"? Yet component field says forward collision avoidance AEB, narrative says EPB. Group given adas is likely from intake field. Use \"adas\" exactly. But summary says EPB module, mismatch. Could include missing_info \"component\" because component field doesn't match narrative? The analysis needs component. That's important. But user asks normalise incoming field-quality report. The component field says AEB but narrative says EPB. That's a component inconsistency, so missing_info maybe [\"component\"]? However \"missing_info\" only facts missing, not inconsistent. Could include \"component\" because actual component unclear due mismatch. Hmm.\n\nNeed answer JSON. Ensure no other text. Use valid JSON. Clues quotes verbatim. Let's craft:\n\n{\n \"summary\": \"EPB module warning with Park Brake indicator; park brake will not release so car cannot be driven; driving safety issue with abrupt stop and brake not disengaging; recurrence after prior repair.\",\n \"group\": \"adas\",\n \"symptoms\": [\"Park Brake indicator warning\", \"unable to release park brake\", \"unable to drive car\", \"stops abruptly when driving\", \"cannot disengage safety brake\"],\n \"conditions\": [\"after service\"],\n \"fault_codes\": [],\n \"safety_relevant\": true,\n \"missing_info\": [\"mileage\", \"date\", \"component\"],\n \"clues\": [...]\n}\n\nNeed quote for \"after service\": \"First time was Sept 2024 was fixed.\" Is that evidence for after service? It was fixed, recurrence. Fine. But \"after service\" condition maybe not exact; okay. Could omit conditions to avoid overreach. The conditions array can be empty. But summary conditions maybe recurrence. Hmm.\n\n\"missing_info\": date? received_at 2025-05-12 and first time Sept 2024, but incident date? Not explicit. Mileage null. Component mismatch. Include component? If include component, despite field present, because narrative and field conflict. The prompt says missing_info for facts analysis needs: component, symptom, conditions, mileage, date. Use empty when nothing important missing. Component is important and ambiguous. Yes include \"component\". Also date? The report has received date and first occurrence Sept 2024; current occurrence date not explicit except taking tomorrow. I can include date. Mileage null. Conditions? It gives after service, but not environmental. No.\n\nClues:\n{\"kind\":\"component_group\",\"quote\":\"Electronic parking brake (EPB) module.\"}\n{\"kind\":\"symptom\",\"quote\":\"Warning Park Brake indicator.\"}\n{\"kind\":\"symptom\",\"quote\":\"Unable to release out of Park Brake which in turn, unable to drive car.\"}\n{\"kind\":\"safety\",\"quote\":\"Safety issue when driving, stops abruptly, can't disengage safety brake.\"}\n{\"kind\":\"condition\",\"quote\":\"First time was Sept 2024 was fixed.\"}\n{\"kind\":\"other\",\"quote\":\"This is the second time happening.\"}\n\nNeed \"quote\" exact. Narrative: \"Electronic parking brake (EPB) module.  Yes confirmed by a independent service center. Warning Park Brake indicator. This is the second time happening. First time was Sept 2024 was fixed. Taking it in tomorrow for confirmation, if same issue mechanic stated the part is on National Backorder!!!!   Unable to release out of Park Brake which in turn, unable to drive car. Safety issue when driving, stops abruptly, can't disengage safety brake.\" Quotes exact yes.\n\nNeed maybe fault code none. Good. Only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793526894,
+      "id": "01946037e1f9e0a269e3359be99c3925",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1744,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1510,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00064707,
+          "billing_source": "go",
+          "list_cost": 0.00107845,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 206,
+            "output": 1744,
+            "reasoning": 1510
+          }
+        },
+        "prompt_tokens": 590,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2334
+      }
+    },
+    "text": "{\"summary\":\"EPB module warning with Park Brake indicator; park brake will not release so car cannot be driven; driving safety issue with abrupt stop and brake not disengaging; recurrence after prior repair.\",\"group\":\"adas\",\"symptoms\":[\"Park Brake indicator warning\",\"unable to release park brake\",\"unable to drive car\",\"stops abruptly when driving\",\"cannot disengage safety brake\"],\"conditions\":[\"after service\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"component\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"Electronic parking brake (EPB) module.\"},{\"kind\":\"symptom\",\"quote\":\"Warning Park Brake indicator.\"},{\"kind\":\"symptom\",\"quote\":\"Unable to release out of Park Brake which in turn, unable to drive car.\"},{\"kind\":\"safety\",\"quote\":\"Safety issue when driving, stops abruptly, can't disengage safety brake.\"},{\"kind\":\"condition\",\"quote\":\"First time was Sept 2024 was fixed.\"},{\"kind\":\"other\",\"quote\":\"This is the second time happening.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00064707,
+      "cached_tokens": 384,
+      "cost_usd": 0.00107845,
+      "input_tokens": 590,
+      "list_cost_usd": 0.00107845,
+      "output_tokens": 1744,
+      "reasoning_tokens": 1510
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "3cad50f67e94a54dbd15a445d8694c7b90fba5501dcddb10e63cb0c98c0413dc",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 7186,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Instrument panel speedometer/odometer: odometer fraud with VIN mismatch and inconsistent registered mileages after a private purchase.\",\n  \"group\": \"instrumentation\",\n  \"symptoms\": [\n    \"odometer fraud\",\n    \"VIN mismatch\",\n    \"inconsistent registered mileages\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"missing_info\": [],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Odometer Fraud.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"discovered that the VIN on the vehicle and the VIN listed in their private messages were different\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"two different registered mileages; one over 200,00 and another over 300,000.\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"The vehicle was a private sale through Facebook Messenger.\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer one JSON only. Need normalize report. Extract summary component symptom conditions. Report is odometer fraud, VIN mismatch, mileage discrepancies. Component instrumentation speedometer/odometer. Symptoms: odometer fraud, VIN mismatch, inconsistent registered mileages. Conditions: none? Maybe private sale? Conditions list allowed cold moisture heat vibration intermittent after service charging. Not applicable. Fault codes none. Safety false. Missing info: maybe date? Received date given. Component given, symptom given, mileage given 300000 and narrative 133k. Conditions missing? Important? The analysis needs conditions maybe not. Need missing_info only facts needed: component, symptom, conditions, mileage, date. We have component, symptom, mileage, date received. Conditions maybe absent but not necessarily important? Could list [\"conditions\"]? The report has no conditions (environmental). But for odometer fraud conditions less relevant. Need be careful: \"missing_info only for facts analysis needs\". We can empty list? But conditions absent. Maybe include \"conditions\" because no conditions? Hmm.\n\nNeed quotes verbatim. Summary one line: \"Instrument panel speedometer/odometer: odometer fraud with VIN mismatch and inconsistent registered mileages after private purchase.\" Conditions: [].\n\nClues:\n- component_group quote \"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\" (verbatim)\n- symptom quote \"Odometer Fraud.\" and \"discovered that the VIN on the vehicle and the VIN listed in their private messages were different\" and \"two different registered mileages; one over 200,00 and another over 300,000.\" Note typo 200,00 verbatim.\n- condition maybe \"private sale through Facebook Messenger\" but kind other? Conditions allowed but not in list. Could clue kind other quote. But conditions array empty? Could include \"after service\"? no.\n- safety? no quote maybe not.\n\nNeed JSON object no other text. Ensure valid JSON. Quotes exact.\n\nNeed maybe \"symptoms\": [\"odometer fraud\", \"VIN mismatch\", \"inconsistent registered mileages\"]. Group \"instrumentation\". Fault_codes [].\n\nMissing_info: Mileage present (300000 and narrative 133000). Date present received_at. Component present. Symptom present. Conditions absent but not relevant? The schema says list missing_info only for facts analysis needs; conditions maybe not needed. But if report lacks conditions, possibly [\"conditions\"]. Desired? Hmm. The prompt says list missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. For odometer fraud, environmental conditions not needed. But maybe conditions includes sale context? It says conditions [\"cold\"...]. Not applicable. I'd put [] because all key facts present. But \"date\" is received_at, not incident date. The report doesn't give incident/purchase date. Analysis might need date of purchase? The allowed \"date\" likely report date? received_at present. Maybe missing \"date\" of incident? Hmm.\n\nNeed answer only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793526161,
+      "id": "16e4220991b7a344d328676af37eb1b7",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 898,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 629,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00034575,
+          "billing_source": "go",
+          "list_cost": 0.00057625,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 242,
+            "output": 898,
+            "reasoning": 629
+          }
+        },
+        "prompt_tokens": 626,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1524
+      }
+    },
+    "text": "{\n  \"summary\": \"Instrument panel speedometer/odometer: odometer fraud with VIN mismatch and inconsistent registered mileages after a private purchase.\",\n  \"group\": \"instrumentation\",\n  \"symptoms\": [\n    \"odometer fraud\",\n    \"VIN mismatch\",\n    \"inconsistent registered mileages\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"missing_info\": [],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Odometer Fraud.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"discovered that the VIN on the vehicle and the VIN listed in their private messages were different\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"two different registered mileages; one over 200,00 and another over 300,000.\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"The vehicle was a private sale through Facebook Messenger.\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00034575,
+      "cached_tokens": 384,
+      "cost_usd": 0.00057625,
+      "input_tokens": 626,
+      "list_cost_usd": 0.00057625,
+      "output_tokens": 898,
+      "reasoning_tokens": 629
+    }
+  }
+}

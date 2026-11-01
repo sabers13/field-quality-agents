@@ -1,0 +1,66 @@
+{
+  "key": "a1be0ed73beeaf1a8d6e6724b1b81de630ca6d7f80a59d5d80b1726ed5c1efbe",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10407,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system: center console charging-pad wires broke, shorted, burned, and shorted the whole system.\",\"group\":\"electrical_general\",\"symptoms\":[\"center console charging pad wires broke\",\"wires shorted out\",\"wires burned\",\"whole electrical system shorted out\"],\"conditions\":[\"charging\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"center console wires for the charging pad broke\"},{\"kind\":\"symptom\",\"quote\":\"shorted out\"},{\"kind\":\"symptom\",\"quote\":\"wires to burn\"},{\"kind\":\"symptom\",\"quote\":\"short the whole system out\"},{\"kind\":\"condition\",\"quote\":\"charging pad\"},{\"kind\":\"safety\",\"quote\":\"wires to burn\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize report. Need read only report. We have component ELECTRICAL SYSTEM group electrical_general id etc narrative. Need summary one line component symptom conditions. Symptoms plain words. Conditions: list from allowed? It says conditions [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. Report mentions charging pad, wires broke and shorted out causing wires to burn and short whole system out. Conditions likely \"charging\" because charging pad. Maybe no other conditions. Fault codes none. safety_relevant true (wires burn? fire risk? It says wires burn, safety_relevant already true in input, and rule mentions fire/smoke. \"wires to burn\" could be safety. Use true. Missing_info: mileage null, date? received_at present but report date? Narrative lacks mileage and maybe date? Missing_info list facts analysis needs: component, symptom, conditions, mileage, date. Component present ELECTRICAL SYSTEM, symptom present, conditions maybe charging. Mileage missing. Date? received_at 2025-12-01 not incident date; date missing? The schema missing_info includes \"date\". Is date important? Maybe yes but report has received_at. It asks missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Since mileage null, include \"mileage\". Date? Incident date not given; received_at only. Could include \"date\". Conditions? charging present? It is a condition? \"charging pad\" yes. Maybe no \"cold/moisture\" etc. Missing conditions? Not necessary? The report gives charging pad context but not environmental conditions. Could include \"conditions\" if needed. Need be careful. Clues array with kind and verbatim quote. Need quote exact spans from narrative. Use quotes: \"center console wires for the charging pad broke\" (symptom? component?); \"shorted out\" ; \"wires to burn\" ; \"short the whole system out\". Need kind mapping. We need include component_group quote? \"ELECTRICAL SYSTEM\" appears in component field not narrative? The report includes JSON fields, so verbatim span can be from report including component? Rule says quote copied verbatim from report. The report includes component field \"ELECTRICAL SYSTEM\". Could quote that. But clues likely from narrative. For component_group quote \"ELECTRICAL SYSTEM\" exact. symptom quote \"wires for the charging pad broke\"; \"shorted out\"; \"wires to burn\"; \"short the whole system out\". condition quote \"charging pad\" maybe condition kind? It's a charging condition? Actually \"charging pad\" is component location, not condition. Condition list includes \"charging\" (maybe charging system). We can include condition clue quote \"charging pad\". Safety quote \"wires to burn\" maybe safety. Fault code none. Summary: \"Electrical system: center console charging-pad wires broke, shorted, burned, and shorted the whole system.\" Conditions: [\"charging\"]. Symptoms: [\"center console charging pad wires broke\", \"wires shorted out\", \"wires burned\", \"whole electrical system shorted out\"]. Missing_info: [\"mileage\",\"date\"]? Maybe conditions? Report doesn't give when/under what conditions except charging pad. But conditions includes charging. Missing \"conditions\" maybe no. The prompt requires one-line summary: component, symptom, conditions. Conditions could be \"charging pad use\". Summary include \"charging pad\". Need no extra text.\n\nNeed ensure JSON valid. safety_relevant true. group \"electrical_general\" or given group? It says group: the electrical/electronic component group, or the given group. Input group electrical_general. Use electrical_general. fault_codes [].\n\nClues:\n[\n{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},\n{\"kind\":\"symptom\",\"quote\":\"center console wires for the charging pad broke\"},\n{\"kind\":\"symptom\",\"quote\":\"shorted out\"},\n{\"kind\":\"symptom\",\"quote\":\"wires to burn\"},\n{\"kind\":\"symptom\",\"quote\":\"short the whole system out\"},\n{\"kind\":\"condition\",\"quote\":\"charging pad\"},\n{\"kind\":\"safety\",\"quote\":\"wires to burn\"}\n]\nBut \"wires to burn\" exact substring? Narrative: \"causing wires to burn and short the whole system out\" yes. \"center console wires for the charging pad broke\" exact? Narrative: \"My center console wires for the charging pad broke and shorted out causing wires to burn and short the whole system out\". Yes substring. \"shorted out\" exact. \"short the whole system out\" exact. \"charging pad\" exact. \"ELECTRICAL SYSTEM\" exact from component field. Good.\n\nNeed perhaps \"wires to burn\" safety? It indicates burning wires, fire risk. Good.\n\nMissing_info includes \"mileage\" because null. \"date\" because received_at not incident date. Could include \"conditions\" because no environmental conditions? But conditions list only charging. The report gives charging pad, so condition is charging. Missing_info maybe [\"mileage\",\"date\"]. If \"date\" is received_at? The field received_at is date report received, not incident date. Analysis needs date? The schema says missing_info for facts analysis needs: mileage, date. It may be okay include date. But if input has received_at, date not missing? It's report date not incident. I'd include both mileage and date. Do we include \"conditions\"? The report doesn't state cold/moisture/heat/vibration/intermittent/after service, only charging. The allowed conditions has charging. So condition present. Not missing. Component and symptom present. So missing_info [\"mileage\",\"date\"].\n\nNeed final only JSON. Ensure no markdown? The prompt says answer with one JSON object and no other text. We can output raw JSON. Use no code fence. Final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793532477,
+      "id": "4f3e841bf38f540153e33a8580824374",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1420,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1225,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00052341,
+          "billing_source": "go",
+          "list_cost": 0.00087235,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 128,
+            "output": 1420,
+            "reasoning": 1225
+          }
+        },
+        "prompt_tokens": 512,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1932
+      }
+    },
+    "text": "{\"summary\":\"Electrical system: center console charging-pad wires broke, shorted, burned, and shorted the whole system.\",\"group\":\"electrical_general\",\"symptoms\":[\"center console charging pad wires broke\",\"wires shorted out\",\"wires burned\",\"whole electrical system shorted out\"],\"conditions\":[\"charging\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"center console wires for the charging pad broke\"},{\"kind\":\"symptom\",\"quote\":\"shorted out\"},{\"kind\":\"symptom\",\"quote\":\"wires to burn\"},{\"kind\":\"symptom\",\"quote\":\"short the whole system out\"},{\"kind\":\"condition\",\"quote\":\"charging pad\"},{\"kind\":\"safety\",\"quote\":\"wires to burn\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00052341,
+      "cached_tokens": 384,
+      "cost_usd": 0.00087235,
+      "input_tokens": 512,
+      "list_cost_usd": 0.00087235,
+      "output_tokens": 1420,
+      "reasoning_tokens": 1225
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "0afeef4952d67d2d71b44cbd85eae2bbc3280a6ed3a6cd2e1756096673de3a6f",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11056,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2022 Tesla Model Y battery/electrical shutdown left child locked in rear seat with no low-voltage warning at 80% charge; manual emergency latch unlabeled.\",\"group\":\"power_and_wiring\",\"symptoms\":[\"complete electrical shutdown\",\"child locked inside vehicle\",\"no low-voltage warning for auxiliary battery\",\"emergency/manual latch not visible or labeled\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"12V/24V/48V BATTERY\"},{\"kind\":\"symptom\",\"quote\":\"the electricity in the car completely shut down locking my daughter in the vehicle.\"},{\"kind\":\"symptom\",\"quote\":\"There were no visible icons or labels showing where the emergency/manual latch was.\"},{\"kind\":\"symptom\",\"quote\":\"She was hystercial and heating up quickly.\"},{\"kind\":\"condition\",\"quote\":\"Our car was at 80% charge\"},{\"kind\":\"symptom\",\"quote\":\"we did not get any low voltage notification or warning that the auxiliary battery was dead or low.\"},{\"kind\":\"safety\",\"quote\":\"potentially fatal situation\"},{\"kind\":\"safety\",\"quote\":\"My daughter was dehydrated and is forever traumatized by this situation and could have been seriously harmed.\"},{\"kind\":\"symptom\",\"quote\":\"The manual emergency latch is not labelled at all.\"},{\"kind\":\"other\",\"quote\":\"the service manager who replaced the battery\"}]}",
+            "reasoning_content": "We need answer JSON only. Need parse report. Component battery electrical. Group given power_and_wiring. Summary one line component symptom conditions. Symptoms: electricity completely shut down; daughter locked in; no warning of auxiliary battery dead/low; emergency latch unlabeled maybe other. Conditions:? \"after service\"? The service manager replaced battery later, not condition at incident. Cold/moisture/heat? Daughter heating up quickly is not vehicle condition. Could include \"at 80% charge\". Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. Hmm report says car at 80% charge; charging? Not charging, just state of charge. Maybe conditions empty? But schema expects list; can include \"at 80% charge\" not allowed? Rules say conditions [\"cold\",...]. likely use only listed. Maybe none. Fault codes none. safety_relevant true due potentially fatal, daughter locked in, dehydrated, traumatized, heating. Missing_info: mileage (null), date? Date present July 19 2025. Component present. Symptom present. Conditions? Could list conditions missing? Important maybe conditions? The analysis needs conditions. But report gives some. Missing mileage only? Maybe date present though received. So missing_info [\"mileage\"]. Clues verbatim quotes. Need exact spans from narrative. Quote \"the electricity in the car completely shut down locking my daughter in the vehicle.\" exact? Narrative: \"When I (her mother) went to get into the drivers door the electricity in the car completely shut down locking my daughter in the vehicle.\" We can quote substring \"the electricity in the car completely shut down locking my daughter in the vehicle.\" Yes verbatim. \"Our car was at 80% charge and we did not get any low voltage notification or warning that the auxiliary battery was dead or low.\" Exact. \"She was hystercial and heating up quickly.\" Exact misspelling. \"potentially fatal situation\" exact. \"My daughter was dehydrated and is forever traumatized by this situation and could have been seriously harmed.\" Exact. \"The manual emergency latch is not labelled at all.\" exact. \"He then proceeded to tell us that he did not know how to advise her how to get out.\" exact. Need kind symptom/condition/fault_code/component_group/safety/other. Use component_group quote? maybe \"ELECTRICAL SYSTEM:12V/24V/48V BATTERY\" not in narrative but in report? The report includes component field. Quotes from report, can quote component? It says report in user message includes component. Could include quote \"12V/24V/48V BATTERY\" from component. But clues likely narrative. Need group power_and_wiring. Summary mention battery shutdown locks child, no warning, at 80% charge. Safety true. Symptoms array plain words: \"complete electrical shutdown\", \"child locked inside vehicle\", \"no low-voltage warning\", \"emergency manual latch unlabeled\". Could \"auxiliary battery dead or low\" is suspected. Conditions maybe [\"at 80% charge\"] not allowed? Better conditions [] because no listed condition. But if conditions empty maybe okay. Fault codes [].\n\nNeed ensure JSON no markdown? User says answer with one JSON object and no other text. Final should raw JSON. Need valid JSON. Include missing_info [\"mileage\"]. Could include \"conditions\" in missing_info? The report includes conditions? It says at 80% charge, date, no weather. The analysis needs conditions maybe weather/temp? However schema allowed conditions. Missing info list only facts analysis needs: component, symptom, conditions, mileage, date. If conditions not sufficiently specified, include \"conditions\". But report has conditions: parked, 80% charge, daughter in back seat, door shut. So not missing. Mileage null. So [\"mileage\"].\n\nNeed safety_relevant true despite input says false. Rule says set when mentions risk. Do so.\n\nClues: at least include safety quote. Need exact character. Let's carefully copy quotes.\n\nNarrative exact:\n\"on July 19, 2025 my 10-year old daughter entered the back seat and shut the door.  When I (her mother) went to get into the drivers door the electricity in the car completely shut down locking my daughter in the vehicle.  There were no visible icons or labels showing where the emergency/manual latch was.   She was hystercial and heating up quickly.  We called Tesla roadside assistance and the agent spent 10-15 minutes explaining how to get out of a Model 3 (we had a model Y).  He then proceeded to tell us that he did not know how to advise her how to get out.  He told us not to break the window and to search it on Google.  when we asked for his name he would not provide it and he displayed hesitation and resistance to connect us with his superior.  We explained that he was dealing with a potentially fatal situation and he displayed ZERO sense of urgency or compassion for the situation.  We were able get her out of the vehicle after researching it online.  But Tesla did not provide any guidance to help.  Our car was at 80% charge and we did not get any low voltage notification or warning that the auxiliary battery was dead or low.   My daughter was dehydrated and is forever traumatized by this situation and could have been seriously harmed.  Tesla does not provide a standard vehicle delivery process when you purchase or lease a vehicle from them.  They do not provide any tutorial or notification on what to do in the case you lose electrical power.  The manual emergency latch is not labelled at all.  You would never know it was there unless you search online.  We sent an email to Tesla notifying them of the situation and they never responded.  We even shared this with the service manager who replaced the battery and he said it is a common occurrence and brushed it off.\"\n\nQuotes exact:\n- \"the electricity in the car completely shut down locking my daughter in the vehicle.\" starts lowercase after \"door \". Good.\n- \"There were no visible icons or labels showing where the emergency/manual latch was.\" exact including double space before? Not include leading spaces.\n- \"She was hystercial and heating up quickly.\" exact.\n- \"Our car was at 80% charge and we did not get any low voltage notification or warning that the auxiliary battery was dead or low.\" exact.\n- \"potentially fatal situation\" exact.\n- \"My daughter was dehydrated and is forever traumatized by this situation and could have been seriously harmed.\" exact.\n- \"The manual emergency latch is not labelled at all.\" exact.\n- \"the service manager who replaced the battery\" exact maybe after service? Actually after incident. Not condition.\n\nCould include clue kind condition \"at 80% charge\" quote \"Our car was at 80% charge\". Though conditions allowed list doesn't include charge state but clue kind condition okay. Summary conditions \"parked, 80% charge, child in back seat\". Good.\n\nNeed output concise. Ensure JSON valid. No markdown. Use false? safety true. Final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530430,
+      "id": "db30632a3d4459903a972e19b7f41ebc",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1786,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1471,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00068847,
+          "billing_source": "go",
+          "list_cost": 0.00114745,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 498,
+            "output": 1786,
+            "reasoning": 1471
+          }
+        },
+        "prompt_tokens": 882,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2668
+      }
+    },
+    "text": "{\"summary\":\"2022 Tesla Model Y battery/electrical shutdown left child locked in rear seat with no low-voltage warning at 80% charge; manual emergency latch unlabeled.\",\"group\":\"power_and_wiring\",\"symptoms\":[\"complete electrical shutdown\",\"child locked inside vehicle\",\"no low-voltage warning for auxiliary battery\",\"emergency/manual latch not visible or labeled\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"12V/24V/48V BATTERY\"},{\"kind\":\"symptom\",\"quote\":\"the electricity in the car completely shut down locking my daughter in the vehicle.\"},{\"kind\":\"symptom\",\"quote\":\"There were no visible icons or labels showing where the emergency/manual latch was.\"},{\"kind\":\"symptom\",\"quote\":\"She was hystercial and heating up quickly.\"},{\"kind\":\"condition\",\"quote\":\"Our car was at 80% charge\"},{\"kind\":\"symptom\",\"quote\":\"we did not get any low voltage notification or warning that the auxiliary battery was dead or low.\"},{\"kind\":\"safety\",\"quote\":\"potentially fatal situation\"},{\"kind\":\"safety\",\"quote\":\"My daughter was dehydrated and is forever traumatized by this situation and could have been seriously harmed.\"},{\"kind\":\"symptom\",\"quote\":\"The manual emergency latch is not labelled at all.\"},{\"kind\":\"other\",\"quote\":\"the service manager who replaced the battery\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00068847,
+      "cached_tokens": 384,
+      "cost_usd": 0.00114745,
+      "input_tokens": 882,
+      "list_cost_usd": 0.00114745,
+      "output_tokens": 1786,
+      "reasoning_tokens": 1471
+    }
+  }
+}

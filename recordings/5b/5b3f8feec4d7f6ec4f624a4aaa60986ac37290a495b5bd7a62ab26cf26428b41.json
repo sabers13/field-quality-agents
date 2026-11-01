@@ -1,0 +1,66 @@
+{
+  "key": "5b3f8feec4d7f6ec4f624a4aaa60986ac37290a495b5bd7a62ab26cf26428b41",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9291,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"ESC/Stabilizer message with transmission malfunction in first gear and hesitation from stationary; 2018 Encore at 147,000 miles.\",\"group\":\"safety_systems\",\"symptoms\":[\"transmission malfunctioned in first gear\",\"hesitated to accelerate from stationary\",\"Stabilizer message displayed\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"conditions\",\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"transmission malfunctioned while in first gear\"},{\"kind\":\"symptom\",\"quote\":\"hesitated to accelerate from being stationary\"},{\"kind\":\"symptom\",\"quote\":\"the message \\\"Stabilizer\\\" was displayed\"},{\"kind\":\"component_group\",\"quote\":\"ELECTRONIC STABILITY CONTROL (ESC)\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize report. Component ESC group safety_systems. Symptoms: transmission malfunctioned in first gear, hesitated to accelerate from stationary, \"Stabilizer\" message displayed. Conditions? none explicit maybe? Could include? No cold/moisture/etc. Fault codes none. Safety_relevant? Report mentions transmission malfunction and hesitation from stationary; no crash/fire/etc. Could be safety? \"hesitated to accelerate from being stationary\" maybe risk? Rule set safety when mentions crash fire smoke injury loss control stall at speed or other risk to people. Hesitation from stationary maybe not explicitly risk. Given source safety_relevant false, but we shouldn't rely? The report says no safety. We can set false. Missing info: conditions? date? It has received date but not incident date; mileage present. Component present. Symptom present. Conditions missing? No conditions. Should list conditions? The analysis needs conditions; report lacks ambient/temp etc. But \"missing_info\" only facts analysis needs: component, symptom, conditions, mileage, date. Since conditions not specified, include \"conditions\". Date of incident missing? It has received_at but not failure date. Could include \"date\". Mileage? failure mileage present 147,000, so not missing. Component present. Symptom present. Maybe missing_info [\"conditions\",\"date\"]. Need clues with verbatim quotes. Need exact spans from narrative. Quotes must be verbatim. Use:\n\"transmission malfunctioned while in first gear\" exact? Narrative: \"the transmission malfunctioned while in first gear\" yes.\n\"hesitated to accelerate from being stationary\" exact.\n\"the message \\\"Stabilizer\\\" was displayed\" exact includes quotes? We can quote \"message \\\"Stabilizer\\\" was displayed\" exact? Narrative: `the message \"Stabilizer\" was displayed`. Use exact with quotes escaped.\nComponent group clue: \"ELECTRONIC STABILITY CONTROL (ESC)\"? That's from component field not narrative? Report includes component field. \"Read only report\"; quotes verbatim from report. Could quote component value. kind component_group quote \"ELECTRONIC STABILITY CONTROL (ESC)\". But clue component_group maybe quote \"Stabilizer\"? Better include component_group quote exact component field. Also safety? no.\nSummary one line: ESC/Stabilizer message with transmission malfunction in first gear and hesitation from stationary; 2018 Buick Encore, 147k miles. Need no invented \"Buick Encore\" though component says Buick? Narrative says Chevrolet Encore inconsistency. Make field BUICK, model ENCORE, narrative Chevrolet Encore. Summary can say ESC/Stabilizer message with transmission malfunction in first gear and stationary hesitation (2018 Encore, 147,000 miles). Avoid make? Maybe \"2018 Encore\". Good.\n\nNeed group \"safety_systems\" given. Symptoms list plain words. Conditions list empty. Fault_codes empty. safety_relevant false. missing_info [\"conditions\",\"date\"]. But date? received_at 2025-06-23, not incident date. Good. Clues:\n{\"kind\":\"symptom\",\"quote\":\"transmission malfunctioned while in first gear\"}\n{\"kind\":\"symptom\",\"quote\":\"hesitated to accelerate from being stationary\"}\n{\"kind\":\"symptom\",\"quote\":\"the message \\\"Stabilizer\\\" was displayed\"}\n{\"kind\":\"component_group\",\"quote\":\"ELECTRONIC STABILITY CONTROL (ESC)\"}\nMaybe condition none. Other quote \"failure mileage was 147,000\" for mileage? missing no need. Could include other? Not necessary. Need every quote verbatim. Check narrative has \"The contact stated that while operating the vehicle, the transmission malfunctioned while in first gear, and the vehicle hesitated to accelerate from being stationary. Additionally, the message \\\"Stabilizer\\\" was displayed.\" Yes exact substring \"transmission malfunctioned while in first gear\" exists. \"hesitated to accelerate from being stationary\" exists? Text: \"the vehicle hesitated to accelerate from being stationary\" yes substring. \"the message \\\"Stabilizer\\\" was displayed\" exists? Text: `the message \"Stabilizer\" was displayed.` yes substring including no period. Good. component field exact \"ELECTRONIC STABILITY CONTROL (ESC)\" yes.\n\nNeed JSON only. Ensure valid. Summary maybe \"ESC/Stabilizer message with transmission malfunction in first gear and hesitation from stationary; 2018 Encore at 147,000 miles.\" That is one line. Good.\n\nNeed mention \"conditions\": [] because no conditions. missing_info maybe [\"conditions\",\"date\"] though date maybe analysis needs incident date. Fine.\n\nPotential issue safety_relevant: transmission malfunction and hesitation from stationary could be safety risk? Prompt says set when mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. A transmission malfunction while in first gear and hesitation to accelerate from stationary could be a risk but not explicit. \"another risk to people\" vague. Given report source safety_relevant false. We can set false. If we set true, need clue? No explicit risk quote. Better false.\n\nNeed no extra text. final with JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793527868,
+      "id": "ad87618b144e4d1daf3d85416afbb92e",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1232,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1062,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00046212,
+          "billing_source": "go",
+          "list_cost": 0.0007702,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 199,
+            "output": 1232,
+            "reasoning": 1062
+          }
+        },
+        "prompt_tokens": 583,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1815
+      }
+    },
+    "text": "{\"summary\":\"ESC/Stabilizer message with transmission malfunction in first gear and hesitation from stationary; 2018 Encore at 147,000 miles.\",\"group\":\"safety_systems\",\"symptoms\":[\"transmission malfunctioned in first gear\",\"hesitated to accelerate from stationary\",\"Stabilizer message displayed\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"conditions\",\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"transmission malfunctioned while in first gear\"},{\"kind\":\"symptom\",\"quote\":\"hesitated to accelerate from being stationary\"},{\"kind\":\"symptom\",\"quote\":\"the message \\\"Stabilizer\\\" was displayed\"},{\"kind\":\"component_group\",\"quote\":\"ELECTRONIC STABILITY CONTROL (ESC)\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00046212,
+      "cached_tokens": 384,
+      "cost_usd": 0.0007702,
+      "input_tokens": 583,
+      "list_cost_usd": 0.0007702,
+      "output_tokens": 1232,
+      "reasoning_tokens": 1062
+    }
+  }
+}

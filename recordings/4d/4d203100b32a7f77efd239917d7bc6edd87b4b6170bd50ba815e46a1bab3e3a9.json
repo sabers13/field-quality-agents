@@ -1,0 +1,66 @@
+{
+  "key": "4d203100b32a7f77efd239917d7bc6edd87b4b6170bd50ba815e46a1bab3e3a9",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 5227,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Air bag burned a hole in a cotton shirt and caused second- and third-degree burns to the occupant's side; no conditions given.\",\"group\":\"restraints\",\"symptoms\":[\"airbag burned a hole in a cotton shirt\",\"second- and third-degree burns on side\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"The airbag burnt a hole in a cotton shirt\"},{\"kind\":\"symptom\",\"quote\":\"left 2nd and 3 degree burns on my side\"},{\"kind\":\"safety\",\"quote\":\"3 degree burns\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize. Report: component AIR BAGS, group restraints, narrative \"The airbag burnt a hole in a cotton shirt and then left 2nd and 3 degree burns on my side.\" Safety relevant true (injury/burns). Symptoms: airbag burnt hole in cotton shirt; left 2nd and 3 degree burns on side. Conditions? None explicit. Fault codes none. Missing info: mileage, date? received_at is date but report date? The analysis needs mileage/date/conditions. Component present symptom present. Conditions absent. We can list mileage, date, conditions. Is date missing? received_at exists but incident date missing; field label date maybe report date? The input has received_at. Missing_info should facts analysis needs: mileage, date, conditions. Could include date because incident date not given. Component not missing. Symptom not missing. Safety true. Clues verbatim. Need quotes copied exact. Could quote \"airbag burnt a hole in a cotton shirt\" and \"left 2nd and 3 degree burns on my side.\" Also component group quote? \"AIR BAGS\" exact in JSON value. Clue kind component_group quote \"AIR BAGS\"; safety quote maybe \"3 degree burns\". Need quotes verbatim span from report. Narrative contains \"The airbag burnt a hole in a cotton shirt and then left 2nd and 3 degree burns on my side.\" Component field \"AIR BAGS\". Quote can be from report (the whole JSON? It says report in user message includes fields). We can quote \"AIR BAGS\". Safety quote \"3 degree burns\" is verbatim? narrative has \"3 degree burns\" yes. But \"2nd and 3 degree burns\" exactly? Narrative: \"left 2nd and 3 degree burns on my side.\" That's odd but verbatim. Use \"2nd and 3 degree burns\". Summary one line: Air bags burned shirt and caused second/third-degree burns to side; no conditions given. Group restraints. Symptoms plain words: \"airbag burned a hole in a cotton shirt\"; \"second- and third-degree burns on side\". Conditions empty because none. Fault codes empty. Safety true. missing_info [\"mileage\",\"date\",\"conditions\"]. Clues list include symptom quote, component_group, safety. Maybe condition none. Need no other text. Ensure JSON valid.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793527811,
+      "id": "3c2fe994aeadab127d404389c547421b",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 652,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 490,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00024657,
+          "billing_source": "go",
+          "list_cost": 0.00041095,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 124,
+            "output": 652,
+            "reasoning": 490
+          }
+        },
+        "prompt_tokens": 508,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1160
+      }
+    },
+    "text": "{\"summary\":\"Air bag burned a hole in a cotton shirt and caused second- and third-degree burns to the occupant's side; no conditions given.\",\"group\":\"restraints\",\"symptoms\":[\"airbag burned a hole in a cotton shirt\",\"second- and third-degree burns on side\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"The airbag burnt a hole in a cotton shirt\"},{\"kind\":\"symptom\",\"quote\":\"left 2nd and 3 degree burns on my side\"},{\"kind\":\"safety\",\"quote\":\"3 degree burns\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00024657,
+      "cached_tokens": 384,
+      "cost_usd": 0.00041095,
+      "input_tokens": 508,
+      "list_cost_usd": 0.00041095,
+      "output_tokens": 652,
+      "reasoning_tokens": 490
+    }
+  }
+}

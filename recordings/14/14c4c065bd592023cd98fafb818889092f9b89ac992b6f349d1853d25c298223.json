@@ -1,0 +1,66 @@
+{
+  "key": "14c4c065bd592023cd98fafb818889092f9b89ac992b6f349d1853d25c298223",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11077,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"ESC: 'Stability System Activated' followed by sudden right steering and loss of control at ~55 MPH, causing crash and rollover.\",\"group\":\"safety_systems\",\"symptoms\":[\"loud snapping noise\",\"Stability System Activated message\",\"steering wheel suddenly turned to the right\",\"loss of control\",\"crash and rollover\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRONIC STABILITY CONTROL (ESC)\"},{\"kind\":\"symptom\",\"quote\":\"a very loud snapping noise had suddenly occurred\"},{\"kind\":\"symptom\",\"quote\":\"Stability System Activated\"},{\"kind\":\"symptom\",\"quote\":\"the steering wheel suddenly turned to the right\"},{\"kind\":\"symptom\",\"quote\":\"causing the driver to lose control of the vehicle to crash and roll over multiple times\"},{\"kind\":\"condition\",\"quote\":\"while driving approximately 55 MPH\"},{\"kind\":\"safety\",\"quote\":\"the occupants were transported to the hospital\"},{\"kind\":\"safety\",\"quote\":\"the driver sustained multiple neck and back fractures and a right leg injury from the seat belt strap\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize. Need extract summary, group given safety_systems, symptoms plain words, conditions list from allowed? Conditions examples: cold moisture heat vibration intermittent after service charging. Report doesn't mention these except driving at 55 MPH, crash, rollover. Should conditions be []? The schema conditions list includes allowed condition types. Maybe \"intermittent\"? No. We cannot invent. Could include maybe none. Fault codes none. safety_relevant true. missing_info: component? Already component ESC, symptom present, conditions? It has speed driving but not environmental conditions. Mileage present 5000. Date? received_at but failure date not. The analysis needs date maybe missing. VIN not available but not in missing_info options. Missing \"date\" maybe. Conditions? Hmm report has driving approx 55 MPH; conditions in schema are cold/moisture/etc, not present. \"missing_info\" only facts analysis needs: component, symptom, conditions, mileage, date. Component present, symptom present, mileage present, date missing (failure date not received date). conditions missing? It says while driving approx 55 MPH; no weather/road? Could list conditions? But missing_info conditions maybe yes if analysis needs environmental conditions. But there is enough? Need not overdo. Missing date definitely. Maybe conditions missing. Clues verbatim spans. Need quotes from narrative exactly. Include symptom quote \"steering wheel suddenly turned to the right\" and \"lose control of the vehicle to crash and roll over multiple times\" maybe safety. Condition quote \"while driving approximately 55 MPH\" but kind condition? The allowed kinds include condition. Could quote that. Fault code none. Component_group quote? \"ELECTRONIC STABILITY CONTROL (ESC)\" from component field? The report includes component key; quote can be from report? \"report\" is entire JSON? It says report in user message. Verbatim span copied from report. Could quote component value. Need quote for component_group maybe \"ELECTRONIC STABILITY CONTROL (ESC)\" (verbatim in component). safety quote \"occupants were transported to the hospital\" or \"driver sustained multiple neck and back fractures\". Include other. Need summary one line: ESC activation causing sudden right steering, loss of control, crash/rollover at 55 mph. Symptoms: [\"loud snapping noise\", \"Stability System Activated message\", \"steering wheel suddenly turned to the right\", \"loss of control\", \"crash and rollover\"]. Conditions: maybe [\"while driving at approximately 55 MPH\"]? But conditions array schema examples are discrete tags. It says conditions: [\"cold\", ...]. Could include \"driving at 55 MPH\"? Not from list. The instruction says conditions list. Maybe output [] because no listed condition. But then missing_info conditions. Hmm.\n\nNeed answer with one JSON object no other text. Ensure quotes verbatim. Let's craft.\n\nNeed not include \"fault_codes\": [] if none.\n\nSummary: \"ESC: 'Stability System Activated' followed by sudden right steering and loss of control at ~55 MPH, crash and rollover.\"\n\nGroup: \"safety_systems\".\n\nSymptom list plain. \"loud snapping noise\", \"Stability System Activated message\", \"sudden right turn of steering wheel\", \"loss of control\", \"crash and rollover\". Conditions maybe []? But \"while driving approximately 55 MPH\" could be condition kind. Conditions array could be [\"driving at approximately 55 MPH\"]? But schema examples not exhaustive? It lists allowed values? It says conditions: [\"cold\", ...] maybe enumerative. Better to use [] to avoid unlisted. However clues can capture condition. Missing info: [\"date\", \"conditions\"]? Conditions missing? If conditions [] then missing conditions. Date missing. But \"conditions\" includes speed? Maybe not. The analysis needs date of failure. Mileage present. Component present. Symptom present. So missing_info [\"date\", \"conditions\"] maybe maybe conditions not needed? It says conditions analysis needs. Environmental/road conditions absent. I'll include both date and conditions. But if conditions are missing, should we not list condition clue? We can list \"while driving approximately 55 MPH\" as condition clue, meaning some condition present. Then missing_info only date? Hmm \"conditions\" includes speed? Could be operating condition. The report gives speed. Could set conditions [\"driving at approximately 55 MPH\"]? But allowed examples not exhaustive maybe. The prompt: conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. This looks like set of tags. I should not put arbitrary. So conditions []. Missing_info includes \"conditions\" and \"date\". Fine.\n\nClues:\n- {\"kind\":\"component_group\",\"quote\":\"ELECTRONIC STABILITY CONTROL (ESC)\"}\n- {\"kind\":\"symptom\",\"quote\":\"a very loud snapping noise had suddenly occurred\"}\n- {\"kind\":\"symptom\",\"quote\":\"\\\"Stability System Activated\\\" displayed\"} quote includes escaped quote? In JSON quote value must include double quote escaped. But verbatim span from report includes `\"Stability System Activated\" displayed`? The report narrative has `the message \\\"Stability System Activated\\\" displayed` in JSON escaped. The actual report text contains quotes around Stability. Verbatim span can be `Stability System Activated` without quotes? It is verbatim. Use \"Stability System Activated\" as quote (string contains no internal quotes? Actually quote value would be \"Stability System Activated\"; that span appears inside the message text). Good.\n- {\"kind\":\"symptom\",\"quote\":\"the steering wheel suddenly turned to the right\"}\n- {\"kind\":\"symptom\",\"quote\":\"causing the driver to lose control of the vehicle to crash and roll over multiple times\"}\n- {\"kind\":\"condition\",\"quote\":\"while driving approximately 55 MPH\"}\n- {\"kind\":\"safety\",\"quote\":\"the occupants were transported to the hospital\"}\n- {\"kind\":\"safety\",\"quote\":\"the driver sustained multiple neck and back fractures and a right leg injury from the seat belt strap\"}\n\nCould include \"The vehicle was destroyed\" safety? Fine.\n\nNeed ensure JSON valid. No markdown. final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793528497,
+      "id": "fb0e72669846ba9639c3c98dba8201d9",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1551,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1293,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00058578,
+          "billing_source": "go",
+          "list_cost": 0.0009763,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 297,
+            "output": 1551,
+            "reasoning": 1293
+          }
+        },
+        "prompt_tokens": 681,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2232
+      }
+    },
+    "text": "{\"summary\":\"ESC: 'Stability System Activated' followed by sudden right steering and loss of control at ~55 MPH, causing crash and rollover.\",\"group\":\"safety_systems\",\"symptoms\":[\"loud snapping noise\",\"Stability System Activated message\",\"steering wheel suddenly turned to the right\",\"loss of control\",\"crash and rollover\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRONIC STABILITY CONTROL (ESC)\"},{\"kind\":\"symptom\",\"quote\":\"a very loud snapping noise had suddenly occurred\"},{\"kind\":\"symptom\",\"quote\":\"Stability System Activated\"},{\"kind\":\"symptom\",\"quote\":\"the steering wheel suddenly turned to the right\"},{\"kind\":\"symptom\",\"quote\":\"causing the driver to lose control of the vehicle to crash and roll over multiple times\"},{\"kind\":\"condition\",\"quote\":\"while driving approximately 55 MPH\"},{\"kind\":\"safety\",\"quote\":\"the occupants were transported to the hospital\"},{\"kind\":\"safety\",\"quote\":\"the driver sustained multiple neck and back fractures and a right leg injury from the seat belt strap\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00058578,
+      "cached_tokens": 384,
+      "cost_usd": 0.0009763,
+      "input_tokens": 681,
+      "list_cost_usd": 0.0009763,
+      "output_tokens": 1551,
+      "reasoning_tokens": 1293
+    }
+  }
+}

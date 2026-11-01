@@ -1,0 +1,66 @@
+{
+  "key": "62e28467af5e882af4e4561cceb9c7081a925bb6ed6f4c18866afc50fc028ecf",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 7527,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system GWS fault causing drivetrain malfunction and battery drain, attributed to moisture in the cup holder.\",\"group\":\"electrical_general\",\"symptoms\":[\"drive train malfunction\",\"faulty GWS system\",\"battery drained\"],\"conditions\":[\"moisture\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"Drive Train Malfunction\"},{\"kind\":\"symptom\",\"quote\":\"faulty GWS system\"},{\"kind\":\"symptom\",\"quote\":\"battery drained needs replaced\"},{\"kind\":\"condition\",\"quote\":\"moisture in the cup holder\"},{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need parse report. Component ELECTRICAL SYSTEM, group electrical_general. Narrative: \"1/8/2025 Drive Train Malfunction. Towed to BMW Dealer. Dealership determined a faulty GWS system, Program new system, New center console and battery drained needs replaced. I was told by the dealership this not normal for a vehicle with 22k miles . BMW North Amaerica told me the repair Manager said the faults were caused by moisture in the cup holder. Shocked as the BMW Repair Manager did not tell me this was the cause, Did not inform me moisture in the cup holder caused major havoc on a safety System. Nothing had been spilled or leaked into my cup holders.\"\n\nNeed summary one line: component, symptom, conditions. Group electrical_general. Symptoms: drive train malfunction, faulty GWS system, battery drained, faults caused by moisture in cup holder? Symptom plain words. Conditions: moisture, maybe cold? no. intermittent? no. \"after service\"? no. \"charging\"? battery drained? condition maybe not. Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. Include moisture. Safety relevant? Mentions \"safety System\" and \"major havoc on a safety System\" but not crash/fire/injury/loss control/stall at speed. Could safety_relevant true? Rules: mention crash fire smoke injury loss control stall at speed another risk to people. \"safety System\" is a system, not risk to people. \"Drive Train Malfunction\" could be risk? It was towed. But no explicit risk. Use false? Input says safety_relevant false. We should set based report. \"major havoc on a safety System\" perhaps safety relevant? It mentions safety system but not risk to people. The instruction says set when report mentions a crash, fire, smoke, injury, loss of control, a stall at speed or another risk to people. It doesn't mention risk to people explicitly. I'd set false. Fault codes none. missing_info: mileage? Report mentions 22k miles, so not missing. Date? received date and event 1/8/2025 present. Conditions? moisture given. Component present. Symptom present. Maybe missing_info empty. Clues: symptom quote \"Drive Train Malfunction\"; \"faulty GWS system\"; condition \"moisture in the cup holder\"; component_group? \"ELECTRICAL SYSTEM\" is in component field not narrative? The report includes component field. Quote must be copied verbatim from report. The whole JSON is report? User message includes fields. Could quote \"ELECTRICAL SYSTEM\" from component field. Is that in report? Yes. But \"verbatim span copied from the report\" likely narrative? It says report in user message includes fields. We can include component_group quote \"ELECTRICAL SYSTEM\". safety clue? If false no. Other \"battery drained needs replaced\" symptom. Need exact quote \"battery drained needs replaced\" yes. \"Program new system, New center console and battery drained needs replaced.\" Could quote \"battery drained needs replaced\". \"New center console\" maybe not symptom. \"faults were caused by moisture in the cup holder\" exact. Need quote \"moisture in the cup holder\" exact.\n\nNeed JSON only. No markdown. Ensure valid JSON. summary one line: \"Electrical system (GWS) fault causing drivetrain malfunction and battery drain, attributed to moisture in cup holder.\" Is \"drivetrain\" vs \"Drive Train\" okay summary not quote. Conditions [\"moisture\"]. Symptoms [\"drive train malfunction\", \"faulty GWS system\", \"battery drained\"]. Maybe \"faults\" generic. Include \"new center console\"? no.\n\nClues:\n{\"kind\":\"symptom\",\"quote\":\"Drive Train Malfunction\"}\n{\"kind\":\"symptom\",\"quote\":\"faulty GWS system\"}\n{\"kind\":\"symptom\",\"quote\":\"battery drained needs replaced\"}\n{\"kind\":\"condition\",\"quote\":\"moisture in the cup holder\"}\n{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"}\nMaybe {\"kind\":\"other\",\"quote\":\"major havoc on a safety System\"}? If safety false, maybe not.\n\nNeed missing_info empty. safety_relevant false. Fault codes [].\n\nCheck \"group\": given group electrical_general. Use exactly \"electrical_general\". Good.\n\nNeed no other text. Final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793527093,
+      "id": "e5e649ab97f97646cf39dcbf0bfb60bc",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1083,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 923,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00041136,
+          "billing_source": "go",
+          "list_cost": 0.0006856,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 231,
+            "output": 1083,
+            "reasoning": 923
+          }
+        },
+        "prompt_tokens": 615,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1698
+      }
+    },
+    "text": "{\"summary\":\"Electrical system GWS fault causing drivetrain malfunction and battery drain, attributed to moisture in the cup holder.\",\"group\":\"electrical_general\",\"symptoms\":[\"drive train malfunction\",\"faulty GWS system\",\"battery drained\"],\"conditions\":[\"moisture\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"Drive Train Malfunction\"},{\"kind\":\"symptom\",\"quote\":\"faulty GWS system\"},{\"kind\":\"symptom\",\"quote\":\"battery drained needs replaced\"},{\"kind\":\"condition\",\"quote\":\"moisture in the cup holder\"},{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00041136,
+      "cached_tokens": 384,
+      "cost_usd": 0.0006856,
+      "input_tokens": 615,
+      "list_cost_usd": 0.0006856,
+      "output_tokens": 1083,
+      "reasoning_tokens": 923
+    }
+  }
+}

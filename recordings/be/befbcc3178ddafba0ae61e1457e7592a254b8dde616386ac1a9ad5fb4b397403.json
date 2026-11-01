@@ -1,0 +1,66 @@
+{
+  "key": "befbcc3178ddafba0ae61e1457e7592a254b8dde616386ac1a9ad5fb4b397403",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11022,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system: intermittent rear camera failure and adaptive cruise sudden hard braking, with water intrusion and after software update.\",\"group\":\"electrical_general\",\"symptoms\":[\"rear camera fails to operate intermittently\",\"electrical short due to water intrusion in rear lift gate\",\"adaptive cruise control suddenly and violently brakes at highway speeds when lane ahead is clear\",\"potential rear vehicle lighting loss\"],\"conditions\":[\"moisture\",\"intermittent\",\"after service\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"rear camera failing to operate at times\"},{\"kind\":\"symptom\",\"quote\":\"it still does not energize at times\"},{\"kind\":\"condition\",\"quote\":\"water intrusion into the rear lift gate\"},{\"kind\":\"symptom\",\"quote\":\"causes the electrical to short out\"},{\"kind\":\"condition\",\"quote\":\"software was updated by the dealer\"},{\"kind\":\"symptom\",\"quote\":\"vehicle will brake suddenly and hard\"},{\"kind\":\"symptom\",\"quote\":\"violently brakes\"},{\"kind\":\"safety\",\"quote\":\"This is obviously a safety issue\"},{\"kind\":\"safety\",\"quote\":\"This is a safety issue as the vehicle suddenly and violently brakes at highway speeds\"}]}",
+            "reasoning_content": "We need answer only JSON object. Need normalize report. Need read only report. Need component electrical system, group electrical_general given. Need symptoms plain words, conditions list among allowed: cold, moisture, heat, vibration, intermittent, after service, charging. Report mentions water intrusion = moisture. Camera fails at times = intermittent. Software update by dealer = after service maybe. Adaptive cruise control sudden hard braking = symptom; safety issue? Report explicitly says safety issue, potential crash, violent brakes at highway speeds, risk. safety_relevant true. Fault codes none. Missing_info: mileage null? Report has mileage null but field provided. Need list only facts analysis needs: component? has component. symptom? has symptoms. conditions? has moisture/intermittent/after service. mileage missing yes. date? received date present but maybe event date missing? The missing_info options include date; report has received_at, not event date. Could list mileage maybe date? Need careful. It says missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Use empty when nothing important. Since mileage null, list \"mileage\". Date? received_at 2025-06-27 but occurrence date not given. Could list date? The report has no date of incidents. But analysis may need date. However input received_at. The prompt: report in user message. \"missing_info\": [\"mileage\", \"date\", ...]. I'd include \"mileage\" and maybe \"date\" because no incident dates. But maybe date present as received_at. Need not overdo. Also component group given. Conditions: \"moisture\", \"intermittent\", \"after service\". Does \"after service\" apply? Software updated by dealer then problem persisted; yes after service. \"charging\" no. \"cold/heat/vibration\" no.\n\nNeed clues with verbatim quotes. Need every quote copied exact. Need include symptom, condition, fault_code? no fault code. component_group quote? \"ELECTRICAL SYSTEM\" from component field? The report includes JSON fields; can quote \"ELECTRICAL SYSTEM\" verbatim? It is in report user message. Yes. safety quote: \"This is obviously a safety issue\" and \"This is a safety issue as the vehicle suddenly and violently brakes at highway speeds\" maybe. Need clues maybe:\n- component_group quote \"ELECTRICAL SYSTEM\"\n- symptom quote \"rear camera failing to operate at times\"\n- symptom quote \"it still does not energize at times\"\n- condition quote \"water intrusion into the rear lift gate\"\n- symptom quote \"causes the electrical to short out\"\n- condition quote \"software was updated by the dealer\" (after service)\n- symptom quote \"vehicle will brake suddenly and hard\"\n- symptom quote \"violently brakes\"\n- safety quote \"This is obviously a safety issue\"\n- safety quote \"This is a safety issue as the vehicle suddenly and violently brakes at highway speeds\"\n\nNeed summary one line: component, symptom, conditions. \"Electrical system; rear camera intermittent failure and adaptive cruise sudden hard braking; water intrusion, after software update.\" That's one line. Include group \"electrical_general\". Symptoms array plain words:\n\"rear camera fails to operate intermittently\"\n\"electrical short due to water intrusion in rear lift gate\"\n\"adaptive cruise control suddenly and violently brakes at highway speeds when lane ahead is clear\"\nMaybe \"rear vehicle lighting may be affected\" but report not noticed. Symptom includes potential loss of rear lighting? It says potential losing lighting; told wiring harness energizes camera and rear lights; no noticed problem. Could include \"potential rear lighting loss\" as symptom? It's a reported concern. But symptom plain words. Maybe include.\n\nConditions: [\"moisture\",\"intermittent\",\"after service\"]. Safety true. Missing_info: [\"mileage\",\"date\"] maybe. Need decide. The report has received_at date, but no incident date. \"date\" likely occurrence date missing. Include mileage and date. Maybe conditions? No, present. Component? present. Symptom? present.\n\nNeed no extra text. Need ensure valid JSON, no trailing. Use exact quotes. Need check quote \"rear camera failing to operate at times\" is verbatim from narrative \"due to the rear camera failing to operate at times.\" Yes. \"water intrusion into the rear lift gate\" verbatim. \"causes the electrical to short out\" verbatim? Narrative: \"which causes the electrical to short out.\" Yes. \"software was updated by the dealer\" Narrative: \"The software was updated by the dealer.\" yes. \"vehicle will brake suddenly and hard\" Narrative: \"the vehicle will brake suddenly and hard when the vehicle in front of me changes lanes.\" yes. \"violently brakes\" appears \"then violently brakes as if it is about to crash\" yes. \"This is obviously a safety issue\" yes. \"This is a safety issue as the vehicle suddenly and violently brakes at highway speeds\" exact? Narrative: \"This is a safety issue as the vehicle suddenly and violently brakes at highway speeds, with traffic behind me.\" Yes quote up to speeds. Good.\n\nNeed \"fault_codes\": [].\nNeed \"clues\" kind only allowed values. Use safety for safety quotes. condition for water, software? software update as after service condition; kind condition. symptom for camera and brakes. component_group for ELECTRICAL SYSTEM. Other? no.\n\nNeed summary not too long. JSON only.\n\nNeed maybe group from given \"electrical_general\". Good.\n\nNeed safety_relevant true despite input field false; report mentions safety. Good.\n\nNeed maybe missing_info include \"mileage\" only? The report has date received; but no event date. The instructions say date; if no date in report? There is received_at. But missing event date. Hmm. In many similar tasks, missing_info includes mileage if null, date if no incident date. Since received_at is present but not date of failure. I'd include both. Could include \"conditions\"? no. Need not include \"component\" or \"symptom\". Good.\n\nLet's craft final JSON. Ensure one line summary. All quotes verbatim. Need quote \"ELECTRICAL SYSTEM\" exact all caps. Good.\n\nNeed final no markdown? The user says answer with one JSON object and no other text. So final just JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793528059,
+      "id": "de4372c339a0112b3a23f832b4f3d69c",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1585,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1298,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00061404,
+          "billing_source": "go",
+          "list_cost": 0.0010234,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 475,
+            "output": 1585,
+            "reasoning": 1298
+          }
+        },
+        "prompt_tokens": 859,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2444
+      }
+    },
+    "text": "{\"summary\":\"Electrical system: intermittent rear camera failure and adaptive cruise sudden hard braking, with water intrusion and after software update.\",\"group\":\"electrical_general\",\"symptoms\":[\"rear camera fails to operate intermittently\",\"electrical short due to water intrusion in rear lift gate\",\"adaptive cruise control suddenly and violently brakes at highway speeds when lane ahead is clear\",\"potential rear vehicle lighting loss\"],\"conditions\":[\"moisture\",\"intermittent\",\"after service\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"rear camera failing to operate at times\"},{\"kind\":\"symptom\",\"quote\":\"it still does not energize at times\"},{\"kind\":\"condition\",\"quote\":\"water intrusion into the rear lift gate\"},{\"kind\":\"symptom\",\"quote\":\"causes the electrical to short out\"},{\"kind\":\"condition\",\"quote\":\"software was updated by the dealer\"},{\"kind\":\"symptom\",\"quote\":\"vehicle will brake suddenly and hard\"},{\"kind\":\"symptom\",\"quote\":\"violently brakes\"},{\"kind\":\"safety\",\"quote\":\"This is obviously a safety issue\"},{\"kind\":\"safety\",\"quote\":\"This is a safety issue as the vehicle suddenly and violently brakes at highway speeds\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00061404,
+      "cached_tokens": 384,
+      "cost_usd": 0.0010234,
+      "input_tokens": 859,
+      "list_cost_usd": 0.0010234,
+      "output_tokens": 1585,
+      "reasoning_tokens": 1298
+    }
+  }
+}

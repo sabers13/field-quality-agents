@@ -1,0 +1,66 @@
+{
+  "key": "7d51041ebb4b73a9aa589edeac59976e5508b15df096ea6eb4904c70db18ca52",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9447,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system: ABS keeps flashing with a bing noise while driving; radio cuts out and HVAC goes full blast during ABS flashing/binging.\",\"group\":\"electrical_general\",\"symptoms\":[\"ABS flashing\",\"bing noise while driving\",\"radio cuts out during ABS flashing\",\"HVAC goes full blast during ABS flashing and binging\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"KEEPS FLASHING ABS.\"},{\"kind\":\"symptom\",\"quote\":\"IT SOUNDS A BING NOISE THE WHOLE TIME I DRIVE IT.\"},{\"kind\":\"symptom\",\"quote\":\"THE RADIO CUTS OUT ALL THE TIME WHEN THE ABS IN FLASHING\"},{\"kind\":\"symptom\",\"quote\":\"THE AIR CONDITIONING OR HEAT GOES FULL BLAST WHEN THE ABS IN FLASHING AND BINGING.\"},{\"kind\":\"condition\",\"quote\":\"ALL THE TIME\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize. Report component ELECTRICAL SYSTEM group electrical_general. Symptoms: ABS keeps flashing; bing noise whole time driving; radio cuts out when ABS flashing; A/C or heat goes full blast when ABS flashing and binging. Conditions: intermittent? It says keeps flashing, whole time drive, when ABS flashing. No cold/moisture/heat? \"heat goes full blast\" is HVAC not condition. Could include intermittent? Flashing maybe intermittent. Given conditions list only allowed cold, moisture, heat, vibration, intermittent, after service, charging. Need decide conditions. \"KEEPS FLASHING\" suggests intermittent. \"whole time I drive it\" maybe continuous. Radio cuts out all the time when ABS flashing. No safety. Fault codes none. Missing info: mileage (null), date? received_at exists but report date? missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Component present, symptom present, conditions maybe not explicit? Mileage missing. Date? received_at present. Could list mileage only. Maybe conditions missing? It gives driving duration, but not weather. Hmm.\n\nNeed quotes verbatim character for character from narrative. Need preserve uppercase and punctuation. Quotes:\n\"KEEPS FLASHING ABS.\" exact? Narrative: \"KEEPS FLASHING ABS.  IT SOUNDS...\" yes quote \"KEEPS FLASHING ABS.\" verbatim.\n\"IT SOUNDS A BING NOISE THE WHOLE TIME I DRIVE IT.\" exact.\n\"THE RADIO CUTS OUT ALL THE TIME WHEN THE ABS IN FLASHING\" exact (it says \"IN FLASHING\" typo). \n\"THE AIR CONDITIONING OR HEAT GOES FULL BLAST WHEN THE ABS IN FLASHING AND BINGING.\" exact? Narrative: \"THE AIR CONDITIONING OR HEAT GOES FULL BLAST WHEN THE ABS IN FLASHING AND BINGING.\" yes.\nNeed condition quote maybe \"THE WHOLE TIME I DRIVE IT\" for continuous? Kind condition. But allowed conditions? Could quote \"ALL THE TIME\" for intermittent? Hmm.\n\nSummary one line: component, symptom, conditions. \"Electrical system: ABS flashes with bing noise while driving; radio cuts out and HVAC goes full blast during ABS flashing/binging.\" Conditions \"while driving\" not in allowed list but summary can.\n\nJSON only. Ensure valid JSON. safety_relevant false. missing_info [\"mileage\"]. Clues include component_group quote? Need quote verbatim from report. Component group is given \"electrical_general\" but not in narrative. Rule quote copied verbatim from report. The report includes component \"ELECTRICAL SYSTEM\" maybe can quote \"ELECTRICAL SYSTEM\". For component_group kind quote \"ELECTRICAL SYSTEM\". Is that verbatim in report? Yes component field. But \"report\" includes JSON. Quote verbatim. okay.\n\nFault codes empty. symptoms list plain words: \"ABS flashing\", \"bing noise while driving\", \"radio cuts out during ABS flashing\", \"HVAC goes full blast during ABS flashing and binging\". Conditions: [\"intermittent\"]? Is \"keeps flashing\" enough. Maybe include \"intermittent\" because flashing and cuts out all the time when ABS flashing. Hmm. The allowed conditions are specific. The report doesn't mention cold/moisture/heat/vibration/after service/charging. \"intermittent\" could be inferred from flashing. But do not invent facts. I can include \"intermittent\" with quote \"KEEPS FLASHING ABS.\"? Flashing implies intermittent. Maybe okay. But conditions list should be conditions. The narrative says \"whole time I drive it\" not intermittent. Radio cuts out all the time when ABS flashing. I think include \"intermittent\" because symptom recurring? But \"keeps flashing\" not necessarily intermittent condition? I'd include \"intermittent\" as condition due flashing/cutting out. However missing_info maybe conditions? If conditions not explicit. Hmm.\n\nNeed answer only JSON no other text. Use exact quotes. For symptom clue quote \"KEEPS FLASHING ABS.\"; condition clue quote \"ALL THE TIME\" (exists). For radio quote. For HVAC quote. For safety none. Maybe clue kind other quote \"I REALLY WANT AN ANSWER ASAP!!!\" irrelevant. No.\n\nNeed maybe include \"safety_relevant\": false. Missing info: [\"mileage\"]. Maybe date? received_at exists, but report date not explicit. The prompt says missing_info list facts analysis needs: component, symptom, conditions, mileage, date. Use empty when nothing important missing. Mileage missing important. Date? received_at 2025-08-07, report date likely. No list date. Conditions? It mentions driving but not environmental conditions. Could list \"conditions\" because no cold/moisture etc. But conditions are optional. Hmm.\n\nNeed ensure quote \"THE AIR CONDITIONING OR HEAT GOES FULL BLAST WHEN THE ABS IN FLASHING AND BINGING.\" Character for character includes double spaces? Narrative segment: \"THE AIR CONDITIONING OR HEAT GOES FULL BLAST WHEN THE ABS IN FLASHING AND BINGING.\" yes. It has single spaces. Good.\n\nLet's craft final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529324,
+      "id": "9812e532d7d519500550b68e31142cf1",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1336,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1100,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00050973,
+          "billing_source": "go",
+          "list_cost": 0.00084955,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 312,
+            "output": 1336,
+            "reasoning": 1100
+          }
+        },
+        "prompt_tokens": 696,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2032
+      }
+    },
+    "text": "{\"summary\":\"Electrical system: ABS keeps flashing with a bing noise while driving; radio cuts out and HVAC goes full blast during ABS flashing/binging.\",\"group\":\"electrical_general\",\"symptoms\":[\"ABS flashing\",\"bing noise while driving\",\"radio cuts out during ABS flashing\",\"HVAC goes full blast during ABS flashing and binging\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"KEEPS FLASHING ABS.\"},{\"kind\":\"symptom\",\"quote\":\"IT SOUNDS A BING NOISE THE WHOLE TIME I DRIVE IT.\"},{\"kind\":\"symptom\",\"quote\":\"THE RADIO CUTS OUT ALL THE TIME WHEN THE ABS IN FLASHING\"},{\"kind\":\"symptom\",\"quote\":\"THE AIR CONDITIONING OR HEAT GOES FULL BLAST WHEN THE ABS IN FLASHING AND BINGING.\"},{\"kind\":\"condition\",\"quote\":\"ALL THE TIME\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00050973,
+      "cached_tokens": 384,
+      "cost_usd": 0.00084955,
+      "input_tokens": 696,
+      "list_cost_usd": 0.00084955,
+      "output_tokens": 1336,
+      "reasoning_tokens": 1100
+    }
+  }
+}

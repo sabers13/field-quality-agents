@@ -1,0 +1,66 @@
+{
+  "key": "64db99fe0deea341443a5d5cf6e18d718631f4d73952be9f22e682bcddef463b",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11136,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system: lane assist forced the steering wheel right, causing a guard-rail collision; prior screen and radio electrical malfunctions while driving on the freeway in the right lane.\",\"group\":\"electrical_general\",\"symptoms\":[\"lane assist forced the steering wheel to turn right, causing a collision with a concrete guard rail\",\"electrical malfunctioning issues with the screen and radio\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"lane assist forced my steering wheel to turn right causing me to collide into a concrete guard rail\"},{\"kind\":\"symptom\",\"quote\":\"electrical malfunctioning issues with the screen and radio\"},{\"kind\":\"safety\",\"quote\":\"collide into a concrete guard rail\"},{\"kind\":\"condition\",\"quote\":\"driving on the freeway in the right lane\"}]}",
+            "reasoning_content": "We need answer only JSON object no other text. Need normalize report. Need extract component ELECTRICAL SYSTEM group electrical_general. Narrative: \"I was driving on the freeway in the right lane and the lane assist forced my steering wheel to turn right causing me to collide into a concrete guard rail. Previous to that my car had been having electrical malfunctioning issues with the screen and radio.\"\n\nNeed summary one line: component, symptom, conditions. Symptoms: lane assist forced steering wheel to turn right causing collision into concrete guard rail; electrical malfunctioning issues with screen and radio. Conditions: driving on freeway in right lane; previous electrical issues? Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. We don't have those. Maybe none? Conditions array could include \"driving on freeway\" but allowed list seems constrained? Prompt says conditions: [\"cold\", ...]. But clues can include condition? Need decide. It says conditions list with enumerated values. Report mentions freeway driving; not in allowed list. But maybe conditions should be []? Yet summary includes conditions. We can mention highway driving in summary. safety_relevant true. fault_codes []. missing_info: mileage (null), date? received_at exists but incident date not. Component present, symptom present, conditions? Conditions maybe not explicit in allowed categories. Missing_info list only facts analysis needs: component, symptom, conditions, mileage, date. Since mileage missing and date (incident date) missing? The report has received_at but not incident date. But \"date\" could be received date present. Hmm missing_info should include mileage, date maybe? Need be careful. It asks missing_info only for facts analysis needs. We have component, symptom. Conditions? We know driving on freeway, but not weather/road? Maybe missing \"conditions\" because no cold/moisture etc. Mileage null. Date: received_at present 2025-10-05 but incident date absent. In intake, date likely report date available. But field missing? There is received_at. The report includes date. So not missing date? I'd include mileage only maybe conditions? Let's inspect expected from similar tasks? They want normalize. Conditions array should include allowed tags if report indicates. It doesn't. missing_info can include \"mileage\", maybe \"conditions\" because no conditions tags. But condition \"driving on freeway in right lane\" is a condition but not one of allowed taxonomy. The prompt's conditions array enumerates specific conditions. So cannot list freeway. For missing_info, \"conditions\" likely if no conditions (cold etc) mentioned. But report does mention driving context. Hmm.\n\nNeed clues verbatim. Must copy exact spans. Need include symptom quotes: \"the lane assist forced my steering wheel to turn right causing me to collide into a concrete guard rail\" verbatim? Actual text: \"and the lane assist forced my steering wheel to turn right causing me to collide into a concrete guard rail.\" We can quote substring exactly \"the lane assist forced my steering wheel to turn right causing me to collide into a concrete guard rail\" (starts after and, yes exists). Also \"electrical malfunctioning issues with the screen and radio\" exists. Safety clue: \"collide into a concrete guard rail\" or \"forced my steering wheel to turn right\" risk. Need kind safety quote. Component group quote: \"ELECTRICAL SYSTEM\" from component field? The report in user message includes component. Quote can be from report? Yes report is whole JSON. But \"quote copied verbatim from the report\". It can include \"ELECTRICAL SYSTEM\". Also group \"electrical_general\" appears. But clues should quote report. Use component quote \"ELECTRICAL SYSTEM\". Symptom quote maybe \"electrical malfunctioning issues with the screen and radio\". Condition clue? \"driving on the freeway in the right lane\" is a condition but not allowed taxonomy? Kind condition, quote. But conditions array? If we include clue kind condition but conditions array empty? Could be inconsistent. Maybe include conditions [\"intermittent\"?] No, electrical malfunctioning not explicitly intermittent. \"Previous to that my car had been having\" suggests prior ongoing, but not intermittent. Lane assist forced steering is not allowed condition. I'd set conditions [] and clues include condition \"driving on the freeway in the right lane\" and \"Previous to that\" maybe? Hmm.\n\nNeed summary concise: \"Electrical system: lane assist forced steering right causing guard rail collision; prior screen/radio electrical malfunctions while driving on freeway right lane.\" That covers component, symptom, conditions. One line.\n\nGroup: \"electrical_general\" given. Could also \"ELECTRICAL SYSTEM\". Prompt says group: the electrical/electronic component group, or given group. Given group is electrical_general. Use that.\n\nSymptoms array plain words: [\"lane assist forced steering wheel to turn right, causing collision with concrete guard rail\", \"electrical malfunctioning issues with screen and radio\"] Good.\n\nConditions array: I think [] because none of enumerated apply. But \"driving on freeway in right lane\" is not in enum. Maybe include \"driving\" no. Rules specify conditions array list examples? It shows exact array with items but not \"allowed only\" explicitly? It says `\"conditions\": [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]` in schema, likely enumerated values. So no freeway. Empty.\n\nfault_codes [].\n\nsafety_relevant true.\n\nmissing_info: [\"mileage\", \"date\", \"conditions\"]? Let's reason. The report has received_at but not incident date. Mileage null. Conditions maybe not specified in taxonomy. The case analysis might need incident date and mileage. Include mileage and date. Conditions? The report gives driving context but not weather/road conditions? It gives right lane freeway. In these tasks missing_info often includes \"mileage\" if null, \"date\" if no incident date. Does received_at count as date? It's report received date, not incident date. The schema missing_info includes \"date\" likely date of incident. So include date. \"conditions\" maybe because no cold/moisture etc. But if we include conditions, is that fact analysis needs? Yes conditions taxonomy. The report mentions freeway, but not environmental conditions. Include \"conditions\"? Hmm.\n\nNeed ensure clues quote verbatim. Let's list:\n- {\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"}\n- {\"kind\":\"symptom\",\"quote\":\"lane assist forced my steering wheel to turn right causing me to collide into a concrete guard rail\"}\n- {\"kind\":\"symptom\",\"quote\":\"electrical malfunctioning issues with the screen and radio\"}\n- {\"kind\":\"safety\",\"quote\":\"collide into a concrete guard rail\"}\n- {\"kind\":\"condition\",\"quote\":\"driving on the freeway in the right lane\"} maybe. But if conditions array empty, clue condition may be okay? It indicates driving context not taxonomy. Could include. But prompt says kind condition. Quote exists: \"I was driving on the freeway in the right lane\" exact? Narrative starts \"I was driving on the freeway in the right lane and...\" So quote \"driving on the freeway in the right lane\" is verbatim substring. Fine. But conditions array empty could be seen as not using. It's okay maybe.\n\nCould include \"Previous to that my car had been having electrical malfunctioning issues\" as other? Symptom quote covers latter. Maybe \"Previous to that\" indicates prior. Not needed.\n\nNeed no other text, only JSON. Ensure valid JSON.\n\nPotential issue summary includes \"while driving on freeway right lane\" conditions. Good.\n\nLet's craft final JSON only.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531004,
+      "id": "7570328f7fce7fe5f31f7df7af23f0b0",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1828,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1615,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00067254,
+          "billing_source": "go",
+          "list_cost": 0.0011209,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 153,
+            "output": 1828,
+            "reasoning": 1615
+          }
+        },
+        "prompt_tokens": 537,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2365
+      }
+    },
+    "text": "{\"summary\":\"Electrical system: lane assist forced the steering wheel right, causing a guard-rail collision; prior screen and radio electrical malfunctions while driving on the freeway in the right lane.\",\"group\":\"electrical_general\",\"symptoms\":[\"lane assist forced the steering wheel to turn right, causing a collision with a concrete guard rail\",\"electrical malfunctioning issues with the screen and radio\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"lane assist forced my steering wheel to turn right causing me to collide into a concrete guard rail\"},{\"kind\":\"symptom\",\"quote\":\"electrical malfunctioning issues with the screen and radio\"},{\"kind\":\"safety\",\"quote\":\"collide into a concrete guard rail\"},{\"kind\":\"condition\",\"quote\":\"driving on the freeway in the right lane\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00067254,
+      "cached_tokens": 384,
+      "cost_usd": 0.0011209,
+      "input_tokens": 537,
+      "list_cost_usd": 0.0011209,
+      "output_tokens": 1828,
+      "reasoning_tokens": 1615
+    }
+  }
+}

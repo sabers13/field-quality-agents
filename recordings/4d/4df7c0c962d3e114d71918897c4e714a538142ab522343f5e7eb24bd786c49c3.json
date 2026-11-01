@@ -1,0 +1,66 @@
+{
+  "key": "4df7c0c962d3e114d71918897c4e714a538142ab522343f5e7eb24bd786c49c3",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11512,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system CAN bus connectors: gauges/warning lights go off and vehicle stops and turns off, including in traffic; heat-related solder failure with random recurrence.\",\"group\":\"electrical_general\",\"symptoms\":[\"all gauges and warning lights go off\",\"vehicle stops and turns off\",\"van completely stop and shutoff in the middle of traffic\",\"CAN bus connectors short out causing the issue\"],\"conditions\":[\"heat\",\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"all the gauges and warning lights go off\"},{\"kind\":\"symptom\",\"quote\":\"vehicle stops and turns off regardless of driving conditions\"},{\"kind\":\"symptom\",\"quote\":\"They short out causing the issue\"},{\"kind\":\"symptom\",\"quote\":\"van completely stop and shutoff in the middle of traffic\"},{\"kind\":\"condition\",\"quote\":\"cannot handle the heatand elements\"},{\"kind\":\"condition\",\"quote\":\"it's random\"},{\"kind\":\"condition\",\"quote\":\"every couple days for the last 3 weeks\"},{\"kind\":\"component_group\",\"quote\":\"can c bus connectors\"},{\"kind\":\"safety\",\"quote\":\"van completely stop and shutoff in the middle of traffic\"}]}",
+            "reasoning_content": "We need answer only JSON object. Need normalize report. Need every quote verbatim. Need determine summary, group given electrical_general, symptoms, conditions, fault_codes, safety_relevant true because vehicle stops and turns off in traffic, loss? mentions \"vehicle stops and turns off regardless of driving conditions\", \"van completely stop and shutoff in the middle of traffic\" risk. Conditions: heat? Report mentions \"cannot handle the heatand elements\" and \"elements\"; driving conditions. \"cold\", \"moisture\"? It says elements but not moisture. Need list conditions from allowed: cold, moisture, heat, vibration, intermittent, after service, charging. Report: heat, intermittent (random), after service? \"replacing them for 2nd time in less than a year after\" not necessarily after service. Could include \"intermittent\" because random. \"heat\" quote. Maybe \"conditions\" include driving conditions? Allowed list only specific. Could not include \"driving conditions\" as condition? The schema says conditions [\"cold\",\"moisture\",\"heat\",\"vibration\",\"intermittent\",\"after service\",\"charging\"], probably choose. Include heat, intermittent. Maybe \"after service\" no. Missing_info: mileage null, date? received date but incident dates 2023-2025 and yesterday. Missing component? component given ELECTRICAL SYSTEM but specific \"can c bus connectors\" yes. Symptom present. Conditions present. Need missing_info only facts analysis needs: mileage, date? It says from 2023-2025 and recently happened yesterday, received 2025-09-19. Date maybe sufficient? Mileage missing. Could include \"mileage\". Maybe \"date\" not missing? It gives broad dates, recently yesterday. Might not need date. component? specific group? We can list mileage. Also perhaps \"conditions\" not missing? It mentions heat and random. Could be missing conditions? no.\n\nFault codes: none named. Symptoms: all gauges and warning lights go off; vehicle stops; vehicle turns off; short out causing issue; systems codes get tripped? Fault codes not named. Symptom \"all gauges and warning lights go off\", \"vehicle stops and turns off\", \"van completely stop and shutoff in the middle of traffic\". Plain words. Conditions: \"regardless of driving conditions\", \"heatand elements\", \"random\", \"every couple days for last 3 weeks\". Need quotes verbatim including typo \"heatand\". clues kind. Need quote exact substrings from narrative. Need ensure exact spaces. Let's copy relevant spans carefully.\n\nNarrative:\n\"On multiple occasions, from 2023-2025 our vehicle has had issues where all the gauges and warning lights go off and vehicle stops and turns off regardless of driving conditions.  Recently happened yesterday.  The culprit is the can c bus connectors that Chrysler is using.  They short out causing the issue and because so many systems codes get tripped after nearly a year of back and forth with dealerships unable to diagnose issue I went to a pacifica forum where there are 1000s same reported issue. The issue is caused by the cancam bus connectors - specifically under the dashboard in our case, due to Chrysler using zinc based soldering that cannot handle the heatand elements. These solders use to be made out of lead that can handle the elements.  We are replacing them for the 2nd time in less than a year after,as mentioned before, my wife and daughter had van completely stop and shutoff in the middle of traffic.  This has happened recently every couple days for the last 3 weeks - previous time happened off and on while waiting for answers from dealership for over a year, they cannot recreate issue because it's random and therefore will not chae the issues or listen when I asked to specifically check item. (Files uploaded are from video my wife captured)\"\n\nNeed quotes:\n- \"all the gauges and warning lights go off\"\n- \"vehicle stops and turns off regardless of driving conditions\"\n- \"They short out causing the issue\"\n- \"van completely stop and shutoff in the middle of traffic\"\n- \"cannot handle the heatand elements\"\n- \"it's random\"\n- \"every couple days for the last 3 weeks\"\n- safety quote \"van completely stop and shutoff in the middle of traffic\" or \"vehicle stops and turns off regardless of driving conditions\". Safety_relevant true. Need maybe clue kind safety with quote.\n- component group: \"can c bus connectors\" or \"cancam bus connectors\". Use \"the can c bus connectors that Chrysler is using\" or \"cancam bus connectors\". Kind component_group maybe quote \"can c bus connectors\".\n- fault_code? none.\n- other? \"under the dashboard\" maybe other.\nNeed summary: \"Electrical system / CAN bus connectors: gauges and warning lights go off and vehicle stops/turns off, including in traffic; heat-related solder failure, random/intermittent.\" One line.\n\nNeed JSON only. Need valid JSON. No markdown. Ensure quote verbatim. Need \"summary\" one line.\n\nPotential issue: \"group\": given \"electrical_general\" or electrical/electronic component group? Prompt says \"the electrical/electronic component group, or the given group\". Given group electrical_general. Use \"electrical_general\". Could also be \"electrical_general\". Fine.\n\nSymptom list: \"all gauges and warning lights go off\", \"vehicle stops and turns off\", \"van completely stop and shutoff in the middle of traffic\", \"CAN bus connectors short out\". \"systems codes get tripped\" maybe not symptom. Keep plain.\n\nConditions list: \"heat\", \"intermittent\". Could include \"driving conditions\"? Not in allowed list. Maybe \"heat\" and \"intermittent\". Also \"after service\"? Replacing second time not after service. No.\n\nMissing_info: [\"mileage\"] maybe also \"date\"? It gives broad. Let's include mileage only. But date? The analysis maybe needs exact incident date. Report says \"Recently happened yesterday\" and received_at. Since received at 2025-09-19, yesterday is 2025-09-18. So date not missing. Mileage null. Component? There is component \"ELECTRICAL SYSTEM\" and specific connectors. Symptom present. Conditions present. So only mileage.\n\nClues array. Need no extra text. Ensure JSON strings with apostrophe \"it's\" fine. Double quotes inside? no.\n\nNeed quote exact \"after,as mentioned before\" no need.\n\nLet's formulate:\n{\n\"summary\":\"Electrical system CAN bus connectors: gauges/warning lights go off and vehicle stops and turns off, including in traffic; heat-related solder failure with random recurrence.\",\n\"group\":\"electrical_general\",\n\"symptoms\":[\"all gauges and warning lights go off\",\"vehicle stops and turns off\",\"van completely stop and shutoff in the middle of traffic\",\"CAN bus connectors short out causing the issue\"],\n\"conditions\":[\"heat\",\"intermittent\"],\n\"fault_codes\":[],\n\"safety_relevant\":true,\n\"missing_info\":[\"mileage\"],\n\"clues\":[\n{\"kind\":\"symptom\",\"quote\":\"all the gauges and warning lights go off\"},\n{\"kind\":\"symptom\",\"quote\":\"vehicle stops and turns off regardless of driving conditions\"},\n{\"kind\":\"symptom\",\"quote\":\"They short out causing the issue\"},\n{\"kind\":\"symptom\",\"quote\":\"van completely stop and shutoff in the middle of traffic\"},\n{\"kind\":\"condition\",\"quote\":\"cannot handle the heatand elements\"},\n{\"kind\":\"condition\",\"quote\":\"it's random\"},\n{\"kind\":\"condition\",\"quote\":\"every couple days for the last 3 weeks\"},\n{\"kind\":\"component_group\",\"quote\":\"can c bus connectors\"},\n{\"kind\":\"safety\",\"quote\":\"van completely stop and shutoff in the middle of traffic\"}\n]\n}\nNeed check quote \"can c bus connectors\" appears yes \"the can c bus connectors\". Good. \"heatand\" exact? Narrative: \"heatand elements\" yes (heatand no space). Good. \"it's random\" exact? \"because it's random\" yes. Good. \"every couple days for the last 3 weeks\" exact yes. \"vehicle stops and turns off regardless of driving conditions\" exact yes. Good.\n\nNeed maybe include fault_codes empty. Good.\n\nNeed final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530546,
+      "id": "e7be53cb225c36066d0258db3d157065",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2008,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1736,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00075669,
+          "billing_source": "go",
+          "list_cost": 0.00126115,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 368,
+            "output": 2008,
+            "reasoning": 1736
+          }
+        },
+        "prompt_tokens": 752,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2760
+      }
+    },
+    "text": "{\"summary\":\"Electrical system CAN bus connectors: gauges/warning lights go off and vehicle stops and turns off, including in traffic; heat-related solder failure with random recurrence.\",\"group\":\"electrical_general\",\"symptoms\":[\"all gauges and warning lights go off\",\"vehicle stops and turns off\",\"van completely stop and shutoff in the middle of traffic\",\"CAN bus connectors short out causing the issue\"],\"conditions\":[\"heat\",\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"all the gauges and warning lights go off\"},{\"kind\":\"symptom\",\"quote\":\"vehicle stops and turns off regardless of driving conditions\"},{\"kind\":\"symptom\",\"quote\":\"They short out causing the issue\"},{\"kind\":\"symptom\",\"quote\":\"van completely stop and shutoff in the middle of traffic\"},{\"kind\":\"condition\",\"quote\":\"cannot handle the heatand elements\"},{\"kind\":\"condition\",\"quote\":\"it's random\"},{\"kind\":\"condition\",\"quote\":\"every couple days for the last 3 weeks\"},{\"kind\":\"component_group\",\"quote\":\"can c bus connectors\"},{\"kind\":\"safety\",\"quote\":\"van completely stop and shutoff in the middle of traffic\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00075669,
+      "cached_tokens": 384,
+      "cost_usd": 0.00126115,
+      "input_tokens": 752,
+      "list_cost_usd": 0.00126115,
+      "output_tokens": 2008,
+      "reasoning_tokens": 1736
+    }
+  }
+}

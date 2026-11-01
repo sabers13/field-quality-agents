@@ -1,0 +1,66 @@
+{
+  "key": "8911e8d49a716c0d6a1c372565d930b10003a8f6b56e564202b38813d5a262bf",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9430,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Check windshield installation and glass fit for a crack reported immediately after leaving the dealership at 42 miles.\",\n  \"rationale\": \"The narrative reports the windshield cracking while driving home from the dealership with only 42 miles on the vehicle. The rulebook matches the after-service condition and calls for an installation check before further testing, focusing on correct part fit and related installation issues.\",\n  \"group\": \"body_controls\",\n  \"symptoms\": [\n    \"window cracked\",\n    \"windshield cracks\",\n    \"defect in the glass\"\n  ],\n  \"conditions\": [\n    \"after service\",\n    \"driving home from dealership\",\n    \"only 42 miles\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"targeted\": true,\n  \"test_name\": \"Installation check before test\",\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"window cracked\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"windshield cracks\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"Driving home from dealership\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"only 42 miles\"\n    },\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"windshield\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"defect in the glass\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer JSON only. Need analyze. Case windshield cracked, Jeep Wrangler 2025 42 miles, driving home from dealership. Component visibility/wiper, group body_controls. No recalls/investigations/similar. Rulebook match after_service: condition after service -> installation check before test. But narrative \"Driving home from dealership\" not necessarily service? Extraction conditions after service. Rulebook matched. Need targeted? The rulebook entry names \"Installation check before test\", not load test. The prompt says prefer targeted load test when reported conditions match a rulebook entry. Otherwise standard test targeted false. Here condition matches rulebook but test is installation check before test. Hmm \"targeted\": true? The targeted test the rulebook names is \"Installation check before test\". Is that a targeted test? It says set test_name to targeted test rulebook names. Could set targeted true and test_name \"Installation check before test\". But targeted load test? We must follow. Maybe targeted true because rulebook match. Safety false. Need clues verbatim from narrative. Narrative exact: \"Driving home from dealership and window cracked. Thees Jeeps have Coring Gorilla Glass. There is definitely a defect in the glass with only 42 miles on the jeep and the windshield cracks\". Quotes must be verbatim spans. We can include \"window cracked\", \"Driving home from dealership\", \"defect in the glass\", \"windshield cracks\", \"42 miles\". Note \"42 miles\" exists. Component group quote \"windshield\" exists. But extraction quote \"windshield\" verbatim yes. Need group \"body_controls\". Symptoms list. Conditions [\"after service\"]? Is \"after service\" verbatim? No, clue quote must verbatim from narrative. Conditions array can be normalized not quotes? It's okay. But clues quote must verbatim. Could include condition quote \"Driving home from dealership\" for condition. Fault codes empty. Summary one line. Rationale condition and evidence. Need not cite ids absent. No recalls etc. Ensure JSON only. Should safety_relevant false. targeted true? Let's decide. The rulebook condition \"after_service\" matched. The rulebook test \"Installation check before test\". The prompt says \"Prefer a targeted load test when the reported conditions match a rulebook entry. Otherwise propose the standard test (`targeted`: false).\" But rulebook test isn't load. Hmm maybe targeted false because no targeted load test named. But then test_name? \"standard test\" unspecified. However schema has test_name. Could set targeted false, test_name \"Standard windshield inspection\"? But rules say \"test_name: the targeted test the rulebook names\" only if targeted. We need propose test. The rulebook explicitly names test \"Installation check before test\". I think targeted true and test_name that. It's a targeted check due to after-service condition. Even though not load. But prompt \"targeted load test\" might be generic. Let's produce targeted true, test_name \"Installation check before test\". Rationale: crack appeared immediately after leaving dealership at 42 miles; rulebook after-service calls for verifying connector seating, pin damage and part fit first. But windshield not connector? Hmm installation check for glass fit. Could mention. Symptoms: window cracked, windshield cracks, defect in glass. Conditions: after service / driving home from dealership. Clues include component group \"windshield\", condition quote, symptom quotes, other \"defect in the glass\". Maybe \"42 miles\" as condition/other? Use kind \"condition\" quote \"only 42 miles\" (verbatim? Narrative: \"with only 42 miles on the jeep\" yes \"only 42 miles\" is span). But extraction didn't include; still can cite if verbatim. But use only facts. It is fact. But maybe no need. We need clues that support. Include:\n- symptom quote \"window cracked\"\n- symptom quote \"windshield cracks\"\n- condition quote \"Driving home from dealership\"\n- component_group quote \"windshield\"\n- other quote \"defect in the glass\"\n- condition quote \"only 42 miles\" maybe.\nNeed quote verification: all exact substrings. \"window cracked\" appears. \"windshield cracks\" appears. \"Driving home from dealership\" appears. \"windshield\" appears. \"defect in the glass\" appears. \"only 42 miles\" appears. Good.\n\nSummary: \"Test windshield installation/glass fit for a crack reported immediately after leaving the dealership at 42 miles.\" rationale mention rulebook after-service. Group body_controls. safety false. targeted true. No fault codes. JSON only. Ensure no extra text.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793532324,
+      "id": "b69bf6267a55d82ff79a9b9ea0fa1c07",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1287,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 969,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00053451,
+          "billing_source": "go",
+          "list_cost": 0.00089085,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 791,
+            "output": 1287,
+            "reasoning": 969
+          }
+        },
+        "prompt_tokens": 791,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 2078
+      }
+    },
+    "text": "{\n  \"summary\": \"Check windshield installation and glass fit for a crack reported immediately after leaving the dealership at 42 miles.\",\n  \"rationale\": \"The narrative reports the windshield cracking while driving home from the dealership with only 42 miles on the vehicle. The rulebook matches the after-service condition and calls for an installation check before further testing, focusing on correct part fit and related installation issues.\",\n  \"group\": \"body_controls\",\n  \"symptoms\": [\n    \"window cracked\",\n    \"windshield cracks\",\n    \"defect in the glass\"\n  ],\n  \"conditions\": [\n    \"after service\",\n    \"driving home from dealership\",\n    \"only 42 miles\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"targeted\": true,\n  \"test_name\": \"Installation check before test\",\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"window cracked\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"windshield cracks\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"Driving home from dealership\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"only 42 miles\"\n    },\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"windshield\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"defect in the glass\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00053451,
+      "cached_tokens": 0,
+      "cost_usd": 0.00089085,
+      "input_tokens": 791,
+      "list_cost_usd": 0.00089085,
+      "output_tokens": 1287,
+      "reasoning_tokens": 969
+    }
+  }
+}

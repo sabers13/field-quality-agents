@@ -1,0 +1,66 @@
+{
+  "key": "6a7a75f8bdc35850764a6f957105952de39f695adc80e791502c3fcbd6499bb7",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 5741,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Test the 2021 Toyota Camry rearview camera fault with a long-run power cycling test because the failure began intermittently and is now permanent.\",\"rationale\":\"The narrative reports the rear camera worked intermittently for about six months before stopping completely, with an initial unavailable warning and intermittent rear cross traffic alert but no picture. No camera wiring damage was found. The rulebook matches the intermittent condition to a long-run power cycling test, which reproduces faults that appear after repeated wake and sleep cycles.\",\"group\":\"adas\",\"symptoms\":[\"rear camera stopped working\",\"intermittent operation before complete failure\",\"rearview system unavailable warning initially\",\"rear cross traffic alert without camera picture\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":false,\"targeted\":true,\"test_name\":\"Long-run power cycling test\",\"clues\":[{\"kind\":\"component_group\",\"quote\":\"rear camera\"},{\"kind\":\"symptom\",\"quote\":\"The rear camera has stopped working.\"},{\"kind\":\"condition\",\"quote\":\"intermittently\"},{\"kind\":\"symptom\",\"quote\":\"The warning light saying that it was not available would come on when it first started having a problem but that stopped when it stopped working completely.\"},{\"kind\":\"symptom\",\"quote\":\"It will show rear cross traffic alert at times but no picture and not every time there is traffic.\"},{\"kind\":\"other\",\"quote\":\"It has been inspected for any sign of damage to camera wiring, none found\"}]}",
+            "reasoning_content": "We need answer JSON only. Need analyze. Case rear camera stopped working, intermittent, warning, RCTA no picture, wiring inspected no damage. Rulebook match intermittent: Long-run power cycling test. Targeted true? Rulebook entry names targeted? It says prefer targeted load test when reported conditions match rulebook entry. So targeted true, test_name \"Long-run power cycling test\". Group adas. Safety false (no risk to people? Rearview camera could be safety but narrative no people risk; extraction false). Clues quotes verbatim from narrative. Need include only exact spans from case narrative, not extraction necessarily. Narrative: \"The rear camera has stopped working. It started working intermittently approximately 6 months ago and now it does not work at all. The warning light saying that it was not available would come on when it first started having a problem but that stopped when it stopped working completely. It will show rear cross traffic alert at times but no picture and not every time there is traffic. It has been inspected for any sign of damage to camera wiring, none found\"\n\nNeed quote exact spans. We can include:\n- \"The rear camera has stopped working.\"\n- \"It started working intermittently approximately 6 months ago and now it does not work at all.\"\n- \"The warning light saying that it was not available would come on when it first started having a problem but that stopped when it stopped working completely.\"\n- \"It will show rear cross traffic alert at times but no picture and not every time there is traffic.\"\n- \"It has been inspected for any sign of damage to camera wiring, none found\"\nMaybe component group quote? Narrative doesn't contain \"BACK OVER PREVENTION: REARVIEW SYSTEM BRAKING\"; that's component field not narrative. Rule says quote copied verbatim from case narrative. So cannot quote component. But clues kind component_group could quote \"rear camera\" or \"rear cross traffic alert\". Use quote \"rear camera\" exact. For condition quote \"intermittently\" exact. Good.\n\nNeed summary one line. Rationale mention intermittent condition and rulebook. Conditions [\"intermittent\"], symptoms [\"rear camera stopped working\", \"intermittent operation before complete failure\", \"rearview system unavailable warning initially\", \"rear cross traffic alert without camera picture\"], fault_codes []. targeted true. test_name exact \"Long-run power cycling test\". safety_relevant false.\n\nEnsure JSON no extra.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529610,
+      "id": "dd15f348590b99b7df8c7ce30dd5f834",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 800,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 489,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00040455,
+          "billing_source": "go",
+          "list_cost": 0.00067425,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 1295,
+            "output": 800,
+            "reasoning": 489
+          }
+        },
+        "prompt_tokens": 1295,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 2095
+      }
+    },
+    "text": "{\"summary\":\"Test the 2021 Toyota Camry rearview camera fault with a long-run power cycling test because the failure began intermittently and is now permanent.\",\"rationale\":\"The narrative reports the rear camera worked intermittently for about six months before stopping completely, with an initial unavailable warning and intermittent rear cross traffic alert but no picture. No camera wiring damage was found. The rulebook matches the intermittent condition to a long-run power cycling test, which reproduces faults that appear after repeated wake and sleep cycles.\",\"group\":\"adas\",\"symptoms\":[\"rear camera stopped working\",\"intermittent operation before complete failure\",\"rearview system unavailable warning initially\",\"rear cross traffic alert without camera picture\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":false,\"targeted\":true,\"test_name\":\"Long-run power cycling test\",\"clues\":[{\"kind\":\"component_group\",\"quote\":\"rear camera\"},{\"kind\":\"symptom\",\"quote\":\"The rear camera has stopped working.\"},{\"kind\":\"condition\",\"quote\":\"intermittently\"},{\"kind\":\"symptom\",\"quote\":\"The warning light saying that it was not available would come on when it first started having a problem but that stopped when it stopped working completely.\"},{\"kind\":\"symptom\",\"quote\":\"It will show rear cross traffic alert at times but no picture and not every time there is traffic.\"},{\"kind\":\"other\",\"quote\":\"It has been inspected for any sign of damage to camera wiring, none found\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00040455,
+      "cached_tokens": 0,
+      "cost_usd": 0.00067425,
+      "input_tokens": 1295,
+      "list_cost_usd": 0.00067425,
+      "output_tokens": 800,
+      "reasoning_tokens": 489
+    }
+  }
+}

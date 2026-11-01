@@ -1,0 +1,66 @@
+{
+  "key": "d3ab0ae7ab737ef40014a114a7f97eaa135023c6396e960003953d5fe6c39547",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10375,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Audi A3 electrical system: emergency brake engages when shifting to gear; speed control drops to very low speed on highway by itself; multiple glitchy electrical issues.\",\"group\":\"electrical_general\",\"symptoms\":[\"electronic emergency brake engages repeatedly when attempting to put vehicle in gear\",\"speed control coasts to very low speed on highway by itself\",\"numerous glitchy electrical issues\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"Electronic emergency brake goes on repeatedly when attempting to put vehicle in gear.\"},{\"kind\":\"symptom\",\"quote\":\"Speed control has coasted to a very low speed while on the highway several times, on its own with no vehicles in front of me.\"},{\"kind\":\"symptom\",\"quote\":\"Numerous other “glitchy” electrical issues exist.\"},{\"kind\":\"condition\",\"quote\":\"repeatedly\"},{\"kind\":\"condition\",\"quote\":\"several times\"},{\"kind\":\"safety\",\"quote\":\"Speed control has coasted to a very low speed while on the highway several times\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize report. Need identify component electrical system, group given electrical_general. Symptoms: electronic emergency brake engages repeatedly when attempting to put vehicle in gear; speed control coasts to very low speed on highway on its own with no vehicles ahead; numerous other glitchy electrical issues; vehicle always cycling through glitches. Conditions? highway? \"on the highway several times\" is condition? intermittent? \"repeatedly\", \"several times\", \"on its own\", \"always cycling\". Cold moisture heat vibration after service charging none. Could include intermittent? The list conditions allowed: cold, moisture, heat, vibration, intermittent, after service, charging. \"repeatedly\" and \"several times\" indicate intermittent. But condition quote must verbatim. Could quote \"repeatedly\" or \"several times\" for intermittent. Also highway maybe not in allowed conditions list, cannot include. Fault codes none. Safety relevant true because speed control coasted to very low speed on highway = risk. Need missing_info: mileage null, date? received_at 2025-09-10 but date maybe event date missing. Component present, symptom present, conditions? Conditions present maybe highway/intermittent. Need list only facts analysis needs: mileage, date? Report has received_at but not incident date. Mileage missing. Date missing? Yes no date of occurrence, only received_at. Could include mileage, date. Maybe conditions missing? There are conditions (highway, repeated). But no weather/temp. Hmm. Need not overdo. missing_info [\"mileage\",\"date\"].\n\nClues array verbatim quotes. Need exact character for character. Narrative has weird escape \\u201c. In actual string: \"Numerous other “glitchy” electrical issues exist.\" Need copy exact with curly quotes. We can quote substrings without curly? \"glitchy\" includes curly quotes if quote entire word? We can quote \"Numerous other\" but less useful. Need quotes for symptom, condition, safety, component_group. For component_group quote \"ELECTRICAL SYSTEM\" from component field? Is that part of report? The report includes component field; quote verbatim can be from report. The user says read only report. The JSON includes component. Quote \"ELECTRICAL SYSTEM\". Good.\n\nNeed ensure every quote verbatim from report. Let's craft:\n- symptom quote: \"Electronic emergency brake goes on repeatedly when attempting to put vehicle in gear.\" This exact appears? Narrative: \"1) Electronic emergency brake goes on repeatedly when attempting to put vehicle in gear.      2)...\" Yes substring includes period. Good.\n- symptom quote: \"Speed control has coasted to a very low speed while on the highway several times, on its own with no vehicles in front of me.\" Exact? Narrative has \"  2) Speed control...\" yes substring starts at Speed. Good.\n- symptom quote: \"Numerous other \\u201cglitchy\\u201d electrical issues exist.\" Need in final JSON, if I include curly quotes actual. Can include \"Numerous other “glitchy” electrical issues exist.\" That's verbatim. Good.\n- condition intermittent quote: \"repeatedly\" or \"several times\". Use \"several times\" from speed control. But condition list \"intermittent\" mapped to repeated. Quote \"repeatedly\" from first. Good.\n- safety quote: \"Speed control has coasted to a very low speed while on the highway several times\" maybe exact substring no comma? It ends before comma? Narrative: \"Speed control has coasted to a very low speed while on the highway several times, on its own...\" So quote without comma is valid substring. Good.\n- component_group quote: \"ELECTRICAL SYSTEM\". Good.\n- other? \"Dealer says they are collaborating with engineers in Germany. There is currently no fix.\" Not needed. Could clue other for no fix? Not necessary. Maybe clue condition \"on the highway\" but not allowed condition. no.\n\nSummary one line: \"Audi A3 electrical system: emergency brake engages when shifting to gear; speed control drops to very low speed on highway; multiple glitchy electrical issues.\" Need mention conditions. Summary not quote. Fine.\n\nsymptoms plain words. \"electronic emergency brake engages repeatedly when attempting to put vehicle in gear\", \"speed control coasts to very low speed on highway by itself\", \"numerous glitchy electrical issues\". Good.\n\nconditions: [\"intermittent\"] because repeated/several times. Maybe \"highway\" not allowed. Do not include if not in list. Could include \"intermittent\". Good.\n\nfault_codes [].\n\nsafety_relevant true.\n\nmissing_info [\"mileage\",\"date\"].\n\nNeed answer JSON only no markdown. Ensure valid JSON. Use actual curly quotes in quote? JSON supports Unicode. Need escape? Fine. Maybe use straight quotes? Must be verbatim; report had curly. Use curly. But there is risk. Could avoid quote with curly by using \"Numerous other\" but symptom quote should include glitchy? We can quote \"electrical issues exist\" but less. Use \"Numerous other\" for clue, not full symptom? But symptom array not evidence. Clues need evidence. Could quote \"glitchy\" without quotes? The report has “glitchy” with curly quote characters around. Substring \"glitchy\" is verbatim inside. But clue quote \"glitchy\" is verbatim and enough? It maps symptom? Hmm clue kind symptom quote \"glitchy\" maybe okay. But better full sentence with curly. Let's include exact.\n\nNeed check quote \"Speed control has coasted to a very low speed while on the highway several times\" is exact substring? Narrative: \"2) Speed control has coasted to a very low speed while on the highway several times, on its own with no vehicles in front of me.\" Yes.\n\nNeed summary one line no newline. Good.\n\nFinal JSON only.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530291,
+      "id": "7175a73385ef9891b7fa4a412500d34d",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1491,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1230,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00055608,
+          "billing_source": "go",
+          "list_cost": 0.0009268,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 207,
+            "output": 1491,
+            "reasoning": 1230
+          }
+        },
+        "prompt_tokens": 591,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2082
+      }
+    },
+    "text": "{\"summary\":\"Audi A3 electrical system: emergency brake engages when shifting to gear; speed control drops to very low speed on highway by itself; multiple glitchy electrical issues.\",\"group\":\"electrical_general\",\"symptoms\":[\"electronic emergency brake engages repeatedly when attempting to put vehicle in gear\",\"speed control coasts to very low speed on highway by itself\",\"numerous glitchy electrical issues\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"Electronic emergency brake goes on repeatedly when attempting to put vehicle in gear.\"},{\"kind\":\"symptom\",\"quote\":\"Speed control has coasted to a very low speed while on the highway several times, on its own with no vehicles in front of me.\"},{\"kind\":\"symptom\",\"quote\":\"Numerous other “glitchy” electrical issues exist.\"},{\"kind\":\"condition\",\"quote\":\"repeatedly\"},{\"kind\":\"condition\",\"quote\":\"several times\"},{\"kind\":\"safety\",\"quote\":\"Speed control has coasted to a very low speed while on the highway several times\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00055608,
+      "cached_tokens": 384,
+      "cost_usd": 0.0009268,
+      "input_tokens": 591,
+      "list_cost_usd": 0.0009268,
+      "output_tokens": 1491,
+      "reasoning_tokens": 1230
+    }
+  }
+}

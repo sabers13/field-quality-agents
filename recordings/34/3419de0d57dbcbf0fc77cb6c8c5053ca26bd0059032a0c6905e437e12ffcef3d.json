@@ -1,0 +1,66 @@
+{
+  "key": "3419de0d57dbcbf0fc77cb6c8c5053ca26bd0059032a0c6905e437e12ffcef3d",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 5470,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\": \"Test the rearview camera system on a 2016 Lincoln MKZ that reports the camera inoperable with a \\\"Camera Is Unavailable\\\" message while reversing; no rulebook match, recall or investigation narrows this to a targeted load test.\", \"rationale\": \"The owner reports that while reversing the rearview camera was inoperable and the message \\\"Camera Is Unavailable\\\" was displayed. The vehicle was not diagnosed or repaired by the dealer, and no manufacturer contact is noted. With no rulebook entry, recall or investigation returned, the reported condition does not match a targeted load-test condition, so the standard back-over-prevention functional check is proposed.\", \"group\": \"adas\", \"symptoms\": [\"rearview camera inoperable\", \"\\\"Camera Is Unavailable\\\" message displayed\"], \"conditions\": [\"while reversing\"], \"fault_codes\": [], \"safety_relevant\": false, \"targeted\": false, \"test_name\": \"Rearview camera system functional check\", \"clues\": [{\"kind\": \"symptom\", \"quote\": \"rearview camera was inoperable\"}, {\"kind\": \"symptom\", \"quote\": \"Camera Is Unavailable\"}, {\"kind\": \"condition\", \"quote\": \"while reversing\"}, {\"kind\": \"other\", \"quote\": \"vehicle was not diagnosed or repaired\"}]}",
+            "reasoning_content": "We need to output JSON only. No rulebook matches, no recalls, no investigations, no similar cases. Propose standard test, targeted false. Safety false. Quotes verbatim from narrative.\n\nNarrative: \"The contact owns a 2016 Lincoln MKZ. The contact stated that while reversing, the rearview camera was inoperable, and the message \\\"Camera Is Unavailable\\\" was displayed. An unknown dealer was notified of the failure, but the vehicle was not diagnosed or repaired. The manufacturer was not yet contacted. The failure mileage was  43,800.\"\n\nQuotes must be verbatim spans. Extraction quotes are from narrative: \"BACK OVER PREVENTION\" — hmm narrative doesn't contain that phrase actually. The narrative text doesn't include \"BACK OVER PREVENTION\". So can't cite that. Use \"rearview camera was inoperable\", \"while reversing\", \"\\\"Camera Is Unavailable\\\" was displayed\" — check exact: message \"Camera Is Unavailable\" was displayed — yes in narrative. Verbatim: `the message \"Camera Is Unavailable\" was displayed` includes escaped quotes. Safer: `Camera Is Unavailable` is a span within narrative? It appears with quotes around it: \"Camera Is Unavailable\". The span `Camera Is Unavailable` appears verbatim (inside quotes). Should match.\n\nAlso \"vehicle was not diagnosed or repaired\".\n\ntest_name: rulebook didn't name a test, so standard test. Since targeted false, test_name could be standard test name e.g. \"Rearview camera system functional check\". Keep generic.\n\nOutput JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793528690,
+      "id": "e312cea0c7f2ba1efb25918e1735259b",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 606,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 325,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00028683,
+          "billing_source": "go",
+          "list_cost": 0.00047805,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 763,
+            "output": 606,
+            "reasoning": 325
+          }
+        },
+        "prompt_tokens": 763,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 1369
+      }
+    },
+    "text": "{\"summary\": \"Test the rearview camera system on a 2016 Lincoln MKZ that reports the camera inoperable with a \\\"Camera Is Unavailable\\\" message while reversing; no rulebook match, recall or investigation narrows this to a targeted load test.\", \"rationale\": \"The owner reports that while reversing the rearview camera was inoperable and the message \\\"Camera Is Unavailable\\\" was displayed. The vehicle was not diagnosed or repaired by the dealer, and no manufacturer contact is noted. With no rulebook entry, recall or investigation returned, the reported condition does not match a targeted load-test condition, so the standard back-over-prevention functional check is proposed.\", \"group\": \"adas\", \"symptoms\": [\"rearview camera inoperable\", \"\\\"Camera Is Unavailable\\\" message displayed\"], \"conditions\": [\"while reversing\"], \"fault_codes\": [], \"safety_relevant\": false, \"targeted\": false, \"test_name\": \"Rearview camera system functional check\", \"clues\": [{\"kind\": \"symptom\", \"quote\": \"rearview camera was inoperable\"}, {\"kind\": \"symptom\", \"quote\": \"Camera Is Unavailable\"}, {\"kind\": \"condition\", \"quote\": \"while reversing\"}, {\"kind\": \"other\", \"quote\": \"vehicle was not diagnosed or repaired\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00028683,
+      "cached_tokens": 0,
+      "cost_usd": 0.00047805,
+      "input_tokens": 763,
+      "list_cost_usd": 0.00047805,
+      "output_tokens": 606,
+      "reasoning_tokens": 325
+    }
+  }
+}

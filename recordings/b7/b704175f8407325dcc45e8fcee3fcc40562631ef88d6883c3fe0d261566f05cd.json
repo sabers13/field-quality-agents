@@ -1,0 +1,66 @@
+{
+  "key": "b704175f8407325dcc45e8fcee3fcc40562631ef88d6883c3fe0d261566f05cd",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12817,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2022 Toyota Sienna forward collision avoidance/automatic emergency braking; Pre-Collision, Hybrid, and AWD system malfunctions suddenly on restart; dealer alleges CPU fried by jump start.\",\"group\":\"adas\",\"symptoms\":[\"Pre-Collision System Malfunction\",\"Hybrid System Malfunction\",\"AWD System Malfunction\"],\"conditions\":[\"charging\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"},{\"kind\":\"symptom\",\"quote\":\"Pre-Collision System Malfunction\"},{\"kind\":\"symptom\",\"quote\":\"Hybrid System Malfunction\"},{\"kind\":\"symptom\",\"quote\":\"AWD System Malfunction\"},{\"kind\":\"condition\",\"quote\":\"when restarting the vehicle\"},{\"kind\":\"condition\",\"quote\":\"jump start\"},{\"kind\":\"condition\",\"quote\":\"starting-battery was low\"},{\"kind\":\"other\",\"quote\":\"Toyota of Downtown LA Service tells me that the CPU on my relative new Sienna 2022 was fried from jump start\"}]}",
+            "reasoning_content": "We need to produce JSON only. Need normalize. Report: component FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING, group adas. Symptoms: Pre-Collision System Malfunction, Hybrid System Malfunction, AWD System Malfunction suddenly when restarting vehicle; CPU fried from jump start (claimed). Conditions: cold? no. moisture? no. intermittent? no. \"when restarting the vehicle\", \"jump start\", \"starting-battery was low\". Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. Hmm \"jump start\" maybe charging? The allowed conditions include charging. A jump start is a charging/boost event. We can include \"charging\"? But exact quote \"jump start\" and \"starting-battery was low\". Need clues verbatim. Safety relevant? Mentions multiple malfunctions including Pre-Collision, Hybrid, AWD suddenly when restarting. No crash/fire/smoke/injury/loss control/stall at speed. Could automatic emergency braking malfunction be safety relevant? The report doesn't mention risk to people explicitly. Set false per rules? It says set true when mentions crash fire smoke injury loss control stall at speed or another risk to people. Not explicit. However ADAS malfunction could be safety risk but report doesn't state. Rule says do not invent. So false.\n\nMissing_info: mileage is null -> \"mileage\" missing. date? received_at exists but incident date not given. component given, symptom given, conditions given (restarting, jump start). Should list mileage and date? The analysis needs date maybe incident date. The report has received_at not incident date. \"missing_info\": [\"mileage\",\"date\"]. Need maybe conditions? They gave when restarting and jump start. So no.\n\nFault_codes: none named. empty.\n\nSummary: one line: component, symptom, conditions. \"2022 Toyota Sienna forward collision avoidance/automatic emergency braking; Pre-Collision, Hybrid, and AWD system malfunctions suddenly on restart after a jump start; dealer alleges fried CPU.\" Need not invent \"2022 Toyota Sienna\" from make/model/year yes. \"REDUNDANT SIENNA\" weird model. Could say \"Toyota Sienna (model listed REDUNDANT SIENNA)\". Summary should be one line.\n\nClues: need verbatim quotes. List relevant spans:\n- \"Pre-Collision System Malfunction, Hybrid System Malfunction, AWD System Malfunction suddenly when restarting the vehicle.\" quote exact? Narrative: \"Pre-Collision System Malfunction, Hybrid System Malfunction, AWD System Malfunction suddenly when restarting the vehicle.  Towed...\" Yes.\n- \"CPU on my relative new Sienna 2022 was fried from jump start\" exact? Narrative: \"the CPU on my relative new Sienna 2022 was fried from jump start when Sienna starting-battery was low.\" Quote \"CPU on my relative new Sienna 2022 was fried from jump start\" is in report? Check substring: \"that the CPU on my relative new Sienna 2022 was fried from jump start when Sienna starting-battery was low.\" Yes \"CPU on my relative new Sienna 2022 was fried from jump start\" is substring.\n- \"starting-battery was low\" exact.\n- \"jump start\" maybe already.\n- Component group: \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\" is in component field, report? The \"report\" includes JSON fields; quote from report includes fields? It says read report in user message; quotes copied verbatim from report. Component field is part of report. Use component_group quote \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\". But clue kind component_group quote should be component group. Could use \"adas\"? Verbatim group field \"adas\" but not meaningful. Use component string.\n- condition: \"when restarting the vehicle\" exact, \"jump start\" exact, \"starting-battery was low\" exact.\n- symptom: \"Pre-Collision System Malfunction\" exact; \"Hybrid System Malfunction\"; \"AWD System Malfunction\"; \"fried from jump start\" is alleged cause/symptom? Use as other maybe. Need clues list maybe not too many.\n- safety: none.\n- other: \"Toyota of Downtown LA Service tells me that the CPU ... was fried from jump start\" maybe.\n\nNeed JSON valid, no markdown? User says answer with one JSON object and no other text. Final should be raw JSON. Ensure no extra text.\n\nNeed decide symptoms array: [\"Pre-Collision System Malfunction\", \"Hybrid System Malfunction\", \"AWD System Malfunction\", \"CPU allegedly fried from jump start\"]? The symptom in plain words. \"sudden multiple system malfunctions on restart\" maybe. But list symptoms plain words. Use the malfunction names. \"CPU fried\" is a diagnosis, not symptom; include? It is report claim. Could include as symptom? Better symptoms: \"Pre-Collision System Malfunction\", \"Hybrid System Malfunction\", \"AWD System Malfunction\". Maybe \"multiple system malfunctions suddenly when restarting\". But plain words. Include all three.\n\nConditions: allowed set. \"when restarting the vehicle\" not in allowed list. Could include \"charging\" due jump start? Hmm conditions array is supposed to list conditions from enumerated: cold, moisture, heat, vibration, intermittent, after service, charging. The report conditions: restarting, jump start, low starting battery. \"charging\" is a stretch but jump start is charging event. Could include \"charging\" and maybe \"after service\"? No. \"intermittent\"? no. The schema says conditions: [\"cold\", ...] likely controlled vocabulary. We can include \"charging\" for jump start. But \"when restarting\" not allowed. Could omit? But summary has it. The conditions field should reflect conditions. If no allowed match, empty. But jump start is electrical charging/boost. I'd include \"charging\". Also maybe \"after service\" because dealer? no.\n\nMissing_info: mileage and date. Maybe conditions? They provided. Component? given. Symptom? given. So [\"mileage\",\"date\"].\n\nSafety_relevant false.\n\nClues: need kind values only symptom|condition|fault_code|component_group|safety|other. Use:\n{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"}\n{\"kind\":\"symptom\",\"quote\":\"Pre-Collision System Malfunction\"}\n{\"kind\":\"symptom\",\"quote\":\"Hybrid System Malfunction\"}\n{\"kind\":\"symptom\",\"quote\":\"AWD System Malfunction\"}\n{\"kind\":\"symptom\",\"quote\":\"suddenly when restarting the vehicle\"}? That's condition/symptom. Maybe kind condition quote \"when restarting the vehicle\"\n{\"kind\":\"condition\",\"quote\":\"jump start\"}\n{\"kind\":\"condition\",\"quote\":\"starting-battery was low\"}\n{\"kind\":\"other\",\"quote\":\"CPU on my relative new Sienna 2022 was fried from jump start\"}\nCould include \"Toyota of Downtown LA Service tells me that the CPU on my relative new Sienna 2022 was fried from jump start\" but long. Verbatim \"Toyota of Downtown LA Service tells me that the CPU on my relative new Sienna 2022 was fried from jump start\" check exact: Narrative: \"Toyota of Downtown LA Service tells me that the CPU on my relative new Sienna 2022 was fried from jump start when Sienna starting-battery was low.\" Yes.\n\nNeed ensure quote \"when restarting the vehicle\" exact: narrative \"suddenly when restarting the vehicle.\" yes. \"jump start\" appears twice. \"starting-battery was low\" exact.\n\nPotential issue: The component field has colon; quote exact \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\". Good.\n\nSummary one line: \"2022 Toyota Sienna forward collision avoidance/automatic emergency braking; Pre-Collision, Hybrid, and AWD system malfunctions suddenly on restart; dealer alleges CPU fried by jump start.\" This includes \"2022 Toyota Sienna\" from fields. Good.\n\nNeed maybe \"group\": \"adas\". Good.\n\nLet's craft final JSON. No markdown code fences. Ensure valid JSON. Use false boolean. Strings.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530238,
+      "id": "90a6b16cdbed351ab30d2c00be0efdea",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2040,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1783,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00076092,
+          "billing_source": "go",
+          "list_cost": 0.0012682,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 287,
+            "output": 2040,
+            "reasoning": 1783
+          }
+        },
+        "prompt_tokens": 671,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2711
+      }
+    },
+    "text": "{\"summary\":\"2022 Toyota Sienna forward collision avoidance/automatic emergency braking; Pre-Collision, Hybrid, and AWD system malfunctions suddenly on restart; dealer alleges CPU fried by jump start.\",\"group\":\"adas\",\"symptoms\":[\"Pre-Collision System Malfunction\",\"Hybrid System Malfunction\",\"AWD System Malfunction\"],\"conditions\":[\"charging\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"},{\"kind\":\"symptom\",\"quote\":\"Pre-Collision System Malfunction\"},{\"kind\":\"symptom\",\"quote\":\"Hybrid System Malfunction\"},{\"kind\":\"symptom\",\"quote\":\"AWD System Malfunction\"},{\"kind\":\"condition\",\"quote\":\"when restarting the vehicle\"},{\"kind\":\"condition\",\"quote\":\"jump start\"},{\"kind\":\"condition\",\"quote\":\"starting-battery was low\"},{\"kind\":\"other\",\"quote\":\"Toyota of Downtown LA Service tells me that the CPU on my relative new Sienna 2022 was fried from jump start\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00076092,
+      "cached_tokens": 384,
+      "cost_usd": 0.0012682,
+      "input_tokens": 671,
+      "list_cost_usd": 0.0012682,
+      "output_tokens": 2040,
+      "reasoning_tokens": 1783
+    }
+  }
+}

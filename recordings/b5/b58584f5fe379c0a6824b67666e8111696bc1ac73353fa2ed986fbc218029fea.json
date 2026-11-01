@@ -1,0 +1,66 @@
+{
+  "key": "b58584f5fe379c0a6824b67666e8111696bc1ac73353fa2ed986fbc218029fea",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9029,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Electrical system/HVAC blower motor circuit: relay burned, fuse-box burning/melting and arcing after warranty fuse relocation, with no A/C in 95 degree F conditions\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"blower motor relay burned and replaced twice\",\n    \"fuse-box burning/melting\",\n    \"electrical arcing and melting\",\n    \"no A/C in 95 degree F conditions\"\n  ],\n  \"conditions\": [\n    \"heat\",\n    \"after service\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"ELECTRICAL SYSTEM\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"blower motor relay burned\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"electrical arcing and melting\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"No A/C in 95 degree F conditions\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"95 degree F conditions\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"after extended warranty procedure was executed\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"Electrical fire hazard\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"burning/melting fuse-box\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer JSON only. Need normalize. Read report. Component electrical system group electrical_general. Symptoms: blower motor relay burned/replaced twice; electrical arcing and melting; no A/C in 95F; fuse burning; wire harness issue dangerous. Conditions: heat? \"95 degree F conditions\" is ambient heat; after service? extended warranty fuse-relocation procedure executed; intermittent? no. charging? no. Fault codes none. Safety relevant true (fire hazard, burning/melting, arcing). Missing info: mileage null, date? received_at but report date? missing date? The analysis needs date? Report has received_at but not incident date. Should list mileage, date? Prompt says list missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Component present, symptom present, conditions partially present. Mileage missing. Date maybe missing incident date. Conditions present (heat). Could include \"mileage\", \"date\". Need clues quotes verbatim. Need exact spans from narrative. Must be character-for-character. Let's craft.\n\nQuotes:\n- \"HVAC blower motor circuit\" component? kind component_group? It is component group? Actually electrical general. Could quote \"blower motor circuit\" as component_group? Maybe \"ELECTRICAL SYSTEM\" from component field not narrative? The report includes component field. Verbatim from report can include any field? It says from report. We can quote \"ELECTRICAL SYSTEM\" but likely okay. But clues should evidence. Use narrative spans.\n\nSymptom quotes:\n\"blower motor relay burned\"\n\"electrical arcing and melting\"\n\"No A/C in 95 degree F conditions\"\n\"potential burning of fuse(s)\" — potential not actual. Could include \"burning/melting fuse-box\" exact: narrative has \"(already demonstrated with burning/melting fuse-box before and after extended warranty procedure was executed).\" Quote \"burning/melting fuse-box\" exact.\nCondition quote: \"95 degree F conditions\"; \"after extended warranty procedure was executed\" exact? Narrative: \"before and after extended warranty procedure was executed\" contains. Use \"after extended warranty procedure was executed\" yes exact substring? It has \"before and after extended warranty procedure was executed\" so substring \"after extended warranty procedure was executed\" yes. Could also \"fuse-relocation-procedure\" but after service.\n\nSafety quote: \"Electrical fire hazard\" exact; \"electrical arcing and melting\" exact.\n\nFault codes none.\n\nSummary one line: Electrical system / HVAC blower motor circuit: relay burned, fuse-box burning/melting, arcing, no A/C in heat after warranty fuse relocation.\n\nGroup: \"electrical_general\" given group. The instruction says \"the electrical/electronic component group, or the given group\". Given group electrical_general, use that.\n\nsymptoms array plain words. Maybe [\"blower motor relay burned and replaced twice\", \"fuse-box burning/melting\", \"electrical arcing\", \"no A/C in 95°F heat\"]. But \"95°F\" not verbatim? In symptoms not quotes okay. Could use \"no A/C in 95 degree F conditions\". Fine.\n\nconditions: [\"heat\", \"after service\"] maybe \"after service\" due warranty procedure. Does \"heat\" from 95F. \"after service\" yes after extended warranty procedure. Not \"cold\", \"moisture\", \"vibration\", \"intermittent\", \"charging\". Could include \"heat\", \"after service\".\n\nmissing_info: [\"mileage\", \"date\"]? Date: received_at present 2025-10-02, but incident date missing. The schema includes date. Should include date. Maybe conditions not missing. Component and symptom present. Use [\"mileage\", \"date\"].\n\nClues array:\n- {\"kind\":\"component_group\",\"quote\":\"HVAC blower motor circuit\"}? Component group? Maybe kind \"component_group\" for \"ELECTRICAL SYSTEM\"? But quote \"HVAC blower motor circuit\" specific component, not group. The kind only listed symptom|condition|fault_code|component_group|safety|other. We can use \"component_group\" for \"ELECTRICAL SYSTEM\" exact from component field. But to avoid mismatch, maybe use \"other\" for component. But component_group kind should be group. quote \"ELECTRICAL SYSTEM\" exact. Add.\n- symptom \"blower motor relay burned\" quote exact? Narrative: \"our blower motor relay burned and was replaced twice\" contains \"blower motor relay burned\" yes.\n- symptom \"electrical arcing and melting\" exact.\n- symptom \"No A/C in 95 degree F conditions\" exact.\n- condition \"95 degree F conditions\" exact.\n- condition \"after extended warranty procedure was executed\" exact? Need check exact substring: \"before and after extended warranty procedure was executed\" yes.\n- safety \"Electrical fire hazard\" exact.\n- safety \"burning/melting fuse-box\" exact? Narrative: \"(already demonstrated with burning/melting fuse-box before and after extended warranty procedure was executed).\" yes.\n- maybe symptom \"potential burning of fuse(s)\" exact. But potential. Could include as other? no need.\n- fault_code none.\nNeed JSON no other text. Ensure quotes verbatim. Let's ensure exact case: narrative \"No A/C in 95 degree F conditions.\" includes period; quote without period okay verbatim span. \"Electrical fire hazard (already demonstrated...\" quote \"Electrical fire hazard\" exact.\n\nSummary one line. Need no markdown? They asked one JSON object and no other text. We'll output raw JSON. Good.\n\nNeed ensure safety_relevant boolean true. missing_info list. \"date\" maybe incident date. Good.\n\nLet's produce.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530904,
+      "id": "7b178eeec57950ea6d73f201717e4e98",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1524,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1176,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00057597,
+          "billing_source": "go",
+          "list_cost": 0.00095995,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 296,
+            "output": 1524,
+            "reasoning": 1176
+          }
+        },
+        "prompt_tokens": 680,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2204
+      }
+    },
+    "text": "{\n  \"summary\": \"Electrical system/HVAC blower motor circuit: relay burned, fuse-box burning/melting and arcing after warranty fuse relocation, with no A/C in 95 degree F conditions\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"blower motor relay burned and replaced twice\",\n    \"fuse-box burning/melting\",\n    \"electrical arcing and melting\",\n    \"no A/C in 95 degree F conditions\"\n  ],\n  \"conditions\": [\n    \"heat\",\n    \"after service\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"ELECTRICAL SYSTEM\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"blower motor relay burned\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"electrical arcing and melting\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"No A/C in 95 degree F conditions\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"95 degree F conditions\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"after extended warranty procedure was executed\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"Electrical fire hazard\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"burning/melting fuse-box\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00057597,
+      "cached_tokens": 384,
+      "cost_usd": 0.00095995,
+      "input_tokens": 680,
+      "list_cost_usd": 0.00095995,
+      "output_tokens": 1524,
+      "reasoning_tokens": 1176
+    }
+  }
+}

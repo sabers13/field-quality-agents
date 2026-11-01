@@ -1,0 +1,66 @@
+{
+  "key": "df286618c3ca57d2a29e033cc9d46a96544b6fabcdfb4d718334f9ebba563db5",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12651,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Exterior lighting: passenger-side LED runner light out on a 2021 VW Atlas at 68,214 miles, with similar failures reported at 50k-70k miles.\",\n  \"group\": \"lighting\",\n  \"symptoms\": [\"passenger-side LED runner light out\", \"LED runner lights going out\"],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"missing_info\": [\"conditions\"],\n  \"clues\": [\n    {\"kind\": \"component_group\", \"quote\": \"EXTERIOR LIGHTING\"},\n    {\"kind\": \"symptom\", \"quote\": \"it was the LED runner light on the passenger-side headlight assembly\"},\n    {\"kind\": \"symptom\", \"quote\": \"the LED runner lights going out at the 50k - 70k mile mark\"},\n    {\"kind\": \"other\", \"quote\": \"Our vehicle is only at 68,214 miles.\"}\n  ]\n}",
+            "reasoning_content": "We need answer JSON only. Need normalize report. Read only report. Component exterior lighting group lighting. Symptom LED runner light on passenger-side headlight assembly out / LED runner lights going out. Conditions? Report mentions mileage 68,214, model year 2021, \"at 50k - 70k mile mark\" but conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. None. Maybe no conditions. Fault codes none. safety_relevant? Report says pulled over for headlight out, no crash/fire etc. false. missing_info: mileage? Actually mileage present in narrative 68,214 but field null. The analysis needs mileage; it's given in narrative, so not missing. date? received_at given, but no incident date. Is date important? Maybe missing date? We need list only facts analysis needs: component, symptom, conditions, mileage, date. Component present, symptom present, conditions absent (but not necessarily missing? Conditions are needed? The report doesn't specify environmental conditions. Should list conditions? Need decide. Missing_info only facts analysis needs; conditions might be missing if none stated. But \"conditions\" can be empty if no relevant. However rule says list missing_info only for facts analysis needs. For field-quality report, conditions often needed but not always. Since no conditions mentioned, could list \"conditions\". Date: received_at is report date, not incident date; no incident date. Should list \"date\"? It says date. The incident happened \"yesterday\" relative received 2025-05-01 so incident date ~2025-04-30. That's implied not exact? \"yesterday\" is a date clue. Hm.\n\nNeed include clues quotes verbatim. Need quote spans from narrative. Use exact substrings. Clues: symptom quote \"it was the LED runner light on the passenger-side headlight assembly\" or \"the LED runner lights going out\". Condition? mileage maybe other? kind condition not for mileage? Clues kinds limited. Could include symptom quote and component_group quote? Component group given group lighting. Quote \"headlight assembly\" maybe component_group. safety? quote? No safety. other maybe \"Our vehicle is only at 68,214 miles.\" But kind other. Fault code none.\n\nNeed one JSON object no other text. Ensure valid JSON. Summary one line: \"EXTERIOR LIGHTING: passenger-side LED runner light out; 2021 VW Atlas at 68,214 miles.\" Good.\n\nGroup \"lighting\". Symptoms: [\"passenger-side LED runner light out\", \"LED runner lights going out\"]. Conditions [] because none of allowed conditions. Fault_codes [].\n\nsafety_relevant false.\n\nmissing_info: Should include \"conditions\" maybe \"date\"? Let's think. The report gives incident happened yesterday (received_at 2025-05-01), so date is inferable but not explicit. It gives mileage. Component and symptom present. Conditions not mentioned. The analysis needs conditions? The prompt says missing_info list facts analysis needs: component, symptom, conditions, mileage, date. Use empty when nothing important missing. Conditions may be important for electrical? Not necessarily. But since no conditions specified, listing \"conditions\" is safe. Date: \"yesterday\" gives approximate date. We can avoid listing date. Mileage present. So missing_info [\"conditions\"]. But maybe conditions is optional; could be empty. Hmm.\n\nNeed clues quotes verbatim. Check exact narrative: \"We were pulled over yesterday for having a headlight out, but it ended up not being a headlight, it was the LED runner light on the passenger-side headlight assembly.\" Quote \"it was the LED runner light on the passenger-side headlight assembly\" exact yes. \"most 2021 Atlas have the identical issue, the LED runner lights going out at the 50k - 70k mile mark.\" Exact? Narrative: \"most 2021 Atlas have the identical issue, the LED runner lights going out at the 50k - 70k mile mark.\" yes. \"Our vehicle is only at 68,214 miles.\" exact. \"headlight assembly\" exact. Need quote for component_group maybe \"headlight assembly\" is component group? It's a component. Could include kind \"component_group\" quote \"headlight assembly\". That's fine. But group is lighting. Maybe quote \"EXTERIOR LIGHTING\" from component field? The report includes component field. Verbatim from report? The report object has \"component\": \"EXTERIOR LIGHTING\". We can quote that. kind component_group quote \"EXTERIOR LIGHTING\". That is in report. Good. Also symptom quote. Include \"other\" quote mileage? Could include. But clues should be concise. Need not include all.\n\nPotential issue safety_relevant: Report mentions \"pulled over\" due to headlight out; that's not safety risk to people? The schema says safety when crash/fire/smoke/injury/loss control/stall at speed or another risk to people. Headlight out could be safety relevant? It is a lighting defect, but prompt says set when mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. \"pulled over for having a headlight out\" is a risk? The report doesn't mention crash etc. It says \"defective headlight assembly\" and \"faulty electrical systems\". Could be safety risk but not explicit. The input already has safety_relevant false. We should keep false unless report mentions. So false.\n\nNeed maybe \"symptoms\": \"headlight out\" but clarified not headlight; LED runner. Use only LED runner. Could include \"headlight out\" as initial symptom? It says pulled over for having a headlight out, but ended up not being a headlight. So not actual symptom. Avoid.\n\nNeed summary one line: \"Exterior lighting: passenger-side LED runner light out on 2021 VW Atlas at 68,214 miles; repeated 50k–70k mile failures reported.\" That uses en dash? Fine. But summary should be one line. JSON string.\n\nNeed ensure no markdown? User says answer with JSON object and no other text. Final should be raw JSON.\n\nLet's craft:\n\n{\n  \"summary\": \"Exterior lighting: passenger-side LED runner light out on a 2021 VW Atlas at 68,214 miles, with similar failures reported at 50k-70k miles.\",\n  \"group\": \"lighting\",\n  \"symptoms\": [\"passenger-side LED runner light out\", \"LED runner lights going out\"],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"missing_info\": [\"conditions\"],\n  \"clues\": [\n    {\"kind\": \"component_group\", \"quote\": \"EXTERIOR LIGHTING\"},\n    {\"kind\": \"symptom\", \"quote\": \"it was the LED runner light on the passenger-side headlight assembly\"},\n    {\"kind\": \"symptom\", \"quote\": \"the LED runner lights going out at the 50k - 70k mile mark\"},\n    {\"kind\": \"other\", \"quote\": \"Our vehicle is only at 68,214 miles.\"}\n  ]\n}\n\nCheck quote exact: \"the LED runner lights going out at the 50k - 70k mile mark\" In narrative: \"the LED runner lights going out at the 50k - 70k mile mark.\" yes exact case. \"Our vehicle is only at 68,214 miles.\" exact. \"EXTERIOR LIGHTING\" exact from component. Good.\n\nCould include \"condition\" quote? none. missing_info conditions because no cold/moisture/etc. But the allowed conditions list doesn't include mileage; condition maybe no environmental. Fine.\n\nNeed final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793526565,
+      "id": "8620bf0444ce4b3944ebc07d5228247d",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1844,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1631,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00069648,
+          "billing_source": "go",
+          "list_cost": 0.0011608,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 355,
+            "output": 1844,
+            "reasoning": 1631
+          }
+        },
+        "prompt_tokens": 739,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2583
+      }
+    },
+    "text": "{\n  \"summary\": \"Exterior lighting: passenger-side LED runner light out on a 2021 VW Atlas at 68,214 miles, with similar failures reported at 50k-70k miles.\",\n  \"group\": \"lighting\",\n  \"symptoms\": [\"passenger-side LED runner light out\", \"LED runner lights going out\"],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"missing_info\": [\"conditions\"],\n  \"clues\": [\n    {\"kind\": \"component_group\", \"quote\": \"EXTERIOR LIGHTING\"},\n    {\"kind\": \"symptom\", \"quote\": \"it was the LED runner light on the passenger-side headlight assembly\"},\n    {\"kind\": \"symptom\", \"quote\": \"the LED runner lights going out at the 50k - 70k mile mark\"},\n    {\"kind\": \"other\", \"quote\": \"Our vehicle is only at 68,214 miles.\"}\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00069648,
+      "cached_tokens": 384,
+      "cost_usd": 0.0011608,
+      "input_tokens": 739,
+      "list_cost_usd": 0.0011608,
+      "output_tokens": 1844,
+      "reasoning_tokens": 1631
+    }
+  }
+}

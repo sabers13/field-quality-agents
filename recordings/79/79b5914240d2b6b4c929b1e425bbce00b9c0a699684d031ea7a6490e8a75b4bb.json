@@ -1,0 +1,66 @@
+{
+  "key": "79b5914240d2b6b4c929b1e425bbce00b9c0a699684d031ea7a6490e8a75b4bb",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 13111,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Lane departure assist on a 2021 Toyota RAV4 intervened at about 80 mph on the interstate, causing loss of control and a guard-rail impact; airbags did not deploy.\",\"group\":\"adas\",\"symptoms\":[\"lane assistance kicked in\",\"loss of control\",\"hit guard rail\",\"airbags did not deploy\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"LANE DEPARTURE: ASSIST\"},{\"kind\":\"symptom\",\"quote\":\"the lane assistance kicked in and made me lose control of the car completely\"},{\"kind\":\"condition\",\"quote\":\"traveling at about 80 mph\"},{\"kind\":\"safety\",\"quote\":\"I was involved in an accident on the interstate traveling at about 80 mph and I hit a guard rail.\"},{\"kind\":\"safety\",\"quote\":\"none of the airbags deployed\"},{\"kind\":\"other\",\"quote\":\"I had a passenger in the car\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize report. Need extract. Component LANE DEPARTURE: ASSIST, group adas. Narrative: accident interstate ~80 mph hit guard rail. Swerved, lane assistance kicked in made lose control completely, slammed guard rail. Airbags didn't deploy, passenger. Safety relevant true. Symptoms: loss of control, lane assistance intervention? \"lane assistance kicked in and made me lose control of the car completely\" plain words. Conditions: maybe none? Traveling at about 80 mph is condition? Allowed conditions list: cold, moisture, heat, vibration, intermittent, after service, charging. Not applicable. Maybe \"interstate traveling at about 80 mph\" not in list. Fault codes none. missing_info: mileage (null), date? received_at date but incident date missing. Component present, symptom present, conditions present? Need list only for facts analysis needs: component, symptom, conditions, mileage, date. Mileage missing; date missing (incident date not given). Conditions maybe no specific environmental conditions; but conditions in report include speed? The schema conditions restricted to list; no matching. missing_info include mileage, date. Maybe conditions? We can include \"conditions\" because no conditions like weather/road? But rule only facts analysis needs. The report has conditions: interstate, 80 mph, swerving. But list conditions categories not applicable. Hmm.\n\nNeed clues with verbatim quotes. Must quote exact spans. Summary one line: component, symptom, conditions. \"Lane departure assist intervention at ~80 mph causing loss of control and guard-rail impact; airbags did not deploy.\" Conditions? At about 80 mph on interstate. Need not invent. Summary can include.\n\nClues:\n- {\"kind\":\"component_group\",\"quote\":\"LANE DEPARTURE: ASSIST\"} but this is component field not narrative? Report includes entire JSON. Quote can be from report, likely any field. Use \"LANE DEPARTURE: ASSIST\".\n- symptom quote: \"the lane assistance kicked in and made me lose control of the car completely\"\n- safety quote: \"I was involved in an accident on the interstate traveling at about 80 mph and I hit a guard rail\"\n- safety quote: \"none of the airbags deployed\"\n- condition? \"traveling at about 80 mph\" maybe kind condition? But conditions list doesn't have speed. It's a condition of incident but kind can condition. Quote verbatim. \"on the interstate traveling at about 80 mph\" yes.\n- other? passenger maybe safety.\n\nNeed JSON only. Ensure safety_relevant true boolean.\n\nSymptoms array: [\"lane assistance intervention\", \"loss of control\", \"guard rail impact\", \"airbags did not deploy\"]? Symptoms should be component symptom. Airbags non-deployment maybe safety symptom not lane departure. But include \"loss of control\", \"lane assistance kicked in unexpectedly\"? Plain words. Don't overinfer \"unexpectedly\" maybe \"lane assistance kicked in\". The narrative says made me lose control completely. We can list \"lane assistance kicked in\", \"loss of control\", \"impact with guard rail\", \"airbags did not deploy\". But symptoms for component group? Hmm.\n\nFault codes empty.\n\nmissing_info: [\"mileage\", \"date\"] maybe \"conditions\"? Let's consider. The analysis needs conditions; report gives speed and interstate but not weather/road surface. But missing_info list includes conditions. Since no cold/moisture etc, but conditions are not necessarily missing. We can include \"conditions\" if we want. But instructions: list only facts analysis needs. For ADAS lane departure at 80 mph, conditions might include road markings, weather, lighting. Not given. But report has \"interstate\", \"80 mph\", \"swerved\". Maybe conditions present enough. Missing mileage and date (incident date). Received_at is 2025-11-22 but incident date not. Include date.\n\nNeed use \"mileage\": null. So missing mileage. Date missing.\n\nPotential issue: safety_relevant in input true but we set true based on crash. Good.\n\nNeed no markdown? \"Answer with one JSON object and no other text\". Final should be raw JSON. Ensure valid.\n\nLet's craft. Need exact quotes:\n- \"LANE DEPARTURE: ASSIST\" exists in component field exactly uppercase.\n- \"I was involved in an accident on the interstate traveling at about 80 mph and I hit a guard rail.\" exact narrative includes period. Quote can include period. Good.\n- \"the lane assistance kicked in and made me lose control of the car completely\" exact substring? Narrative: \"I swerved, and then the lane assistance kicked in and made me lose control of the car completely, which is how I slammed into the guard rail.\" Substring yes.\n- \"none of the airbags deployed\" exact? Narrative: \"In that process, none of the airbags deployed and I had a passenger in the car.\" yes.\n- \"I had a passenger in the car\" exact.\n- \"traveling at about 80 mph\" exact substring? narrative has \"interstate traveling at about 80 mph\" yes. Good.\n\nNeed clues kind condition for \"traveling at about 80 mph\" acceptable. Kind can condition. Good.\n\nSummary: \"Lane departure assist on 2021 Toyota RAV4 intervened at ~80 mph on interstate, causing loss of control and guard-rail impact; airbags did not deploy.\" Conditions include speed/interstate. Is \"2021 Toyota RAV4\" from fields, okay. \"intervened\" inferred from kicked in. Fine.\n\nGroup \"adas\". Symptoms maybe \"lane assistance kicked in\", \"loss of control\", \"guard rail impact\", \"airbags did not deploy\". Could include \"swerved\" but that's driver action. Symptoms plain words. Maybe avoid \"airbags did not deploy\" as symptom? It's safety observation. But okay? Symptoms should be symptom in plain words. The component is lane departure assist; symptom is loss of control after lane assistance kicked in. Airbag nondeploy separate safety. I can include in symptoms? Might confuse. But report's symptom includes airbags. Hmm.\n\nMaybe symptoms: [\"lane assistance kicked in\", \"loss of control\", \"hit guard rail\", \"airbags did not deploy\"]. Good.\n\nConditions: []? Since conditions array restricted to cold/moisture/heat/vibration/intermittent/after service/charging. None apply. But summary says at 80 mph. The conditions field in output should list conditions from allowed? The prompt shows conditions array examples. It says `\"conditions\": [\"cold\", ...]`. Probably use only those categories. Since no match, empty list. But clues can include condition quote for speed? Kind condition but not in conditions array. That's okay? Hmm. Conditions array should contain condition categories. None. But speed is a condition. But not in enumerated list. The rule doesn't say conditions must be from list? In template lists allowed? It says conditions: [\"cold\", ...]. Could include \"high speed\"? But likely not. Better empty conditions to avoid inventing categories. But summary includes \"at ~80 mph\". Clues include condition quote. missing_info maybe conditions? No.\n\nNeed final. Ensure no text outside.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793532300,
+      "id": "221f3a35314954c644efa31ab025b1e7",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1729,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1507,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00063888,
+          "billing_source": "go",
+          "list_cost": 0.0010648,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 175,
+            "output": 1729,
+            "reasoning": 1507
+          }
+        },
+        "prompt_tokens": 559,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2288
+      }
+    },
+    "text": "{\"summary\":\"Lane departure assist on a 2021 Toyota RAV4 intervened at about 80 mph on the interstate, causing loss of control and a guard-rail impact; airbags did not deploy.\",\"group\":\"adas\",\"symptoms\":[\"lane assistance kicked in\",\"loss of control\",\"hit guard rail\",\"airbags did not deploy\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"LANE DEPARTURE: ASSIST\"},{\"kind\":\"symptom\",\"quote\":\"the lane assistance kicked in and made me lose control of the car completely\"},{\"kind\":\"condition\",\"quote\":\"traveling at about 80 mph\"},{\"kind\":\"safety\",\"quote\":\"I was involved in an accident on the interstate traveling at about 80 mph and I hit a guard rail.\"},{\"kind\":\"safety\",\"quote\":\"none of the airbags deployed\"},{\"kind\":\"other\",\"quote\":\"I had a passenger in the car\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00063888,
+      "cached_tokens": 384,
+      "cost_usd": 0.0010648,
+      "input_tokens": 559,
+      "list_cost_usd": 0.0010648,
+      "output_tokens": 1729,
+      "reasoning_tokens": 1507
+    }
+  }
+}

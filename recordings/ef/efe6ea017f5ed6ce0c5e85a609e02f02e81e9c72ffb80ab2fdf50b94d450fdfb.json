@@ -1,0 +1,66 @@
+{
+  "key": "efe6ea017f5ed6ce0c5e85a609e02f02e81e9c72ffb80ab2fdf50b94d450fdfb",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12299,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"AIR BAGS (restraints): recall replacement parts unavailable for two years; no failure symptom stated.\",\"group\":\"restraints\",\"symptoms\":[],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"symptom\",\"conditions\",\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"other\",\"quote\":\"did not have the parts to replace in my car\"},{\"kind\":\"other\",\"quote\":\"It shouldn't take two years to fix a recalled part.\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize report. Component AIR BAGS, group restraints. Narrative: contacted dealership two years told no parts to replace in car. It shouldn't take two years to fix recalled part. Annoying frustrating. Symptoms? No symptom described? It's about unavailable parts for recall repair. Conditions? after service? no. missing_info: symptom? component given, conditions? mileage/date? Date received given 2025-05-09 but report doesn't mention date maybe missing date? The analysis needs facts: component present, symptom missing (no failure symptom), conditions missing, mileage missing, date? received_at present but not narrative. Rules missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. Component present. Symptom absent. Conditions absent. Mileage absent. Date? received_at exists but maybe not reported by user? Could list date? Hmm report has received_at. But missing_info refers incoming field-quality report; date likely present via received_at. Mileage null. So missing_info [\"symptom\",\"conditions\",\"mileage\"]. Maybe date not missing since received_at. Safety_relevant false. Fault codes none. Clues with verbatim quotes. Need summary one line: AIR BAGS component, recall part unavailable for two years, no failure symptom. Group restraints. Symptoms plain words: maybe \"recalled air bag part not available for replacement\" - is that a symptom? Could include \"recall repair delayed due to unavailable parts\" as symptom? But symptoms should be symptom in plain words. The report doesn't name a failure symptom. Maybe symptoms [] and missing symptom. Clues: component_group quote \"AIR BAGS\"? The quote must be verbatim from report. The report field has \"component\": \"AIR BAGS\" but narrative doesn't include AIR BAGS? The JSON includes component. Is the \"report\" the whole JSON? User says report in user message. Quote copied verbatim from report. Can quote \"AIR BAGS\" from component field? It is in user message. But \"verbatim span copied from the report\" likely narrative only? It says read only report. Could quote from any field? To be safe quote narrative spans. But component_group clue could quote \"AIR BAGS\" from component field? It's verbatim in report. Hmm.\n\nNeed include clues:\n- {\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"} maybe.\n- {\"kind\":\"other\",\"quote\":\"did not have the parts to replace in my car\"}\n- {\"kind\":\"other\",\"quote\":\"It shouldn't take two years to fix a recalled part.\"}\nCould include condition? \"for the last two years\" maybe duration, not condition list. Condition list includes after service, charging etc. None. Could include \"other\" for recall part. Safety false.\n\nNeed ensure JSON only. No markdown? They said one JSON object no other text. We can output raw JSON. Use valid JSON. Summary one line.\n\nNeed decide symptoms: []? But maybe symptom \"recall repair not completed due to parts shortage\" isn't a symptom. The report is complaint about parts availability, not a malfunction. So symptoms []. missing_info includes symptom? Since no symptom, yes. But if the issue is recall repair delay, symptom could be \"recalled part not replaced\". But \"symptom\" field likely fault symptom. The analysis needs component, symptom, conditions, mileage, date. The component is air bags. Symptom missing. Conditions missing. Mileage missing. Date? received_at 2025-05-09 present. But report narrative says two years; no specific date. Date of incident? maybe missing date. Hmm missing_info list can include \"date\" if no date in report? It has received_at but that's intake date not event date. The prompt: \"List missing_info only for facts the analysis needs: component, symptom, conditions, mileage, date.\" The report includes received_at date, but maybe date of report. It doesn't include date of occurrence. Could include \"date\" as missing? But received_at is date. The report has year 2021. Hmm. For field-quality report, date likely received_at, so not missing. Mileage null. Conditions absent. Symptom absent. So missing_info [\"symptom\",\"conditions\",\"mileage\"]. Good.\n\nNeed conditions list: []. Or maybe [\"after service\"]? No service? Dealership contact no. No.\n\nFault codes none.\n\nSafety_relevant false. Since no crash/fire etc.\n\nClues: Need quotes verbatim. Could quote entire sentence. Need exact character for character. Narrative: \"I have contacted the Lexus dealership in Chattanooga, TN  for the last two years and have been told that they did not have the parts to replace in my car. It shouldn't take two years to fix a recalled part. It's annoying and very frustrating.\"\n\nNote double space between TN and for? Text: \"TN  for\" has two spaces? It appears \"TN  for\" yes two spaces. If quote includes, need exact. We can quote smaller spans avoid double spaces. E.g. \"did not have the parts to replace in my car\" exact. \"It shouldn't take two years to fix a recalled part.\" exact. \"for the last two years\" exact. \"AIR BAGS\" from component field exact.\n\nKind for \"did not have parts\" other. For \"It shouldn't...\" other. For \"for the last two years\" maybe condition? Not one of listed conditions; kind condition? Could be duration condition? Maybe kind \"other\" or \"condition\"? The schema kind allows symptom|condition|fault_code|component_group|safety|other. \"for the last two years\" is a condition/time. But conditions list doesn't include duration. Could label kind \"condition\" with quote \"for the last two years\"; conditions array maybe [\"two years\"]? But allowed conditions list examples not exhaustive? It says conditions: [\"cold\",\"moisture\",...]. We can include \"two years\" as condition? Probably not. Better not include in conditions, but clue kind \"other\" for delay. Or condition? Hmm.\n\nNeed summary: \"AIR BAGS (restraints): recall replacement parts unavailable for two years; no failure symptom stated.\" Good.\n\nJSON:\n{\n \"summary\": \"AIR BAGS (restraints): recall replacement parts unavailable for two years; no failure symptom stated.\",\n \"group\": \"restraints\",\n \"symptoms\": [],\n \"conditions\": [],\n \"fault_codes\": [],\n \"safety_relevant\": false,\n \"missing_info\": [\"symptom\",\"conditions\",\"mileage\"],\n \"clues\": [\n   {\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},\n   {\"kind\":\"other\",\"quote\":\"did not have the parts to replace in my car\"},\n   {\"kind\":\"other\",\"quote\":\"It shouldn't take two years to fix a recalled part.\"}\n ]\n}\n\nNeed maybe include clue for \"for the last two years\" as condition? Let's include? It is verbatim. But condition list empty. Kind condition with quote \"for the last two years\" could be evidence of duration but conditions array empty inconsistent? Not necessarily. But clue kind condition should map to conditions? Maybe avoid. Could include kind \"other\" for \"for the last two years\" to evidence delay. But too many. Keep 3.\n\nNeed no markdown. final only JSON. Ensure no extra text.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793526849,
+      "id": "0b3ea189989e4d4cf4fb9b2ab2ee25e8",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1661,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1540,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00061224,
+          "billing_source": "go",
+          "list_cost": 0.0010204,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 151,
+            "output": 1661,
+            "reasoning": 1540
+          }
+        },
+        "prompt_tokens": 535,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2196
+      }
+    },
+    "text": "{\"summary\":\"AIR BAGS (restraints): recall replacement parts unavailable for two years; no failure symptom stated.\",\"group\":\"restraints\",\"symptoms\":[],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"symptom\",\"conditions\",\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"other\",\"quote\":\"did not have the parts to replace in my car\"},{\"kind\":\"other\",\"quote\":\"It shouldn't take two years to fix a recalled part.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00061224,
+      "cached_tokens": 384,
+      "cost_usd": 0.0010204,
+      "input_tokens": 535,
+      "list_cost_usd": 0.0010204,
+      "output_tokens": 1661,
+      "reasoning_tokens": 1540
+    }
+  }
+}

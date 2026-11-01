@@ -111,6 +111,11 @@ def export_dashboard(
     data = root / "data"
     records = list(store.cases())
     issues = list(store.issues())
+    # An explicit run id exports that run only. This keeps `make all`
+    # byte-identical no matter which record-mode runs sit beside it.
+    selected = [
+        run for run in store.runs() if run_id is None or run.run_id == active
+    ]
     runs = [
         ReplayRun(
             run_id=run.run_id,
@@ -119,7 +124,7 @@ def export_dashboard(
             status=run.status,
             case_count=run.case_count,
         )
-        for run in store.runs()
+        for run in selected
     ]
     events = {
         run.run_id: [
@@ -133,7 +138,7 @@ def export_dashboard(
             )
             for event in store.replay_events(run.run_id)
         ]
-        for run in store.runs()
+        for run in selected
     }
     command = build_command_centre(
         store=store,

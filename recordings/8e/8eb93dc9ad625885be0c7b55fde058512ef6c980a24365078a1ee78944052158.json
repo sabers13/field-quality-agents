@@ -1,0 +1,66 @@
+{
+  "key": "8eb93dc9ad625885be0c7b55fde058512ef6c980a24365078a1ee78944052158",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 6830,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Run a long-run power cycling test to reproduce the intermittent park-brake, ABS and steering warning lights and isolate the wake/sleep-related fault.\",\"rationale\":\"The case reports park-brake, ABS and steering control warning lights that come on intermittently while driving. The rulebook matches the intermittent condition and specifies a long-run power cycling test because repeated wake and sleep cycles can reproduce faults that appear only intermittently.\",\"group\":\"restraints\",\"symptoms\":[\"park brake warning light comes on\",\"ABS warning light comes on\",\"steering control warning light comes on\",\"warning lights come on intermittently while driving\"],\"conditions\":[\"intermittent\",\"while driving\"],\"fault_codes\":[],\"safety_relevant\":false,\"targeted\":true,\"test_name\":\"Long-run power cycling test\",\"clues\":[{\"kind\":\"symptom\",\"quote\":\"park brake abs and steering control lights come on\"},{\"kind\":\"condition\",\"quote\":\"intermittently when driving the vehicle\"}]}",
+            "reasoning_content": "We need answer only JSON. Need analyze case. Component AIR BAGS, but narrative about park brake abs steering control lights intermittently. Rulebook matches intermittent -> targeted long-run power cycling test. Safety? Narrative warning lights while driving, but no risk to people shown; extraction safety false. Need clues quotes verbatim from case narrative. Narrative: \"When driving the vehicle the park brake abs and steering control lights come on the vehicle intermittently when driving the vehicle\". Quotes must be verbatim spans. Use \"park brake abs and steering control lights come on\" and \"intermittently when driving the vehicle\". Could also \"When driving the vehicle\". Component group restraints from case. Fault codes empty. Symptoms etc.\n\nNeed targeted true, test_name \"Long-run power cycling test\". Summary one line what to test why. Rationale condition/evidence. Clues kind symptom, condition, component_group maybe safety? component_group quote \"AIR BAGS\" is in narrative? Narrative doesn't include AIR BAGS? It says case component AIR BAGS but narrative text doesn't. Rule says quote copied from case narrative. So avoid component_group clue unless narrative includes. The narrative only has warning lights. Could use quote \"park brake abs and steering control lights come on\" and \"intermittently when driving the vehicle\". Maybe \"When driving the vehicle\" condition. Need no recalls IDs? We can mention recalls? Do not cite id if not in tool results? They are in results, but maybe not needed. We can mention recall exists? Summary? But focus.\n\nNeed JSON no markdown. Ensure valid. targeted true. safety_relevant false. group \"restraints\". symptoms array. conditions [\"intermittent\", \"while driving\"]. fault_codes []. clues list exactly quotes. Since quote verification, exact lower/uppercase as narrative: narrative \"When driving the vehicle the park brake abs and steering control lights come on the vehicle intermittently when driving the vehicle\". So exact spans:\n- \"park brake abs and steering control lights come on\"\n- \"intermittently when driving the vehicle\"\n- maybe \"When driving the vehicle\" but duplicate not needed.\nCould include kind condition quote \"intermittently when driving the vehicle\".\nPotential issue: symptom quote includes \"abs\" lower; okay.\n\nTest rationale: The only rulebook match is intermittent; long-run power cycling reproduces faults after wake/sleep. The warning lights are intermittent while driving. But rulebook test is power cycling not driving, still targeted. We don't propose human? safety false.\n\nNeed mention recalls? The recalls for airbag sensor not relevant to warning lights, but component group restraints. Maybe rationale could say recalls exist but do not match the lighting symptom? Do not overdo. The user asks use only facts. Could mention no investigation results. Keep concise.\n\nFinal only JSON. Need no other text. Ensure \"test_name\": \"Long-run power cycling test\". summary: \"Run a long-run power cycling test to reproduce the intermittent park-brake, ABS and steering warning lights and isolate the wake/sleep-related fault.\" Good.\n\nClues maybe add \"other\"? no.\n\nNeed \"targeted\": true.\n\nLet's craft.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531590,
+      "id": "52c03bae3e389bc9fadc60c9e6d03f07",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 852,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 645,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00044469,
+          "billing_source": "go",
+          "list_cost": 0.00074115,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 1533,
+            "output": 852,
+            "reasoning": 645
+          }
+        },
+        "prompt_tokens": 1533,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 2385
+      }
+    },
+    "text": "{\"summary\":\"Run a long-run power cycling test to reproduce the intermittent park-brake, ABS and steering warning lights and isolate the wake/sleep-related fault.\",\"rationale\":\"The case reports park-brake, ABS and steering control warning lights that come on intermittently while driving. The rulebook matches the intermittent condition and specifies a long-run power cycling test because repeated wake and sleep cycles can reproduce faults that appear only intermittently.\",\"group\":\"restraints\",\"symptoms\":[\"park brake warning light comes on\",\"ABS warning light comes on\",\"steering control warning light comes on\",\"warning lights come on intermittently while driving\"],\"conditions\":[\"intermittent\",\"while driving\"],\"fault_codes\":[],\"safety_relevant\":false,\"targeted\":true,\"test_name\":\"Long-run power cycling test\",\"clues\":[{\"kind\":\"symptom\",\"quote\":\"park brake abs and steering control lights come on\"},{\"kind\":\"condition\",\"quote\":\"intermittently when driving the vehicle\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00044469,
+      "cached_tokens": 0,
+      "cost_usd": 0.00074115,
+      "input_tokens": 1533,
+      "list_cost_usd": 0.00074115,
+      "output_tokens": 852,
+      "reasoning_tokens": 645
+    }
+  }
+}

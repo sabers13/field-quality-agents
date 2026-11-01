@@ -1,0 +1,66 @@
+{
+  "key": "9283bb2ab4458b7897558cf7df9c9835364a69c50d398a9386a028c0d4644705",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 7326,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"2023 Audi Q8 Pre Sense automatic emergency braking falsely engaging under normal driving, with dash warnings and blank screen, including a violent activation at ~35 mph\",\n  \"group\": \"adas\",\n  \"symptoms\": [\n    \"automatic emergency braking activates without cause\",\n    \"warning signals flash on the dashboard\",\n    \"infotainment screen goes completely black\",\n    \"violent braking event mistaken for a rear-end impact\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"engaged erroneously on numerous occasions under completely normal driving conditions\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"under completely normal driving conditions\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"My vehicle would consistently flash warning signals on my dash\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"my screen went completely black\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"while driving at approximately 35 mph, the Pre Sense system activated without warning or cause\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"The impact was so violent I believed I had been rear-ended\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"this vehicle will cause a catastrophic accident\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"coming to a complete stop on the highway while driving at high speeds\"\n    },\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"Pre Sense collision braking system\"\n    }\n  ]\n}",
+            "reasoning_content": "Let me produce JSON.\n\nSummary: component ADAS automatic emergency braking, symptom: erroneous activation/phantom braking, dash warnings, screen black, at ~35 mph normal driving.\n\nConditions: normal driving, intermittent (\"numerous occasions\"), not cold/moisture. I'd include \"intermittent\" (erroneous activation on numerous occasions). Keep it simple: [\"intermittent\"].\n\nMissing info: mileage (null). Also date? received_at given but incident date not. I'd list \"mileage\" and maybe \"date\". Rules say list missing_info only for facts needed. Mileage is null → missing. Date of incident not given → \"date\" missing. Component given, symptom given, conditions given.\n\nQuotes verbatim from narrative. Careful with the unicode apostrophes: \"It\\u2019s terrifying\" — I should avoid quotes containing those or copy exactly. Let me pick safe quotes:\n\n- \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\" — that's from component field, is it \"the report\"? It's part of the report payload. Safer to quote narrative text.\n\nQuotes:\n1. \"engaged erroneously on numerous occasions under completely normal driving conditions\" — check verbatim: \"has engaged erroneously on numerous occasions under completely normal driving conditions.\" yes substring.\n2. \"My vehicle would consistently flash warning signals on my dash\" — verbatim yes.\n3. \"my screen went completely black\" — verbatim yes.\n4. \"while driving at approximately 35 mph, the Pre Sense system activated without warning or cause\" — verbatim? Text: \"Most recently, while driving at approximately 35 mph, the Pre Sense system activated without warning or cause.\" yes.\n5. \"I believed I had been rear-ended\" — verbatim. safety.\n6. \"this vehicle will cause a catastrophic accident\" — verbatim.\n7. \"coming to a complete stop on the highway while driving at high speeds\" — verbatim.\n\nFault codes: none.\n\nsafety_relevant: true.\n\nGroup: \"adas\".",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529850,
+      "id": "a9c75b4d6ad53074981e65c972fe78cb",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 832,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 431,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00032757,
+          "billing_source": "go",
+          "list_cost": 0.00054595,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 304,
+            "output": 832,
+            "reasoning": 431
+          }
+        },
+        "prompt_tokens": 688,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1520
+      }
+    },
+    "text": "{\n  \"summary\": \"2023 Audi Q8 Pre Sense automatic emergency braking falsely engaging under normal driving, with dash warnings and blank screen, including a violent activation at ~35 mph\",\n  \"group\": \"adas\",\n  \"symptoms\": [\n    \"automatic emergency braking activates without cause\",\n    \"warning signals flash on the dashboard\",\n    \"infotainment screen goes completely black\",\n    \"violent braking event mistaken for a rear-end impact\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"engaged erroneously on numerous occasions under completely normal driving conditions\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"under completely normal driving conditions\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"My vehicle would consistently flash warning signals on my dash\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"my screen went completely black\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"while driving at approximately 35 mph, the Pre Sense system activated without warning or cause\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"The impact was so violent I believed I had been rear-ended\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"this vehicle will cause a catastrophic accident\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"coming to a complete stop on the highway while driving at high speeds\"\n    },\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"Pre Sense collision braking system\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00032757,
+      "cached_tokens": 384,
+      "cost_usd": 0.00054595,
+      "input_tokens": 688,
+      "list_cost_usd": 0.00054595,
+      "output_tokens": 832,
+      "reasoning_tokens": 431
+    }
+  }
+}

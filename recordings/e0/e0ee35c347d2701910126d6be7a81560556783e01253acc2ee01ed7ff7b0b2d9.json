@@ -1,0 +1,66 @@
+{
+  "key": "e0ee35c347d2701910126d6be7a81560556783e01253acc2ee01ed7ff7b0b2d9",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 4551,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Verify the reported odometer discrepancy on a privately sold 2017 Subaru Forester because the narrative alleges odometer fraud and mismatched mileage.\",\n  \"rationale\": \"The case reports an odometer fraud allegation and a mileage discrepancy: the vehicle showed 88,000 miles at private purchase but 88,223 miles at registration. No rulebook entry, recall, investigation, or similar case was returned, so this should go to the standard odometer verification rather than a targeted rulebook test.\",\n  \"group\": \"instrumentation\",\n  \"symptoms\": [\n    \"odometer fraud\",\n    \"mileage discrepancy\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"targeted\": false,\n  \"test_name\": \"standard odometer verification\",\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Odometer Fraud.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"mileage discrepancy\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"The vehicle was a private sale.\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"At the time of purchase, the vehicle mileage was 88,000, and at the time of registration, it was discovered that the mileage was 88,223.\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer one JSON only. Need analyze. No rulebook matches, no recalls investigations similar. Case odometer fraud, mileage discrepancy 88,000 at purchase vs 88,223 at registration. Not safety? Narrative no risk to people. targeted false standard test. Need test_name? Rulebook names none. Could propose standard test perhaps \"odometer verification\"? But schema says test_name targeted test the rulebook names. Since no rulebook, maybe test_name empty or \"standard odometer inspection\". Need conditions/fault_codes empty. Clues verbatim from narrative. Include quotes: \"Odometer Fraud.\", \"mileage discrepancy\", \"At the time of purchase, the vehicle mileage was 88,000, and at the time of registration, it was discovered that the mileage was 88,223.\" That's verbatim. Component group quote maybe \"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\" from component field? It's in case narrative? The narrative doesn't include component string. Rule says quotes copied from case narrative. So don't use component string unless in narrative? Narrative has no component string. Use symptom quotes and other. Need summary one line. rationale condition and evidence. group \"instrumentation\". safety_relevant false. targeted false. test_name maybe \"standard instrument cluster odometer verification\" but not rulebook named. Better \"standard odometer verification\". But rule says targeted test rulebook names; without rulebook propose standard. Could set test_name \"standard odometer inspection\" and targeted false. Fine.\n\nNeed ensure JSON valid. No other text.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793527051,
+      "id": "1ea31a8866a7434e9bb2d971d81cc6c8",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 635,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 332,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00030042,
+          "billing_source": "go",
+          "list_cost": 0.0005007,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 798,
+            "output": 635,
+            "reasoning": 332
+          }
+        },
+        "prompt_tokens": 798,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 1433
+      }
+    },
+    "text": "{\n  \"summary\": \"Verify the reported odometer discrepancy on a privately sold 2017 Subaru Forester because the narrative alleges odometer fraud and mismatched mileage.\",\n  \"rationale\": \"The case reports an odometer fraud allegation and a mileage discrepancy: the vehicle showed 88,000 miles at private purchase but 88,223 miles at registration. No rulebook entry, recall, investigation, or similar case was returned, so this should go to the standard odometer verification rather than a targeted rulebook test.\",\n  \"group\": \"instrumentation\",\n  \"symptoms\": [\n    \"odometer fraud\",\n    \"mileage discrepancy\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"targeted\": false,\n  \"test_name\": \"standard odometer verification\",\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Odometer Fraud.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"mileage discrepancy\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"The vehicle was a private sale.\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"At the time of purchase, the vehicle mileage was 88,000, and at the time of registration, it was discovered that the mileage was 88,223.\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00030042,
+      "cached_tokens": 0,
+      "cost_usd": 0.0005007,
+      "input_tokens": 798,
+      "list_cost_usd": 0.0005007,
+      "output_tokens": 635,
+      "reasoning_tokens": 332
+    }
+  }
+}

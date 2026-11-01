@@ -1,0 +1,66 @@
+{
+  "key": "675050b0e484e4cf9fe81c882e456bf28f5bd804ee1b4640abf8ef0fc0d7689a",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 14684,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"VISIBILITY/WIPER: front windshield shattered in two places from a small hit on a 2022 Kia Carnival.\",\"group\":\"body_controls\",\"symptoms\":[\"front windshield shattered in two places\",\"windshield broke all the way across in two places\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"VISIBILITY/WIPER\"},{\"kind\":\"symptom\",\"quote\":\"My front windshield on my 2022 Kia Carnival has shattered in two places from a small hit.\"},{\"kind\":\"symptom\",\"quote\":\"never had a windshield break in two places all the way across\"},{\"kind\":\"condition\",\"quote\":\"from a small hit\"},{\"kind\":\"other\",\"quote\":\"There must be an issue or problem.\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize report. Component VISIBILITY/WIPER, group body_controls. Narrative: windshield shattered in two places from small hit; owned lots cars never had windshield break in two places all way across. There must be issue/problem. No fault codes. Safety relevant? Mentions shattered windshield, but not crash/fire/smoke/injury/loss control/stall. Could be risk? The prompt says set safety_relevant when report mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. Shattered windshield could be risk to people? But input already safety_relevant false. We should not invent; maybe false unless explicit risk. It says \"another risk to people\" - shattered windshield arguably risk. But report doesn't mention injury/crash. We need decide. Since \"safety_relevant\" is in source false but we are to set based on rules. A shattered windshield impairs visibility and structural integrity, could be safety. But \"from a small hit\" implies impact. Hmm.\n\nNeed summary one line: component, symptom, conditions. \"Front windshield shattered in two places from a small hit on 2022 Kia Carnival.\" Conditions: maybe none? \"small hit\" is condition? The allowed conditions list includes cold, moisture, heat, vibration, intermittent, after service, charging. Small hit not in list. Could include \"other\"? conditions array expects from those? It says conditions: [\"cold\", ...]. Could put [] since no listed condition. Clues with verbatim quotes. Need include component_group? \"VISIBILITY/WIPER\" quote? Is that in report? The report includes component field. Quote must be copied from report. The user message includes JSON with component \"VISIBILITY/WIPER\". Is that \"report\"? Probably yes, entire user message is report. But quote should be from narrative? It says report in user message. We can quote \"VISIBILITY/WIPER\" perhaps. But evidence kind component_group quote maybe \"VISIBILITY/WIPER\". But component group given \"body_controls\" isn't in report? It is in JSON group. Could quote \"body_controls\". Hmm.\n\nNeed output only JSON. Ensure no markdown? The instruction says answer with one JSON object and no other text. We can output raw JSON.\n\nNeed missing_info: mileage is null, date? received_at provides date maybe not incident date. Missing info for analysis: mileage, date (of incident), conditions? Component and symptom present. Could list [\"mileage\", \"date\", \"conditions\"]. But \"date\" maybe received_at exists but not event date. The report has received_at, so maybe date not missing? It doesn't say incident date. \"conditions\" maybe missing (weather, speed, impact details). We can list mileage and date and conditions. But rule: list only facts analysis needs. Since mileage null, missing. Date: received date present, but incident date absent. Conditions: no listed conditions. Could include \"conditions\". But maybe overkill. Need maybe missing_info [\"mileage\", \"date\", \"conditions\"]. Hmm.\n\nSummary: \"VISIBILITY/WIPER: front windshield shattered in two places from a small hit on a 2022 Kia Carnival.\" That's one line.\n\nSymptoms: [\"front windshield shattered in two places from a small hit\", \"windshield broke all the way across in two places\"] Maybe symptom plain words. The report says \"shattered in two places from a small hit\" and \"break in two places all the way across\". Could list [\"windshield shattered in two places\", \"windshield broke all the way across in two places\"]. Need not overdo.\n\nFault codes: [].\n\nClues: Need quote verbatim. \n- symptom quote: \"My front windshield on my 2022 Kia Carnival has shattered in two places from a small hit.\"\n- symptom quote: \"never had a windshield break in two places all the way across\"\n- condition? \"from a small hit\" maybe condition? kind condition? But allowed conditions list doesn't include impact. Could kind \"other\" quote \"small hit\". But clue kind condition can be any? The schema says kind symptom|condition|fault_code|component_group|safety|other. Quote \"from a small hit\" as condition? It's a condition. But conditions array won't include it. Hmm. We can include clue kind condition quote \"from a small hit\". But conditions array list doesn't have impact. That's okay? Maybe not.\n\n- component_group quote \"VISIBILITY/WIPER\" or \"body_controls\". The group in JSON is body_controls; quote \"body_controls\". But is that verbatim? Yes in JSON. But evidence from field maybe. Could include {\"kind\":\"component_group\",\"quote\":\"VISIBILITY/WIPER\"}. The group we output is body_controls. Hmm.\n\n- safety? If safety_relevant false, no safety clue.\n\nNeed no extra text. We need final. Ensure JSON valid. Use double quotes.\n\nNeed decide safety_relevant. Let's parse rule: \"Set safety_relevant when the report mentions a crash, fire, smoke, injury, loss of control, a stall at speed or another risk to people.\" The report mentions windshield shattered, which is a risk to people? It doesn't explicitly say risk. But a shattered windshield can impair visibility and cause injury from glass. However, the source JSON says safety_relevant false. We are normalizing and can set. The narrative says \"shattered\" not \"cracked\"; \"from a small hit\"; \"all the way across\". This is a safety concern maybe. But the rule examples are explicit risks. \"another risk to people\" is broad. I'd set safety_relevant false? Hmm. The intake agent should detect safety relevance. If a windshield shatters while driving, that's safety. But the report doesn't say while driving; it says from a small hit. No crash/injury. I think false to avoid inventing. But \"shattered\" could be risk. The source field already false; consistent. We'll set false. But maybe if there is a small hit, glass shatter could injure. Yet no mention. Keep false.\n\nNeed group: \"body_controls\" given. Good.\n\nNeed conditions: []? The condition \"small hit\" isn't in allowed list. If we include \"vibration\"? No. So [].\n\nNeed missing_info: Mileage null. Date? received_at 2025-07-11; incident date not. Conditions? The report lacks weather, speed, road, impact location. Could list [\"mileage\",\"date\",\"conditions\"]. But \"date\" maybe received_at is date. However missing_info list allowed \"date\"; if received_at exists, maybe date not missing. The report has received_at but not event date. The analysis needs incident date? Yes. List \"mileage\", \"date\", \"conditions\". But if date present as received_at, maybe not. The prompt says \"List missing_info only for facts the analysis needs: component, symptom, conditions, mileage, date.\" It doesn't distinguish event vs received. Since date field is received_at, date not missing? But the report has no incident date. Hmm. I'd include \"mileage\" and \"conditions\" and maybe \"date\" because no incident date. But source has received_at, so date exists. However analysis often needs date of incident. To be safe, missing_info [\"mileage\",\"date\",\"conditions\"]. But if they check against fields, date is present. Yet the date field is received_at, not incident date. The prompt says report has received_at. Missing_info \"date\" may mean incident date. I'd include.\n\nNeed clues:\n[\n{\"kind\":\"component_group\",\"quote\":\"VISIBILITY/WIPER\"},\n{\"kind\":\"symptom\",\"quote\":\"My front windshield on my 2022 Kia Carnival has shattered in two places from a small hit.\"},\n{\"kind\":\"symptom\",\"quote\":\"never had a windshield break in two places all the way across\"},\n{\"kind\":\"condition\",\"quote\":\"from a small hit\"},\n{\"kind\":\"other\",\"quote\":\"There must be an issue or problem.\"}\n]\nBut quote \"never had...\" is substring? Narrative: \"I have owned lots of cars and never had a windshield break in two places all the way across.\" The substring \"never had a windshield break in two places all the way across\" is verbatim yes. Good.\n\"from a small hit\" verbatim yes.\n\"There must be an issue or problem.\" verbatim yes.\nCould include \"2022 Kia Carnival\" but not needed.\n\nNeed no suggestion actions. Good.\n\nNeed final only JSON. Ensure summary one line. Let's craft.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793528446,
+      "id": "c70d52c39a22e5a7e68eee39f7c9c0a5",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2011,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1822,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00073851,
+          "billing_source": "go",
+          "list_cost": 0.00123085,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 154,
+            "output": 2011,
+            "reasoning": 1822
+          }
+        },
+        "prompt_tokens": 538,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2549
+      }
+    },
+    "text": "{\"summary\":\"VISIBILITY/WIPER: front windshield shattered in two places from a small hit on a 2022 Kia Carnival.\",\"group\":\"body_controls\",\"symptoms\":[\"front windshield shattered in two places\",\"windshield broke all the way across in two places\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"VISIBILITY/WIPER\"},{\"kind\":\"symptom\",\"quote\":\"My front windshield on my 2022 Kia Carnival has shattered in two places from a small hit.\"},{\"kind\":\"symptom\",\"quote\":\"never had a windshield break in two places all the way across\"},{\"kind\":\"condition\",\"quote\":\"from a small hit\"},{\"kind\":\"other\",\"quote\":\"There must be an issue or problem.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00073851,
+      "cached_tokens": 384,
+      "cost_usd": 0.00123085,
+      "input_tokens": 538,
+      "list_cost_usd": 0.00123085,
+      "output_tokens": 2011,
+      "reasoning_tokens": 1822
+    }
+  }
+}

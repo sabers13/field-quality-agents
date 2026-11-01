@@ -1,0 +1,66 @@
+{
+  "key": "e7c967098d3e08882a50def8452e665449ea1dd113d80c9f4e3778a295513fd0",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 14618,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"BMW X7 parking assistance malfunction while guiding into garage: erratic right steering, failure to stop/brake, no warnings, struck parked vehicle in driveway.\",\"group\":\"adas\",\"symptoms\":[\"parking assistance malfunction\",\"erratic steering to the right\",\"failed to stop\",\"did not engage brakes\",\"no sensor warnings\",\"no audible beeps\",\"struck parked vehicle\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"BACK OVER PREVENTION: WARNINGS\"},{\"kind\":\"component_group\",\"quote\":\"Parking Assistance / Automatic Parking System / Sensors\"},{\"kind\":\"condition\",\"quote\":\"while using the Parking Assistance feature\"},{\"kind\":\"condition\",\"quote\":\"While the system was guiding the vehicle into the garage\"},{\"kind\":\"symptom\",\"quote\":\"it suddenly and erratically turned the steering wheel to the right, failed to stop, and struck another parked vehicle.\"},{\"kind\":\"symptom\",\"quote\":\"There were no sensor warnings, no audible beeps, and the system did not engage the brakes to avoid the collision.\"},{\"kind\":\"symptom\",\"quote\":\"My father was attentive and had to manually slam on the brakes, but the impact had already occurred.\"},{\"kind\":\"safety\",\"quote\":\"caused an accident inside our home driveway\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize report. Read only report. Need extract summary component symptom conditions group etc. Let's parse.\n\nComponent given: BACK OVER PREVENTION: WARNINGS, group adas. Narrative says Parking Assistance / Automatic Parking System / Sensors. Vehicle malfunctioned caused accident inside home driveway, while system guiding into garage suddenly erratically turned steering right, failed to stop, struck parked vehicle. No sensor warnings, no audible beeps, system did not engage brakes. Father manually slammed brakes but impact occurred. Property damage no injuries. Safety relevant true given. Conditions? \"while using Parking Assistance feature\", \"guiding vehicle into garage\", \"inside home driveway\". Cold/moisture/heat/vibration/intermittent/after service/charging not mentioned. Conditions list likely [\"while using parking assistance\", \"guiding into garage\", \"driveway\"]? Prompt conditions enum-like [\"cold\",\"moisture\",\"heat\",\"vibration\",\"intermittent\",\"after service\",\"charging\"]. But rule says conditions [\"cold\", ...] perhaps choose from list. Does report mention intermittent? \"suddenly and erratically\" maybe not. Could include none? Need include conditions as array of plain maybe only from enumerated? The schema says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. It might expect only these tags. The narrative mentions conditions not in list. We can maybe include \"while using parking assistance\" as condition? But schema examples only. It says conditions: [\"cold\", ...]. Hmm.\n\nNeed summary one line: component, symptom, conditions. \"BMW X7 parking assistance malfunction: erratic right steering, failed to stop/brake, struck parked vehicle in driveway while guiding into garage; no warnings.\" Good.\n\ngroup: given \"adas\" or group maybe electrical/electronic component group or given group. Given group adas, so \"adas\".\n\nsymptoms: plain words: \"parking assistance malfunction\", \"erratic steering to the right\", \"failed to stop\", \"did not engage brakes\", \"no sensor warnings\", \"no audible beeps\", \"struck parked vehicle\". Need list.\n\nfault_codes: none. [].\n\nsafety_relevant true (crash/struck vehicle, no injuries; risk to people). True.\n\nmissing_info: mileage null, date? Narrative has dates redacted [XXX], received_at 2025-07-09. Missing date of incident? component? component present. symptom present. conditions present? mileage missing, incident date missing? They say list only facts analysis needs: component, symptom, conditions, mileage, date. Mileage missing. Date? Incident date redacted, so missing. Conditions? There is context but maybe not environmental. But not missing? We might list [\"mileage\",\"date\"]. Could include \"conditions\" because no weather/road? But they mention driveway/garage, parking assistance. Hmm.\n\nClues: need verbatim quotes from report. Need each quote copied exactly. Use quotes from narrative. For symptom: \"it suddenly and erratically turned the steering wheel to the right, failed to stop, and struck another parked vehicle.\" Check exact: \"it suddenly and erratically turned the steering wheel to the right, failed to stop, and struck another parked vehicle.\" yes. For no warnings: \"There were no sensor warnings, no audible beeps, and the system did not engage the brakes to avoid the collision.\" exact. For condition: \"while using the Parking Assistance feature\" exact? Text: \"On [XXX], while using the Parking Assistance feature on my father's BMW X7 (VIN: [XXX]), the vehicle malfunctioned...\" Quote \"while using the Parking Assistance feature\" yes. \"While the system was guiding the vehicle into the garage\" exact. For safety: \"caused an accident inside our home driveway\" exact? Text: \"the vehicle malfunctioned and caused an accident inside our home driveway.\" Quote \"caused an accident inside our home driveway\" yes. Also \"struck another parked vehicle\". For component_group: \"Parking Assistance / Automatic Parking System / Sensors\" exact? Text: \"Component/System Involved: Parking Assistance / Automatic Parking System / Sensors\" quote \"Parking Assistance / Automatic Parking System / Sensors\". kind component_group. Could include \"BACK OVER PREVENTION: WARNINGS\"? from input component not narrative? It is report field. But quote should from report. User message includes JSON component. Quote \"BACK OVER PREVENTION: WARNINGS\" is in report. But maybe not necessary.\n\nNeed JSON only, no markdown? It says answer with one JSON object and no other text. We can output raw JSON. Need valid JSON, escape apostrophes not needed. Use double quotes. Need be careful quotes with apostrophe. \n\nLet's formulate:\n\n{\n \"summary\": \"BMW X7 parking assistance malfunction while guiding into garage: erratic right steering, failure to stop/brake, no warnings, struck parked vehicle in driveway.\",\n \"group\": \"adas\",\n \"symptoms\": [\"parking assistance malfunction\", \"erratic steering to the right\", \"failed to stop\", \"did not engage brakes\", \"no sensor warnings\", \"no audible beeps\", \"struck parked vehicle\"],\n \"conditions\": [\"while using parking assistance\", \"guiding into garage\", \"driveway\"],\n \"fault_codes\": [],\n \"safety_relevant\": true,\n \"missing_info\": [\"mileage\", \"date\"],\n \"clues\": [...]\n}\n\nWill conditions with non-enumerated tags be accepted? The instruction: conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. It likely expects only those. But report conditions \"while using parking assistance\" and \"guiding into garage\" are important. The schema examples maybe not exhaustive? It says conditions: [\"cold\", ...]. I think we can include plain words. But to adhere, maybe conditions should be [] because none of listed environmental tags. However summary should mention conditions. The \"conditions\" field maybe only from list; if no listed condition, use empty array. But then conditions missing? No, not missing. Yet clues can capture conditions. Hmm.\n\nRule: \"conditions\": [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. This looks like allowed values. It says list conditions. No \"while using...\" allowed. If include arbitrary, maybe violates. Better set [] and put condition clues. But missing_info? Conditions present? Hmm.\n\nThe user says \"conditions\": [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"] in sample. It may be an example array, not exhaustive? It lists specific tags. I think use only these tags if present; none. But summary includes context. Conditions [] might seem no conditions. But okay.\n\nSymptoms: \"erratic steering\" etc.\n\nClues quotes: Need exact verbatim. Check punctuation. The narrative has \"On [XXX], while using the Parking Assistance feature on my father's BMW X7 (VIN: [XXX]), the vehicle malfunctioned and caused an accident inside our home driveway.\" Quote \"while using the Parking Assistance feature\" exact. \"the vehicle malfunctioned and caused an accident inside our home driveway\" exact. \"While the system was guiding the vehicle into the garage—as it has successfully done many times before—it suddenly and erratically turned the steering wheel to the right, failed to stop, and struck another parked vehicle.\" Need quote. If quote includes em dash? We can use shorter \"it suddenly and erratically turned the steering wheel to the right, failed to stop, and struck another parked vehicle.\" exact yes. \"There were no sensor warnings, no audible beeps, and the system did not engage the brakes to avoid the collision.\" exact. \"My father was attentive and had to manually slam on the brakes, but the impact had already occurred.\" exact. \"Incident Type: Property Damage (No injuries)\" exact. For safety maybe \"This incident highlights a serious safety issue\" exact. But safety_relevant due crash. Use clue kind safety quote \"caused an accident inside our home driveway\" or \"struck another parked vehicle\". Good.\n\nNeed \"component_group\" quote: \"Parking Assistance / Automatic Parking System / Sensors\" exact. Use kind component_group. Could include \"BACK OVER PREVENTION: WARNINGS\" from component field. But quote is in JSON. Let's include both? It asks clues. Maybe one component_group quote enough. The given component \"BACK OVER PREVENTION: WARNINGS\" is exact. Use quote \"BACK OVER PREVENTION: WARNINGS\". Kind component_group. Also \"Parking Assistance / Automatic Parking System / Sensors\". Multiple clues okay. \n\nNeed no extra text. Ensure JSON valid. Let's produce.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793528337,
+      "id": "0e4b2486dad3dfa42c0891a8e8ab8b38",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2149,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1856,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00082113,
+          "billing_source": "go",
+          "list_cost": 0.00136855,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 520,
+            "output": 2149,
+            "reasoning": 1856
+          }
+        },
+        "prompt_tokens": 904,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 3053
+      }
+    },
+    "text": "{\"summary\":\"BMW X7 parking assistance malfunction while guiding into garage: erratic right steering, failure to stop/brake, no warnings, struck parked vehicle in driveway.\",\"group\":\"adas\",\"symptoms\":[\"parking assistance malfunction\",\"erratic steering to the right\",\"failed to stop\",\"did not engage brakes\",\"no sensor warnings\",\"no audible beeps\",\"struck parked vehicle\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"BACK OVER PREVENTION: WARNINGS\"},{\"kind\":\"component_group\",\"quote\":\"Parking Assistance / Automatic Parking System / Sensors\"},{\"kind\":\"condition\",\"quote\":\"while using the Parking Assistance feature\"},{\"kind\":\"condition\",\"quote\":\"While the system was guiding the vehicle into the garage\"},{\"kind\":\"symptom\",\"quote\":\"it suddenly and erratically turned the steering wheel to the right, failed to stop, and struck another parked vehicle.\"},{\"kind\":\"symptom\",\"quote\":\"There were no sensor warnings, no audible beeps, and the system did not engage the brakes to avoid the collision.\"},{\"kind\":\"symptom\",\"quote\":\"My father was attentive and had to manually slam on the brakes, but the impact had already occurred.\"},{\"kind\":\"safety\",\"quote\":\"caused an accident inside our home driveway\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00082113,
+      "cached_tokens": 384,
+      "cost_usd": 0.00136855,
+      "input_tokens": 904,
+      "list_cost_usd": 0.00136855,
+      "output_tokens": 2149,
+      "reasoning_tokens": 1856
+    }
+  }
+}

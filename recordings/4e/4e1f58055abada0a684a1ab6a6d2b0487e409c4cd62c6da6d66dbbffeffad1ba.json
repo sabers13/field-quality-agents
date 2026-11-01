@@ -1,0 +1,66 @@
+{
+  "key": "4e1f58055abada0a684a1ab6a6d2b0487e409c4cd62c6da6d66dbbffeffad1ba",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10613,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Adaptive cruise control steering-wheel speed control intermittently unresponsive, with a near collision on the highway and a loose volume control switch.\",\n  \"group\": \"adas\",\n  \"symptoms\": [\n    \"steering-wheel speed control intermittently unresponsive\",\n    \"cruise control speed increase/decrease intermittently unresponsive\",\n    \"speed did not decrease when commanded\",\n    \"steering-wheel volume control switch loose\",\n    \"suspected defective controller switch\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Speed control on steering wheel not responding all the time.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"When car is on cruise control speed instead or decrease control not responding all the time.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"controller not responding speed didn't decreased\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"not responding all the time\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"I was almost going to hit the vehicle on high way\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"I looks defective controller switch.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Now other side of steering volume control switch also becomes loose\"\n    },\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"cruise control\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer only JSON object. Need normalize report. Need read component, group adas, narrative. Need summary one line component, symptom, conditions. Group \"adas\" or electrical/electronic component group? Given group adas, use given group perhaps. Symptoms plain words: speed control on steering wheel not responding all the time; cruise control speed increase/decrease control not responding all the time; controller not responding, speed didn't decrease; volume control switch loose. Conditions: intermittent? \"not responding all the time\" = intermittent. highway maybe driving. Safety relevant? Narrative says almost going to hit vehicle on highway, speed didn't decrease, slammed brake. This is risk to people / near collision, loss of intended control? Set safety_relevant true. Though input says safety_relevant false; prompt says set when mentions crash etc. It mentions almost hit vehicle, could be safety relevant. Need fault_codes none. Missing_info: mileage null? report lacks mileage, date? received_at present but not incident date. Need list missing_info facts analysis needs: mileage, date, conditions? Conditions present intermittent, highway. Component present. Symptom present. Mileage missing; date (incident date) missing. Maybe conditions? It gives highway, cruise, intermittent. So missing_info [\"mileage\",\"date\"]. Need clues verbatim spans copied exactly. Need be careful quotes exact from narrative. Quote spans:\n- \"Speed control on steering wheel not responding all the time.\"\n- \"When car is on cruise control speed instead or decrease control not responding all the time.\" exact includes \"instead\" likely typo. Need quote verbatim.\n- \"I was almost going to hit the vehicle on high way i decreased the speed according to front of my car but controller not responding speed didn't decreased\"\n- \"I suddenly realized that slammed on break.\" exact maybe includes. \n- \"I looks defective controller switch.\"\n- \"Now other side of steering volume control switch also becomes loose\"\nNeed clues kind symptom/condition/safety/component_group/other. For component_group quote maybe \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\" from component field? It says quote copied from report. Is component field part of report? likely yes. But quote must be from report in user message. Could include exact component string. But maybe safer quote narrative only. Need include component_group clue perhaps quote \"cruise control\" from narrative? But kind component_group. Could quote \"Speed control on steering wheel\" not exactly group? Hmm.\n\nSummary one line: \"Adaptive cruise control steering-wheel speed control intermittently unresponsive; near collision on highway; volume switch loose.\" Need \"component, symptom, conditions\". Good.\n\nNeed JSON no other text. Ensure valid JSON. No markdown? User says answer with one JSON object and no other text. We can output raw JSON. Need maybe no code fences. Let's craft.\n\nNeed decide safety_relevant true. The input had false but prompt overrides. Mention \"almost going to hit vehicle\" = risk. Good.\n\nMissing_info: mileage, date. Maybe conditions? No.\n\nClues array include:\n{\"kind\":\"symptom\",\"quote\":\"Speed control on steering wheel not responding all the time.\"}\n{\"kind\":\"symptom\",\"quote\":\"When car is on cruise control speed instead or decrease control not responding all the time.\"}\n{\"kind\":\"symptom\",\"quote\":\"controller not responding speed didn't decreased\"}\n{\"kind\":\"condition\",\"quote\":\"not responding all the time\"} But quote appears multiple. Condition intermittent. Could use exact \"not responding all the time\".\n{\"kind\":\"safety\",\"quote\":\"I was almost going to hit the vehicle on high way\"}\n{\"kind\":\"symptom\",\"quote\":\"I looks defective controller switch.\"}\n{\"kind\":\"symptom\",\"quote\":\"Now other side of steering volume control switch also becomes loose\"}\n{\"kind\":\"component_group\",\"quote\":\"ADAPTIVE CRUISE CONTROL\"} from component. Is exact substring yes in report. Good. But if component field considered report, okay. To be safe, quote narrative \"cruise control\". Kind component_group quote \"cruise control\" is exact. Use that.\n\nNeed maybe \"condition\" for \"high way\" driving? Not in allowed conditions list? Allowed conditions examples include cold moisture heat vibration intermittent after service charging. \"highway\" not listed. Condition array should use allowed tokens: \"intermittent\". Could include \"intermittent\". Good.\n\nSymptoms array: \"steering-wheel speed control intermittently unresponsive\", \"cruise control speed increase/decrease intermittently unresponsive\", \"speed did not decrease when commanded\", \"steering-wheel volume control switch loose\", \"suspected defective controller switch\". Keep plain.\n\nNeed ensure quotes exact character for character. Let's verify narrative exact:\n\"Speed control on steering wheel not responding all the time. When car is on cruise control speed instead or decrease control not responding all the time. I was almost going to hit the vehicle on high way i decreased the speed according to front of my car but controller not responding speed didn't decreased I suddenly realized that slammed on break. Nothing was happened i already sent email to hyundai but no respond. I looks defective controller switch.    Now other side of steering volume control switch also becomes loose\"\n\nQuote \"controller not responding speed didn't decreased\" yes exact substring. Quote \"I was almost going to hit the vehicle on high way\" exact. Quote \"Now other side of steering volume control switch also becomes loose\" exact. Quote \"I looks defective controller switch.\" exact. Good.\n\nNeed include \"fault_codes\": [].\n\nSummary one line no newline. Good.\n\nFinal raw JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793533141,
+      "id": "2ff209169371715625bc75725f643e29",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1538,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1164,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00057345,
+          "billing_source": "go",
+          "list_cost": 0.00095575,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 212,
+            "output": 1538,
+            "reasoning": 1164
+          }
+        },
+        "prompt_tokens": 596,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2134
+      }
+    },
+    "text": "{\n  \"summary\": \"Adaptive cruise control steering-wheel speed control intermittently unresponsive, with a near collision on the highway and a loose volume control switch.\",\n  \"group\": \"adas\",\n  \"symptoms\": [\n    \"steering-wheel speed control intermittently unresponsive\",\n    \"cruise control speed increase/decrease intermittently unresponsive\",\n    \"speed did not decrease when commanded\",\n    \"steering-wheel volume control switch loose\",\n    \"suspected defective controller switch\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Speed control on steering wheel not responding all the time.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"When car is on cruise control speed instead or decrease control not responding all the time.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"controller not responding speed didn't decreased\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"not responding all the time\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"I was almost going to hit the vehicle on high way\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"I looks defective controller switch.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Now other side of steering volume control switch also becomes loose\"\n    },\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"cruise control\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00057345,
+      "cached_tokens": 384,
+      "cost_usd": 0.00095575,
+      "input_tokens": 596,
+      "list_cost_usd": 0.00095575,
+      "output_tokens": 1538,
+      "reasoning_tokens": 1164
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "a9641dadb066ff34c5e93bbb3cbe4bf52050fa0dfc1bb036870e44c95d17d45e",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 14738,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system battery/alternator: burning electrics smell and smoke from under hood after an 80-mile drive following a charge-capacity service recall.\",\"group\":\"power_and_wiring\",\"symptoms\":[\"burning electrics smell\",\"smoke from under the hood\",\"burning at the alternator\"],\"conditions\":[\"after service\",\"charging\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"smelled burning electrics\"},{\"kind\":\"symptom\",\"quote\":\"smoke came from under the hood\"},{\"kind\":\"condition\",\"quote\":\"A service recall was completed by Winnebago Authorized Dealer in 6/2025\"},{\"kind\":\"condition\",\"quote\":\"charge the house batteries\"},{\"kind\":\"safety\",\"quote\":\"I applied a fire extinguisher from underneath on the alternator to stop the burning\"},{\"kind\":\"component_group\",\"quote\":\"house batteries\"}]}",
+            "reasoning_content": "We need answer only JSON object. Need parse report. Component electrical system battery, group power_and_wiring. Summary one line component symptom conditions. Symptoms burning electrics, smoke under hood, fire/alternator burning. Conditions after 80 mile drive, after service recall? cold/moisture/heat/vibration/intermittent/after service/charging allowed. Report mentions after 80 mile drive, service recall completed 6/2025, charging house batteries, alternator. Conditions likely \"after service\", \"charging\", maybe \"heat\" inferred? Must not invent. It says smoke came from under hood, burning electrics. Conditions explicitly: after service (recall), charging (alternator to charge house batteries), after 80 mile drive not in allowed list. Could include \"after service\" quote \"service recall was completed\". \"charging\" quote \"charge the house batteries\". Heat? burning not heat condition? Don't infer. Fault codes none. Safety_relevant true (fire, smoke, extinguisher). Missing info: mileage? Actually has 26,000 miles, so not missing. date? received_at and narrative 6/2025 but incident date not given. Conditions given. Component given. Symptom given. Missing_info maybe [\"date\"] because incident date missing. The schema says missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Mileage present. Date of incident absent. Could list date. Maybe also exact component? Given. So [\"date\"]. Need clues quotes verbatim from report. Need quote exact spans. We need ensure quotes copied exactly. Let's craft.\n\nSummary: \"2024 Winnebago Ekko 12V/24V/48V battery/alternator: burning electrics and smoke from under hood after 80-mile drive, following charge-capacity recall.\" But component is battery, narrative alternator. One line component symptom conditions. Need not overdo. \"Electrical system battery/alternator: burning smell and smoke from under hood after an 80-mile drive following a service recall.\" Good.\n\nGroup \"power_and_wiring\".\n\nSymptoms: [\"burning electrics smell\", \"smoke from under the hood\", \"alternator burning/fire\"] maybe \"smoke came from under the hood\" plain. \"burning electrics\" is quote. \"smoke from under hood\". \"fire extinguisher used on alternator\" is action not symptom. Use \"burning electrics\", \"smoke from under hood\". Also \"alternator fire/burning\" maybe from \"stop the burning\". Could include \"burning at alternator\". Need plain words. Fine.\n\nConditions: [\"after service\", \"charging\"] plus maybe \"after 80 mile drive\" not allowed list. The allowed conditions list includes cold moisture heat vibration intermittent after service charging. Report mentions after 80 mile drive but not in list. We can include only allowed. \"after service\" yes recall completed. \"charging\" yes alternator charge house batteries. Should we include \"heat\"? No. \"intermittent\"? no. \"vibration\"? no. Could include \"after service\" and \"charging\". Maybe condition \"after service\" because recall in 6/2025. \"charging\" because alternator charging. Good.\n\nFault_codes [].\n\nSafety_relevant true.\n\nMissing_info [\"date\"].\n\nClues array with kind and quote verbatim. Need exact quotes. Let's select:\n- component_group: \"ELECTRICAL SYSTEM:12V/24V/48V BATTERY\"? This is component field not narrative, but report includes it? User message includes JSON with component value. \"Read only report\". Quote from report can be from whole JSON? likely yes. But quote must be verbatim from report. Could quote component string. But maybe safer from narrative. For component_group clue quote \"second alternator\" or \"house batteries\". Component group is power_and_wiring given, but clue kind component_group quote \"house batteries\" or \"alternator\". Need quote exact. \"second alternator\" in narrative: \"includes standard a second alternator in the engine bay\". It's exact substring? Narrative has \"includes standard a second alternator in the engine bay manufactured by Balmer\". Yes \"second alternator\" exact. But component group is power/wiring, not necessarily. Use \"house batteries\" exact. Or \"12V/24V/48V BATTERY\" from component field. Hmm.\n\n- symptom: \"smelled burning electrics\" exact? Narrative: \"we smelled burning electrics and smoke came from under the hood.\" Quote \"smelled burning electrics\" exact. And \"smoke came from under the hood\" exact.\n- condition after service: \"A service recall was completed by Winnebago Authorized Dealer in 6/2025\" exact. This supports after service. \n- condition charging: \"charge the house batteries\" exact. Narrative: \"to charge the house batteries\". Quote exact.\n- safety: \"smoke came from under the hood\" and \"I applied a fire extinguisher from underneath on the alternator to stop the burning\" exact. Safety clue quote should mention fire/smoke. Use \"I applied a fire extinguisher from underneath on the alternator to stop the burning\" exact? Check narrative: \"I applied a fire extinguisher from underneath on the alternator to stop the burning and disconnected the alternator from the electrical system.\" Yes exact. \n- other: \"26,000 miles\" exact? Narrative \"Our vehicle has 26,000 miles\" exact. Not needed. \n- fault_code none.\n\nNeed ensure JSON valid no markdown? User says answer with one JSON object and no other text. Final should be raw JSON. Use proper escaping.\n\nNeed include summary one line. \"Electrical system battery/alternator: burning electrics smell and smoke from under hood after 80-mile drive following charge-capacity service recall.\" Conditions mention after service and charging? Summary can include. Good.\n\nPotential issue: component field \"ELECTRICAL SYSTEM:12V/24V/48V BATTERY\" but narrative about alternator. Group given power_and_wiring. Symptoms should reflect both. Missing_info: date incident missing. Maybe \"date\" only. Mileage present. Conditions present. Component present. Symptom present. Good.\n\nNeed maybe safety_relevant true because fire, smoke, extinguisher. Yes.\n\nLet's final JSON only. Ensure quotes exactly:\n1. \"smelled burning electrics\" — narrative \"we smelled burning electrics and smoke came from under the hood.\" yes.\n2. \"smoke came from under the hood\" yes.\n3. \"A service recall was completed by Winnebago Authorized Dealer in 6/2025\" — narrative exact: \"A service recall was completed by Winnebago Authorized Dealer in 6/2025 to reduce the charge capacity based on prior failures and fires in the alternator.\" yes.\n4. \"charge the house batteries\" — exact substring: \"to charge the house batteries\" yes.\n5. \"I applied a fire extinguisher from underneath on the alternator to stop the burning\" exact. yes.\n6. \"prior failures and fires in the alternator\" exact? Narrative \"based on prior failures and fires in the alternator.\" yes. This safety clue maybe. Use safety quote with fire extinguisher. Fine.\n7. \"house batteries\" exact.\n\nNeed kind \"condition\" for charging quote? \"charge the house batteries\" is condition? It indicates charging. Good. \"after service\" quote for recall. Good.\nCould include \"after an 80 mile drive\" condition quote but allowed conditions not include; clues kind condition can include? Conditions list only allowed values; clues can quote condition. But if not in conditions array maybe avoid. Could add condition \"after service\" only. But report also \"After an 80 mile drive\" could be condition but not in allowed list. The schema conditions enum list; should not include. In clues, kind condition can quote \"After an 80 mile drive\" maybe but then conditions array lacks. It's okay? Might confuse. Avoid.\n\nNeed final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793532503,
+      "id": "a621ab5250d1a5c20c941b8c3ca104da",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1889,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1680,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0007125,
+          "billing_source": "go",
+          "list_cost": 0.0011875,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 353,
+            "output": 1889,
+            "reasoning": 1680
+          }
+        },
+        "prompt_tokens": 737,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2626
+      }
+    },
+    "text": "{\"summary\":\"Electrical system battery/alternator: burning electrics smell and smoke from under hood after an 80-mile drive following a charge-capacity service recall.\",\"group\":\"power_and_wiring\",\"symptoms\":[\"burning electrics smell\",\"smoke from under the hood\",\"burning at the alternator\"],\"conditions\":[\"after service\",\"charging\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"smelled burning electrics\"},{\"kind\":\"symptom\",\"quote\":\"smoke came from under the hood\"},{\"kind\":\"condition\",\"quote\":\"A service recall was completed by Winnebago Authorized Dealer in 6/2025\"},{\"kind\":\"condition\",\"quote\":\"charge the house batteries\"},{\"kind\":\"safety\",\"quote\":\"I applied a fire extinguisher from underneath on the alternator to stop the burning\"},{\"kind\":\"component_group\",\"quote\":\"house batteries\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0007125,
+      "cached_tokens": 384,
+      "cost_usd": 0.0011875,
+      "input_tokens": 737,
+      "list_cost_usd": 0.0011875,
+      "output_tokens": 1889,
+      "reasoning_tokens": 1680
+    }
+  }
+}

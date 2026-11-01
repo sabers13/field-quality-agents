@@ -1,0 +1,66 @@
+{
+  "key": "f8c00cbc32181afa0aaff882e8c986358c2990ab6e4163eef53880f309b7c0fc",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9684,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Air bags: warning light illuminated and blinking while starting; diagnosed as air bags missing.\",\"group\":\"restraints\",\"symptoms\":[\"air bag warning light illuminated and blinking\",\"air bags missing\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"air bag warning light was illuminated and blinking\"},{\"kind\":\"condition\",\"quote\":\"while starting the vehicle\"},{\"kind\":\"safety\",\"quote\":\"air bags were missing\"}]}",
+            "reasoning_content": "We need answer only JSON object. Need parse report. Component AIR BAGS, group restraints. Summary one line component symptom conditions. Symptoms: air bag warning light illuminated and blinking; diagnosed air bags missing? Is \"air bags were missing\" symptom? Could include as symptom? Need plain words. Conditions: while starting vehicle. Safety relevant? Report mentions air bag warning light blinking, air bags missing. Does that count safety risk? The prompt says safety_relevant when mentions crash fire smoke injury loss control stall at speed or another risk to people. Missing air bags is safety risk? Air bags missing is safety-relevant restraint defect. But input has safety_relevant false from source, but we need set? It says set when report mentions ... another risk to people. Air bags missing could be risk to people. Need decide. Likely true because air bags missing is safety risk. But rules only mention crash/fire/smoke/injury/loss of control/stall at speed or another risk to people. Missing airbags is another risk. So true. Fault_codes none. Missing_info? component given, symptom given, conditions given, mileage given, date given. Empty. Clues verbatim quotes. Need ensure quotes exact from narrative. Quotes:\n- \"air bag warning light was illuminated and blinking\" exact substring? Narrative: \"the air bag warning light was illuminated and blinking.\" yes.\n- \"while starting the vehicle\" exact.\n- \"air bags were missing\" exact.\n- component group maybe \"AIR BAGS\" appears in component not narrative? Rule quote copied from report. The report includes component field \"AIR BAGS\". Is that allowed? \"from the report\" yes entire JSON. But quote must be verbatim span. Could use \"AIR BAGS\". But clues kind component_group quote \"AIR BAGS\". Also safety clue quote \"air bags were missing\" kind safety? Could be safety. Need no duplicate? Fine.\n\nSummary: \"Air bags: warning light illuminated and blinking while starting; diagnosed air bags missing.\" One line.\n\nSymptoms: [\"air bag warning light illuminated\", \"air bag warning light blinking\", \"air bags missing\"]? Is missing a symptom? It's a finding. But symptom in plain words can include. Maybe symptoms array should only symptom: warning light illuminated and blinking. Include \"air bags missing\" as other? Hmm. The schema symptoms for symptom in plain words. Air bags missing is condition/finding not symptom. But summary mentions. Could include as symptom because report symptom? Better include \"air bag warning light illuminated and blinking\" and maybe \"air bags reported missing\". But plain words. Let's keep symptoms [\"air bag warning light illuminated and blinking\", \"air bags missing\"]? The analysis may want. However \"missing\" is not a symptom, but useful. Clues kind symptom can quote both? Need consistent.\n\nConditions array allowed values: cold, moisture, heat, vibration, intermittent, after service, charging. While starting is not one of these. Conditions should be [] because no listed condition. But schema says conditions [\"cold\", ...]. Could include \"intermittent\"? Blinking is intermittent? No, not necessarily. Do not invent. Conditions empty. But prompt summary includes conditions (while starting). Conditions array maybe empty. Missing_info? Conditions given? They gave while starting but not listed condition. No missing.\n\nSafety_relevant true. Clues include safety quote \"air bags were missing\". But if safety_relevant true, evidence. Also quote \"air bag warning light was illuminated and blinking\" symptom. Quote \"while starting the vehicle\" condition? Kind condition though not in allowed condition list? kind condition can quote condition even if not array? Fine. Component group quote \"AIR BAGS\".\n\nNeed JSON only no markdown. Ensure valid JSON. Use exact quotes. Let's craft.\n\nNeed \"summary\": \"Air bags: warning light illuminated and blinking while starting; diagnosed as air bags missing.\" It says one line: component, symptom, conditions. Good.\n\ngroup \"restraints\".\n\nsymptoms: [\"air bag warning light illuminated\", \"air bag warning light blinking\", \"air bags missing\"]? The quote \"air bag warning light was illuminated and blinking\" is one symptom. But array can split. Plain words: \"air bag warning light illuminated and blinking\"; \"air bags missing\". Good.\n\nfault_codes: [].\n\nsafety_relevant true.\n\nmissing_info [].\n\nclues:\n{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"}\n{\"kind\":\"symptom\",\"quote\":\"air bag warning light was illuminated and blinking\"}\n{\"kind\":\"condition\",\"quote\":\"while starting the vehicle\"}\n{\"kind\":\"safety\",\"quote\":\"air bags were missing\"}\nMaybe {\"kind\":\"symptom\",\"quote\":\"air bags were missing\"} too? Could include same quote twice with different kind? It says clues list kind. Better one safety. But symptoms array includes missing; evidence for symptom missing is safety clue? Maybe add symptom clue \"air bags were missing\" and safety clue same quote? Duplicate quotes allowed? Not prohibited. But could be redundant. Maybe use kind \"symptom\" for missing and safety_relevant true supported by same? Hmm. Safety clue should explicitly quote risk. Add safety. The missing symptom quote can be same. But duplicate quote in two clues okay? I think yes but maybe unnecessary. Use only safety clue for missing. Symptoms array can have missing, not necessarily every symptom has clue? It's okay.\n\nNeed quote \"air bags were missing\" exact? Narrative: \"determined that the air bags were missing.\" yes substring \"air bags were missing\" exact.\n\nWord \"air bag\" singular in warning light quote. Good.\n\nNeed no other text. Final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793527462,
+      "id": "c471f4dd183252ca4929e52a2352ff8b",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1295,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1168,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00048462,
+          "billing_source": "go",
+          "list_cost": 0.0008077,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 197,
+            "output": 1295,
+            "reasoning": 1168
+          }
+        },
+        "prompt_tokens": 581,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1876
+      }
+    },
+    "text": "{\"summary\":\"Air bags: warning light illuminated and blinking while starting; diagnosed as air bags missing.\",\"group\":\"restraints\",\"symptoms\":[\"air bag warning light illuminated and blinking\",\"air bags missing\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"air bag warning light was illuminated and blinking\"},{\"kind\":\"condition\",\"quote\":\"while starting the vehicle\"},{\"kind\":\"safety\",\"quote\":\"air bags were missing\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00048462,
+      "cached_tokens": 384,
+      "cost_usd": 0.0008077,
+      "input_tokens": 581,
+      "list_cost_usd": 0.0008077,
+      "output_tokens": 1295,
+      "reasoning_tokens": 1168
+    }
+  }
+}

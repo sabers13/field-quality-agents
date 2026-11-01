@@ -1,0 +1,66 @@
+{
+  "key": "1424f0a7e10a6aba3abd77fa27021b8e22756cae20218e36cabfe3a77b921d8c",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 7553,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Instrument panel speedometer/odometer; mileage discrepancy/odometer fraud reported after a private sale; no operating conditions stated.\",\"group\":\"instrumentation\",\"symptoms\":[\"mileage discrepancy\",\"odometer fraud\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\"},{\"kind\":\"symptom\",\"quote\":\"Odometer Fraud\"},{\"kind\":\"symptom\",\"quote\":\"mileage discrepancy\"},{\"kind\":\"other\",\"quote\":\"private sale\"},{\"kind\":\"other\",\"quote\":\"At the time of purchase, the vehicle mileage was 193,786\"},{\"kind\":\"other\",\"quote\":\"Title mileage was 211,529\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize report. Component electrical instrument panel speedometer/odometer. Group instrumentation given. Symptoms: mileage discrepancy, odometer fraud? Need plain words. Conditions: maybe none? \"after purchase\"? Conditions allowed list: cold, moisture, heat, vibration, intermittent, after service, charging. Report doesn't mention those. Could include? No. Fault codes none. Safety false. Missing info? Component given, symptom given. Mileage present (211529, and purchase 193786), date? received_at date, but incident/purchase date missing? The analysis needs date maybe date of purchase/discovery? Missing_info list only facts analysis needs: component, symptom, conditions, mileage, date. Mileage present, component/symptom present, conditions not applicable? Date maybe missing? Report has received_at but no purchase date or discovery date. Could list \"date\". But need not overdo. Since report is odometer fraud, conditions not relevant. Missing_info maybe [\"date\"] because date of purchase/discovery not specified. Is that important? Maybe yes. But instructions: list only facts analysis needs. For mileage discrepancy, date of purchase/discovery could matter. Include date. Maybe also \"conditions\"? No, conditions not relevant to fraud. Could include \"date\". Need clues with verbatim quotes. Include symptom quote \"mileage discrepancy\", \"Odometer Fraud\", maybe \"Title mileage was 211,529\" fault code? no. component_group quote? \"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\" in report? It is in component field, yes report includes? User message includes JSON with component value. Verbatim span from report. Clues can quote from entire report. Include kind symptom quote \"mileage discrepancy\"; condition? \"private sale\" is condition? Not in allowed list? kind condition can quote \"private sale\"? Conditions array only listed allowed categories? We can include conditions as [] because none of enumerated. Clue kind other for \"private sale\" maybe. Safety false no clue. Fault codes none.\n\nNeed summary one line: component, symptom, conditions. E.g. \"Instrument panel speedometer/odometer; mileage discrepancy/odometer fraud after private sale; no operating conditions reported.\" Conditions none. Keep one line.\n\nJSON valid. No other text.\n\nNeed ensure safety_relevant false. Clues quotes exact:\n- \"Odometer Fraud\" exact.\n- \"mileage discrepancy\" exact (in \"discovered a mileage discrepancy\")\n- \"At the time of purchase, the vehicle mileage was 193,786.\" exact.\n- \"Title mileage was 211,529.\" exact? report says \"the Title mileage was 211,529.\" Quote \"Title mileage was 211,529\" exact substring yes.\n- \"private sale\" exact.\n\nCould include component_group quote \"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\".\n\nMissing_info: [\"date\"] maybe. Need not include conditions because none. But if no conditions mentioned, missing_info could include \"conditions\"? For fraud, conditions irrelevant. But schema says missing_info facts analysis needs: component, symptom, conditions, mileage, date. Conditions missing? The report has no environmental/operating conditions. However for odometer fraud, conditions might not be necessary. But initial prompt wants normalise field-quality report; could list missing_info [\"date\"] only. Date: received_at is 2025-08-26, but purchase date missing. That's a date. Is \"date\" missing? The report has received_at, but not event date. I'd include \"date\" to be safe. Maybe \"conditions\" not needed. Ensure no suggestions.\n\nNeed answer only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529787,
+      "id": "b766b46379f2295c879d4aff395c9195",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 954,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 773,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00036069,
+          "billing_source": "go",
+          "list_cost": 0.00060115,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 184,
+            "output": 954,
+            "reasoning": 773
+          }
+        },
+        "prompt_tokens": 568,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1522
+      }
+    },
+    "text": "{\"summary\":\"Instrument panel speedometer/odometer; mileage discrepancy/odometer fraud reported after a private sale; no operating conditions stated.\",\"group\":\"instrumentation\",\"symptoms\":[\"mileage discrepancy\",\"odometer fraud\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\"},{\"kind\":\"symptom\",\"quote\":\"Odometer Fraud\"},{\"kind\":\"symptom\",\"quote\":\"mileage discrepancy\"},{\"kind\":\"other\",\"quote\":\"private sale\"},{\"kind\":\"other\",\"quote\":\"At the time of purchase, the vehicle mileage was 193,786\"},{\"kind\":\"other\",\"quote\":\"Title mileage was 211,529\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00036069,
+      "cached_tokens": 384,
+      "cost_usd": 0.00060115,
+      "input_tokens": 568,
+      "list_cost_usd": 0.00060115,
+      "output_tokens": 954,
+      "reasoning_tokens": 773
+    }
+  }
+}

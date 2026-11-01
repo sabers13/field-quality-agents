@@ -1,0 +1,66 @@
+{
+  "key": "eceea754e712ca212e186f3dde22f6a00500e1d98fd39e4181c9546ce4dda322",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 6500,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"2018 Honda Odyssey ADAS lane-departure warning: six dash error lights (road departure mitigation, auto high-beam, collision mitigation, lane keeping assist, adaptive cruise) appeared after a rear-end collision and persisted after body repair\",\n  \"group\": \"adas\",\n  \"symptoms\": [\n    \"six error lights on the dashboard\",\n    \"road departure mitigation system problem message\",\n    \"auto high-beam problem message\",\n    \"collision mitigation system problem message\",\n    \"lane keeping assist problem message\",\n    \"adaptive cruise control problem message\"\n  ],\n  \"conditions\": [\"after service\"],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\"mileage\"],\n  \"clues\": [\n    {\"kind\": \"symptom\", \"quote\": \"I have 6 error lights on my dash board\"},\n    {\"kind\": \"symptom\", \"quote\": \"Road departure mitigation system problem\"},\n    {\"kind\": \"symptom\", \"quote\": \"auto high-beam problem\"},\n    {\"kind\": \"symptom\", \"quote\": \"collision mitigation system problem\"},\n    {\"kind\": \"symptom\", \"quote\": \"lane keeping assist problem\"},\n    {\"kind\": \"symptom\", \"quote\": \"cruise control problem\"},\n    {\"kind\": \"condition\", \"quote\": \"My car was rear ended\"},\n    {\"kind\": \"condition\", \"quote\": \"After my car was rear ended these error message came up\"},\n    {\"kind\": \"condition\", \"quote\": \"They fixed the car\"},\n    {\"kind\": \"safety\", \"quote\": \"My car was rear ended from an insured from Utica National insurance group\"},\n    {\"kind\": \"component_group\", \"quote\": \"lane keeping assist\"}\n  ]\n}",
+            "reasoning_content": "Let me produce the JSON.\n\nComponent: LANE DEPARTURE: WARNING, group adas. Symptoms: six error lights, road departure mitigation system problem, auto high-beam problem, collision mitigation system problem, lane keeping assist problem, adaptive cruise control problem. Conditions: after service? It's after a rear-end collision — that's a condition; but the allowed conditions list: cold, moisture, heat, vibration, intermittent, after service, charging. \"after service\" could apply since car was fixed. Hmm, the collision happened then repaired. I'd include \"after service\" since the car was repaired. Conditions list is constrained to those options. I'll include \"after service\".\n\nSafety relevant: true (given, and rear-ended). Actually the rule: safety_relevant when report mentions crash, fire... rear-end collision = crash. Yes.\n\nMissing info: mileage is null → \"mileage\". Date? received_at exists. Conditions? provided. So missing_info: [\"mileage\"]. Possibly \"date\" - no, received_at is fine.\n\nClues with verbatim quotes. Note the narrative contains a curly apostrophe: \"Ada pat I\\u2019ve cruise control problem.\" I should quote verbatim. Be careful — quoting a span containing the curly apostrophe must be exact. I'll avoid that. Use \"lane keeping assist problem\", \"collision mitigation system problem\", \"Road departure mitigation system problem\", \"auto high-beam problem\", \"My car was rear ended\", \"After my car was rear ended these error message came up\", \"I have 6 error lights on my dash board\".\n\nfault_codes: none.\n\nSummary one line.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531823,
+      "id": "c04717fabb5ef3acaeacfd4171382b5a",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 716,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 338,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00027672,
+          "billing_source": "go",
+          "list_cost": 0.0004612,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 203,
+            "output": 716,
+            "reasoning": 338
+          }
+        },
+        "prompt_tokens": 587,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1303
+      }
+    },
+    "text": "{\n  \"summary\": \"2018 Honda Odyssey ADAS lane-departure warning: six dash error lights (road departure mitigation, auto high-beam, collision mitigation, lane keeping assist, adaptive cruise) appeared after a rear-end collision and persisted after body repair\",\n  \"group\": \"adas\",\n  \"symptoms\": [\n    \"six error lights on the dashboard\",\n    \"road departure mitigation system problem message\",\n    \"auto high-beam problem message\",\n    \"collision mitigation system problem message\",\n    \"lane keeping assist problem message\",\n    \"adaptive cruise control problem message\"\n  ],\n  \"conditions\": [\"after service\"],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\"mileage\"],\n  \"clues\": [\n    {\"kind\": \"symptom\", \"quote\": \"I have 6 error lights on my dash board\"},\n    {\"kind\": \"symptom\", \"quote\": \"Road departure mitigation system problem\"},\n    {\"kind\": \"symptom\", \"quote\": \"auto high-beam problem\"},\n    {\"kind\": \"symptom\", \"quote\": \"collision mitigation system problem\"},\n    {\"kind\": \"symptom\", \"quote\": \"lane keeping assist problem\"},\n    {\"kind\": \"symptom\", \"quote\": \"cruise control problem\"},\n    {\"kind\": \"condition\", \"quote\": \"My car was rear ended\"},\n    {\"kind\": \"condition\", \"quote\": \"After my car was rear ended these error message came up\"},\n    {\"kind\": \"condition\", \"quote\": \"They fixed the car\"},\n    {\"kind\": \"safety\", \"quote\": \"My car was rear ended from an insured from Utica National insurance group\"},\n    {\"kind\": \"component_group\", \"quote\": \"lane keeping assist\"}\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00027672,
+      "cached_tokens": 384,
+      "cost_usd": 0.0004612,
+      "input_tokens": 587,
+      "list_cost_usd": 0.0004612,
+      "output_tokens": 716,
+      "reasoning_tokens": 338
+    }
+  }
+}

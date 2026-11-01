@@ -1,0 +1,66 @@
+{
+  "key": "669689226f44fcb6316cb2e654275215e64a0cb065fef0785c360b1195ef0785",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12464,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\": \"Electrical system: multiple warning lights including check engine light on startup; cylinder misfire from carbon buildup; dealer deems car not safe to drive.\", \"group\": \"electrical_general\", \"symptoms\": [\"multiple warning lights including check engine light appeared on startup\", \"misfire in one cylinder due to carbon buildup\"], \"conditions\": [], \"fault_codes\": [], \"safety_relevant\": true, \"missing_info\": [\"date\", \"conditions\"], \"clues\": [{\"kind\": \"component_group\", \"quote\": \"ELECTRICAL SYSTEM\"}, {\"kind\": \"condition\", \"quote\": \"upon starting the car\"}, {\"kind\": \"symptom\", \"quote\": \"multiple warning lights, including check engine light, appeared\"}, {\"kind\": \"symptom\", \"quote\": \"misfire in one cylinder due to carbon buildup\"}, {\"kind\": \"safety\", \"quote\": \"Car is deemed not safe to drive by dealer until issue is remedied.\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize report. Need read only report. Need not invent. Need determine summary one line component symptom conditions. Group given \"electrical_general\" likely use given group. Symptoms plain words: multiple warning lights including check engine light appeared upon starting; misfire in one cylinder due carbon buildup; deemed not safe to drive by dealer. Conditions? \"upon starting the car\" maybe condition? Allowed conditions list: cold, moisture, heat, vibration, intermittent, after service, charging. None explicitly. We can include none? The schema conditions array. Could maybe \"intermittent\"? No. We shouldn't invent. Conditions empty. Fault codes none named. safety_relevant: The report says \"Car is deemed not safe to drive by dealer until issue is remedied.\" This is risk to people? It mentions not safe to drive, which is safety relevant. Set true. Missing_info: mileage? It says less than 16k miles over 6 years, but mileage null in metadata. Narrative gives approximate mileage \"less than 16k miles\"; but missing exact mileage? The analysis needs mileage maybe exact. But report has less than 16k. We can list \"mileage\" because exact mileage missing? \"date\" received_at present but incident date missing. Conditions missing. Component given. Symptom present. Need missing_info only facts analysis needs: component symptom conditions mileage date. Use [\"mileage\",\"date\",\"conditions\"]? Mileage approximate is given but not exact; date of incident missing. Conditions (when/how) missing except starting. Could include. But careful no invent. The report says \"One day\" no date. Mileage approximate. So missing exact mileage and date. Conditions maybe not specified beyond starting. I think list [\"mileage\",\"date\",\"conditions\"]. But if mileage has \"less than 16k miles\" maybe not missing? The field mileage null, but narrative says less than 16k. Analysis can use approximate. Missing exact mileage maybe okay. Desired not overdo. Could list [\"date\",\"conditions\"] maybe mileage not missing because approximate. Hmm.\n\nNeed clues with verbatim quotes. Need exact spans from narrative. Quotes:\n- \"multiple warning lights, including check engine light, appeared\" (verbatim? narrative: \"multiple warning lights, including check engine light, appeared.\" yes)\n- \"misfire in one cylinder due to carbon buildup\" verbatim.\n- \"upon starting the car\" verbatim.\n- \"Car is deemed not safe to drive by dealer until issue is remedied.\" verbatim.\n- Maybe component group quote \"ELECTRICAL SYSTEM\" from component. Kind component_group. Quote exact \"ELECTRICAL SYSTEM\".\n- Safety clue quote \"Car is deemed not safe to drive by dealer until issue is remedied.\" kind safety.\nNeed quote character for character. Check punctuation. Narrative: \"Vehicle has less than 16k miles over 6 years of ownership. One day, upon starting the car, multiple warning lights, including check engine light, appeared. Dealer stated after diagnostic that issue is due to misfire in one cylinder due to carbon buildup. This is a known issue with this model, and several repair bulletins have been made about this specific issue. Certain VINs were given an extended warranty to fix this problem, but despite having this exact issue and my VIN being mentioned in the repair bulletin, my car is not covered, forcing me to pay out of pocket for this known issue. Car is deemed not safe to drive by dealer until issue is remedied.\"\n\nQuote \"upon starting the car\" yes. \"multiple warning lights, including check engine light, appeared\" yes. \"misfire in one cylinder due to carbon buildup\" yes. \"Car is deemed not safe to drive by dealer until issue is remedied.\" yes.\n\nSummary: \"Electrical system: multiple warning lights including check engine light on startup; cylinder misfire from carbon buildup; dealer says not safe to drive.\" One line. Is \"electrical system\" component but issue is misfire. Use given. Conditions maybe \"startup\" not in allowed? Summary can. Conditions array empty or maybe [\"after service\"]? No. \"upon starting\" not condition list. Could condition \"intermittent\"? No. No.\n\nsafety_relevant true because not safe to drive. This might be borderline but rule says risk to people; dealer deems not safe to drive. Good.\n\nGroup: \"electrical_general\" exactly. Could maybe actual component group? Given group. Use given.\n\nMissing_info: Need decide. The report has mileage \"less than 16k miles\" and year. Date missing for incident, only received_at. Conditions missing. I'll output [\"date\",\"conditions\",\"mileage\"]? Hmm \"mileage\" null but narrative approximate. Since analysis needs mileage and exact is missing. But missing_info only facts analysis needs. I'd include \"mileage\" because exact not given, but it gives less than 16k. It could be considered present approximate. The prompt says list missing_info only facts analysis needs; use empty when nothing important missing. Conditions not specified beyond startup; date not specified. Mileage approximate. I'd include [\"date\",\"conditions\"] to avoid claiming mileage missing when approximate present. But the JSON input mileage null, yet narrative says less than 16k. Hmm.\n\nNeed no other text. Ensure JSON valid. Quotes exact. Could include fault_codes empty.\n\nLet's craft. Summary one line. \"Electrical system: multiple warning lights including check engine light on startup; cylinder misfire from carbon buildup; dealer deems car not safe to drive.\" Good.\n\nSymptoms: [\"multiple warning lights including check engine light appeared on startup\", \"misfire in one cylinder due to carbon buildup\", \"vehicle deemed not safe to drive by dealer\"]. Is \"deemed not safe\" a symptom? It is condition/risk. But okay symptom? Maybe not. Symptoms should plain words. Include first two; safety clue separately. But summary includes not safe. I'll include \"multiple warning lights including check engine light appeared on startup\", \"misfire in one cylinder due to carbon buildup\". Not include unsafe as symptom.\n\nConditions: [] since none of allowed. But \"upon starting\" not in list. Could not include. If conditions missing list includes conditions. Good.\n\nClues:\n- component_group: \"ELECTRICAL SYSTEM\"\n- condition? \"upon starting the car\" kind condition? Although condition array doesn't include startup. The clue kind condition can quote. But allowed condition list lacks startup. Should we include clue kind condition with quote \"upon starting the car\"? It is a condition (startup) but not in array. The rules say conditions array allowed values. Clue kind can be condition. Fine. But maybe no.\n- symptom quote for warning lights.\n- symptom quote for misfire.\n- safety quote.\n- other quote \"known issue with this model\" maybe not needed. Could include \"several repair bulletins have been made about this specific issue\" as other. Not necessary.\n\nNeed every quote verbatim. \"multiple warning lights, including check engine light, appeared\" yes. \"misfire in one cylinder due to carbon buildup\" yes. \"Car is deemed not safe to drive by dealer until issue is remedied.\" yes. \"upon starting the car\" yes. \"ELECTRICAL SYSTEM\" yes.\n\nFinal only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529863,
+      "id": "c59eb330ea3668f54cb53ada6ae0078b",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1729,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1519,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00064482,
+          "billing_source": "go",
+          "list_cost": 0.0010747,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 241,
+            "output": 1729,
+            "reasoning": 1519
+          }
+        },
+        "prompt_tokens": 625,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2354
+      }
+    },
+    "text": "{\"summary\": \"Electrical system: multiple warning lights including check engine light on startup; cylinder misfire from carbon buildup; dealer deems car not safe to drive.\", \"group\": \"electrical_general\", \"symptoms\": [\"multiple warning lights including check engine light appeared on startup\", \"misfire in one cylinder due to carbon buildup\"], \"conditions\": [], \"fault_codes\": [], \"safety_relevant\": true, \"missing_info\": [\"date\", \"conditions\"], \"clues\": [{\"kind\": \"component_group\", \"quote\": \"ELECTRICAL SYSTEM\"}, {\"kind\": \"condition\", \"quote\": \"upon starting the car\"}, {\"kind\": \"symptom\", \"quote\": \"multiple warning lights, including check engine light, appeared\"}, {\"kind\": \"symptom\", \"quote\": \"misfire in one cylinder due to carbon buildup\"}, {\"kind\": \"safety\", \"quote\": \"Car is deemed not safe to drive by dealer until issue is remedied.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00064482,
+      "cached_tokens": 384,
+      "cost_usd": 0.0010747,
+      "input_tokens": 625,
+      "list_cost_usd": 0.0010747,
+      "output_tokens": 1729,
+      "reasoning_tokens": 1519
+    }
+  }
+}

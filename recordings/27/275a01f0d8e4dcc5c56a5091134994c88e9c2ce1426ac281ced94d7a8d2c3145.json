@@ -1,0 +1,66 @@
+{
+  "key": "275a01f0d8e4dcc5c56a5091134994c88e9c2ce1426ac281ced94d7a8d2c3145",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 8411,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Visibility/wiper body control: panoramic glass sliding plastic brackets broke off while driving at 25-35 mph, lifting the glass off the vehicle and risking detached glass flying into the roadway.\",\"group\":\"body_controls\",\"symptoms\":[\"panoramic glass sliding plastic brackets broke off\",\"glass lifted off the vehicle\",\"detached glass could fly into the roadway\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"VISIBILITY/WIPER\"},{\"kind\":\"symptom\",\"quote\":\"Panoramic glass sliding plastic brackets broke off while driving at 25-35 mph\"},{\"kind\":\"symptom\",\"quote\":\"Lifting up the glass off the vehicle.\"},{\"kind\":\"condition\",\"quote\":\"while driving at 25-35 mph\"},{\"kind\":\"safety\",\"quote\":\"flying off into the roadway injuring or killing someone\"}]}",
+            "reasoning_content": "We need answer JSON only. Need parse report. Component VISIBILITY/WIPER group body_controls. Narrative: panoramic glass sliding plastic brackets broke off while driving 25-35 mph. Lifting glass off vehicle. Quick reaction saved large detached glass from flying off into roadway injuring or killing someone. Vehicle 5 years old out of warranty. Dealer estimate repair cost $2500. Safety relevant? Mentions injuring or killing someone, detached glass flying into roadway, loss? Yes risk to people. Even source says safety_relevant false but report mentions injury/killing. Set true. Summary one line component symptom conditions. Symptoms: panoramic glass sliding plastic brackets broke off; glass detached/lifting off vehicle. Conditions: driving at 25-35 mph. Maybe vibration? Not explicit. \"while driving\" not condition list? conditions allowed cold moisture heat vibration intermittent after service charging. Driving speed not in list; maybe no conditions? But conditions array should include conditions from allowed list, only if report. It mentions driving at 25-35 mph, not listed. Could include \"vibration\"? Not stated. \"intermittent\"? no. So conditions empty. Fault codes none. missing_info: mileage null, date? received_at exists but event date missing? \"date\" missing? Narrative no date. The analysis needs component, symptom, conditions, mileage, date. Component exists, symptom exists, conditions maybe speed but date missing, mileage missing. Date: received_at 2025-06-06 but not incident date. Should list \"mileage\", \"date\". Maybe conditions? It gives driving at 25-35 mph so conditions present. missing_info [\"mileage\",\"date\"]. Clues: symptom quote \"Panoramic glass sliding plastic brackets broke off while driving at 25-35 mph\" exact? Narrative starts \"Panoramic glass sliding plastic brackets broke off while driving at 25-35 mph Lifting up...\" Yes quote can be that. symptom quote \"Lifting up the glass off the vehicle.\" exact? Narrative \"Lifting up the glass off the vehicle.\" yes. condition quote \"while driving at 25-35 mph\" is substring of first. component_group quote \"VISIBILITY/WIPER\"? That's component field not narrative but report includes. \"quote copied verbatim from report\" includes all fields? likely yes. Use quote \"VISIBILITY/WIPER\". safety quote \"injuring or killing someone\" exact substring? Narrative \"injuring or killing someone.\" yes. Also \"flying off into the roadway\". Need clues kind safety. Other quote dealer cost? Not needed. Need summary one line: \"Visibility/wiper (body controls): panoramic glass sliding plastic brackets broke off while driving at 25-35 mph, glass lifted off vehicle; risk of detached glass flying into roadway.\" That's one line maybe semicolon. Group \"body_controls\". Symptoms plain words: \"panoramic glass sliding plastic brackets broke off\", \"glass lifted off the vehicle\", \"glass detached and could fly into roadway\" maybe symptom. But quote only evidence. Conditions array: []? The report mentions \"while driving at 25-35 mph\"; allowed conditions list doesn't include speed. Could include no conditions. But conditions maybe \"vibration\" implied? No. Keep [].\n\nNeed JSON no other text. Ensure valid. safety_relevant true. missing_info include mileage date. Maybe \"conditions\" missing? Since only speed, no weather etc. But analysis needs conditions maybe not fully missing? I'd list mileage/date only. Clues include component group. For fault_code none.\n\nNeed be careful verbatim exact: narrative: \"Panoramic glass sliding plastic brackets broke off while driving at 25-35 mph Lifting up the glass off the vehicle. Quick reaction saved the large detached glass from flying off into the roadway injuring or killing someone. Vehicle was 5 years old and out of warranty. Dealer estimated repair cost at $2500\"\n\nQuote \"Panoramic glass sliding plastic brackets broke off while driving at 25-35 mph\" exact yes no period? It is followed by \" Lifting\", no period. Good.\nQuote \"Lifting up the glass off the vehicle.\" exact yes includes period.\nQuote \"flying off into the roadway injuring or killing someone\" exact substring? Narrative has \"from flying off into the roadway injuring or killing someone.\" yes substring without period. Good.\nQuote \"VISIBILITY/WIPER\" exact from component.\nMaybe quote \"Panoramic glass\" for component? no.\n\nNeed final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793527523,
+      "id": "862731eb3d5ec8467b2d767e8b3d7ff6",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1145,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 937,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00042837,
+          "billing_source": "go",
+          "list_cost": 0.00071395,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 172,
+            "output": 1145,
+            "reasoning": 937
+          }
+        },
+        "prompt_tokens": 556,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1701
+      }
+    },
+    "text": "{\"summary\":\"Visibility/wiper body control: panoramic glass sliding plastic brackets broke off while driving at 25-35 mph, lifting the glass off the vehicle and risking detached glass flying into the roadway.\",\"group\":\"body_controls\",\"symptoms\":[\"panoramic glass sliding plastic brackets broke off\",\"glass lifted off the vehicle\",\"detached glass could fly into the roadway\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"VISIBILITY/WIPER\"},{\"kind\":\"symptom\",\"quote\":\"Panoramic glass sliding plastic brackets broke off while driving at 25-35 mph\"},{\"kind\":\"symptom\",\"quote\":\"Lifting up the glass off the vehicle.\"},{\"kind\":\"condition\",\"quote\":\"while driving at 25-35 mph\"},{\"kind\":\"safety\",\"quote\":\"flying off into the roadway injuring or killing someone\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00042837,
+      "cached_tokens": 384,
+      "cost_usd": 0.00071395,
+      "input_tokens": 556,
+      "list_cost_usd": 0.00071395,
+      "output_tokens": 1145,
+      "reasoning_tokens": 937
+    }
+  }
+}

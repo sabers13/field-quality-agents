@@ -1,0 +1,66 @@
+{
+  "key": "c3d871a365f6d5a4d7b8b7c6fe05e71605264a7c5739264d87f11ecc2a93a7b4",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 18392,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Air bag side airbag deployment in a side collision; officer sustained thermal burns from the exhaust port and third-degree burns requiring surgery and skin graft.\",\"group\":\"restraints\",\"symptoms\":[\"side airbag deployed\",\"thermal burns from exhaust port\",\"third-degree burns requiring surgery and skin graft\"],\"conditions\":[\"heat\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"THE COLLISION CAUSED THE SIDE AIRBAG TO DEPLOY.\"},{\"kind\":\"condition\",\"quote\":\"SUFFERED THERMAL BURNS FROM THE EXHAUST PORT.\"},{\"kind\":\"symptom\",\"quote\":\"THE OFFICER SUFFERED 3RD DEGREE BURNS AND HAD TO HAVE SURGERY AND SKIN GRAFT.\"},{\"kind\":\"safety\",\"quote\":\"THE OFFICER SUFFERED 3RD DEGREE BURNS\"},{\"kind\":\"other\",\"quote\":\"A UPS TRUCK COLLIDED WITH IT'S RIGHT SIDE FORWARD.\"}]}",
+            "reasoning_content": "We need answer one JSON object no other text. Need normalize report. Need include summary one line component symptom conditions. Group restraints given. Symptoms plain words: side airbag deployed, thermal burns from exhaust port, third degree burns surgery skin graft. Conditions: collision? list allowed conditions: cold, moisture, heat, vibration, intermittent, after service, charging. Heat maybe thermal burns, collision not in allowed conditions? The schema conditions array says [\"cold\",\"moisture\",\"heat\",\"vibration\",\"intermittent\",\"after service\",\"charging\"]. We should only choose from these? It says conditions list; likely include heat because thermal burns/exhaust port. Maybe \"after service\" no. \"vibration\" no. So [\"heat\"]. Fault codes none. safety_relevant true. missing_info: mileage is null, date? received_at exists but incident date absent. Component present, symptom present, conditions? maybe conditions missing? The report gives collision conditions but not cold/moisture etc. Need list only facts analysis needs. Mileage missing, date (incident date) missing. Conditions? It mentions collision but not environmental. Could include \"conditions\" missing? But conditions maybe enough. Need clues with verbatim quotes. Need ensure quotes exact. Report narrative: \"POLICE VEHICLE WAS CLEARING INTERSECTIO WHEN A UPS TRUCK COLLIDED WITH IT'S RIGHT SIDE FORWARD. THE COLLISION CAUSED THE SIDE AIRBAG TO DEPLOY. THE OFFICER'S VEST, SWEATER, UNDERSHIRT, T-SHIRT AND THE OFFICER'S RIGHT SIDE SUFFERED THERMAL BURNS FROM THE EXHAUST PORT. THE OFFICER SUFFERED 3RD DEGREE BURNS AND HAD TO HAVE SURGERY AND SKIN GRAFT.\" Component field \"AIR BAGS\". Group \"restraints\". Need quotes verbatim spans. For symptom: \"THE SIDE AIRBAG TO DEPLOY\" or \"SUFFERED THERMAL BURNS FROM THE EXHAUST PORT\" and \"SUFFERED 3RD DEGREE BURNS\". Safety: \"THE OFFICER SUFFERED 3RD DEGREE BURNS\" maybe injury. condition: \"THERMAL BURNS FROM THE EXHAUST PORT\" indicates heat. component_group quote \"AIR BAGS\" from component? Quote must be in report. Is \"AIR BAGS\" in report? The report in user message includes component field \"AIR BAGS\" yes not narrative but report JSON. It says quote copied from report; okay. But maybe safer quote narrative only? Component group clue quote \"AIR BAGS\" is in report JSON. Fine. fault_code none.\n\nNeed summary: \"2022 Ford Explorer air bag: side airbag deployed in side collision; officer sustained thermal and third-degree burns from exhaust port requiring surgery and skin graft.\" This is one line. Include conditions? \"side collision\" isn't allowed condition but summary can mention. Conditions array [\"heat\"] only. Does \"collision\" count condition? The allowed list doesn't include collision. But maybe conditions can include \"collision\"? The prompt says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"], likely fixed. Don't invent. \"heat\" appropriate.\n\nNeed missing_info maybe [\"mileage\",\"date\"] because mileage null and date is received_at not incident date. Could include \"conditions\" because no environmental conditions? But report has collision. Hmm. The analysis needs conditions; but we have a condition (heat) from thermal burns. Not missing. Use [\"mileage\",\"date\"]. Date: received_at is date report received; incident date missing. Good.\n\nNeed JSON exactly. No markdown? They say answer with one JSON object and no other text. We can output raw JSON. Ensure valid JSON. Use double quotes. Quotes verbatim. Need maybe include \"other\" clue for collision? \"A UPS TRUCK COLLIDED WITH IT'S RIGHT SIDE FORWARD\". Kind condition? Conditions allowed only cold etc, but clue kind \"condition\" could be collision? But conditions array not include. Maybe clue kind \"other\" for collision. But clues can have condition kind. Yet conditions array only fixed. We can include condition clue \"THERMAL BURNS FROM THE EXHAUST PORT\" for heat. Also safety clue. Symptom clues. Component_group clue. Maybe \"other\" collision? Not necessary. But could include \"condition\" quote \"A UPS TRUCK COLLIDED WITH IT'S RIGHT SIDE FORWARD\" but condition list doesn't include collision. Hmm kind condition can be any condition? But conditions array restricted. The clue kind \"condition\" could be used for collision, but then conditions array omits? Might be inconsistent. Better not include collision clue? But summary mentions side collision. Clues evidence should include symptom and safety. We can include \"other\" for collision? The kind allowed \"other\". Quote. That is okay.\n\nNeed ensure quotes exactly: \"THE COLLISION CAUSED THE SIDE AIRBAG TO DEPLOY.\" includes period. If quote with period okay. \"THE OFFICER'S VEST, SWEATER, UNDERSHIRT, T-SHIRT AND THE OFFICER'S RIGHT SIDE SUFFERED THERMAL BURNS FROM THE EXHAUST PORT.\" exact. \"THE OFFICER SUFFERED 3RD DEGREE BURNS AND HAD TO HAVE SURGERY AND SKIN GRAFT.\" exact. \"A UPS TRUCK COLLIDED WITH IT'S RIGHT SIDE FORWARD.\" exact? Narrative has \"WHEN A UPS TRUCK COLLIDED WITH IT'S RIGHT SIDE FORWARD.\" yes. \"AIR BAGS\" exact component field. Good.\n\nNeed maybe symptom array: [\"side airbag deployed\", \"thermal burns from exhaust port\", \"third-degree burns requiring surgery and skin graft\"]. Plain words. Good.\n\nNeed conditions array [\"heat\"]. Could include \"collision\"? No. But maybe \"heat\" enough.\n\nsafety_relevant true.\n\nNeed missing_info: [\"mileage\", \"date\"]. But \"date\" present? received_at. But incident date not. Yes.\n\nNeed summary includes component, symptom, conditions. \"Air bag side airbag deployment in a side collision; officer sustained thermal burns from exhaust port and third-degree burns requiring surgery and skin graft.\" Good.\n\nFinal only JSON. Ensure no markdown code fences? They said JSON object no other text; code fence is other text. Output raw JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793525435,
+      "id": "a2180cc9dcfc3dc8c6a6e36f5649bbed",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1609,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1365,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0006336,
+          "billing_source": "go",
+          "list_cost": 0.001056,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 604,
+            "output": 1609,
+            "reasoning": 1365
+          }
+        },
+        "prompt_tokens": 604,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 2213
+      }
+    },
+    "text": "{\"summary\":\"Air bag side airbag deployment in a side collision; officer sustained thermal burns from the exhaust port and third-degree burns requiring surgery and skin graft.\",\"group\":\"restraints\",\"symptoms\":[\"side airbag deployed\",\"thermal burns from exhaust port\",\"third-degree burns requiring surgery and skin graft\"],\"conditions\":[\"heat\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"THE COLLISION CAUSED THE SIDE AIRBAG TO DEPLOY.\"},{\"kind\":\"condition\",\"quote\":\"SUFFERED THERMAL BURNS FROM THE EXHAUST PORT.\"},{\"kind\":\"symptom\",\"quote\":\"THE OFFICER SUFFERED 3RD DEGREE BURNS AND HAD TO HAVE SURGERY AND SKIN GRAFT.\"},{\"kind\":\"safety\",\"quote\":\"THE OFFICER SUFFERED 3RD DEGREE BURNS\"},{\"kind\":\"other\",\"quote\":\"A UPS TRUCK COLLIDED WITH IT'S RIGHT SIDE FORWARD.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0006336,
+      "cached_tokens": 0,
+      "cost_usd": 0.001056,
+      "input_tokens": 604,
+      "list_cost_usd": 0.001056,
+      "output_tokens": 1609,
+      "reasoning_tokens": 1365
+    }
+  }
+}

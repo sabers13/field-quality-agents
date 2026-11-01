@@ -1,0 +1,66 @@
+{
+  "key": "2ebd4476cdb20f5631f8bda6e2c27e3b8f54dcf2bb8b712a51efc61da1e695fb",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 16561,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Back over prevention camera: reverse camera intermittently shuts off mid-backup, including in traffic, after software update.\",\n  \"group\": \"adas\",\n  \"symptoms\": [\n    \"reverse backup camera shuts off unexpectedly during backing up\",\n    \"backup camera operation is intermittent and unpredictable\"\n  ],\n  \"conditions\": [\n    \"intermittent\",\n    \"after service\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"BACK OVER PREVENTION: SENSING SYSTEM: CAMERA\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"the reverse camera is fine until halfway during my backup procedure when I'm halfway out in traffic and it suddenly shuts off\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"randomly fails\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"Despite receiving the recent software update\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"halfway out in traffic\"\n    }\n  ]\n}",
+            "reasoning_content": "We need to parse report. Need output JSON only. Need identify component group given \"adas\". Summary one line component, symptom, conditions. Symptoms: backup camera shuts off randomly halfway during backup, works sometimes, intermittent. Conditions: after service? software update? \"after software update\" maybe after service condition? Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. Report mentions software update intended to fix, unpredictable random failures, intermittent. We can include \"intermittent\", \"after service\" maybe software update counts as service? Hmm \"after service\" likely after repair/service. Software update is service-ish. But quote \"Despite receiving the recent software update\" maybe condition after service. Could include. Safety relevant: false given, but narrative mentions \"halfway out in traffic\" risk? It says reverse camera shuts off while backing out in traffic. Is that risk to people? Camera loss while backing in traffic could be safety? The instruction: set safety_relevant when report mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. \"halfway out in traffic\" and camera shuts off could be risk. But field already safety_relevant false. However we should decide. It mentions being halfway out in traffic, unpredictable failures. Is that \"another risk to people\"? Potentially yes. But maybe not explicit. Need maybe set true? We read only report. It says \"when I'm halfway out in traffic and it suddenly shuts off.\" That's a risk. But source safety_relevant false. The prompt says set when mentions... another risk to people. This is a backup camera failure while in traffic, could be safety. But if set true, okay? Need be careful. Could include safety clue quote. The given safety_relevant false maybe not authoritative? User says normalise incoming report, fields include safety_relevant false. Rules say set safety_relevant when report mentions... It doesn't mention crash etc. It says halfway out in traffic. Is that risk? I'd lean true? Hmm.\n\nNeed missing_info: mileage is null, date? received_at present, date of incident? \"date\" missing maybe no occurrence date. Conditions? It has conditions (during backup, after software update, random). Component present, symptom present. Mileage missing. Date of incident missing? The report has received_at but not incident date. The missing_info allowed: mileage, date, conditions, component, symptom. Since mileage null, missing. Date maybe missing (incident date not given). Conditions present enough. So missing_info [\"mileage\",\"date\"].\n\nFault codes none.\n\nClues: need verbatim spans. quote exact. Span from narrative. We can quote:\n- \"BACK OVER PREVENTION: SENSING SYSTEM: CAMERA\" component_group? Actually from component field, not narrative. Is report includes? The user message JSON includes component. Quote verbatim from report; can quote component value? It says report in user message, so yes. kind component_group quote \"BACK OVER PREVENTION: SENSING SYSTEM: CAMERA\". But group is adas. Maybe clue kind component_group with quote \"BACK OVER PREVENTION: SENSING SYSTEM: CAMERA\" or \"backup camera\"? Need verbatim. Use \"backup camera\" appears? Narrative has \"backup camera\" exactly lowercase. Yes.\n- symptom quote \"the reverse camera is fine until halfway during my backup procedure when I'm halfway out in traffic and it suddenly shuts off\" exact? Need copy character for character. Let's verify narrative: \"Sometimes now, the reverse camera is fine until halfway during my backup procedure when I'm halfway out in traffic and it suddenly shuts off.\" The span starting \"the reverse camera...\" yes exact. But includes \"I'm\" apostrophe. Good.\n- condition intermittent quote \"randomly fails\" or \"unpredictable nature of the failures\". Use \"randomly fails\".\n- condition after service quote \"Despite receiving the recent software update\" exact? Narrative starts \"Despite receiving the recent software update intended to fix ongoing issues with the backup camera,\" So quote \"Despite receiving the recent software update\" exact. Kind condition? It's after software update, not service exactly. Could include condition \"after service\". But quote for condition. \n- safety: if safety_relevant false, no safety clue? If true, quote \"halfway out in traffic\" exact. Let's decide.\n\nNeed summary: \"Back over prevention camera: reverse camera intermittently shuts off mid-backup, worsening after software update.\" Conditions: intermittent, after service? Hmm. Summary one line component, symptom, conditions. Use \"Back over prevention camera shuts off randomly during reverse backup, including in traffic, after software update.\" Good.\n\nNeed group \"adas\" (given). The instruction says \"the electrical/electronic component group, or the given group\". Given group adas. Use \"adas\".\n\nNeed symptoms plain words: [\"reverse backup camera shuts off unexpectedly during backing up\", \"backup camera operation is intermittent/unpredictable\"]. Good.\n\nConditions: [\"intermittent\", \"after service\"]? Is software update \"after service\"? Maybe not. Could use \"intermittent\" only. But allowed conditions include \"after service\". The report explicitly after software update. I think \"after service\" as condition is okay? It might be \"after service\" because software update is service action. But if strict, software update not service. Maybe include \"intermittent\" and \"after service\". Hmm.\n\nNeed safety_relevant. Let's think. This is NHTSA complaint. Backup camera failure while backing out into traffic can cause crash. The report says \"halfway out in traffic and it suddenly shuts off.\" That is a risk to people. Prompt: \"another risk to people.\" I think should set true. But the given field safety_relevant false maybe the source's flag; our job normalise. We can override. However if we set true, need clue quote. The quote \"halfway out in traffic\" exact. Kind safety. Good. But the report does not mention crash/fire etc. It mentions being in traffic. It is a risk. I'd set true? Need decide final. The prompt says \"Set safety_relevant when the report mentions a crash, fire, smoke, injury, loss of control, a stall at speed or another risk to people.\" It mentions \"halfway out in traffic\" while camera shuts off. That's a risk to people? Yes, backing into traffic without camera. But maybe not enough? It says \"I'm halfway out in traffic\" is context, not explicit risk. But camera failure in traffic definitely risk. I'll set true, with clue. If evaluation expects false from source? Hmm. Since user included \"safety_relevant\": false in input. They might expect us to preserve? But rules say set based on report. The input field could be a prior flag. The task normalises; we shouldn't blindly copy? The schema includes safety_relevant. There is no instruction to copy given safety_relevant. We should infer. The narrative explicitly says \"halfway out in traffic\" and random failure. I'd mark true. But \"safety_relevant false\" in source could be a hint. Yet \"safety_relevant\" in user message is part of report. It says \"Read only the report in user message. Do not invent facts.\" Could use that field. But rules: set when report mentions risk. It does. I think true.\n\nNeed missing_info maybe date missing. Mileage null. Conditions? There are conditions. Component present. Symptom present. Include [\"mileage\",\"date\"]. Maybe \"date\" because no incident date. Good.\n\nNeed clues list. Each quote verbatim. Let's craft:\n[\n {\"kind\":\"component_group\",\"quote\":\"BACK OVER PREVENTION: SENSING SYSTEM: CAMERA\"},\n {\"kind\":\"symptom\",\"quote\":\"the reverse camera is fine until halfway during my backup procedure when I'm halfway out in traffic and it suddenly shuts off\"},\n {\"kind\":\"condition\",\"quote\":\"randomly fails\"},\n {\"kind\":\"condition\",\"quote\":\"Despite receiving the recent software update\"},\n {\"kind\":\"safety\",\"quote\":\"halfway out in traffic\"}\n]\nCheck quote \"randomly fails\": narrative has \"but randomly fails.\" yes exact substring? \"Now, it works a good amount of the time but randomly fails.\" Contains \"randomly fails\" exactly. Good.\nQuote \"Despite receiving the recent software update\": narrative starts \"Despite receiving the recent software update intended...\" yes exact.\nQuote component: The component field value is \"BACK OVER PREVENTION: SENSING SYSTEM: CAMERA\". Verbatim. Good.\nQuote safety \"halfway out in traffic\": appears in \"when I'm halfway out in traffic and it suddenly shuts off\". Yes.\nCould also condition \"after service\" clue quote \"software update\" exact? But we include \"Despite receiving the recent software update\". Fine.\n\nNeed ensure JSON valid with apostrophe? JSON string can include apostrophe unescaped. Good. No other text. Use boolean true. Let's output.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793528539,
+      "id": "989907d356c398d05fcacbef70412791",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2160,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1890,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00079944,
+          "billing_source": "go",
+          "list_cost": 0.0013324,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 235,
+            "output": 2160,
+            "reasoning": 1890
+          }
+        },
+        "prompt_tokens": 619,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2779
+      }
+    },
+    "text": "{\n  \"summary\": \"Back over prevention camera: reverse camera intermittently shuts off mid-backup, including in traffic, after software update.\",\n  \"group\": \"adas\",\n  \"symptoms\": [\n    \"reverse backup camera shuts off unexpectedly during backing up\",\n    \"backup camera operation is intermittent and unpredictable\"\n  ],\n  \"conditions\": [\n    \"intermittent\",\n    \"after service\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"BACK OVER PREVENTION: SENSING SYSTEM: CAMERA\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"the reverse camera is fine until halfway during my backup procedure when I'm halfway out in traffic and it suddenly shuts off\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"randomly fails\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"Despite receiving the recent software update\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"halfway out in traffic\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00079944,
+      "cached_tokens": 384,
+      "cost_usd": 0.0013324,
+      "input_tokens": 619,
+      "list_cost_usd": 0.0013324,
+      "output_tokens": 2160,
+      "reasoning_tokens": 1890
+    }
+  }
+}

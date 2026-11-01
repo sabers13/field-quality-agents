@@ -1,0 +1,66 @@
+{
+  "key": "77af298f0459df88548f9eb4bbd57df9125e03e83419518049dfae4f26be5c8c",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10240,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"2019 Chevrolet Tahoe air bags did not deploy after a severe collision on a winding road during a rainstorm; minor injuries were reported.\",\n  \"group\": \"restraints\",\n  \"symptoms\": [\n    \"air bags did not deploy\"\n  ],\n  \"conditions\": [\n    \"moisture\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"AIR BAGS\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The air bags did not deploy.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"while driving on a winding road during a rainstorm at 15 MPH\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"she briefly lost control of the vehicle\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"colliding with a tree\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"minor injuries were reported\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"The failure mileage was unknown.\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer JSON only. Need normalize. Read report. Component air bags group restraints. Summary one line component symptom conditions. Symptoms: air bags did not deploy. Conditions: rainstorm, winding road, collision? Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. We can include moisture for rainstorm? Conditions array likely from allowed set, but maybe can include \"rainstorm\" not in list? It says conditions: [\"cold\",\"moisture\",\"heat\",\"vibration\",\"intermittent\",\"after service\",\"charging\"]. We should map rainstorm to moisture? Maybe include \"moisture\". Also maybe \"crash\" safety. Need fault_codes none. safety_relevant true. missing_info: mileage? Report says failure mileage unknown and mileage null. date? received date exists but incident date not. Component present symptom present conditions present? Mileage missing. Date of incident missing. So missing_info [\"mileage\",\"date\"]. Clues with verbatim quotes. Need only quotes from report. Summary can mention 2019 Chevrolet Tahoe air bags did not deploy after severe collision on winding road during rainstorm. Ensure no invented. \"briefly lost control\" etc. Symptoms plain words: \"air bags did not deploy\". Conditions: \"moisture\" quote \"rainstorm\"; maybe \"winding road\" isn't allowed but as condition? Could include \"rainstorm\" maybe not. The schema says conditions array examples; likely can include plain words not constrained? Prompt: conditions: [\"cold\", ...]. Should use these tokens. \"moisture\" for rainstorm. Could also \"collision\" not in list. Maybe include \"moisture\". Clues: kind symptom quote \"The air bags did not deploy.\" exact from narrative. condition quote \"during a rainstorm\" exact. safety quote \"minor injuries were reported\" and \"colliding with a tree\" maybe \"lost control\" risk. Need quote exact. Also component_group quote \"AIR BAGS\" or \"air bags\"? Report component \"AIR BAGS\"; narrative \"air bags\". Use component_group quote \"AIR BAGS\". Other quote \"front passenger side wheel became detached\" maybe other. But clues should evidence categories. Need paraphrase? Quotes verbatim.\n\nNeed JSON only. No markdown? User says answer with one JSON object no other text. We can output raw JSON.\n\nNeed ensure all quotes verbatim. Let's verify exact strings: narrative: \"The contact owned a 2019 Chevrolet Tahoe. The contact stated that while driving on a winding road during a rainstorm at 15 MPH, she briefly lost control of the vehicle and left the roadway, coming to a complete stop after colliding with a tree. The impact of the collision was severe that the front passenger side wheel became detached. The air bags did not deploy. No warning lights were illuminated. The vehicle was towed to an independent mechanic, who had yet to determine why the air bags did not deploy, however, the contact was informed that the vehicle may be deemed a total loss by her insurance provider. A police report was not filed, but minor injuries were reported, which the contact attributed to the fact that the air bags did not deploy. The contact sustained a small bruise on her chin and a contusion across her chest, but did not seek medical treatment immediately following the accident. Surprisingly enough, the chest contusion had yet to heal 2 weeks after the injury was sustained. Alarmed, the contact consulted her primary care physician, who then scheduled an X-ray for a later date. The manufacturer was not notified of the failure. The failure mileage was unknown.\"\n\nQuotes: \"The air bags did not deploy.\" yes. \"while driving on a winding road during a rainstorm at 15 MPH\" exact substring? yes: \"while driving on a winding road during a rainstorm at 15 MPH\". \"colliding with a tree\" exact yes. \"minor injuries were reported\" exact yes. \"The failure mileage was unknown.\" exact yes for missing. \"A police report was not filed\" maybe not needed. \"front passenger side wheel became detached\" exact? narrative \"the front passenger side wheel became detached\" with article. Use \"the front passenger side wheel became detached\". Good.\n\nSummary one line: \"2019 Chevrolet Tahoe air bags did not deploy after severe collision on a winding road in a rainstorm; minor injuries reported.\" It includes conditions. Fine.\n\nGroup: \"restraints\".\n\nSymptoms array [\"air bags did not deploy\"]. Conditions [\"moisture\"] maybe include \"rainstorm\" not in allowed list? Hmm. The schema example conditions lists specific tokens. But report condition is rainstorm; to normalize, use \"moisture\". Could include both \"moisture\" and maybe \"rainstorm\"? The prompt says conditions: [\"cold\", ...]. It doesn't explicitly restrict, but likely expects these canonical values. Use [\"moisture\"]. But then clue condition quote \"during a rainstorm\". Good. Could include \"vibration\"? no.\n\nfault_codes [].\n\nmissing_info [\"mileage\",\"date\"]: Date of incident missing; received_at exists but not incident date. Mileage unknown. Maybe also \"component\" no, \"symptom\" no, \"conditions\" no. Good.\n\nClues: include kind safety quote \"colliding with a tree\" maybe safety; \"minor injuries were reported\" safety. Include symptom quote. Include condition quote. Include component_group quote. Include other quote for missing mileage? Kind \"other\" quote \"The failure mileage was unknown.\" This supports missing_info. Is clue kind allowed \"other\". Yes. Could include \"The impact of the collision was severe that the front passenger side wheel became detached.\" as other? Not necessary. Need not overdo. But include maybe safety quote \"she briefly lost control of the vehicle\" exact. Use safety quote. We can have multiple.\n\nNeed no extra text. Ensure valid JSON. Let's craft.\n\nPotential issue summary says \"severe collision\" okay. \"minor injuries reported\" yes. \"winding road in a rainstorm\" yes.\n\nNeed maybe \"safety_relevant\": true.\n\nFinal JSON only.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529553,
+      "id": "edf23e20adc432e7aee52745f747c608",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1550,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1266,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00058929,
+          "billing_source": "go",
+          "list_cost": 0.00098215,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 340,
+            "output": 1550,
+            "reasoning": 1266
+          }
+        },
+        "prompt_tokens": 724,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2274
+      }
+    },
+    "text": "{\n  \"summary\": \"2019 Chevrolet Tahoe air bags did not deploy after a severe collision on a winding road during a rainstorm; minor injuries were reported.\",\n  \"group\": \"restraints\",\n  \"symptoms\": [\n    \"air bags did not deploy\"\n  ],\n  \"conditions\": [\n    \"moisture\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"AIR BAGS\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The air bags did not deploy.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"while driving on a winding road during a rainstorm at 15 MPH\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"she briefly lost control of the vehicle\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"colliding with a tree\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"minor injuries were reported\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"The failure mileage was unknown.\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00058929,
+      "cached_tokens": 384,
+      "cost_usd": 0.00098215,
+      "input_tokens": 724,
+      "list_cost_usd": 0.00098215,
+      "output_tokens": 1550,
+      "reasoning_tokens": 1266
+    }
+  }
+}

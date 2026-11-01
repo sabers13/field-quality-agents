@@ -1,0 +1,66 @@
+{
+  "key": "41bdffd19e6b0af63265332ad45ac99caab41b6685a23e1923ec12832373b17e",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 4164,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "```json\n{\n  \"summary\": \"2024 Chevrolet Silverado EV AEB/parking sensors: uncommanded sensor activation and unexpected emergency braking while backing and while driving, on multiple occasions\",\n  \"group\": \"adas\",\n  \"symptoms\": [\n    \"parking sensors activate with no obstacle present\",\n    \"emergency braking applies while backing\",\n    \"emergency braking applies while driving\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"conditions\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"parking sensors activate for no reason\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Emergency braking occurred while backing as well as while driving for no reason at all.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"On multiple occasion\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"High possibility of a crash occurring.\"\n    }\n  ]\n}\n```",
+            "reasoning_content": "Let me produce the JSON.\n\nReport: component forward collision avoidance / AEB, group adas. Symptoms: parking sensors activate for no reason; emergency braking occurred while backing; emergency braking while driving. Conditions: none explicitly? Could be \"intermittent\" — multiple occasions. I'll include \"intermittent\"? Rules say conditions list from given options; the report says \"on multiple occasion\" - no reason. I'll keep it minimal, maybe empty list. Actually \"multiple occasion\" hints intermittent. I'll include \"intermittent\".\n\nSafety: yes, \"High possibility of a crash occurring.\"\n\nMissing info: mileage (mileage null) — conditions? component given, symptom given, date present (received_at). Mileage missing. Conditions missing too? The analysis needs conditions; report gives none. I'll list [\"mileage\", \"conditions\"].\n\nClues verbatim quotes.\n\nSummary one line.\n\nQuotes must be verbatim spans:\n- \"parking sensors activate for no reason\"\n- \"Emergency braking occurred while backing as well as while driving for no reason at all.\"\n- \"High possibility of a crash occurring.\"\n- component group: \"FORWARD COLLISION AVOIDANCE\" — from component field; not the narrative. The rule says read only the report; component field is part of the report. Quote \"AUTOMATIC EMERGENCY BRAKING\" from component. Fine.\n\nFault codes: none.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530860,
+      "id": "e6412e18c49b5bada8f8d44d0be285e8",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 572,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 291,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00022299,
+          "billing_source": "go",
+          "list_cost": 0.00037165,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 182,
+            "output": 572,
+            "reasoning": 291
+          }
+        },
+        "prompt_tokens": 566,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1138
+      }
+    },
+    "text": "```json\n{\n  \"summary\": \"2024 Chevrolet Silverado EV AEB/parking sensors: uncommanded sensor activation and unexpected emergency braking while backing and while driving, on multiple occasions\",\n  \"group\": \"adas\",\n  \"symptoms\": [\n    \"parking sensors activate with no obstacle present\",\n    \"emergency braking applies while backing\",\n    \"emergency braking applies while driving\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"conditions\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"parking sensors activate for no reason\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Emergency braking occurred while backing as well as while driving for no reason at all.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"On multiple occasion\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"High possibility of a crash occurring.\"\n    }\n  ]\n}\n```",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00022299,
+      "cached_tokens": 384,
+      "cost_usd": 0.00037165,
+      "input_tokens": 566,
+      "list_cost_usd": 0.00037165,
+      "output_tokens": 572,
+      "reasoning_tokens": 291
+    }
+  }
+}

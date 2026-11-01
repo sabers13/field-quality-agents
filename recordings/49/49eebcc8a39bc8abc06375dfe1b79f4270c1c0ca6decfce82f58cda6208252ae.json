@@ -1,0 +1,66 @@
+{
+  "key": "49eebcc8a39bc8abc06375dfe1b79f4270c1c0ca6decfce82f58cda6208252ae",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 25029,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2024 BMW X7 ADAS forward collision avoidance/automatic emergency braking: abrupt stop at 70 mph on I-70 with Emergency Stoppage and SOS call; restarted, no injuries, dealer advised tow.\",\"group\":\"adas\",\"symptoms\":[\"car stopped abruptly at speed\",\"Emergency Stoppage message displayed\",\"SOS call to BMW made\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"safety\",\"quote\":\"at 70 mph around 2pm the car stopped abuptly\"},{\"kind\":\"symptom\",\"quote\":\"car stopped abuptly\"},{\"kind\":\"symptom\",\"quote\":\"displayed Emergency Stoppage\"},{\"kind\":\"symptom\",\"quote\":\"made an SOS call to BMW\"},{\"kind\":\"condition\",\"quote\":\"Traveling on I70 on 9/3 at 70 mph around 2pm\"},{\"kind\":\"other\",\"quote\":\"No injuries or damage since there was no one behind us.\"},{\"kind\":\"other\",\"quote\":\"Dealer told us not to drive the car and it iwas towed to BMW Service.\"},{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize report. Read given. Component forward collision avoidance automatic emergency braking, group adas. Narrative: Traveling on I70 on 9/3 at 70 mph around 2pm car stopped abruptly and displayed Emergency Stoppage and made SOS call to BMW. After few minutes car restarted and proceeded. No injuries/damage since no one behind. Dealer told not drive and towed. Need summary one line component symptom conditions. Symptoms: car stopped abruptly; displayed Emergency Stoppage; made SOS call; perhaps \"Emergency Stoppage\" is message not fault code. Conditions: at 70 mph, on I70, around 2pm, 9/3. \"cold/moisture/heat/vibration/intermittent/after service/charging\" only allowed enum? They listed conditions list likely from those. We shouldn't invent. Could include \"intermittent\"? It restarted and proceeded, but not necessarily intermittent. It occurred once. Conditions list can be empty or maybe \"at speed\"? The allowed conditions are those examples; but schema says conditions [\"cold\", ...]. Need only from report: at 70 mph, 2pm, date. But \"conditions\" expected cold etc. Since not present, empty. Safety_relevant: despite given false, report mentions car stopped abruptly at 70 mph, risk? The prompt says set safety_relevant when report mentions crash, fire, smoke, injury, loss of control, a stall at speed or another risk to people. It mentions stopped abruptly at 70 mph; \"Emergency Stoppage\"; no injuries/damage since no one behind. That is a stall/stop at speed risk. So true. Fault_codes: none? \"Emergency Stoppage\" displayed maybe not code. Could include as fault_code? It says code if report names one. No code. Missing_info: mileage null, date present 9/3 but no year? received 2025, narrative 9/3; date maybe missing exact year? The field date? It says date 9/3, but no year. Mileage missing. Component and symptom present. Conditions present-ish? Need list only facts analysis needs: mileage, date maybe. Since date \"9/3\" given but no year. However received_at 2025-09-04 and year 2024 model; likely incident 9/3/2025? But not explicit. Missing mileage and maybe date. Could include \"mileage\", \"date\". Maybe conditions? It gives speed/time. No.\n\nClues: verbatim spans. Need exact quotes from narrative. Need copy character for character including typo \"abuptly\", \"it iwas\". Quotes:\n- \"car stopped abuptly\" (verbatim)\n- \"displayed Emergency Stoppage\"\n- \"made an SOS call to BMW\"\n- \"Traveling on I70 on 9/3 at 70 mph around 2pm\"\n- \"No injuries or damage since there was no one behind us.\"\n- \"Dealer told us not to drive the car and it iwas towed to BMW Service.\"\nNeed clue kinds. For safety: \"car stopped abuptly\" or \"No injuries...\"? Safety relevant quote should show risk: \"Traveling on I70 on 9/3 at 70 mph around 2pm the car stopped abuptly\" maybe exact span includes. Use quote \"at 70 mph around 2pm the car stopped abuptly\" exact? Let's verify narrative: \"Traveling on I70 on 9/3 at 70 mph around 2pm the car stopped abuptly and displayed Emergency Stoppage...\" So quote \"at 70 mph around 2pm the car stopped abuptly\" is contiguous yes. Kind safety. Also symptom quote \"car stopped abuptly\"; condition quote \"at 70 mph around 2pm\"; fault_code? \"Emergency Stoppage\" maybe not fault code, but clue kind fault_code? Could put as symptom? It is displayed message. Use symptom quote \"displayed Emergency Stoppage\". Component_group quote? Component field is not narrative? The report includes component field. Can quote \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\" verbatim from component? The rule \"report in user message\" includes JSON; quote copied from report. It can be from component field? Probably yes. Clues kind component_group quote component string or \"adas\"? Use \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\". Also other for dealer/tow? Maybe not needed.\n\nNeed summary: \"BMW X7 forward collision avoidance/automatic emergency braking; abrupt stop at 70 mph with 'Emergency Stoppage' and SOS call; dry daytime highway, no injuries.\" Conditions maybe dry? Not stated. Avoid inventing. \"daytime highway at 70 mph\" 2pm. Summary: \"2024 BMW X7 ADAS automatic emergency braking: abrupt stop at 70 mph on I-70 displaying Emergency Stoppage and SOS call; restarted, no injuries, towed after dealer advice.\" Good.\n\nNeed JSON only. Ensure no markdown? User said answer one JSON object no other text. We'll output raw JSON. Need valid JSON. Strings.\n\nCheck `conditions`: Could include \"at speed\"? But allowed condition values in schema: cold, moisture, heat, vibration, intermittent, after service, charging. It says conditions: [\"cold\", ...] maybe examples. We can leave [] because none of those. But \"at 70 mph\" is a condition; however schema says conditions list allowed? Hmm It says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. This seems enumerated list. Use [] unless one. The event happened once, not intermittent. No.\n\nMissing_info: mileage null. Date? There is \"9/3\" and received_at. Exact year not explicit but could infer? The rule \"missing date\" only if no date. It has 9/3. So not missing date. Mileage missing. Could include \"mileage\". Conditions? It gives speed/time. No. Maybe \"date\" because year missing? But \"9/3\" is a date. I'd include only mileage. But missing_info schema includes \"date\"; if date incomplete, maybe include. The desk needs date; received_at 2025-09-04, narrative 9/3. Likely enough. Use [\"mileage\"].\n\nSafety_relevant true. Note source had false but our instruction supersedes. Need maybe \"safety_relevant\": true.\n\nClues: Need all quote exact. Let's copy exact narrative:\n\"Traveling on I70 on 9/3 at 70 mph around 2pm the car stopped abuptly and displayed Emergency Stoppage and made an SOS call to BMW. After a few minutes the car was restarted and we proceeded to our destination. No injuries or damage since there was no one behind us. Dealer told us not to drive the car and it iwas towed to BMW Service.\"\n\nQuotes:\n1 kind safety quote \"at 70 mph around 2pm the car stopped abuptly\" exact contiguous? narrative: \"Traveling on I70 on 9/3 at 70 mph around 2pm the car stopped abuptly and displayed...\" yes substring from \"at 70 mph...\" to \"abuptly\" no period. Good.\n2 kind symptom quote \"car stopped abuptly\" exact.\n3 kind symptom quote \"displayed Emergency Stoppage\" exact.\n4 kind symptom quote \"made an SOS call to BMW\" exact.\n5 kind condition quote \"Traveling on I70 on 9/3 at 70 mph around 2pm\" exact? Yes starts \"Traveling on I70 on 9/3 at 70 mph around 2pm\" (then \"the\"). Good.\n6 kind other quote \"No injuries or damage since there was no one behind us.\" exact.\n7 kind other quote \"Dealer told us not to drive the car and it iwas towed to BMW Service.\" exact.\n8 component_group quote \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\" from component field exact. But is it in report? yes JSON value. Good.\n\nMaybe fault_code clue for \"Emergency Stoppage\"? It's a message. Could kind \"fault_code\" but not code. Keep symptom. Fault_codes [].\n\nNeed summary one line not too long. Good.\n\nEnsure \"missing_info\": [\"mileage\"]. If we include date? Hmm. The report has date but no year? received_at. \"9/3\" without year but received_at next day. Not important missing. Mileage null. Good.\n\nNeed no extra. Final JSON.\n\nDouble-check \"safety_relevant\" should true because stall at speed. Quote \"at 70 mph around 2pm the car stopped abuptly\" supports. Good.\n\nNeed \"symptoms\": [\"car stopped abruptly\", \"Emergency Stoppage displayed\", \"SOS call made\"] maybe plain words not quote; can correct typo? \"abruptly\". Good. \"symptom in plain words\". Use \"car stopped abruptly at speed\"; \"Emergency Stoppage message displayed\"; \"SOS call to BMW\". Fine.\n\n\"conditions\": []? Could include \"at 70 mph\" but allowed list? The schema says conditions [\"cold\",...] but not exclusive? It says conditions array. I'd leave []? But then condition clue included. Maybe conditions should include \"at 70 mph\" not among allowed? It might violate. Use [] to be safe? Hmm The report has \"around 2pm\" and \"at 70 mph\" and \"on I70\", these are conditions. But the schema's examples are environmental/operational conditions. The prompt says \"conditions\": [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. It may expect only those labels. There's no label for highway speed. Leave empty. But then a clue kind \"condition\" quote \"Traveling...\" is okay.\n\nCould include \"conditions\": [\"intermittent\"]? No, not stated.\n\nSummary: \"2024 BMW X7 ADAS forward collision avoidance/automatic emergency braking: abrupt stop at 70 mph on I-70 with Emergency Stoppage and SOS call; restarted, no injuries, dealer advised tow.\" It says component \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\" group adas. Good.\n\nNeed \"group\": \"adas\" exactly given.\n\nOutput raw JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530121,
+      "id": "0e40fe9b55523c41ca8f061106e88926",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2522,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 2245,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00092616,
+          "billing_source": "go",
+          "list_cost": 0.0015436,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 195,
+            "output": 2522,
+            "reasoning": 2245
+          }
+        },
+        "prompt_tokens": 579,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 3101
+      }
+    },
+    "text": "{\"summary\":\"2024 BMW X7 ADAS forward collision avoidance/automatic emergency braking: abrupt stop at 70 mph on I-70 with Emergency Stoppage and SOS call; restarted, no injuries, dealer advised tow.\",\"group\":\"adas\",\"symptoms\":[\"car stopped abruptly at speed\",\"Emergency Stoppage message displayed\",\"SOS call to BMW made\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"safety\",\"quote\":\"at 70 mph around 2pm the car stopped abuptly\"},{\"kind\":\"symptom\",\"quote\":\"car stopped abuptly\"},{\"kind\":\"symptom\",\"quote\":\"displayed Emergency Stoppage\"},{\"kind\":\"symptom\",\"quote\":\"made an SOS call to BMW\"},{\"kind\":\"condition\",\"quote\":\"Traveling on I70 on 9/3 at 70 mph around 2pm\"},{\"kind\":\"other\",\"quote\":\"No injuries or damage since there was no one behind us.\"},{\"kind\":\"other\",\"quote\":\"Dealer told us not to drive the car and it iwas towed to BMW Service.\"},{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00092616,
+      "cached_tokens": 384,
+      "cost_usd": 0.0015436,
+      "input_tokens": 579,
+      "list_cost_usd": 0.0015436,
+      "output_tokens": 2522,
+      "reasoning_tokens": 2245
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "3a8309aa017634038b3210ae2b89fe56e1a44561681a7c1bf20084c5edc9780a",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10060,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Air bags did not deploy in a front barrier crash after sliding on ice, despite severe frame/suspension/radiator damage.\",\"group\":\"restraints\",\"symptoms\":[\"airbags did not deploy\"],\"conditions\":[\"cold\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"No deployment of airbags occurred\"},{\"kind\":\"condition\",\"quote\":\"slid on ice\"},{\"kind\":\"safety\",\"quote\":\"we crashed into the front of a barrier\"},{\"kind\":\"other\",\"quote\":\"impact was so severe it damaged the frame/suspension/radiator\"}]}",
+            "reasoning_content": "We need answer only JSON object. Need normalize report. Must read report. Component AIR BAGS, group restraints. Narrative: on 12/13/25 at 2:30pm vehicle slid on ice and crashed into front of barrier. No deployment of airbags occurred but impact severe damaged frame/suspension/radiator. Insurance adjusted/police and tow yard surprised airbags did not deploy.\n\nNeed summary one line: component, symptom, conditions. E.g. \"Air bags did not deploy in a front barrier crash after sliding on ice, despite severe frame/suspension/radiator damage.\" Conditions: cold? ice, maybe \"cold\" if ice implies cold? Rule conditions list includes cold, moisture, heat, vibration, intermittent, after service, charging. Ice/slide -> cold? We can include \"cold\" maybe because ice. But avoid invent? Ice is condition; allowed conditions list includes cold, moisture, etc. Could include \"cold\" from ice? Hmm. The field is conditions; given list. \"ice\" is not exact but cold implied. We can also include \"cold\" quote? Need clues quote verbatim span. Could quote \"slid on ice\" as condition. In conditions array maybe \"cold\". But quote for condition could be \"slid on ice\" kind condition. Is that acceptable? It says conditions [\"cold\", ...]. It doesn't say only those? It lists options. We can include \"cold\" and clue quote \"slid on ice\". Also maybe \"crash\" is safety. safety_relevant true. fault_codes none. missing_info: mileage missing (mileage null). date present (12/13/25). conditions present (ice). component present (AIR BAGS). symptom present (no deployment). So missing_info [\"mileage\"]? The analysis needs mileage? Maybe yes. Also could include date? Date present. Conditions present. Component present. Symptom present. So only mileage. Need clues: symptom quote \"No deployment of airbags occurred\" maybe exact? Narrative: \"No deployment of airbags occurred but the impact was so severe...\" Yes. condition quote \"slid on ice\" exact. safety quote \"we crashed into the front of a barrier\" or \"crashed\" exact. component_group quote \"AIR BAGS\" from component field? The report in user message includes JSON with component. Quotes copied from report; can quote \"AIR BAGS\". fault code none. other quote \"impact was so severe it damaged the frame/suspension/radiator\" maybe symptom/other. Need include \"surprised that the airbags did not deploy\" maybe symptom. But avoid too many. Need valid JSON no other text. Ensure summary one line.\n\nNeed maybe \"group\": \"restraints\" given group. Symptoms: [\"airbags did not deploy\"]. Maybe \"no airbag deployment in severe front impact\". Conditions: [\"cold\"]? Could include \"cold\" and maybe \"crash\"? Conditions list not crash. \"slid on ice\" condition. We can include \"cold\" because ice. But if quote \"slid on ice\" and condition \"cold\", okay.\n\nSafety_relevant true. missing_info [\"mileage\"]. Could include \"date\"? no date present. Need no suggestions.\n\nNeed answer JSON only. Use exact quote from narrative. Check verbatim: Narrative has \"on 12/13/25 at 2:30pm our vehicle slid on ice and we crashed into the front of a barrier.  No deployment of airbags occurred but the impact was so severe it damaged the frame/suspension/radiator.  Our insurance adjusted/police and tow yard were surprised that the airbags did not deploy.\" Note double spaces after periods. Quotes can be substrings. \"No deployment of airbags occurred\" exact. \"slid on ice\" exact. \"we crashed into the front of a barrier\" exact. \"impact was so severe it damaged the frame/suspension/radiator\" exact. \"airbags did not deploy\" exact? It appears \"airbags did not deploy.\" yes. Quote \"surprised that the airbags did not deploy\" exact? Narrative: \"were surprised that the airbags did not deploy.\" yes includes. Good.\n\nNeed maybe clue kind \"symptom\" quote \"No deployment of airbags occurred\"; kind condition \"slid on ice\"; kind safety \"we crashed into the front of a barrier\"; kind component_group \"AIR BAGS\"; kind other \"impact was so severe it damaged the frame/suspension/radiator\". Good.\n\nNeed decide symptoms array: [\"airbags did not deploy\"]. Summary: \"Air bags did not deploy in a front barrier crash after sliding on ice, despite severe frame/suspension/radiator damage.\" Conditions: [\"cold\"]? Maybe include \"cold\" only. But \"slid on ice\" is condition but not one of list. The schema says conditions array of listed. Could include \"cold\" because ice. Hmm. But if no exact quote \"cold\", still clue quote \"slid on ice\" supports condition. Is \"cold\" inventing? It's inference. The instruction says do not invent facts. Ice indicates cold environment, but not explicit \"cold\". Maybe safer conditions: []? But report has condition \"on ice\" which is important. The allowed list doesn't include ice. Could include \"cold\" as inferred but might violate no invent. Alternatively conditions array [\"cold\"] but quote \"slid on ice\" demonstrates. I think acceptable. Also maybe \"moisture\" because ice? no. Use [\"cold\"]. If strict, conditions should be from list. Fine.\n\nNeed missing_info: mileage only. Could include \"date\"? date is present as crash date 12/13/25. Received_at. No. \"conditions\" present. \"component\" present. \"symptom\" present. So [\"mileage\"].\n\nNeed JSON only. Ensure no markdown? They asked one JSON object no other text. We can output raw JSON. Do that.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793533016,
+      "id": "87020e07547c0b4d57a934242eedcbc8",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1403,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1244,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00052107,
+          "billing_source": "go",
+          "list_cost": 0.00086845,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 170,
+            "output": 1403,
+            "reasoning": 1244
+          }
+        },
+        "prompt_tokens": 554,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1957
+      }
+    },
+    "text": "{\"summary\":\"Air bags did not deploy in a front barrier crash after sliding on ice, despite severe frame/suspension/radiator damage.\",\"group\":\"restraints\",\"symptoms\":[\"airbags did not deploy\"],\"conditions\":[\"cold\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"No deployment of airbags occurred\"},{\"kind\":\"condition\",\"quote\":\"slid on ice\"},{\"kind\":\"safety\",\"quote\":\"we crashed into the front of a barrier\"},{\"kind\":\"other\",\"quote\":\"impact was so severe it damaged the frame/suspension/radiator\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00052107,
+      "cached_tokens": 384,
+      "cost_usd": 0.00086845,
+      "input_tokens": 554,
+      "list_cost_usd": 0.00086845,
+      "output_tokens": 1403,
+      "reasoning_tokens": 1244
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "f778dea26d1aa03658ed0282029bef7da8d99db860e32bc3b305eda6b27314eb",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 8493,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2023 BMW X1 ESC/Service Brakes recall; repair parts unavailable; no failure experienced.\",\"group\":\"safety_systems\",\"symptoms\":[\"no failure experienced\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"Electronic Stability Control (ESC)\"},{\"kind\":\"symptom\",\"quote\":\"The contact had not experienced a failure.\"},{\"kind\":\"other\",\"quote\":\"the part to the recall repair was not yet available\"},{\"kind\":\"other\",\"quote\":\"NHTSA Campaign Number: 24V104000\"}]}",
+            "reasoning_content": "We need answer only JSON. Need parse report. Component ESC group safety_systems given. Narrative no failure, recall notification parts unavailable. Need summary one line: component, symptom, conditions. Symptom? No failure experienced. Could say \"2023 BMW X1 ESC/brake recall, repair parts unavailable; no failure experienced.\" Conditions: recall/after service? Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. None applicable? Maybe \"after service\" no. missing_info: mileage null, maybe date? Received date present, but date of incident? No failure. Need determine missing_info only facts analysis needs. Component present, symptom? symptom is no failure / recall unavailable; conditions none. mileage missing. date? received_at present. Could list mileage. safety_relevant false because no crash/fire etc. Fault codes none. Clues quote verbatim. Need quotes from report. Clues kinds symptom/condition/fault_code/component_group/safety/other. Include component_group quote \"Electronic Stability Control (ESC)\"? Verbatim in narrative? It appears \"Electronic Stability Control (ESC), Service Brakes, Hydraulic\" and component field. Quote must copied from report. The \"report\" includes JSON? User says report in user message; likely narrative and fields. We can quote from narrative. For component_group quote \"Electronic Stability Control (ESC)\" exactly in narrative. Symptom quote \"The contact had not experienced a failure.\" Condition? \"the part to the recall repair was not yet available\" maybe other/condition but not in allowed condition categories. Could include as other clue. Safety? no safety clue maybe quote \"had not experienced a failure\" is not safety. Need summary. JSON only.\n\nNeed ensure quotes verbatim: \"The contact had not experienced a failure.\" Yes. \"however, the part to the recall repair was not yet available.\" In narrative: \"however; however, the part to the recall repair was not yet available.\" Actually text: \"however; however, the part to the recall repair was not yet available.\" Let's inspect: \"The contact received notification of NHTSA Campaign Number: 24V104000 (Electronic Stability Control (ESC), Service Brakes, Hydraulic); however, the part to the recall repair was not yet available.\" Quote \"the part to the recall repair was not yet available\" yes exact. \"The contact had not experienced a failure.\" exact.\n\nCould include fault_code? Campaign Number 24V104000 is not fault code but recall campaign. The schema fault_codes [\"code if report names one\"] Could include \"24V104000\" as code? It's a campaign number, not fault code. Maybe don't put in fault_codes. Could clue kind other quote \"NHTSA Campaign Number: 24V104000\". But fault_code? Hmm. It names a code/campaign. But fault_codes intended diagnostic codes. Better empty. Clues can include other for recall campaign. Need no extra text.\n\nNeed missing_info: [\"mileage\"]? Also \"conditions\" maybe no environmental conditions; but since no failure, conditions not needed? Analysis needs conditions? It says list only facts analysis needs. For recall/parts availability, mileage less relevant? But field mileage null. Could include mileage. Date is received_at; no incident date because no failure. Component present. Symptom present (no failure). Missing_info [\"mileage\"]. Could also \"conditions\" because no conditions specified. However no failure; conditions not applicable. Use mileage.\n\nsafety_relevant false. Summary: \"2023 BMW X1 ESC/Service Brakes recall; repair parts unavailable; no failure experienced.\" This includes component, symptom, conditions. Conditions = recall repair parts unavailable? okay.\n\nNeed maybe group \"safety_systems\". Symptoms plain words: [\"no failure experienced\"]? It's not symptom but status. Could symptoms [] because no symptom? But summary symptom no failure. Schema symptoms array. For no failure, \"no failure experienced\" is a symptom/status. Include.\n\nConditions [] because none of listed conditions. Clues include component_group and other and symptom. Need maybe safety clue? no. Should include quote for \"The contact had not experienced a failure.\" kind symptom. \"Electronic Stability Control (ESC)\" kind component_group. \"the part to the recall repair was not yet available\" kind other. \"NHTSA Campaign Number: 24V104000\" kind other? Could include as other. Fine.\n\nEnsure JSON valid. No markdown? User says answer with one JSON object and no other text. Final can be JSON. Need no code fence? likely just JSON. Use exact quote \"Electronic Stability Control (ESC)\" appears. Good.\n\nFinal.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793525184,
+      "id": "5b7cee823db102fbd190a81718141455",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1112,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 972,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00045369,
+          "billing_source": "go",
+          "list_cost": 0.00075615,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 593,
+            "output": 1112,
+            "reasoning": 972
+          }
+        },
+        "prompt_tokens": 593,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 1705
+      }
+    },
+    "text": "{\"summary\":\"2023 BMW X1 ESC/Service Brakes recall; repair parts unavailable; no failure experienced.\",\"group\":\"safety_systems\",\"symptoms\":[\"no failure experienced\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"Electronic Stability Control (ESC)\"},{\"kind\":\"symptom\",\"quote\":\"The contact had not experienced a failure.\"},{\"kind\":\"other\",\"quote\":\"the part to the recall repair was not yet available\"},{\"kind\":\"other\",\"quote\":\"NHTSA Campaign Number: 24V104000\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00045369,
+      "cached_tokens": 0,
+      "cost_usd": 0.00075615,
+      "input_tokens": 593,
+      "list_cost_usd": 0.00075615,
+      "output_tokens": 1112,
+      "reasoning_tokens": 972
+    }
+  }
+}

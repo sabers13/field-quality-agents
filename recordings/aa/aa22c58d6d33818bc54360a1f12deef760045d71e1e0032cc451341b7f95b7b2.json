@@ -1,0 +1,66 @@
+{
+  "key": "aa22c58d6d33818bc54360a1f12deef760045d71e1e0032cc451341b7f95b7b2",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11192,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\": \"Test the shifter module installation and connectors for a recurring Service Shifter error after three repairs.\", \"rationale\": \"The narrative reports a 'Service Shifter error message' that has recurred despite three repair attempts, matching the rulebook condition 'after service'; the rulebook directs an installation check before test.\", \"group\": \"electrical_general\", \"symptoms\": [\"Service Shifter error message\", \"shifter module issue\"], \"conditions\": [\"after service\"], \"fault_codes\": [], \"safety_relevant\": false, \"targeted\": true, \"test_name\": \"Installation check before test\", \"clues\": [{\"kind\": \"symptom\", \"quote\": \"Service Shifter error message\"}, {\"kind\": \"condition\", \"quote\": \"I have had this repaired 3x and no one can seem to fix it.\"}, {\"kind\": \"other\", \"quote\": \"The car only has 50k miles on it.\"}, {\"kind\": \"symptom\", \"quote\": \"serious issue with their shifter module\"}]}",
+            "reasoning_content": "We need answer JSON only. Need analyze. Case narrative: Service Shifter error message, repaired 3x, known problem, message boards. Extraction condition after service matched rulebook after_service with test \"Installation check before test\". Need decide targeted? Rulebook entry matched condition. \"Prefer a targeted load test when reported conditions match rulebook entry. Otherwise standard test targeted false.\" Rulebook matched \"after service\" and test Installation check before test. Is that targeted load test? Hmm targeted test named? Need output targeted true? The rulebook entry test is \"Installation check before test\" not load test. Prompt says prefer targeted load test when conditions match a rulebook entry. But rulebook names \"Installation check before test\". Need \"test_name\": rulebook names. targeted true likely because matched rulebook. Safety_relevant false (narrative no people risk; extraction false). Need clues quotes verbatim from narrative. We can include component_group quote \"ELECTRICAL SYSTEM\" (verbatim in narrative? Narrative doesn't include uppercase component? Wait case narrative: \"This is a known problem with Jeep. Service Shifter error message...\" It does not contain \"ELECTRICAL SYSTEM\". Clue quote must be copied verbatim from case narrative, not extraction? It says from case narrative. The extraction quote \"ELECTRICAL SYSTEM\" not in narrative. So cannot cite. Need quotes from narrative only:\n- \"Service Shifter error message\" verbatim yes.\n- \"I have had this repaired 3x and no one can seem to fix it.\" yes.\n- \"The car only has 50k miles on it.\" yes.\n- \"serious issue with their shifter module\" in narrative: \"Jeep has a serious issue with their shifter module.\" Contains substring yes.\n- \"known problem with Jeep\" maybe.\nNeed summary one line. Rationale condition and evidence. Group electrical_general. Symptoms list. Conditions [\"after service\"]? fault_codes [].\nNeed not cite case ids not tool results? We can avoid. Similar cases exist but no need. Could mention no recalls/investigations? Not necessary. Rulebook match. Need produce JSON only.\n\nNeed ensure test_name exact \"Installation check before test\". targeted true? The rulebook names test. Since matched condition, targeted true. But is \"targeted load test\"??? Rulebook test not load. The instruction: \"Prefer a targeted load test when the reported conditions match a rulebook entry. Otherwise propose the standard test (`\"targeted\": false`).\" It implies if match rulebook, targeted true and test_name rulebook names. We'll set true.\n\nPotential issue safety_relevant? Narrative no risk to people. false.\n\nClues kinds: symptom for \"Service Shifter error message\"; condition for repaired 3x; other for mileage; symptom for serious issue with shifter module maybe. Could include component_group? \"ELECTRICAL SYSTEM\" not narrative, omit. \"known problem with Jeep\" other. Include maybe. Must quote verbatim. Need exact casing? Narrative \"Service Shifter error message.\" yes. \"I have had this repaired 3x and no one can seem to fix it.\" yes. \"The car only has 50k miles on it.\" yes. \"serious issue with their shifter module\" yes.\n\nSummary: \"Test the shifter module installation/connectors for a recurring Service Shifter error after three repairs.\" Good.\n\nRationale: \"The narrative reports a Service Shifter error message that has persisted through three repairs, matching rulebook condition 'after service'; the rulebook directs an installation check before test.\" Fine.\n\nNeed JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793525558,
+      "id": "4f28d489f310c405ca93a268a5117add",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 981,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 752,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0004878,
+          "billing_source": "go",
+          "list_cost": 0.000813,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 1496,
+            "output": 981,
+            "reasoning": 752
+          }
+        },
+        "prompt_tokens": 1496,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 2477
+      }
+    },
+    "text": "{\"summary\": \"Test the shifter module installation and connectors for a recurring Service Shifter error after three repairs.\", \"rationale\": \"The narrative reports a 'Service Shifter error message' that has recurred despite three repair attempts, matching the rulebook condition 'after service'; the rulebook directs an installation check before test.\", \"group\": \"electrical_general\", \"symptoms\": [\"Service Shifter error message\", \"shifter module issue\"], \"conditions\": [\"after service\"], \"fault_codes\": [], \"safety_relevant\": false, \"targeted\": true, \"test_name\": \"Installation check before test\", \"clues\": [{\"kind\": \"symptom\", \"quote\": \"Service Shifter error message\"}, {\"kind\": \"condition\", \"quote\": \"I have had this repaired 3x and no one can seem to fix it.\"}, {\"kind\": \"other\", \"quote\": \"The car only has 50k miles on it.\"}, {\"kind\": \"symptom\", \"quote\": \"serious issue with their shifter module\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0004878,
+      "cached_tokens": 0,
+      "cost_usd": 0.000813,
+      "input_tokens": 1496,
+      "list_cost_usd": 0.000813,
+      "output_tokens": 981,
+      "reasoning_tokens": 752
+    }
+  }
+}

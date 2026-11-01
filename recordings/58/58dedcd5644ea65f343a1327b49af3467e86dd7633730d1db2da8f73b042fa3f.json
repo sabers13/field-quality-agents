@@ -1,0 +1,66 @@
+{
+  "key": "58dedcd5644ea65f343a1327b49af3467e86dd7633730d1db2da8f73b042fa3f",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 13937,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Exterior lighting on 2016 Kia Sorento: repeated headlight bulb failures (6 replacements), worsening with age; failure occurred at night and warning lamp stays until reset.\",\n  \"group\": \"lighting\",\n  \"symptoms\": [\n    \"headlight bulbs replaced 6 times\",\n    \"headlight bulb failure getting worse as vehicle ages\",\n    \"headlight went out at night\",\n    \"warning lamp comes on and stays until reset\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\",\n    \"conditions\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"headlight bulbs\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"replaced the headlight bulbs in my 2016 KIA Sorento 6 times\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"it's getting worse as it gets older\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"traveling in the middle of the night\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"the last time I was out of town, traveling in the middle of the night when it went out\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"I believe it is a safety issue\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"warning lamp comes on and stays until reset\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"No inspections have been done by anyone\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer only JSON. Need normalize report. Read narrative. Component EXTERIOR LIGHTING, group lighting, make KIA model SORENTO year 2016. Symptoms: headlight bulbs replaced 6 times, getting worse as gets older, headlight went out, warning lamp comes on and stays until reset. Conditions? intermittent? \"traveling in middle of night when it went out\" not cold/moisture/heat/vibration etc. Could include \"intermittent\"? Not explicitly intermittent but recurring bulb failure. Conditions array should list from allowed: cold, moisture, heat, vibration, intermittent, after service, charging. Report mentions replaced bulbs repeatedly (after service? no service? replacement). Warning lamp reset. Safety_relevant? User says believes safety issue, traveling middle night headlight went out, had to wait until morning. Is that risk to people? Headlight failure at night is safety risk. Rule set true when mentions crash fire smoke injury loss control stall at speed or another risk to people. Headlight failure at night is another risk to people. So true. However input has safety_relevant false (source field) but we must normalize from report; don't trust? It says report mentions... yes set true. Need clues verbatim spans. Need exact quotes from narrative. We need quote exact substrings. Narrative: \"I have now replaced the headlight bulbs in my 2016 KIA Sorento 6 times and it's getting worse as it gets older.   I believe it is a safety issue since the last time I was out of town, traveling in the middle of the night when it went out.  I had to wait until morning to find an auto parts store to buy and replace the bulb.  No inspections have been done by anyone. Yes, the warning lamp comes on and stays until reset.\"\n\nNeed summary one line: component, symptom, conditions. E.g. \"Exterior lighting: repeated headlight bulb failures (6 replacements), worsening with age; headlight went out at night, warning lamp stays until reset.\" Conditions maybe none environmental; \"at night\". Conditions allowed list doesn't include night. Could list intermittent? Hmm recurring failures. Could omit conditions empty. But summary conditions: \"night-time failure; no inspections\". Conditions field maybe [\"intermittent\"]? Is recurring failure intermittent? Not exactly. The report says \"it went out\" once; repeated replacements. Could be intermittent? Need not invent. \"conditions\": [] maybe. But schema wants conditions array. Use empty if none from allowed. However \"after service\" because replaced bulbs? That's not service? No. So [].\n\nFault_codes: none. missing_info: mileage (null), date? received_at exists but incident date not given. Component present, symptom present, conditions? Conditions missing: when/conditions under which bulbs fail (weather, driving). Date missing? The report doesn't give date of failures, mileage null. Missing info: [\"mileage\", \"date\", \"conditions\"]? The analysis needs conditions maybe. Component and symptom given. Good.\n\nClues:\n- symptom quote \"replaced the headlight bulbs in my 2016 KIA Sorento 6 times\" exact? It appears \"I have now replaced the headlight bulbs in my 2016 KIA Sorento 6 times\" yes. Use quote maybe \"replaced the headlight bulbs in my 2016 KIA Sorento 6 times\" (verbatim contiguous substring). kind symptom.\n- symptom quote \"it's getting worse as it gets older\" exact. kind symptom.\n- symptom quote \"the last time I was out of town, traveling in the middle of the night when it went out\" exact? Narrative: \"since the last time I was out of town, traveling in the middle of the night when it went out.\" Contiguous substring \"the last time I was out of town, traveling in the middle of the night when it went out\" yes.\n- safety quote \"I believe it is a safety issue\" exact. kind safety.\n- symptom/other quote \"warning lamp comes on and stays until reset\" exact. kind symptom maybe.\n- condition quote \"traveling in the middle of the night\" exact. kind condition? Conditions allowed no night, but clue kind condition can quote. Is night a condition? It's a condition of occurrence. Fine.\n- other quote \"No inspections have been done by anyone\" exact. kind other.\n\nNeed component_group clue quote \"headlight bulbs\"? kind component_group quote \"headlight bulbs\" exact. Or \"EXTERIOR LIGHTING\" is from field not narrative? The rules read only report in user message includes component field. Quote verbatim from report? It says narrative? User message JSON entire report. We can quote \"EXTERIOR LIGHTING\" from component field. But clues should evidence from report. Since quote must be from report, field values count? It says report in user message. Better quote narrative \"headlight bulbs\" for component_group. But group given lighting; component_group quote \"headlight bulbs\". Good.\n\nNeed JSON no other text. Ensure valid JSON. Need maybe boolean true.\n\nNeed decide missing_info includes \"date\". The report received_at 2025-07-10, but no incident/failure date. Analysis needs date? likely yes. Mileage null. Conditions missing (under what conditions bulbs fail; weather etc). Component and symptom present. Could include \"conditions\". Do not include \"component\" or \"symptom\" because present. \"mileage\", \"date\", \"conditions\". Good.\n\nNeed summary one line. Conditions in summary? \"no environmental conditions specified\" maybe. But one line component symptom conditions. \"Exterior lighting on 2016 Kia Sorento: repeated headlight bulb failures (6 replacements), worsening with age; failure occurred at night, warning lamp stays until reset; no inspection or environmental conditions reported.\" That's one line. Maybe too long but fine.\n\nNeed conditions array: Could include \"intermittent\"? The failure \"went out\" and repeated, warning lamp. But not explicitly intermittent. \"recurring\" might equate intermittent. However condition allowed \"intermittent\" meaning symptom occurs intermittently. Repeated bulb failures not same. Since headlight went out and stayed? It went out; replaced. Warning lamp stays. Not intermittent. So [].\n\nBut summary says conditions: \"night-time failure\" although conditions array empty. Is that inconsistent? Night is condition but not allowed list. The schema conditions list only specific allowed; but summary can mention. Fine.\n\nNeed safety_relevant true. Clues include safety. Need ensure quote exactly: \"I believe it is a safety issue\" yes. Another safety clue \"traveling in the middle of the night when it went out\" maybe kind condition. Safety relevant due to risk. Good.\n\nNeed no markdown? It says answer with one JSON object and no other text. Final should be raw JSON. Use pretty? JSON object. Fine.\n\nNeed ensure quote \"warning lamp comes on and stays until reset\" exact: Narrative \"Yes, the warning lamp comes on and stays until reset.\" substring exact. Good.\n\nNeed quote \"headlight bulbs\" exact. Good.\n\nNeed quote \"No inspections have been done by anyone\" exact. Good.\n\nPotential issue: \"component_group\" quote should be \"headlight bulbs\"; fine.\n\nNeed maybe \"conditions\" clue for \"traveling in the middle of the night\" exact substring? Narrative has \"traveling in the middle of the night when it went out\" yes. Use quote \"traveling in the middle of the night\" exact substring. Kind condition.\n\nNeed \"other\" for \"No inspections...\" exact.\n\nNeed no invented fault_codes [].\n\nNeed JSON with arrays. Ensure quotes escaped? None.\n\nFinal.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793528411,
+      "id": "fb5fc71eef1f601d2fe88c6fa7589a6e",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1992,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1610,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00073626,
+          "billing_source": "go",
+          "list_cost": 0.0012271,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 205,
+            "output": 1992,
+            "reasoning": 1610
+          }
+        },
+        "prompt_tokens": 589,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2581
+      }
+    },
+    "text": "{\n  \"summary\": \"Exterior lighting on 2016 Kia Sorento: repeated headlight bulb failures (6 replacements), worsening with age; failure occurred at night and warning lamp stays until reset.\",\n  \"group\": \"lighting\",\n  \"symptoms\": [\n    \"headlight bulbs replaced 6 times\",\n    \"headlight bulb failure getting worse as vehicle ages\",\n    \"headlight went out at night\",\n    \"warning lamp comes on and stays until reset\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\",\n    \"conditions\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"headlight bulbs\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"replaced the headlight bulbs in my 2016 KIA Sorento 6 times\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"it's getting worse as it gets older\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"traveling in the middle of the night\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"the last time I was out of town, traveling in the middle of the night when it went out\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"I believe it is a safety issue\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"warning lamp comes on and stays until reset\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"No inspections have been done by anyone\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00073626,
+      "cached_tokens": 384,
+      "cost_usd": 0.0012271,
+      "input_tokens": 589,
+      "list_cost_usd": 0.0012271,
+      "output_tokens": 1992,
+      "reasoning_tokens": 1610
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "fabd73339009436bfa872be62a351881d8dbdf004ffb8dc74bfd04a740d5ff90",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 7047,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\": \"Run an electrical load test to reproduce the reported 16 A overcharging, battery failure and intermittent power loss on the 2022 Indian FTR1200.\", \"rationale\": \"The case reports charging-system symptoms: the ECM is said to send 16 amps to the battery instead of 14 amps, causing premature battery failure, and the motorcycle intermittently loses power while riding with an inoperable ABS. The rulebook matches the 'charging' condition to an Electrical load test because charging and high-current loads stress the supply path, connectors and protection circuits. The 'intermittent' condition also matches a long-run power cycling test, but the charging condition supports the targeted Electrical load test.\", \"group\": \"electrical_general\", \"symptoms\": [\"loss of automotive power while riding\", \"battery failure\", \"ABS inoperable\", \"overcharging: ECM sending 16 amps instead of 14 amps to the battery\", \"battery failing prematurely\", \"diagnosed with electrical failures\"], \"conditions\": [\"charging\", \"intermittent\"], \"fault_codes\": [], \"safety_relevant\": false, \"targeted\": true, \"test_name\": \"Electrical load test\", \"clues\": [{\"kind\": \"condition\", \"quote\": \"while riding at various speeds on several occasions\"}, {\"kind\": \"symptom\", \"quote\": \"lost automotive power with battery failure and an inoperable ABS\"}, {\"kind\": \"symptom\", \"quote\": \"The ECM was sending 16 amps to the battery instead of the standard 14 amps\"}, {\"kind\": \"symptom\", \"quote\": \"causing the battery to fail prematurely\"}, {\"kind\": \"condition\", \"quote\": \"diagnosed with electrical failures\"}]}",
+            "reasoning_content": "We need answer JSON only. Need construct based on facts. Rulebook has charging matched -> Electrical load test targeted true. Conditions charging and intermittent maybe could mention both. Safety_relevant false (explicit and no risk to people? \"lost automotive power while riding\" could be safety risk but extraction says safety false, case says false; prompt says set when narrative shows risk to people. Losing power while riding is risk? But case explicitly safety_relevant false. Need follow narrative? The rule says set when narrative shows risk to people. \"lost automotive power ... while riding at various speeds\" arguably risk. But given metadata false and extraction false, likely false. Need quotes verbatim from case narrative. Use narrative exact spans. Ensure quotes are in narrative. Narrative: \"The contact owns a 2022 Indian FTR1200 Motorcycle. The contact stated that while riding at various speeds on several occasions, the motorcycle lost automotive power with battery failure and an inoperable ABS. The contact stated that the ECM was sending 16 amps to the battery instead of the standard 14 amps, causing the battery to fail prematurely. The motorcycle was taken to a local dealer and was diagnosed with electrical failures; however, the motorcycle was not repaired. The manufacturer was notified of the failure. The approximate failure mileage was 1,300.\"\n\nQuotes:\n- \"while riding at various speeds on several occasions\" yes\n- \"lost automotive power with battery failure and an inoperable ABS\" yes\n- \"The ECM was sending 16 amps to the battery instead of the standard 14 amps\" yes\n- \"causing the battery to fail prematurely\" yes\n- \"diagnosed with electrical failures\" yes\n- \"ELECTRICAL SYSTEM\" is component field not narrative? The narrative doesn't include \"ELECTRICAL SYSTEM\". The rule says quote from case narrative. So don't use component quote unless in narrative. Need clues only quotes from narrative. Could include component_group clue? Need quote verbatim from narrative. \"electrical failures\" maybe condition. But kind component_group needs quote maybe \"electrical failures\" not group. Better include kind symptom/condition/fault_code/other. Could include safety? no. Clues can be fewer.\n\nNeed summary one line what to test and why: \"Run an electrical load test to reproduce the reported 16 A overcharging and intermittent power loss on the 2022 Indian FTR1200.\" rationale include charging condition and rulebook. group \"electrical_general\". symptoms list. conditions [\"charging\",\"intermittent\"]. fault_codes []. safety false. targeted true. test_name \"Electrical load test\". clues array.\n\nNeed ensure JSON only. No markdown. final.\n\nNeed maybe \"component group\": group. Good.\n\nLet's craft concise.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793528145,
+      "id": "cff9766cc2942678a77b7fd8bcadc0b3",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 933,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 567,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00042795,
+          "billing_source": "go",
+          "list_cost": 0.00071325,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 1023,
+            "output": 933,
+            "reasoning": 567
+          }
+        },
+        "prompt_tokens": 1023,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 1956
+      }
+    },
+    "text": "{\"summary\": \"Run an electrical load test to reproduce the reported 16 A overcharging, battery failure and intermittent power loss on the 2022 Indian FTR1200.\", \"rationale\": \"The case reports charging-system symptoms: the ECM is said to send 16 amps to the battery instead of 14 amps, causing premature battery failure, and the motorcycle intermittently loses power while riding with an inoperable ABS. The rulebook matches the 'charging' condition to an Electrical load test because charging and high-current loads stress the supply path, connectors and protection circuits. The 'intermittent' condition also matches a long-run power cycling test, but the charging condition supports the targeted Electrical load test.\", \"group\": \"electrical_general\", \"symptoms\": [\"loss of automotive power while riding\", \"battery failure\", \"ABS inoperable\", \"overcharging: ECM sending 16 amps instead of 14 amps to the battery\", \"battery failing prematurely\", \"diagnosed with electrical failures\"], \"conditions\": [\"charging\", \"intermittent\"], \"fault_codes\": [], \"safety_relevant\": false, \"targeted\": true, \"test_name\": \"Electrical load test\", \"clues\": [{\"kind\": \"condition\", \"quote\": \"while riding at various speeds on several occasions\"}, {\"kind\": \"symptom\", \"quote\": \"lost automotive power with battery failure and an inoperable ABS\"}, {\"kind\": \"symptom\", \"quote\": \"The ECM was sending 16 amps to the battery instead of the standard 14 amps\"}, {\"kind\": \"symptom\", \"quote\": \"causing the battery to fail prematurely\"}, {\"kind\": \"condition\", \"quote\": \"diagnosed with electrical failures\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00042795,
+      "cached_tokens": 0,
+      "cost_usd": 0.00071325,
+      "input_tokens": 1023,
+      "list_cost_usd": 0.00071325,
+      "output_tokens": 933,
+      "reasoning_tokens": 567
+    }
+  }
+}

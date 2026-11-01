@@ -1,0 +1,66 @@
+{
+  "key": "5b348cf5d13ff0c2c9fb273cc8ef724405ca0c2aac3e4cace4f2155278648c74",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12495,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system: complete vehicle failure multiple times on busy streets/freeway on-ramp, now totally inoperable after 12V battery replacement and software update.\",\"group\":\"electrical_general\",\"symptoms\":[\"complete vehicle failure multiple times while driving on busy streets and a freeway on-ramp\",\"vehicle totally inoperable\"],\"conditions\":[\"intermittent\",\"after service\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"Car has completely failed several times in the middle of busy streets including the freeway on ramp.\"},{\"kind\":\"symptom\",\"quote\":\"now the car is totally inoperable\"},{\"kind\":\"condition\",\"quote\":\"several times\"},{\"kind\":\"condition\",\"quote\":\"Jag has replaced the 12v battery once, tried to update software and now the car is totally inoperable.\"},{\"kind\":\"safety\",\"quote\":\"failed several times in the middle of busy streets including the freeway on ramp\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize report. Need obey quotes verbatim. Need identify component electrical system, group given electrical_general. Symptoms: car completely failed several times in middle of busy streets including freeway on ramp; totally inoperable; 12v battery replaced; software update tried. Conditions: intermittent? \"several times\" implies intermittent? The conditions list includes intermittent. Could include \"intermittent\" as condition inferred from failed several times. But quote must verbatim for clues. Safety relevant? Report mentions failed in middle busy streets including freeway on ramp. Is that risk to people? Loss of control/stall at speed? It says completely failed several times in middle of busy streets including freeway on ramp. That is safety risk. Set true. Fault codes none. Missing info: mileage is null. Date? received_at exists, narrative no incident date. Conditions? It has locations but not weather etc. Component provided. Symptom present. Missing_info should include mileage and date maybe conditions? Need \"facts analysis needs: component, symptom, conditions, mileage, date.\" Mileage missing, date of failure missing. Conditions lacking? It does mention busy streets/freeway on ramp but not cold/moisture etc. The schema conditions list only cold moisture heat vibration intermittent after service charging. We can mark intermittent. missing_info include mileage, date, conditions? But conditions maybe not missing? We know intermittent/multiple failures. Hmm.\n\nNeed summary one line: component, symptom, conditions. \"Electrical system: complete vehicle failure multiple times in busy streets/freeway on-ramp; car now inoperable after 12V battery replacement and software update.\" Good.\n\nClues need verbatim spans. Include symptom quote: \"Car has completely failed several times in the middle of busy streets including the freeway on ramp.\" condition quote: \"several times\" maybe condition intermittent. component_group quote \"ELECTRICAL SYSTEM\". safety quote same failure quote? Kind safety quote \"failed several times in the middle of busy streets including the freeway on ramp\" verbatim? Check exact: \"Car has completely failed several times in the middle of busy streets including the freeway on ramp.\" yes substring \"failed several times in the middle of busy streets including the freeway on ramp\" exists. Other symptom \"now the car is totally inoperable\". Quote exact: \"now the car is totally inoperable\". Good. Could include \"Jag has replaced the 12v battery once, tried to update software\" as other? Not needed.\n\nNeed missing_info: [\"mileage\", \"date\", \"conditions\"]? But conditions has intermittent. Maybe include mileage, date. The instruction: List missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. Use empty when nothing important missing. Mileage null. Date not incident date, only received_at. Conditions: no environmental conditions but \"busy streets/freeway on ramp\" are conditions? The enumerated conditions include cold, moisture, heat, vibration, intermittent, after service, charging. We can include \"intermittent\" as condition because failed several times. Missing conditions? It doesn't say cold etc. But maybe not important. I'd include mileage and date. Should we include \"conditions\" because no weather? The desk needs conditions; report gives operational context (busy streets/freeway on ramp) but not environmental. Hmm.\n\nNeed group \"electrical_general\" given group, or component group? Prompt says \"the electrical/electronic component group, or the given group\". Given group electrical_general. Use that.\n\nSafety_relevant true because freeway on ramp failure. The source field says safety_relevant false, but report mentions risk. Rule overrides. Good.\n\nNeed JSON no other text. Ensure valid JSON. No markdown? It says answer with one JSON object and no other text. We can output raw JSON. Good.\n\nQuotes: \n- \"ELECTRICAL SYSTEM\" exactly component field uppercase. kind component_group.\n- \"Car has completely failed several times in the middle of busy streets including the freeway on ramp.\" exact narrative.\n- \"now the car is totally inoperable\" exact substring? Narrative: \"tried to update software and now the car is totally inoperable.\" yes substring.\n- \"several times\" exact.\n- safety quote: \"failed several times in the middle of busy streets including the freeway on ramp\" exact substring? Let's verify narrative segment: \"Car has completely failed several times in the middle of busy streets including the freeway on ramp.\" substring after completely: \"failed several times in the middle of busy streets including the freeway on ramp\" yes.\nCould also quote \"Jag has replaced the 12v battery once, tried to update software\" as other/after service? It says after service condition? The car failed after battery replacement/software update? \"now car inoperable\" after service. Could include condition \"after service\" with quote \"Jag has replaced the 12v battery once, tried to update software and now the car is totally inoperable.\" That indicates after service. But \"after service\" condition list. It might be relevant. We can include condition \"after service\" quote that exact. Need not overdo.\n\nSymptoms array: [\"complete vehicle failure multiple times while driving on busy streets and freeway on-ramp\", \"vehicle totally inoperable\"] plain words.\n\nConditions array: [\"intermittent\", \"after service\"] maybe. The condition \"after service\" due battery replacement/software update. Good.\n\nFault codes empty.\n\nMissing info: mileage, date. Could include \"conditions\"? Hmm if conditions includes after service/intermittent, no. But environmental not. I think [\"mileage\", \"date\"]. The report has received_at date but no failure date. Good.\n\nNeed summary: \"Electrical system: complete failure multiple times on busy streets/freeway on-ramp, now inoperable after 12V battery replacement and software update.\" Good.\n\nFinal JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793525502,
+      "id": "aadbd748315f17879599f827a68d5ad2",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1483,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1242,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00055428,
+          "billing_source": "go",
+          "list_cost": 0.0009238,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 219,
+            "output": 1483,
+            "reasoning": 1242
+          }
+        },
+        "prompt_tokens": 603,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2086
+      }
+    },
+    "text": "{\"summary\":\"Electrical system: complete vehicle failure multiple times on busy streets/freeway on-ramp, now totally inoperable after 12V battery replacement and software update.\",\"group\":\"electrical_general\",\"symptoms\":[\"complete vehicle failure multiple times while driving on busy streets and a freeway on-ramp\",\"vehicle totally inoperable\"],\"conditions\":[\"intermittent\",\"after service\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"Car has completely failed several times in the middle of busy streets including the freeway on ramp.\"},{\"kind\":\"symptom\",\"quote\":\"now the car is totally inoperable\"},{\"kind\":\"condition\",\"quote\":\"several times\"},{\"kind\":\"condition\",\"quote\":\"Jag has replaced the 12v battery once, tried to update software and now the car is totally inoperable.\"},{\"kind\":\"safety\",\"quote\":\"failed several times in the middle of busy streets including the freeway on ramp\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00055428,
+      "cached_tokens": 384,
+      "cost_usd": 0.0009238,
+      "input_tokens": 603,
+      "list_cost_usd": 0.0009238,
+      "output_tokens": 1483,
+      "reasoning_tokens": 1242
+    }
+  }
+}

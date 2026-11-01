@@ -1,0 +1,66 @@
+{
+  "key": "fff9a07902ec76e2bd24bb38dba7d146ab441bd09b284dfe061f4ba98aab5e6d",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 8734,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Electrical system: repeated stalls at highway speeds with loss of motive power, engine malfunction message, and powering down; occurred five times in one trip.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"stalls repeatedly at highway speeds\",\n    \"loss of motive power\",\n    \"engine malfunction message\",\n    \"powering down\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Vehicle stalls repeatedly at highway speeds.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Loss of motive power.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"at highway speeds\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"Occurred five times in one trip.\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"No alerts.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"engine malfunction\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Powering down.\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"Vehicle stalls repeatedly at highway speeds.\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"Loss of motive power.\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer only JSON object. Need normalize report. Component electrical system, group electrical_general given. Narrative: stalls repeatedly at highway speeds. Loss of motive power. Occurred five times in one trip. No alerts. It just says engine malfunction. Powering down.\n\nNeed summary one line: component, symptom, conditions. group \"electrical_general\" or given. symptoms plain words: \"stalls repeatedly at highway speeds\", \"loss of motive power\", maybe \"engine malfunction message\", \"powering down\". Conditions: maybe \"intermittent\"? It occurred five times in one trip, highway speeds. Conditions allowed list: cold moisture heat vibration intermittent after service charging. We should only include conditions evident? \"intermittent\" maybe repeated stalls; highway speeds not in allowed. Could include \"intermittent\" due repeated stalls? But conditions list restricted to those terms. \"highway speeds\" not an option. Maybe conditions [] and clues include condition quote \"at highway speeds\" kind condition? But conditions array only allowed terms. The schema says conditions: [\"cold\", ...]. We can leave empty. But summary includes conditions. fault_codes none? It says engine malfunction, not a code. Could put \"engine malfunction\" as symptom not fault code. safety_relevant true because stall at speed / loss motive power risk. The input has safety_relevant false but rule says set when report mentions stall at speed or risk. Must override true. missing_info: mileage? Report mileage null. Date? received_at exists but incident date not. Conditions? It has highway speeds but maybe not full conditions. Component? present. Symptom present. Missing info: mileage, date? The analysis needs facts; mileage missing, date missing (incident date). Conditions maybe present (highway speeds, repeated). We can list [\"mileage\",\"date\"]. Maybe \"conditions\" missing for detailed conditions? But it says occurred at highway speeds; enough. Use missing_info [\"mileage\",\"date\"].\n\nClues: need verbatim quotes. Use exact spans:\n- {\"kind\":\"symptom\",\"quote\":\"Vehicle stalls repeatedly at highway speeds.\"}\n- {\"kind\":\"symptom\",\"quote\":\"Loss of motive power.\"}\n- {\"kind\":\"condition\",\"quote\":\"at highway speeds\"}? This is substring of first quote, verbatim yes. But duplicate? Fine.\n- {\"kind\":\"symptom\",\"quote\":\"Occurred five times in one trip.\"}\n- {\"kind\":\"other\",\"quote\":\"No alerts.\"}\n- {\"kind\":\"symptom\",\"quote\":\"engine malfunction\"} but exact? Narrative \"It just says engine malfunction.\" quote \"engine malfunction\" okay verbatim.\n- {\"kind\":\"symptom\",\"quote\":\"Powering down.\"}\n- safety clue: {\"kind\":\"safety\",\"quote\":\"Vehicle stalls repeatedly at highway speeds.\"} and/or \"Loss of motive power.\" Safety relevant yes.\n\nNeed ensure JSON only. Summary: \"Electrical system: repeated stalls at highway speeds with loss of motive power; engine malfunction message and powering down; occurred five times in one trip.\" One line.\n\nGroup \"electrical_general\".\n\nSymptom array: [\"stalls repeatedly at highway speeds\", \"loss of motive power\", \"engine malfunction message\", \"powering down\"]. Should plain words. Maybe \"no alerts\" not symptom.\n\nConditions: maybe [\"intermittent\"]? Hmm conditions taxonomy includes intermittent. Repeated stalls five times in one trip indicates intermittent. But \"at highway speeds\" cannot represent. Include \"intermittent\" maybe. But is it a condition? The report says repeatedly, occurred five times. I'd include \"intermittent\" perhaps. However conditions array should be only from list. Yes. Could include \"intermittent\". Clues for condition \"Occurred five times in one trip\" supports intermittent? Kind condition quote. Also \"at highway speeds\" is condition but not in list; can clue kind condition anyway? The schema kind can be condition. But conditions array can't include highway. Could still quote. Do that.\n\nFault codes [] because no code.\n\nSafety true.\n\nMissing info: mileage, date. Could conditions? It has conditions. Component present. Symptom present. Could missing \"date\" because received_at not incident date. Yes.\n\nNeed no other text. Final JSON. Ensure valid. Use Boolean true.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793532859,
+      "id": "87a2f7ff5059aa91ebdc9e15fc91b0ef",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1227,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 887,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00045456,
+          "billing_source": "go",
+          "list_cost": 0.0007576,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 135,
+            "output": 1227,
+            "reasoning": 887
+          }
+        },
+        "prompt_tokens": 519,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1746
+      }
+    },
+    "text": "{\n  \"summary\": \"Electrical system: repeated stalls at highway speeds with loss of motive power, engine malfunction message, and powering down; occurred five times in one trip.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"stalls repeatedly at highway speeds\",\n    \"loss of motive power\",\n    \"engine malfunction message\",\n    \"powering down\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Vehicle stalls repeatedly at highway speeds.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Loss of motive power.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"at highway speeds\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"Occurred five times in one trip.\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"No alerts.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"engine malfunction\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Powering down.\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"Vehicle stalls repeatedly at highway speeds.\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"Loss of motive power.\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00045456,
+      "cached_tokens": 384,
+      "cost_usd": 0.0007576,
+      "input_tokens": 519,
+      "list_cost_usd": 0.0007576,
+      "output_tokens": 1227,
+      "reasoning_tokens": 887
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "5d55fcb65e6983a8d7a43459aaa0da2bdc8f28ca14b06f3c6534c5693e26ca87",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 21033,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Exterior lighting (daytime running lights): both defective, one fully out and one partially out, started early 2024; no conditions reported; visibility concern.\",\"group\":\"lighting\",\"symptoms\":[\"both daytime running lights defective\",\"one daytime running light fully out\",\"other daytime running light partially out\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"EXTERIOR LIGHTING\"},{\"kind\":\"symptom\",\"quote\":\"Both daytime running lights are defective.\"},{\"kind\":\"symptom\",\"quote\":\"One is all the way out and the other one is partially out.\"},{\"kind\":\"other\",\"quote\":\"This started early 2024.\"},{\"kind\":\"safety\",\"quote\":\"I'm concerned over visibility.\"}]}",
+            "reasoning_content": "We need to produce one JSON object only. Need parse report. Component EXTERIOR LIGHTING, group lighting. Narrative: \"Both daytime running lights are defective. One is all the way out and the other one is partially out. This started early 2024. I'm concerned over visibility.\" Symptoms: both daytime running lights defective; one fully out; other partially out; concern over visibility. Conditions: none explicitly? Started early 2024 is a date condition? Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. None match. Could include? No. Fault codes none. Safety_relevant? They say concerned over visibility. Does that count risk to people? The prompt says safety_relevant when mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. Visibility concern due lights out is a risk? It mentions concern over visibility, likely safety relevant? But incoming report has safety_relevant false. We must not invent. Need decide. \"I'm concerned over visibility\" is a risk to people? Driving without DRLs at night? It's a safety concern. The instruction says set safety_relevant when report mentions ... or another risk to people. Concern over visibility could be another risk. But is it explicit? It says \"I'm concerned over visibility.\" That is a safety concern. However the field safety_relevant false in input may be ignored? We normalize. I'd set true? Need be careful. The desk analysis: safety_relevant likely true if visibility concern. But prompt says mentions crash, fire, smoke, injury, loss of control, a stall at speed or another risk to people. \"concerned over visibility\" is a risk to people. So set true. But maybe because DRLs defective and visibility, yes.\n\nMissing_info: mileage missing (null). Date? It has \"started early 2024\" and received_at, so date present? The analysis needs date maybe onset date present approximate. Mileage missing. Conditions missing? No conditions listed. Component present, symptom present. So missing_info [\"mileage\", \"conditions\"]? The prompt says list missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. Conditions not present, so missing. But is conditions needed? For DRL defect maybe not? It asks only facts analysis needs. Could include conditions if none. But if no condition mentioned, missing_info includes conditions? In examples likely. Need decide. Mileage definitely missing. Date? \"started early 2024\" gives date; received date 2025-10-02. So date not missing. Conditions: no environmental conditions. The analysis might need conditions, but not always. The rule says list missing_info only for facts the analysis needs. Conditions may be needed to assess. But if report doesn't mention, include \"conditions\". However \"missing_info\" can be empty when nothing important is missing. Is conditions important? For lighting defect, conditions less important. But allowed list includes conditions. Hmm.\n\nClues: need verbatim quotes. We can quote:\n- \"Both daytime running lights are defective.\" kind symptom\n- \"One is all the way out and the other one is partially out.\" kind symptom\n- \"This started early 2024.\" kind condition? or other? It's timing, not in conditions list. Could kind \"other\" quote. Or condition? The kind enum includes symptom|condition|fault_code|component_group|safety|other. \"This started early 2024\" is other maybe.\n- \"I'm concerned over visibility.\" kind safety (if safety relevant). Or other? Safety.\n- \"EXTERIOR LIGHTING\" component_group? The report has component field. Quote can be from report including fields? \"EXTERIOR LIGHTING\" is in report. kind component_group. Good.\n\nNeed summary one line: component, symptom, conditions. \"Exterior lighting (daytime running lights): both defective, one fully out and one partially out, started early 2024; visibility concern.\" Conditions none. Good.\n\nNeed group \"lighting\". Symptoms plain words: [\"both daytime running lights defective\", \"one daytime running light fully out\", \"other daytime running light partially out\"] Maybe include visibility concern? Symptom? No.\n\nConditions: [] because no listed conditions. Could include? No.\n\nFault_codes [].\n\nSafety_relevant true? Let's examine. If true, clue quote \"I'm concerned over visibility.\" It is a concern, not an incident. The prompt: \"Set safety_relevant when the report mentions a crash, fire, smoke, injury, loss of control, a stall at speed or another risk to people.\" Visibility concern is another risk to people? Driving with defective DRLs can reduce visibility to others. I'd say yes. But input says false; we can override? We're normalizing. The report itself includes \"safety_relevant\": false as a field. Is that a fact in report? The user message is JSON with safety_relevant false. But we should not invent; if we set true, are we contradicting? We can interpret narrative. The rules say set when report mentions ... \"I'm concerned over visibility\" is mention. So true. But could be considered not explicit risk. Hmm. The output expected maybe safety_relevant false because no crash/fire etc. \"concerned over visibility\" is a risk? It is a safety-related concern. The desk likely wants flag. I lean true. But maybe \"visibility\" concern is not \"risk to people\" as defined? It is a risk. Let's set true. Need include clue quote.\n\nMissing_info: mileage, conditions? Date not missing because early 2024. Component present. Symptom present. Conditions missing? There are no conditions. I think include \"mileage\", \"conditions\". But if conditions not necessary, maybe [\"mileage\"]. The prompt says list missing_info only for facts the analysis needs: component, symptom, conditions, mileage, date. Use empty when nothing important missing. For lighting, conditions maybe not essential. Mileage is null, important? For a 2021 F-150 with DRL failure, mileage could help. So include mileage. Conditions? Could be useful but not critical. Since conditions list includes environmental conditions; report has none. Analysis might need to know if cold/moisture etc. But DRL failure likely not. I'd include \"conditions\" because it's a standard missing fact? Hmm. The prompt explicitly lists conditions as a fact analysis needs. If absent, list it. But \"only for facts the analysis needs\" means not every absent field. For this case, conditions could matter (e.g., moisture). But no indication. I'd include mileage and conditions? Or only mileage. Need choose. Desired oververbosity 5 but output JSON.\n\nLet's ensure quotes verbatim. The narrative includes \"Both daytime running lights are defective. One is all the way out and the other one is partially out. This started early 2024. I'm concerned over visibility.\" Quote exactly. Use apostrophe in \"I'm\" as in report. Good.\n\nSummary: \"Exterior lighting: both daytime running lights defective, one fully out, one partially out, started early 2024; visibility concern.\" Conditions none.\n\nNeed no other text.\n\nPotential issue: \"conditions\": could include \"early 2024\"? Not in allowed list. No.\n\n\"missing_info\": [\"mileage\", \"conditions\"] maybe. Date? The report says started early 2024, but no exact date. The missing_info list includes \"date\"; exact onset date is approximate. Should we list date? It has early 2024; that's a date. Not missing. Received_at 2025-10-02. So no.\n\nLet's craft final JSON. Ensure valid JSON, no markdown? User says answer with one JSON object and no other text. So final should be raw JSON. Use double quotes. Good.\n\nNeed decide safety_relevant. If true, clue kind safety. If false, no safety clue. I will set true. But maybe input has safety_relevant false; our output can differ. The prompt says set when report mentions ... \"another risk to people.\" Concern over visibility is risk. Good.\n\nClues:\n- {\"kind\":\"component_group\",\"quote\":\"EXTERIOR LIGHTING\"}\n- {\"kind\":\"symptom\",\"quote\":\"Both daytime running lights are defective.\"}\n- {\"kind\":\"symptom\",\"quote\":\"One is all the way out and the other one is partially out.\"}\n- {\"kind\":\"other\",\"quote\":\"This started early 2024.\"}\n- {\"kind\":\"safety\",\"quote\":\"I'm concerned over visibility.\"}\n\nIs \"This started early 2024.\" a condition? Kind condition perhaps? The enum condition, but allowed conditions list doesn't include time. It could be \"other\". Use other.\n\nSymptoms array: \"both daytime running lights defective\", \"one daytime running light fully out\", \"other daytime running light partially out\". Plain words. Good.\n\nConditions array empty.\n\nFault_codes empty.\n\nMissing_info: [\"mileage\", \"conditions\"]? Let's include both. But if conditions not important, maybe only mileage. The prompt says \"conditions\" in missing_info list. Since no conditions are reported, include. But if we include conditions while conditions array empty, okay. The analysis might need conditions but none. I'll include [\"mileage\", \"conditions\"].\n\nSummary includes conditions? \"no conditions reported\" maybe. One line: \"Exterior lighting (daytime running lights): both defective, one fully out and one partially out, started early 2024; no conditions reported; visibility concern.\" Good.\n\nNeed no suggestion. Good.\n\nFinal.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530895,
+      "id": "46e4eba71d155941d6d27c4a78602a8b",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2208,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 2025,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00080772,
+          "billing_source": "go",
+          "list_cost": 0.0013462,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 135,
+            "output": 2208,
+            "reasoning": 2025
+          }
+        },
+        "prompt_tokens": 519,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2727
+      }
+    },
+    "text": "{\"summary\":\"Exterior lighting (daytime running lights): both defective, one fully out and one partially out, started early 2024; no conditions reported; visibility concern.\",\"group\":\"lighting\",\"symptoms\":[\"both daytime running lights defective\",\"one daytime running light fully out\",\"other daytime running light partially out\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"EXTERIOR LIGHTING\"},{\"kind\":\"symptom\",\"quote\":\"Both daytime running lights are defective.\"},{\"kind\":\"symptom\",\"quote\":\"One is all the way out and the other one is partially out.\"},{\"kind\":\"other\",\"quote\":\"This started early 2024.\"},{\"kind\":\"safety\",\"quote\":\"I'm concerned over visibility.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00080772,
+      "cached_tokens": 384,
+      "cost_usd": 0.0013462,
+      "input_tokens": 519,
+      "list_cost_usd": 0.0013462,
+      "output_tokens": 2208,
+      "reasoning_tokens": 2025
+    }
+  }
+}

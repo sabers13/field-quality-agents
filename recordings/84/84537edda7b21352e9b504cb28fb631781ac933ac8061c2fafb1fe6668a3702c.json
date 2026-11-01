@@ -1,0 +1,66 @@
+{
+  "key": "84537edda7b21352e9b504cb28fb631781ac933ac8061c2fafb1fe6668a3702c",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 13877,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2025 Nissan Rogue ADAS/rearview braking; random 'Driving Aids Temporarily Limited' warning disables ProPILOT/Safety Assist under normal driving.\",\"group\":\"adas\",\"symptoms\":[\"warning light 'Warning: Driving Aids Temporarily Limited' appears\",\"ProPILOT/Safety Assist systems disable entirely\",\"issue occurs randomly and unpredictably under regular driving conditions\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"BACK OVER PREVENTION: REARVIEW SYSTEM BRAKING\"},{\"kind\":\"symptom\",\"quote\":\"Warning: Driving Aids Temporarily Limited.\"},{\"kind\":\"symptom\",\"quote\":\"causes the ProPILOT/Safety Assist systems to disable themselves entirely\"},{\"kind\":\"condition\",\"quote\":\"randomly and under regular driving conditions\"},{\"kind\":\"symptom\",\"quote\":\"issue continued to occur unpredictably\"},{\"kind\":\"safety\",\"quote\":\"significant safety risk to myself and others on the road\"}]}",
+            "reasoning_content": "We need answer only JSON object. Need normalize report. Need extract summary one line component symptom conditions. Group given adas. Symptoms plain words. Conditions list relevant: intermittent? random unpredictable, after service? no, charging? no, cold moisture heat vibration? no. \"intermittent\" yes. Maybe \"after service\" because dealership service? But condition likely after purchase? Rules conditions allowed list: cold, moisture, heat, vibration, intermittent, after service, charging. Report mentions random/unpredictably = intermittent. \"after service\" perhaps vehicle at dealership, but not after service; no. Fault codes: none, warning message not code. Safety_relevant: user says unsafe, significant safety risk, essential safety features failure, driving aids disable. Does that count risk to people? It mentions safety risk but not crash/fire/etc. Set true? Rule: Set safety_relevant when report mentions crash, fire, smoke, injury, loss of control, a stall at speed or another risk to people. \"significant safety risk to myself and others on road\" is another risk to people. Yes true. Missing_info: mileage? report says only driven few miles, no odometer. Date present (purchase June 4, June 18). Component present. Symptom present. Conditions present? intermittent/random. Mileage missing. Maybe \"date\" not missing. missing_info [\"mileage\"]. Clues verbatim spans. Need exact quotes from narrative. Include component_group quote? Must copy verbatim. Could quote \"ProPILOT/Safety Assist systems to disable themselves entirely\" or \"Warning: Driving Aids Temporarily Limited.\" Need character exact? The narrative has curly quotes around message: “Warning: Driving Aids Temporarily Limited.” If quote inside message without curly? Verbatim span can be substring \"Warning: Driving Aids Temporarily Limited.\" Is that exact characters? Text contains \\u201cWarning: Driving Aids Temporarily Limited.\\u201d So substring \"Warning: Driving Aids Temporarily Limited.\" yes chars include period before closing curly. Good.\n\nNeed JSON only no other text. Ensure quotes exact. Summary: \"2025 Nissan Rogue rearview/ADAS braking; 'Driving Aids Temporarily Limited' warning, ProPILOT/Safety Assist disable randomly under normal driving.\" Component given \"BACK OVER PREVENTION: REARVIEW SYSTEM BRAKING\" but narrative about ProPILOT/Safety Assist. Summary component maybe \"Rearview system braking / ProPILOT Safety Assist\". Need one line. Group adas.\n\nSymptoms: [\"warning light 'Warning: Driving Aids Temporarily Limited' appears\", \"ProPILOT/Safety Assist systems disable entirely\", \"issue occurs randomly/unpredictably under regular driving conditions\", \"dealership unable to diagnose or correct\"] Last is not symptom maybe. Keep first three.\n\nConditions: [\"intermittent\"] Maybe \"after service\" no.\n\nFault_codes: [] because warning message not code. Could include warning text? Rule fault_codes code if report names one. No.\n\nClues: array with kind symptom quote, condition quote, component_group quote? Need quote \"BACK OVER PREVENTION: REARVIEW SYSTEM BRAKING\" is component field not narrative? Report includes component field. The user message includes JSON with component. \"Read only report in user message\" includes field. Verbatim span from report yes. But clues quote copied from report; can quote field value. Use kind component_group quote \"BACK OVER PREVENTION: REARVIEW SYSTEM BRAKING\". Safety quote \"significant safety risk to myself and others on the road\". Symptom quote exact \"Warning: Driving Aids Temporarily Limited.\" Condition quote \"randomly and under regular driving conditions\" exact? Narrative: \"This message occurs randomly and under regular driving conditions, without provocation\" yes substring. Symptom quote \"causes the ProPILOT/Safety Assist systems to disable themselves entirely\" exact? Narrative says \"and causes the ProPILOT/Safety Assist systems to disable themselves entirely.\" substring yes. Another symptom quote \"issue continued to occur unpredictably\" yes. Safety quote exact \"significant safety risk to myself and others on the road\" yes narrative: \"presents a significant safety risk to myself and others on the road\" substring yes.\n\nNeed be careful every quote exact. Use straight apostrophe? Quotes have no apostrophe. Good.\n\nCould missing_info include \"mileage\" only. It says mileage null but narrative \"few miles\"; no odometer. Date present. Conditions present. Component present. Symptom present.\n\nNeed answer one JSON object no markdown? User says answer with one JSON object and no other text. We can output raw JSON. Desired maybe code block? \"no other text\" likely raw JSON. We'll output raw JSON. Ensure valid JSON, escape quotes. No trailing commas.\n\nLet's craft. Summary: \"2025 Nissan Rogue ADAS/rearview braking; random 'Driving Aids Temporarily Limited' warning disables ProPILOT/Safety Assist under normal driving.\" Is that one line. Fine.\n\nClues maybe include fault_code? No. \"warning light began appearing that reads: “Warning: Driving Aids Temporarily Limited.”\" Could quote with curly quotes? If include full sentence exact includes curly quote, okay but avoid. Use inner. \"Warning: Driving Aids Temporarily Limited.\" exact. In JSON need escape? No.\n\nShould safety_relevant true. Good.\n\nNeed not mention action. Done.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793527795,
+      "id": "0b318045fcf80933c8d346f140834e44",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1364,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1130,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00053187,
+          "billing_source": "go",
+          "list_cost": 0.00088645,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 446,
+            "output": 1364,
+            "reasoning": 1130
+          }
+        },
+        "prompt_tokens": 830,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2194
+      }
+    },
+    "text": "{\"summary\":\"2025 Nissan Rogue ADAS/rearview braking; random 'Driving Aids Temporarily Limited' warning disables ProPILOT/Safety Assist under normal driving.\",\"group\":\"adas\",\"symptoms\":[\"warning light 'Warning: Driving Aids Temporarily Limited' appears\",\"ProPILOT/Safety Assist systems disable entirely\",\"issue occurs randomly and unpredictably under regular driving conditions\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"BACK OVER PREVENTION: REARVIEW SYSTEM BRAKING\"},{\"kind\":\"symptom\",\"quote\":\"Warning: Driving Aids Temporarily Limited.\"},{\"kind\":\"symptom\",\"quote\":\"causes the ProPILOT/Safety Assist systems to disable themselves entirely\"},{\"kind\":\"condition\",\"quote\":\"randomly and under regular driving conditions\"},{\"kind\":\"symptom\",\"quote\":\"issue continued to occur unpredictably\"},{\"kind\":\"safety\",\"quote\":\"significant safety risk to myself and others on the road\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00053187,
+      "cached_tokens": 384,
+      "cost_usd": 0.00088645,
+      "input_tokens": 830,
+      "list_cost_usd": 0.00088645,
+      "output_tokens": 1364,
+      "reasoning_tokens": 1130
+    }
+  }
+}

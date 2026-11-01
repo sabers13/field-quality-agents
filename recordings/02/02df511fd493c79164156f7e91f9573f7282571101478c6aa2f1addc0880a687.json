@@ -1,0 +1,66 @@
+{
+  "key": "02df511fd493c79164156f7e91f9573f7282571101478c6aa2f1addc0880a687",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 7706,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2016 Honda Accord forward collision avoidance system with Adaptive Cruise Control Failure, Lane Keep Assist Failure, and Forward Collision Avoidance Failure messages plus intermittent loud static from the infotainment system while driving.\",\"group\":\"adas\",\"symptoms\":[\"Adaptive Cruise Control Failure message displayed\",\"Lane Keep Assist Failure message displayed\",\"Forward Collision Avoidance Failure message displayed\",\"infotainment system made an abnormal, loud, startling, static sound intermittently while driving\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE\"},{\"kind\":\"symptom\",\"quote\":\"Adaptive Cruise Control Failure\"},{\"kind\":\"symptom\",\"quote\":\"Lane Keep Assist Failure\"},{\"kind\":\"symptom\",\"quote\":\"Forward Collision Avoidance Failure\"},{\"kind\":\"symptom\",\"quote\":\"an abnormal, loud, startling, and static sound intermittently while driving\"},{\"kind\":\"condition\",\"quote\":\"intermittently while driving\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize report. Must read only report. Need include summary, group, symptoms, conditions, fault_codes, safety_relevant, missing_info, clues verbatim quotes. Need determine safety_relevant: report mentions messages failures, abnormal loud startling static sound intermittently while driving. No crash fire smoke injury loss control stall at speed. So false. Missing_info: component? given component. symptom? present. conditions? maybe driving/intermittent. mileage present 196000. date? received_at but report no failure date. The analysis needs date? Report has received_at, but not incident date. Missing_info list only facts analysis needs: component, symptom, conditions, mileage, date. We have component, symptom, conditions (intermittent while driving), mileage. Date missing? It says received_at 2025-09-08 but failure date not explicit? The report mentions failure mileage approx 196,000, no date. Should include \"date\" if missing. Maybe also \"conditions\" not missing because intermittent while driving. Could include date. Need fault_codes: none named? Messages are not codes. Should be [].\n\nSymptoms: messages \"Adaptive Cruise Control Failure\", \"Lane Keep Assist Failure\", \"Forward Collision Avoidance Failure\" displayed; infotainment system made abnormal loud startling static sound intermittently while driving. Plain words. Conditions: \"intermittent\", maybe \"while driving\" not one of allowed? Allowed conditions list: cold, moisture, heat, vibration, intermittent, after service, charging. So include \"intermittent\". Maybe \"while driving\" is not allowed condition? We can include in symptoms. Conditions only \"intermittent\". Could include \"after service\"? No. Safety false.\n\nClues: need verbatim quotes. We can include symptom quote for messages, symptom quote for static sound, condition quote \"intermittently while driving\" maybe include condition. component_group quote \"FORWARD COLLISION AVOIDANCE\"? The component is from field, not narrative? It is in report JSON. Quote must be copied verbatim from report. \"FORWARD COLLISION AVOIDANCE\" appears as component value. That's in report. Kind component_group. Also \"Adaptive Cruise Control Failure\" etc. Fault code? none. Safety? no.\n\nNeed summary one line: component, symptom, conditions. \"2016 Honda Accord forward collision avoidance system with Adaptive Cruise Control Failure, Lane Keep Assist Failure, Forward Collision Avoidance Failure messages and intermittent loud static from infotainment while driving.\" That's one line.\n\nNeed output JSON only. Ensure valid. Quotes verbatim. Need quote \"The contact stated that the messages \\\"Adaptive Cruise Control Failure\\\", \\\"Lane Keep Assist Failure\\\", and \\\"Forward Collision Avoidance Failure\\\" were displayed.\" In JSON escape quotes. We can quote smaller spans: \"Adaptive Cruise Control Failure\", \"Lane Keep Assist Failure\", \"Forward Collision Avoidance Failure\" are verbatim. Also \"an abnormal, loud, startling, and static sound intermittently while driving\" verbatim? Narrative: \"the infotainment system made an abnormal, loud, startling, and static sound intermittently while driving.\" Yes quote span \"an abnormal, loud, startling, and static sound intermittently while driving\" is verbatim. Condition quote \"intermittently while driving\" verbatim. Component quote \"FORWARD COLLISION AVOIDANCE\". Maybe \"2016 Honda Accord\" other? no.\n\nNeed missing_info: [\"date\"]? Since received_at is date but not failure date. The prompt says missing_info list only facts analysis needs: component, symptom, conditions, mileage, date. Report has date received but not incident date. Should include \"date\". Is mileage present? yes. Conditions present? intermittent while driving. Yes. Component present. Symptom present. So [\"date\"].\n\nNeed safety_relevant false boolean. No safety quote.\n\nNeed group \"adas\".\n\nNeed final no markdown? They said answer with one JSON object and no other text. We'll output JSON. Ensure no trailing.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530175,
+      "id": "661f98de53f22b603678d2ee127c05b9",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1076,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 842,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00040677,
+          "billing_source": "go",
+          "list_cost": 0.00067795,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 208,
+            "output": 1076,
+            "reasoning": 842
+          }
+        },
+        "prompt_tokens": 592,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1668
+      }
+    },
+    "text": "{\"summary\":\"2016 Honda Accord forward collision avoidance system with Adaptive Cruise Control Failure, Lane Keep Assist Failure, and Forward Collision Avoidance Failure messages plus intermittent loud static from the infotainment system while driving.\",\"group\":\"adas\",\"symptoms\":[\"Adaptive Cruise Control Failure message displayed\",\"Lane Keep Assist Failure message displayed\",\"Forward Collision Avoidance Failure message displayed\",\"infotainment system made an abnormal, loud, startling, static sound intermittently while driving\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE\"},{\"kind\":\"symptom\",\"quote\":\"Adaptive Cruise Control Failure\"},{\"kind\":\"symptom\",\"quote\":\"Lane Keep Assist Failure\"},{\"kind\":\"symptom\",\"quote\":\"Forward Collision Avoidance Failure\"},{\"kind\":\"symptom\",\"quote\":\"an abnormal, loud, startling, and static sound intermittently while driving\"},{\"kind\":\"condition\",\"quote\":\"intermittently while driving\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00040677,
+      "cached_tokens": 384,
+      "cost_usd": 0.00067795,
+      "input_tokens": 592,
+      "list_cost_usd": 0.00067795,
+      "output_tokens": 1076,
+      "reasoning_tokens": 842
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "12a5cd8759aa1bcdf6e8e4e61ec28e5efe6f902759b7694f0bfd1625a2bb2329",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 7772,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\": \"AIR BAGS (restraints): no airbag deployment in a frontal collision with front-end crush\", \"group\": \"restraints\", \"symptoms\": [\"airbags did not deploy\"], \"conditions\": [], \"fault_codes\": [], \"safety_relevant\": true, \"missing_info\": [\"mileage\", \"date\"], \"clues\": [{\"kind\": \"component_group\", \"quote\": \"AIR BAGS\"}, {\"kind\": \"condition\", \"quote\": \"frontal collision\"}, {\"kind\": \"symptom\", \"quote\": \"None of the airbags deployed.\"}, {\"kind\": \"safety\", \"quote\": \"Was involved in a frontal collision.\"}, {\"kind\": \"other\", \"quote\": \"Front end was crushed to include the radiator.\"}]}",
+            "reasoning_content": "We need answer only JSON object. Need normalize report. Input component AIR BAGS group restraints id etc narrative. Need summary one line component symptom conditions. Group restraints. Symptoms: airbags did not deploy in frontal collision? Plain words. Conditions: collision? Condition list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. Hmm collision not in allowed? The schema conditions examples maybe can include other? Rules say conditions array [\"cold\",...]. We should include only relevant from list? Frontal collision isn't among listed conditions. Could include \"after service\"? no. So conditions empty. Fault codes empty. safety_relevant true because crash/frontal collision, airbags non-deployment risk. missing_info: mileage (null), date? received_at exists but maybe incident date missing. Component present, symptom present, conditions? Could include incident date? They list mileage, date, conditions, component, symptom. Report has no mileage, no incident date. Conditions maybe collision described, but \"conditions\" as environmental not needed? Missing_info should only facts analysis needs. We have component, symptom. Mileage missing. Date? received_at is date report received, not incident date. Should list \"mileage\", \"date\"? The report includes received_at, so date of report exists. But incident date missing. Hmm in schema missing_info includes \"date\". We can include mileage and date? Need not overdo. Since report says was involved in frontal collision, no date. Analysis needs date? Possibly. But \"received_at\" is date. The intake report has date. Missing_info likely mileage only? Conditions maybe not. Let's craft clues with verbatim quotes. Need exact spans from narrative. \"Was involved in a frontal collision.\" quote exact. \"Front end was crushed to include the radiator.\" quote exact. \"None of the airbags deployed.\" quote exact. Also component group? \"AIR BAGS\" quote from component field? The report includes component field. We can quote \"AIR BAGS\" as component_group? Verbatim from report yes. Symptom quote \"None of the airbags deployed.\" Condition quote? \"frontal collision\" is condition? maybe kind condition quote \"frontal collision\" (substring exact). Safety clue quote \"frontal collision\" or \"crushed\". Need not duplicate? We can include safety quote \"None of the airbags deployed\" maybe risk. Need ensure every quote verbatim. \"Was involved in a frontal collision.\" includes period. exact narrative. \"Front end was crushed to include the radiator.\" exact. \"None of the airbags deployed.\" exact. \"AIR BAGS\" exact. Summary one line: \"AIR BAGS (restraints): no airbag deployment in a frontal collision with front-end crush.\" Conditions array maybe [] because allowed conditions none. But maybe \"frontal collision\" is a condition? Schema says conditions [\"cold\",...] not exhaustive? It says \"conditions\": [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. It might be enumerated. Don't include collision. safety_relevant true. missing_info: [\"mileage\", \"date\"]? Need decide. The report has received_at 2025-09-12. Date of incident missing. But missing_info says date. I'd include mileage and date because incident date absent. However if we include date, maybe contradiction with received_at. The analysis needs incident date for pattern? likely. But prompt says list missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. Use empty list when nothing important missing. Component and symptom present, conditions? Collision condition present. Mileage missing. Date? report received date present but not incident date. Hm.\n\nNeed JSON only. Keep concise. final.\n\nNeed ensure valid JSON. No markdown? User says answer with one JSON object and no other text. So final raw JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530353,
+      "id": "75a3a1687662458714e5790fdbc8db8c",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 972,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 806,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00036159,
+          "billing_source": "go",
+          "list_cost": 0.00060265,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 122,
+            "output": 972,
+            "reasoning": 806
+          }
+        },
+        "prompt_tokens": 506,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1478
+      }
+    },
+    "text": "{\"summary\": \"AIR BAGS (restraints): no airbag deployment in a frontal collision with front-end crush\", \"group\": \"restraints\", \"symptoms\": [\"airbags did not deploy\"], \"conditions\": [], \"fault_codes\": [], \"safety_relevant\": true, \"missing_info\": [\"mileage\", \"date\"], \"clues\": [{\"kind\": \"component_group\", \"quote\": \"AIR BAGS\"}, {\"kind\": \"condition\", \"quote\": \"frontal collision\"}, {\"kind\": \"symptom\", \"quote\": \"None of the airbags deployed.\"}, {\"kind\": \"safety\", \"quote\": \"Was involved in a frontal collision.\"}, {\"kind\": \"other\", \"quote\": \"Front end was crushed to include the radiator.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00036159,
+      "cached_tokens": 384,
+      "cost_usd": 0.00060265,
+      "input_tokens": 506,
+      "list_cost_usd": 0.00060265,
+      "output_tokens": 972,
+      "reasoning_tokens": 806
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "531db78590defa4497ce017d2fe0542d893a5bcfe3055ad5644e9a04e1497c47",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 15070,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2018 Honda CR-V forward collision avoidance automatic emergency braking unexpectedly braked on several occasions during interstate and 2-lane road driving.\",\"group\":\"adas\",\"symptoms\":[\"unexpected braking\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"},{\"kind\":\"symptom\",\"quote\":\"unexpectedly braked while I was driving\"},{\"kind\":\"condition\",\"quote\":\"On several occasions\"},{\"kind\":\"condition\",\"quote\":\"interstate driving\"},{\"kind\":\"condition\",\"quote\":\"2-lane road driving\"},{\"kind\":\"safety\",\"quote\":\"unexpectedly braked while I was driving\"}]}",
+            "reasoning_content": "We need answer one JSON object no other text. Need normalize report. Need determine summary component symptom conditions. Report: component \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\", group adas. Narrative: \"On several occasions my 2018 Honda CRV unexpectedly braked while I was driving. Instances happened on interstate driving and 2-lane road driving.\" Symptoms: unexpected braking / automatic emergency braking activated unexpectedly. Conditions: driving, interstate, 2-lane road? Conditions list allowed: \"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\". We can include \"intermittent\" because several occasions? But conditions should be from list? The prompt says conditions array [\"cold\"...]. It may allow only those values. The narrative says several occasions, driving, interstate and 2-lane. \"intermittent\" fits several occasions. Could include? But quote for condition needs verbatim \"On several occasions\" or \"while I was driving\". The conditions list is enumerated; likely use \"intermittent\" if supported by \"several occasions\". Also maybe none of cold moisture etc. \"while driving\" not in allowed list. Maybe include \"intermittent\". Need safety_relevant: The report mentions unexpectedly braked while driving, interstate and 2-lane. This is risk to people, loss of control? Unexpected braking at speed can be safety relevant. The input has safety_relevant false but we need set based on rules. It mentions unexpected braking while driving; not crash/fire/smoke/injury/loss of control/stall at speed explicitly, but unexpected braking on interstate is risk. Rule: Set safety_relevant when report mentions crash, fire, smoke, injury, loss of control, a stall at speed or another risk to people. Unexpected braking on interstate is another risk to people. So true. Need fault_codes: none. missing_info: mileage? The input mileage null. date? received_at exists but incident date not. Conditions? It gives driving contexts but not weather etc. Component present, symptom present. Need list only facts analysis needs: component, symptom, conditions, mileage, date. Mileage missing, date missing (incident date), maybe conditions? It says on interstate and 2-lane, but not weather/road. But \"conditions\" missing? Hmm. The report includes conditions enough? It mentions several occasions, interstate and 2-lane. Missing mileage and date. Maybe also \"conditions\" because no weather/temperature? But conditions allowed include cold moisture heat vibration etc not given. Should we include \"conditions\"? The analysis needs conditions; report only says driving contexts, not environmental. But maybe not missing because conditions are described as interstate/2-lane. However schema missing_info values include conditions. We can include \"mileage\", \"date\". Maybe \"conditions\" because no weather/traffic? Need not overdo. The prompt: List missing_info only for facts the analysis needs: component, symptom, conditions, mileage, date. Use empty when nothing important missing. Mileage null; date missing (received_at not incident date). Conditions: \"On several occasions\" and road types; but no cold/moisture/heat/vibration. But conditions could mean when it happens; they did say interstate and 2-lane. I'd include \"mileage\", \"date\" maybe \"conditions\" if lacking environmental. But if include conditions, need quote? missing_info doesn't need quote. Hmm.\n\nClues: need verbatim spans copied from report. We can include:\n- {\"kind\":\"symptom\",\"quote\":\"unexpectedly braked while I was driving\"}\n- {\"kind\":\"symptom\",\"quote\":\"unexpectedly braked\"}\n- {\"kind\":\"condition\",\"quote\":\"On several occasions\"}\n- {\"kind\":\"condition\",\"quote\":\"interstate driving\"}\n- {\"kind\":\"condition\",\"quote\":\"2-lane road driving\"}\n- {\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"} or maybe component group from field. Is that in report? The report includes component field, yes. Quote verbatim. Group \"adas\". Maybe component_group quote \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\".\n- {\"kind\":\"safety\",\"quote\":\"unexpectedly braked while I was driving\"}? Safety clue should quote risk? It doesn't explicitly mention risk. But unexpected braking on interstate is risk; quote can be same. Maybe add safety quote \"unexpectedly braked while I was driving\". Is that enough? Kind safety. Could use \"On several occasions my 2018 Honda CRV unexpectedly braked while I was driving.\" But quote should be verbatim. Need exact. The narrative exact: \"On several occasions my 2018 Honda CRV unexpectedly braked while I was driving. Instances happened on interstate driving and 2-lane road driving.\" Need preserve \"CRV\" not \"CR-V\". Use exact.\n\nSummary one line: component, symptom, conditions. \"2018 Honda CR-V forward collision avoidance / automatic emergency braking unexpectedly braked on several occasions during interstate and 2-lane road driving.\" But component field says CR-V with hyphen; narrative CRV. Summary can use component. Need no invent? 2018 Honda CRV from report. Component forward collision avoidance automatic emergency braking. Symptom unexpectedly braked. Conditions several occasions, interstate and 2-lane driving.\n\nGroup: adas. Symptoms: [\"unexpected braking\", \"automatic emergency braking activation\"]? Plain words. Should be symptom in plain words. Maybe [\"unexpected braking\"] only. Could include \"unexpected automatic emergency braking\" maybe. Use one symptom.\n\nConditions: allowed list. If include \"intermittent\" because several occasions. But \"intermittent\" is an allowed condition. Is it supported? \"On several occasions\" indicates intermittent. Quote \"On several occasions\". Good. Should we include \"interstate driving\" and \"2-lane road driving\"? Not allowed list. The schema shows conditions array with fixed values. So no. Use [\"intermittent\"]. But if conditions should be only from allowed, yes. Could be empty? Several occasions supports intermittent. Use [\"intermittent\"].\n\nFault codes empty.\n\nsafety_relevant true. Need maybe missing_info [\"mileage\",\"date\"]. Could include \"conditions\" maybe no. Let's think: The analysis needs conditions to correlate with cold/moisture etc. The report says \"On several occasions\" and \"interstate driving and 2-lane road driving\" but not weather. Is \"conditions\" missing? The allowed missing_info includes conditions. The desk might want weather/temperature/road conditions. But \"conditions\" in report are road types and driving. Hmm. If we include \"conditions\", it may imply no conditions info, but there is some. However missing_info is facts analysis needs; conditions need environmental maybe. But we already set conditions [\"intermittent\"]. So conditions not missing. I'd not include conditions. Missing mileage and date. Incident date not given; received_at is date of report. Yes.\n\nNeed ensure JSON only. No markdown? The prompt says answer with one JSON object and no other text. We should output raw JSON. We can include code block? It says no other text; better raw JSON. Desired final only JSON. Need valid JSON. Use quotes. Let's craft.\n\nClues: Need every quote verbatim. Include:\n{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"}\n{\"kind\":\"symptom\",\"quote\":\"unexpectedly braked while I was driving\"}\n{\"kind\":\"condition\",\"quote\":\"On several occasions\"}\n{\"kind\":\"condition\",\"quote\":\"interstate driving\"}\n{\"kind\":\"condition\",\"quote\":\"2-lane road driving\"}\n{\"kind\":\"safety\",\"quote\":\"unexpectedly braked while I was driving\"}\n\nIs duplicating quote okay? likely. But condition clues for \"interstate driving\" and \"2-lane road driving\" kind condition but not in conditions array? That's okay? Clue kind condition can support context. But conditions array only allowed list. The clues could include condition quotes not mapped? Hmm. It says clues kind symptom|condition|fault_code|component_group|safety|other. Condition quote \"interstate driving\" is a condition. Fine. But conditions array doesn't include those because fixed list. Acceptable? Maybe. We can include \"while I was driving\" as condition. The quote \"unexpectedly braked while I was driving\" includes symptom and condition. But clue kind symptom.\n\nShould include safety quote \"while I was driving\" maybe. Need not.\n\nPotential issue: \"safety_relevant\": true because unexpected braking while driving. The input says false but rule overrides. Good.\n\nNeed summary \"2018 Honda CR-V forward collision avoidance automatic emergency braking unexpectedly braked on several occasions during interstate and 2-lane road driving.\" It uses CR-V; component field has CR-V? Actually component is \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"; model field CR-V. Narrative says CRV. Summary can say \"2018 Honda CR-V\". That's in model field, okay. Conditions \"interstate and 2-lane road driving\" from narrative. Good.\n\nSymptoms: [\"unexpected braking\"] maybe \"unexpected automatic emergency braking\". Plain words. Use [\"unexpected braking\"].\n\nMissing_info: [\"mileage\", \"date\"]. Should date be incident date? Yes. Could include \"conditions\" because not cold etc. But conditions array includes intermittent. Hmm. Keep two.\n\nLet's final raw JSON. Ensure no trailing commas.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793533130,
+      "id": "f75f0aaaead695eea9563de37b4d78c1",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2215,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 2035,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00081096,
+          "billing_source": "go",
+          "list_cost": 0.0013516,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 143,
+            "output": 2215,
+            "reasoning": 2035
+          }
+        },
+        "prompt_tokens": 527,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2742
+      }
+    },
+    "text": "{\"summary\":\"2018 Honda CR-V forward collision avoidance automatic emergency braking unexpectedly braked on several occasions during interstate and 2-lane road driving.\",\"group\":\"adas\",\"symptoms\":[\"unexpected braking\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"},{\"kind\":\"symptom\",\"quote\":\"unexpectedly braked while I was driving\"},{\"kind\":\"condition\",\"quote\":\"On several occasions\"},{\"kind\":\"condition\",\"quote\":\"interstate driving\"},{\"kind\":\"condition\",\"quote\":\"2-lane road driving\"},{\"kind\":\"safety\",\"quote\":\"unexpectedly braked while I was driving\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00081096,
+      "cached_tokens": 384,
+      "cost_usd": 0.0013516,
+      "input_tokens": 527,
+      "list_cost_usd": 0.0013516,
+      "output_tokens": 2215,
+      "reasoning_tokens": 2035
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "79c0c4701fd09659ac98143cda1eb53d24a00db7f7f448e1a5f401d8d5728fff",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10405,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"EXTERIOR LIGHTING: headlights lose light output in snowy/icing winter conditions, requiring repeated deicing and creating dangerous visibility.\",\n  \"group\": \"lighting\",\n  \"symptoms\": [\n    \"headlights accumulate ice and need repeated deicing\",\n    \"light output drops to almost zero\",\n    \"no warning appears before light output drops\"\n  ],\n  \"conditions\": [\n    \"cold\",\n    \"moisture\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"headlights\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Approximately every twenty miles I needed to stop and deice my headlights\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"light output had diminished to almost zero\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"extremely dangerous visibility\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"winter storm warning in effect\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"snowy or icing conditions\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"No warnings appear; light output simply quickly drops to almost nothing.\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"The combination of an upright grill and the low heat output of LED lighting quickly render headlights useless in snowy or icing conditions.\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer only JSON. Need normalize. Report component exterior lighting, group lighting. Symptoms: headlights deice every 20 miles, light output diminished to almost zero, visibility dangerous, headlights useless in snowy/icing, no warnings. Conditions: cold? winter storm warning, snowy, icing. Maybe \"cold\" not explicitly? It says low heat output LED, snowy or icing. Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. We can include \"cold\"? The report mentions winter storm warning, snowy/icing. \"moisture\" maybe snow/ice. Need not invent. Conditions should be from list. Use \"cold\" maybe winter storm, \"moisture\" for snow/icing. Is \"heat\" no. Safety relevant true? It mentions extremely dangerous visibility, light output almost zero while driving in winter storm, cannot exit for 15 miles. Risk to people? Yes safety_relevant true. Fault codes none. Missing_info: mileage null, date? date is in narrative (Nov 30 2025) and received_at. Conditions present. Component present. Symptom present. Mileage missing. Maybe date not missing because narrative has date. So missing_info [\"mileage\"]. Clues verbatim quotes: need exact spans from report. Use quotes:\n- \"light output had diminished to almost zero\" (symptom)\n- \"extremely dangerous visibility\" (safety)\n- \"winter storm warning in effect\" (condition)\n- \"snowy or icing conditions\" (condition)\n- \"No warnings appear; light output simply quickly drops to almost nothing.\" (symptom)\n- \"The combination of an upright grill and the low heat output of LED lighting quickly render headlights useless in snowy or icing conditions.\" (other/component_group? maybe symptom/condition). Need kind valid. Could label \"condition\" quote \"snowy or icing conditions\". For component group quote \"EXTERIOR LIGHTING\"? Report has component field? The user message includes JSON with \"component\": \"EXTERIOR LIGHTING\". The report? It says read only report in user message. It includes component. Quote could be \"EXTERIOR LIGHTING\" verbatim? Yes. kind component_group. But group given lighting. Hmm.\n\nSummary one line: EXTERIOR LIGHTING headlights lose output in snow/ice due to low LED heat; repeated deicing; dangerous visibility. Must be one line.\n\nNeed ensure JSON only no markdown? They said one JSON object and no other text. We can output raw JSON. Need valid. Use safety_relevant true.\n\nNeed not include \"date\" missing. Missing_info list empty? Mileage missing. The report has mileage null. Analysis needs mileage? Yes. Use [\"mileage\"].\n\nConditions: Should include \"cold\", \"moisture\"? The allowed set includes cold and moisture. Report says winter storm warning, snowy or icing. \"cold\" inferred? Maybe winter storm indicates cold. \"moisture\" indicated snow/ice. Quote for condition: \"winter storm warning in effect\" and \"snowy or icing conditions\". Include conditions [\"cold\",\"moisture\"]. Maybe \"intermittent\"? It says approximately every twenty miles needed stop; similar problems; not intermittent? No. \"after service\" no. \"charging\" no. \"heat\" no. Use cold moisture.\n\nSymptoms: [\"headlights accumulate ice and lose light output\", \"light output drops to almost zero\", \"no warning appears\"]. Plain words. Could include \"repeated need to stop and deice headlights\". Need not too many.\n\nClues: Need quotes verbatim from narrative. Let's craft exact:\n\"Approximately every twenty miles I needed to stop and deice my headlights\" exact? Narrative: \"Approximately every twenty miles I needed to stop and deice my headlights as light output had diminished to almost zero, resulting in extremely dangerous visibility.\" Yes quote exact phrase.\n\"light output had diminished to almost zero\" exact.\n\"extremely dangerous visibility\" exact.\n\"winter storm warning in effect\" exact? Narrative: \"There was a winter storm warning in effect.\" quote \"winter storm warning in effect\" yes substring.\n\"snowy or icing conditions\" exact appears twice.\n\"No warnings appear; light output simply quickly drops to almost nothing.\" exact.\n\"The combination of an upright grill and the low heat output of LED lighting quickly render headlights useless in snowy or icing conditions.\" exact.\n\"EXTERIOR LIGHTING\" exact? The component field in JSON has that. The narrative doesn't. Rule says quote copied verbatim from report. The report in user message includes JSON with component value. Is that \"report\"? yes. But maybe quote from narrative safer. For component_group clue, use \"headlights\" exact from narrative? kind component_group quote \"headlights\". Good.\n\nNeed clue kinds: symptom, condition, safety, component_group, other. For \"No warnings appear...\" symptom. For \"The combination...\" maybe other? Or condition? It contains cause. Use kind other. For \"headlights\" component_group. For safety quote \"extremely dangerous visibility\". For condition quotes winter storm and snowy/icing. For symptom quote deice and output. Good.\n\nNeed output JSON. Ensure no markdown. Final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793532513,
+      "id": "16e2b569647373220ed345e832fb496b",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1457,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1099,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00055041,
+          "billing_source": "go",
+          "list_cost": 0.00091735,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 280,
+            "output": 1457,
+            "reasoning": 1099
+          }
+        },
+        "prompt_tokens": 664,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2121
+      }
+    },
+    "text": "{\n  \"summary\": \"EXTERIOR LIGHTING: headlights lose light output in snowy/icing winter conditions, requiring repeated deicing and creating dangerous visibility.\",\n  \"group\": \"lighting\",\n  \"symptoms\": [\n    \"headlights accumulate ice and need repeated deicing\",\n    \"light output drops to almost zero\",\n    \"no warning appears before light output drops\"\n  ],\n  \"conditions\": [\n    \"cold\",\n    \"moisture\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"headlights\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Approximately every twenty miles I needed to stop and deice my headlights\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"light output had diminished to almost zero\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"extremely dangerous visibility\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"winter storm warning in effect\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"snowy or icing conditions\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"No warnings appear; light output simply quickly drops to almost nothing.\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"The combination of an upright grill and the low heat output of LED lighting quickly render headlights useless in snowy or icing conditions.\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00055041,
+      "cached_tokens": 384,
+      "cost_usd": 0.00091735,
+      "input_tokens": 664,
+      "list_cost_usd": 0.00091735,
+      "output_tokens": 1457,
+      "reasoning_tokens": 1099
+    }
+  }
+}

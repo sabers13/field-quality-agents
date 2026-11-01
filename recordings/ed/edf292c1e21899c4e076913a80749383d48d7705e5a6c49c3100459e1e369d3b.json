@@ -1,0 +1,66 @@
+{
+  "key": "edf292c1e21899c4e076913a80749383d48d7705e5a6c49c3100459e1e369d3b",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9005,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Verify the reported odometer mileage discrepancy on the 2018 Honda Pilot; no rulebook entry matches, so a standard field-quality check is appropriate.\",\"rationale\":\"The narrative reports a mileage discrepancy: 98,423 at private purchase versus over 230,000 at registration. The tool results contain no recalls, investigations, similar cases, or rulebook matches, so there is no named targeted load test to apply.\",\"group\":\"instrumentation\",\"symptoms\":[\"mileage discrepancy\",\"odometer reading inconsistent with purchase mileage\"],\"conditions\":[\"private sale\"],\"fault_codes\":[],\"safety_relevant\":false,\"targeted\":false,\"test_name\":null,\"clues\":[{\"kind\":\"symptom\",\"quote\":\"mileage discrepancy\"},{\"kind\":\"component_group\",\"quote\":\"Odometer Fraud\"},{\"kind\":\"condition\",\"quote\":\"The vehicle was a private sale.\"},{\"kind\":\"other\",\"quote\":\"At the time of purchase, the vehicle mileage was 98,423 and at the time of registration, it was discovered that the mileage was over 230,000.\"}]}",
+            "reasoning_content": "We need to produce JSON. Need only facts from tool results. No rulebook matches, no recalls, no investigations, no similar cases. So targeted false? The case is odometer fraud/mileage discrepancy, not a load test. Rulebook empty so standard test, targeted false. Safety_relevant false. Clues verbatim quotes. Need all quotes verbatim from narrative. The extraction clues have quotes; ensure they are verbatim from narrative. \"mileage discrepancy\" appears? Narrative: \"there was a mileage discrepancy\" yes. \"Odometer Fraud\" yes. \"The vehicle was a private sale.\" yes. \"At the time of purchase, the vehicle mileage was 98,423 and at the time of registration, it was discovered that the mileage was over 230,000.\" yes. Also could quote \"The contact purchased a 2018 Honda Pilot.\" Need kind labels.\n\nTest_name: rulebook names none. What to put? Maybe \"standard field-quality test\" or blank? Schema says test_name the targeted test the rulebook names. Since no targeted, maybe null? It says JSON object fields; could be null. But likely string. We can set \"test_name\": null? The schema says test_name string. Hmm. If targeted false, no test_name. But must include field. Maybe \"\" empty string? Could use null. Let's consider expected output likely parsed. Use null for no named test. But schema says string; yet no rulebook. To be safe, \"test_name\": null? Many evaluators tolerate. But maybe better \"No targeted rulebook test named\". However that isn't a test name. I'll set null and targeted false. Summary one line: confirm odometer mileage discrepancy; no rulebook match, standard check. Rationale: condition is mileage discrepancy; no recalls/investigations/rulebook; private sale. Group instrumentation. Symptoms: [\"mileage discrepancy\", \"odometer reading inconsistent with purchase mileage\"]. Conditions maybe [\"private sale\"]. Fault codes []. Clues as above. Safety_relevant false. Targeted false.\n\nNeed avoid citing IDs not present? We can mention no recalls etc. Don't cite case id maybe. We can mention \"2101736\"? Tool contains case id. Fine but not necessary.\n\nFinal only JSON. Ensure no markdown.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793527745,
+      "id": "d13a4ae47649e0cfc2799c0526b97bbc",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 702,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 473,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00032517,
+          "billing_source": "go",
+          "list_cost": 0.00054195,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 805,
+            "output": 702,
+            "reasoning": 473
+          }
+        },
+        "prompt_tokens": 805,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 1507
+      }
+    },
+    "text": "{\"summary\":\"Verify the reported odometer mileage discrepancy on the 2018 Honda Pilot; no rulebook entry matches, so a standard field-quality check is appropriate.\",\"rationale\":\"The narrative reports a mileage discrepancy: 98,423 at private purchase versus over 230,000 at registration. The tool results contain no recalls, investigations, similar cases, or rulebook matches, so there is no named targeted load test to apply.\",\"group\":\"instrumentation\",\"symptoms\":[\"mileage discrepancy\",\"odometer reading inconsistent with purchase mileage\"],\"conditions\":[\"private sale\"],\"fault_codes\":[],\"safety_relevant\":false,\"targeted\":false,\"test_name\":null,\"clues\":[{\"kind\":\"symptom\",\"quote\":\"mileage discrepancy\"},{\"kind\":\"component_group\",\"quote\":\"Odometer Fraud\"},{\"kind\":\"condition\",\"quote\":\"The vehicle was a private sale.\"},{\"kind\":\"other\",\"quote\":\"At the time of purchase, the vehicle mileage was 98,423 and at the time of registration, it was discovered that the mileage was over 230,000.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00032517,
+      "cached_tokens": 0,
+      "cost_usd": 0.00054195,
+      "input_tokens": 805,
+      "list_cost_usd": 0.00054195,
+      "output_tokens": 702,
+      "reasoning_tokens": 473
+    }
+  }
+}

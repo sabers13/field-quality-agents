@@ -1,0 +1,66 @@
+{
+  "key": "6286409104210e57e6bfb5f30e65f301c3c1926a7ef181eec797f9ee5508c27b",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11084,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2015 Kia Optima: air bags did not deploy and seat belts failed to restrain in a rear-end crash while stopped; occupant injured.\",\"group\":\"restraints\",\"symptoms\":[\"air bags did not deploy\",\"seat belts failed to restrain occupant\",\"unknown red warning light flashing\",\"occupant hit forehead on steering wheel\",\"dizziness and off balance\",\"concussion, bruises, and back pain\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"condition\",\"quote\":\"while at a complete stop at the red traffic light\"},{\"kind\":\"safety\",\"quote\":\"crashed into the rear-end of the vehicle\"},{\"kind\":\"symptom\",\"quote\":\"An unknown red warning light was flashing.\"},{\"kind\":\"symptom\",\"quote\":\"The air bags did not deploy.\"},{\"kind\":\"symptom\",\"quote\":\"The seat belts failed to restrain the contact as needed\"},{\"kind\":\"symptom\",\"quote\":\"causing the contact to hit her forehead against the steering wheel\"},{\"kind\":\"symptom\",\"quote\":\"felt dizzy and off balance\"},{\"kind\":\"safety\",\"quote\":\"The contact sustained a concussion, bruises on the forehead, neck, and lower back back pain, a worsening of the contact's generative bone disease condition.\"},{\"kind\":\"other\",\"quote\":\"The failure mileage was approximately 62,000.\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize report. Need extract summary, group given restraints, symptoms plain words, conditions list from allowed? Conditions [\"cold\",\"moisture\",\"heat\",\"vibration\",\"intermittent\",\"after service\",\"charging\"] likely only if mentioned. Here crash, airbags did not deploy, seat belts failed restrain, warning light flashing, injuries. Conditions? none from list? Maybe \"after service\"? no. Could include \"crash\" not in list. The schema conditions only enumerated examples? It says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. We should only list mentioned among those. No. safety_relevant true. fault_codes none named; unknown red warning light no code. missing_info maybe none? component present AIR BAGS, symptom present, conditions? crash details present, mileage 62000, date received 2025-11-14 but incident date not given. missing_info likely [\"date\"]? The analysis needs date of incident? Report says received_at but not incident date. \"missing_info\": [\"date\"]. Component? present. symptom present. conditions? present (rear-end crash at stop). mileage present. Could include date only.\n\nNeed clues verbatim spans. Need quote exact from narrative. Include symptom: \"The air bags did not deploy.\" exact. \"The seat belts failed to restrain the contact as needed\" exact? In narrative: \"The seat belts failed to restrain the contact as needed, causing...\" yes. \"An unknown red warning light was flashing.\" exact. Safety: \"crashed into the rear-end of the vehicle\" exact substring. \"The contact sustained a concussion, bruises on the forehead, neck, and lower back back pain, a worsening of the contact's generative bone disease condition.\" exact. component_group quote maybe \"AIR BAGS\" from component field? Is that part report? The user message JSON includes component \"AIR BAGS\". Quote can be \"AIR BAGS\". group \"restraints\" given. Conditions? If none, omit clues for condition? Could include \"while at a complete stop at the red traffic light\" as condition? But kind condition. However conditions array only allowed terms; could still clue condition quote but conditions list empty? Hmm.\n\nNeed output JSON only no markdown. Need ensure valid JSON. Summary one line: \"2015 Kia Optima air bags did not deploy and seat belts failed to restrain in rear-end crash at stop; driver injured.\" Conditions conditions list [] maybe. Symptoms: [\"air bags did not deploy\", \"seat belts failed to restrain occupant\", \"unknown red warning light flashing\", \"dizziness and off balance\", \"concussion, bruises, back pain\"]. But symptoms plain words. Fault codes [].\n\nSafety true. Missing_info [\"date\"]? Maybe also \"conditions\" not missing because crash described. Could include \"date\" incident date. The prompt says missing_info list only facts analysis needs: component, symptom, conditions, mileage, date. It has mileage, component, symptom, conditions. Date missing incident date but received_at present. So [\"date\"] reasonable. Could date mean report date? received_at is date. But incident date not explicit. Hmm.\n\nNeed maybe include \"fault_codes\": [] because no code named. Good.\n\nNeed clues exact. Ensure all quotes exact substrings. Let's verify:\n- \"The contact owned a 2015 Kia Optima.\" exact.\n- \"while at a complete stop at the red traffic light\" exact? Narrative: \"The contact stated that while at a complete stop at the red traffic light, another vehicle...\" yes substring.\n- \"crashed into the rear-end of the vehicle\" exact.\n- \"An unknown red warning light was flashing.\" exact.\n- \"The air bags did not deploy.\" exact.\n- \"The seat belts failed to restrain the contact as needed\" exact.\n- \"causing the contact to hit her forehead against the steering wheel\" exact? Narrative: \"causing the contact to hit her forehead against the steering wheel, which propelled...\" yes.\n- \"felt dizzy and off balance\" exact.\n- \"The contact sustained a concussion, bruises on the forehead, neck, and lower back back pain, a worsening of the contact's generative bone disease condition.\" exact? Need check \"lower back back pain\" yes duplicate back. \"generative bone disease\" maybe \"degenerative\"? It says generative. Exact.\n- \"The vehicle was towed to an independent mechanic two months later.\" exact.\n- \"Both the mechanic and the insurance company confirmed that the vehicle was totaled.\" exact. Not needed.\n- \"The failure mileage was approximately 62,000.\" exact.\n- \"AIR BAGS\" exact from component field.\n\nNeed clues kind component_group quote \"AIR BAGS\". Is quote from report? Yes JSON field.\n\nCould include safety quote \"The contact sustained a concussion...\" kind safety.\n\nConditions array: Should it include \"intermittent\"? Warning light flashing? Not intermittent? It says unknown red warning light was flashing, could be intermittent. But condition list is for environmental/operating conditions, not symptom. Do not include unless mentioned exactly? It says \"conditions\": [\"cold\", ...]. The report mentions \"complete stop\", \"red traffic light\", \"rear-end crash\", \"drove to hospital\". None of allowed. So [].\n\nNeed maybe \"symptoms\" includes \"air bags did not deploy\", \"seat belts failed to restrain\", \"unknown red warning light flashing\", \"occupant hit steering wheel twice\", \"dizzy and off balance\", \"concussion/bruises/back pain\". Keep concise. Plain words.\n\nNeed summary: \"2015 Kia Optima: air bags did not deploy and seat belts failed to restrain in a rear-end crash while stopped; occupant injured.\" one line.\n\nNeed answer only JSON. Ensure no markdown. Use valid JSON. Could include non-ASCII? no.\n\nLet's craft. Use \"group\": \"restraints\". \"missing_info\": [\"date\"].\n\nNeed decide if \"conditions\" empty. Yes.\n\nPotential issue safety_relevant in input true. Output true.\n\nNeed no extra text. Done.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793532081,
+      "id": "c45f1ffa03efb8375378e9302ca31390",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1585,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1275,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00060621,
+          "billing_source": "go",
+          "list_cost": 0.00101035,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 388,
+            "output": 1585,
+            "reasoning": 1275
+          }
+        },
+        "prompt_tokens": 772,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2357
+      }
+    },
+    "text": "{\"summary\":\"2015 Kia Optima: air bags did not deploy and seat belts failed to restrain in a rear-end crash while stopped; occupant injured.\",\"group\":\"restraints\",\"symptoms\":[\"air bags did not deploy\",\"seat belts failed to restrain occupant\",\"unknown red warning light flashing\",\"occupant hit forehead on steering wheel\",\"dizziness and off balance\",\"concussion, bruises, and back pain\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"condition\",\"quote\":\"while at a complete stop at the red traffic light\"},{\"kind\":\"safety\",\"quote\":\"crashed into the rear-end of the vehicle\"},{\"kind\":\"symptom\",\"quote\":\"An unknown red warning light was flashing.\"},{\"kind\":\"symptom\",\"quote\":\"The air bags did not deploy.\"},{\"kind\":\"symptom\",\"quote\":\"The seat belts failed to restrain the contact as needed\"},{\"kind\":\"symptom\",\"quote\":\"causing the contact to hit her forehead against the steering wheel\"},{\"kind\":\"symptom\",\"quote\":\"felt dizzy and off balance\"},{\"kind\":\"safety\",\"quote\":\"The contact sustained a concussion, bruises on the forehead, neck, and lower back back pain, a worsening of the contact's generative bone disease condition.\"},{\"kind\":\"other\",\"quote\":\"The failure mileage was approximately 62,000.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00060621,
+      "cached_tokens": 384,
+      "cost_usd": 0.00101035,
+      "input_tokens": 772,
+      "list_cost_usd": 0.00101035,
+      "output_tokens": 1585,
+      "reasoning_tokens": 1275
+    }
+  }
+}

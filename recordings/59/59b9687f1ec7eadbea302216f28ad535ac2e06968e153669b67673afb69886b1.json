@@ -1,0 +1,66 @@
+{
+  "key": "59b9687f1ec7eadbea302216f28ad535ac2e06968e153669b67673afb69886b1",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 15188,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"SRS warning lamp illuminated and stayed on immediately after purchase; cause undetermined.\",\n  \"group\": \"restraints\",\n  \"symptoms\": [\n    \"SRS warning light illuminated and remained illuminated\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"missing_info\": [\n    \"conditions\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"SRS warning light was illuminated and remained illuminated while operating the vehicle\"\n    },\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"AIR BAGS:SRS MALFUNCTION WARNING LAMP/LIGHT\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"The cause of the failure was not yet determined.\"\n    }\n  ]\n}",
+            "reasoning_content": "We need to output JSON. Need parse report. Component: AIR BAGS:SRS MALFUNCTION WARNING LAMP/LIGHT. Group: restraints. Symptoms: SRS warning light illuminated and remained illuminated. Conditions: immediately after purchasing the vehicle? That's not one of listed conditions? Conditions list: cold, moisture, heat, vibration, intermittent, after service, charging. \"immediately after purchasing\" not in list. Could leave empty. Fault codes none. Safety relevant? Report says safety_relevant false in input, but we must decide from narrative. SRS warning light illuminated; no crash/fire/smoke/injury/loss control/stall. So false. Missing info: cause not determined, manufacturer/dealer not contacted, no further info. But missing_info criteria: component, symptom, conditions, mileage, date. Component present, symptom present, mileage present (129000), date? received_at 2025-12-10, but failure date not given. Conditions missing? Conditions list maybe none. Should list \"conditions\"? The report doesn't state conditions (cold etc). But is that important? For SRS lamp, conditions might be needed. The prompt says list missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. Use empty when nothing important missing. Here conditions not specified; date of failure not specified. Mileage provided. Could include \"conditions\" and \"date\". But maybe \"date\" refers report date? There is received_at. Narrative says failure mileage 129,000. No failure date. The intake normalizes incoming field-quality report. Missing_info should include facts missing. So [\"conditions\", \"date\"]. But is date important? Yes maybe. But maybe they expect missing_info empty because component, symptom, mileage, date (received_at) present? Hmm.\n\nNeed clues: every quote verbatim. Need include symptom quote, condition maybe, component_group, safety? We can quote \"SRS warning light was illuminated and remained illuminated while operating the vehicle.\" That's verbatim? Narrative: \"it was discovered that the SRS warning light was illuminated and remained illuminated while operating the vehicle.\" Yes. Component group quote? \"AIR BAGS:SRS MALFUNCTION WARNING LAMP/LIGHT\" from component field, but report in user message includes JSON; quote can be from report? The \"report\" includes entire JSON? likely yes. But clues should be from narrative? It says report in user message. Could quote component string. But kind component_group quote should be a span from report. \"AIR BAGS:SRS MALFUNCTION WARNING LAMP/LIGHT\" is in component field. Good.\n\nNeed summary one line: component, symptom, conditions. \"SRS warning lamp illuminated and stayed illuminated immediately after purchase; cause undetermined.\" Conditions: after purchase not in list. Summary can mention.\n\nNeed JSON only. Ensure no extra text.\n\nNeed decide safety_relevant false. The input has safety_relevant false, but we must set based on mention. No risk to people mentioned. Even SRS malfunction could be safety, but prompt says when report mentions crash/fire/smoke/injury/loss control/stall at speed or another risk to people. It doesn't. So false.\n\nSymptom: \"SRS warning light illuminated and remained illuminated\" plain words. Could be \"SRS warning light stays on\". Good.\n\nConditions: []? The report mentions \"immediately after purchasing the vehicle\" not in condition vocabulary. Could we include \"after service\"? No. So empty.\n\nFault codes: [].\n\nMissing info: conditions? The narrative doesn't specify when/under what conditions lamp illuminated beyond operating. But conditions field in schema specifically cold/moisture/heat/vibration/intermittent/after service/charging. It is not stated. Do we need? Possibly. But \"conditions\" missing could be important. Date missing? failure date not given; received_at is 2025-12-10 but not failure date. Mileage given. Component and symptom given. So missing_info [\"conditions\",\"date\"]. Is \"date\" too broad? The prompt lists date. Yes.\n\nBut the desk might need \"date\" of failure? It gives received_at; but no failure date. I'll include date. Maybe conditions? Hmm if no conditions apply, it's not missing, just none. But for SRS lamp, conditions might be always on. The symptom says remained illuminated while operating, so condition \"while operating\" not in list. I think missing_info empty might be acceptable. But \"cause not yet determined\" and \"manufacturer and dealer not contacted\" not analysis facts. \"No further information\" means missing. The missing_info should only list component, symptom, conditions, mileage, date. Component/symptom/mileage present. Date? received_at present, but that's report date. Conditions? Not specified. I'd list [\"conditions\",\"date\"] to be safe? Need maybe not over-list. The instruction: \"List missing_info only for facts the analysis needs: component, symptom, conditions, mileage, date. Use an empty list when nothing important is missing.\" Conditions are important for SRS intermittent? But symptom is constant. Date of failure might be important. I'd include \"conditions\" and \"date\" because not given. But the report says \"immediately after purchasing\" which is a timing condition, but not in allowed vocabulary. It gives no environmental/operating conditions. Conditions missing. Date missing. Fine.\n\nClues: Need maybe multiple. \n- {\"kind\":\"symptom\",\"quote\":\"SRS warning light was illuminated and remained illuminated while operating the vehicle\"}\n- {\"kind\":\"component_group\",\"quote\":\"AIR BAGS:SRS MALFUNCTION WARNING LAMP/LIGHT\"}\n- {\"kind\":\"other\",\"quote\":\"The cause of the failure was not yet determined.\"} maybe missing info? Could include as other. But clues should be evidence. Maybe not necessary.\n- {\"kind\":\"condition\",\"quote\":\"immediately after purchasing the vehicle\"}? Kind condition but not in conditions list. The schema kind includes condition. Is \"immediately after purchasing\" a condition? It's a timing condition. But conditions array should only include listed values. We can include clue kind condition with quote. But if conditions array empty, clue condition might conflict. Hmm.\n\nNeed ensure quotes verbatim from narrative. Let's copy exact. Narrative:\n\"The contact owns a 2000 Honda Accord. The contact stated that immediately after purchasing the vehicle, it was discovered that the SRS warning light was illuminated and remained illuminated while operating the vehicle. The cause of the failure was not yet determined. The manufacturer and local dealer were not contacted regarding the failure. No further information was available. The failure mileage was 129,000.\"\n\nQuotes:\n\"immediately after purchasing the vehicle\" exact.\n\"SRS warning light was illuminated and remained illuminated while operating the vehicle\" exact (from \"that the SRS warning light...\").\n\"The cause of the failure was not yet determined.\" exact.\n\"The failure mileage was 129,000.\" exact.\n\nComponent string exact from JSON: \"AIR BAGS:SRS MALFUNCTION WARNING LAMP/LIGHT\". Good.\n\nNeed summary one line: \"SRS warning lamp illuminated and remained illuminated immediately after purchase; cause undetermined.\" Conditions maybe \"after purchase\" not in conditions. Fine.\n\nNeed group: \"restraints\" given. Good.\n\nNeed output JSON with indentation? No other text. \nNeed include safety_relevant false. \nMissing info maybe [\"conditions\",\"date\"]. \nClues include symptom, component_group, other. Maybe also condition clue \"immediately after purchasing the vehicle\". But conditions array empty; still okay? Kind condition quote. But the condition isn't one of allowed conditions. The clue kind condition can be any condition? The schema says kind symptom|condition|fault_code|component_group|safety|other. Conditions array is constrained. A quote \"immediately after purchasing\" is a condition in plain sense. But if we include it as condition clue while conditions array empty, could be inconsistent. Maybe omit condition clue. Or include it and conditions list? Cannot include \"after purchase\" because conditions array enumerates allowed values. So omit.\n\nCould include missing_info clues? No.\n\nNeed JSON only. Ensure valid JSON. No markdown? User says answer with one JSON object and no other text. We can output raw JSON. Let's craft.\n\nNeed be careful: \"symptoms\": [\"SRS warning light illuminated and remained illuminated\"] plain words. Good.\n\n\"conditions\": [].\n\"fault_codes\": [].\n\"missing_info\": [\"conditions\", \"date\"].\n\"clues\": [\n{\"kind\":\"symptom\",\"quote\":\"SRS warning light was illuminated and remained illuminated while operating the vehicle\"},\n{\"kind\":\"component_group\",\"quote\":\"AIR BAGS:SRS MALFUNCTION WARNING LAMP/LIGHT\"},\n{\"kind\":\"other\",\"quote\":\"The cause of the failure was not yet determined.\"}\n]\nMaybe include \"other\" quote for no further info? Not necessary. But clues evidence for missing cause? Hmm.\n\nNeed maybe include \"safety_relevant\": false.\n\nCould include summary \"SRS warning lamp illuminated and stayed on immediately after purchase; cause undetermined.\" Good.\n\nNeed final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793532759,
+      "id": "addce95ffdf452b7923b75101b07e8b5",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2096,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1909,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00077208,
+          "billing_source": "go",
+          "list_cost": 0.0012868,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 187,
+            "output": 2096,
+            "reasoning": 1909
+          }
+        },
+        "prompt_tokens": 571,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2667
+      }
+    },
+    "text": "{\n  \"summary\": \"SRS warning lamp illuminated and stayed on immediately after purchase; cause undetermined.\",\n  \"group\": \"restraints\",\n  \"symptoms\": [\n    \"SRS warning light illuminated and remained illuminated\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"missing_info\": [\n    \"conditions\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"SRS warning light was illuminated and remained illuminated while operating the vehicle\"\n    },\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"AIR BAGS:SRS MALFUNCTION WARNING LAMP/LIGHT\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"The cause of the failure was not yet determined.\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00077208,
+      "cached_tokens": 384,
+      "cost_usd": 0.0012868,
+      "input_tokens": 571,
+      "list_cost_usd": 0.0012868,
+      "output_tokens": 2096,
+      "reasoning_tokens": 1909
+    }
+  }
+}

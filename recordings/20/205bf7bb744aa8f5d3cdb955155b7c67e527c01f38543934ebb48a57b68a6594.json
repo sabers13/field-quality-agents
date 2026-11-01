@@ -1,0 +1,66 @@
+{
+  "key": "205bf7bb744aa8f5d3cdb955155b7c67e527c01f38543934ebb48a57b68a6594",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 18332,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Hybrid propulsion system: reduced power and 'Low Propulsion' message at 76-77 MPH with engine revving.\",\n  \"group\": \"ev_propulsion\",\n  \"symptoms\": [\n    \"reduced power\",\n    \"Low Propulsion message displayed\",\n    \"engine revved significantly\",\n    \"recurring failure\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"HYBRID PROPULSION SYSTEM\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"experienced reduced power\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The message \\\"Low Propulsion\\\" was displayed\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"engine revved significantly\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"while driving approximately 76-77 MPH\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"failure had been recurring temporarily\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"release of the accelerator pedal while the failure was occurring could temporarily correct the failure\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"while driving approximately 76-77 MPH, the vehicle experienced reduced power\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer JSON only. Need normalize. Need read report. Component hybrid propulsion system, group ev_propulsion given. Symptoms: reduced power, \"Low Propulsion\" message displayed, engine revved significantly, recurring temporarily, accelerator pedal release temporarily corrects. Conditions: while driving approximately 76-77 MPH. Intermittent? \"recurring temporarily\" yes intermittent. Safety relevant? Report mentions reduced power at speed 76-77 MPH, moved far-right lane to pull over as needed. Is that risk? \"loss of control, stall at speed or another risk to people.\" Reduced power at highway speed could be risk. But provided safety_relevant false in input? We need set based on report. It says safety_relevant when report mentions crash fire smoke injury loss control stall at speed or risk. Reduced power at 76-77 MPH likely safety relevant. Need include quote. Fault codes none. Missing info? component present, symptom present, conditions present, mileage present, date received but not incident date. \"date\" missing? The analysis needs date maybe incident date. Report has received_at not incident date. Should list date? Need only facts analysis needs. Mileage present 61000. Conditions present (speed). Component present. Symptom present. Date? No incident date, but received_at. Missing_info maybe [\"date\"]? Need decide. The report has no date of failure, only received_at. Missing date could be important but maybe not. Prompt says list missing only facts analysis needs: component symptom conditions mileage date. Since date missing unless received_at counts? Incident date missing. Could include \"date\". But maybe not necessary. We need clues with verbatim quotes.\n\nNeed summary one line: component, symptom, conditions. E.g. \"Hybrid propulsion system: reduced power with 'Low Propulsion' message and engine revving at 76-77 MPH.\" Good.\n\nGroup: \"ev_propulsion\". Symptoms array plain words. Could include \"reduced power\", \"Low Propulsion message displayed\", \"engine revved significantly\", \"recurring failure\". Conditions: driving at 76-77 MPH, intermittent. Maybe \"intermittent\". Conditions list allowed: cold moisture heat vibration intermittent after service charging. Also speed not in allowed? The schema conditions examples but can include free? It says conditions [\"cold\",\"moisture\"...] likely categories. We can include \"intermittent\". Could include \"at highway speed\" maybe not allowed? Conditions array can include plain conditions? The prompt says conditions: [\"cold\", ...]. Use \"intermittent\". Maybe also \"while driving\" not category. But clues can quote speed. We can put conditions [\"intermittent\"] only. But summary includes speed. Hm.\n\nSafety_relevant true. Need clue quote for safety: \"while driving approximately 76-77 MPH, the vehicle experienced reduced power\" or \"moved over to the far-right lane to pull over to the side of the road as needed.\" Is that explicit risk? The report doesn't mention crash. Reduced power at 76-77 is risk. Quote: \"while driving approximately 76-77 MPH, the vehicle experienced reduced power\". Good.\n\nClues:\n- component_group quote \"HYBRID PROPULSION SYSTEM\"\n- symptom quote \"experienced reduced power\"\n- symptom quote \"\\\"Low Propulsion\\\" was displayed\" (verbatim includes quotes? Narrative has The message \\\"Low Propulsion\\\" was displayed. Quote can be Low Propulsion? Need verbatim span. \"Low Propulsion\" is in report inside quotes. Quote: \"\\\"Low Propulsion\\\" was displayed\" maybe exact substring? Narrative: The message \"Low Propulsion\" was displayed, and the engine revved significantly. Yes substring includes quotes. In JSON escape quotes.\n- symptom quote \"engine revved significantly\"\n- condition quote \"while driving approximately 76-77 MPH\"\n- condition/intermittent quote \"failure had been recurring temporarily\"\n- other quote \"release of the accelerator pedal while the failure was occurring could temporarily correct the failure\" maybe symptom/other.\n- safety quote as above.\n\nNeed ensure every quote verbatim. Check narrative: \"The contact stated while driving approximately 76-77 MPH, the vehicle experienced reduced power.\" Quote \"while driving approximately 76-77 MPH, the vehicle experienced reduced power\" exact yes. \"The message \\\"Low Propulsion\\\" was displayed\" exact? Narrative: The message \"Low Propulsion\" was displayed, and the engine revved significantly. Substring \"The message \\\"Low Propulsion\\\" was displayed\" yes. \"engine revved significantly\" exact. \"failure had been recurring temporarily\" exact? Narrative: \"The contact stated that the failure had been recurring temporarily.\" substring yes. \"release of the accelerator pedal while the failure was occurring could temporarily correct the failure\" exact? Narrative: \"became aware that the release of the accelerator pedal while the failure was occurring could temporarily correct the failure.\" substring yes.\n\nMissing_info: date? Maybe no incident date. But received_at 2025-03-31. The report has mileage. The analysis needs date? Could list [\"date\"] because failure date not given. But maybe \"date\" present via received_at? The prompt says missing_info \"date\" facts analysis needs; report has received_at but not failure date. In intake, received_at is metadata. I'd include [\"date\"]? But user likely expects missing_info maybe [] because all important present? Let's examine. Component, symptom, conditions, mileage all present. Date? The report has \"received_at\": \"2025-03-31\" but not failure date. The missing_info options include date. Analysis may need date of incident? It says \"List missing_info only for facts the analysis needs: component, symptom, conditions, mileage, date.\" Date is a fact. Is it missing? The report has received_at, but not failure date. Could be considered missing. However many reports lack exact date. Including [\"date\"] is safe? Need not invent. It is indeed missing. But maybe \"date\" should be incident date; received_at is not incident date. I'll include [\"date\"] maybe. But if answer expected based on input, maybe missing_info [] because received_at present. Hmm.\n\nNeed output one JSON object no other text. Need decide safety_relevant. Input has safety_relevant false but prompt says set. We can override. The report mentions reduced power at 76-77, engine revved, moved to far-right lane. That's risk. So true.\n\nNeed maybe \"group\": \"ev_propulsion\" given. The component group is hybrid propulsion system; group given ev_propulsion. Use \"ev_propulsion\".\n\nNeed summary one line. \"Hybrid propulsion system: reduced power and 'Low Propulsion' message at 76-77 MPH with engine revving.\" Good.\n\nNeed symptoms plain words: [\"reduced power\", \"Low Propulsion message displayed\", \"engine revved significantly\", \"recurring failure\"]. Maybe \"accelerator pedal release temporarily corrects failure\" is symptom? Not exactly. Could include as \"temporary correction by releasing accelerator pedal\". But symptoms should be symptom in plain words. Fine.\n\nConditions: [\"intermittent\"] maybe. Could include \"at highway speed\" but allowed list? Conditions examples not exhaustive? It says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. So use only \"intermittent\". But speed is condition; summary and clues capture. Could also include \"while driving\" no. Use [\"intermittent\"].\n\nFault codes [].\n\nClues include safety. Need quote for symptom \"reduced power\" exact. The quote \"experienced reduced power\" exact. Good.\n\nNeed maybe include \"other\" for accelerator release. But kind allowed symptom|condition|fault_code|component_group|safety|other. Use \"other\" for internet research/accelerator? Maybe not needed. But clues evidence. Could include \"other\" quote \"release of the accelerator pedal while the failure was occurring could temporarily correct the failure\". Good.\n\nNeed no markdown? The final should be JSON object only. Ensure valid JSON. Use escaped quotes. Let's craft.\n\nPotential issue: \"quote\": \"\\\"Low Propulsion\\\" was displayed\" includes quotes; okay. Also \"quote\": \"The message \\\"Low Propulsion\\\" was displayed\" maybe exact with The. Use exact substring. Good.\n\nNeed maybe include safety quote and symptom quote same? Fine.\n\nMissing_info: If include [\"date\"], okay. But date received_at exists; however failure date absent. I can justify. Maybe include \"date\" because incident date not specified. But if analysis needs only date, yes. There is no crash date. I'll include [\"date\"]. But maybe missing_info should include \"incident date\" not allowed? Use \"date\". Good.\n\nNeed final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793525876,
+      "id": "d87a3fb5fd250f54b537b79c8f12b92f",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2176,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1837,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00080592,
+          "billing_source": "go",
+          "list_cost": 0.0013432,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 243,
+            "output": 2176,
+            "reasoning": 1837
+          }
+        },
+        "prompt_tokens": 627,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2803
+      }
+    },
+    "text": "{\n  \"summary\": \"Hybrid propulsion system: reduced power and 'Low Propulsion' message at 76-77 MPH with engine revving.\",\n  \"group\": \"ev_propulsion\",\n  \"symptoms\": [\n    \"reduced power\",\n    \"Low Propulsion message displayed\",\n    \"engine revved significantly\",\n    \"recurring failure\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"HYBRID PROPULSION SYSTEM\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"experienced reduced power\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The message \\\"Low Propulsion\\\" was displayed\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"engine revved significantly\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"while driving approximately 76-77 MPH\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"failure had been recurring temporarily\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"release of the accelerator pedal while the failure was occurring could temporarily correct the failure\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"while driving approximately 76-77 MPH, the vehicle experienced reduced power\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00080592,
+      "cached_tokens": 384,
+      "cost_usd": 0.0013432,
+      "input_tokens": 627,
+      "list_cost_usd": 0.0013432,
+      "output_tokens": 2176,
+      "reasoning_tokens": 1837
+    }
+  }
+}

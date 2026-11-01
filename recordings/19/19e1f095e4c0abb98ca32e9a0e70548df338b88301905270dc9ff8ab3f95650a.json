@@ -1,0 +1,66 @@
+{
+  "key": "19e1f095e4c0abb98ca32e9a0e70548df338b88301905270dc9ff8ab3f95650a",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12170,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Test the side-mirror glass/heater under cold-soak and heating cycles after a crack appeared on the coldest day following remote-starter heating.\",\"rationale\":\"The narrative reports side-mirror glass cracking after the car sat in cold conditions and was heated by remote start, matching the rulebook cold and heat entries. No recalls, investigations, or similar cases contradict this. A low-temperature cycling test is the targeted check to reproduce temperature-dependent cracking.\",\"group\":\"body_controls\",\"symptoms\":[\"cracked side mirror glass\"],\"conditions\":[\"cold\",\"heat\"],\"fault_codes\":[],\"safety_relevant\":false,\"targeted\":true,\"test_name\":\"Low-temperature cycling test\",\"clues\":[{\"kind\":\"symptom\",\"quote\":\"there was a crack in the side mirror\"},{\"kind\":\"condition\",\"quote\":\"the coldest day since I got my car\"},{\"kind\":\"condition\",\"quote\":\"used the remote starter to heat up the car\"},{\"kind\":\"other\",\"quote\":\"heating element in the mirror caused a crack in the glass\"},{\"kind\":\"component_group\",\"quote\":\"side mirror\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need analyze. Case side mirror glass cracked coldest day remote starter heat. Extraction conditions cold, heat. Rulebook entries cold test low-temp cycling, heat high-temp operation. No similar cases/investigations/recalls. Need propose targeted? The rulebook matches conditions. But is this a load test? The case is about visibility/wiper group body_controls. Side mirror crack likely thermal stress. Rulebook names tests. We need decide targeted true and test_name? Two rulebook entries match cold and heat. \"targeted load test when reported conditions match a rulebook entry.\" There are two. We need perhaps targeted true, test_name \"Low-temperature cycling test\" or combine? The prompt asks \"the targeted test the rulebook names\" singular. Conditions cold and heat both matched. Could choose \"Low-temperature cycling test\" because narrative emphasizes coldest day and remote starter heating. But heat also matched. Maybe test_name \"Low-temperature cycling test\" and clues. Or could include both? Format expects string. We can mention rationale both cold and heat. Need targeted true? It matches rulebook entries. Safety false. Summary one line. Clues verbatim from narrative. Need ensure quotes exactly copied. Use quotes from narrative, not extraction? Rules say case narrative. Extraction quotes are from narrative likely. Need copy exact spans. Narrative: \"Today (Saturday) was the coldest day since I got my car and I used the remote starter to heat up the car. When I got into the car 15 minutes later there was a crack in the side mirror that was not there the last time I drove it (Thursday) and the car was parked all day yesterday (Friday). I believe the cold temperature combined with the heating element in the mirror caused a crack in the glass. It looks like other CRV owners have had similar issues.\"\n\nNeed clues:\n- symptom: \"there was a crack in the side mirror\"\n- condition: \"the coldest day since I got my car\" (include \"was\"? quote exact can be substring)\n- condition: \"used the remote starter to heat up the car\"\n- other: \"heating element in the mirror caused a crack in the glass\"\n- component_group: \"side mirror\"\n- condition maybe \"cold temperature combined with the heating element\" quote exact? The phrase is \"the cold temperature combined with the heating element in the mirror\" yes. Could include.\nSafety false. targeted true. group body_controls. symptoms [\"cracked side mirror glass\"] conditions [\"cold\", \"heat\"] fault_codes [].\nTest name: Need \"the targeted test the rulebook names\". Since two entries: \"Low-temperature cycling test\" for cold and \"High-temperature operation test\" for heat. Which one? Narrative's primary cause cold + heating element. Maybe propose low-temp cycling test. But heat entry reason \"Heat soak and high ambient temperature...\" remote starter heating isn't high ambient; heating element local heat. Low-temp cycling better separates temperature-dependent. But heating element could be thermal. The test name could be \"Low-temperature cycling test\" and rationale mention high-temperature operation also relevant? Hmm if targeted true and test_name string, maybe choose \"Low-temperature cycling test\" because coldest day. But rulebook matched both cold and heat. Could test_name be \"Low-temperature cycling test / High-temperature operation test\"? That deviates but maybe acceptable? The prompt says \"the targeted test the rulebook names\" singular. I'd choose \"Low-temperature cycling test\" as primary. Maybe in rationale mention both cold and heat rulebook entries, with low-temp cycling as primary. But if conditions include heat, targeted test should cover heat? Maybe choose \"High-temperature operation test\" because heating element? Let's reason.\n\nCase: side mirror glass cracked after remote starter heating on coldest day. The crack not there Thursday, car parked Friday. He used remote starter to heat car for 15 min. Crack appeared. Possible thermal shock from heating element in freezing cold. Rulebook entries:\n- cold: Cold-soak and cold-start behaviour separates a temperature-dependent fault from permanent.\n- heat: Heat soak and high ambient temperature can expose thermal shutdown or solder faults.\nNeither exactly \"thermal shock mirror glass\" but conditions match cold and heat. The targeted test likely low-temperature cycling because coldest day and remote starter. But heating element is heat. Could be high-temperature operation test of mirror heating element. However \"high ambient temperature\" not relevant. Low-temperature cycling could reproduce cold soak then heating. So choose low-temperature cycling test. targeted true. Summary: \"Test side-mirror heater/glass under cold-soak and heating cycles after crack reported on coldest day with remote start.\" Good.\n\nNeed JSON only, no markdown? \"Answer with one JSON object and no other text\" So final should be raw JSON. Ensure valid. No extra.\n\nLet's craft concise. Clues quotes must be verbatim. We should only include quotes exactly in narrative. Check \"there was a crack in the side mirror\" appears exactly: \"there was a crack in the side mirror that was not there...\" yes. \"the coldest day since I got my car\" appears: \"was the coldest day since I got my car\" yes substring. \"used the remote starter to heat up the car\" appears exactly? Narrative: \"and I used the remote starter to heat up the car.\" substring \"used the remote starter to heat up the car\" yes. \"heating element in the mirror caused a crack in the glass\" appears: \"combined with the heating element in the mirror caused a crack in the glass.\" substring yes. \"side mirror\" appears. Could include \"cold temperature combined with the heating element\" exact? Narrative: \"the cold temperature combined with the heating element in the mirror\" yes. But we have \"heating element...\" enough.\n\nNeed \"clues kind\" allowed symptom|condition|fault_code|component_group|safety|other. Use.\n\nSafety_relevant false (bool). targeted true.\n\nRationale: \"The narrative reports side-mirror glass cracking after a cold soak and remote-starter heating, matching the rulebook cold and heat entries; no recalls or investigations provide contradicting evidence. A low-temperature cycling test is the targeted check to reproduce temperature-dependent cracking.\" Good.\n\nTest_name string \"Low-temperature cycling test\". Could mention \"High-temperature operation test\" in rationale? If test_name only low, rationale can say heat entry also matched but low temp primary. But no need.\n\nPotential issue: group \"body_controls\" matches. Good.\n\nNeed maybe \"conditions\": [\"cold\",\"heat\"] exactly extraction. \"fault_codes\": []. \"symptoms\": [\"cracked side mirror glass\"] or \"crack in side mirror\". Fine.\n\nFinal raw JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793532455,
+      "id": "0391d47b1c699faba402aae803a0175c",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1629,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1392,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00066717,
+          "billing_source": "go",
+          "list_cost": 0.00111195,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 897,
+            "output": 1629,
+            "reasoning": 1392
+          }
+        },
+        "prompt_tokens": 897,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 2526
+      }
+    },
+    "text": "{\"summary\":\"Test the side-mirror glass/heater under cold-soak and heating cycles after a crack appeared on the coldest day following remote-starter heating.\",\"rationale\":\"The narrative reports side-mirror glass cracking after the car sat in cold conditions and was heated by remote start, matching the rulebook cold and heat entries. No recalls, investigations, or similar cases contradict this. A low-temperature cycling test is the targeted check to reproduce temperature-dependent cracking.\",\"group\":\"body_controls\",\"symptoms\":[\"cracked side mirror glass\"],\"conditions\":[\"cold\",\"heat\"],\"fault_codes\":[],\"safety_relevant\":false,\"targeted\":true,\"test_name\":\"Low-temperature cycling test\",\"clues\":[{\"kind\":\"symptom\",\"quote\":\"there was a crack in the side mirror\"},{\"kind\":\"condition\",\"quote\":\"the coldest day since I got my car\"},{\"kind\":\"condition\",\"quote\":\"used the remote starter to heat up the car\"},{\"kind\":\"other\",\"quote\":\"heating element in the mirror caused a crack in the glass\"},{\"kind\":\"component_group\",\"quote\":\"side mirror\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00066717,
+      "cached_tokens": 0,
+      "cost_usd": 0.00111195,
+      "input_tokens": 897,
+      "list_cost_usd": 0.00111195,
+      "output_tokens": 1629,
+      "reasoning_tokens": 1392
+    }
+  }
+}

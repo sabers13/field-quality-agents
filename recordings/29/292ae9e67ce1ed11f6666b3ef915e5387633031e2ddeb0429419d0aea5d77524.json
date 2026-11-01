@@ -1,0 +1,66 @@
+{
+  "key": "292ae9e67ce1ed11f6666b3ef915e5387633031e2ddeb0429419d0aea5d77524",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 15417,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"AIR BAGS: passenger airbag sensor intermittently works, airbag light stays on, passenger airbag stays off, seat sensor false occupancy, ABS error; intermittent.\",\"group\":\"restraints\",\"symptoms\":[\"passenger airbag sensor intermittently works\",\"passenger airbag turns off when passenger is in the seat\",\"airbag dashboard light constantly on\",\"passenger airbag constantly off\",\"seat sensor goes off when no one is sitting in the passenger seat\",\"ABS system error message\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"Passenger airbag sensor intermittently works\"},{\"kind\":\"condition\",\"quote\":\"intermittently\"},{\"kind\":\"symptom\",\"quote\":\"turns off when passenger is in the seat\"},{\"kind\":\"symptom\",\"quote\":\"Dashboard light for airbag is constantly on\"},{\"kind\":\"symptom\",\"quote\":\"passenger airbag is constantly off\"},{\"kind\":\"symptom\",\"quote\":\"Issues with seat sensor going off when no one is sitting in the passenger seat.\"},{\"kind\":\"symptom\",\"quote\":\"Abs system error message.\"},{\"kind\":\"safety\",\"quote\":\"passenger airbag is constantly off\"},{\"kind\":\"other\",\"quote\":\"All identical to recall symptoms.\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need parse report. Component AIR BAGS group restraints. Symptoms: passenger airbag sensor intermittently works; turns off when passenger in seat; dashboard airbag light constantly on; passenger airbag constantly off; seat sensor going off when no one sitting; ABS system error message; identical to recall symptoms. Conditions: intermittent. Could include \"when passenger is in seat\", \"when no one is sitting\" but conditions list constrained to cold moisture heat vibration intermittent after service charging. So conditions [\"intermittent\"]. Fault codes none named. safety_relevant? Prompt says set safety_relevant when report mentions crash fire smoke injury loss control stall at speed or risk to people. Here airbag/ABS issues are safety-related risk to people, even though input safety_relevant false. Need decide. It mentions airbag sensor, passenger airbag off, ABS error, recall symptoms. Is that safety relevant? Yes airbag not deploying / ABS error risk. But rule says when report mentions crash etc. \"or another risk to people.\" Airbag malfunction is risk. So true. Need missing_info: mileage null. Date? received_at present but not incident date. Missing mileage, date? Component present symptom present conditions present (intermittent and seating). Mileage missing. Date missing? Report has received_at but no incident date. Analysis needs date perhaps. missing_info [\"mileage\",\"date\"]. Could include? Component present, symptom present. Conditions present intermittent. So mileage date.\n\nClues verbatim spans from narrative. Need exact quotes. Could quote \"Passenger airbag sensor intermittently works\" (verbatim? Narrative starts \"Passenger airbag sensor intermittently works and turns off when passenger is in the seat.\" yes substring). \"Dashboard light for airbag is constantly on\" exact. \"passenger airbag is constantly off\" exact. \"Issues with seat sensor going off when no one is sitting in the passenger seat.\" exact. \"Abs system error message.\" exact (Abs capital). \"All identical to recall symptoms.\" exact. Need kind labels. component_group? Quote \"AIR BAGS\" from component field? Report includes component field. Could quote \"AIR BAGS\" as component_group. Is field part report? Yes user message includes JSON. Quote verbatim. Could include. Safety clue quote? \"Passenger airbag sensor intermittently works and turns off when passenger is in the seat.\" as safety? Better \"passenger airbag is constantly off\" safety. Clues kinds allowed symptom condition fault_code component_group safety other. Need maybe condition quote \"intermittently\" but quote should be verbatim span; \"intermittently\" exact. Could use \"Passenger airbag sensor intermittently works\" symptom and \"intermittently\" condition? Hmm.\n\nNeed output valid JSON only no markdown? They said one JSON object and no other text. We can output raw JSON. Ensure no extra. Summary one line: \"AIR BAGS: passenger airbag sensor intermittent, airbag light on, passenger airbag off, seat sensor false occupancy, ABS error; intermittent.\" Avoid invent. Summary includes component symptom conditions. Good.\n\nNeed safety_relevant true. Even source says false? The input has safety_relevant false but we infer. Fine.\n\nNeed group \"restraints\".\n\nNeed symptoms array plain words:\n- \"passenger airbag sensor intermittently works\"\n- \"passenger airbag turns off when passenger is in the seat\"\n- \"airbag dashboard light constantly on\"\n- \"passenger airbag constantly off\"\n- \"seat sensor goes off when no one is sitting in the passenger seat\"\n- \"ABS system error message\"\n- \"symptoms identical to recall symptoms\" maybe not symptom. Could include as other clue. Symptoms should be symptom in plain words. Include \"matches recall symptoms\" maybe not symptom. Better not in symptoms? It is a clue. But summary maybe mention. We can include \"symptoms identical to recall symptoms\" as other clue.\n\nConditions [\"intermittent\"]. Could also include? \"when passenger is in the seat\" isn't in list. No. \"when no one is sitting\" no.\n\nFault codes [] because none. Missing info [\"mileage\",\"date\"].\n\nClues:\n{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"}\n{\"kind\":\"symptom\",\"quote\":\"Passenger airbag sensor intermittently works\"}\n{\"kind\":\"condition\",\"quote\":\"intermittently\"}\n{\"kind\":\"symptom\",\"quote\":\"turns off when passenger is in the seat\"}\n{\"kind\":\"symptom\",\"quote\":\"Dashboard light for airbag is constantly on\"}\n{\"kind\":\"symptom\",\"quote\":\"passenger airbag is constantly off\"}\n{\"kind\":\"symptom\",\"quote\":\"Issues with seat sensor going off when no one is sitting in the passenger seat.\"}\n{\"kind\":\"symptom\",\"quote\":\"Abs system error message.\"}\n{\"kind\":\"safety\",\"quote\":\"passenger airbag is constantly off\"}\n{\"kind\":\"other\",\"quote\":\"All identical to recall symptoms.\"}\n\nNeed be careful quote \"turns off when passenger is in the seat\" is substring yes. \"passenger airbag is constantly off\" exact substring? Narrative: \"Dashboard light for airbag is constantly on and passenger airbag is constantly off.\" yes. Safety quote same duplicate okay. Could use \"Passenger airbag sensor intermittently works and turns off when passenger is in the seat.\" as safety? But component malfunction. Fine.\n\nNeed JSON no trailing. Ensure \"summary\" one line.\n\nNeed maybe missing_info includes \"date\" though received_at present. Yes date of incident/failure.\n\nNeed no suggestions. Done.\n\nFinal only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793532622,
+      "id": "4021e43f3b547b78d30bb0d8dbdb6432",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1468,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1163,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00054357,
+          "billing_source": "go",
+          "list_cost": 0.00090595,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 160,
+            "output": 1468,
+            "reasoning": 1163
+          }
+        },
+        "prompt_tokens": 544,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2012
+      }
+    },
+    "text": "{\"summary\":\"AIR BAGS: passenger airbag sensor intermittently works, airbag light stays on, passenger airbag stays off, seat sensor false occupancy, ABS error; intermittent.\",\"group\":\"restraints\",\"symptoms\":[\"passenger airbag sensor intermittently works\",\"passenger airbag turns off when passenger is in the seat\",\"airbag dashboard light constantly on\",\"passenger airbag constantly off\",\"seat sensor goes off when no one is sitting in the passenger seat\",\"ABS system error message\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"Passenger airbag sensor intermittently works\"},{\"kind\":\"condition\",\"quote\":\"intermittently\"},{\"kind\":\"symptom\",\"quote\":\"turns off when passenger is in the seat\"},{\"kind\":\"symptom\",\"quote\":\"Dashboard light for airbag is constantly on\"},{\"kind\":\"symptom\",\"quote\":\"passenger airbag is constantly off\"},{\"kind\":\"symptom\",\"quote\":\"Issues with seat sensor going off when no one is sitting in the passenger seat.\"},{\"kind\":\"symptom\",\"quote\":\"Abs system error message.\"},{\"kind\":\"safety\",\"quote\":\"passenger airbag is constantly off\"},{\"kind\":\"other\",\"quote\":\"All identical to recall symptoms.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00054357,
+      "cached_tokens": 384,
+      "cost_usd": 0.00090595,
+      "input_tokens": 544,
+      "list_cost_usd": 0.00090595,
+      "output_tokens": 1468,
+      "reasoning_tokens": 1163
+    }
+  }
+}

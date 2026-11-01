@@ -1,0 +1,66 @@
+{
+  "key": "e499dbbde8dcd3c32ae5abed34af6d63860c294551e5ce809a87437c366832de",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9999,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"ELECTRICAL SYSTEM: infotainment screen ghost-touches and changes modes among navigation, radio, XM, screen saver, and Bluetooth; conditions not stated.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"infotainment screen ghost touches and changes from navigation to radio to XM to screen saver to Bluetooth\",\n    \"navigation unreliable for turn-by-turn directions\",\n    \"extremely distracting\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"conditions\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"infotainment system ghost touches the screen and changes from navigation to radio to xm to screen savor to Bluetooth\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"very dangerous as navigation is not reliable for turn my turn directions and this is extremely distracting\"\n    },\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"ELECTRICAL SYSTEM\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer only JSON. Need normalize. Report: component ELECTRICAL SYSTEM group electrical_general. Narrative: infotainment system ghost touches screen and changes from navigation to radio to xm to screen savor to Bluetooth, very dangerous as navigation is not reliable for turn my turn directions and this is extremely distracting honda says no fix consumer problem. warrent ran out 6/25 and car has 35,000 miles.\n\nNeed summary one line: component, symptom, conditions. Symptoms plain words: \"infotainment screen ghost touches and changes modes\" maybe \"navigation unreliable\" \"distracting\". Conditions? none explicit? \"warrent ran out 6/25\" is not condition? conditions list includes cold moisture heat vibration intermittent after service charging. Could include \"intermittent\"? Ghost touches implies intermittent? Report doesn't say intermittent. We shouldn't invent. Conditions empty. Fault codes none. safety_relevant: prompt says set when mentions crash fire smoke injury loss control stall at speed or another risk to people. Report says \"very dangerous as navigation is not reliable... extremely distracting\" Is that safety relevant? It mentions danger/distraction and navigation unreliable. \"another risk to people\" maybe yes due to distraction. But source says false. The instruction says set safety_relevant when report mentions ... another risk to people. \"very dangerous\" and \"extremely distracting\" qualifies? Need decide. It does mention danger. Safety relevant true likely. But \"safety_relevant\": false in input? We are normalising incoming report; source field has false but report narrative mentions very dangerous/distracting. Rules say set when report mentions risk. I'd set true. Need missing_info: mileage present 35,000 in narrative but mileage field null. We can extract mileage? Missing info list only facts analysis needs: component, symptom, conditions, mileage, date. Mileage is in narrative \"35,000 miles\"; date maybe warranty ran out 6/25 not exact? received_at 2025-11-25. Conditions missing? The analysis might need conditions; none. We can list \"conditions\" maybe. But maybe missing_info should include conditions because no environmental conditions. Hmm \"List missing_info only for facts the analysis needs: component, symptom, conditions, mileage, date. Use empty list when nothing important is missing.\" Component and symptom present. Mileage present in narrative though field null; we can include in summary? The report has 35,000 miles. Date? received date and warranty expiry 6/25. Conditions not specified. Is conditions important? For ghost touch maybe yes (temperature? vibration?). I'd list [\"conditions\"]. Maybe mileage? Since field null but narrative says 35,000 miles, no missing. Date? received_at. No.\n\nClues: symptom quote verbatim: \"infotainment system ghost touches the screen and changes from navigation to radio to xm to screen savor to Bluetooth\" exactly. condition? none. safety quote: \"very dangerous as navigation is not reliable for turn my turn directions and this is extremely distracting\" verbatim? Check narrative: \"very dangerous as navigation is not reliable for turn my turn directions and this is extremely distracting\" yes. Could include symptom quote \"navigation is not reliable for turn my turn directions\". component_group quote? \"ELECTRICAL SYSTEM\" from component field? The quote must be copied verbatim from report. Is component field part of report? The user message is JSON report; yes \"ELECTRICAL SYSTEM\" appears. But \"quote copied verbatim from the report\" can use field value. Need kind component_group quote \"ELECTRICAL SYSTEM\". Other quote maybe \"warrent ran out 6/25 and car has 35,000 miles\" as other? No need. Could include fault code none.\n\nNeed summary one line: \"ELECTRICAL SYSTEM: infotainment screen ghost-touches and changes modes (navigation/radio/XM/screensaver/Bluetooth); no conditions stated.\" Conditions maybe \"no conditions stated\". Summary should be one line: component, symptom, conditions. Since no conditions, say \"conditions not stated\". That's okay.\n\nNeed JSON with only object no other text. Ensure no markdown? They said answer with one JSON object and no other text. So plain JSON. Quotes exact. Need \"group\": \"electrical_general\" or \"ELECTRICAL SYSTEM\"? Schema says \"the electrical/electronic component group, or the given group\". Given group \"electrical_general\". Use that. Symptoms array plain words: \"infotainment screen ghost touches and changes from navigation to radio to XM to screen saver to Bluetooth\"; \"navigation unreliable for turn-by-turn directions\"; \"extremely distracting\". Is \"extremely distracting\" symptom? Could be effect. Keep symptoms only screen ghost touches/mode changes and navigation unreliable. Conditions empty. fault_codes empty. safety_relevant true. missing_info [\"conditions\"]. Clues include symptom quote, safety quote, component_group quote. Maybe include other quote \"honda says no fix\" not needed. Could include \"warrent ran out 6/25 and car has 35,000 miles\" as other? Not needed. Need \"clues\" kind safety quote. Good.\n\nNeed ensure \"screen savor\" verbatim misspelling preserved in quote. Summary can correct \"screen saver\" maybe okay. Quotes exact.\n\nLet's craft concise.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793532369,
+      "id": "4411aa69b6a8b6f62c1c505220b61ff2",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1351,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1107,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00050208,
+          "billing_source": "go",
+          "list_cost": 0.0008368,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 167,
+            "output": 1351,
+            "reasoning": 1107
+          }
+        },
+        "prompt_tokens": 551,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1902
+      }
+    },
+    "text": "{\n  \"summary\": \"ELECTRICAL SYSTEM: infotainment screen ghost-touches and changes modes among navigation, radio, XM, screen saver, and Bluetooth; conditions not stated.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"infotainment screen ghost touches and changes from navigation to radio to XM to screen saver to Bluetooth\",\n    \"navigation unreliable for turn-by-turn directions\",\n    \"extremely distracting\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"conditions\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"infotainment system ghost touches the screen and changes from navigation to radio to xm to screen savor to Bluetooth\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"very dangerous as navigation is not reliable for turn my turn directions and this is extremely distracting\"\n    },\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"ELECTRICAL SYSTEM\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00050208,
+      "cached_tokens": 384,
+      "cost_usd": 0.0008368,
+      "input_tokens": 551,
+      "list_cost_usd": 0.0008368,
+      "output_tokens": 1351,
+      "reasoning_tokens": 1107
+    }
+  }
+}

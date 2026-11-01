@@ -1,0 +1,66 @@
+{
+  "key": "9d57665c98913bc432c9ac1379aa266616f95fb31addf4724a586983ad8cc68e",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10600,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"2023 Dodge Challenger windshield spontaneously cracked while parked and unattended from driver-side A-pillar; dealer inspected and warranty denied.\",\n  \"group\": \"body_controls\",\n  \"symptoms\": [\n    \"windshield cracked spontaneously while parked\",\n    \"crack began at driver-side A-pillar\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"missing_info\": [\n    \"mileage\",\n    \"conditions\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"windshield in the vehicle spontaneously cracked\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"while parked and unattended\"\n    },\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"VISIBILITY/WIPER\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"driver side A-pillar\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"Dodge (Stellantis) denied warranty claim\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer only JSON. Need normalize report. Need determine component group given body_controls? Report component VISIBILITY/WIPER, narrative windshield cracked. Group \"body_controls\" given? Rule group: electrical/electronic component group, or given group. Given group body_controls. Could maybe component group visibility/wiper. But group says given group. Need symptoms plain words. Conditions: cold, moisture, heat, vibration, intermittent, after service, charging. Narrative: spontaneously cracked while parked and unattended. Conditions not listed except parked unattended? Conditions array allowed only those tokens. Might include \"heat\"? no. \"vibration\"? no. \"intermittent\"? no. \"after service\"? no. \"charging\"? no. \"cold\"? no. So conditions []. But maybe \"parked and unattended\" not in allowed list. We can put clue condition? Kind condition quote \"while parked and unattended\" though conditions array not include. But schema condition kinds can quote. Need missing_info: date? received_at exists, narrative has March 25 2025, so date present. Mileage null -> missing mileage. Component present. Symptom present. Conditions maybe missing? It says while parked unattended, but environmental conditions unknown. The analysis needs conditions? Could list \"conditions\" because not cold/moisture etc? Hmm missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Since conditions not specified? It did specify parked unattended but not weather. But report about spontaneous crack; conditions could matter (temperature). Should list \"conditions\" and \"mileage\". Maybe \"date\" present. Safety_relevant? Report mentions no crash/fire etc. Cracked windshield could risk? But no explicit safety risk. Given safety_relevant false in input but we should set based on mention. It doesn't mention risk to people. So false.\n\nNeed fault_codes [].\n\nSummary one line: \"Windshield spontaneously cracked on parked unattended 2023 Dodge Challenger from driver-side A-pillar; dealer inspected and warranty denied.\" Must not invent? Dealer stated seen before, agreed not struck, Dodge denied warranty. Summary can include. Conditions: parked unattended. Component: VISIBILITY/WIPER.\n\nClues: kind symptom quote verbatim \"windshield in the vehicle spontaneously cracked\"; condition quote \"while parked and unattended\"; component_group quote \"VISIBILITY/WIPER\"? The quote must be verbatim from report. \"VISIBILITY/WIPER\" appears in component field but is that \"report\"? User message includes JSON with component. Verbatim span from report can include field values? It says report in user message, quote copied verbatim from report. We can quote \"VISIBILITY/WIPER\". It's in the JSON. Also \"driver side A-pillar\" quote. Safety no. Other quote \"Dodge (Stellantis) denied warranty claim\" maybe other. Need no suggestions.\n\nNeed output one JSON object no other text. Ensure valid JSON. Quotes exact: check narrative: \"On March 25, 2025, the windshield in the vehicle spontaneously cracked, while parked and unattended, beginning from about midway down on the driver side A-pillar.\" Quote spans:\n- \"windshield in the vehicle spontaneously cracked\" exact contiguous? Narrative: \"the windshield in the vehicle spontaneously cracked, while...\" Yes substring \"windshield in the vehicle spontaneously cracked\" exact.\n- \"while parked and unattended\" exact.\n- \"driver side A-pillar\" exact? Narrative \"on the driver side A-pillar\" yes.\n- \"VISIBILITY/WIPER\" exact.\n- \"Dodge (Stellantis) denied warranty claim\" exact? Narrative: \"Dodge (Stellantis) denied warranty claim.\" Yes.\n\nSummary maybe: \"2023 Dodge Challenger windshield spontaneously cracked while parked and unattended from driver-side A-pillar; dealer inspected and warranty denied.\" Contains info. One line.\n\nSymptom plain words: [\"windshield cracked spontaneously while parked\"] maybe. Could include \"crack beginning at driver-side A-pillar\". Keep array.\n\nMissing_info: [\"mileage\",\"conditions\"]? Conditions were parked/unattended but not environmental. Hmm. The allowed conditions list includes cold/moisture/heat/vibration/intermittent/after service/charging. None are known. Is \"conditions\" missing? It says list missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. Conditions likely missing if not specified. Weather not specified; parked unattended is a condition though not in allowed taxonomy. But conditions array includes allowed tokens only; cannot represent parked. The clue can. Missing conditions maybe yes because thermal conditions not known. But maybe report mentions \"while parked and unattended\" as condition. I'd include \"conditions\" and \"mileage\". Since mileage null. Component present, symptom present, date present. Good.\n\nSafety: false. But cracked windshield could be safety? Rule says set when mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. Not mentioned. false.\n\nGroup: \"body_controls\" given. Could maybe \"body_controls\" is not electrical/electronic? But given group. Use body_controls.\n\nNeed no markdown? final only JSON. Ensure no extra text.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793528798,
+      "id": "e4e6e2b989f1932702012aefe45ce84f",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1343,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1103,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0005019,
+          "billing_source": "go",
+          "list_cost": 0.0008365,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 197,
+            "output": 1343,
+            "reasoning": 1103
+          }
+        },
+        "prompt_tokens": 581,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1924
+      }
+    },
+    "text": "{\n  \"summary\": \"2023 Dodge Challenger windshield spontaneously cracked while parked and unattended from driver-side A-pillar; dealer inspected and warranty denied.\",\n  \"group\": \"body_controls\",\n  \"symptoms\": [\n    \"windshield cracked spontaneously while parked\",\n    \"crack began at driver-side A-pillar\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"missing_info\": [\n    \"mileage\",\n    \"conditions\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"windshield in the vehicle spontaneously cracked\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"while parked and unattended\"\n    },\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"VISIBILITY/WIPER\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"driver side A-pillar\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"Dodge (Stellantis) denied warranty claim\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0005019,
+      "cached_tokens": 384,
+      "cost_usd": 0.0008365,
+      "input_tokens": 581,
+      "list_cost_usd": 0.0008365,
+      "output_tokens": 1343,
+      "reasoning_tokens": 1103
+    }
+  }
+}

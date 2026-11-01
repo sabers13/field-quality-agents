@@ -1,0 +1,66 @@
+{
+  "key": "a1691a26fd8dd6559d4c39069e48345ae326eda088cbc9367f99ea94113d83d4",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9439,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Forward collision avoidance warnings false-alerted repeatedly; airbag malfunction; vehicle fire and burnt charging socket prevented charging.\",\"group\":\"adas\",\"symptoms\":[\"vehicle went to catch fire\",\"electrical socket burnt\",\"could no longer charge\",\"passenger side door airbag malfunction\",\"collision warning malfunction\",\"false collision alert when no collision occurred\"],\"conditions\":[\"charging\",\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: WARNINGS\"},{\"kind\":\"symptom\",\"quote\":\"The vehicle went to catch on fire\"},{\"kind\":\"safety\",\"quote\":\"The vehicle went to catch on fire\"},{\"kind\":\"symptom\",\"quote\":\"the electrical socket burnt so it could no longer charge\"},{\"kind\":\"condition\",\"quote\":\"could no longer charge\"},{\"kind\":\"symptom\",\"quote\":\"The airbag showed malfunction passenger side door\"},{\"kind\":\"symptom\",\"quote\":\"Multiple times the collision warning has malfunction\"},{\"kind\":\"symptom\",\"quote\":\"alerted there was a collision when none occurred\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize report. Need parse component: FORWARD COLLISION AVOIDANCE: WARNINGS, group adas. Narrative: vehicle went to catch on fire and electrical socket burnt so it could no longer charge. Airbag showed malfunction passenger side door. Multiple times collision warning has malfunction and alerted there was a collision when none occurred.\n\nNeed summary one line: component, symptom, conditions. Group \"adas\". Symptoms: \"vehicle went to catch on fire\", \"electrical socket burnt\", \"could no longer charge\", \"airbag showed malfunction passenger side door\", \"collision warning malfunction\", \"alerted there was a collision when none occurred\". Need plain words. Conditions: \"charging\" because electrical socket burnt / could no longer charge. Maybe fire safety. Also \"intermittent\"? multiple times indicates intermittent? Conditions list includes intermittent. Could include \"intermittent\" because multiple times? The schema conditions: [\"cold\",\"moisture\",\"heat\",\"vibration\",\"intermittent\",\"after service\",\"charging\"]. We can include \"charging\" and \"intermittent\" (multiple times). Safety_relevant true due fire, airbag malfunction? crash risk? Report mentions fire. fault_codes none. missing_info: mileage (null), date? received_at exists but date of incident missing? The analysis needs date maybe missing. component and symptom present. conditions present? maybe not needed. Since mileage null, missing_info [\"mileage\",\"date\"]? Date: report has received_at but not incident date. The rules list missing_info only facts analysis needs: component, symptom, conditions, mileage, date. We have component, symptom, conditions (charging, intermittent). Mileage missing. Date? received_at is date report received, not incident date. Could list date. But maybe date not missing because received_at. Hmm \"date\" means incident date. Need include mileage and date? The narrative doesn't give incident date. We'll include [\"mileage\",\"date\"]. But maybe too much? Analysis needs date? likely. Use missing_info only important. Mileage null. Date of incident unknown. Include both.\n\nClues: verbatim spans. Need exact quotes from narrative. \n- {\"kind\":\"symptom\",\"quote\":\"The vehicle went to catch on fire\"}\n- {\"kind\":\"symptom\",\"quote\":\"the electrical socket burnt so it could no longer charge\"}\n- {\"kind\":\"condition\",\"quote\":\"charging\"}? Is \"charging\" verbatim? Narrative has \"charge\" not \"charging\". Quote must verbatim span; \"charge\" is in \"could no longer charge\". Condition quote can be \"could no longer charge\" kind condition? The kind condition quote can be span. But conditions array \"charging\"; clue quote \"could no longer charge\" okay.\n- {\"kind\":\"symptom\",\"quote\":\"The airbag showed malfunction passenger side door\"}\n- {\"kind\":\"symptom\",\"quote\":\"Multiple times the collision warning has malfunction\"}\n- {\"kind\":\"symptom\",\"quote\":\"alerted there was a collision when none occurred\"}\n- {\"kind\":\"safety\",\"quote\":\"The vehicle went to catch on fire\"} maybe duplicate kind safety. We can include.\n- {\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: WARNINGS\"}? That's from component field not narrative? The report includes component field. User message JSON includes component. Quote copied verbatim from report? The \"report\" is entire JSON? It says read report in user message. Quote verbatim from the report. We can quote component field value. But likely narrative only? It says quote copied verbatim from report, not necessarily narrative. Component group clue can quote \"FORWARD COLLISION AVOIDANCE: WARNINGS\". Is that verbatim in user message? yes. But maybe clues should be from narrative. It says report. We can include component_group quote. But if quote not in narrative? It is in report JSON. Should be okay. To be safe, include component_group quote \"FORWARD COLLISION AVOIDANCE: WARNINGS\". Verbatim.\n\nNeed JSON only no markdown. Ensure valid JSON. summary one line. \"Forward collision avoidance warning; false collision alerts, airbag malfunction, fire/charging socket burn; multiple occurrences.\" Need include component, symptom, conditions. Conditions charging/intermittent. Summary: \"Forward collision avoidance warnings false-alerted repeatedly; airbag malfunction; vehicle fire and burnt charging socket prevented charging.\" Good.\n\nsymptoms array plain words:\n\"vehicle caught fire\"\n\"electrical socket burnt\"\n\"could no longer charge\"\n\"passenger side door airbag malfunction\"\n\"collision warning malfunction\"\n\"false collision alert when no collision occurred\"\nMaybe \"vehicle went to catch on fire\" not exactly caught; plain words \"vehicle went to catch fire\". Use \"vehicle went to catch fire\". \"airbag showed malfunction passenger side door\" -> \"passenger side door airbag malfunction\". Good.\n\nconditions: [\"charging\",\"intermittent\"] maybe \"heat\"? Fire? Not condition. \"charging\" due socket. \"intermittent\" due multiple times. Could include \"charging\" and \"intermittent\". Safety true.\n\nNeed answer only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529397,
+      "id": "c7064083ce295712154181e16fbaa9ac",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1324,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1071,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00049173,
+          "billing_source": "go",
+          "list_cost": 0.00081955,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 160,
+            "output": 1324,
+            "reasoning": 1071
+          }
+        },
+        "prompt_tokens": 544,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1868
+      }
+    },
+    "text": "{\"summary\":\"Forward collision avoidance warnings false-alerted repeatedly; airbag malfunction; vehicle fire and burnt charging socket prevented charging.\",\"group\":\"adas\",\"symptoms\":[\"vehicle went to catch fire\",\"electrical socket burnt\",\"could no longer charge\",\"passenger side door airbag malfunction\",\"collision warning malfunction\",\"false collision alert when no collision occurred\"],\"conditions\":[\"charging\",\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: WARNINGS\"},{\"kind\":\"symptom\",\"quote\":\"The vehicle went to catch on fire\"},{\"kind\":\"safety\",\"quote\":\"The vehicle went to catch on fire\"},{\"kind\":\"symptom\",\"quote\":\"the electrical socket burnt so it could no longer charge\"},{\"kind\":\"condition\",\"quote\":\"could no longer charge\"},{\"kind\":\"symptom\",\"quote\":\"The airbag showed malfunction passenger side door\"},{\"kind\":\"symptom\",\"quote\":\"Multiple times the collision warning has malfunction\"},{\"kind\":\"symptom\",\"quote\":\"alerted there was a collision when none occurred\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00049173,
+      "cached_tokens": 384,
+      "cost_usd": 0.00081955,
+      "input_tokens": 544,
+      "list_cost_usd": 0.00081955,
+      "output_tokens": 1324,
+      "reasoning_tokens": 1071
+    }
+  }
+}

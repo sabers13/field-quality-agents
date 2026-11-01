@@ -1,0 +1,66 @@
+{
+  "key": "4c867b4689db1c759d121afa9b30937e323a8bb24c9808261655c35b106edd24",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 14643,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"2024 Toyota Tacoma electrical system: dashboard lit up with drive start and secondary braking malfunction warnings; fuel pump replaced but codes returned and vehicle would not move.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"dashboard lit up\",\n    \"drive start warning\",\n    \"secondary braking malfunction warning\",\n    \"dashboard codes returned\",\n    \"vehicle would not move\"\n  ],\n  \"conditions\": [\n    \"morning\",\n    \"after service\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"ELECTRICAL SYSTEM\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"my dashboard lit up\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"the morning of Thursday, April 17\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Drive start warning on the dashboard\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"secondary breaking malfunction warning\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"they replaced the fuel pump\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"both codes on the dashboard shut up again\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"the vehicle would not move\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"secondary breaking malfunction warning\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize report. Need quote verbatim spans. Need infer group given electrical_general. Component ELECTRICAL SYSTEM. Symptoms: dashboard lit up, drive start warning, secondary braking malfunction warning, codes on dashboard shut up again? vehicle would not move. Conditions: morning, after service (fuel pump replaced then issue returned), maybe intermittent? Let's parse. Need missing_info: date? Report has dates: purchased Dec 2024, morning Thursday April 17, received 2025-04-18. Mileage present 13,000 miles. Conditions present morning, after service. Component present. Symptom present. So missing_info maybe []? But \"date\" maybe event date April 17 given. Mileage given. So empty.\n\nSafety_relevant? Report mentions vehicle would not move, braking malfunction warning, drive start warning. Does that risk? Loss of control? Not explicitly crash/fire/smoke/injury/stall at speed. \"secondary breaking malfunction\" (braking) and vehicle would not move. Safety relevant? The prompt says set when mentions crash fire smoke injury loss of control stall at speed or another risk to people. Braking malfunction and vehicle won't move could be risk. But report itself has safety_relevant false? We should decide based on narrative. \"vehicle would not move\" after warnings, braking malfunction warning. Is that risk to people? Possibly yes if on road. But not explicit. The safety flag should be true if mentions another risk to people. Brake malfunction is safety-relevant. However \"secondary breaking malfunction warning\" is a warning, not actual loss. \"vehicle would not move\" could be immobilized, not moving risk. Hmm.\n\nNeed output JSON. Need ensure quotes verbatim from narrative. Note narrative has \"breaking\" misspelling, \"shut up again\" maybe \"lit up again\"? Actually quote: \"both codes on the dashboard shut up again and the vehicle would not move.\" We copy exactly. Need quotes for clues. Use exact spans.\n\nNeed summary one line: \"2024 Toyota Tacoma electrical system: dashboard lit up with drive start and secondary braking malfunction warnings; fuel pump replaced but codes returned and vehicle would not move.\" Conditions include morning, after service. Symptom list plain words. Fault codes? Report says \"both codes\" but doesn't name codes. So fault_codes empty. Group \"electrical_general\" or \"ELECTRICAL SYSTEM\"? The schema says \"the electrical/electronic component group, or the given group\". Given group electrical_general. Use \"electrical_general\". Symptoms: \"dashboard lit up\", \"drive start warning\", \"secondary braking malfunction warning\", \"vehicle would not move\". Conditions: \"morning\", \"after service\". Maybe \"intermittent\" because returned after repair? Not exactly. \"after service\" yes. Could include \"intermittent\"? It failed again before leaving parking lot; not intermittent. We'll include morning and after service. Maybe \"charging\" no.\n\nClues: Kind symptom quote \"my dashboard lit up\" exact? Narrative: \"my dashboard lit up the morning of Thursday, April 17.\" Verbatim span \"my dashboard lit up\". Kind condition quote \"the morning of Thursday, April 17\". Kind symptom quote \"Drive start warning on the dashboard\" exact (capital D). Kind symptom quote \"secondary breaking malfunction warning\" exact. Kind condition quote \"they replaced the fuel pump\" maybe after service? Quote \"they replaced the fuel pump return the vehicle to me\" not exact? Narrative: \"they told me that it was the fuel pump they replaced the fuel pump return the vehicle to me\" Exact span \"they replaced the fuel pump\". Kind symptom quote \"both codes on the dashboard shut up again\" exact. Kind symptom quote \"the vehicle would not move\" exact. Kind component_group quote \"ELECTRICAL SYSTEM\"? That's from component field not narrative? Is report includes component field. The rule says read report in user message, quotes copied from report. It can quote field values? It says report includes JSON. We can quote \"ELECTRICAL SYSTEM\" from component. But clues should be from report. Use component_group quote \"ELECTRICAL SYSTEM\". Safety maybe if true quote \"secondary breaking malfunction warning\" or \"vehicle would not move\". If safety_relevant true, clue kind safety quote \"secondary breaking malfunction warning\" or \"vehicle would not move\". Need decide.\n\nLet's think safety_relevant. The report contains \"secondary breaking malfunction warning\" and \"vehicle would not move\". A braking malfunction warning is safety relevant. But \"secondary breaking\" likely \"secondary braking\" malfunction. Vehicle would not move could be transmission/immobilizer. It is a new vehicle, only 13k. The prompt says safety_relevant when report mentions a crash, fire, smoke, injury, loss of control, a stall at speed or another risk to people. Brake malfunction warning is another risk to people. I'd set true. But original data has safety_relevant false. We should not blindly use source flag? It's input, but instruction says set when report mentions. We can override. Need maybe \"secondary braking malfunction warning\" alone is a risk. I'll set true.\n\nMissing_info: none. But maybe \"fault codes\" named? It says both codes but not actual codes. Is missing_info for facts analysis needs: component, symptom, conditions, mileage, date. Fault codes not in list. So missing_info empty.\n\nNeed no other text. Ensure valid JSON. Use double quotes. Quotes verbatim. Need exact casing. Narrative:\n\"I have a new 2024 Toyota Tacoma that I purchased December 2024. my dashboard lit up the morning of Thursday, April 17. Drive start warning on the dashboard and a secondary breaking malfunction warning I contacted my local Toyota dealer and informed him that my vehicle is giving me warnings and I only have 13,000  miles on the vehicle. I took the vehicle and they told me that it was the fuel pump they replaced the fuel pump return the vehicle to me, and before I could leave the parking lot both codes on the dashboard shut up again and the vehicle would not move. I am writing this report to document what is going on with the vehicle. I believe that it is a lemon and there’s something majorly wrong with it. I brought the vehicle brand new in December and again it’s only has 13,000 miles on it right now.\"\n\nExact quote \"my dashboard lit up\" yes lowercase my. \"Drive start warning on the dashboard\" exact. \"secondary breaking malfunction warning\" exact. \"the morning of Thursday, April 17\" exact. \"they replaced the fuel pump\" exact. \"both codes on the dashboard shut up again\" exact. \"the vehicle would not move\" exact. \"13,000  miles\" has two spaces? Narrative \"13,000  miles\" yes two spaces after comma? Actually \"13,000  miles\" two spaces. Could quote mileage clue? Not needed. Missing_info empty.\n\nSummary: one line. \"2024 Toyota Tacoma electrical system: dashboard lit up with drive start and secondary braking malfunction warnings; fuel pump replaced but codes returned and vehicle would not move.\" That's okay. Use \"braking\" corrected? Summary can paraphrase not quote. Fine.\n\nNeed group \"electrical_general\". Symptoms array plain words. Could include \"dashboard lit up\", \"drive start warning\", \"secondary braking malfunction warning\", \"dashboard codes returned\", \"vehicle would not move\". Conditions: [\"morning\", \"after service\"]. Maybe \"after service\" because fuel pump replaced then codes returned. Good.\n\nFault_codes [] because no named code.\n\nClues list. Need include kind safety if safety true. Could include \"secondary breaking malfunction warning\" as safety. But same quote used as symptom. That's okay. Maybe include \"vehicle would not move\" as safety too? One safety clue enough. Use kind safety quote \"secondary breaking malfunction warning\". But quote is also symptom. Fine.\n\nNeed JSON only. Ensure no markdown? User says answer with one JSON object and no other text. We can output raw JSON no code fence. Use proper escaping. No trailing commas. \"safety_relevant\": true.\n\nNeed missing_info [] not empty? yes.\n\nLet's craft final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793526102,
+      "id": "c7f9cbe1ebb5ae17db2f70c507868743",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2063,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1712,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00076902,
+          "billing_source": "go",
+          "list_cost": 0.0012817,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 285,
+            "output": 2063,
+            "reasoning": 1712
+          }
+        },
+        "prompt_tokens": 669,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2732
+      }
+    },
+    "text": "{\n  \"summary\": \"2024 Toyota Tacoma electrical system: dashboard lit up with drive start and secondary braking malfunction warnings; fuel pump replaced but codes returned and vehicle would not move.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"dashboard lit up\",\n    \"drive start warning\",\n    \"secondary braking malfunction warning\",\n    \"dashboard codes returned\",\n    \"vehicle would not move\"\n  ],\n  \"conditions\": [\n    \"morning\",\n    \"after service\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"ELECTRICAL SYSTEM\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"my dashboard lit up\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"the morning of Thursday, April 17\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Drive start warning on the dashboard\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"secondary breaking malfunction warning\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"they replaced the fuel pump\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"both codes on the dashboard shut up again\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"the vehicle would not move\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"secondary breaking malfunction warning\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00076902,
+      "cached_tokens": 384,
+      "cost_usd": 0.0012817,
+      "input_tokens": 669,
+      "list_cost_usd": 0.0012817,
+      "output_tokens": 2063,
+      "reasoning_tokens": 1712
+    }
+  }
+}

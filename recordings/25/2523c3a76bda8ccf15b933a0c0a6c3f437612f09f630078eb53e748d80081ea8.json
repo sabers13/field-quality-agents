@@ -1,0 +1,66 @@
+{
+  "key": "2523c3a76bda8ccf15b933a0c0a6c3f437612f09f630078eb53e748d80081ea8",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10554,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2019 Subaru Outback ADAS forward collision avoidance/automatic emergency braking failed to detect oncoming traffic with no warning or braking while turning left from the left-turn lane, causing a right-front impact and driver injury.\",\"group\":\"adas\",\"symptoms\":[\"automatic emergency braking failed to detect oncoming traffic\",\"no forward collision warning\",\"no automatic braking action\",\"right-front side impact\",\"passenger-side airbag deployed without a passenger\",\"driver-side airbag did not deploy\",\"driver injury\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"condition\",\"quote\":\"While turning left from left turn lane\"},{\"kind\":\"symptom\",\"quote\":\"eyesight failed to detect oncoming traffic\"},{\"kind\":\"symptom\",\"quote\":\"resulting in right front side impact\"},{\"kind\":\"symptom\",\"quote\":\"No warning, no braking action\"},{\"kind\":\"symptom\",\"quote\":\"passenger side airbag deployed (no passenger in the passenger seat) but driver side airbag did not deploy\"},{\"kind\":\"safety\",\"quote\":\"Significant injury occurred to the driver\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need parse report. Component forward collision avoidance automatic emergency braking, group adas given. Summary one line component, symptom, conditions. Symptoms: eyesight failed to detect oncoming traffic; no warning; no braking action; right front side impact; passenger side airbag deployed with no passenger; driver side airbag did not deploy; significant injury to driver. Conditions: while turning left from left turn lane. Safety relevant true. Fault codes none. Missing info: mileage, date? Received date given but report date? The prompt says missing_info facts analysis needs component symptom conditions mileage date. Component given, symptom present, conditions present. Mileage null, date? received_at is 2025-09-20 but incident date missing. So missing_info [\"mileage\",\"date\"]. Clues verbatim. Need quotes exactly from narrative. Could include \"While turning left from left turn lane\" condition, \"eyesight failed to detect oncoming traffic\" symptom, \"No warning, no braking action\" symptom, \"right front side impact\" symptom/other? \"passenger side airbag deployed (no passenger in the passenger seat) but driver side airbag did not deploy\" symptom, \"Significant injury occurred to the driver\" safety. \"advertised safety system\" safety? Maybe not. Need group \"adas\". Summary: \"2019 Subaru Outback forward collision avoidance/automatic emergency braking failed to detect oncoming traffic and did not warn or brake while turning left from turn lane, resulting in right-front impact and driver injury.\" It says one line component symptom conditions. Include make/model? Fine.\n\nNeed ensure JSON valid. No markdown? User says answer with one JSON object and no other text. We can output raw JSON. Need no extra. Conditions array should use allowed values? The schema says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. But report condition \"while turning left from left turn lane\" not in list. Hmm rules? It says conditions list with enumerated examples? In prompt: `\"conditions\": [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]`. It seems should use those. But report has turning left. Could include \"during left turn\"? The schema maybe not strict? Need normalise. They want conditions from allowed? The instructions list allowed? The example shows possible. But if condition isn't in set, maybe still include \"while turning left from left turn lane\"? Hmm \"conditions\": array. The prompt: \"conditions\": [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"] likely enumeration. But report condition is operational condition. We could include \"while turning left from left turn lane\" as condition? The rule says conditions [\"cold\", ...]. Yet clues kind condition can quote. For normalisation, use only applicable from list? None apply. But summary includes conditions. Could set conditions [] and clue condition quote. But missing? Hmm.\n\nNeed maybe \"conditions\": [] because none of preset environmental conditions. But the report has a driving condition; not in allowed list. However the prompt says conditions includes \"intermittent\"? Not applicable. It may expect [] and clue with condition quote. But then summary can mention turning left. Need include condition clue.\n\nFault codes: none. Safety true.\n\nMissing_info: mileage null, date? The report has received_at but no incident date. It says missing_info \"mileage\",\"date\". Could include \"date\" because incident date missing. Mileage null. Component and symptom present, conditions present. Good.\n\nClues: Must be verbatim spans. Need exact text. Let's inspect narrative:\n\n\"While turning left from left turn lane, eyesight failed to detect oncoming traffic resulting in right front side impact. No warning, no braking action. This is an advertised safety system supposedly designed to prevent this type of accident.  In addition, passenger side airbag deployed (no passenger in the passenger seat) but driver side airbag did not deploy. Newton's third law of motion says both should deploy. Significant injury occurred to the driver as a result.\"\n\nQuotes:\n- \"While turning left from left turn lane\" exactly? In narrative: \"While turning left from left turn lane, eyesight...\" yes substring. It includes comma after lane? Quote without comma okay since substring? \"While turning left from left turn lane\" is verbatim span (no comma). Good.\n- \"eyesight failed to detect oncoming traffic\" exact lowercase eyesight. Good.\n- \"resulting in right front side impact\" exact.\n- \"No warning, no braking action\" exact.\n- \"passenger side airbag deployed (no passenger in the passenger seat) but driver side airbag did not deploy\" exact.\n- \"Significant injury occurred to the driver\" exact.\n\nCould include \"advertised safety system\" maybe safety? But safety relevant due injury/crash. Add clue kind safety quote \"Significant injury occurred to the driver\". Good.\n\nNeed \"symptoms\" plain words. Could be [\"automatic emergency braking failed to detect oncoming traffic\", \"no forward collision warning\", \"no automatic braking\", \"right-front side impact\", \"passenger-side airbag deployed without occupant\", \"driver-side airbag did not deploy\", \"driver injury\"]. That's fine.\n\nSummary one line. Need include 2019 Subaru Outback? Component, symptom, conditions. \"2019 Subaru Outback ADAS forward collision avoidance/automatic emergency braking failed to detect oncoming traffic with no warning or braking while turning left from the left-turn lane, causing a right-front impact and driver injury.\" Good.\n\nGroup \"adas\".\n\nNeed maybe \"safety_relevant\": true.\n\nNeed no extra text. Ensure JSON no trailing commas. Use arrays. Could include fault_codes [] and missing_info [\"mileage\",\"date\"]. Good.\n\nNeed decide conditions. Schema shows conditions array of allowed values. Since none of cold/moisture/heat/vibration/intermittent/after service/charging. But \"while turning left\" is a condition. The instructions for clues have kind condition. Hmm The field \"conditions\" should contain normalized conditions. The enumerated list in template may be examples? It doesn't explicitly say only those. It says `\"conditions\": [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"],` It likely enumerates allowed condition labels. If I put \"while turning left from left turn lane\" it violates normalized list. Better set [] and put condition clue. But summary can mention. Yet missing_info conditions? Report provides condition but not in list. The analysis needs conditions; we have driving condition. I think conditions [] is okay but perhaps not. The \"conditions\" in JSON might be expected to include conditions from allowed list only. So [].\n\nCould include \"intermittent\"? No.\n\nNeed maybe \"symptoms\": \"eyesight failed to detect oncoming traffic\", \"no warning\", \"no braking action\", \"right front side impact\", \"passenger side airbag deployed with no passenger\", \"driver side airbag did not deploy\", \"driver injury\". Fine.\n\nClues kind \"component_group\" quote? Need quote verbatim? Could quote \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\" from component field? The rule says quote copied from report. Is component field part of report? The user message includes component. It says read only report in user message. The narrative is report. But component field is in report. However \"verbatim span copied from the report\" could include component. But clues should evidence from narrative maybe. Need not include component_group clue. If include, quote exact component string? It is in JSON component, but not narrative. Is that okay? Probably. But safer no component_group clue. Group given. Clues enough.\n\nNeed final raw JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530641,
+      "id": "53168cde7228ad30403cd6cad6d578c2",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1917,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1664,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00070908,
+          "billing_source": "go",
+          "list_cost": 0.0011818,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 203,
+            "output": 1917,
+            "reasoning": 1664
+          }
+        },
+        "prompt_tokens": 587,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2504
+      }
+    },
+    "text": "{\"summary\":\"2019 Subaru Outback ADAS forward collision avoidance/automatic emergency braking failed to detect oncoming traffic with no warning or braking while turning left from the left-turn lane, causing a right-front impact and driver injury.\",\"group\":\"adas\",\"symptoms\":[\"automatic emergency braking failed to detect oncoming traffic\",\"no forward collision warning\",\"no automatic braking action\",\"right-front side impact\",\"passenger-side airbag deployed without a passenger\",\"driver-side airbag did not deploy\",\"driver injury\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"condition\",\"quote\":\"While turning left from left turn lane\"},{\"kind\":\"symptom\",\"quote\":\"eyesight failed to detect oncoming traffic\"},{\"kind\":\"symptom\",\"quote\":\"resulting in right front side impact\"},{\"kind\":\"symptom\",\"quote\":\"No warning, no braking action\"},{\"kind\":\"symptom\",\"quote\":\"passenger side airbag deployed (no passenger in the passenger seat) but driver side airbag did not deploy\"},{\"kind\":\"safety\",\"quote\":\"Significant injury occurred to the driver\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00070908,
+      "cached_tokens": 384,
+      "cost_usd": 0.0011818,
+      "input_tokens": 587,
+      "list_cost_usd": 0.0011818,
+      "output_tokens": 1917,
+      "reasoning_tokens": 1664
+    }
+  }
+}

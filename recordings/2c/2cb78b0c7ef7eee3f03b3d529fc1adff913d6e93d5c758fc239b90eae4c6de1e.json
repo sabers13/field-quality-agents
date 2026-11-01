@@ -1,0 +1,66 @@
+{
+  "key": "2cb78b0c7ef7eee3f03b3d529fc1adff913d6e93d5c758fc239b90eae4c6de1e",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 19492,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system: exterior lights dim after engine failed and cracked a rod at 65 mph; brakes inoperative and truck disabled.\",\"group\":\"electrical_general\",\"symptoms\":[\"engine failed\",\"cracked rod\",\"brakes would not work\",\"exterior lights dim\",\"truck fully disabled\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"condition\",\"quote\":\"While driving at 65 mph on a freeway\"},{\"kind\":\"symptom\",\"quote\":\"the engine failed and cracked a rod\"},{\"kind\":\"symptom\",\"quote\":\"Truck brakes would not work after engine failure\"},{\"kind\":\"safety\",\"quote\":\"Truck was fully disabled and I was stranded on freeway\"},{\"kind\":\"symptom\",\"quote\":\"Lights on exterior of the vehicle were dim after engine failed\"},{\"kind\":\"other\",\"quote\":\"90,000 miles\"}]}",
+            "reasoning_content": "We need to output JSON only. Need parse report. Component ELECTRICAL SYSTEM, group electrical_general. Narrative: driving 65 mph freeway, engine failed and cracked a rod with fresh oil and maintenance regular. Truck brakes would not work after engine failure. Fully disabled stranded on freeway @90,000 miles. Exterior lights dim after engine failed. Safety relevant? Mentions engine failed at speed, brakes would not work, stranded on freeway — risk to people, loss of control? Yes safety_relevant true despite input false? Rule says set when mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. Engine failed at 65 mph and brakes failed = risk. So true.\n\nSummary one line: electrical system / exterior lights dim after engine failure at 65 mph; engine cracked rod, brakes inoperative. Need keep concise.\n\nSymptoms: engine failed, cracked rod, brakes would not work, exterior lights dim. Component is electrical system, but narrative includes engine/brakes. We can list symptoms plain words. Group given electrical_general.\n\nConditions: driving at 65 mph on freeway, after engine failure? Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. None clearly. \"While driving at 65 mph on a freeway\" not in allowed list. Maybe no conditions. Could include \"after service\"? maintenance done regularly but not after service. Not. Empty.\n\nFault codes none.\n\nMissing_info: mileage is given 90,000 in narrative, but field mileage null. The report says @ 90,000 miles. Date received exists, not event date. Component given. Symptom given. Conditions given driving. Missing maybe date (event date) and mileage? Since mileage in narrative but field null, analysis maybe can use 90,000. But missing_info facts analysis needs: component, symptom, conditions, mileage, date. Component present, symptom present, conditions present (driving 65 mph freeway), mileage present in narrative, date? received_at only, no incident date. So missing_info [\"date\"] maybe. But maybe mileage field null? It says report names 90,000. I'd list \"date\" only. Could list mileage? Hmm \"missing_info only for facts the analysis needs\" and \"Use empty list when nothing important missing.\" Date of incident missing. So [\"date\"].\n\nClues: Need verbatim quotes. Include symptom quotes: \"the engine failed and cracked a rod\", \"Truck brakes would not work after engine failure\", \"Lights on exterior of the vehicle were dim after engine failed\". Conditions: \"While driving at 65 mph on a freeway\" but kind condition? Allowed condition kind. Quote verbatim. Safety: \"Truck was fully disabled and I was stranded on freeway\" maybe safety. Also \"brakes would not work\" safety. Component_group: \"ELECTRICAL SYSTEM\" is in component field but is it report? user message includes JSON; yes quote. Need quote verbatim from report. The report includes component field \"ELECTRICAL SYSTEM\". Could quote \"ELECTRICAL SYSTEM\". Also \"90,000 miles\" maybe other/mileage. Kind other. \"fresh oil and all maintenance done regularly\" other? Maybe not needed.\n\nNeed ensure JSON valid. We can include clues array with kind and quote. For safety, quote \"Truck brakes would not work after engine failure\" and \"Truck was fully disabled and I was stranded on freeway\". Kind safety. For symptom quotes.\n\nNeed no extra text. Use exactly JSON.\n\nNeed think about safety_relevant false in input; but our output should true. Good.\n\nSummary: \"Electrical system: exterior lights dim after engine failed and cracked a rod at 65 mph; brakes inoperative, truck disabled.\" One line.\n\nGroup: \"electrical_general\" or \"ELECTRICAL SYSTEM\"? Prompt says group \"the electrical/electronic component group, or the given group\". Given group electrical_general. Use that.\n\nSymptoms array: [\"engine failed\", \"cracked rod\", \"brakes would not work\", \"exterior lights dim\"]. Is \"cracked rod\" symptom? Yes. Could include \"truck fully disabled\". Plain words. Maybe \"engine failure at 65 mph\". Use concise.\n\nConditions: allowed list. There is no listed condition. But \"while driving at 65 mph on freeway\" is operating condition not in enum. The schema conditions example list but not necessarily restricted? It says conditions: [\"cold\", ...] It implies categories. I should not invent. Use [] because none of those. Could include \"intermittent\"? no. So [].\n\nFault_codes [].\n\nMissing_info [\"date\"] maybe \"mileage\" because mileage field null but narrative has @90,000. The analysis can parse narrative. Hmm missing_info facts the analysis needs; if field mileage null but narrative says 90,000, not missing. Date of incident missing. So [\"date\"]. But if they consider received_at date not incident. Good.\n\nClues: Need quote exact. Narrative: \"While driving at 65 mph on a freeway, the engine failed and cracked a rod with fresh oil and all maintenance done regularly. Truck brakes would not work after engine failure. Truck was fully disabled and I was stranded on freeway @ 90,000 miles. Lights on exterior of the vehicle were dim after engine failed\"\n\nQuotes:\n- \"While driving at 65 mph on a freeway\" exact.\n- \"the engine failed and cracked a rod\" exact (lowercase after comma; yes narrative has \"the engine failed and cracked a rod\").\n- \"Truck brakes would not work after engine failure\" exact.\n- \"Truck was fully disabled and I was stranded on freeway\" exact.\n- \"Lights on exterior of the vehicle were dim after engine failed\" exact.\n- \"ELECTRICAL SYSTEM\" exact from component field.\n- \"90,000 miles\" exact? narrative has \"@ 90,000 miles\" includes @. Quote \"90,000 miles\" is substring verbatim yes. If quote must be copied verbatim span, substring okay. Kind other. But maybe not necessary.\n\nNeed ensure every quote is in report. \"ELECTRICAL SYSTEM\" appears in component field, yes. The user message is report, so okay.\n\nCould include \"fresh oil and all maintenance done regularly\" as other? Not needed.\n\nPotential issue: summary says \"electrical system\" but actual failures engine/brakes. Component group is electrical general due lights dim. Fine.\n\nNeed output only JSON. No markdown? The prompt says answer with one JSON object and no other text. We can provide raw JSON. Good.\n\nNeed include safety_relevant true. missing_info date. clues with kind.\n\nLet's craft JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793524988,
+      "id": "6935a95b567f2825d31ea02936a4e27c",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1627,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1409,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00063558,
+          "billing_source": "go",
+          "list_cost": 0.0010593,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 554,
+            "output": 1627,
+            "reasoning": 1409
+          }
+        },
+        "prompt_tokens": 554,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 2181
+      }
+    },
+    "text": "{\"summary\":\"Electrical system: exterior lights dim after engine failed and cracked a rod at 65 mph; brakes inoperative and truck disabled.\",\"group\":\"electrical_general\",\"symptoms\":[\"engine failed\",\"cracked rod\",\"brakes would not work\",\"exterior lights dim\",\"truck fully disabled\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"condition\",\"quote\":\"While driving at 65 mph on a freeway\"},{\"kind\":\"symptom\",\"quote\":\"the engine failed and cracked a rod\"},{\"kind\":\"symptom\",\"quote\":\"Truck brakes would not work after engine failure\"},{\"kind\":\"safety\",\"quote\":\"Truck was fully disabled and I was stranded on freeway\"},{\"kind\":\"symptom\",\"quote\":\"Lights on exterior of the vehicle were dim after engine failed\"},{\"kind\":\"other\",\"quote\":\"90,000 miles\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00063558,
+      "cached_tokens": 0,
+      "cost_usd": 0.0010593,
+      "input_tokens": 554,
+      "list_cost_usd": 0.0010593,
+      "output_tokens": 1627,
+      "reasoning_tokens": 1409
+    }
+  }
+}

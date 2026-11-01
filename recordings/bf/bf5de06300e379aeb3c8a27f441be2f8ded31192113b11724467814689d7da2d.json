@@ -1,0 +1,66 @@
+{
+  "key": "bf5de06300e379aeb3c8a27f441be2f8ded31192113b11724467814689d7da2d",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12213,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Test the intermittent rearview camera outage on a 2021 Polestar 2 by running the rulebook's long-run power cycling test, because the camera delays, stutters, flickers, and becomes temporarily unavailable when reverse is selected.\",\n  \"rationale\": \"The narrative reports that the backup camera is unreliable and that, often upon selecting reverse, the display is delayed, then stutters and flickers before showing \\\"Camera is temporarily unavailable.\\\" The intake extraction marks the condition as intermittent, which matches the rulebook entry for intermittent faults and supports a targeted long-run power cycling test.\",\n  \"group\": \"adas\",\n  \"symptoms\": [\n    \"backup camera unreliable\",\n    \"delayed camera view when selecting reverse\",\n    \"camera view stutters and flickers\",\n    \"Camera is temporarily unavailable\"\n  ],\n  \"conditions\": [\n    \"selecting reverse\",\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"targeted\": true,\n  \"test_name\": \"Long-run power cycling test\",\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The backup camera on this vehicle is very unreliable.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"Often upon selecting reverse\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"take too long to display the camera view\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"stutter and flicker\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Camera is temporarily unavailable\"\n    },\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"backup camera\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"recalled by the Polestar for this issue (25V-280)\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer JSON only. Need analyze. Need produce summary, rationale, group, symptoms, conditions, fault_codes, safety_relevant, targeted, test_name, clues with verbatim quotes from case narrative. Need use only facts. Rulebook matched intermittent -> Long-run power cycling test. Conditions match intermittent, selecting reverse. Is safety relevant? Case says safety_relevant false. Narrative mentions risk? It says backup camera unreliable, delayed, unavailable. No explicit risk to people in narrative, though recall summary has risk. But narrative not show people risk. safety_relevant false likely. targeted true because matched rulebook entry. test_name \"Long-run power cycling test\". Need clues quotes verbatim from case narrative. Need ensure quotes exactly from narrative. Let's identify exact spans.\n\nNarrative: \"The backup camera on this vehicle is very unreliable. Often upon selecting reverse, it will take too long to display the camera view, then it will stutter and flicker for a few moments before finally giving up with the message \\\"Camera is temporarily unavailable\\\". This model was recalled by the Polestar for this issue (25V-280), and Polestar attempted to work around the issue with software updates multiple times (3.1.9 and 3.6.4) but they still have not resolved the problem even with the most recent software. This has been a well-known issue on a number of Volvo models as well which share software with the Polestar, and they were also recently recalled for the same issue (25V-282). It is possible this issue has also not been resolved for those vehicles.\"\n\nQuotes:\n- \"The backup camera on this vehicle is very unreliable.\" exact.\n- \"Often upon selecting reverse\" exact.\n- \"take too long to display the camera view\" exact? Sentence: \"it will take too long to display the camera view\" includes \"it will \". The span \"take too long to display the camera view\" is contiguous yes after \"it will \". Good.\n- \"stutter and flicker\" exact.\n- \"Camera is temporarily unavailable\" exact inside quotes? The narrative has message \\\"Camera is temporarily unavailable\\\". The quote without escaped quotes is verbatim span, yes.\n- \"backup camera\" exact.\n- \"recalled by the Polestar for this issue (25V-280)\" exact? Narrative: \"This model was recalled by the Polestar for this issue (25V-280)\" yes span exact.\nNeed maybe include condition \"intermittent\"? Narrative doesn't say intermittent exactly? It says \"Often\", \"will take too long\", \"flicker\", \"temporarily unavailable\". Extraction has intermittent. But clues quote must narrative. We can include condition clue from \"Often upon selecting reverse\" and \"Camera is temporarily unavailable\"? Hmm.\n\nNeed answer JSON. Could include clues list maybe 5. Ensure no extra text. We can cite investigation id? Rule says do not cite case/recall/investigation id that tool results do not contain. We can mention? Maybe avoid in summary? Could mention recall 25V-280? It is in narrative and tool result. But answer should not cite ids? It says do not cite id not contained. Contained 25V-280 and recalls. But maybe not necessary.\n\nNeed rationale: \"The case reports intermittent rearview camera delay/stutter/flicker and temporary unavailability when selecting reverse; extraction marks condition intermittent, matching rulebook intermittent entry, so targeted long-run power cycling test.\" Good.\n\nNeed group \"adas\". Symptoms list. Conditions \"selecting reverse\", \"intermittent\". fault_codes [].\n\nNeed targeted true, test_name exact.\n\nNeed clues kind quote. Use \"symptom\", \"condition\", \"component_group\", \"other\"? The quote \"recalled by...\" maybe other. Could include. But need not include all. Use valid.\n\nLet's craft JSON only. Ensure valid escaping. Use no markdown? They said answer with one JSON object and no other text. So final just JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793527853,
+      "id": "3961e965d0b9f3f6cabc47740f990f64",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1243,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 825,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00071316,
+          "billing_source": "go",
+          "list_cost": 0.0011886,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 2952,
+            "output": 1243,
+            "reasoning": 825
+          }
+        },
+        "prompt_tokens": 2952,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 4195
+      }
+    },
+    "text": "{\n  \"summary\": \"Test the intermittent rearview camera outage on a 2021 Polestar 2 by running the rulebook's long-run power cycling test, because the camera delays, stutters, flickers, and becomes temporarily unavailable when reverse is selected.\",\n  \"rationale\": \"The narrative reports that the backup camera is unreliable and that, often upon selecting reverse, the display is delayed, then stutters and flickers before showing \\\"Camera is temporarily unavailable.\\\" The intake extraction marks the condition as intermittent, which matches the rulebook entry for intermittent faults and supports a targeted long-run power cycling test.\",\n  \"group\": \"adas\",\n  \"symptoms\": [\n    \"backup camera unreliable\",\n    \"delayed camera view when selecting reverse\",\n    \"camera view stutters and flickers\",\n    \"Camera is temporarily unavailable\"\n  ],\n  \"conditions\": [\n    \"selecting reverse\",\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"targeted\": true,\n  \"test_name\": \"Long-run power cycling test\",\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The backup camera on this vehicle is very unreliable.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"Often upon selecting reverse\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"take too long to display the camera view\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"stutter and flicker\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Camera is temporarily unavailable\"\n    },\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"backup camera\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"recalled by the Polestar for this issue (25V-280)\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00071316,
+      "cached_tokens": 0,
+      "cost_usd": 0.0011886,
+      "input_tokens": 2952,
+      "list_cost_usd": 0.0011886,
+      "output_tokens": 1243,
+      "reasoning_tokens": 825
+    }
+  }
+}

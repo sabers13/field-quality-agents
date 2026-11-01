@@ -1,0 +1,66 @@
+{
+  "key": "371cc1ad1b60b8704d54ec8c16d32ba45fa30d7b40e300bfcced5e0390a6452a",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12019,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"2017 Toyota RAV4 electrical system: while parked the vehicle failed to start; battery terminal replaced and vehicle started; dealer noted a bulge on the side of the battery; recall 23V734000.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"vehicle failed to start while parked\",\n    \"battery has a bulge on its side\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [\n    \"23V734000\"\n  ],\n  \"safety_relevant\": false,\n  \"missing_info\": [\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"ELECTRICAL SYSTEM\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"the vehicle failed to start\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"while the vehicle was parked\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"there was a bulge on the side of the battery\"\n    },\n    {\n      \"kind\": \"fault_code\",\n      \"quote\": \"NHTSA Campaign Number: 23V734000\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer only JSON object. Need normalize report. Need identify summary, group given electrical_general? The instruction says group: electrical/electronic component group, or given group. Given group electrical_general, component ELECTRICAL SYSTEM. Could use \"electrical_general\". Symptoms: vehicle failed to start while parked; battery terminal removed/replaced and vehicle started; bulge on side of battery. Conditions: parked? conditions list allowed cold, moisture, heat, vibration, intermittent, after service, charging. \"parked\" not in allowed list? conditions array from list? It says conditions: [\"cold\", ...]. Probably only those. Parked isn't listed but can include in summary. There is \"while parked\" as condition but not in allowed. Maybe conditions empty. Fault codes: NHTSA Campaign Number 23V734000? Is that fault code? It's recall campaign number, not fault code. The schema says fault_codes [\"code if report names one\"]. Report names NHTSA Campaign Number: 23V734000. Could include? It is a code. But \"fault_codes\" specifically fault code; recall campaign number maybe not fault code. But clues kind fault_code can quote. The report names campaign number. We can include \"23V734000\" as fault code? Hmm. Need not invent. Maybe include because named code. Safety relevant? The report says failed to start while parked; no crash/fire/smoke/injury/loss control/stall at speed. Battery bulge could be risk? It mentions bulge on side of battery, potential fire? But not explicit. Rule set safety_relevant when report mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. Bulge battery could be risk? The report doesn't say risk. Could set false. Input has safety_relevant false. But we should decide. Battery bulge is a safety risk potentially, but not explicitly. The rule \"another risk to people\" - battery bulge may indicate battery issue, fire risk. But don't invent. Keep false.\n\nMissing_info: component present, symptom present, conditions present? Mileage present, date? received_at present but date of incident? \"failure mileage approximate 108000\" no failure date. Missing_info might include \"date\" because no date of failure. Conditions? It says while parked. Could be enough. Missing date. Maybe missing \"date\" only. Also component group? present. Symptom present. Conditions? parked, after service? Not after service. It was taken dealer. But condition list lacking parked. Missing_info can list date. Also maybe \"conditions\" because only parked and no weather/temp. But analysis needs conditions? The report says while parked. I'd include \"date\" maybe. Need not overdo.\n\nClues verbatim. Need quote exact spans. We need copy character for character. From narrative: \"The contact stated that while the vehicle was parked, the vehicle failed to start.\" Quote can be substring. Need ensure exact. \"while the vehicle was parked\" exact. \"the vehicle failed to start\" exact? It appears \"the vehicle failed to start.\" yes. \"The contact removed and replaced the battery terminal and the vehicle started.\" exact. \"there was a bulge on the side of the battery\" exact? Text: \"however, the contact was informed that there was a bulge on the side of the battery.\" yes substring. \"NHTSA Campaign Number: 23V734000\" exact. \"ELECTRICAL SYSTEM\" from component? The report narrative has \"(ELECTRICAL SYSTEM)\" exact. Could clue component_group quote \"ELECTRICAL SYSTEM\". Need clues kind. Include symptom, condition, fault_code, component_group, safety? Maybe no safety. \"vehicle was parked\" condition? Kind condition quote. But conditions array allowed list? Clues can include condition. Good.\n\nSummary one line: \"2017 Toyota RAV4 electrical system: while parked vehicle failed to start; battery terminal replaced and vehicle started; dealer found battery side bulge; recall 23V734000.\" Need one line. Good.\n\nGroup: \"electrical_general\" or \"ELECTRICAL SYSTEM\"? The schema says group: the electrical/electronic component group, or the given group. Given group is electrical_general. Use that.\n\nSymptoms: [\"vehicle failed to start while parked\", \"battery side bulge\"]? Symptom plain words. \"failed to start\" is symptom. Battery bulge is condition/finding not symptom? Could include as symptom? It's an observed physical condition. The symptoms array should list symptom in plain words. Maybe [\"vehicle failed to start while parked\", \"battery has a bulge on its side\"]. Since battery bulge is a symptom/finding. Good.\n\nConditions: allowed list. None exactly. Maybe \"after service\"? They removed/replaced battery terminal and took dealer, but failure occurred before service. No. \"intermittent\"? No. Empty. Could include \"parked\" despite not allowed? The schema fixed list likely expected from those. Better empty. But summary includes parked.\n\nFault_codes: [\"23V734000\"]? It is recall campaign number. The field name fault_codes. Hmm. The report names NHTSA Campaign Number, not a diagnostic fault code. But \"code if report names one\" could include. I'd include \"23V734000\" because it's a code named; clues kind fault_code. But if strict fault code, maybe no. The user likely expects extraction of campaign number as fault code? It says fault_codes [\"code if the report names one\"]. Campaign number is code. I'll include.\n\nMissing_info: [\"date\"] only. Maybe date of failure. Received_at is 2025-07-03 but not failure date. Good. Could include \"conditions\"? Report says parked but not environmental. Not necessary. Mileage present. Component present. Symptom present.\n\nSafety_relevant false.\n\nNeed JSON only. Ensure quote strings exact. Let's produce.\n\nNeed make sure no other text. Use valid JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793528227,
+      "id": "6c963135d92d7d7bd2868ee9298c2bdb",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1514,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1248,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00056841,
+          "billing_source": "go",
+          "list_cost": 0.00094735,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 252,
+            "output": 1514,
+            "reasoning": 1248
+          }
+        },
+        "prompt_tokens": 636,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2150
+      }
+    },
+    "text": "{\n  \"summary\": \"2017 Toyota RAV4 electrical system: while parked the vehicle failed to start; battery terminal replaced and vehicle started; dealer noted a bulge on the side of the battery; recall 23V734000.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"vehicle failed to start while parked\",\n    \"battery has a bulge on its side\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [\n    \"23V734000\"\n  ],\n  \"safety_relevant\": false,\n  \"missing_info\": [\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"ELECTRICAL SYSTEM\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"the vehicle failed to start\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"while the vehicle was parked\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"there was a bulge on the side of the battery\"\n    },\n    {\n      \"kind\": \"fault_code\",\n      \"quote\": \"NHTSA Campaign Number: 23V734000\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00056841,
+      "cached_tokens": 384,
+      "cost_usd": 0.00094735,
+      "input_tokens": 636,
+      "list_cost_usd": 0.00094735,
+      "output_tokens": 1514,
+      "reasoning_tokens": 1248
+    }
+  }
+}

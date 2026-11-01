@@ -1,0 +1,66 @@
+{
+  "key": "b004aa17462fd1de560a240c8bd7ecd0077add8347874ae87000fb545995a0fc",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9091,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Forward collision avoidance warnings: brakes failed to stop at an intersection, emergency brake did not activate, and a view-obscured dashboard warning recurred in clear daylight before the collision.\",\"group\":\"adas\",\"symptoms\":[\"vehicle failed to stop at an intersection\",\"emergency brake system did not activate\",\"dashboard warning that the view was obscured\",\"warning recurred intermittently\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: WARNINGS\"},{\"kind\":\"symptom\",\"quote\":\"Brakes I wasn't able to stop when I got to the intersection.\"},{\"kind\":\"symptom\",\"quote\":\"My emergency brake system never turned on and stop me from hitting the rear of the ambulance.\"},{\"kind\":\"symptom\",\"quote\":\"something popped up on my dash\"},{\"kind\":\"condition\",\"quote\":\"it came back on\"},{\"kind\":\"symptom\",\"quote\":\"my view was being obscured but it was day light perfectly clear.\"},{\"kind\":\"safety\",\"quote\":\"hitting the rear of the ambulance\"},{\"kind\":\"other\",\"quote\":\"they said there was nothing wrong with it\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize report. Need parse. Component FORWARD COLLISION AVOIDANCE: WARNINGS group adas. Narrative: brakes unable to stop at intersection, emergency brake system never turned on and stop from hitting rear of ambulance. Called salesman a week after buying about something popped up on dash, advised take to dealer, checked nothing wrong. 2-3 weeks later came back on and before could take back had accident. What popped up was view being obscured but daylight clear. Picture.\n\nNeed summary one line: component, symptom, conditions. Symptoms: brakes unable to stop, emergency brake system never turned on/did not intervene, dashboard warning \"view obscured\" in clear daylight. Conditions: maybe none? \"day light perfectly clear\" is condition? Could list \"daylight clear\" maybe conditions only enumerated list? Template says conditions [\"cold\",\"moisture\",\"heat\",\"vibration\",\"intermittent\",\"after service\",\"charging\"]. Hm \"intermittent\" fits warning came back on. \"after service\" fits dealer checked and said nothing wrong? It was after dealer inspection then recurred. We can include \"intermittent\", \"after service\"? But after service means after service/repair. Dealer checked not necessarily service. We need not over-infer. Conditions: intermittent (came back on), daylight clear? Not in allowed list? It says conditions list examples, could include \"daylight clear\"? But likely use standardized. Let's include \"intermittent\" only. Maybe \"after service\" if dealer checked? Not service. Safety_relevant true. Fault_codes none. Missing_info: mileage is null, date? Received date but incident date missing. Component present symptom present conditions present? Maybe missing_info [\"mileage\",\"date\"]? Need facts analysis needs. Since report lacks mileage and incident date. Could include \"mileage\", \"date\". But missing_info only for facts analysis needs. Yes.\n\nClues: quote verbatim spans. Need ensure exact substrings. Quotes:\n- \"Brakes I wasn't able to stop when I got to the intersection.\" exact.\n- \"My emergency brake system never turned on and stop me from hitting the rear of the ambulance.\" exact.\n- \"something popped up on my dash\" exact.\n- \"it came back on\" exact.\n- \"my view was being obscured but it was day light perfectly clear.\" exact.\n- \"I had the accident\" safety. Exact.\n\nNeed JSON only. Summary: \"Forward collision avoidance warnings: brakes failed to stop at intersection; emergency brake did not activate; dashboard view-obscured warning appeared in clear daylight and recurred before collision.\" Need one line. Good.\n\nGroup \"adas\". Symptoms plain words array: \"vehicle failed to stop at an intersection\", \"emergency brake system did not activate\", \"dashboard warning that view was obscured\", \"warning recurred intermittently\". Is \"warning recurred\" symptom? Fine. Conditions [\"intermittent\"] maybe. Fault codes [].\n\nNeed quote for component group? \"FORWARD COLLISION AVOIDANCE: WARNINGS\" is given component not narrative? It's in report fields, can quote? The report includes component string. Yes quote verbatim. Kind component_group. Good.\n\nSafety clue quote \"I had the accident\" maybe risk to people? It mentions hitting rear of ambulance, accident. Quote \"hitting the rear of the ambulance\" exact. Use that.\n\nNeed missing_info: report has component, symptom, conditions? mileage null, date not incident. Include [\"mileage\",\"date\"]. Is date missing? received_at exists but incident date missing. The analysis needs incident date maybe. Good.\n\nNeed no other text. JSON valid.\n\nLet's craft. Ensure quotes exact:\n\"Brakes I wasn't able to stop when I got to the intersection.\" yes.\n\"My emergency brake system never turned on and stop me from hitting the rear of the ambulance.\" yes.\n\"something popped up on my dash\" yes.\n\"it came back on\" yes.\n\"my view was being obscured but it was day light perfectly clear.\" yes.\n\"hitting the rear of the ambulance\" yes.\n\"FORWARD COLLISION AVOIDANCE: WARNINGS\" yes.\n\nNeed maybe clue for after dealer \"they said there was nothing wrong with it\" exact? Could include as other? That's context. Kind other quote. But not necessary. Clues can include.\n\nNeed summary mention conditions \"clear daylight; intermittent recurrence\". Good.\n\nFinal JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531153,
+      "id": "bc67ac91f1449ce9c4b0140dd21590f9",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1193,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 922,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00045402,
+          "billing_source": "go",
+          "list_cost": 0.0007567,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 265,
+            "output": 1193,
+            "reasoning": 922
+          }
+        },
+        "prompt_tokens": 649,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1842
+      }
+    },
+    "text": "{\"summary\":\"Forward collision avoidance warnings: brakes failed to stop at an intersection, emergency brake did not activate, and a view-obscured dashboard warning recurred in clear daylight before the collision.\",\"group\":\"adas\",\"symptoms\":[\"vehicle failed to stop at an intersection\",\"emergency brake system did not activate\",\"dashboard warning that the view was obscured\",\"warning recurred intermittently\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: WARNINGS\"},{\"kind\":\"symptom\",\"quote\":\"Brakes I wasn't able to stop when I got to the intersection.\"},{\"kind\":\"symptom\",\"quote\":\"My emergency brake system never turned on and stop me from hitting the rear of the ambulance.\"},{\"kind\":\"symptom\",\"quote\":\"something popped up on my dash\"},{\"kind\":\"condition\",\"quote\":\"it came back on\"},{\"kind\":\"symptom\",\"quote\":\"my view was being obscured but it was day light perfectly clear.\"},{\"kind\":\"safety\",\"quote\":\"hitting the rear of the ambulance\"},{\"kind\":\"other\",\"quote\":\"they said there was nothing wrong with it\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00045402,
+      "cached_tokens": 384,
+      "cost_usd": 0.0007567,
+      "input_tokens": 649,
+      "list_cost_usd": 0.0007567,
+      "output_tokens": 1193,
+      "reasoning_tokens": 922
+    }
+  }
+}

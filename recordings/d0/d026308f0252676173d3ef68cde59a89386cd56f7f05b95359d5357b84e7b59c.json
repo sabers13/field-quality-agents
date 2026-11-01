@@ -1,0 +1,66 @@
+{
+  "key": "d026308f0252676173d3ef68cde59a89386cd56f7f05b95359d5357b84e7b59c",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10553,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Ford F-150 APIM (SYNC module) intermittently inoperative for ~8 hours, blanking the dashboard and driver indications while driving.\",\"group\":\"adas\",\"symptoms\":[\"APIM inoperative at random times for about 8 hours\",\"entire dashboard goes black\",\"driver cannot see speed, turn signals, rpm, engine temperature, oil pressure or other critical indications\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"APIM stands for Accessory Protocol Interface Module\"},{\"kind\":\"symptom\",\"quote\":\"The APIM becomes inoperative at random times for ~8 hours.\"},{\"kind\":\"condition\",\"quote\":\"at random times\"},{\"kind\":\"symptom\",\"quote\":\"the entire dashboard goes black\"},{\"kind\":\"symptom\",\"quote\":\"you can’t tell your speed, turn signals, rpm, engine temp, oil pressure\"},{\"kind\":\"safety\",\"quote\":\"You are driving with no indicators and have no idea what your speed is or any other critical indication.\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize report. Need identify component group adas given. Summary one line component, symptom, conditions. Need symptoms plain words. Conditions: random times ~8 hours? Conditions list allowed: cold moisture heat vibration intermittent after service charging. Random times -> intermittent. Maybe \"at random times for ~8 hours\" intermittent. Fault codes none. Safety relevant? Report says dashboard goes black, can't tell speed, turn signals, rpm, engine temp, oil pressure, driving with no indicators no idea speed critical indication. This is risk to people? Loss of critical instrumentation while driving; safety_relevant true likely. Prompt: mention crash fire smoke injury loss of control stall at speed or another risk to people. Driving with no speed/indicators is risk. Set true. missing_info: mileage missing. date? received date given, but maybe date of incident missing. Conditions? It gives random times and duration but not ambient. Missing mileage and date? The report has received_at but not incident date. Need list only facts analysis needs: component, symptom, conditions, mileage, date. Component present, symptom present, conditions intermittent present. Mileage null -> missing. Date? received_at exists but not event date. We can include \"date\" maybe. Missing_info [\"mileage\",\"date\"]. Clues verbatim spans. Need exact quotes from narrative. Need include component group quote? Could quote \"FORWARD COLLISION AVOIDANCE: WARNINGS\"? That's from component field not narrative? The report includes component. Quotes can be from report. Need verbatim. We can include:\n- symptom: \"The APIM becomes inoperative at random times for ~8 hours.\"\n- symptom: \"the entire dashboard goes black\"\n- symptom: \"you can’t tell your speed, turn signals, rpm, engine temp, oil pressure\"\n- condition: \"at random times\" (verbatim substring)\n- safety: \"You are driving with no indicators and have no idea what your speed is or any other critical indication.\"\n- component_group: \"APIM stands for Accessory Protocol Interface Module\" maybe quote.\nNeed ensure quote exact including curly apostrophe. JSON escaping. The narrative has \"can\\u2019t\" curly. We can copy as \"you can’t tell...\" The JSON can contain unicode. Need quote \"~8 hours\" exact. Summary: \"Ford F-150 APIM (SYNC module) intermittently inoperative for ~8 hours, blanking dashboard and all driver indications while driving.\" That includes component symptom conditions. Good.\n\nNeed group \"adas\". Symptoms array plain words: \"APIM inoperative at random times for about 8 hours\", \"entire dashboard goes black\", \"driver cannot see speed, turn signals, rpm, engine temperature, oil pressure or other critical indications\". Conditions [\"intermittent\"]. fault_codes []. safety_relevant true. missing_info [\"mileage\",\"date\"]. Clues list.\n\nNeed no other text. Final JSON only.\n\nCheck rules: \"Every quote copied verbatim\". Use exact. Need quote for \"at random times\" appears. \"The APIM becomes inoperative at random times for ~8 hours.\" exact. \"the entire dashboard goes black\" exact lower case. \"you can\\u2019t tell your speed, turn signals, rpm, engine temp, oil pressure\" exact? Narrative: \"you can’t tell your speed, turn signals, rpm, engine temp, oil pressure, etc.\" Yes. \"You are driving with no indicators and have no idea what your speed is or any other critical indication.\" exact. \"APIM stands for Accessory Protocol Interface Module\" exact. Good.\n\nNeed maybe clue kind \"condition\" quote \"at random times\" and \"for ~8 hours\"? Conditions allowed only intermittent. But clues can condition. Fine.\n\nCould include safety clue. Good.\n\nNeed output valid JSON. Ensure no markdown.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793525158,
+      "id": "9e7b26787ab65a5a5c4b1337f22aa411",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1044,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 801,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00043101,
+          "billing_source": "go",
+          "list_cost": 0.00071835,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 613,
+            "output": 1044,
+            "reasoning": 801
+          }
+        },
+        "prompt_tokens": 613,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 1657
+      }
+    },
+    "text": "{\"summary\":\"Ford F-150 APIM (SYNC module) intermittently inoperative for ~8 hours, blanking the dashboard and driver indications while driving.\",\"group\":\"adas\",\"symptoms\":[\"APIM inoperative at random times for about 8 hours\",\"entire dashboard goes black\",\"driver cannot see speed, turn signals, rpm, engine temperature, oil pressure or other critical indications\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"APIM stands for Accessory Protocol Interface Module\"},{\"kind\":\"symptom\",\"quote\":\"The APIM becomes inoperative at random times for ~8 hours.\"},{\"kind\":\"condition\",\"quote\":\"at random times\"},{\"kind\":\"symptom\",\"quote\":\"the entire dashboard goes black\"},{\"kind\":\"symptom\",\"quote\":\"you can’t tell your speed, turn signals, rpm, engine temp, oil pressure\"},{\"kind\":\"safety\",\"quote\":\"You are driving with no indicators and have no idea what your speed is or any other critical indication.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00043101,
+      "cached_tokens": 0,
+      "cost_usd": 0.00071835,
+      "input_tokens": 613,
+      "list_cost_usd": 0.00071835,
+      "output_tokens": 1044,
+      "reasoning_tokens": 801
+    }
+  }
+}

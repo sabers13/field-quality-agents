@@ -1,0 +1,66 @@
+{
+  "key": "27477462c0866e601fb3e0e04e632a79dccd258897256b9069ccef9b72af02d9",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12302,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Forward collision avoidance warnings: front crash warning illuminates then the vehicle cuts off, repeatedly while driving.\",\"group\":\"adas\",\"symptoms\":[\"front crash warning comes on\",\"vehicle cuts off while driving\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"front crash warning will come on\"},{\"kind\":\"symptom\",\"quote\":\"the car will just cut off\"},{\"kind\":\"condition\",\"quote\":\"This has happened multiple times while driving.\"},{\"kind\":\"safety\",\"quote\":\"It’s dangerous because it happens without any warning\"},{\"kind\":\"other\",\"quote\":\"nothing is going on with traffic to trigger the warning light\"}]}",
+            "reasoning_content": "We need answer only JSON. Need parse report. Component: FORWARD COLLISION AVOIDANCE: WARNINGS, group adas. Narrative: front crash warning will come on and then car will just cut off. Happened multiple times while driving. Dangerous because happens without warning and nothing going on with traffic to trigger warning light. Need summary one line component, symptom, conditions. Symptoms: front crash warning comes on; car cuts off (engine/vehicle shuts off?) while driving. Conditions: while driving, multiple times, without warning? \"intermittent\" maybe multiple times. safety_relevant true: mentions dangerous, car cut off while driving, could loss of control? Rule set safety when mentions crash fire smoke injury loss control stall at speed or another risk to people. It says dangerous, car cuts off while driving. That is risk to people / stall at speed. Set true. Fault codes none. missing_info: mileage? date? conditions? component? symptom? Mileage null, date maybe received_at but not incident date. We need list only facts analysis needs. Component given, symptom given, conditions partly. Missing mileage and date. Maybe \"conditions\" not missing because while driving. Use [\"mileage\",\"date\"]. Clues with verbatim quotes. Need ensure quotes exact. Narrative has typographic apostrophe? It's \"It\\u2019s dangerous\" and \"nothing is going on\". We can copy spans. Quotes:\n- \"front crash warning will come on\" (exact substring? \"The front crash warning will come on\" yes includes \"front crash warning will come on\")\n- \"the car will just cut off\"\n- \"This has happened multiple times while driving.\"\n- \"It\\u2019s dangerous because it happens without any warning\" exact? Narrative: \"It’s dangerous because it happens without any warning and there is nothing...\" Yes quote can include It’s. Need JSON escape apostrophe? It's unicode okay.\n- \"nothing is going on with traffic to trigger the warning light\" exact substring? Narrative: \"there is nothing going on with traffic to trigger the warning light.\" Substring \"nothing is going on with traffic to trigger the warning light\" yes.\nKinds: symptom for warning and cut off. condition for while driving / multiple times. safety for dangerous. other maybe warning light? Ensure no extra text. Summary: \"Forward collision avoidance warnings: front crash warning illuminates then vehicle cuts off, repeatedly while driving.\" Conditions array: [\"intermittent\", \"while driving\"]? The schema conditions allowed: cold moisture heat vibration intermittent after service charging. But report says while driving, multiple times. Should conditions only from allowed list? The prompt: conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. It says list conditions. Use \"intermittent\" because multiple times and without warning? Maybe \"while driving\" not in allowed? But conditions array in schema examples only allowed set. However clues kind condition can quote. The conditions field should use listed conditions. \"intermittent\" fits multiple times. No cold etc. Could also include \"while driving\" but schema examples suggest controlled vocabulary. Better only \"intermittent\". Maybe condition \"without warning\" not in list. Use intermittent.\n\nsymptoms: [\"front crash warning comes on\", \"vehicle cuts off while driving\"] plain words. Good.\n\nfault_codes: [].\n\nmissing_info: [\"mileage\",\"date\"]. Date? Received_at exists but incident date missing. The analysis may need date? okay.\n\nsafety_relevant true.\n\nclues:\n{\"kind\":\"symptom\",\"quote\":\"front crash warning will come on\"}\n{\"kind\":\"symptom\",\"quote\":\"the car will just cut off\"}\n{\"kind\":\"condition\",\"quote\":\"This has happened multiple times while driving.\"}\n{\"kind\":\"safety\",\"quote\":\"It’s dangerous because it happens without any warning\"}\n{\"kind\":\"condition\",\"quote\":\"nothing is going on with traffic to trigger the warning light\"} maybe condition/other. It describes no traffic trigger. Kind condition? Not in list but can be \"other\". Use \"other\" because no traffic trigger. Or condition. Fine.\n\nNeed no markdown? User asks one JSON object and no other text. Final only JSON. Ensure valid JSON. Use escaped unicode? We can include curly apostrophe. JSON supports. Need if using \"It’s\" exact. Character for character from report: It\\u2019s in original; in JSON can write \"It’s\". Good. Use double quotes.\n\nLet's craft concise.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529580,
+      "id": "2deec6ab0670d6b41f6475b2ea3040f4",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1117,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 949,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00041694,
+          "billing_source": "go",
+          "list_cost": 0.0006949,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 157,
+            "output": 1117,
+            "reasoning": 949
+          }
+        },
+        "prompt_tokens": 541,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1658
+      }
+    },
+    "text": "{\"summary\":\"Forward collision avoidance warnings: front crash warning illuminates then the vehicle cuts off, repeatedly while driving.\",\"group\":\"adas\",\"symptoms\":[\"front crash warning comes on\",\"vehicle cuts off while driving\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"front crash warning will come on\"},{\"kind\":\"symptom\",\"quote\":\"the car will just cut off\"},{\"kind\":\"condition\",\"quote\":\"This has happened multiple times while driving.\"},{\"kind\":\"safety\",\"quote\":\"It’s dangerous because it happens without any warning\"},{\"kind\":\"other\",\"quote\":\"nothing is going on with traffic to trigger the warning light\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00041694,
+      "cached_tokens": 384,
+      "cost_usd": 0.0006949,
+      "input_tokens": 541,
+      "list_cost_usd": 0.0006949,
+      "output_tokens": 1117,
+      "reasoning_tokens": 949
+    }
+  }
+}

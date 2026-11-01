@@ -1,0 +1,66 @@
+{
+  "key": "43184c86a92a9213df88b6f0e6aea4c651a7aeb0141a43ef54d74495b64fffdf",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12458,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Exterior lighting: constant light flickering with power steering failure, burnt smell, starter/battery damage, charging warning, and intermittent ignition no-start.\",\"group\":\"lighting\",\"symptoms\":[\"lights flickered constantly\",\"power steering failed\",\"starter and fairly new battery blew\",\"burnt smell\",\"ignition sometimes did nothing\",\"power steering warning came on\",\"charging system warning came on\",\"engine sounded like it was barely running\"],\"conditions\":[\"intermittent\",\"charging\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"EXTERIOR LIGHTING\"},{\"kind\":\"symptom\",\"quote\":\"the lights flickered constantly\"},{\"kind\":\"symptom\",\"quote\":\"the power steering failed\"},{\"kind\":\"symptom\",\"quote\":\"it blew my starter and fairly new battery\"},{\"kind\":\"symptom\",\"quote\":\"it smelled burnt\"},{\"kind\":\"safety\",\"quote\":\"I thought it was going to catch on fire\"},{\"kind\":\"safety\",\"quote\":\"I had no power steering, flickering lights and smell of burnt stuff\"},{\"kind\":\"symptom\",\"quote\":\"I would turn the ignition and nothing\"},{\"kind\":\"condition\",\"quote\":\"would only happen several weeks apart\"},{\"kind\":\"symptom\",\"quote\":\"power steering warning came on\"},{\"kind\":\"condition\",\"quote\":\"charging system came on\"},{\"kind\":\"symptom\",\"quote\":\"the car sounded like it was barely running\"},{\"kind\":\"safety\",\"quote\":\"My safety was impacted\"},{\"kind\":\"other\",\"quote\":\"a plug in wiring to heat or warm the washer fluid\"}]}",
+            "reasoning_content": "We need answer one JSON object no other text. Need normalize report. Need extract summary, group given lighting, symptoms plain words, conditions from allowed list? Conditions list includes \"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\". Report mentions intermittent? \"would only happen several weeks apart\" yes intermittent. \"charging\" charging system came on. Heat? plug in wiring to heat or warm washer fluid, not condition heat maybe component. Burnt smell safety? mentions thought catch fire, smelled burnt, safety impacted, no power steering, flickering lights. safety_relevant true due fire risk/smell burnt/loss power steering? Yes. Fault codes none. missing_info: mileage (null) maybe date? received date but incident date not explicit; component given symptom given conditions maybe incomplete. Need list only facts analysis needs. mileage missing. date? report has received_at but not incident date; mention since October 2024, incident unspecified. Could include \"date\" and \"mileage\". Maybe conditions missing? There are conditions: intermittent, charging. But if conditions need cold/moisture/heat/vibration? maybe not. Component present. Symptom present. We can include \"mileage\", \"date\". Clues verbatim quotes. Need every quote copied exactly. Need careful quotes from narrative. Include symptom quotes: \"the lights flickered constantly\", \"the power steering failed\", \"it blew my starter and fairly new battery\", \"it smelled burnt\", \"I had no power steering, flickering lights and smell of burnt stuff\", \"power steering warning came on\", \"charging system came on\", \"the car sounded like it was barely running\", \"I would turn the ignition and nothing\". Conditions: \"several weeks apart\" or \"would only happen several weeks apart\" for intermittent. \"charging system came on\" condition charging? Could clue kind condition quote. Fault code none. Safety quote: \"I thought it was going to catch on fire because it smelled burnt\"; \"My safety was impacted\". Also \"no power steering\" risk. Component group quote? \"EXTERIOR LIGHTING\" is verbatim in component field? The report includes component field. The user message JSON includes component value. Quotes should be from report? \"Read only report in user message\" includes component field. We can quote \"EXTERIOR LIGHTING\". Or narrative \"lights flickered constantly\". For component_group clue quote \"EXTERIOR LIGHTING\". Need summary one line: \"Exterior lighting: constant flickering lights, power steering failure, burnt smell, starter/battery damage, charging warning; intermittent ignition no-start.\" Conditions: intermittent, charging. Could include \"heat\" because wiring to heat/warm washer fluid? That's not environmental condition. Maybe not. Conditions allowed list: intermittent, charging. Report mentions \"All of a sudden when I started my car\" not cold. \"burnt\" not heat condition. \"after service\"? no. \"moisture\"? no. \"vibration\"? no.\n\nNeed answer JSON only. Ensure valid JSON. Safety true. Missing info include mileage, date. \"conditions\" maybe not missing because we have intermittent/charging but incident ambient conditions not. The rule says missing_info only facts analysis needs: component, symptom, conditions, mileage, date. We can include \"mileage\", \"date\". Maybe \"conditions\" because no ambient/operating conditions? But report has conditions. Hmm \"conditions\" as missing means conditions of occurrence? It gives when started car, driving, intermittent. I'd not include.\n\nNeed clues array. Each quote verbatim span. Need avoid quotes not exact. Let's choose exact substrings:\n\n- \"EXTERIOR LIGHTING\" exact in component.\n- \"the lights flickered constantly\" exact.\n- \"the power steering failed\" exact.\n- \"it blew my starter and fairly new battery\" exact.\n- \"it smelled burnt\" exact? Narrative: \"because it smelled burnt.\" yes substring \"it smelled burnt\" exact.\n- \"I thought it was going to catch on fire\" exact.\n- \"I had no power steering, flickering lights and smell of burnt stuff\" exact.\n- \"I would turn the ignition and nothing\" exact.\n- \"would only happen several weeks apart\" exact? Narrative: \"But that would only happen several weeks apart.\" substring \"would only happen several weeks apart\" exact yes.\n- \"power steering warning came on\" exact.\n- \"charging system came on\" exact.\n- \"the car sounded like it was barely running\" exact.\n- \"My safety was impacted\" exact.\n- Maybe \"plug in wiring to heat or warm the washer fluid\" exact. Kind other? component? It is suspected cause, kind other. But clues kind allowed other. Include? It is relevant. Quote exact: \"a plug in wiring to heat or warm the washer fluid\" yes.\n- \"My problem was fixed by an independent shop\" maybe after service? no. skip.\n\nNeed summary one line. Conditions array includes \"intermittent\", \"charging\". Should we include \"heat\" due heater? Hmm conditions are environmental/operational: \"heat\" might be condition? The report says wiring to heat washer fluid, not heat condition. Don't include.\n\nNeed group \"lighting\" (given group). symptoms plain words: maybe [\"lights flickered constantly\", \"power steering failed\", \"starter and battery blew/damaged\", \"burnt smell\", \"ignition sometimes did nothing\", \"charging system warning\", \"engine barely running\"]. Plain words. Fine.\n\nNeed safety_relevant true. Missing info [\"mileage\", \"date\"]. Date: received_at 2025-03-20, but incident date not specified; mention since Oct 2024. Include date. Mileage null. Could include \"conditions\"?? no.\n\nNeed only JSON no markdown. Ensure no extra text.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793525646,
+      "id": "ac4694527de19569792bb853b253fc37",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1571,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1217,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00060243,
+          "billing_source": "go",
+          "list_cost": 0.00100405,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 402,
+            "output": 1571,
+            "reasoning": 1217
+          }
+        },
+        "prompt_tokens": 786,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2357
+      }
+    },
+    "text": "{\"summary\":\"Exterior lighting: constant light flickering with power steering failure, burnt smell, starter/battery damage, charging warning, and intermittent ignition no-start.\",\"group\":\"lighting\",\"symptoms\":[\"lights flickered constantly\",\"power steering failed\",\"starter and fairly new battery blew\",\"burnt smell\",\"ignition sometimes did nothing\",\"power steering warning came on\",\"charging system warning came on\",\"engine sounded like it was barely running\"],\"conditions\":[\"intermittent\",\"charging\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"EXTERIOR LIGHTING\"},{\"kind\":\"symptom\",\"quote\":\"the lights flickered constantly\"},{\"kind\":\"symptom\",\"quote\":\"the power steering failed\"},{\"kind\":\"symptom\",\"quote\":\"it blew my starter and fairly new battery\"},{\"kind\":\"symptom\",\"quote\":\"it smelled burnt\"},{\"kind\":\"safety\",\"quote\":\"I thought it was going to catch on fire\"},{\"kind\":\"safety\",\"quote\":\"I had no power steering, flickering lights and smell of burnt stuff\"},{\"kind\":\"symptom\",\"quote\":\"I would turn the ignition and nothing\"},{\"kind\":\"condition\",\"quote\":\"would only happen several weeks apart\"},{\"kind\":\"symptom\",\"quote\":\"power steering warning came on\"},{\"kind\":\"condition\",\"quote\":\"charging system came on\"},{\"kind\":\"symptom\",\"quote\":\"the car sounded like it was barely running\"},{\"kind\":\"safety\",\"quote\":\"My safety was impacted\"},{\"kind\":\"other\",\"quote\":\"a plug in wiring to heat or warm the washer fluid\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00060243,
+      "cached_tokens": 384,
+      "cost_usd": 0.00100405,
+      "input_tokens": 786,
+      "list_cost_usd": 0.00100405,
+      "output_tokens": 1571,
+      "reasoning_tokens": 1217
+    }
+  }
+}

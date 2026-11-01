@@ -1,0 +1,66 @@
+{
+  "key": "ac9c7b91489d49f76576f9a5d69e65670181bfc5c65af455031d551eb0c79ea6",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 15755,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"No failure reported; recall 23V865000 air-bag remedy parts were unavailable, so run the standard field-quality test to confirm recall remedy status because no targeted rulebook test applies.\",\"rationale\":\"The narrative says the owner received notice of NHTSA campaign 23V865000 for air bags, but the repair part was not available and the dealer confirmed parts were still unavailable. The contact had not experienced a failure. No rulebook entry, similar case, or investigation supports a targeted load test, so this is a standard non-targeted field-quality check and not a safety case.\",\"group\":\"restraints\",\"symptoms\":[],\"conditions\":[\"recall repair part not yet available\",\"dealer confirmed parts were not yet available\",\"manufacturer exceeded a reasonable amount of time for the recall repair\",\"VIN tool confirms parts not available\"],\"fault_codes\":[\"23V865000\"],\"safety_relevant\":false,\"targeted\":false,\"test_name\":\"standard test\",\"clues\":[{\"kind\":\"component_group\",\"quote\":\"Air Bags\"},{\"kind\":\"fault_code\",\"quote\":\"23V865000\"},{\"kind\":\"condition\",\"quote\":\"the part to do the recall repair was not yet available\"},{\"kind\":\"condition\",\"quote\":\"confirmed that parts were not yet available\"},{\"kind\":\"other\",\"quote\":\"The contact had not experienced a failure.\"},{\"kind\":\"condition\",\"quote\":\"VIN tool confirms parts not available.\"}]}",
+            "reasoning_content": "We need to output JSON only. The case: no failure experienced, recall parts unavailable. Rulebook empty, similar cases empty, investigations empty. Safety_relevant false (narrative says no failure, no risk to people shown). Targeted false? Rulebook has no entry, so standard test. But \"targeted test the rulebook names\" — rulebook empty, so maybe test_name empty or standard. The schema requires test_name string. Could set test_name to \"standard field-quality test\" or empty. Hmm.\n\nWe need clues quotes verbatim from case narrative. Narrative: \"The contact owns a 2020 Toyota Highlander Hybrid. The contact received notification of NHTSA Campaign Number: 23V865000 (Air Bags); however, the part to do the recall repair was not yet available. The contact stated that the manufacturer had exceeded a reasonable amount of time for the recall repair. The dealer was made aware of the issue and confirmed that parts were not yet available. The manufacturer was made aware of the issue. The contact had not experienced a failure. VIN tool confirms parts not available.\"\n\nQuotes verbatim spans. Good ones: \"23V865000 (Air Bags)\"? Verbatim yes. \"the part to do the recall repair was not yet available\" yes. \"The contact had not experienced a failure.\" yes. \"VIN tool confirms parts not available.\" yes. \"2020 Toyota Highlander Hybrid\" yes.\n\nTest_name: since rulebook empty, no targeted test named. Set targeted false, test_name maybe \"standard test\" or \"no targeted test named by rulebook\". But must be a string. The instruction says \"test_name\": \"the targeted test the rulebook names\". Since no rulebook entry, targeted false. Could leave test_name as \"\" or \"standard test\". I'll use \"standard field-quality test\" — but that's not named. Maybe better \"none (no rulebook match)\". But the field expects a test name; empty string acceptable? I'll put \"standard test\" and targeted false.\n\nSummary: one line: what to test and why. \"No failure reported; recall 23V865000 parts unavailable — verify OCS/air bag recall remedy status, no targeted rulebook test applies.\" Hmm.\n\nRationale: condition and evidence.\n\nGroup: restraints.\n\nSymptoms: [] because no failure. Conditions: [\"recall repair parts not yet available\", \"manufacturer exceeded reasonable time for recall repair\"]. Fault codes: [\"23V865000\"]. Safety_relevant false. targeted false. Clues with kinds.\n\nClue kinds allowed: symptom|condition|fault_code|component_group|safety|other. Use component_group quote \"AIR BAGS\" — is that in narrative? Narrative has \"(Air Bags)\" lowercase with parentheses, and \"AIR BAGS\" appears in component field but not narrative exactly? The case narrative says \"(Air Bags)\". The extraction clue quoted \"AIR BAGS\" but that's from component field not narrative. Verbatim from narrative: \"Air Bags\" appears within \"23V865000 (Air Bags)\". Could use quote \"Air Bags\" as component_group. It's verbatim. Good.\n\nFault code quote \"23V865000\" verbatim. Condition quote \"the part to do the recall repair was not yet available\" verbatim. Other quote \"The contact had not experienced a failure.\" verbatim. Condition \"VIN tool confirms parts not available.\" verbatim. Also \"confirmed that parts were not yet available\" verbatim.\n\nSafety: false. No safety quote.\n\nTest_name: Maybe \"Recall remedy verification\" not a load test. But rules: \"Prefer a targeted load test when the reported conditions match a rulebook entry. Otherwise propose the standard test (`\"targeted\": false`).\" So standard test. test_name could be \"standard test\". I'll use \"standard field-quality test\". But the schema says \"the targeted test the rulebook names\" - contradictory if targeted false. I'll set test_name to \"standard test\".\n\nNeed answer one JSON object only.\n\nLet's craft concise.\n\nSummary: \"No failure reported; recall 23V865000 remedy parts unavailable — run standard test to confirm recall remedy availability, no targeted rulebook test applies.\"\n\nRationale: \"The narrative states the owner received notice of NHTSA campaign 23V865000 for air bags but the repair part was not available and the dealer confirmed parts were not yet available; the contact had not experienced a failure. With no rulebook match or similar cases, this is a standard (non-targeted) field-quality check, not a safety case.\"\n\nSymptom none. Conditions list.\n\nClues:\n- component_group quote \"Air Bags\" (verbatim within narrative)\n- fault_code \"23V865000\"\n- condition \"the part to do the recall repair was not yet available\"\n- condition \"confirmed that parts were not yet available\"\n- other \"The contact had not experienced a failure.\"\n- condition \"VIN tool confirms parts not available.\"\n\nCheck quote \"Air Bags\" case: narrative \"(Air Bags)\" yes exact substring \"Air Bags\". Good.\n\nNo recall IDs cited in clues? We mention 23V865000 as fault code, allowed since recalls result contains it. Fine.\n\nSafety_relevant false.\n\nTargeted false.\n\nGroup \"restraints\".\n\nOutput JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793525799,
+      "id": "15588dd85046fcc862bea7dd59215b61",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1412,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1110,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00060912,
+          "billing_source": "go",
+          "list_cost": 0.0010152,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 1120,
+            "output": 1412,
+            "reasoning": 1110
+          }
+        },
+        "prompt_tokens": 1120,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 2532
+      }
+    },
+    "text": "{\"summary\":\"No failure reported; recall 23V865000 air-bag remedy parts were unavailable, so run the standard field-quality test to confirm recall remedy status because no targeted rulebook test applies.\",\"rationale\":\"The narrative says the owner received notice of NHTSA campaign 23V865000 for air bags, but the repair part was not available and the dealer confirmed parts were still unavailable. The contact had not experienced a failure. No rulebook entry, similar case, or investigation supports a targeted load test, so this is a standard non-targeted field-quality check and not a safety case.\",\"group\":\"restraints\",\"symptoms\":[],\"conditions\":[\"recall repair part not yet available\",\"dealer confirmed parts were not yet available\",\"manufacturer exceeded a reasonable amount of time for the recall repair\",\"VIN tool confirms parts not available\"],\"fault_codes\":[\"23V865000\"],\"safety_relevant\":false,\"targeted\":false,\"test_name\":\"standard test\",\"clues\":[{\"kind\":\"component_group\",\"quote\":\"Air Bags\"},{\"kind\":\"fault_code\",\"quote\":\"23V865000\"},{\"kind\":\"condition\",\"quote\":\"the part to do the recall repair was not yet available\"},{\"kind\":\"condition\",\"quote\":\"confirmed that parts were not yet available\"},{\"kind\":\"other\",\"quote\":\"The contact had not experienced a failure.\"},{\"kind\":\"condition\",\"quote\":\"VIN tool confirms parts not available.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00060912,
+      "cached_tokens": 0,
+      "cost_usd": 0.0010152,
+      "input_tokens": 1120,
+      "list_cost_usd": 0.0010152,
+      "output_tokens": 1412,
+      "reasoning_tokens": 1110
+    }
+  }
+}

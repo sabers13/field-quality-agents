@@ -1,0 +1,66 @@
+{
+  "key": "ace796d2f30dcee706c4be0bd06fe0e89f80ee793383354db1c0fa0b77cef840",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10773,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"SEAT BELTS — shoulder belt did not hold occupant, partial ejection from rear of cab; rollover crash with roof cave-in.\",\"group\":\"restraints\",\"symptoms\":[\"shoulder portion of seat belt did not hold occupant\",\"only lap portion held occupant\",\"occupant partially ejected out of rear of cab\",\"roof caved in\"],\"conditions\":[\"rollover\",\"crash\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"SEAT BELTS\"},{\"kind\":\"symptom\",\"quote\":\"The shoulder portion of the seat belt did not hold the occupant (only the lap portion)\"},{\"kind\":\"symptom\",\"quote\":\"the occupant was partially ejected out of the rear of the cab\"},{\"kind\":\"condition\",\"quote\":\"The vehicle rolled\"},{\"kind\":\"symptom\",\"quote\":\"the roof caved in\"},{\"kind\":\"safety\",\"quote\":\"killed the occupant\"},{\"kind\":\"other\",\"quote\":\"roofs that are too weak to support the weight of the vehicle\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize. Component seat belts, group restraints. Symptoms: shoulder portion seat belt did not hold occupant, only lap portion held; occupant partially ejected out rear of cab; roof caved in? Component is seat belts but narrative includes roof. Need summary one line component symptom conditions. Conditions? vehicle rolled, crash. Safety relevant true. Fault codes none. Missing info: mileage, date? date received_at exists 2025-05-07 but report date? The rules missing_info facts analysis needs component symptom conditions mileage date. Component present, symptom present, conditions present (rollover/crash). Mileage null, date maybe received_at is not incident date; missing date? We can list mileage, date. But \"date\" could be received_at? The report has received_at. Missing info only facts analysis needs. Mileage missing. Date? The report has received_at but not incident date. Could list mileage and date. Need clues quotes verbatim. Need quote exact spans. Quotes from narrative. \"The vehicle rolled and killed the occupant because the roof caved in.\" contains crash death safety. \"The shoulder portion of the seat belt did not hold the occupant (only the lap portion)\" exact? Narrative: \"The shoulder portion of the seat belt did not hold the occupant (only the lap portion) and the occupant was partially ejected out of the rear of the cab.\" We can quote smaller. \"The shoulder portion of the seat belt did not hold the occupant (only the lap portion)\" yes exact. \"the occupant was partially ejected out of the rear of the cab\" exact lowercase after and? In report \"and the occupant was partially ejected out of the rear of the cab.\" quote \"the occupant was partially ejected out of the rear of the cab\" verbatim contiguous yes. \"roof caved in\" exact? \"because the roof caved in\" yes. \"The vehicle rolled\" exact. \"The 2000's Ford F-150s have roofs that are too weak to support the weight of the vehicle, thereby putting the occupants in danger of injury or death.\" exact. Safety. Need group \"restraints\". symptoms array plain words: \"shoulder seat belt did not hold occupant\", \"occupant partially ejected from rear of cab\", maybe \"roof caved in causing fatal injury\" but symptom component? It's seat belts report. Could include roof caved in as symptom? The symptoms are report symptoms. The component group is restraints but narrative includes roof structural. Need not invent. Symptoms: \"shoulder portion of seat belt failed to restrain occupant\", \"occupant partially ejected from rear of cab\", \"roof caved in\". Conditions: \"rollover\", \"crash\"? Conditions allowed list: cold, moisture, heat, vibration, intermittent, after service, charging. The schema examples but not exhaustive? It says conditions: [\"cold\", ...]. Should conditions include \"rollover\"? Maybe condition plain? The rules list conditions for clue kind. The conditions field likely can include \"crash/rollover\". Prompt sample only. But conditions list enumerated? It says conditions: [\"cold\", \"moisture\", ...]. Hmm likely use those if applicable. Here condition is rollover/crash, not in list. We can include \"rollover\" and \"crash\" as conditions? The field is conditions; no strict enum? It gives examples. I'd include \"rollover\" because it's a condition. But the prompt's allowed condition quote kind. Need JSON only.\n\nNeed summary: \"SEAT BELTS: shoulder belt failed to hold occupant and occupant partially ejected in rollover with roof cave-in.\" Conditions: rollover, crash. Safety true. Clues: symptom quotes, condition quote, component_group quote \"SEAT BELTS\"? component_group clue quote must be verbatim from report. Report has component \"SEAT BELTS\" but that is JSON field not narrative? It says report in user message includes component. Quote can be from report. \"SEAT BELTS\" verbatim yes. safety quote. other quote roof weak? Maybe quote \"roofs that are too weak to support the weight of the vehicle\" as other. Need no suggestions.\n\nMissing_info: [\"mileage\", \"date\"]? Date received_at exists. Analysis needs incident date; report doesn't include incident date. But \"date\" maybe missing. Mileage null. Include both. Maybe conditions present. Component present. Symptom present.\n\nNeed ensure JSON valid no markdown. Use exact quotes. Let's formulate.\n\nNeed \"summary\": one line: component, symptom, conditions. \"SEAT BELTS — shoulder belt did not hold occupant, partial ejection from rear of cab; rollover crash with roof cave-in.\" Contains dash maybe okay. No other text.\n\nsymptoms: [\"shoulder portion of seat belt did not hold occupant\", \"occupant partially ejected out of rear of cab\", \"roof caved in\"]. Plain words. Could mention only lap portion held. \"only lap portion held occupant\" maybe symptom. Include.\n\nconditions: [\"rollover\", \"crash\"]. Maybe \"fatal crash\". Use \"rollover\", \"crash\".\n\nfault_codes: [].\n\nsafety_relevant true.\n\nmissing_info [\"mileage\", \"date\"].\n\nclues:\n- {\"kind\":\"component_group\",\"quote\":\"SEAT BELTS\"}\n- {\"kind\":\"symptom\",\"quote\":\"The shoulder portion of the seat belt did not hold the occupant (only the lap portion)\"}\n- {\"kind\":\"symptom\",\"quote\":\"the occupant was partially ejected out of the rear of the cab\"}\n- {\"kind\":\"condition\",\"quote\":\"The vehicle rolled\"}\n- {\"kind\":\"symptom\",\"quote\":\"the roof caved in\"}\n- {\"kind\":\"safety\",\"quote\":\"killed the occupant\"}\n- {\"kind\":\"other\",\"quote\":\"roofs that are too weak to support the weight of the vehicle\"}\nMaybe safety quote \"putting the occupants in danger of injury or death\" exact. Use that. Need quote exact: \"thereby putting the occupants in danger of injury or death\" yes. Use safety quote. Also \"killed the occupant\" exact contiguous? \"rolled and killed the occupant\" yes \"killed the occupant\" exact. Good.\n\nNeed \"The vehicle rolled\" exact starts sentence yes. Good.\n\nNeed no trailing text. final JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793526771,
+      "id": "6e1fe034ec0082491c62e3dc25390841",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1546,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1309,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00057579,
+          "billing_source": "go",
+          "list_cost": 0.00095965,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 206,
+            "output": 1546,
+            "reasoning": 1309
+          }
+        },
+        "prompt_tokens": 590,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2136
+      }
+    },
+    "text": "{\"summary\":\"SEAT BELTS — shoulder belt did not hold occupant, partial ejection from rear of cab; rollover crash with roof cave-in.\",\"group\":\"restraints\",\"symptoms\":[\"shoulder portion of seat belt did not hold occupant\",\"only lap portion held occupant\",\"occupant partially ejected out of rear of cab\",\"roof caved in\"],\"conditions\":[\"rollover\",\"crash\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"SEAT BELTS\"},{\"kind\":\"symptom\",\"quote\":\"The shoulder portion of the seat belt did not hold the occupant (only the lap portion)\"},{\"kind\":\"symptom\",\"quote\":\"the occupant was partially ejected out of the rear of the cab\"},{\"kind\":\"condition\",\"quote\":\"The vehicle rolled\"},{\"kind\":\"symptom\",\"quote\":\"the roof caved in\"},{\"kind\":\"safety\",\"quote\":\"killed the occupant\"},{\"kind\":\"other\",\"quote\":\"roofs that are too weak to support the weight of the vehicle\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00057579,
+      "cached_tokens": 384,
+      "cost_usd": 0.00095965,
+      "input_tokens": 590,
+      "list_cost_usd": 0.00095965,
+      "output_tokens": 1546,
+      "reasoning_tokens": 1309
+    }
+  }
+}

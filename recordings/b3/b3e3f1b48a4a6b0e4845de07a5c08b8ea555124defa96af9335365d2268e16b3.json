@@ -1,0 +1,66 @@
+{
+  "key": "b3e3f1b48a4a6b0e4845de07a5c08b8ea555124defa96af9335365d2268e16b3",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10307,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"SEAT BELTS / restraints: airbags did not deploy and seat belts did not lock in a serious T-bone crash.\",\n  \"group\": \"restraints\",\n  \"symptoms\": [\"airbags did not deploy\", \"seat belts did not lock\"],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\"mileage\", \"date\"],\n  \"clues\": [\n    {\"kind\": \"component_group\", \"quote\": \"SEAT BELTS\"},\n    {\"kind\": \"component_group\", \"quote\": \"restraints\"},\n    {\"kind\": \"symptom\", \"quote\": \"none of the airbags deployed\"},\n    {\"kind\": \"symptom\", \"quote\": \"the seat belts did not lock\"},\n    {\"kind\": \"safety\", \"quote\": \"T-boned in a serious accident that totaled the car\"}\n  ]\n}",
+            "reasoning_content": "We need to output JSON only. Need parse report. Component SEAT BELTS, group restraints given. Narrative: \"We were T-boned in a serious accident that totaled the car, but none of the airbags deployed and the seat belts did not lock.\" Symptoms: airbags did not deploy; seat belts did not lock. Conditions? accident/crash? The conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. Crash not in list. Safety relevant true (serious accident, crash, risk). Fault codes none. Missing info: mileage null, date? received_at 2025-10-09 but date of incident missing; conditions? component present, symptom present. Need list missing_info only facts analysis needs: mileage, date maybe. Since date received but incident date missing. Conditions? We have crash condition but allowed conditions don't include crash. Maybe missing_info include \"mileage\", \"date\". Also maybe \"conditions\" because no environmental conditions. But rule: list only for facts analysis needs: component, symptom, conditions, mileage, date. Component and symptom present. Conditions: there is a condition (serious accident) but not environmental. Could include \"conditions\" if need. Let's decide: missing_info [\"mileage\", \"date\", \"conditions\"]? The report says serious accident, so condition is crash. But conditions list in schema is restricted to cold/moisture/heat/vibration/intermittent/after service/charging. Crash isn't one. So conditions array empty. Missing info maybe mileage and date. Conditions not missing? Hmm.\n\nNeed clues with verbatim quotes. Quotes:\n- \"SEAT BELTS\" from component? Is it in report? The user message includes JSON with \"component\": \"SEAT BELTS\". Yes report includes. Quote verbatim \"SEAT BELTS\".\n- symptom quote: \"none of the airbags deployed\" and \"the seat belts did not lock\". Also \"T-boned in a serious accident that totaled the car\" for safety.\n- component_group quote? \"restraints\" appears as group in report. Could quote \"restraints\". Kind component_group.\n- safety quote: \"serious accident that totaled the car\" or \"T-boned in a serious accident\". Need exact substring. The narrative: \"We were T-boned in a serious accident that totaled the car, but none of the airbags deployed and the seat belts did not lock.\" Verbatim spans: \"T-boned in a serious accident that totaled the car\" yes. \"none of the airbags deployed\" yes. \"the seat belts did not lock\" yes. \"SEAT BELTS\" yes. \"restraints\" yes.\n\nSummary one line: \"SEAT BELTS / restraints: airbags did not deploy and seat belts did not lock in a serious T-bone crash.\" Must not invent? T-bone from narrative. Good.\n\nGroup: \"restraints\" given. Symptoms plain words: \"airbags did not deploy\", \"seat belts did not lock\". Conditions: [] because no allowed condition? Could include \"intermittent\"? No. \"after service\"? no. So empty.\n\nFault_codes: [].\n\nSafety_relevant: true.\n\nMissing_info: Need decide. The report has component, symptom, safety. Missing mileage and incident date. \"date\" maybe received_at is date but not incident date. The analysis needs date. Conditions? The crash is a condition but not in allowed list. I might put [\"mileage\", \"date\"] only. But prompt says conditions in missing_info; if no environmental conditions, maybe missing. However report gives condition \"serious accident\" — that's a condition though not allowed. The conditions field is from list; maybe not missing. I'll include [\"mileage\", \"date\"] to avoid overclaim. Could include \"conditions\" because not specified (weather/road). But the report says crash, so condition is known enough. The desk analysis might need mileage/date. Good.\n\nNeed JSON only no other text. Ensure quotes exact. \"SEAT BELTS\" exact. \"restraints\" exact. \"none of the airbags deployed\" exact. \"the seat belts did not lock\" exact. \"T-boned in a serious accident that totaled the car\" exact. For safety maybe quote \"serious accident that totaled the car\" exact. Good.\n\nNeed include kind \"other\" maybe no.\n\nFinal JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531128,
+      "id": "9ff4da6e2c54cb7715aae820ae58eea6",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1113,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 914,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00041289,
+          "billing_source": "go",
+          "list_cost": 0.00068815,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 128,
+            "output": 1113,
+            "reasoning": 914
+          }
+        },
+        "prompt_tokens": 512,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1625
+      }
+    },
+    "text": "{\n  \"summary\": \"SEAT BELTS / restraints: airbags did not deploy and seat belts did not lock in a serious T-bone crash.\",\n  \"group\": \"restraints\",\n  \"symptoms\": [\"airbags did not deploy\", \"seat belts did not lock\"],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\"mileage\", \"date\"],\n  \"clues\": [\n    {\"kind\": \"component_group\", \"quote\": \"SEAT BELTS\"},\n    {\"kind\": \"component_group\", \"quote\": \"restraints\"},\n    {\"kind\": \"symptom\", \"quote\": \"none of the airbags deployed\"},\n    {\"kind\": \"symptom\", \"quote\": \"the seat belts did not lock\"},\n    {\"kind\": \"safety\", \"quote\": \"T-boned in a serious accident that totaled the car\"}\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00041289,
+      "cached_tokens": 384,
+      "cost_usd": 0.00068815,
+      "input_tokens": 512,
+      "list_cost_usd": 0.00068815,
+      "output_tokens": 1113,
+      "reasoning_tokens": 914
+    }
+  }
+}

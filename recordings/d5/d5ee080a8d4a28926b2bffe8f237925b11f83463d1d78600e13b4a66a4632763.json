@@ -1,0 +1,66 @@
+{
+  "key": "d5ee080a8d4a28926b2bffe8f237925b11f83463d1d78600e13b4a66a4632763",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 14058,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2022 Acura MDX lane departure assist: random multiple errors, steering wheel lockup and weak brakes while driving to work; intermittent and safety-critical.\",\"group\":\"adas\",\"symptoms\":[\"random multiple errors\",\"steering wheel locked up\",\"brakes not working well\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"LANE DEPARTURE: ASSIST\"},{\"kind\":\"symptom\",\"quote\":\"My car started freaking out randomly.\"},{\"kind\":\"symptom\",\"quote\":\"It popped up numerous errors.\"},{\"kind\":\"symptom\",\"quote\":\"The steering wheel locked up.\"},{\"kind\":\"symptom\",\"quote\":\"The brakes weren\\u2019t working well.\"},{\"kind\":\"condition\",\"quote\":\"randomly\"},{\"kind\":\"condition\",\"quote\":\"driving to work yesterday morning\"},{\"kind\":\"safety\",\"quote\":\"very close to rear ending me\"},{\"kind\":\"safety\",\"quote\":\"major safety risk\"}]}",
+            "reasoning_content": "We need answer one JSON object no other text. Need normalize report. Need extract fields. Component given \"LANE DEPARTURE: ASSIST\", group adas. Need summary one line component, symptom, conditions. Symptoms: car started freaking out randomly, numerous errors popped up, steering wheel locked up, brakes weren't working well, nearly rear ended? Need plain words. Conditions: driving to work yesterday morning, busiest time, maybe not cold/moisture/heat/vibration/intermittent? \"randomly\" suggests intermittent. Could include intermittent. No fault codes named. Safety relevant true: crash risk, near rear-end, steering lock, brakes not working, major safety risk, PTSD after prior head-on. Missing_info: mileage missing, date? received date and narrative \"yesterday morning\" but no exact date? Report received_at 2025-09-13, narrative says yesterday morning. Date maybe not exact? Missing info: mileage. Component and symptom present. Conditions present (driving to work, busy road). Could include date? The report has received_at. Missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Mileage null. Date? received_at gives date but event date \"yesterday morning\"; maybe date missing? But not necessarily. Need be careful. \"date\" could be event date? It says driving to work yesterday morning, received 2025-09-13 -> event likely 2025-09-12, but not explicit. Could list mileage only. Maybe date not missing because received_at. But if event date needed? Hmm.\n\nClues: need verbatim spans copied from report. Need include kind symptom/condition/safety etc. Quotes must be verbatim. Need ensure exact character copying including apostrophes? Narrative uses \"wasn\\u2019t\" etc. We can copy plain text with curly apostrophes? The JSON user message includes escaped unicode. We can use actual curly apostrophe? The quote must character for character from report. The report text as displayed includes \\u2019 escapes in JSON; actual narrative string contains curly apostrophe. In our answer, if we include curly apostrophe, it's verbatim character. Need ensure. Could avoid quotes with apostrophes? Use spans without apostrophes to avoid mismatch. Need include relevant.\n\nPotential clues:\n- {\"kind\":\"symptom\",\"quote\":\"My car started freaking out randomly.\"}\n- {\"kind\":\"symptom\",\"quote\":\"It popped up numerous errors.\"}\n- {\"kind\":\"symptom\",\"quote\":\"The steering wheel locked up.\"}\n- {\"kind\":\"symptom\",\"quote\":\"The brakes weren\\u2019t working well.\"} but apostrophe. Could quote \"The brakes weren\" no. Need full. Use actual curly apostrophe maybe okay. But to avoid, quote \"brakes weren\" not verbatim? No. Could quote \"The brakes\" but too short? It is verbatim span. But should evidence symptom. Maybe use \"brakes weren\\u2019t working well\" with escape? In JSON, \\u2019 is valid and decodes to curly apostrophe. The quote string in JSON with \\u2019 will represent curly apostrophe, exactly. Good. We can include `\\u2019` in answer. But final should JSON; valid with escapes. Since we output text, can include `\\u2019` escape. That's fine.\n\n- condition: \"driving to work yesterday morning\" quote exact? Narrative: \"I was driving to work yesterday morning- busiest time of day on probably the busiest road in our area.\" We can quote \"driving to work yesterday morning\" exact substring. kind condition. Also \"randomly\" indicates intermittent? Quote \"randomly\" exact. kind condition? Could include \"started freaking out randomly\" as symptom and condition intermittent. Need conditions array includes \"intermittent\" maybe based on randomly. Clue kind condition quote \"randomly\" maybe. But condition list allowed cold, moisture, heat, vibration, intermittent, after service, charging. \"driving to work\" not in allowed list. Conditions array should contain allowed list values. So include \"intermittent\" due random. Maybe no other allowed conditions. If conditions empty? But prompt expects list. We can include [\"intermittent\"]. Clues can include condition quote \"randomly\" or \"started freaking out randomly\". But kind condition? Fine.\n\n- safety: \"The steering wheel locked up.\" could be safety clue too but kind symptom. Need safety clue: quote \"major safety risk\" exact? Narrative: \"This was a major safety risk for me AND for the others on the road!!!\" Contains exact \"major safety risk\". Use kind safety quote \"major safety risk\". Also near rear ending: \"very close to rear ending me\" exact. Use safety quote. Also \"steering wheel locked up\" safety. Need not too many.\n\n- component_group clue: quote \"LANE DEPARTURE: ASSIST\"? That is in component field not narrative. The report includes component. Quote can be from report? It says from report in user message. Component is part of report. Could include kind component_group quote \"LANE DEPARTURE: ASSIST\". But maybe not necessary. Could include.\n\nNeed summary: \"2022 Acura MDX lane departure assist: random multiple errors, steering lock and poor brakes while driving to work; intermittent, safety risk.\" One line. Need include component, symptom, conditions. Keep concise.\n\nNeed group: \"adas\".\n\nSymptoms array plain: \"random multiple errors\", \"steering wheel locked up\", \"brakes not working well\". Maybe \"vehicle started freaking out randomly\" and \"numerous errors\". Need not duplicate. Use [\"random multiple errors\", \"steering wheel locked up\", \"brakes not working well\"]. Could include \"near rear-end collision risk\" but that's safety not symptom. Could include \"vehicle behaved erratically\" maybe.\n\nFault_codes: [].\n\nSafety_relevant: true.\n\nMissing_info: [\"mileage\"] maybe. Could include \"date\"? The event date is \"yesterday morning\" relative to received_at, so maybe not. The instructions: list missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Mileage null. Date is arguably present via received_at and relative. Conditions present enough. Component present. Symptom present. So [\"mileage\"].\n\nClues: Need only quotes verbatim. Let's craft:\n[\n{\"kind\":\"component_group\",\"quote\":\"LANE DEPARTURE: ASSIST\"},\n{\"kind\":\"symptom\",\"quote\":\"My car started freaking out randomly.\"},\n{\"kind\":\"symptom\",\"quote\":\"It popped up numerous errors.\"},\n{\"kind\":\"symptom\",\"quote\":\"The steering wheel locked up.\"},\n{\"kind\":\"symptom\",\"quote\":\"The brakes weren\\u2019t working well.\"},\n{\"kind\":\"condition\",\"quote\":\"randomly\"},\n{\"kind\":\"condition\",\"quote\":\"driving to work yesterday morning\"},\n{\"kind\":\"safety\",\"quote\":\"very close to rear ending me\"},\n{\"kind\":\"safety\",\"quote\":\"major safety risk\"}\n]\nNeed ensure \"My car started freaking out randomly.\" exact includes period? Narrative: \"My car started freaking out randomly. It popped...\" yes exact. \"It popped up numerous errors.\" exact. \"The steering wheel locked up.\" exact. \"The brakes weren’t working well.\" exact? Narrative: \"The brakes weren\\u2019t working well.\" yes. \"very close to rear ending me\" exact substring? Narrative: \"because they were very close to rear ending me.\" yes. \"major safety risk\" exact substring in \"This was a major safety risk for me AND...\" yes. \"driving to work yesterday morning\" exact? Narrative \"I was driving to work yesterday morning- busiest\" yes. \"randomly\" exact substring yes.\n\nNeed maybe include \"I had a car behind me\" safety? Not needed.\n\nNeed JSON only. Ensure valid JSON. Use \\u2019 escape inside quote. Since final answer text will include backslash-u sequence. That is valid JSON. Could also use actual curly apostrophe. Safer to use \\u2019. Need not escape other. No markdown? User says one JSON object and no other text. So final only JSON. Need no code fences.\n\nNeed consider \"safety_relevant\" in input false but we set true. Good.\n\nNeed \"summary\": maybe \"2022 Acura MDX lane departure assist: random multiple errors, steering wheel lockup and weak brakes while driving to work; intermittent and safety-critical.\" Conditions includes intermittent. Good.\n\nNeed \"conditions\": [\"intermittent\"] maybe. Does \"driving to work\" not allowed. Good.\n\nPotential issue: \"group\": \"adas\" given group. Good.\n\nNeed maybe include \"after service\"? no.\n\nNeed \"missing_info\": [\"mileage\"]. Could include \"date\"? Let's think. The report received_at 2025-09-13 and narrative \"yesterday morning\" implies event date. But exact date not explicitly in narrative. However received_at plus yesterday morning is enough to infer 2025-09-12. But the instruction says do not invent facts. If we list date missing, okay? The analysis may need exact date; relative plus received date may suffice. But \"date\" field not present except received_at. The report has received_at. Usually missing_info includes mileage only. Good.\n\nNeed ensure no suggestions to close/scrap etc. None.\n\nNeed maybe include \"fault_codes\": [] no named codes.\n\nNeed final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530381,
+      "id": "b82099ff276e43284644262fbd4ae2c5",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2225,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1995,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00083346,
+          "billing_source": "go",
+          "list_cost": 0.0013891,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 353,
+            "output": 2225,
+            "reasoning": 1995
+          }
+        },
+        "prompt_tokens": 737,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2962
+      }
+    },
+    "text": "{\"summary\":\"2022 Acura MDX lane departure assist: random multiple errors, steering wheel lockup and weak brakes while driving to work; intermittent and safety-critical.\",\"group\":\"adas\",\"symptoms\":[\"random multiple errors\",\"steering wheel locked up\",\"brakes not working well\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"LANE DEPARTURE: ASSIST\"},{\"kind\":\"symptom\",\"quote\":\"My car started freaking out randomly.\"},{\"kind\":\"symptom\",\"quote\":\"It popped up numerous errors.\"},{\"kind\":\"symptom\",\"quote\":\"The steering wheel locked up.\"},{\"kind\":\"symptom\",\"quote\":\"The brakes weren\\u2019t working well.\"},{\"kind\":\"condition\",\"quote\":\"randomly\"},{\"kind\":\"condition\",\"quote\":\"driving to work yesterday morning\"},{\"kind\":\"safety\",\"quote\":\"very close to rear ending me\"},{\"kind\":\"safety\",\"quote\":\"major safety risk\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00083346,
+      "cached_tokens": 384,
+      "cost_usd": 0.0013891,
+      "input_tokens": 737,
+      "list_cost_usd": 0.0013891,
+      "output_tokens": 2225,
+      "reasoning_tokens": 1995
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "8174071cf3099116d38178c055bc5d589f0eb7e17ad0e7e7d23b9a01260c0dac",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 7353,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system recall 24V700000; repair part unavailable; no failure experienced.\",\"group\":\"electrical_general\",\"symptoms\":[],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"other\",\"quote\":\"NHTSA Campaign Number: 24V700000\"},{\"kind\":\"condition\",\"quote\":\"the part to do the recall repair was unavailable\"},{\"kind\":\"other\",\"quote\":\"The contact had not experienced a failure.\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize. Report: component electrical system, group electrical_general. Narrative: 2019 Nissan Leaf, recall 24V700000 electrical system, part unavailable, manufacturer exceeded reasonable time, no failure experienced. Symptoms: none experienced? We need symptoms array maybe empty. Conditions? none. Fault codes: campaign number? \"fault_codes\": code if report names one. NHTSA Campaign Number 24V700000 is recall not fault code. Should we include? It says fault_codes code if report names one. Campaign number is not fault code. Could leave empty. Safety_relevant false (given false, report no crash fire etc). Missing_info: mileage null, date? received date present, conditions? no failure. Component present, symptom? no failure. For analysis, missing info? Since no failure, maybe symptom missing? But report says no failure. We shouldn't invent. The field-quality report has no mileage. Need missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Component present, symptom? \"had not experienced a failure\" indicates no symptom. Maybe missing_info [\"mileage\"]? Date present received_at. Conditions absent maybe not applicable. Could include mileage. But if no failure, conditions not needed? Hmm. Need produce clues with verbatim quotes. Include component_group quote \"ELECTRICAL SYSTEM\"? That's in report? The user message JSON has component \"ELECTRICAL SYSTEM\"; narrative not exactly? It contains \"(ELECTRICAL SYSTEM)\" yes quote \"ELECTRICAL SYSTEM\" appears. Also recall quote \"NHTSA Campaign Number: 24V700000 (ELECTRICAL SYSTEM)\". Symptom quote \"The contact had not experienced a failure.\" Could be clue kind symptom? It's absence of symptom. Maybe kind other. Condition quote \"the part to do the recall repair was unavailable\" kind condition? It is a condition. Safety? no. Need summary one line: Electrical system, recall repair parts unavailable, no failure experienced. Conditions array: maybe [\"after service\"]? No, recall not service. No conditions. Could include \"part unavailable\" but conditions list limited to cold moisture heat vibration intermittent after service charging. None. So empty. Symptoms empty.\n\nNeed ensure JSON only. Quotes verbatim. Let's craft.\n\nPotential issue \"group\": given group \"electrical_general\" or electrical/electronic component group. Use \"electrical_general\" as given.\n\nMissing_info: [\"mileage\"] maybe. But date present. Conditions? no. Since no failure experienced, symptom not missing. Mileage null. Let's include mileage only.\n\nClues:\n- {\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"}\n- {\"kind\":\"other\",\"quote\":\"NHTSA Campaign Number: 24V700000\"}\n- {\"kind\":\"condition\",\"quote\":\"the part to do the recall repair was unavailable\"}\n- {\"kind\":\"symptom\",\"quote\":\"The contact had not experienced a failure.\"} Hmm kind symptom but quote says no symptom. Is that okay? Could be \"other\" to avoid mislabel. Use other.\n- safety maybe no quote. No.\n\nNeed \"fault_codes\": [] because campaign not fault code. Could include \"24V700000\" as fault code? The schema says fault_codes code if report names one. NHTSA campaign number is a code but not fault code. Better empty.\n\nSummary: \"Electrical system recall 24V700000; repair part unavailable; no failure experienced.\" Contains facts. One line.\n\nFinal only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793528023,
+      "id": "f54d133e1a4d85847505321e7a148e74",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 861,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 732,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00032757,
+          "billing_source": "go",
+          "list_cost": 0.00054595,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 188,
+            "output": 861,
+            "reasoning": 732
+          }
+        },
+        "prompt_tokens": 572,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1433
+      }
+    },
+    "text": "{\"summary\":\"Electrical system recall 24V700000; repair part unavailable; no failure experienced.\",\"group\":\"electrical_general\",\"symptoms\":[],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"other\",\"quote\":\"NHTSA Campaign Number: 24V700000\"},{\"kind\":\"condition\",\"quote\":\"the part to do the recall repair was unavailable\"},{\"kind\":\"other\",\"quote\":\"The contact had not experienced a failure.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00032757,
+      "cached_tokens": 384,
+      "cost_usd": 0.00054595,
+      "input_tokens": 572,
+      "list_cost_usd": 0.00054595,
+      "output_tokens": 861,
+      "reasoning_tokens": 732
+    }
+  }
+}

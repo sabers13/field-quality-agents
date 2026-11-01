@@ -1,0 +1,66 @@
+{
+  "key": "29eca644d439e9b5ab5fd9c7b753c1a809b57f15809a3f7544d42eb850d54718",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 15193,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Air bags (restraints): at ~30 MPH collision avoidance failed to activate, vehicle rear-ended another, no air bag deployment; no injuries reported.\",\"group\":\"restraints\",\"symptoms\":[\"collision avoidance system failed to activate\",\"vehicle crashed into the rear of a second vehicle\",\"air bags did not deploy\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"air bags\"},{\"kind\":\"symptom\",\"quote\":\"collision avoidance system failed to activate\"},{\"kind\":\"symptom\",\"quote\":\"vehicle crashed into the rear of a second vehicle\"},{\"kind\":\"symptom\",\"quote\":\"no air bags deployed\"},{\"kind\":\"condition\",\"quote\":\"while driving approximately 30 MPH\"},{\"kind\":\"safety\",\"quote\":\"vehicle crashed into the rear of a second vehicle\"},{\"kind\":\"safety\",\"quote\":\"No injuries were reported\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize report. Need extract component air bags group restraints. Symptoms: collision avoidance system failed to activate; vehicle crashed into rear of second vehicle; air bags did not deploy. Conditions? while driving approximately 30 MPH. Crash. Could include \"while driving approximately 30 MPH\". Conditions list allowed: cold moisture heat vibration intermittent after service charging. None apply? Maybe no conditions. Symptoms plain words. Fault codes none. safety_relevant true (crash). missing_info? Component given, symptom given, conditions maybe speed given; mileage given; date? received_at given but event date missing? The schema missing_info options include mileage, date, conditions, component, symptom. The report doesn't state date of incident. Could list date? It says received_at 2025-04-30 but not incident date. Analysis needs date? Maybe yes. Conditions? It gives driving 30 MPH but not weather/road? Could list conditions? But \"conditions\" category in output pertains cold/moisture/etc; report no such conditions. Missing info maybe date. Need clues with verbatim quotes. Must copy exactly from narrative. Quotes: \"collision avoidance system failed to activate\" (exact substring? narrative: \"the collision avoidance system failed to activate\" yes). \"vehicle crashed into the rear of a second vehicle\" exact? Narrative: \"and the vehicle crashed into the rear of a second vehicle.\" substring \"vehicle crashed into the rear of a second vehicle\" yes. \"no air bags deployed\" exact? Narrative: \"but no air bags deployed.\" substring \"no air bags deployed\" yes. \"while driving approximately 30 MPH\" exact yes. \"No injuries were reported.\" safety? Maybe crash quote. \"The contact stated that while driving approximately 30 MPH\" exact. Need group clue? component group \"restraints\" not in report? It says AIR BAGS component from metadata; quote must be in report? The rules say every quote copied verbatim from report. The report in user message includes component field \"AIR BAGS\" and group \"restraints\"; are those report? It says read only report in user message. JSON includes component. We can quote \"AIR BAGS\" verbatim? Yes in JSON. But narrative has \"air bags\" lower case. For component_group quote could use \"AIR BAGS\" from component field. But \"quote\": verbatim span copied from report. It is in the report object. Okay. But maybe better quote \"air bags\" from narrative? That supports component. component_group kind. Use quote \"air bags\" exact lower-case in narrative? Narrative says \"no air bags deployed\" yes contains \"air bags\". Good.\n\nNeed summary one line: \"Air bags: collision avoidance failed to activate at ~30 MPH, vehicle rear-ended another, air bags did not deploy in crash.\" Include component symptom conditions.\n\nNeed symptoms array: [\"collision avoidance system failed to activate\", \"vehicle crashed into rear of second vehicle\", \"air bags did not deploy\"]. Maybe \"front end severely damaged\" not symptom? No.\n\nConditions array: Allowed values only. None of listed. Could include none? Empty. But maybe \"while driving approximately 30 MPH\" not allowed condition category. So empty.\n\nFault codes empty.\n\nsafety_relevant true.\n\nmissing_info: [\"date\"]? Since incident date missing. Maybe also \"conditions\" because no weather/road? But report has speed. The analysis needs conditions? Hmm. The prompt says List missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. Use empty when nothing important missing. Component present, symptom present, mileage present, date? There is received_at but incident date absent. Conditions? It gives driving speed but not environmental conditions; but not necessarily needed? For airbag nondeploy, date and speed. Since received_at given, event date missing. I think include [\"date\"]. Maybe conditions missing? There is no cold/moisture etc. But conditions category likely not missing if not relevant. Could include date only. Maybe \"conditions\" because no road/weather? But analysis might need crash details? It has speed. I'd include date only. \n\nClues array:\n- {\"kind\":\"symptom\",\"quote\":\"collision avoidance system failed to activate\"}\n- {\"kind\":\"symptom\",\"quote\":\"vehicle crashed into the rear of a second vehicle\"}\n- {\"kind\":\"symptom\",\"quote\":\"no air bags deployed\"}\n- {\"kind\":\"condition\",\"quote\":\"while driving approximately 30 MPH\"} (kind condition though allowed conditions? clue kind can condition; quote is condition-ish. It is not in conditions array because not one of enumerated. Is that okay? The clue kind condition maybe okay. But conditions array should contain allowed condition tags only. Could avoid condition clue. But need evidence for conditions? It says conditions array allowed. Maybe clue kind condition can quote speed. But then conditions array empty. Fine? Hmm. Maybe \"conditions\" array could include \"intermittent\"? No.\n- {\"kind\":\"safety\",\"quote\":\"The vehicle crashed into the rear of a second vehicle\"} exact? Narrative: \"and the vehicle crashed into the rear of a second vehicle.\" substring \"The vehicle crashed...\"? Capital T not in narrative? It has \"the vehicle\" lower. If quote includes \"The\" uppercase after period? Narrative: \"and the vehicle crashed...\" Not exact if uppercase. Use \"vehicle crashed into the rear of a second vehicle\" exact.\n- {\"kind\":\"safety\",\"quote\":\"No injuries were reported\"} exact. But safety relevant due crash; no injuries. Could include crash as safety. \n- {\"kind\":\"component_group\",\"quote\":\"air bags\"} exact.\n- {\"kind\":\"other\",\"quote\":\"The cause of the failure was not determined\"} maybe not needed.\nNeed no extra text. Ensure JSON valid.\n\nNeed maybe include \"front end of the vehicle was severely damaged\" as other? Not necessary.\n\nSummary: \"Air bags (restraints): at ~30 MPH collision avoidance failed to activate, vehicle rear-ended another, no air bag deployment; no injuries reported.\" Good.\n\nNeed note \"The contact owns a 2020 Nissan Altima\" not needed.\n\nLet's craft final JSON only. Ensure no markdown? User says JSON object and no other text. We can output raw JSON. Use quotes. \n\nNeed \"group\": \"restraints\". \"symptoms\": maybe plain words. Conditions: [].\nfault_codes: [].\nmissing_info: [\"date\"].\nclues: include exact quotes. Need verify exact spans:\nNarrative: \"The contact stated that while driving approximately 30 MPH, the collision avoidance system failed to activate, and the vehicle crashed into the rear of a second vehicle. During the crash, the front end of the vehicle was severely damaged, but no air bags deployed. No injuries were reported.\"\nExact substrings:\n\"while driving approximately 30 MPH\" yes.\n\"collision avoidance system failed to activate\" yes.\n\"vehicle crashed into the rear of a second vehicle\" yes.\n\"no air bags deployed\" yes.\n\"No injuries were reported\" yes.\n\"air bags\" yes.\nPotential issue: quote \"air bags\" appears in \"no air bags deployed\". Good.\nUse kind \"component_group\" quote \"air bags\". \nUse kind \"safety\" quote \"vehicle crashed into the rear of a second vehicle\" and maybe \"No injuries were reported\" but safety? Crash quote enough. Could include both.\nUse kind \"condition\" quote \"while driving approximately 30 MPH\" - but condition kind? The rules allow kind condition. Though conditions array empty; is inconsistency? It says conditions array allowed values; clue quote can show driving condition. But might confuse. Maybe include as \"other\" or \"symptom\"? Speed is condition. I can include condition clue; conditions array empty because no environmental condition. That's fine? Hmm maybe not. To avoid mismatch, omit condition clue? But summary mentions. The clues need evidence for conditions maybe not. Could include \"condition\" kind quote \"while driving approximately 30 MPH\" and conditions array [] because it isn't one of enumerated. Is that acceptable? Maybe yes. But an automated checker might expect each conditions item has clue; not each clue in conditions. Fine.\n\nNeed missing_info maybe [\"date\"] only. Could include \"conditions\" if no weather? But then conditions array empty and missing_info includes conditions. Hmm if conditions missing, then conditions array empty. The prompt: missing_info list only facts analysis needs. For crash airbag nondeploy, incident date and maybe weather/road conditions are needed. But the report gives speed. \"conditions\" in missing_info likely means environmental conditions. Could be missing. However, \"conditions\" array only cold/moisture etc. Since airbag, conditions less relevant. I'd include date only. If include conditions, maybe too much.\n\nNeed final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793526530,
+      "id": "febe0a3811d3351ed8b30a723b517ac9",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2037,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1832,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00075426,
+          "billing_source": "go",
+          "list_cost": 0.0012571,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 225,
+            "output": 2037,
+            "reasoning": 1832
+          }
+        },
+        "prompt_tokens": 609,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2646
+      }
+    },
+    "text": "{\"summary\":\"Air bags (restraints): at ~30 MPH collision avoidance failed to activate, vehicle rear-ended another, no air bag deployment; no injuries reported.\",\"group\":\"restraints\",\"symptoms\":[\"collision avoidance system failed to activate\",\"vehicle crashed into the rear of a second vehicle\",\"air bags did not deploy\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"air bags\"},{\"kind\":\"symptom\",\"quote\":\"collision avoidance system failed to activate\"},{\"kind\":\"symptom\",\"quote\":\"vehicle crashed into the rear of a second vehicle\"},{\"kind\":\"symptom\",\"quote\":\"no air bags deployed\"},{\"kind\":\"condition\",\"quote\":\"while driving approximately 30 MPH\"},{\"kind\":\"safety\",\"quote\":\"vehicle crashed into the rear of a second vehicle\"},{\"kind\":\"safety\",\"quote\":\"No injuries were reported\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00075426,
+      "cached_tokens": 384,
+      "cost_usd": 0.0012571,
+      "input_tokens": 609,
+      "list_cost_usd": 0.0012571,
+      "output_tokens": 2037,
+      "reasoning_tokens": 1832
+    }
+  }
+}

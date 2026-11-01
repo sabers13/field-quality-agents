@@ -1,0 +1,66 @@
+{
+  "key": "6e9977b1bf3d22413330baaceb7b6ce7a02629c501c08ed8c26efbabad36c89b",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 4769,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\": \"2023 Ford Transit (Winnebago Ekko) alternator repeatedly fails to charge the battery, melting and failing again days after a sensor replacement and output-reduction recall, with fire risk under the hood\", \"group\": \"electrical_general\", \"symptoms\": [\"alternator melted\", \"alternator no longer charging the battery\", \"alternator failed again shortly after repair and recall work\", \"alternator confirmed to need replacement\"], \"conditions\": [\"after service\", \"charging\"], \"fault_codes\": [], \"safety_relevant\": true, \"missing_info\": [\"mileage\"], \"clues\": [{\"kind\": \"symptom\", \"quote\": \"the alternator basically melted\"}, {\"kind\": \"symptom\", \"quote\": \"the new alternator was no longer charging the battery\"}, {\"kind\": \"condition\", \"quote\": \"the recall to reduce the alternator output was performed\"}, {\"kind\": \"condition\", \"quote\": \"the alternator was no longer working\"}, {\"kind\": \"symptom\", \"quote\": \"it was confirmed that the alternator needs to be replaced\"}, {\"kind\": \"safety\", \"quote\": \"This is a huge safety issue\"}, {\"kind\": \"safety\", \"quote\": \"the alternator will create a fire under the hood\"}, {\"kind\": \"component_group\", \"quote\": \"alternator\"}]}",
+            "reasoning_content": "Let me extract from the narrative.\n\nComponent: ELECTRICAL SYSTEM, group electrical_general. Alternator charging failure.\n\nSymptoms: alternator melted, not charging battery, alternator failed again after recall, confirmed needs replacement.\n\nConditions: \"after service\" (sensor replaced and recall performed, two days later failed), heat? \"melted\" — but conditions list: cold, moisture, heat, vibration, intermittent, charging. \"charging\" fits since alternator not charging. \"after service\" fits. Heat — melted is arguably heat but it's a symptom. I'll include \"after service\" and \"charging\".\n\nFault codes: none named.\n\nSafety relevant: true — fire under hood mentioned.\n\nMissing info: mileage is null → \"mileage\". Date present (received_at, narrative dates). Component present. Symptom present. Conditions — arguably present. So missing_info: [\"mileage\"].\n\nClues: verbatim quotes.\n\nSummary: one line.\n\nQuotes must be verbatim spans. Use exact substrings from narrative.\n\nCheck \"This is a huge safety issue since the alternator will create a fire under the hood\" — verbatim yes. Note escape \\u2019 in Ekko's.\n\nLet me build quotes carefully from narrative text:\n\n\"The original alternator was replaced in March 2025 after the alternator basically melted.\"\n\"In April the new alternator was no longer charging the battery.\"\n\"the recall to reduce the alternator output was performed\"\n\"two days later  the alternator was no longer working\" — note double space, risky. Use \"the alternator was no longer working\".\n\"it was confirmed that the alternator needs to be replaced\"\n\"the alternator will create a fire under the hood\"\n\"This is a huge safety issue\"\n\nGood.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530254,
+      "id": "2e92eff8d3a68a8e61b0c70213d48dc9",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 656,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 364,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00026439,
+          "billing_source": "go",
+          "list_cost": 0.00044065,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 306,
+            "output": 656,
+            "reasoning": 364
+          }
+        },
+        "prompt_tokens": 690,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1346
+      }
+    },
+    "text": "{\"summary\": \"2023 Ford Transit (Winnebago Ekko) alternator repeatedly fails to charge the battery, melting and failing again days after a sensor replacement and output-reduction recall, with fire risk under the hood\", \"group\": \"electrical_general\", \"symptoms\": [\"alternator melted\", \"alternator no longer charging the battery\", \"alternator failed again shortly after repair and recall work\", \"alternator confirmed to need replacement\"], \"conditions\": [\"after service\", \"charging\"], \"fault_codes\": [], \"safety_relevant\": true, \"missing_info\": [\"mileage\"], \"clues\": [{\"kind\": \"symptom\", \"quote\": \"the alternator basically melted\"}, {\"kind\": \"symptom\", \"quote\": \"the new alternator was no longer charging the battery\"}, {\"kind\": \"condition\", \"quote\": \"the recall to reduce the alternator output was performed\"}, {\"kind\": \"condition\", \"quote\": \"the alternator was no longer working\"}, {\"kind\": \"symptom\", \"quote\": \"it was confirmed that the alternator needs to be replaced\"}, {\"kind\": \"safety\", \"quote\": \"This is a huge safety issue\"}, {\"kind\": \"safety\", \"quote\": \"the alternator will create a fire under the hood\"}, {\"kind\": \"component_group\", \"quote\": \"alternator\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00026439,
+      "cached_tokens": 384,
+      "cost_usd": 0.00044065,
+      "input_tokens": 690,
+      "list_cost_usd": 0.00044065,
+      "output_tokens": 656,
+      "reasoning_tokens": 364
+    }
+  }
+}

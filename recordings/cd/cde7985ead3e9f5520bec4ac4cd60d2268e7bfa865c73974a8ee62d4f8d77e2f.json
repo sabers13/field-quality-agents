@@ -1,0 +1,66 @@
+{
+  "key": "cde7985ead3e9f5520bec4ac4cd60d2268e7bfa865c73974a8ee62d4f8d77e2f",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9036,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"No failure reported; verify recall 23V865000 remedy availability for the OCS sensor air bag recall and perform the standard restraints inspection.\",\"rationale\":\"The case is a 2021 Toyota Camry with recall 23V865000 for an occupant classification system sensor that may prevent front passenger air bag deployment. The owner reports no failure, but the dealer confirmed recall repair parts were not yet available and the manufacturer exceeded a reasonable repair time. No rulebook entry names a targeted test, so the standard test is appropriate.\",\"group\":\"restraints\",\"symptoms\":[\"No failure experienced\"],\"conditions\":[\"Recall repair parts unavailable\",\"Manufacturer exceeded a reasonable amount of time for the recall repair\"],\"fault_codes\":[],\"safety_relevant\":false,\"targeted\":false,\"test_name\":\"Standard restraints inspection\",\"clues\":[{\"kind\":\"component_group\",\"quote\":\"Air Bags\"},{\"kind\":\"symptom\",\"quote\":\"The contact had not experienced a failure.\"},{\"kind\":\"condition\",\"quote\":\"the part to do the recall repair was unavailable\"},{\"kind\":\"condition\",\"quote\":\"parts were not yet available\"},{\"kind\":\"condition\",\"quote\":\"The contact stated that the manufacturer had exceeded a reasonable amount of time for the recall repair.\"},{\"kind\":\"other\",\"quote\":\"NHTSA Campaign Number: 23V865000 (Air Bags)\"}]}",
+            "reasoning_content": "We need answer JSON only. Need analyze. Case: 2021 Camry, recall 23V865000 air bag OCS sensor, parts unavailable, no failure experienced. Rulebook empty. Similar cases are same recall parts unavailable. No targeted test named. Need decide targeted false standard test. Summary what to test and why. But no rulebook. Since no failure, no test? The schema expects test_name maybe standard test. Need propose standard test with targeted false. But \"desk never closes...\" We can say confirm recall remedy availability / perform recall repair? But test_name targeted test rulebook names absent. Hmm.\n\nNeed output one JSON object. Fields. Group restraints. Symptoms: maybe \"The contact had not experienced a failure.\" Is that symptom? No symptom. conditions: recall repair parts unavailable, manufacturer exceeded reasonable time. fault_codes: none. safety_relevant false (narrative says not experienced failure; but airbag recall safety? Extraction false; but narrative shows potential risk? Rule: safety_relevant when narrative shows risk to people. Recall about OCS preventing front passenger airbag deployment is safety risk, but this specific narrative no failure. However safety-relevant? The case itself is airbag recall parts unavailable; risk to people if airbag doesn't deploy. But extraction says false. We must use facts. Could set false because no failure and no injury. But recall remedy unavailable for safety system. Hmm. It says \"The contact had not experienced a failure.\" No risk shown to people. Set false.\n\nTargeted false. test_name maybe \"Standard field-quality inspection\" or \"Recall remedy verification\". Need maybe \"Confirm recall remedy availability and perform recall repair when parts available\" but desk doesn't accept charge etc. Test_name should be a test. Since rulebook empty, standard test. Could be \"Standard restraints system inspection\". But no rulebook names. We can put \"standard restraints inspection\". Targeted false.\n\nClues: verbatim quotes. Include component_group \"Air Bags\" quote? Narrative has \"Air Bags\" within campaign. Yes. condition quote \"the part to do the recall repair was unavailable\" exact? Narrative: \"however, the part to do the recall repair was unavailable.\" Contains substring exact. condition \"parts were not yet available\" exact? Narrative: \"confirmed that parts were not yet available.\" yes. other quote \"NHTSA Campaign Number: 23V865000 (Air Bags)\" exact. symptom \"The contact had not experienced a failure.\" exact. Also maybe safety? no.\n\nNeed no extra text. Summary one line: \"No failure reported; verify recall 23V865000 remedy availability for OCS sensor air bag recall.\" Rationale condition evidence. Maybe mention no rulebook match so standard test.\n\nNeed include safety_relevant false. targeted false. test_name. JSON.\n\nEnsure quotes match exact from narrative. \"Air Bags\" yes. \"The contact had not experienced a failure.\" yes. \"the part to do the recall repair was unavailable\" yes. \"parts were not yet available\" yes. \"NHTSA Campaign Number: 23V865000 (Air Bags)\" yes.\n\nCould include condition \"The contact stated that the manufacturer had exceeded a reasonable amount of time for the recall repair.\" exact. yes. Maybe include.\n\nfault_codes [].\nconditions array list of condition strings? The schema has conditions [\"...\"]. We can list \"recall repair parts unavailable\" and \"manufacturer exceeded reasonable time\". Symptoms maybe [\"No failure experienced\"]. Clues include.\n\nNeed final JSON only.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793525331,
+      "id": "f4f027cccc3e32ca8eea1036f921f86e",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1014,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 729,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0005013,
+          "billing_source": "go",
+          "list_cost": 0.0008355,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 1514,
+            "output": 1014,
+            "reasoning": 729
+          }
+        },
+        "prompt_tokens": 1514,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 2528
+      }
+    },
+    "text": "{\"summary\":\"No failure reported; verify recall 23V865000 remedy availability for the OCS sensor air bag recall and perform the standard restraints inspection.\",\"rationale\":\"The case is a 2021 Toyota Camry with recall 23V865000 for an occupant classification system sensor that may prevent front passenger air bag deployment. The owner reports no failure, but the dealer confirmed recall repair parts were not yet available and the manufacturer exceeded a reasonable repair time. No rulebook entry names a targeted test, so the standard test is appropriate.\",\"group\":\"restraints\",\"symptoms\":[\"No failure experienced\"],\"conditions\":[\"Recall repair parts unavailable\",\"Manufacturer exceeded a reasonable amount of time for the recall repair\"],\"fault_codes\":[],\"safety_relevant\":false,\"targeted\":false,\"test_name\":\"Standard restraints inspection\",\"clues\":[{\"kind\":\"component_group\",\"quote\":\"Air Bags\"},{\"kind\":\"symptom\",\"quote\":\"The contact had not experienced a failure.\"},{\"kind\":\"condition\",\"quote\":\"the part to do the recall repair was unavailable\"},{\"kind\":\"condition\",\"quote\":\"parts were not yet available\"},{\"kind\":\"condition\",\"quote\":\"The contact stated that the manufacturer had exceeded a reasonable amount of time for the recall repair.\"},{\"kind\":\"other\",\"quote\":\"NHTSA Campaign Number: 23V865000 (Air Bags)\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0005013,
+      "cached_tokens": 0,
+      "cost_usd": 0.0008355,
+      "input_tokens": 1514,
+      "list_cost_usd": 0.0008355,
+      "output_tokens": 1014,
+      "reasoning_tokens": 729
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "e746bdf154700253b16c721825efb27bf4eaf44e949c6294f0aa4c32e79e0e5b",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 16073,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system (given) with overheating/running hot symptoms; fuel tank recall mentioned, no specific operating conditions.\",\"group\":\"electrical_general\",\"symptoms\":[\"overheating\",\"running hot\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"overheating and running hot\"},{\"kind\":\"safety\",\"quote\":\"fuel is a flammable chemical\"},{\"kind\":\"safety\",\"quote\":\"I no longer feel safe operating the vehicle\"},{\"kind\":\"safety\",\"quote\":\"comfortable transporting my daughter\"},{\"kind\":\"other\",\"quote\":\"fuel tank needs to be replaced\"},{\"kind\":\"other\",\"quote\":\"customer satisfaction program\"},{\"kind\":\"safety\",\"quote\":\"fuel safety recall\"}]}",
+            "reasoning_content": "We need to parse the report. Component: ELECTRICAL SYSTEM given, group electrical_general. Narrative about overheating, running hot, recall fuel tank replacement, non-safety, customer satisfaction program, buyback request, feels unsafe transporting daughter, aligns with fuel safety recall. No fault codes named. Symptoms: overheating, running hot. Conditions: none explicitly? Maybe \"hot\" as condition? But conditions list allowed cold, moisture, heat, vibration, intermittent, after service, charging. \"overheating and running hot\" could be symptom, not condition. The report mentions fuel tank recall, flammable chemical. Safety relevant? It mentions no crash/fire/smoke/injury/loss of control/stall at speed. But \"no longer feel safe operating\", \"flammable chemical\", \"fuel safety recall\" — risk? The prompt says set safety_relevant when report mentions a crash, fire, smoke, injury, loss of control, a stall at speed or another risk to people. It mentions fuel is flammable chemical and safety recall, but not actual fire. \"another risk to people\" — feels unsafe transporting daughter. Hmm. The given safety_relevant is false but we decide. I'd set true? Need be careful. The report explicitly says \"fuel is a flammable chemical\" and \"I no longer feel safe operating the vehicle or comfortable transporting my daughter\" — that's a risk to people. The recall deemed non safety. I'd say safety_relevant true? But the prompt examples: crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. \"Flammable chemical\" and \"feel unsafe\" could be risk. I'll set true. But there is no actual fire. However \"another risk to people\" broad. The narrative alleges fuel tank recall, flammable. I think true is defensible.\n\nMissing info: mileage null -> missing mileage. Date? received_at given, but report date? The narrative says 2024 vehicle; no date of incident. Missing date. Conditions? No specific conditions (cold/moisture etc). Component? Given electrical system but narrative about overheating/fuel. Component maybe present but mismatch. The analysis needs component; given. Symptom present. Conditions missing? Yes no conditions. So missing_info: mileage, date, conditions. Maybe component? Given electrical system, but narrative fuel/overheating. We can include component? The field is provided, so not missing. But the reported component may be wrong? Not missing. We'll list mileage, date, conditions.\n\nClues: need verbatim quotes from narrative. Quotes:\n- \"overheating and running hot\" (symptom)\n- \"fuel tank needs to be replaced\" (other? component_group? maybe other)\n- \"recall\" (other)\n- \"fuel is a flammable chemical\" (safety)\n- \"I no longer feel safe operating the vehicle\" (safety)\n- \"comfortable transporting my daughter\" (safety)\n- \"fuel safety recall\" (safety? fault_code? no code)\nNeed kind. Could include symptom quote \"overheating and running hot\". Condition? none. Fault_code none. Component_group? \"fuel tank\" maybe component_group? But group is electrical_general. Hmm. We can include \"fuel tank needs to be replaced\" as other or component_group? The schema kind includes component_group. But component group is electrical_general. The report mentions fuel tank; not electrical. Maybe include as other. Safety quote. Also \"customer satisfaction program\" other.\n\nSummary: one line: component, symptom, conditions. \"Electrical system (given) reported with overheating/running hot; fuel tank recall noted, no specific conditions.\" Need concise.\n\nGroup: \"electrical_general\" given. But narrative about fuel/overheating. The instruction: \"the electrical/electronic component group, or the given group\". Since given group electrical_general, use that. Or could infer? It says group field. Use given group.\n\nSymptoms: [\"overheating\", \"running hot\"]. Plain words.\n\nConditions: [] because none. But maybe \"heat\" as condition? Overheating is symptom, not condition. No.\n\nFault_codes: [] (no code named).\n\nsafety_relevant: true? Let's decide. The prompt says set when mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. It mentions flammable chemical and unsafe transporting daughter. That is another risk to people. So true. But the source has safety_relevant false, but we're normalizing. I'll set true. However if the desk expects based on explicit risk, \"fuel is a flammable chemical\" and \"no longer feel safe\" is risk. Yes.\n\nMissing_info: [\"mileage\", \"date\", \"conditions\"]. Date: no incident date. Mileage null. Conditions: no cold/moisture etc. Maybe \"component\" because narrative is about fuel/overheating but component given electrical system; not missing. Could include \"component\" if the given component doesn't match? The missing_info is facts analysis needs; component is provided, so no. But maybe \"symptom\" present. Good.\n\nClues array. Need quotes verbatim. Let's extract exact substrings:\n- \"overheating and running hot\" appears: \"my 2024 bronco sport overheating and running hot\" yes.\n- \"fuel tank needs to be replaced\" appears: \"the fuel tank needs to be replaced\" yes.\n- \"fuel is a flammable chemical\" appears: \"considering fuel is a flammable chemical\" yes.\n- \"I no longer feel safe operating the vehicle\" appears exactly? Narrative: \"I have requested a buy back as I no longer feel safe operating the vehicle or comfortable transporting my daughter in the vehicle\" yes exact substring \"I no longer feel safe operating the vehicle\".\n- \"comfortable transporting my daughter\" appears exact? \"or comfortable transporting my daughter in the vehicle\" yes.\n- \"fuel safety recall\" appears: \"known fuel safety recall currently present\" yes.\n- \"customer satisfaction program\" appears: \"fords customer satisfaction program\" yes.\n- \"non safety\" appears: \"deemed as non safety\" yes.\nNeed kind. For \"overheating and running hot\" kind symptom. For \"fuel tank needs to be replaced\" kind other or component_group? It's a component-ish but not electrical. Use other. For \"fuel is a flammable chemical\" kind safety. For \"I no longer feel safe operating the vehicle\" safety. For \"comfortable transporting my daughter\" safety. For \"fuel safety recall\" safety? or other. Use safety. For \"customer satisfaction program\" other. \"non safety\" other. Keep clues maybe 6-7. Need not overdo. Include quotes that support safety and symptoms. The schema says clues kind can be symptom, condition, fault_code, component_group, safety, other. We'll include:\n1. symptom: \"overheating and running hot\"\n2. safety: \"fuel is a flammable chemical\"\n3. safety: \"I no longer feel safe operating the vehicle\"\n4. safety: \"comfortable transporting my daughter\"\n5. other: \"fuel tank needs to be replaced\"\n6. other: \"customer satisfaction program\"\nMaybe \"fuel safety recall\" safety. Good.\n\nNeed JSON only. No markdown? The prompt says answer with one JSON object and no other text. We can output raw JSON. Ensure valid.\n\nSummary line: \"Electrical system (given) with overheating/running hot symptoms; fuel tank recall mentioned, no specific operating conditions.\" That's one line. Component, symptom, conditions. Conditions none. Good.\n\nGroup: \"electrical_general\".\n\nSymptoms: [\"overheating\", \"running hot\"] maybe \"overheating and running hot\" as one? Better list separate.\n\nConditions: [].\n\nFault_codes: [].\n\nSafety_relevant: true.\n\nMissing_info: [\"mileage\", \"date\", \"conditions\"].\n\nClues as above.\n\nNeed ensure every quote verbatim. Check exact capitalization: Narrative: \"I reached out to ford due to my 2024 bronco sport overheating and running hot.\" So \"overheating and running hot\" exact. \"the fuel tank needs to be replaced\" exact? Narrative: \"my bronco currently has a recall that the fuel tank needs to be replaced but it is currently being deemed as non safety\" yes. \"considering fuel is a flammable chemical\" exact. \"I no longer feel safe operating the vehicle\" exact. \"comfortable transporting my daughter\" exact. \"fords customer satisfaction program\" exact? Narrative: \"it is currently a part of fords customer satisfaction program.\" Yes substring \"fords customer satisfaction program\". \"known fuel safety recall currently present\" exact? Narrative: \"it aligns too closely with the known fuel safety recall currently present on some 2021-2024 bronco sports.\" So \"fuel safety recall\" exact substring. Good.\n\nCould include \"non safety\" quote as other. But enough.\n\nNeed no suggestion to close/scrap/charge. We don't.\n\nFinal JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530137,
+      "id": "0c8d3d84c130ff55e22f85229158b162",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2064,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1885,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00076668,
+          "billing_source": "go",
+          "list_cost": 0.0012778,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 255,
+            "output": 2064,
+            "reasoning": 1885
+          }
+        },
+        "prompt_tokens": 639,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2703
+      }
+    },
+    "text": "{\"summary\":\"Electrical system (given) with overheating/running hot symptoms; fuel tank recall mentioned, no specific operating conditions.\",\"group\":\"electrical_general\",\"symptoms\":[\"overheating\",\"running hot\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"overheating and running hot\"},{\"kind\":\"safety\",\"quote\":\"fuel is a flammable chemical\"},{\"kind\":\"safety\",\"quote\":\"I no longer feel safe operating the vehicle\"},{\"kind\":\"safety\",\"quote\":\"comfortable transporting my daughter\"},{\"kind\":\"other\",\"quote\":\"fuel tank needs to be replaced\"},{\"kind\":\"other\",\"quote\":\"customer satisfaction program\"},{\"kind\":\"safety\",\"quote\":\"fuel safety recall\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00076668,
+      "cached_tokens": 384,
+      "cost_usd": 0.0012778,
+      "input_tokens": 639,
+      "list_cost_usd": 0.0012778,
+      "output_tokens": 2064,
+      "reasoning_tokens": 1885
+    }
+  }
+}

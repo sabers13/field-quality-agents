@@ -1,0 +1,66 @@
+{
+  "key": "be9b15884c99a4810de324de7f572c0db6921370c33695cacf34b4c3b903723b",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 14180,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system: battery not charging, Service Hybrid System message, hybrid system malfunction warnings, and repeated propulsion-related shutdowns/warnings.\",\"group\":\"electrical_general\",\"symptoms\":[\"battery not charging\",\"Service Hybrid System message\",\"hybrid system malfunction warnings\",\"repeated system shutdowns or warnings related to propulsion\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"Battery not charging\"},{\"kind\":\"symptom\",\"quote\":\"Service Hybrid System\"},{\"kind\":\"symptom\",\"quote\":\"Hybrid system malfunction warnings\"},{\"kind\":\"symptom\",\"quote\":\"Repeated system shutdowns or warnings related to propulsion\"},{\"kind\":\"safety\",\"quote\":\"Repeated system shutdowns or warnings related to propulsion\"}]}",
+            "reasoning_content": "We need answer only JSON object. Need normalize. Read report fields. Component ELECTRICAL SYSTEM, group electrical_general, make Jeep Grand Cherokee 2024, mileage null, received date. Narrative bullets: Battery not charging; “Service Hybrid System” message; Hybrid system malfunction warnings; Repeated system shutdowns or warnings related to propulsion.\n\nNeed summary one line: component, symptom, conditions. Group given electrical_general. Symptoms plain words: battery not charging, service hybrid system message, hybrid system malfunction warnings, repeated system shutdowns/warnings related to propulsion. Conditions: charging? Maybe \"charging\" condition? The allowed conditions list includes \"charging\" likely battery not charging? Hmm conditions are cold, moisture, heat, vibration, intermittent, after service, charging. Report mentions battery not charging, so condition \"charging\" maybe not exactly condition but relevant. Also repeated system shutdowns = intermittent? Could include intermittent? Need not invent. \"Repeated system shutdowns or warnings\" indicates intermittent. But conditions should be only if report says. It says repeated, so intermittent arguably. \"charging\" maybe battery not charging is symptom not condition. Conditions are environmental/context; none explicitly except maybe charging? Actually \"Battery not charging\" is symptom. Use empty conditions maybe. But allowed condition \"charging\" could be context for EV/hybrid charging. Hmm report says battery not charging. I'd include \"charging\" as condition? Let's be precise: conditions are context factors. \"Battery not charging\" is symptom. So conditions [].\n\nFault codes: none named. safety_relevant: report has \"system shutdowns ... related to propulsion\" potential loss of propulsion? Rule: set safety_relevant when report mentions crash, fire, smoke, injury, loss of control, a stall at speed or another risk to people. \"Repeated system shutdowns or warnings related to propulsion\" could be risk to people? It doesn't say at speed or loss of control. The input has safety_relevant false. But we must judge. Hmm \"propulsion shutdowns\" could be safety relevant. But rule says mentions \"another risk to people.\" Propulsion shutdown is risk. Should set true? However given field safety_relevant false may be source. Need not invent. \"Repeated system shutdowns or warnings related to propulsion\" strongly implies possible propulsion loss. But no crash/fire etc. The desk likely wants safety_relevant true if stall at speed. Here no speed. But \"system shutdowns related to propulsion\" = potential stall. I think set true? Need maybe avoid overflag? The rule: \"a stall at speed or another risk to people.\" System shutdowns related to propulsion is another risk to people. So safety_relevant true. But original says false; however prompt says normalise, not trust? It includes safety_relevant false. We can override if report mentions. Hmm.\n\nMissing_info: mileage missing, date? received_at present but report date? The incoming has received_at, no incident date. Missing_info list allowed: mileage, date, conditions, component, symptom. Component present, symptom present, conditions not explicitly present (but maybe conditions missing), mileage null. Date? received_at is 2025-11-26, but that's receive date not incident date. Should list \"mileage\", \"date\", \"conditions\" maybe. The desk needs conditions. Report has no environmental conditions. So missing_info [\"mileage\",\"date\",\"conditions\"]. But if safety true maybe? Keep.\n\nClues: verbatim spans. Need copy from narrative exactly. Quotes:\n\"Battery not charging\" (note narrative starts bullet \\u2022 then Battery; quote can be substring)\n\"“Service Hybrid System” message\" includes curly quotes, verbatim. Need JSON escape? Can include curly quotes.\n\"Hybrid system malfunction warnings\"\n\"Repeated system shutdowns or warnings related to propulsion\"\nAlso component quote \"ELECTRICAL SYSTEM\" from component field? Rules quote copied from report. The report is entire user message JSON? It says read only report in user message. Could quote \"ELECTRICAL SYSTEM\" from component. Clues kind component_group maybe quote \"ELECTRICAL SYSTEM\". Also safety quote \"Repeated system shutdowns or warnings related to propulsion\" kind safety. But same quote can be in clues multiple? Fine.\n\nNeed one JSON object no other text. Ensure valid JSON. Summary: \"Electrical system: battery not charging, Service Hybrid System message, hybrid malfunction warnings, repeated propulsion-related shutdowns/warnings.\" Conditions maybe [].\n\nNeed consider group \"electrical_general\" given. Fine.\n\nSymptoms: Use plain words. Could be [\"battery not charging\",\"Service Hybrid System message\",\"hybrid system malfunction warnings\",\"repeated system shutdowns or warnings related to propulsion\"]. Good.\n\nFault_codes: [].\n\nsafety_relevant: true? Let's decide. The source has false; but report says repeated system shutdowns related to propulsion. That is a safety risk. The instruction says set when report mentions ... \"another risk to people.\" Propulsion shutdown is risk. So true. But maybe the desk expects not to mark because no crash/fire etc. Hmm. I lean true due to \"propulsion\" shutdown. But if wrong? The prompt: \"Set safety_relevant when the report mentions a crash, fire, smoke, injury, loss of control, a stall at speed or another risk to people.\" Repeated system shutdowns related to propulsion = another risk to people. Yep.\n\nMissing info: \"mileage\" null, \"date\" only received, \"conditions\" absent. Maybe also \"component\" no, symptom no. Good.\n\nClues include safety quote. Need ensure every quote exactly. \"Battery not charging\" appears after bullet? Narrative: \"\\u2022Battery not charging \\u2022\\u201cService Hybrid System\\u201d message \\u2022Hybrid system malfunction warnings \\u2022Repeated system shutdowns or warnings related to propulsion\". So quote \"Battery not charging\" yes. \"Service Hybrid System\" without curly? The exact span includes curly quotes around; but quote can be substring \"Service Hybrid System\" (characters inside). That's verbatim. But if include message, \"“Service Hybrid System” message\" exact includes curly. Use \"Service Hybrid System\" simpler. For kind symptom quote. \"Hybrid system malfunction warnings\" exact. \"Repeated system shutdowns or warnings related to propulsion\" exact. \"ELECTRICAL SYSTEM\" exact. Good.\n\nNeed JSON only. Use no markdown? The prompt says answer with one JSON object and no other text. Usually can output raw JSON. Do that.\n\nNeed maybe summary includes conditions. Conditions empty. Summary one line. Good.\n\nLet's craft final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793532383,
+      "id": "dccc0390bc0117f0ab9bab9c20389479",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1587,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1388,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00058542,
+          "billing_source": "go",
+          "list_cost": 0.0009757,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 149,
+            "output": 1587,
+            "reasoning": 1388
+          }
+        },
+        "prompt_tokens": 533,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2120
+      }
+    },
+    "text": "{\"summary\":\"Electrical system: battery not charging, Service Hybrid System message, hybrid system malfunction warnings, and repeated propulsion-related shutdowns/warnings.\",\"group\":\"electrical_general\",\"symptoms\":[\"battery not charging\",\"Service Hybrid System message\",\"hybrid system malfunction warnings\",\"repeated system shutdowns or warnings related to propulsion\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"Battery not charging\"},{\"kind\":\"symptom\",\"quote\":\"Service Hybrid System\"},{\"kind\":\"symptom\",\"quote\":\"Hybrid system malfunction warnings\"},{\"kind\":\"symptom\",\"quote\":\"Repeated system shutdowns or warnings related to propulsion\"},{\"kind\":\"safety\",\"quote\":\"Repeated system shutdowns or warnings related to propulsion\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00058542,
+      "cached_tokens": 384,
+      "cost_usd": 0.0009757,
+      "input_tokens": 533,
+      "list_cost_usd": 0.0009757,
+      "output_tokens": 1587,
+      "reasoning_tokens": 1388
+    }
+  }
+}

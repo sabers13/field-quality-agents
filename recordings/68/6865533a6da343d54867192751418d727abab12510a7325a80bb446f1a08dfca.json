@@ -1,0 +1,66 @@
+{
+  "key": "6865533a6da343d54867192751418d727abab12510a7325a80bb446f1a08dfca",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11524,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Passenger-side mirror replacement on a 2019 Subaru Forester: wrong/lighter grey casing after dealership service; functional with no warnings, but reported as a driver-perception concern.\",\"group\":\"body_controls\",\"symptoms\":[\"mirror casing is the wrong color, visibly lighter grey than the vehicle\",\"color mismatch may affect how other drivers perceive the vehicle\"],\"conditions\":[\"after service\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"passenger-side mirror\"},{\"kind\":\"symptom\",\"quote\":\"the mirror casing was the wrong color\"},{\"kind\":\"condition\",\"quote\":\"After the repair was completed\"},{\"kind\":\"other\",\"quote\":\"The dealership acknowledged that the wrong part color was used based on my VIN\"},{\"kind\":\"safety\",\"quote\":\"may pose a minor but notable risk to the awareness and safety of other drivers\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize report. Need parse. Component VISIBILITY/WIPER but narrative about passenger-side mirror replacement color mismatch. Group given body_controls. Need summary one line: component, symptom, conditions. Symptoms: wrong color mirror casing / color mismatch; functional and undamaged. Conditions? Maybe \"after service\" since replacement at dealership; lighting/weather conditions? Need conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. Report mentions \"In certain lighting or weather conditions\" but not cold/moisture/heat/vibration/intermittent/charging. It mentions after repair/service. So conditions [\"after service\"]. Fault codes none empty. safety_relevant? Report says no crash etc but claims potential confusion risk to other drivers, minor risk safety. Rule set safety_relevant when mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. It mentions \"risk to awareness and safety of other drivers\" and potential confusion. That's another risk to people? Hmm likely true? But field safety_relevant false in input; we should not rely? The prompt says set when report mentions risk to people. It does mention \"minor but notable risk to the awareness and safety of other drivers.\" That is risk to people (other drivers). So safety_relevant true? Need decide. It is a cosmetic color mismatch; narrative explicitly frames potential safety risk. Rule says when mentions another risk to people. It mentions safety risk, so true. But maybe not crash/fire etc. \"may pose a minor but notable risk to the awareness and safety of other drivers\" qualifies. Set true.\n\nMissing_info: mileage null. Component? Report is about mirror but component field VISIBILITY/WIPER. Is component missing? It has component field but narrative not wiper. Need missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Component maybe present as VISIBILITY/WIPER but wrong. Symptom present. Conditions present after service. Mileage missing. Date? Received date 2025-06-04, narrative May 2025. Date of repair not exact but date? \"In May 2025\" enough? Mileage missing. Maybe missing_info [\"mileage\"]. Could include \"component\" because the listed component (VISIBILITY/WIPER) doesn't match mirror? But field given component. The report itself names passenger-side mirror. The component group body_controls. The intake normalizes incoming field-quality report. Missing info: mileage only. Maybe date? Has May 2025 and received date. Conditions? after service. So [\"mileage\"].\n\nClues: need verbatim spans. Need kinds. Quotes copied verbatim. Must be character-for-character, including curly apostrophe? Need copy exact. Use quotes from narrative. Need JSON string. Ensure exact. Could include:\n- component_group: \"passenger-side mirror\" (verbatim? Narrative: \"passenger-side mirror on my 2019 Subaru Forester replaced\" yes substring)\n- symptom: \"mirror casing was the wrong color\" exact? Narrative: \"I noticed that the mirror casing was the wrong color \\u2014 a visibly lighter grey than the rest of the car.\" Quote \"the mirror casing was the wrong color\" is verbatim? It includes \"that the mirror casing...\" Yes substring \"the mirror casing was the wrong color\" exact? Narrative: \"I noticed that the mirror casing was the wrong color — a visibly...\" yes.\n- condition: \"After the repair was completed\" exact? Narrative \"After the repair was completed, I noticed...\" yes.\n- safety: \"may pose a minor but notable risk to the awareness and safety of other drivers\" exact? Narrative: \"which may pose a minor but notable risk to the awareness and safety of other drivers.\" yes.\n- other: \"wrong part color was used based on my VIN\" exact? Narrative \"acknowledged that the wrong part color was used based on my VIN\" yes.\nNeed not overdo.\n\nSummary: \"Passenger-side mirror replacement on 2019 Subaru Forester: casing wrong/lighter grey after dealership repair; functional, no warnings, potential driver-perception concern.\" One line. Need component, symptom, conditions. Include after service. Good.\n\nGroup: \"body_controls\" given. Note component field VISIBILITY/WIPER is weird, but group given body_controls. Use given group.\n\nSymptoms array: [\"mirror casing wrong color (lighter grey than vehicle)\", \"color mismatch may affect other drivers' perception\"]. Symptom plain words. Maybe only first. \"functional and undamaged\" not symptom. Include \"no warning lights or error messages\" not symptom? no.\n\nConditions: [\"after service\"] maybe also \"lighting/weather conditions\"? Allowed list doesn't include lighting/weather. Could include no. It says conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. Only after service. Good.\n\nFault_codes [].\n\nSafety_relevant true.\n\nMissing_info [\"mileage\"].\n\nNeed answer JSON only no markdown. Ensure valid JSON. Use escaped apostrophes? JSON strings can contain apostrophe. Curly apostrophe? We can include straight apostrophe? Verbatim quote must exact. If quote includes \"vehicle's\" with curly? Narrative has \"vehicle\\u2019s\" (curly right single quote). For quote \"wrong part color was used based on my VIN\" no apostrophe. For safety quote no apostrophe. Good.\n\nNeed ensure quote \"The dealership acknowledged that the wrong part color was used based on my VIN\" exact? Narrative: \"The dealership acknowledged that the wrong part color was used based on my VIN, but refused...\" Yes. We can use substring.\n\nNeed \"After the repair was completed\" exact: Narrative: \"After the repair was completed, I noticed...\" yes.\n\nNeed \"passenger-side mirror\" exact: Narrative: \"the passenger-side mirror on my 2019 Subaru Forester\" yes. Use \"passenger-side mirror\" as component_group? Kind component_group. Fine.\n\nNeed \"the mirror casing was the wrong color\" exact: yes.\n\nNeed \"may pose a minor but notable risk to the awareness and safety of other drivers\" exact: Narrative: \"which may pose a minor but notable risk to the awareness and safety of other drivers.\" yes. It has \"may pose...\" exact. Use.\n\nNeed final JSON only.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793527485,
+      "id": "b3f5a30f9a7deca224d2ee69c5c25982",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1548,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1344,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00058821,
+          "billing_source": "go",
+          "list_cost": 0.00098035,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 336,
+            "output": 1548,
+            "reasoning": 1344
+          }
+        },
+        "prompt_tokens": 720,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2268
+      }
+    },
+    "text": "{\"summary\":\"Passenger-side mirror replacement on a 2019 Subaru Forester: wrong/lighter grey casing after dealership service; functional with no warnings, but reported as a driver-perception concern.\",\"group\":\"body_controls\",\"symptoms\":[\"mirror casing is the wrong color, visibly lighter grey than the vehicle\",\"color mismatch may affect how other drivers perceive the vehicle\"],\"conditions\":[\"after service\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"passenger-side mirror\"},{\"kind\":\"symptom\",\"quote\":\"the mirror casing was the wrong color\"},{\"kind\":\"condition\",\"quote\":\"After the repair was completed\"},{\"kind\":\"other\",\"quote\":\"The dealership acknowledged that the wrong part color was used based on my VIN\"},{\"kind\":\"safety\",\"quote\":\"may pose a minor but notable risk to the awareness and safety of other drivers\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00058821,
+      "cached_tokens": 384,
+      "cost_usd": 0.00098035,
+      "input_tokens": 720,
+      "list_cost_usd": 0.00098035,
+      "output_tokens": 1548,
+      "reasoning_tokens": 1344
+    }
+  }
+}

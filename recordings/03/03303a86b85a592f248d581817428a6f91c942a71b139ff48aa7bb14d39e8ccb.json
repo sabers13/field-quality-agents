@@ -1,0 +1,66 @@
+{
+  "key": "03303a86b85a592f248d581817428a6f91c942a71b139ff48aa7bb14d39e8ccb",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11593,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Reported as VISIBILITY/WIPER; infotainment/backup camera display glitches with green lines and blacks out, intermittent on 2025-10-11 and 2025-10-21.\",\n  \"group\": \"body_controls\",\n  \"symptoms\": [\n    \"infotainment system glitching with green lines\",\n    \"display blacking out when using backup camera\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Infotainment system glitching with green lines and blacking out when utilizing back up camera.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"appeared again October 21, 2025\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"Could cause potential safety concerns or accidents.\"\n    },\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"body_controls\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"No indication or symptoms prior to failure.\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer JSON only. Need normalize report. Need be careful component field says VISIBILITY/WIPER but narrative infotainment/backup camera. Group given body_controls. Need summary component symptom conditions. Need symptoms plain words: infotainment system glitching with green lines, blacking out, when using backup camera. Conditions: intermittent? Appeared Oct 11 and Oct 21, no prior symptoms. \"when utilizing back up camera\" condition? Conditions list allowed cold moisture heat vibration intermittent after service charging. We can include \"intermittent\" because appeared again. Maybe \"when utilizing back up camera\" not in conditions allowed? Could include in symptoms. Fault codes none. Safety relevant: narrative says \"Could cause potential safety concerns or accidents\" mentions accidents risk. Set true? Rule: safety_relevant when mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. \"potential safety concerns or accidents\" is risk. So true. Missing_info: mileage null, date? Date present Oct 11 2025 first appeared, received date. Component mismatch? The report component is VISIBILITY/WIPER but symptom infotainment. Analysis needs component: actual component is infotainment/backup camera, but given component may be miscategorized. Missing_info maybe \"mileage\" only? Could include \"component\" because component field mismatch? Rules list missing_info for facts analysis needs: component, symptom, conditions, mileage, date. Component is given but inaccurate? Hmm \"missing_info\" only for facts not provided. Component is provided as VISIBILITY/WIPER but narrative component infotainment. Could list \"component\" because true component unclear/mismatched? But not missing exactly. Maybe include mileage. Date present. Conditions present. Symptom present. Should we include \"component\" due mismatch? The intake normalizes; maybe missing_info [\"mileage\"] and maybe \"component\" because report's component doesn't match narrative. But \"missing_info\" only for facts analysis needs. Analysis needs correct component. The field is present but likely wrong. I'd include \"component\" maybe \"mileage\". Need clues with verbatim quotes. Need quote exact spans. Can quote \"Infotainment system glitching with green lines and blacking out when utilizing back up camera.\" That's verbatim? Narrative: \"Infotainment system glitching with green lines and blacking out when utilizing back up camera.\" yes. \"Could cause potential safety concerns or accidents.\" yes. \"First appeared on October 11, 2025, appeared again October 21, 2025.\" exact. \"No indication or symptoms prior to failure.\" exact. \"VISIBILITY/WIPER\" from component field? Is that report? User message includes JSON. Quote must be from report. It is field value, can quote. Clue kind component_group quote \"VISIBILITY/WIPER\" or given group \"body_controls\". But component group maybe body_controls is given not narrative. It is in report. Could include component_group quote \"body_controls\". But group in output given. Clues can include component_group quote. Need not overdo.\n\nSummary one line: \"Infotainment/backup camera display glitches with green lines and blacks out; intermittent on Oct 11 and Oct 21 2025.\" Component maybe \"Infotainment/backup camera\" not VISIBILITY/WIPER. But summary must component. Could mention reported under VISIBILITY/WIPER but narrative infotainment. One line: \"Reported as VISIBILITY/WIPER; infotainment/backup camera display glitches with green lines and blacks out, intermittent on 2025-10-11 and 2025-10-21.\" Good.\n\nGroup: \"body_controls\" given. Symptoms array: \"infotainment system glitching with green lines\", \"display blacking out when using backup camera\". Conditions: [\"intermittent\"]. Maybe \"when utilizing back up camera\" is a condition but not in allowed list? The schema says conditions list examples? It says [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. It may not be exhaustive? It says conditions: [\"cold\", ...]. Likely use those. \"when utilizing backup camera\" is trigger, can put symptom. Conditions include intermittent. Fault codes [].\n\nSafety_relevant true. Missing_info [\"mileage\", \"component\"]? Let's think. \"component\" is in report as VISIBILITY/WIPER, but narrative says infotainment. Is it missing? It is inconsistent. Could include \"component\" because actual failing component (infotainment/backup camera) not formally identified. But if we include, okay. Mileage null. Date present. Conditions present. Symptom present. I think missing_info [\"mileage\", \"component\"] maybe. But maybe \"component\" not missing because provided. However analysis needs correct component; field mismatch means info is unreliable. The instructions: \"List missing_info only for facts the analysis needs: component, symptom, conditions, mileage, date. Use empty list when nothing important is missing.\" Since component is present but wrong, not missing. But actual component? Hmm. To avoid inventing, maybe include \"mileage\" only. But if component field says VISIBILITY/WIPER and narrative infotainment, no need missing. Yet summary says reported as VISIBILITY/WIPER. Could be enough. I lean missing_info [\"mileage\"] only. But maybe include \"component\" as the report's listed component conflicts with narrative, so correct component is unclear. The user likely expects extraction; including component missing might be penalized? The field exists. But missing_info is for missing facts; component not missing. However \"component\" could be considered missing because the failing component (infotainment) isn't in component field. Hmm.\n\nNeed answer one JSON object no other text. Ensure valid JSON. Quote verbatim. Let's craft.\n\nClues:\n- kind symptom quote \"Infotainment system glitching with green lines and blacking out when utilizing back up camera.\"\n- kind condition quote \"appeared again October 21, 2025\" maybe indicates intermittent. But quote exact substring? Narrative has \"First appeared on October 11, 2025, appeared again October 21, 2025.\" substring \"appeared again October 21, 2025\" yes. Use kind condition.\n- kind safety quote \"Could cause potential safety concerns or accidents.\"\n- kind component_group quote \"VISIBILITY/WIPER\" maybe. Or \"body_controls\". The component group in output is body_controls, quote from report \"body_controls\" exact. Use that.\n- kind other quote \"No indication or symptoms prior to failure.\" This supports no prior conditions. Could include.\nMaybe include quote \"no remedies due to \\\"No active recalls\\\"\"? Not needed. It includes escaped quotes; can copy? Avoid.\n\nNeed summary no mention \"accidents\" maybe safety. Fine.\n\nFinal JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531556,
+      "id": "ea607ba01f8fba091429a40ab2c94347",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1766,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1485,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00065265,
+          "billing_source": "go",
+          "list_cost": 0.00108775,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 180,
+            "output": 1766,
+            "reasoning": 1485
+          }
+        },
+        "prompt_tokens": 564,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2330
+      }
+    },
+    "text": "{\n  \"summary\": \"Reported as VISIBILITY/WIPER; infotainment/backup camera display glitches with green lines and blacks out, intermittent on 2025-10-11 and 2025-10-21.\",\n  \"group\": \"body_controls\",\n  \"symptoms\": [\n    \"infotainment system glitching with green lines\",\n    \"display blacking out when using backup camera\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Infotainment system glitching with green lines and blacking out when utilizing back up camera.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"appeared again October 21, 2025\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"Could cause potential safety concerns or accidents.\"\n    },\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"body_controls\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"No indication or symptoms prior to failure.\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00065265,
+      "cached_tokens": 384,
+      "cost_usd": 0.00108775,
+      "input_tokens": 564,
+      "list_cost_usd": 0.00108775,
+      "output_tokens": 1766,
+      "reasoning_tokens": 1485
+    }
+  }
+}

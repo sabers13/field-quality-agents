@@ -1,0 +1,66 @@
+{
+  "key": "9ff8cc3734c59bcee2511dd685dfe93fa27ac8a54bd7f000c4f4fb78e9eb5069",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 21927,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system: backup camera failure with no rearview image when shifted to R; risk of crash and injury.\",\"group\":\"electrical_general\",\"symptoms\":[\"backup camera failure\",\"missing rearview image when gear is shifted to R\",\"no image/video feed on screen when reversing\",\"only collision warning system displayed\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"Backup camera failure\"},{\"kind\":\"symptom\",\"quote\":\"missing rearview image\"},{\"kind\":\"condition\",\"quote\":\"when car gear is shifted to R\"},{\"kind\":\"symptom\",\"quote\":\"When reversing the backup camera does not display any image/video feed on the screen\"},{\"kind\":\"symptom\",\"quote\":\"only the collision warning system is displayed\"},{\"kind\":\"safety\",\"quote\":\"increasing the risk of crash and injury\"}]}",
+            "reasoning_content": "We need answer only JSON. Need parse report. Component electrical system, group electrical_general. Symptoms: backup camera failure, missing rearview image when gear shifted to R, no image/video feed on screen, only collision warning displayed. Conditions: reversing? \"when reversing\" maybe condition? Allowed conditions list: cold, moisture, heat, vibration, intermittent, after service, charging. \"when reversing\" not in list. Could include \"intermittent\"? no. Conditions maybe empty? The allowed conditions are specific. We shouldn't invent. The report says when gear shifted to R and when reversing. Not in list. Could put conditions []? Missing_info includes mileage (null), date? received_at exists, but date maybe event date? We have received_at, no mileage. Component and symptom present. Conditions? It describes condition but not environmental. We can list missing_info [\"mileage\"] maybe \"date\" if no incident date. But received_at is date received, not date. The schema says missing_info list facts analysis needs: component, symptom, conditions, mileage, date. Component present, symptom present, conditions? The report gives trigger condition (gear R) but not environmental conditions. Could be missing conditions? Probably not necessary? Need decide.\n\nSafety_relevant true due \"increasing the risk of crash and injury.\" Even input says false, but instructions set when mentions crash/injury. So true.\n\nFault_codes none.\n\nClues: verbatim spans. Need exact quotes from narrative. \"Backup camera failure\" exact. \"missing rearview image  when car gear is shifted to R\" note double spaces? The narrative has \"failure , missing rearview image  when car gear...\" There is two spaces between image and when? Let's check: \"Backup camera failure , missing rearview image  when car gear is shifted to R, increasing the risk of crash and injury. When reversing the backup camera does not display any image/video feed on the screen, only the collision warning system is displayed.\" We can quote smaller exact spans to avoid whitespace issues: \"Backup camera failure\" exact. \"increasing the risk of crash and injury\" exact. \"When reversing the backup camera does not display any image/video feed on the screen\" exact. \"only the collision warning system is displayed\" exact. \"when car gear is shifted to R\" exact? It appears \"when car gear is shifted to R\" yes. Component group quote \"ELECTRICAL SYSTEM\" from component field? Report includes component. Quote verbatim from report; can quote component field too. But clues should be from report. Use \"ELECTRICAL SYSTEM\" exact.\n\nSummary: \"Electrical system: backup camera failure, no rearview image when gear shifted to R; risk of crash and injury.\" one line.\n\nGroup: given \"electrical_general\" or component group. Use \"electrical_general\".\n\nSymptoms plain words: \"backup camera failure\", \"missing rearview image when gear shifted to R\", \"no image/video feed on screen when reversing\", \"only collision warning system displayed\". Maybe \"rearview image missing\". Conditions: []? Could include \"intermittent\"? no. It fails when reversing? Not allowed category. Maybe conditions [\"intermittent\"]? no. Leave [].\n\nmissing_info: mileage null. Also date? received_at present. \"date\" could mean incident date, not received. The report lacks incident date. Include \"mileage\", \"date\"? But date might be received_at. The field says missing_info only facts analysis needs. If no event date, include date. Conditions? Maybe missing environmental conditions but not needed. Include [\"mileage\",\"date\"]? However date is given received_at 2025-06-18. Is that date? It is received_at; could count as date. But analysis likely needs incident date. Hmm. The prompt says \"missing_info\": [\"mileage\", \"date\", \"conditions\", \"component\", \"symptom\"]. We have received_at but not incident date. I'd include mileage only? Let's think: In intake normalization, missing_info should list facts absent from report. Mileage null => missing. Date? received_at is present, but not necessarily event date. The report has received_at, so date not missing. Conditions? The report specifies when gear in R/reversing, but allowed conditions list doesn't include. It does not mention cold/moisture/etc. But \"conditions\" in missing_info likely means conditions under which symptom occurs. It does say when shifted to R. So not missing. I'd list [\"mileage\"].\n\nSafety_relevant true. Clues include safety quote. Fault codes [].\n\nNeed ensure JSON only no markdown? User says answer with one JSON object and no other text. We can output raw JSON. Need no code fences? \"no other text\" likely raw JSON. Use valid JSON.\n\nLet's craft:\n\n{\n  \"summary\": \"Electrical system: backup camera failure with no rearview image when shifted to R; risk of crash and injury.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\"backup camera failure\", \"missing rearview image when gear is shifted to R\", \"no image/video feed on screen when reversing\", \"only collision warning system displayed\"],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\"mileage\"],\n  \"clues\": [\n    {\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},\n    {\"kind\":\"symptom\",\"quote\":\"Backup camera failure\"},\n    {\"kind\":\"symptom\",\"quote\":\"missing rearview image  when car gear is shifted to R\"},\n    {\"kind\":\"symptom\",\"quote\":\"When reversing the backup camera does not display any image/video feed on the screen\"},\n    {\"kind\":\"symptom\",\"quote\":\"only the collision warning system is displayed\"},\n    {\"kind\":\"safety\",\"quote\":\"increasing the risk of crash and injury\"}\n  ]\n}\n\nNeed check quote \"missing rearview image  when...\" has double space. It is exact? Narrative string: \"Backup camera failure , missing rearview image  when car gear is shifted to R\" yes two spaces between image and when. But to avoid risk, quote \"missing rearview image\" only. Also \"when car gear is shifted to R\" exact. Let's use separate quotes: \"missing rearview image\" and \"when car gear is shifted to R\". But symptom quote can be. The rule says quote verbatim span. \"missing rearview image\" exact. Good. \"when car gear is shifted to R\" exact. Could include both but one symptom clue enough. Use \"missing rearview image\" exact. But if quote not exact due double spaces? It is exact substring \"missing rearview image\" yes. Use \"When reversing the backup camera does not display any image/video feed on the screen\" exact? Narrative: \"When reversing the backup camera does not display any image/video feed on the screen, only...\" yes exact. Good.\n\nNeed maybe condition clue? \"when car gear is shifted to R\" kind condition. But allowed kind condition. It is a condition. Include as condition. Good. \"When reversing...\" includes condition and symptom. Okay.\n\nNeed no mention \"after service\" etc.\n\nFinal raw JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793527705,
+      "id": "2cf9584377265ac179ff4e2699ec01c0",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1738,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1520,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00063996,
+          "billing_source": "go",
+          "list_cost": 0.0010666,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 151,
+            "output": 1738,
+            "reasoning": 1520
+          }
+        },
+        "prompt_tokens": 535,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2273
+      }
+    },
+    "text": "{\"summary\":\"Electrical system: backup camera failure with no rearview image when shifted to R; risk of crash and injury.\",\"group\":\"electrical_general\",\"symptoms\":[\"backup camera failure\",\"missing rearview image when gear is shifted to R\",\"no image/video feed on screen when reversing\",\"only collision warning system displayed\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"Backup camera failure\"},{\"kind\":\"symptom\",\"quote\":\"missing rearview image\"},{\"kind\":\"condition\",\"quote\":\"when car gear is shifted to R\"},{\"kind\":\"symptom\",\"quote\":\"When reversing the backup camera does not display any image/video feed on the screen\"},{\"kind\":\"symptom\",\"quote\":\"only the collision warning system is displayed\"},{\"kind\":\"safety\",\"quote\":\"increasing the risk of crash and injury\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00063996,
+      "cached_tokens": 384,
+      "cost_usd": 0.0010666,
+      "input_tokens": 535,
+      "list_cost_usd": 0.0010666,
+      "output_tokens": 1738,
+      "reasoning_tokens": 1520
+    }
+  }
+}

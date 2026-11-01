@@ -1,0 +1,66 @@
+{
+  "key": "b9f3adb2bbc5da4bc7f4d7d5a0d0c10b903ed95999b0e7316e4eb185c550d7c6",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10027,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Instrument panel speedometer/odometer on a 2005 Ford F-250; reported odometer fraud with advertised 96,000 miles versus Carfax 303,000 in 2023 and seller stating the odometer was swapped before sale.\",\"group\":\"instrumentation\",\"symptoms\":[\"odometer fraud\",\"mileage discrepancy\",\"advertised 96,000 miles but Carfax showed 303,000 in 2023\",\"odometer swapped prior to sale\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"Odometer Fraud.\"},{\"kind\":\"symptom\",\"quote\":\"the sellers advertisement indicated the odometer mileage was 96,000\"},{\"kind\":\"symptom\",\"quote\":\"the odometer was reported at 303,000 in 2023\"},{\"kind\":\"symptom\",\"quote\":\"the odometer had been swapped prior to the sale\"},{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize report. Component group given instrumentation. Summary one line component symptom conditions. Symptoms plain words: odometer mileage discrepancy / odometer swapped / fraudulent mileage. Conditions? Report doesn't mention cold moisture heat vibration intermittent after service charging. Maybe none. Fault codes none. Safety false (given and no risk). Missing info: date? Received date present; mileage present 303000; component present; symptom present; conditions? Not needed maybe. Need missing_info only facts analysis needs: component symptom conditions mileage date. Conditions not really missing? It says list only for facts the analysis needs. We have component, symptom, mileage, date (received_at) though event date unknown? \"date\" could mean incident date, not present. But report has received_at. Missing maybe incident date? Hmm. Need probably missing_info: []? Let's inspect. Narrative has no date of purchase/sale except Carfax 2023. Received_at 2025-10-09. Component specified. Symptom clear. Mileage 303000. Conditions not applicable. So empty list. Clues need verbatim spans from report. Need include symptom, component_group, maybe other. Quotes verbatim from narrative? \"Odometer Fraud.\" exactly. \"odometer had been swapped prior to the sale\" exactly? Narrative: \"The contact was informed that the odometer had been swapped prior to the sale.\" quote can be substring \"the odometer had been swapped prior to the sale\" but case? It is \"the odometer had been swapped prior to the sale\" yes lowercase the after that? In narrative: \"The contact was informed that the odometer had been swapped prior to the sale.\" substring \"the odometer had been swapped prior to the sale\" starts at \"the\" after that. Good. \"Carfax report indicated that the odometer was reported at 303,000 in 2023\" exact? Narrative: \"The Carfax report indicated that the odometer was reported at 303,000 in 2023.\" Quote without The maybe \"Carfax report indicated that the odometer was reported at 303,000 in 2023\" exact? After \"The \" yes \"Carfax report indicated...\" yes. Component group quote? Could quote \"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\" from component field, but rule says read report in user message; quote copied verbatim from report. The JSON input includes component field. Is quote from report? likely yes entire user message. But \"report\" maybe narrative. Safer use narrative quotes. For component_group clue maybe quote \"2005 Ford F-250\" not component group. Or \"odometer\" is symptom. We can include clue kind component_group quote \"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\" if acceptable. But the report includes that field. However \"verbatim span copied from the report\" yes. But maybe they expect narrative only? I'd include a narrative quote \"odometer\" as symptom, and \"Odometer Fraud.\" as symptom. Component_group clue can use \"Ford F-250\" not component group? Hmm kind component_group should clue to group. The component field is exact group. I think include it; it's in the input. But if quote not in narrative, maybe dropped. The prompt says \"Read only the report in the user message\" and user message is JSON including component. So okay.\n\nNeed summary one line: \"Instrument panel speedometer/odometer on 2005 Ford F-250; odometer fraud/mileage discrepancy reported, vehicle advertised at 96,000 but Carfax showed 303,000 in 2023 and seller said odometer was swapped.\" Conditions maybe none. Symptoms array: \"odometer fraud\", \"mileage discrepancy\", \"odometer swapped prior to sale\", \"advertised 96,000 miles vs Carfax 303,000 in 2023\". Keep plain words. Conditions empty. Fault codes empty. safety false. missing_info maybe [] or [\"date\"]? The event date? The report provides received date; but analysis may need date of purchase/sale? It says missing_info facts analysis needs: component symptom conditions mileage date. Date ambiguous. Received_at is date. Maybe not missing. Conditions not mentioned but not necessarily needed. I think empty list. But if conditions missing? For fraud case, conditions irrelevant. Use [].\n\nNeed ensure JSON only no markdown. Let's craft.\n\nClues:\n- {\"kind\":\"symptom\",\"quote\":\"Odometer Fraud.\"}\n- {\"kind\":\"symptom\",\"quote\":\"the sellers advertisement indicated the odometer mileage was 96,000\"}\nExact? Narrative: \"The contact stated that the sellers advertisement indicated the odometer mileage was 96,000.\" Substring \"the sellers advertisement indicated the odometer mileage was 96,000\" yes starts \"the sellers\" after \"that \"? Actually \"that the sellers advertisement...\" substring \"the sellers advertisement indicated...\" yes.\n- {\"kind\":\"symptom\",\"quote\":\"the odometer was reported at 303,000 in 2023\"} exact? Narrative: \"the odometer was reported at 303,000 in 2023.\" yes.\n- {\"kind\":\"symptom\",\"quote\":\"the odometer had been swapped prior to the sale\"} exact yes.\n- {\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\"} exact from component.\n- maybe {\"kind\":\"other\",\"quote\":\"private seller on social media\"} not necessary. Maybe include \"rejected all further communications\" not relevant. Avoid.\n\nNeed summary one line no period? okay.\n\nCheck \"safety_relevant\": false. Since input already false and no risk.\n\nNeed \"group\": \"instrumentation\" given.\n\nPotential issue: \"symptoms\" should be plain words not quotes? Fine.\n\nLet's final JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531109,
+      "id": "af2c2232f65454c0b12b4fa84b056cbe",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1481,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1242,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00056013,
+          "billing_source": "go",
+          "list_cost": 0.00093355,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 292,
+            "output": 1481,
+            "reasoning": 1242
+          }
+        },
+        "prompt_tokens": 676,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2157
+      }
+    },
+    "text": "{\"summary\":\"Instrument panel speedometer/odometer on a 2005 Ford F-250; reported odometer fraud with advertised 96,000 miles versus Carfax 303,000 in 2023 and seller stating the odometer was swapped before sale.\",\"group\":\"instrumentation\",\"symptoms\":[\"odometer fraud\",\"mileage discrepancy\",\"advertised 96,000 miles but Carfax showed 303,000 in 2023\",\"odometer swapped prior to sale\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"Odometer Fraud.\"},{\"kind\":\"symptom\",\"quote\":\"the sellers advertisement indicated the odometer mileage was 96,000\"},{\"kind\":\"symptom\",\"quote\":\"the odometer was reported at 303,000 in 2023\"},{\"kind\":\"symptom\",\"quote\":\"the odometer had been swapped prior to the sale\"},{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00056013,
+      "cached_tokens": 384,
+      "cost_usd": 0.00093355,
+      "input_tokens": 676,
+      "list_cost_usd": 0.00093355,
+      "output_tokens": 1481,
+      "reasoning_tokens": 1242
+    }
+  }
+}

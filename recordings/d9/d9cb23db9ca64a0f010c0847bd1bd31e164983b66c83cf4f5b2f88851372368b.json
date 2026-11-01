@@ -1,0 +1,66 @@
+{
+  "key": "d9cb23db9ca64a0f010c0847bd1bd31e164983b66c83cf4f5b2f88851372368b",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11748,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Jeep Wagoneer ADAS/AEB: automatic emergency braking randomly goes to full stop at all speeds including highway, blind spot warning activates and takes over, and changing check engine lights occur.\",\n  \"group\": \"adas\",\n  \"symptoms\": [\n    \"blind spot warning system constantly activates and takes over\",\n    \"automatic braking system randomly activates for no reason\",\n    \"vehicle goes into full braking and stops\",\n    \"automatic braking can happen at all speeds including highway speeds\",\n    \"check engine lights activate and the code changes each time\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The blind spot warning system constantly activates and takes over.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The automatic braking system randomly activates for no reason.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The car will go into full braking and stop.\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"The car will go into full braking and stop. This will happen at all speeds to include highway speeds.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Now I am getting check engine lights and the code changes every time the light activates.\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer JSON only. Need normalize. Need read narrative. Component forward collision avoidance AEB, group adas. Symptoms: blind spot warning constantly activates/takes over; automatic braking randomly activates for no reason; car goes full braking and stop at all speeds incl highway; check engine lights code changes; dealership can't replicate; concerns about coding. Conditions: intermittent? \"randomly\", \"at all speeds\" maybe conditions list allowed: cold moisture heat vibration intermittent after service charging. We can include \"intermittent\" because random/continual? The conditions array should only include from list? Prompt says conditions: [\"cold\",...]. Could include \"intermittent\". Safety relevant? Report mentions full braking and stop at highway speeds, risk. Set true. missing_info: mileage null; date? Narrative has bought June 2023, starting Sept 2023, received date. Conditions? There are conditions? Maybe missing_info [\"mileage\"]. Component and symptom present. Date maybe received_at. Conditions maybe \"all speeds\" enough? Missing info only facts analysis needs: component symptom conditions mileage date. Mileage missing. Date available? Narrative dates and received_at. So [\"mileage\"]. Fault codes? \"code changes every time\" but no specific code named. So [] because report names no code. Clues with verbatim quotes. Need ensure exact character spans. Quotes copied from narrative. Need valid JSON.\n\nNeed summary one line: \"Jeep Wagoneer ADAS/AEB: random automatic emergency braking to full stop at all speeds, blind spot warning activates and takes over, changing check engine codes.\" Fine.\n\nClues:\n- component_group? quote \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\" from component field? Report includes component value perhaps yes user message entire report. Verbatim. Kind component_group.\n- symptom: \"The automatic braking system randomly activates for no reason.\"\n- symptom: \"The car will go into full braking and stop.\"\n- condition: \"This will happen at all speeds to include highway speeds.\" Is condition? kind condition maybe not from allowed list? condition quote can be any? kind condition. But conditions array only from allowed tokens. Quote can support safety. Maybe kind safety for highway full braking? Use safety quote.\n- symptom: \"The blind spot warning system constantly activates and takes over.\"\n- symptom: \"Now I am getting check engine lights and the code changes every time the light activates.\"\n- condition: \"randomly activates\" not standalone? quote must be verbatim span. \"randomly\" is verbatim? Yes word. But maybe condition quote \"continual electrical problems\" indicates intermittent? Use quote \"continual electrical problems\" kind other/condition. Hmm.\n- safety: \"The car will go into full braking and stop. This will happen at all speeds to include highway speeds.\" Could quote exact two sentences. Kind safety. Good.\n\nNeed maybe \"after service\" condition because dealership service? There is \"When we take it to the dealership for service all we get is ... and nothing is fixed.\" That's after service? Could include condition \"after service\" but is that relevant? It happens and not fixed after service. But allowed condition. However conditions should describe when symptom occurs. \"after service\" not symptom occurrence. No.\n\n\"intermittent\" because \"randomly activates\", \"constantly activates\", \"code changes every time\". Include intermittent. Could be contradictory but random = intermittent.\n\nNeed missing_info could include \"mileage\" only. Is \"date\" missing? Report has received_at and narrative dates. It doesn't give exact incident date but enough? The prompt says date missing if not. We have received_at; not necessarily incident date. But \"starting September 2023\" provides onset. Could list mileage only. If list date? Hmm analysis needs date. There is received_at. I'd not list date.\n\nNeed no extra text. Ensure JSON valid. Let's craft.\n\nQuotes exact:\n\"The blind spot warning system constantly activates and takes over.\" Yes narrative exact.\n\"The automatic braking system randomly activates for no reason.\" exact.\n\"The car will go into full braking and stop.\" exact.\n\"This will happen at all speeds to include highway speeds.\" exact.\n\"Now I am getting check engine lights and the code changes every time the light activates.\" exact.\n\"continual electrical problems\" exact? Narrative: \"starting September 2023 we have had continual electrical problems.\" yes substring. Use maybe as condition other? We don't need.\n\nComponent quote: \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\" exact in component field. Good.\n\nSafety true.\n\nShould summary mention \"at highway speeds\" etc.\n\nNeed ensure conditions array tokens only: [\"intermittent\"]. Could include \"after service\"? Hmm maybe not. Could include \"vibration\"? no. \"heat\"? no. \"cold\"? no. \"moisture\"? no. \"charging\"? no. Only intermittent. Maybe \"all speeds\" not token.\n\nCould include \"conditions\": [\"intermittent\"] because random and continual. But \"constantly activates\" not intermittent. However automatic braking randomly. Fine.\n\nClues kind condition quote \"randomly\" maybe not needed. We have symptom quotes. Maybe include condition quote \"This will happen at all speeds to include highway speeds.\" kind condition? It's condition (speed range). But conditions array doesn't have \"all speeds\". Maybe kind condition is okay; it's a condition not allowed token? The schema kind condition doesn't restrict quote to token. Could include. But maybe no.\n\nNeed safety quote maybe \"The car will go into full braking and stop. This will happen at all speeds to include highway speeds.\" Good.\n\nFault codes: [] despite \"code changes\". Maybe clue \"code changes every time the light activates\" other? But no code named. Could include symptom quote.\n\nNeed answer only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531835,
+      "id": "35e876a4794820f7c9a9ee4e69f6253f",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1581,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1214,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00059829,
+          "billing_source": "go",
+          "list_cost": 0.00099715,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 316,
+            "output": 1581,
+            "reasoning": 1214
+          }
+        },
+        "prompt_tokens": 700,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2281
+      }
+    },
+    "text": "{\n  \"summary\": \"Jeep Wagoneer ADAS/AEB: automatic emergency braking randomly goes to full stop at all speeds including highway, blind spot warning activates and takes over, and changing check engine lights occur.\",\n  \"group\": \"adas\",\n  \"symptoms\": [\n    \"blind spot warning system constantly activates and takes over\",\n    \"automatic braking system randomly activates for no reason\",\n    \"vehicle goes into full braking and stops\",\n    \"automatic braking can happen at all speeds including highway speeds\",\n    \"check engine lights activate and the code changes each time\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The blind spot warning system constantly activates and takes over.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The automatic braking system randomly activates for no reason.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The car will go into full braking and stop.\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"The car will go into full braking and stop. This will happen at all speeds to include highway speeds.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Now I am getting check engine lights and the code changes every time the light activates.\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00059829,
+      "cached_tokens": 384,
+      "cost_usd": 0.00099715,
+      "input_tokens": 700,
+      "list_cost_usd": 0.00099715,
+      "output_tokens": 1581,
+      "reasoning_tokens": 1214
+    }
+  }
+}

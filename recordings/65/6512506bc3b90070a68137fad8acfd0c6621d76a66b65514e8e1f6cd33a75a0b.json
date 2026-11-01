@@ -1,0 +1,66 @@
+{
+  "key": "6512506bc3b90070a68137fad8acfd0c6621d76a66b65514e8e1f6cd33a75a0b",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 13343,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2024 Toyota RAV4 ADAS forward collision avoidance/automatic emergency braking; airbags did not deploy and auto braking did not function when the vehicle hit a wall during parking after accelerator pedal misapplication.\",\"group\":\"adas\",\"symptoms\":[\"airbags did not deploy\",\"automatic emergency braking did not function\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"},{\"kind\":\"symptom\",\"quote\":\"Airbags were not activated.\"},{\"kind\":\"symptom\",\"quote\":\"pre collision auto braking non existent\"},{\"kind\":\"symptom\",\"quote\":\"auto brake feature did not function\"},{\"kind\":\"condition\",\"quote\":\"parking her car at her work\"},{\"kind\":\"condition\",\"quote\":\"accidentally step on the gas pedal instead of the brakes\"},{\"kind\":\"other\",\"quote\":\"drove all the way to the wall\"},{\"kind\":\"other\",\"quote\":\"severe frontal damage\"},{\"kind\":\"safety\",\"quote\":\"minor injury finger fracture and chest bruise\"}]}",
+            "reasoning_content": "We need to produce JSON only. Need normalize report. Component: FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING, group adas. Symptoms: airbags not deployed, pre-collision auto braking non-existent/not function. Conditions: parking, accidental gas pedal instead of brakes, impact with wall, severe frontal damage. Safety relevant true (injury finger fracture chest bruise, crash). Fault codes none. Missing info: mileage is null, date? received_at 2025-04-10 but accident date not given. Missing mileage, date. Component present, symptom present, conditions present. Could include missing_info [\"mileage\",\"date\"]. Clues verbatim quotes. Need exact spans copied. Let's identify verbatim spans from narrative. Need quotes character for character. Could quote \"accidentally step on the gas pedal instead of the brakes\" yes. \"drove all the way to the wall\" yes. \"Airbags were not activated.\" yes. \"minor injury finger fracture and chest bruise\" yes. \"severe frontal damage\" yes. \"pre collision auto braking non existent\" yes. \"auto brake feature did not function\" yes. \"parking her car at her work\" yes. \"impact on the wall\" yes. Need clues kind. Could include safety quote \"minor injury finger fracture and chest bruise\". Also \"911 was dispatched. Police report made.\" not safety? It indicates crash. But safety quote injury. Condition quote parking. Symptom quote airbags not activated. Fault code none. Component group quote? \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\" from component field? The report includes component field, yes quote from report? It is in JSON, allowed. But rule quote copied from report. The component value is in report. Could include component_group quote \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\". But they said read report in user message. Good.\n\nNeed summary one line: component, symptom, conditions. e.g. \"2024 Toyota RAV4 forward collision avoidance/automatic emergency braking; airbags did not deploy and auto braking did not function during parking-lot wall impact after pedal misapplication.\" Include conditions. Need no invented facts: 2024 RAV4 from report. Good.\n\nNeed symptoms array plain words: \"airbags did not deploy\", \"automatic emergency braking did not function\". Could include \"pre-collision auto braking non existent\" as symptom. Keep plain.\n\nConditions array allowed values: \"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\". Hmm the conditions allowed set is specific. But report conditions are parking, pedal misapplication, wall impact—not in list. The schema says conditions: [\"cold\",...]. But instructions say conditions list. Could we include \"parking\" etc? The prompt has enumerated conditions? It says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. It might expect only those. But report conditions are not those. Maybe conditions should be [] and clues capture parking/pedal misapplication. But summary includes conditions. Need decide. The field conditions likely normalize to those categories; none apply. Could include [] and clue quotes for \"parking her car at her work\" and \"accidentally step on the gas pedal instead of the brakes\" as condition/other. But schema kind includes condition. We can put condition quotes despite conditions array empty. However maybe conditions array should contain plain conditions from report? The example values are limited. The rules don't explicitly restrict to list? It shows list of possible. Hmm. \"conditions\": [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. I think should use those tags only. Since none apply, empty. But then summary conditions include parking impact. Clues condition quote captures. Missing_info no conditions? Since conditions are known but not in standard tags. The desk analysis needs conditions; we have them. Not missing. Missing_info: mileage and date (accident date) because mileage null and no date. Maybe \"date\" since received_at is report date not incident date. Good.\n\nNeed safety_relevant true. Fault_codes [].\n\nNeed ensure JSON valid. No other text. Quotes verbatim. Check exact narrative: \"My pregnant wife is parking her car at her work when she accidentally step on the gas pedal instead of the brakes.\" Quote \"parking her car at her work\" yes. \"accidentally step on the gas pedal instead of the brakes\" yes exactly (step not stepped). \"She panicked and she drove all the way to the wall.\" Quote \"drove all the way to the wall\" yes. \"Airbags were not activated.\" exact. \"Only minor injury finger fracture and chest bruise.\" quote \"minor injury finger fracture and chest bruise\" yes. \"There was a severe frontal damage to the car.\" quote \"severe frontal damage\" yes. \"The issues are the airbags not being deployed at the time of impact and pre collision auto braking non existent.\" quote \"airbags not being deployed at the time of impact\" yes, \"pre collision auto braking non existent\" yes. \"But our main concern is the auto brake feature did not function.\" quote \"auto brake feature did not function\" yes. \"The impact on the wall according to the people inside the nursing she works felt like an earthquake inside.\" quote \"impact on the wall\" yes. Good.\n\nNeed maybe summary: \"2024 Toyota RAV4 ADAS forward collision avoidance/automatic emergency braking; airbags did not deploy and auto braking did not function when vehicle hit a wall during parking after accelerator pedal misapplication.\" That's one line. Good.\n\nClues: kind symptom quote \"Airbags were not activated.\"; kind symptom quote \"pre collision auto braking non existent\"; kind symptom quote \"auto brake feature did not function\"; kind condition quote \"parking her car at her work\"; kind condition quote \"accidentally step on the gas pedal instead of the brakes\"; kind other quote \"drove all the way to the wall\"; kind safety quote \"minor injury finger fracture and chest bruise\"; kind component_group quote \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\". That is enough.\n\nNeed missing_info: [\"mileage\",\"date\"]. Could include \"conditions\"? No. Date missing? The report has received_at but not accident date. Yes.\n\nNeed conditions array? Empty. But then conditions in summary. Is that acceptable? The schema expects conditions array to list conditions, but allowed tags. I'd set [] because no standard condition tags. However if evaluator expects \"parking\" in conditions maybe? Hmm. The prompt says \"conditions\": [\"cold\", ...]. It likely is a controlled vocabulary. Use empty. But the summary says conditions. Clues capture. Fine.\n\nNeed safety_relevant true. Good.\n\nNeed output only JSON. Final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793525991,
+      "id": "2bbf737c5ddb14ab3052ddbe62232f02",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1730,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1474,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00066075,
+          "billing_source": "go",
+          "list_cost": 0.00110125,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 414,
+            "output": 1730,
+            "reasoning": 1474
+          }
+        },
+        "prompt_tokens": 798,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2528
+      }
+    },
+    "text": "{\"summary\":\"2024 Toyota RAV4 ADAS forward collision avoidance/automatic emergency braking; airbags did not deploy and auto braking did not function when the vehicle hit a wall during parking after accelerator pedal misapplication.\",\"group\":\"adas\",\"symptoms\":[\"airbags did not deploy\",\"automatic emergency braking did not function\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"},{\"kind\":\"symptom\",\"quote\":\"Airbags were not activated.\"},{\"kind\":\"symptom\",\"quote\":\"pre collision auto braking non existent\"},{\"kind\":\"symptom\",\"quote\":\"auto brake feature did not function\"},{\"kind\":\"condition\",\"quote\":\"parking her car at her work\"},{\"kind\":\"condition\",\"quote\":\"accidentally step on the gas pedal instead of the brakes\"},{\"kind\":\"other\",\"quote\":\"drove all the way to the wall\"},{\"kind\":\"other\",\"quote\":\"severe frontal damage\"},{\"kind\":\"safety\",\"quote\":\"minor injury finger fracture and chest bruise\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00066075,
+      "cached_tokens": 384,
+      "cost_usd": 0.00110125,
+      "input_tokens": 798,
+      "list_cost_usd": 0.00110125,
+      "output_tokens": 1730,
+      "reasoning_tokens": 1474
+    }
+  }
+}

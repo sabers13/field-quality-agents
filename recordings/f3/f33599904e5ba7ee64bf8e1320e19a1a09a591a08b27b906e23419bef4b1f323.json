@@ -1,0 +1,66 @@
+{
+  "key": "f33599904e5ba7ee64bf8e1320e19a1a09a591a08b27b906e23419bef4b1f323",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 13577,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"AIR BAGS did not deploy in a 2021 Nissan NV200 that was stopped and struck by a vehicle at 65mph+, then pushed into a stopped car; passenger sustained injuries.\",\n  \"group\": \"restraints\",\n  \"symptoms\": [\"air bags did not deploy\"],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\"mileage\", \"date\"],\n  \"clues\": [\n    {\"kind\": \"component_group\", \"quote\": \"AIR BAGS\"},\n    {\"kind\": \"symptom\", \"quote\": \"AIR BAGS DID NOT DEPLOY AT ALL.\"},\n    {\"kind\": \"condition\", \"quote\": \"WAS AT COMPLET STOP AND HIT BY A VEHICLE THAT WAS AT A RAT OF SPEED OF 65MPH+\"},\n    {\"kind\": \"condition\", \"quote\": \"WAS \\\"SANDWICHED\\\"\"},\n    {\"kind\": \"safety\", \"quote\": \"PASSENGER HAS EXTENSIVE INJURIES INCLUDING BUT NOT LIMITED TO BROKEN FACE BONES AND FRACTURED BACK.\"},\n    {\"kind\": \"other\", \"quote\": \"NO WARNING LAMPS,MESSAGES OR OTHER SYMPTOMS OF A PROBLEM PRIER TO THE CRASH.\"}\n  ]\n}",
+            "reasoning_content": "We need answer JSON only. Need parse report. Component AIR BAGS group restraints. Summary one line: component, symptom, conditions. Symptoms air bags did not deploy. Conditions: stopped, hit by vehicle at 65mph+, pushed into car ahead, sandwiched; no warning lamps/messages/symptoms prior to crash. Safety relevant true due injuries crash. Fault codes none. Missing info: mileage is null, maybe date? received_at present but incident date absent. Conditions present? component present symptom present. Need missing_info likely [\"mileage\", \"date\"] because mileage null and no incident date. Could also \"date\" because report received_at not incident date. Need clues with verbatim quotes. Need ensure quotes exactly from narrative. Use quotes:\n- \"AIR BAGS DID NOT DEPLOY AT ALL.\" symptom\n- \"WAS AT COMPLET STOP\" condition? exact text \"WAS AT COMPLET STOP\" (typo). Could quote \"WAS AT COMPLET STOP AND HIT BY A VEHICLE THAT WAS AT A RAT OF SPEED OF 65MPH+\" condition.\n- \"PASSENGER HAS EXTENSIVE INJURIES INCLUDING BUT NOT LIMITED TO BROKEN FACE BONES AND FRACTURED BACK.\" safety\n- \"NO WARNING LAMPS,MESSAGES OR OTHER SYMPTOMS OF A PROBLEM PRIER TO THE CRASH.\" condition? other maybe symptom? It's absence of symptoms. kind condition? Could be other. \n- component_group quote \"AIR BAGS\" maybe from component field? The report includes component \"AIR BAGS\"; narrative has \"AIR BAGS DID NOT DEPLOY\". Can quote \"AIR BAGS\" but verbatim span. kind component_group quote \"AIR BAGS\".\n- condition quote \"WAS \\\"SANDWICHED\\\"\"? Verbatim includes escaped quotes? In JSON string quote can include \"WAS \\\"SANDWICHED\\\"\" but actual report has WAS \"SANDWICHED\". We can include. But maybe not necessary.\nNeed symptoms array [\"air bags did not deploy\"]. Conditions array allowed values from list. Conditions in report: cold, moisture, heat, vibration, intermittent, after service, charging. None exactly. The schema says conditions array examples fixed? It lists [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. But report conditions are crash/stopped. Hmm rules say conditions list maybe from allowed. However output conditions should capture conditions. Prompt says conditions: [\"cold\", ...]. It may expect only those categories. But report has crash conditions not in list. Could set conditions [] and clues capture. But summary conditions \"at complete stop, hit at 65mph+, sandwiched\". Need conditions array? It specifically says conditions array with these values; but no matching. Maybe include \"intermittent\"? No. So [] safest? But \"conditions\" field should list conditions; maybe \"stopped\", \"impact\" but invalid? The template indicates allowed values. We should not invent. Use [] because no listed condition. But missing_info? Conditions are given in narrative (stopped, impact), so not missing. Hmm.\n\nNeed output JSON only. Ensure no markdown. Use false/true. Missing_info [\"mileage\",\"date\"]? The report has received_at but no incident date. Mileage null. Component/symptom/conditions present. Good.\n\nNeed maybe summary: \"AIR BAGS did not deploy in a 2021 Nissan NV200 that was stopped and struck at 65mph+, then pushed into a stopped car; passenger injuries reported.\" It asks one line component, symptom, conditions. Include make model? okay.\n\nNeed every quote verbatim. Check capitalization and punctuation. Narrative:\n\"AIR BAGS DID NOT DEPLOY AT ALL. WAS AT COMPLET STOP AND HIT BY A VEHICLE THAT WAS AT A RAT OF SPEED OF 65MPH+ AND THEN WAS PUSHED INTO CAR AHEAD THAT WAS STOPPED( WAS \\\"SANDWICHED\\\").PASSENGER HAS EXTENSIVE INJURIES INCLUDING BUT NOT LIMITED TO BROKEN FACE BONES AND FRACTURED BACK. AIR BAGS NOT DEPLOYING HAS BEEN CONFERMED BY POLICE AND INSURANCE REPRESENTATIVES. NO WARNING LAMPS,MESSAGES OR OTHER SYMPTOMS OF A PROBLEM PRIER TO THE CRASH.\"\nQuotes exact:\n\"AIR BAGS DID NOT DEPLOY AT ALL.\"\n\"WAS AT COMPLET STOP AND HIT BY A VEHICLE THAT WAS AT A RAT OF SPEED OF 65MPH+\"\n\"PASSENGER HAS EXTENSIVE INJURIES INCLUDING BUT NOT LIMITED TO BROKEN FACE BONES AND FRACTURED BACK.\"\n\"NO WARNING LAMPS,MESSAGES OR OTHER SYMPTOMS OF A PROBLEM PRIER TO THE CRASH.\"\n\"AIR BAGS\" appears in narrative? yes at beginning and second sentence. quote \"AIR BAGS\" exact span.\nCould include \"WAS \\\"SANDWICHED\\\"\"? Need JSON escaping: \"WAS \\\"SANDWICHED\\\"\" contains quote characters. In actual output JSON, quote value string includes escaped quotes. It is verbatim? Actual report includes WAS \"SANDWICHED\" with quotes. In JSON representation, escape internal quotes. Good. But no need.\n\nNeed kind \"safety\" quote passenger injuries. Possibly \"other\" for no warning? Let's include condition? The clue kind options include symptom/condition/fault_code/component_group/safety/other. For no warning lamps, kind \"other\" maybe. For crash conditions use condition.\n\nNeed no fault codes. Fault_codes [].\n\nNeed safety_relevant true.\n\nLet's craft final JSON only. Ensure valid. Missing_info maybe [\"mileage\",\"date\"]. Date? There is received_at but no crash date. The prompt says missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Since date missing yes. Mileage null. Good.\n\nNeed conditions array maybe [] or include no allowed. But template expects conditions values. Could include [] and clues show conditions. However if conditions field empty while conditions present? The field \"conditions\" likely meant environmental/operating conditions categories. Since none of allowed categories, []. But there are conditions like stopped/impact. Hmm maybe we can put [\"impact\"]? But template enumerated list. The user asks \"conditions\": [\"cold\", ...]. It doesn't explicitly say only those values? It says \"conditions\": [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. This is example. But for a crash, conditions not in list. Maybe output [\"impact\"]? But that's not in enumerated. Could be considered invented? The narrative says hit. But field likely expects normalized condition tags. I'd use [] to avoid invalid tags. But summary and clues capture. Yet \"conditions\" should list conditions. The intake agent normalizes. In similar prompts, conditions array limited to those. Since no listed condition, empty is acceptable.\n\nNeed summary one line. Use no newline. Final.\n\nCheck JSON: \n{\n \"summary\": \"AIR BAGS did not deploy in a 2021 Nissan NV200 that was stopped and struck by a vehicle at 65mph+, then pushed into a stopped car; passenger sustained injuries.\",\n \"group\": \"restraints\",\n \"symptoms\": [\"air bags did not deploy\"],\n \"conditions\": [],\n \"fault_codes\": [],\n \"safety_relevant\": true,\n \"missing_info\": [\"mileage\", \"date\"],\n \"clues\": [...]\n}\nGood.\n\nNeed quote for component_group \"AIR BAGS\" appears multiple. Fine.\n\nCould include safety clue \"PASSENGER HAS EXTENSIVE INJURIES...\" and condition clue \"WAS AT COMPLET STOP AND HIT BY A VEHICLE THAT WAS AT A RAT OF SPEED OF 65MPH+\". Good.\n\nNeed mention \"NO WARNING LAMPS,MESSAGES...\" as other maybe. Include.\n\nFinal only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530304,
+      "id": "de7bb4ae4f69c35541b2f2b57139ddc7",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1997,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1704,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00074157,
+          "billing_source": "go",
+          "list_cost": 0.00123595,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 244,
+            "output": 1997,
+            "reasoning": 1704
+          }
+        },
+        "prompt_tokens": 628,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2625
+      }
+    },
+    "text": "{\n  \"summary\": \"AIR BAGS did not deploy in a 2021 Nissan NV200 that was stopped and struck by a vehicle at 65mph+, then pushed into a stopped car; passenger sustained injuries.\",\n  \"group\": \"restraints\",\n  \"symptoms\": [\"air bags did not deploy\"],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\"mileage\", \"date\"],\n  \"clues\": [\n    {\"kind\": \"component_group\", \"quote\": \"AIR BAGS\"},\n    {\"kind\": \"symptom\", \"quote\": \"AIR BAGS DID NOT DEPLOY AT ALL.\"},\n    {\"kind\": \"condition\", \"quote\": \"WAS AT COMPLET STOP AND HIT BY A VEHICLE THAT WAS AT A RAT OF SPEED OF 65MPH+\"},\n    {\"kind\": \"condition\", \"quote\": \"WAS \\\"SANDWICHED\\\"\"},\n    {\"kind\": \"safety\", \"quote\": \"PASSENGER HAS EXTENSIVE INJURIES INCLUDING BUT NOT LIMITED TO BROKEN FACE BONES AND FRACTURED BACK.\"},\n    {\"kind\": \"other\", \"quote\": \"NO WARNING LAMPS,MESSAGES OR OTHER SYMPTOMS OF A PROBLEM PRIER TO THE CRASH.\"}\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00074157,
+      "cached_tokens": 384,
+      "cost_usd": 0.00123595,
+      "input_tokens": 628,
+      "list_cost_usd": 0.00123595,
+      "output_tokens": 1997,
+      "reasoning_tokens": 1704
+    }
+  }
+}

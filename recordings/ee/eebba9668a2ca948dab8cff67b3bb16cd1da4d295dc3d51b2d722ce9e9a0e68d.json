@@ -1,0 +1,66 @@
+{
+  "key": "eebba9668a2ca948dab8cff67b3bb16cd1da4d295dc3d51b2d722ce9e9a0e68d",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9595,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Instrument panel speedometer/odometer mileage discrepancy (odometer fraud) discovered via Carfax after a private sale.\",\"group\":\"instrumentation\",\"symptoms\":[\"odometer fraud\",\"mileage discrepancy\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\"},{\"kind\":\"symptom\",\"quote\":\"Odometer Fraud\"},{\"kind\":\"symptom\",\"quote\":\"there was a mileage discrepancy\"},{\"kind\":\"other\",\"quote\":\"private sale\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize report. Component electrical instrument panel speedometer/odometer, group instrumentation. Symptom: mileage discrepancy/odometer fraud. Conditions? private sale? Not cold etc. Could include \"after service\"? No. Fault codes none. Safety false. Missing info: maybe date? It has received date, mileage present, component present, symptom present, conditions? Conditions list maybe none. Need clues verbatim spans. Need summary one line: component, symptom, conditions. \"Odometer/speedometer mileage discrepancy discovered via Carfax after private sale.\" Conditions maybe \"private sale\" not in allowed conditions? Conditions array only listed categories cold moisture heat vibration intermittent after service charging. None apply, so empty. But clue kind condition quote \"private sale\"? Could be other? The schema kind includes condition|other. We can include \"private sale\" as other? Hmm. Conditions array should only those categories. Since no condition categories. Missing_info? Maybe date? Received_at given, purchase date not. But analysis needs? The report has date received. Missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Component yes, symptom yes, mileage yes, date? received date yes but event date not. Conditions missing? Could list \"conditions\" because no environmental/operational conditions? But for odometer fraud, conditions not relevant maybe. Need decide. Prompt: list missing_info only for facts analysis needs. For this report, conditions? It says private sale; no failure conditions. But not needed? Could be missing date of purchase/service. Hmm.\n\nNeed produce JSON. Quotes verbatim from narrative. For symptom quote: \"mileage discrepancy\" or \"Odometer Fraud\". \"The contact stated that while obtaining a Carfax report, it was discovered that there was a mileage discrepancy.\" Verbatim. Component group quote: \"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\" is in component not narrative but report includes it. Quote from report? User says report in user message includes JSON; quote can be from any string? It says copied verbatim from report. We can use component field value. Clue kind component_group quote \"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\". Symptom quote \"Odometer Fraud\" and \"mileage discrepancy\". Other quote \"private sale\". Safety? false. Missing_info maybe [\"date\"] because purchase date not specified? But date received given. The analysis needs date of incident? It says missing_info includes date. There is received_at 2025-07-03, but no purchase date or when discrepancy discovered. Could include \"date\". Also maybe \"conditions\"? Conditions not applicable. Need not overdo. Since report has mileage at purchase and current. Missing_info maybe [\"date\"] only. But asked only component symptom conditions mileage date. Mileage present. Component present. Symptom present. Conditions? There are no conditions listed; but for odometer fraud, \"conditions\" as cold etc. irrelevant. I'd include []? Hmm.\n\nNeed summary one line: \"Instrument panel speedometer/odometer mileage discrepancy (odometer fraud) found via Carfax after private sale.\" Good.\n\nNeed ensure JSON valid no markdown. final only JSON.\n\nClues:\n- {\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\"}\n- {\"kind\":\"symptom\",\"quote\":\"Odometer Fraud\"}\n- {\"kind\":\"symptom\",\"quote\":\"there was a mileage discrepancy\"}\n- {\"kind\":\"other\",\"quote\":\"private sale\"} maybe condition? kind other.\n- {\"kind\":\"other\",\"quote\":\"at the time of purchase, the vehicle mileage was 124,000\"} maybe not needed. But clues should evidence. Could include mileage discrepancy quote \"mileage was 211,000\". But not necessary.\n- safety no quote.\n\nNeed conditions array []. fault_codes [].\n\nMissing_info: [\"date\"]? Since no date of purchase. Could include [\"date\"] as important. The prompt says missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. Date is missing (purchase date). Conditions? Since no conditions. Maybe include \"date\" only. But is date important for odometer fraud? yes timing. I'll include [\"date\"]. Ensure no extra text.\n\nNeed maybe \"conditions\": [] and missing_info [\"date\"]. Good.\n\nFinal.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793528189,
+      "id": "f6d2b2c0affadfe75797c9e0e2458b06",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1075,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 931,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00040551,
+          "billing_source": "go",
+          "list_cost": 0.00067585,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 198,
+            "output": 1075,
+            "reasoning": 931
+          }
+        },
+        "prompt_tokens": 582,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1657
+      }
+    },
+    "text": "{\"summary\":\"Instrument panel speedometer/odometer mileage discrepancy (odometer fraud) discovered via Carfax after a private sale.\",\"group\":\"instrumentation\",\"symptoms\":[\"odometer fraud\",\"mileage discrepancy\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\"},{\"kind\":\"symptom\",\"quote\":\"Odometer Fraud\"},{\"kind\":\"symptom\",\"quote\":\"there was a mileage discrepancy\"},{\"kind\":\"other\",\"quote\":\"private sale\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00040551,
+      "cached_tokens": 384,
+      "cost_usd": 0.00067585,
+      "input_tokens": 582,
+      "list_cost_usd": 0.00067585,
+      "output_tokens": 1075,
+      "reasoning_tokens": 931
+    }
+  }
+}

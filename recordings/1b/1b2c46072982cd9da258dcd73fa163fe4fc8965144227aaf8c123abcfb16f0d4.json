@@ -1,0 +1,66 @@
+{
+  "key": "1b2c46072982cd9da258dcd73fa163fe4fc8965144227aaf8c123abcfb16f0d4",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 5455,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Test the Honda Fit main display for a cold-dependent glitch/blank fault that hides fuel level and odometer.\",\"rationale\":\"The narrative reports a glitchy or blank main display that often fails to show fuel level and odometer, especially in colder weather. The rulebook matches the cold condition and names a low-temperature cycling test to separate a temperature-dependent fault from a permanent one.\",\"group\":\"electrical_general\",\"symptoms\":[\"glitchy main display\",\"blank main display\",\"fuel level not displayed\",\"odometer not displayed\"],\"conditions\":[\"cold\"],\"fault_codes\":[],\"safety_relevant\":false,\"targeted\":true,\"test_name\":\"Low-temperature cycling test\",\"clues\":[{\"kind\":\"symptom\",\"quote\":\"glitchy and/or blank main display\"},{\"kind\":\"symptom\",\"quote\":\"fails to show important information such as fuel level, odometer\"},{\"kind\":\"condition\",\"quote\":\"especially in colder weather\"},{\"kind\":\"other\",\"quote\":\"Driving with an inoperative display can increase the risk of being stranded somewhere without fuel.\"}]}",
+            "reasoning_content": "We need answer JSON only. Need analyze. Case electrical general, Honda Fit 2019, display glitchy/blank esp cold. Rulebook matched cold -> targeted test \"Low-temperature cycling test\". safety_relevant? Narrative says risk stranded without fuel, but extraction false, case false. Human safety? \"risk of being stranded\" not direct risk to people. Set false. targeted true. Symptoms conditions fault_codes. Clues quotes verbatim from narrative. Need ensure quote exactly from case narrative, not extraction. Narrative: \"A glitchy and/or blank main display often fails to show important information such as fuel level, odometer, etc., especially in colder weather. Driving with an inoperative display can increase the risk of being stranded somewhere without fuel.\"\n\nQuotes can be spans:\n- \"glitchy and/or blank main display\" yes within.\n- \"fails to show important information such as fuel level, odometer\" yes? Narrative says \"often fails to show important information such as fuel level, odometer, etc.\" Substring \"fails to show important information such as fuel level, odometer\" is exact contiguous? \"often fails to show...\" contains \"fails to show important information such as fuel level, odometer\" yes.\n- \"especially in colder weather\" exact.\n- \"Driving with an inoperative display can increase the risk of being stranded somewhere without fuel.\" exact from narrative.\nCould include condition cold as clue quote \"especially in colder weather\" kind condition.\nNeed maybe component_group electrical_general. test_name \"Low-temperature cycling test\". summary one line. rationale mention cold dependency and display symptoms, rulebook entry.\n\nNeed JSON object only no markdown. Ensure valid. targeted true. safety_relevant false. \"clues\" kinds. Could include \"symptom\" for blank/glitch, \"condition\" for cold, \"other\" for stranded risk maybe not safety. Fault codes empty.\n\nNeed answer only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793526465,
+      "id": "91cef5ddec7920fea30f17ca4b20db8e",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 633,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 401,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00034659,
+          "billing_source": "go",
+          "list_cost": 0.00057765,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 1319,
+            "output": 633,
+            "reasoning": 401
+          }
+        },
+        "prompt_tokens": 1319,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 1952
+      }
+    },
+    "text": "{\"summary\":\"Test the Honda Fit main display for a cold-dependent glitch/blank fault that hides fuel level and odometer.\",\"rationale\":\"The narrative reports a glitchy or blank main display that often fails to show fuel level and odometer, especially in colder weather. The rulebook matches the cold condition and names a low-temperature cycling test to separate a temperature-dependent fault from a permanent one.\",\"group\":\"electrical_general\",\"symptoms\":[\"glitchy main display\",\"blank main display\",\"fuel level not displayed\",\"odometer not displayed\"],\"conditions\":[\"cold\"],\"fault_codes\":[],\"safety_relevant\":false,\"targeted\":true,\"test_name\":\"Low-temperature cycling test\",\"clues\":[{\"kind\":\"symptom\",\"quote\":\"glitchy and/or blank main display\"},{\"kind\":\"symptom\",\"quote\":\"fails to show important information such as fuel level, odometer\"},{\"kind\":\"condition\",\"quote\":\"especially in colder weather\"},{\"kind\":\"other\",\"quote\":\"Driving with an inoperative display can increase the risk of being stranded somewhere without fuel.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00034659,
+      "cached_tokens": 0,
+      "cost_usd": 0.00057765,
+      "input_tokens": 1319,
+      "list_cost_usd": 0.00057765,
+      "output_tokens": 633,
+      "reasoning_tokens": 401
+    }
+  }
+}

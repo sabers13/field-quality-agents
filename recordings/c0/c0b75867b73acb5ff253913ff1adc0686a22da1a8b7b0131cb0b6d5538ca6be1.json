@@ -1,0 +1,66 @@
+{
+  "key": "c0b75867b73acb5ff253913ff1adc0686a22da1a8b7b0131cb0b6d5538ca6be1",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9355,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Rear seatbelt will not latch; open safety recall with remedy delayed to Jan-Feb/Mar; child car seat cannot be installed safely.\",\"group\":\"restraints\",\"symptoms\":[\"rear seatbelt will not latch\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"SEAT BELTS\"},{\"kind\":\"symptom\",\"quote\":\"One of the rear seatbelts will not latch at all\"},{\"kind\":\"other\",\"quote\":\"open safety recall\"},{\"kind\":\"safety\",\"quote\":\"child passenger safety\"},{\"kind\":\"safety\",\"quote\":\"risk of injury in the event of a crash\"},{\"kind\":\"other\",\"quote\":\"no remedy or repair will be available until January\"},{\"kind\":\"other\",\"quote\":\"don't anticipate getting the part until February or March\"}]}",
+            "reasoning_content": "We need answer one JSON object no other text. Need normalize report. Component SEAT BELTS group restraints. Symptoms: rear seatbelt will not latch at all. Conditions? maybe none? It mentions long-distance holiday travel, crash risk, recall pending, no remedy until Jan/Feb/March. Conditions list allowed cold moisture heat vibration intermittent after service charging. None explicitly? Maybe \"after service\"? no. Fault codes none. Safety_relevant true because crash risk, child safety, injury risk. Missing_info: mileage is null. Date? received_at given, but report doesn't mention date? Missing info likely mileage only? Analysis needs component/symptom/conditions/mileage/date. Component present, symptom present, conditions? Not necessary? Date received_at exists. Mileage missing. Could include \"conditions\" because no environmental conditions? But rules list missing_info only facts analysis needs component symptom conditions mileage date. Conditions maybe not important? For seatbelt latch not environmental. Mileage maybe relevant. Need clues verbatim spans. Need quote exact from narrative. We can quote \"One of the rear seatbelts will not latch at all\" exact. \"risk of injury in the event of a crash\" exact. \"open safety recall\" exact. \"rear seatbelts\" exact? Component group maybe quote \"SEAT BELTS\" from component not narrative? Report includes component field. Quote from report? \"SEAT BELTS\" appears in component. kind component_group quote \"SEAT BELTS\". Conditions maybe no quotes. Could include \"long-distance holiday travel\" as condition? Kind condition? It's not in allowed conditions list. But clues kind condition can be quote? Conditions array only allowed specific. Maybe not.\n\nNeed summary one line: component, symptom, conditions. \"Rear seatbelt will not latch; open safety recall, no remedy until Jan-Feb/Mar; child car seat safety.\" Conditions maybe \"recall remedy pending\" not allowed in conditions. Summary can mention. Need JSON valid.\n\nSafety_relevant true. missing_info [\"mileage\"]. Maybe \"date\" not missing because received_at? The report date not explicit but source received date. The analysis can use received_at. They ask missing facts report. Mileage null. Conditions maybe no. Include mileage only.\n\nClues:\n- {\"kind\":\"component_group\",\"quote\":\"SEAT BELTS\"} from component field? Is component part of report. Yes.\n- {\"kind\":\"symptom\",\"quote\":\"One of the rear seatbelts will not latch at all\"} exact. Check narrative: \"One of the rear seatbelts will not latch at all, despite...\" yes.\n- {\"kind\":\"safety\",\"quote\":\"risk of injury in the event of a crash\"} exact substring: \"concerned about the risk of injury in the event of a crash due to a known, unrepaired safety defect.\" quote \"risk of injury in the event of a crash\" is verbatim contiguous yes.\n- {\"kind\":\"other\",\"quote\":\"open safety recall\"} exact? Narrative: \"regarding an open safety recall involving\" yes.\n- {\"kind\":\"condition\",\"quote\":\"no remedy or repair will be available until January\"} exact? \"states that no remedy or repair will be available until January\" yes. But kind condition? Maybe other. Conditions array doesn't include recall. Use other maybe.\n- {\"kind\":\"other\",\"quote\":\"don't anticipate getting the part until February or March\"} exact includes apostrophe? Narrative: \"they don't anticipate getting the part until February or March.\" yes.\n- {\"kind\":\"safety\",\"quote\":\"child passenger safety\"} exact? \"This defect directly impacts child passenger safety.\" yes.\nNeed not too many.\n\nConditions array: Could include \"after service\"? no. Maybe [].\nSymptoms: [\"rear seatbelt will not latch\"] maybe plain words. Could say \"rear seatbelt does not latch\". But symptom quote exact. JSON.\n\nNeed no markdown? \"Answer with one JSON object and no other text\". final only JSON. Ensure no trailing. Use false? safety true.\n\nNeed consider \"safety_relevant\" field in input false but report mentions crash/injury/child safety. Rule set true. Good.\n\nMissing_info maybe [\"mileage\"]. Date? received_at 2025-12-16. component present symptom present conditions maybe not. Include \"conditions\" maybe because no conditions? But conditions list is about environmental operating conditions; not necessarily needed. The prompt says List missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. Use empty when nothing important missing. Since mileage null important. Conditions maybe not important for latch. However \"conditions\" in summary asked; if none, maybe missing? Hmm. For field-quality report, conditions could be \"recall pending, no remedy\" but allowed conditions list not include. I'd leave missing_info [\"mileage\"] only.\n\nNeed \"summary\": \"Rear seatbelt will not latch; open safety recall with remedy delayed to Jan-Feb/Mar; child car seat cannot be installed safely.\" One line.\n\nNeed group \"restraints\". Good.\n\nFault codes [].\n\nLet's final JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793532879,
+      "id": "a2bb19b9bfac804b14ef9aa60c4ffef7",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1242,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1051,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00047814,
+          "billing_source": "go",
+          "list_cost": 0.0007969,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 337,
+            "output": 1242,
+            "reasoning": 1051
+          }
+        },
+        "prompt_tokens": 721,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1963
+      }
+    },
+    "text": "{\"summary\":\"Rear seatbelt will not latch; open safety recall with remedy delayed to Jan-Feb/Mar; child car seat cannot be installed safely.\",\"group\":\"restraints\",\"symptoms\":[\"rear seatbelt will not latch\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"SEAT BELTS\"},{\"kind\":\"symptom\",\"quote\":\"One of the rear seatbelts will not latch at all\"},{\"kind\":\"other\",\"quote\":\"open safety recall\"},{\"kind\":\"safety\",\"quote\":\"child passenger safety\"},{\"kind\":\"safety\",\"quote\":\"risk of injury in the event of a crash\"},{\"kind\":\"other\",\"quote\":\"no remedy or repair will be available until January\"},{\"kind\":\"other\",\"quote\":\"don't anticipate getting the part until February or March\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00047814,
+      "cached_tokens": 384,
+      "cost_usd": 0.0007969,
+      "input_tokens": 721,
+      "list_cost_usd": 0.0007969,
+      "output_tokens": 1242,
+      "reasoning_tokens": 1051
+    }
+  }
+}

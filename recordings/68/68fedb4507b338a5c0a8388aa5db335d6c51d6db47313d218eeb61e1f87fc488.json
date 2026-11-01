@@ -1,0 +1,66 @@
+{
+  "key": "68fedb4507b338a5c0a8388aa5db335d6c51d6db47313d218eeb61e1f87fc488",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11139,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2008 Jeep Wrangler electrical system: dash lights flashed, could not shift gears, smoke from air vents, and vehicle fire while driving\",\"group\":\"electrical_general\",\"symptoms\":[\"dashboard lights flashed\",\"could not shift gears\",\"smoke from air vents\",\"vehicle fire\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"every light flashed on my dash board\"},{\"kind\":\"symptom\",\"quote\":\"I could not shift gears\"},{\"kind\":\"symptom\",\"quote\":\"smoke came pouring out of my air vents\"},{\"kind\":\"symptom\",\"quote\":\"it was on fire\"},{\"kind\":\"safety\",\"quote\":\"it was on fire\"},{\"kind\":\"safety\",\"quote\":\"Climbed in to save my dog just before the fire got huge\"}]}",
+            "reasoning_content": "We need answer only JSON object. Need normalize report. Extract summary component symptom conditions. Report: 2008 Wrangler driving down road sudden every light flashed dash then felt could not shift gears then smoke poured out air vents. Pulled over got out realizing on fire. Climbed in save dog before fire huge. Entire Jeep gone. Safety relevant true. Component electrical system group given electrical_general. Symptoms: dash lights flashed, cannot shift gears, smoke from air vents, vehicle fire. Conditions: driving down road? condition maybe \"driving\". Allowed conditions list: cold, moisture, heat, vibration, intermittent, after service, charging. Driving not in enum. We should use only allowed? It says conditions array [\"cold\"...]. But can include? Better only allowed values if present. No cold moisture heat vibration intermittent after service charging. Maybe no conditions. But clues can quote conditions? \"driving down the road\" kind condition? The schema kind condition. But conditions list constrained. Hm.\n\nMissing info: mileage is null, date? received_at but not incident date? The analysis needs mileage/date/conditions/component/symptom. Component present, symptom present, conditions? We lack conditions like weather? But report gives driving. Mileage missing. Date missing (incident date not given). Conditions maybe not fully specified. Need list missing_info only facts analysis needs. Could include \"mileage\",\"date\",\"conditions\". But conditions perhaps not missing? It says driving down road. We can include conditions missing? The allowed condition categories are cold, moisture etc none known. But missing conditions perhaps yes. However rules: List missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. Use empty list when nothing important missing. Here mileage null, date absent, conditions not detailed. So [\"mileage\",\"date\",\"conditions\"]. Is \"conditions\" missing despite driving? It doesn't say weather etc. Fine.\n\nFault codes none. Clues verbatim spans. Need ensure quotes exact substrings. Narrative exact. We can quote:\n- \"every light flashed on my dash board\" (note \"board\" not \"board\"? original: \"every light flashed on my dash board\" yes \"dash board\" two words)\n- \"I could not shift gears\"\n- \"smoke came pouring out of my air vents\"\n- \"it was on fire\"\n- \"Climbed in to save my dog just before the fire got huge\"\n- \"My entire Jeep is gone.\"\n- component group quote? \"ELECTRICAL SYSTEM\" from component field? The report includes component field. Quote verbatim from report. It says read only report in user message; JSON includes \"component\": \"ELECTRICAL SYSTEM\". We can quote \"ELECTRICAL SYSTEM\". Kind component_group maybe \"ELECTRICAL SYSTEM\". Or \"electrical_general\"? Quote exact \"ELECTRICAL SYSTEM\". Good.\n- safety quote \"it was on fire\" or \"My entire Jeep is gone\" indicates fire. Safety kind quote maybe \"it was on fire\". \nNeed summary one line: \"2008 Jeep Wrangler electrical system: dash lights flashed, unable to shift, smoke from vents, vehicle fire while driving.\" Good.\n\nNeed output valid JSON only. No markdown? User says one JSON object and no other text. We can output raw JSON. Must ensure no extra text. Use proper booleans.\n\nNeed consider safety_relevant true. Conditions array maybe include \"intermittent\"? Not exactly. No. Could include \"heat\"? fire no. Do not include unsupported. Empty conditions? But clue \"driving down the road\" kind condition? The allowed conditions array only enumerated. Since none, conditions: []. But missing_info conditions. Fine.\n\nNeed \"symptoms\": plain words. Include \"dashboard lights flashed\", \"could not shift gears\", \"smoke from air vents\", \"vehicle fire\". Good.\n\nClues verbatim:\n- {\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"}\n- {\"kind\":\"symptom\",\"quote\":\"every light flashed on my dash board\"}\n- {\"kind\":\"symptom\",\"quote\":\"I could not shift gears\"}\n- {\"kind\":\"symptom\",\"quote\":\"smoke came pouring out of my air vents\"}\n- {\"kind\":\"symptom\",\"quote\":\"it was on fire\"}\n- {\"kind\":\"safety\",\"quote\":\"it was on fire\"}\n- maybe {\"kind\":\"condition\",\"quote\":\"driving down the road\"} but conditions enum? Clue kind condition can quote. Is driving a condition? It is operating condition. But conditions array doesn't include driving. Maybe avoid to prevent mismatch. But clue kind condition allowed. However \"conditions\" field only allowed list. Quote \"driving down the road\" is a condition? Could add as other? Hm.\n\nNeed perhaps \"summary\" mentions \"while driving\". The conditions list cannot have driving. But clues can quote \"driving down the road\" kind other? The schema kind includes condition. But if conditions array excludes, clue condition maybe inconsistent. Better not include condition clue. The summary can mention driving from narrative. But summary is free text allowed. Fine.\n\nNeed \"missing_info\": [\"mileage\", \"date\", \"conditions\"]? The report includes received date 2025-07-06, but incident date unknown. Mileage null. Conditions not detailed. Good.\n\nNeed no fault codes. \"fault_codes\": [].\n\nNeed ensure JSON valid. Final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793528246,
+      "id": "7789d21fc4b4bd23e44229da4dff56fd",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1337,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1125,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00049821,
+          "billing_source": "go",
+          "list_cost": 0.00083035,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 180,
+            "output": 1337,
+            "reasoning": 1125
+          }
+        },
+        "prompt_tokens": 564,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1901
+      }
+    },
+    "text": "{\"summary\":\"2008 Jeep Wrangler electrical system: dash lights flashed, could not shift gears, smoke from air vents, and vehicle fire while driving\",\"group\":\"electrical_general\",\"symptoms\":[\"dashboard lights flashed\",\"could not shift gears\",\"smoke from air vents\",\"vehicle fire\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"every light flashed on my dash board\"},{\"kind\":\"symptom\",\"quote\":\"I could not shift gears\"},{\"kind\":\"symptom\",\"quote\":\"smoke came pouring out of my air vents\"},{\"kind\":\"symptom\",\"quote\":\"it was on fire\"},{\"kind\":\"safety\",\"quote\":\"it was on fire\"},{\"kind\":\"safety\",\"quote\":\"Climbed in to save my dog just before the fire got huge\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00049821,
+      "cached_tokens": 384,
+      "cost_usd": 0.00083035,
+      "input_tokens": 564,
+      "list_cost_usd": 0.00083035,
+      "output_tokens": 1337,
+      "reasoning_tokens": 1125
+    }
+  }
+}

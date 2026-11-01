@@ -1,0 +1,66 @@
+{
+  "key": "db4ee8cce707d445fc97c31e2bb9e0567e3eda8b742e00049b960f9f509e29b5",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10606,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"ADAS lane departure warning: Driver Attention Warning 'Consider taking a break' advisory triggers frequently, requiring driver attention and posing a possible crash risk; easily reproducible.\",\"group\":\"adas\",\"symptoms\":[\"Driver Attention Warning 'Consider taking a break' advisory triggers frequently\",\"driver must take eyes off the road to examine the warning\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"LANE DEPARTURE: WARNING\"},{\"kind\":\"symptom\",\"quote\":\"Consider taking a break\"},{\"kind\":\"symptom\",\"quote\":\"This warning happens so frequently\"},{\"kind\":\"symptom\",\"quote\":\"the driver must continually take their eyes off the road to examine what the vehicle is complaining about\"},{\"kind\":\"condition\",\"quote\":\"easily reproducible\"},{\"kind\":\"safety\",\"quote\":\"safety issue\"},{\"kind\":\"safety\",\"quote\":\"could conceivably be the cause of a crash\"}]}",
+            "reasoning_content": "We need answer one JSON only. Need normalize report. Component: LANE DEPARTURE: WARNING, group adas. Narrative. Need summary one line component symptom conditions. Symptoms: \"Consider taking a break\" advisory triggered frequently; driver must take eyes off road to examine warning. Conditions? maybe intermittent? frequent, easily reproducible. No cold/moisture/heat/vibration/after service/charging. Conditions list could empty. Fault codes none. safety_relevant true? Report mentions \"safety issue\" and \"could conceivably be the cause of a crash.\" Rule set safety_relevant when mentions crash, fire, smoke, injury, loss of control, stall at speed or other risk. It mentions crash. So true. missing_info: mileage null, date? received_at exists 2025-08-28 but maybe date of incident missing. component present, symptom present, conditions maybe not explicit? The analysis needs conditions? It says easily reproducible, frequent. Could list \"mileage\", \"date\" maybe. Need missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Mileage missing, date? Received_at is date report received, but incident date missing. Maybe include \"mileage\", \"date\". Conditions? It says frequent and reproducible, not environmental conditions. Could missing \"conditions\". But if conditions not relevant? The template asks conditions. I'd include \"mileage\", \"date\", maybe \"conditions\". Need quotes verbatim. Need exact spans. Quotes from narrative:\n- \"LANE DEPARTURE: WARNING\" is in component, not narrative? Report includes component field. Quote can be from report (entire user message JSON). Yes verbatim span copied from report. Could quote component.\n- \"Driver Attention Warning (DAW) system\" exact in narrative with double spaces? Narrative: \"The Hyundai Tucson's \\\"Consider taking a break\\\" advisory is triggered by the Driver Attention Warning (DAW) system.  This warning happens so frequently...\" There are two spaces after period. Quote \"Driver Attention Warning (DAW) system\" okay.\n- \"Consider taking a break\" exact includes quotes? In report it's escaped quotes around. We can quote \"Consider taking a break\" as span? The actual text has \\\"Consider taking a break\\\" but content includes Consider taking a break. Verbatim character for character within string? Since JSON escaped, the actual narrative value includes quotes. A quote \"Consider taking a break\" is substring? It has quote characters surrounding? If we include no escaped quotes, it's substring inside the quoted phrase? The narrative value characters: The Hyundai Tucson's \"Consider taking a break\" advisory... So substring `Consider taking a break` appears (without quote chars) inside. Verbatim yes.\n- \"This warning happens so frequently\" exact.\n- \"safety issue\" exact.\n- \"could conceivably be the cause of a crash\" exact.\n- \"easily reproducible\" exact.\nNeed kind: symptom for advisory and frequent? condition? \"easily reproducible\" condition? It's a condition? Could kind condition. But allowed conditions list doesn't include reproducible. Clues kind can be \"condition\" for \"easily reproducible\". Hmm.\nNeed summary one line: \"ADAS lane departure warning: Driver Attention Warning 'Consider taking a break' advisory triggers too frequently, requiring driver attention and posing crash risk; easily reproducible.\" That's one line.\n\nNeed group \"adas\". Symptoms array: [\"Driver Attention Warning 'Consider taking a break' advisory triggers frequently\", \"driver must take eyes off road to examine warning\"]. Conditions: maybe [\"intermittent\"]? Frequent is not intermittent. Could include \"easily reproducible\"? Conditions array only allowed listed? Rule says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. So empty. Missing_info include mileage date conditions? The report lacks incident date, mileage, environmental conditions. Use empty? The analysis needs mileage/date? For pattern analysis yes. Include [\"mileage\",\"date\",\"conditions\"]. But conditions maybe not important? It says \"conditions\" facts analysis needs. The warning happens frequently, but not under specific conditions. Still missing environmental conditions. I'll include mileage, date, conditions. Safety true.\n\nFault codes empty. Clues list. Need ensure every quote verbatim. Let's craft JSON no other text. Need valid JSON. Quotes escaped. For clue quote with quotes? Use simple. Could include component_group quote \"LANE DEPARTURE: WARNING\". Symptom quote \"This warning happens so frequently\". Safety quote \"could conceivably be the cause of a crash\". Condition quote \"easily reproducible\". Other quote \"Dealer is aware of issue.\" Maybe not needed. Summary no quote.\n\nNeed no suggestions. Fine.\n\nNeed decide safety_relevant: report field says false but narrative says safety issue and crash. Rule overrides. True.\n\nNeed missing_info: \"mileage\", \"date\", \"conditions\". But received_at date exists; maybe date of occurrence missing. Include. Maybe \"component\" present, \"symptom\" present. Good.\n\nNeed conditions array empty. Maybe \"intermittent\" no. Do not invent.\n\nClues:\n{\"kind\":\"component_group\",\"quote\":\"LANE DEPARTURE: WARNING\"}\n{\"kind\":\"symptom\",\"quote\":\"Consider taking a break\"}\n{\"kind\":\"symptom\",\"quote\":\"This warning happens so frequently\"}\n{\"kind\":\"symptom\",\"quote\":\"the driver must continually take their eyes off the road to examine what the vehicle is complaining about\"}\n{\"kind\":\"condition\",\"quote\":\"easily reproducible\"}\n{\"kind\":\"safety\",\"quote\":\"safety issue\"}\n{\"kind\":\"safety\",\"quote\":\"could conceivably be the cause of a crash\"}\nNeed quote exact. \"the driver must continually take their eyes off the road to examine what the vehicle is complaining about\" exact? Narrative: \"because the driver must continually take their eyes off the road to examine what the vehicle is complaining about, and therefore...\" yes substring exact. Good. \"safety issue\" exact. \"easily reproducible\" exact.\n\nNeed summary one line. Good.\n\nFinal only JSON. Ensure no markdown.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529935,
+      "id": "5f231368d4f91727fea0c8553c3472c2",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1506,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1284,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00056121,
+          "billing_source": "go",
+          "list_cost": 0.00093535,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 204,
+            "output": 1506,
+            "reasoning": 1284
+          }
+        },
+        "prompt_tokens": 588,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2094
+      }
+    },
+    "text": "{\"summary\":\"ADAS lane departure warning: Driver Attention Warning 'Consider taking a break' advisory triggers frequently, requiring driver attention and posing a possible crash risk; easily reproducible.\",\"group\":\"adas\",\"symptoms\":[\"Driver Attention Warning 'Consider taking a break' advisory triggers frequently\",\"driver must take eyes off the road to examine the warning\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"LANE DEPARTURE: WARNING\"},{\"kind\":\"symptom\",\"quote\":\"Consider taking a break\"},{\"kind\":\"symptom\",\"quote\":\"This warning happens so frequently\"},{\"kind\":\"symptom\",\"quote\":\"the driver must continually take their eyes off the road to examine what the vehicle is complaining about\"},{\"kind\":\"condition\",\"quote\":\"easily reproducible\"},{\"kind\":\"safety\",\"quote\":\"safety issue\"},{\"kind\":\"safety\",\"quote\":\"could conceivably be the cause of a crash\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00056121,
+      "cached_tokens": 384,
+      "cost_usd": 0.00093535,
+      "input_tokens": 588,
+      "list_cost_usd": 0.00093535,
+      "output_tokens": 1506,
+      "reasoning_tokens": 1284
+    }
+  }
+}

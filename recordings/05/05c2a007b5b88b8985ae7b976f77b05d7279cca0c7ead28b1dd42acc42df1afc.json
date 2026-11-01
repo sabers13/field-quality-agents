@@ -1,0 +1,66 @@
+{
+  "key": "05c2a007b5b88b8985ae7b976f77b05d7279cca0c7ead28b1dd42acc42df1afc",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 7157,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"ABS control module failure with dash warning lights and error code; no replacement available and owner cites safety risk\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"ABS control module failure\",\n    \"dash warning lights on\",\n    \"error code present for ABS module failure\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\",\n    \"conditions\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"ABS control module failed.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Dash warning lights are on\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"error code present for ABS module failure\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"There is no replacement available\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"They poses a huge safety risk\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer JSON only. Need parse report. Component electrical system group electrical_general given. Narrative: ABS control module failed. Dash warning lights on and error code present for ABS module failure. No replacement available etc. Safety risk mentioned \"huge safety risk\" but not crash/fire etc? Rule safety_relevant when mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. \"They poses a huge safety risk\" is another risk to people? It says safety risk. Should set true likely. Need symptoms plain words: ABS control module failed; dash warning lights on; error code present for ABS module failure; no replacement available? That's not symptom exactly maybe condition? Conditions: none of cold moisture heat vibration intermittent after service charging. Could include \"no replacement available\" not in allowed conditions? Conditions list examples not exhaustive? It says conditions array [\"cold\", ...]. Better only relevant standard. missing_info: mileage absent, date? received_at exists date, but date of failure missing? missing_info facts analysis needs: component, symptom, conditions, mileage, date. Component present, symptom present, conditions not specified (maybe missing conditions), mileage missing, date? received_at is date report not incident; date missing. Should list mileage, date, conditions. Fault codes: \"error code present\" but no code named -> empty. Clues verbatim. Need quotes exact substrings. Summary one line: ABS control module failure with dash warning lights and stored error code; no replacement availability; safety risk claimed. Ensure quote verbatim. Could quote \"ABS control module failed.\" \"Dash warning lights are on\" \"error code present for ABS module failure\" \"There is no replacement available\" \"They poses a huge safety risk\" (typo poses). Need group given electrical_general. safety_relevant true. Clues kind: symptom for ABS failed, warning lights, error code; condition maybe none; safety quote. Could include other quote no replacement? kind other. Need no extra text. JSON valid.\n\nNeed decide missing_info conditions? The report doesn't mention when/under what conditions warning appears. Include conditions. Mileage null. Date? received_at but no incident date. Include date.\n\nNeed \"symptoms\": [\"ABS control module failure\", \"dash warning lights on\", \"error code present for ABS module failure\"]. Fine.\n\nConditions: [] because no standard condition. Could include \"no replacement available\" not condition. Keep empty.\n\nClues quote exact: \"ABS control module failed.\" includes period yes. \"Dash warning lights are on\" exact. \"error code present for ABS module failure\" exact. \"There is no replacement available\" exact. \"They poses a huge safety risk\" exact (grammatical typo). Maybe quote \"known problem\" but no.\n\nSummary maybe \"ABS control module failure with dash warning lights and error code; no replacement available; owner cites safety risk.\" Good.\n\nNeed final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793526153,
+      "id": "af9d9b2544a1da8606c00d5c07b9de46",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 845,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 603,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00031956,
+          "billing_source": "go",
+          "list_cost": 0.0005326,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 163,
+            "output": 845,
+            "reasoning": 603
+          }
+        },
+        "prompt_tokens": 547,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1392
+      }
+    },
+    "text": "{\n  \"summary\": \"ABS control module failure with dash warning lights and error code; no replacement available and owner cites safety risk\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"ABS control module failure\",\n    \"dash warning lights on\",\n    \"error code present for ABS module failure\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\",\n    \"conditions\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"ABS control module failed.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Dash warning lights are on\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"error code present for ABS module failure\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"There is no replacement available\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"They poses a huge safety risk\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00031956,
+      "cached_tokens": 384,
+      "cost_usd": 0.0005326,
+      "input_tokens": 547,
+      "list_cost_usd": 0.0005326,
+      "output_tokens": 845,
+      "reasoning_tokens": 603
+    }
+  }
+}

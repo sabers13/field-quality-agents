@@ -1,0 +1,66 @@
+{
+  "key": "8d9eaae636e4cfb4150bf6e2cae82d9ea928ec7ed01e439d9b2bb5536abb3fee",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11785,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2018 Buick Encore air bags: front air bags did not deploy after a ~45 mph intersection collision; side airbags deployed; driver lost consciousness.\",\"group\":\"restraints\",\"symptoms\":[\"front air bags did not deploy\",\"driver struck head on steering wheel and lost consciousness\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"Side airbags deployed, however front air bags did not\"},{\"kind\":\"condition\",\"quote\":\"crossing through an intersection at approximately 45mph\"},{\"kind\":\"safety\",\"quote\":\"driver struck her head on steering wheel, loosing consciousness for several minutes\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize report. Need extract summary, group given restraints, symptoms plain words, conditions, fault codes none, safety_relevant true, missing_info? Report has component AIR BAGS, symptom front airbags did not deploy, conditions? crash/intersection 45mph, struck front passenger corner, continued forward, seat belts worn, driver struck head loss consciousness, side airbags deployed. Conditions list allowed: cold moisture heat vibration intermittent after service charging. None? Maybe \"intermittent\" no. Safety relevant true due crash injury loss consciousness. Missing info: mileage null, date? received date but incident date missing. Component present. Symptom present. Conditions present (crash at 45 mph). Mileage missing, date missing. Should missing_info include mileage and date. Maybe \"conditions\" not missing because crash conditions given. Need clues quotes verbatim. Need quote spans exactly from narrative. Need include safety quote. Could quote \"struck by another vehicle\" or \"driver struck her head on steering wheel, loosing consciousness for several minutes.\" Note spelling \"loosing\" verbatim. Symptom quote \"front air bags did not\". Full \"Side airbags deployed, however front air bags did not\" verbatim. Condition quote \"crossing through an intersection at approximately 45mph\". Component group? group restraints given. Clue kind component_group? quote \"AIR BAGS\" is component field not narrative? Rule quote copied verbatim from report. The report includes component field \"AIR BAGS\". Can quote it. But clues should evidence. Include component_group quote \"AIR BAGS\". Symptom quote. Condition quote. Safety quote. Fault code none. Summary one line: \"2018 Buick Encore air bags: front air bags failed to deploy in 45 mph intersection collision; side airbags deployed; driver lost consciousness.\" Need not invent model/year? Report has year make model. OK.\n\nNeed symptoms array plain words: \"front air bags did not deploy\" maybe \"driver struck head on steering wheel and lost consciousness\" but symptom of component? The report is field-quality report about air bags. Symptoms: \"front air bags did not deploy in a collision\"; \"side airbags deployed\" not symptom? It's observation. Could include \"driver struck head on steering wheel and lost consciousness for several minutes\" as injury symptom. But symptoms should be symptom in plain words. Maybe include both. Conditions: allowed vocab only; none match? Could put [] because no cold/moisture/heat/vibration/intermittent/after service/charging. Crash not in allowed list. So conditions [].\n\nmissing_info: [\"mileage\", \"date\"] because mileage null and incident date not given (received_at only). Date maybe incident date missing. Include \"date\". No \"component\" or \"symptom\". Could include \"conditions\"? No.\n\nclues: Need quotes exactly. Let's craft:\n{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"}\n{\"kind\":\"symptom\",\"quote\":\"front air bags did not\"}\n{\"kind\":\"condition\",\"quote\":\"crossing through an intersection at approximately 45mph\"}\n{\"kind\":\"safety\",\"quote\":\"driver struck her head on steering wheel, loosing consciousness for several minutes\"}\n{\"kind\":\"other\",\"quote\":\"Side airbags deployed, however front air bags did not\"} maybe symptom? Hmm kind symptom quote could be full sentence. Use \"Side airbags deployed, however front air bags did not\" as symptom. But it includes side deployed. Fine. Need quote exact: narrative: \"Side airbags deployed, however front air bags did not\" yes. Then condition quote. Safety quote exact: \"the driver struck her head on steering wheel, loosing consciousness for several minutes.\" Actually narrative: \"however the driver struck her head on steering wheel, loosing consciousness for several minutes.\" We can quote \"driver struck her head on steering wheel, loosing consciousness for several minutes\" yes substring. Good.\n\nNeed ensure JSON no markdown? User says answer with one JSON object and no other text. So final only JSON. Need no code fences? likely no fences. We'll output raw JSON.\n\nNeed consider \"group\": \"restraints\" given. Good.\n\nNeed summary one line. Use \"Air bags (restraints): front air bags did not deploy in a ~45 mph intersection collision; side airbags deployed; driver lost consciousness after head strike.\" That's one line. Avoid invent? \"~45 mph\" from approximately. OK. Maybe \"2018 Buick Encore\" not necessary but summary component symptom conditions. Could include. \"2018 Buick Encore air bags: front air bags did not deploy after a ~45 mph intersection collision; side airbags deployed; driver lost consciousness.\" Good.\n\nsymptoms: \"front air bags did not deploy\"; \"driver struck head on steering wheel and lost consciousness\" (verbatim? \"loosing\" not in plain words). Plain words can correct spelling? Symptoms not quotes. OK.\n\nconditions: []? Hmm conditions allowed list only those; crash not allowed. Maybe include \"intermittent\"? No. [].\n\nfault_codes: [].\n\nsafety_relevant true.\n\nmissing_info [\"mileage\",\"date\"].\n\nclues: need maybe include \"I was struck by another vehicle\" for safety? But we have injury. Include condition quote. Include \"Both driver and front passenger wore seat belts\" as other? Not necessary. But clues should evidence. Maybe include exactly 4. The quote \"AIR BAGS\" from component field is not narrative but report. \"quote copied verbatim from report\" includes fields. Fine.\n\nNeed ensure no invalid quote: \"Side airbags deployed, however front air bags did not\" is exact? Narrative: \"Side airbags deployed, however front air bags did not\" yes. It includes \"air bags\" two words. Good.\n\nPotential issue: symptom quote \"front air bags did not\" is substring but truncated; acceptable? It says verbatim span. Fine but maybe better full. Use full.\n\nClues:\n- {\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"}\n- {\"kind\":\"symptom\",\"quote\":\"Side airbags deployed, however front air bags did not\"}\n- {\"kind\":\"condition\",\"quote\":\"crossing through an intersection at approximately 45mph\"}\n- {\"kind\":\"safety\",\"quote\":\"driver struck her head on steering wheel, loosing consciousness for several minutes\"}\nCould include \"other\" quote \"My vehicle was struck on the front passenger corner\" as condition? But condition kind maybe. But allowed conditions? Clue kind condition can quote crash condition. OK. Maybe include. But enough.\n\nNeed final exactly JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529703,
+      "id": "041ee4ad612c3e2260246324cfb62cb4",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1544,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1373,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00057336,
+          "billing_source": "go",
+          "list_cost": 0.0009556,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 187,
+            "output": 1544,
+            "reasoning": 1373
+          }
+        },
+        "prompt_tokens": 571,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2115
+      }
+    },
+    "text": "{\"summary\":\"2018 Buick Encore air bags: front air bags did not deploy after a ~45 mph intersection collision; side airbags deployed; driver lost consciousness.\",\"group\":\"restraints\",\"symptoms\":[\"front air bags did not deploy\",\"driver struck head on steering wheel and lost consciousness\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"Side airbags deployed, however front air bags did not\"},{\"kind\":\"condition\",\"quote\":\"crossing through an intersection at approximately 45mph\"},{\"kind\":\"safety\",\"quote\":\"driver struck her head on steering wheel, loosing consciousness for several minutes\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00057336,
+      "cached_tokens": 384,
+      "cost_usd": 0.0009556,
+      "input_tokens": 571,
+      "list_cost_usd": 0.0009556,
+      "output_tokens": 1544,
+      "reasoning_tokens": 1373
+    }
+  }
+}

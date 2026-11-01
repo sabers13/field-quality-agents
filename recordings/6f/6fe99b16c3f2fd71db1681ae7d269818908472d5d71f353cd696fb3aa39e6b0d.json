@@ -1,0 +1,66 @@
+{
+  "key": "6fe99b16c3f2fd71db1681ae7d269818908472d5d71f353cd696fb3aa39e6b0d",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 14242,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2021 Tesla Model Y battery died without warning, locking driver and child in garage; battery replaced, trim damaged and wind noise followed.\",\"group\":\"power_and_wiring\",\"symptoms\":[\"battery died without warning\",\"locked inside vehicle with no power to open doors\",\"jump start provided enough power only to unlock doors\",\"battery replaced\",\"trim damaged\",\"wind noise\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM:12V/24V/48V BATTERY\"},{\"kind\":\"symptom\",\"quote\":\"The battery had died without warning\"},{\"kind\":\"symptom\",\"quote\":\"No power, no way to open the doors.\"},{\"kind\":\"safety\",\"quote\":\"trapped in our Tesla for thirty agonizing minutes\"},{\"kind\":\"symptom\",\"quote\":\"not enough juice to start the engine, but just enough to unlock the doors\"},{\"kind\":\"other\",\"quote\":\"they replaced the battery\"},{\"kind\":\"other\",\"quote\":\"The trim was damaged during the chaos\"},{\"kind\":\"symptom\",\"quote\":\"relentless wind noise\"}]}",
+            "reasoning_content": "We need answer only JSON. Need parse report. Component battery. Group given power_and_wiring. Symptoms: battery died without warning; locked inside; no power no way open doors; jump not enough to start engine but enough unlock; battery replaced; trim damaged wind noise? Need symptoms plain words. Conditions: maybe none? \"in garage\", trapped, after battery died. Conditions list allowed cold moisture heat vibration intermittent after service charging. We shouldn't invent. Maybe \"after service\" because trim damaged during chaos? Not relevant? Could include \"intermittent\"? No. Conditions empty. Fault codes none. Safety relevant true? Report mentions trapped, child strapped in car seat, no way open doors, heart raced, missed work. Risk to people? Yes trapped inside, child. Set true. Missing_info: mileage null, date? received_at 2025-09-16 but incident date absent. Component present, symptom present, conditions? Could list mileage, date. Maybe conditions not missing? The desk needs conditions. But conditions not explicit except in garage. We can list \"mileage\", \"date\". Maybe \"conditions\" too? Need only facts analysis needs: component, symptom, conditions, mileage, date. Component and symptom present. Conditions maybe incident conditions absent (temperature? driving?). But report says in garage. I'd include mileage and date. Maybe \"conditions\" if no conditions. But conditions are optional? Hmm.\n\nClues: verbatim spans. Need exact quotes from narrative. Quotes:\n\"The battery had died without warning, leaving us locked inside our own garage.\" exact includes comma? Narrative: \"The battery had died without warning, leaving us locked inside our own garage.\" yes.\n\"No power, no way to open the doors.\" exact.\n\"jumped the car—not enough juice to start the engine, but just enough to unlock the doors.\" exact includes em dash? Narrative has \"jumped the car\\u2014not enough juice...\" In JSON quote can use em dash actual. Need verbatim. Could use shorter: \"not enough juice to start the engine, but just enough to unlock the doors.\" exact.\n\"they replaced the battery\" exact? Narrative: \"where they replaced the battery.\" quote \"they replaced the battery\" verbatim substring. Good.\n\"trapped in our Tesla for thirty agonizing minutes\" exact? Narrative: \"as we sat trapped in our Tesla for thirty agonizing minutes.\" quote \"trapped in our Tesla for thirty agonizing minutes\" exact.\n\"my [XXX]  son, was strapped in his car seat\" exact? Contains [XXX] with two spaces? Narrative: \"my [XXX]  son, was strapped in his car seat\" yes double space after bracket? It says \"my [XXX]  son\" two spaces? In JSON string: \"my [XXX]  son, was strapped in his car seat, wide-eyed and confused\" appears two spaces after [XXX]. Need copy exact. Could avoid with \"strapped in his car seat\" exact substring. Safety clue quote \"trapped in our Tesla for thirty agonizing minutes\" enough. Or \"No power, no way to open the doors.\" Safety.\n\nNeed summary one line: \"2021 Tesla Model Y 12V battery died without warning, locking occupants in garage; battery replaced and trim damaged causing wind noise.\" But must not invent 12V? Component says 12V/24V/48V battery. Use \"battery\". Summary: \"Tesla Model Y battery died without warning, locking child and driver in garage; battery replaced, trim damaged and wind noise.\" Conditions maybe \"in garage\". Keep one line.\n\nGroup exactly \"power_and_wiring\".\n\nSymptoms array: \"battery died without warning\", \"occupants locked inside vehicle\", \"no power to open doors\", \"jump start insufficient to start engine\", \"battery replaced\", \"trim damaged\", \"wind noise\". Are trim/wind noise symptoms? They are consequences, but report. Could include. Maybe symptoms should be component symptoms: battery died without warning; no power; doors locked; insufficient jump start. Trim damage/wind noise other issue. But include as symptom? The field-quality report includes. Hm.\n\nConditions array: maybe [\"in garage\"]? Allowed conditions list doesn't include \"in garage\"; rules give examples? It says conditions: [\"cold\", ...] likely restrict to list? It says conditions [\"cold\",...]. We should choose from allowed. No cold/moisture/heat/vibration/intermittent/after service/charging. Could be \"after service\" because damage occurred during tow/service? But battery died before service. Not. Empty.\n\nFault codes empty.\n\nMissing info: [\"mileage\", \"date\"] maybe also \"conditions\"? If conditions empty, missing conditions could be relevant. But report says in garage. The analysis needs conditions; no temperature/charging state. I'd include \"mileage\", \"date\", \"conditions\". However missing_info allowed only facts component symptom conditions mileage date. Conditions missing maybe yes. But if we include conditions in conditions array? no. Hm.\n\nNeed not mention action. No suggestions.\n\nEnsure JSON valid. Only JSON no markdown? User says answer with one JSON object and no other text. We can output raw JSON. Good.\n\nNeed quote \"battery had died without warning\" exact lowercase? Narrative \"The battery had died without warning\" quote can be \"battery had died without warning\" exact substring after The? Actually substring \"battery had died without warning\" yes.\n\nClues kind:\n- component_group quote \"ELECTRICAL SYSTEM:12V/24V/48V BATTERY\"? Is that in report? The report includes component field, not narrative. User message includes it. \"report\" includes whole JSON. Quote can be from report. But \"verbatim span copied from report\" yes. Use component group quote? Maybe quote \"ELECTRICAL SYSTEM:12V/24V/48V BATTERY\" exact. Kind component_group.\n- symptom quote \"The battery had died without warning\"\n- condition? \"locked inside our own garage\" could kind condition? But allowed conditions not. Maybe other. Use \"leaving us locked inside our own garage\" as symptom? \n- safety quote \"trapped in our Tesla for thirty agonizing minutes\" kind safety.\n- fault_code none.\n- other quote \"they replaced the battery\" maybe symptom/other.\n\nNeed exact punctuation. Let's craft.\n\nSummary: \"2021 Tesla Model Y battery died without warning, locking driver and child in garage; battery replaced, trim damaged and wind noise followed.\" This is one line. Conditions: \"in garage\" not allowed? In summary okay.\n\nSymptoms: [\"battery died without warning\", \"locked inside vehicle with no power to open doors\", \"jump start provided enough power only to unlock doors\", \"battery replaced\", \"trim damaged\", \"wind noise\"] But \"locked inside vehicle...\" combines quotes but plain. Fine.\n\nMissing_info: [\"mileage\", \"date\", \"conditions\"]? Is conditions missing? The report says \"in garage\" but not temperature/charging. The analysis needs conditions. Include. But maybe \"conditions\" not missing because in garage. Hmm. I'll include mileage and date. Maybe conditions too? The prompt says missing_info list only facts analysis needs; conditions maybe important for battery death. No temperature, no charging. I'd include \"conditions\" as missing because no cold/heat/charging info. But the conditions array can be empty, and missing conditions. That seems okay.\n\nSafety true.\n\nClues array with exact quotes:\n1 component_group quote \"ELECTRICAL SYSTEM:12V/24V/48V BATTERY\"\n2 symptom quote \"The battery had died without warning\"\n3 symptom quote \"No power, no way to open the doors.\"\n4 safety quote \"trapped in our Tesla for thirty agonizing minutes\"\n5 symptom quote \"not enough juice to start the engine, but just enough to unlock the doors\"\n6 other/symptom quote \"they replaced the battery\"\n7 other quote \"The trim was damaged during the chaos\" exact? Narrative \"The trim was damaged during the chaos, and now every drive is accompanied by relentless wind noise\" yes. Quote \"The trim was damaged during the chaos\" exact.\n8 symptom quote \"relentless wind noise\" exact.\n\nNeed ensure quote 5: Narrative: \"jumped the car\\u2014not enough juice to start the engine, but just enough to unlock the doors.\" The substring \"not enough juice to start the engine, but just enough to unlock the doors\" exact yes.\n\nSafety quote \"trapped in our Tesla for thirty agonizing minutes\" exact yes. It doesn't mention child but safety.\n\nCould include \"my [XXX]  son, was strapped in his car seat\" exact? Avoid.\n\nJSON no trailing commas. Use double quotes. Em dash can be unicode. Fine.\n\nNeed no other text.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530419,
+      "id": "07b9153783d7bb08b858d409eedb473e",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2108,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1846,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00079728,
+          "billing_source": "go",
+          "list_cost": 0.0013288,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 419,
+            "output": 2108,
+            "reasoning": 1846
+          }
+        },
+        "prompt_tokens": 803,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2911
+      }
+    },
+    "text": "{\"summary\":\"2021 Tesla Model Y battery died without warning, locking driver and child in garage; battery replaced, trim damaged and wind noise followed.\",\"group\":\"power_and_wiring\",\"symptoms\":[\"battery died without warning\",\"locked inside vehicle with no power to open doors\",\"jump start provided enough power only to unlock doors\",\"battery replaced\",\"trim damaged\",\"wind noise\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM:12V/24V/48V BATTERY\"},{\"kind\":\"symptom\",\"quote\":\"The battery had died without warning\"},{\"kind\":\"symptom\",\"quote\":\"No power, no way to open the doors.\"},{\"kind\":\"safety\",\"quote\":\"trapped in our Tesla for thirty agonizing minutes\"},{\"kind\":\"symptom\",\"quote\":\"not enough juice to start the engine, but just enough to unlock the doors\"},{\"kind\":\"other\",\"quote\":\"they replaced the battery\"},{\"kind\":\"other\",\"quote\":\"The trim was damaged during the chaos\"},{\"kind\":\"symptom\",\"quote\":\"relentless wind noise\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00079728,
+      "cached_tokens": 384,
+      "cost_usd": 0.0013288,
+      "input_tokens": 803,
+      "list_cost_usd": 0.0013288,
+      "output_tokens": 2108,
+      "reasoning_tokens": 1846
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "855e4ae46fc29b5731f5ef883319aab68515ee7241e34a3bd927ab1e4cfee76a",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11773,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"AIR BAGS did not deploy in an accident; no prior warning; safety was at risk due to pregnancy.\",\"group\":\"restraints\",\"symptoms\":[\"airbags did not deploy in an accident\",\"no warning or other symptoms prior to failure\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"my airbags did not deploy\"},{\"kind\":\"condition\",\"quote\":\"I was currently in an accident\"},{\"kind\":\"safety\",\"quote\":\"My safety was at risk because I am pregnant.\"},{\"kind\":\"other\",\"quote\":\"No warning or other symptoms of problems prior to failure\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize report. Need read given. Component AIR BAGS group restraints. Summary one line component symptom conditions. Symptoms: airbags did not deploy in accident. Conditions? accident? Maybe not cold etc. Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. Report doesn't mention any. Could be empty. Fault codes none. safety_relevant true because accident and safety at risk pregnant. missing_info: mileage? Report mileage null in metadata but user says read only report in user message; report includes mileage null? The JSON includes mileage null. Missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Component present, symptom present, date present received_at maybe date. Conditions absent but not necessarily missing? Could list \"conditions\" because no conditions mentioned? Rules list missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. Use empty when nothing important missing. Mileage null -> missing. Conditions? The report says no warning or other symptoms prior; accident condition known. Maybe conditions missing? It says currently in accident. We can list mileage. Maybe date present. Missing_info [\"mileage\"]. Need clues with verbatim quotes. Include symptom quote: \"my airbags did not deploy\" exact lowercase? Narrative: \"I was currently in an accident and my airbags did not deploy. My safety was at risk because I am pregnant. The vehicle was inspected by insurance representatives or body shop. No warning or other symptoms of problems prior to failure\". Quotes verbatim. Need maybe condition \"in an accident\" quote? Kind condition? Conditions allowed list doesn't include accident but clue kind condition maybe quote \"I was currently in an accident\". But conditions array only enumerate allowed. Could include? It says conditions: [\"cold\", ...] likely only those. Clue condition can quote accident? Kind condition. Safety quote \"My safety was at risk because I am pregnant.\" component_group quote? \"AIR BAGS\" from component field? Is component part of report? Yes JSON field. Quote verbatim \"AIR BAGS\". Also symptom \"No warning or other symptoms of problems prior to failure\" maybe other. Need summary: \"AIR BAGS did not deploy in an accident; no prior warning; safety at risk (pregnant).\" Conditions? Could say \"in an accident\" but conditions array doesn't include. Summary includes conditions. JSON no other text.\n\nNeed ensure exact quote: \"I was currently in an accident and my airbags did not deploy.\" includes period. For clue symptom quote can be \"my airbags did not deploy\" exactly substring. For safety quote \"My safety was at risk because I am pregnant.\" exact. For other \"No warning or other symptoms of problems prior to failure\" exact? Narrative has \"No warning or other symptoms of problems prior to failure\" no period? It ends no period? Actual narrative ends \"prior to failure\" no period after? String: \"... body shop. No warning or other symptoms of problems prior to failure\", no final period. Quote without period exact. Good.\n\nFault_codes [].\n\nsafety_relevant true.\n\nmissing_info [\"mileage\"] possibly \"conditions\"? The report mentions accident, so condition known? But allowed conditions not. We can leave only mileage. Date present received_at 2025-05-09 but accident date unknown. Missing date? They have received_at not accident date. Analysis may need date of incident. Field \"date\" maybe date of report? Hmm missing_info includes date. The report has received_at but not accident date. Should list \"date\"? It says missing_info for facts analysis needs: component, symptom, conditions, mileage, date. Date of incident is important; received_at not incident date. But maybe \"date\" present received_at. Hard. The task likely expects missing_info mileage because null. Maybe date? The report provides received_at; but incident date not. Since \"date\" fact analysis needs, and no incident date. However metadata has received_at, likely date of report. Could list \"mileage\" only. Conditions: no mention of cold etc. But not all cases need. They specifically list conditions. The report says accident; no environmental conditions. Could list \"conditions\" because conditions of failure? But \"in an accident\" is condition. Hmm.\n\nNeed group \"restraints\".\n\nSymptoms array: [\"airbags did not deploy\"] maybe \"no warning or other symptoms prior to failure\" is not symptom; it's absence. Add \"no prior warning\". But symptoms plain words. Could have [\"airbags did not deploy in an accident\", \"no warning or symptoms prior to failure\"]. Conditions empty.\n\nClues:\n- component_group quote \"AIR BAGS\" kind component_group.\n- symptom quote \"my airbags did not deploy\" kind symptom.\n- condition quote \"I was currently in an accident\" kind condition? But conditions array excludes; clue kind condition okay? It says kind symptom|condition|... quote. Conditions can be clue even if not in conditions array? It says condition quote. I think yes.\n- safety quote \"My safety was at risk because I am pregnant.\" kind safety.\n- other quote \"No warning or other symptoms of problems prior to failure\" kind other maybe symptom? It is absence of warning; kind other.\nMaybe include \"The vehicle was inspected by insurance representatives or body shop.\" kind other? Not necessary.\n\nNeed no markdown? \"Answer with one JSON object and no other text\". Final should be JSON only. Ensure valid JSON. Use booleans. Let's craft.\n\nSummary one line: \"AIR BAGS did not deploy in an accident; no prior warning; safety at risk due to pregnancy.\" Conditions: maybe [\"in an accident\"] not allowed. Use conditions [].\n\nPotential issue: conditions array allowed values include only listed. Empty okay. Clue condition quote \"I was currently in an accident\" not represented in conditions. That's okay? It asks clue kind condition. But conditions list doesn't include accident, so inconsistent. Could skip condition clue to avoid. But then no condition clue. Use other? Hmm. The summary says in accident. Conditions array empty. Could include clue kind \"condition\" quote \"I was currently in an accident\"; allowed kind condition, not restricted. But conditions array is normalized list of allowed conditions. I think okay. But maybe evaluator expects accident as condition? Not in enum. Keep clue condition.\n\nMissing_info: [\"mileage\"] maybe also \"conditions\"? If conditions unknown, but report says accident. I think only mileage. Date? There is received_at. Use [\"mileage\"]. Final JSON only.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793526860,
+      "id": "ac8c93bb31a8d31a0348f35de12f11b3",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1526,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1362,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0005631,
+          "billing_source": "go",
+          "list_cost": 0.0009385,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 145,
+            "output": 1526,
+            "reasoning": 1362
+          }
+        },
+        "prompt_tokens": 529,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2055
+      }
+    },
+    "text": "{\"summary\":\"AIR BAGS did not deploy in an accident; no prior warning; safety was at risk due to pregnancy.\",\"group\":\"restraints\",\"symptoms\":[\"airbags did not deploy in an accident\",\"no warning or other symptoms prior to failure\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"my airbags did not deploy\"},{\"kind\":\"condition\",\"quote\":\"I was currently in an accident\"},{\"kind\":\"safety\",\"quote\":\"My safety was at risk because I am pregnant.\"},{\"kind\":\"other\",\"quote\":\"No warning or other symptoms of problems prior to failure\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0005631,
+      "cached_tokens": 384,
+      "cost_usd": 0.0009385,
+      "input_tokens": 529,
+      "list_cost_usd": 0.0009385,
+      "output_tokens": 1526,
+      "reasoning_tokens": 1362
+    }
+  }
+}

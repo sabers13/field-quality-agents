@@ -1,0 +1,66 @@
+{
+  "key": "808428998072c50c5e2e1995cd58248b4e8c37ff5bda218c70914b7217457558",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10843,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2013 Kia Optima electrical system caught fire while driving on the highway; the car burnt up.\",\"group\":\"electrical_general\",\"symptoms\":[\"caught fire while driving\",\"car burnt up\"],\"conditions\":[\"while driving\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"caught fire while my [XXX]  son and his friends were driving it\"},{\"kind\":\"symptom\",\"quote\":\"The car burnt up.\"},{\"kind\":\"condition\",\"quote\":\"while driving down the highway\"},{\"kind\":\"safety\",\"quote\":\"They could have been killed\"}]}",
+            "reasoning_content": "We need answer one JSON object no other text. Need normalize report. Component electrical system, group electrical_general. Summary one line component symptom conditions. Narrative: 2013 Kia Optima caught fire while son and friends driving. Car burnt up. Truck drivers flagged son down to let know car on fire. They could have been killed if not for warning while driving down highway. Safety relevant true. Symptoms: caught fire while driving, car burnt up? Symptom plain words \"caught fire while driving\". Conditions: driving? The enumerated conditions include cold moisture heat vibration intermittent after service charging. None explicit. Could conditions be [\"driving\"]? Rule conditions list examples? It says conditions array [\"cold\",\"moisture\",\"heat\",\"vibration\",\"intermittent\",\"after service\",\"charging\"]. We should only include if report names. Driving isn't in list but is condition. We can include \"while driving\"? Probably okay? But format suggests those categories. Need not invent. Maybe conditions: [\"while driving\"]? Hmm. It says \"conditions\": [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. Likely choose from those. No matched, empty list. But \"while driving\" is important condition; can put in summary and clues as condition maybe quote \"while driving down the highway\" and kind condition. But conditions array maybe [\"while driving\"]? Need follow schema maybe generic. I'd include \"while driving\" because report names it. But examples don't include. The rule says conditions in plain? \"conditions\": [\"cold\", ...]. No strict enum? It lists examples maybe. I'd include \"while driving\" as condition in clues; array conditions could be [\"while driving\"]. But \"while driving\" isn't one of predefined. Hm.\n\nFault codes none.\n\nMissing_info: mileage, date? Report has received_at but no incident date. Component given. Symptom present. Conditions present? Driving. Mileage null. Date missing (incident date). So [\"mileage\",\"date\"]. Maybe \"conditions\" not missing because driving described. Could include component? It's electrical system broad, but given. Missing specific component? The analysis needs component; report says electrical system, maybe broad enough. Don't invent. Missing info only facts analysis needs. mileage and date.\n\nClues with verbatim quotes. Need exact quote from narrative. Must copy character for character. Need be careful with Unicode apostrophes and redaction. Quotes can be spans.\n\nQuotes:\n- \"caught fire while my [XXX]  son and his friends were driving it\" — exact? Narrative: \"My 2013 Kia Optima caught fire while my [XXX]  son and his friends were driving it.\" There is [XXX] two spaces? It shows \"[XXX]  son\" yes two spaces. Quote \"caught fire while my [XXX]  son and his friends were driving it\" is verbatim span? It starts after \"Optima \" and includes \"caught fire...\" yes. Could include exact two spaces. Need preserve.\n- \"The car burnt up.\"\n- \"They could have been killed\" exact? Narrative: \"They could have been killed if it wasn’t for the truck drivers warning him that the car was on fire while driving down the highway.\" Quote \"They could have been killed\" yes.\n- \"while driving down the highway\" exact.\n- \"car was on fire\" exact? It says \"the car was on fire while driving down the highway.\" Quote \"the car was on fire\".\n- Component group quote? \"ELECTRICAL SYSTEM\" from component field not narrative? Report includes component field. Quote can be from report. \"ELECTRICAL SYSTEM\" exact. Kind component_group.\n- safety quote \"They could have been killed\" kind safety.\n- condition quote \"while driving down the highway\" kind condition.\n- symptom quote \"caught fire\" kind symptom.\nNeed no extra text. Summary: \"2013 Kia Optima electrical system caught fire while driving; vehicle burnt up; occupants warned by truck drivers.\" Conditions: maybe [\"while driving\"]. Could include \"highway driving\". But conditions array in schema maybe [\"while driving\"]. Hmm.\n\nNeed ensure JSON valid. Use apostrophe curly? In quote \"wasn’t\" if included; avoid to not mess. Use quote without curly apostrophe: \"They could have been killed\" no apostrophe. Good.\n\nSummary includes component, symptom, conditions: \"2013 Kia Optima electrical system caught fire while driving on highway; car burnt up.\" Good.\n\ngroup: \"electrical_general\" given group.\n\nsymptoms: [\"caught fire while driving\", \"car burnt up\"]? Symptom \"car burnt up\" is consequence. Plain words. Fine.\n\nconditions: [\"while driving\"] maybe. But schema examples enumerated. I can put [\"while driving\", \"highway\"]? Better not \"highway\" as condition. Use [\"while driving\"].\n\nSafety true.\n\nMissing: [\"mileage\",\"date\"]. Maybe date of incident not given. Yes.\n\nClues array. Need quote exact character. Let's verify narrative exact:\n\"My 2013 Kia Optima caught fire while my [XXX]  son and his friends were driving it. The car burnt up. Some truck drivers flagged my son down to let him know the car was on fire. They could have been killed if it wasn’t for the truck drivers warning him that the car was on fire while driving down the highway.  INFORMATION REDACTED PURSUANT TO THE FREEDOM OF INFORMATION ACT (FOIA), 5 U.S.C. 552(B)(6)\"\n\nQuotes exact:\n\"caught fire while my [XXX]  son and his friends were driving it\" — does span include two spaces after [XXX]? Yes as copied. Need copy exactly. I will include double space. In JSON it's fine.\n\"The car burnt up.\"\n\"the car was on fire\"\n\"while driving down the highway\"\n\"They could have been killed\"\n\"ELECTRICAL SYSTEM\"\n\nNeed maybe \"2013 Kia Optima\" component? Not necessary.\n\nPotential issue: \"quote\": \"caught fire while my [XXX]  son and his friends were driving it\" — Does report have \"My 2013 Kia Optima caught fire while my [XXX]  son...\" Yes.\n\nNeed answer only JSON. Final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793532923,
+      "id": "7dbe7c69f53f96a4c530b0474342d0f6",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1489,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1325,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00055545,
+          "billing_source": "go",
+          "list_cost": 0.00092575,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 208,
+            "output": 1489,
+            "reasoning": 1325
+          }
+        },
+        "prompt_tokens": 592,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2081
+      }
+    },
+    "text": "{\"summary\":\"2013 Kia Optima electrical system caught fire while driving on the highway; the car burnt up.\",\"group\":\"electrical_general\",\"symptoms\":[\"caught fire while driving\",\"car burnt up\"],\"conditions\":[\"while driving\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"caught fire while my [XXX]  son and his friends were driving it\"},{\"kind\":\"symptom\",\"quote\":\"The car burnt up.\"},{\"kind\":\"condition\",\"quote\":\"while driving down the highway\"},{\"kind\":\"safety\",\"quote\":\"They could have been killed\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00055545,
+      "cached_tokens": 384,
+      "cost_usd": 0.00092575,
+      "input_tokens": 592,
+      "list_cost_usd": 0.00092575,
+      "output_tokens": 1489,
+      "reasoning_tokens": 1325
+    }
+  }
+}

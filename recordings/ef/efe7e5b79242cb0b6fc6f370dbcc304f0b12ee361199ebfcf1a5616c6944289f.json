@@ -1,0 +1,66 @@
+{
+  "key": "efe7e5b79242cb0b6fc6f370dbcc304f0b12ee361199ebfcf1a5616c6944289f",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 15183,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Back over prevention warnings on a 2024 Polestar 2: reverse camera settings issue persists after software update, and reversing can trigger emergency stop while parking sensors are nonfunctional.\",\"group\":\"adas\",\"symptoms\":[\"reverse camera settings issue not corrected by software update\",\"emergency stop function activates when reversing\",\"parking sensors nonfunctional\",\"anxiety and stress from unintended emergency braking\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"BACK OVER PREVENTION: WARNINGS\"},{\"kind\":\"symptom\",\"quote\":\"reverse camera settings\"},{\"kind\":\"symptom\",\"quote\":\"has not corrected the issue in my polestar\"},{\"kind\":\"other\",\"quote\":\"caused many other disturbances forcing me to seek service\"},{\"kind\":\"condition\",\"quote\":\"When reversing\"},{\"kind\":\"symptom\",\"quote\":\"it will activate the emergency stop function\"},{\"kind\":\"symptom\",\"quote\":\"parking sensors nonfunctional\"},{\"kind\":\"safety\",\"quote\":\"the emergency breaks being activated without threat or my regard again is distressing and misleading\"},{\"kind\":\"symptom\",\"quote\":\"much anxiety and stress\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize. Must copy verbatim quotes from report. Need determine group given \"adas\". Component \"BACK OVER PREVENTION: WARNINGS\". Summary one line component, symptom, conditions. Symptoms: software update did not correct reverse camera settings issue; disturbances causing service; when reversing emergency stop activates; parking sensors nonfunctional; anxiety/stress; emergency brakes activated without threat. Conditions: reversing; after service? \"seek service\" not after service. \"after software update\" maybe condition. Report mentions software update. Could condition be \"after service\"? It says distributed software update; update not corrected. \"after service\" maybe not exactly. Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. We should include only matching? \"after service\" not exactly, software update not service. Could include \"intermittent\"? not stated. \"when reversing\" not in allowed conditions except maybe other? Conditions array from given list? Prompt says conditions: [\"cold\", ...] likely use those. But reversing is condition not in list. Hmm \"conditions\" in summary and clues. We can include \"after service\"? The report says \"forcing me to seek service\" not after service. Avoid invent. Maybe conditions empty. But summary needs conditions? one line component, symptom, conditions. Could say \"when reversing\". But conditions array doesn't have reversing. Maybe include \"intermittent\"? no. We can include \"after service\"? no. So conditions []? But \"conditions\" field can be [] maybe. Need missing_info: mileage null, date? received_at exists but report date maybe missing? Missing info: mileage, date? The analysis needs date? received_at 2025-07-16, but incident date missing. The allowed missing_info includes date. Should include \"mileage\" and maybe \"date\" (incident date). Component and symptom present; conditions maybe present? \"when reversing\" condition. Missing conditions? Not necessarily. Missing_info only facts analysis needs. Mileage null. Date? We have received_at but not incident date. Could include \"mileage\", \"date\". Maybe \"conditions\" because no environmental conditions? But reversing is condition. I'd include mileage and date.\n\nFault_codes: none.\n\nsafety_relevant true. Clues with verbatim quotes. Need quotes exact character for character. Narrative has typos \"manafactuer\", \"breaks\". Need copy exact spans. Let's extract:\n- \"reverse camera settings\"\n- \"has not corrected the issue in my polestar\"\n- \"caused many other disturbances forcing me to seek service\"\n- \"When reversing, it will activate the emergency stop function\"\n- \"parking sensors nonfunctional\"\n- \"emergency breaks being activated without threat\"\n- \"much anxiety and stress\"\n- \"distressing and misleading\"\nNeed kind: symptom, condition, safety, other, component_group. For component_group quote? \"BACK OVER PREVENTION: WARNINGS\" is from component field not narrative? The report includes entire JSON, so quote can be from report? It says report in user message, includes component. It says quote verbatim span copied from report. We can quote component value \"BACK OVER PREVENTION: WARNINGS\" as component_group. Is that \"from report\" yes. Group given adas. Could include clue kind component_group quote \"BACK OVER PREVENTION: WARNINGS\". Safety quote \"emergency stop function\" or \"emergency breaks being activated without threat\" indicates safety. Use \"emergency stop function\" maybe. But safety_relevant true due emergency stop/brakes. Quote \"the emergency breaks being activated without threat or my regard again is distressing and misleading\" is safety. Need exact: narrative: \"the thought of the emergency breaks being activated without threat or my regard again is distressing and misleading.\" Copy that.\n\nNeed summary one line: \"Back over prevention warnings on 2024 Polestar 2: after a software update, reverse camera settings issue persists and reversing can trigger emergency stop while parking sensors are nonfunctional.\" Conditions: \"when reversing; after software update\" but after software update not in allowed conditions. Could mention in summary. Conditions array maybe [\"after service\"]? Hmm.\n\nNeed maybe \"group\": \"adas\" given. \"symptoms\": plain words. Could be:\n- \"reverse camera settings issue not corrected by software update\"\n- \"emergency stop function activates when reversing\"\n- \"parking sensors nonfunctional\"\n- \"anxiety and stress from unintended emergency braking\"\nNeed plain words. Good.\n\nConditions: The allowed list includes \"after service\", \"intermittent\", etc. The report says \"when reversing\"—not in list. But conditions array should include conditions from allowed set? The schema example has fixed set. It says conditions: [\"cold\", ...]. Maybe use only those labels. But if no matching, empty. However \"after service\" maybe because software update? No. Could include \"after service\" because it caused need to seek service? Not condition of fault. Avoid.\n\nMissing_info: [\"mileage\", \"date\"] maybe \"conditions\" because only reversing? I'd include mileage and date. Could include \"conditions\" because environmental/temperature not specified? But analysis needs conditions? The prompt says missing_info only for facts needed: component, symptom, conditions, mileage, date. Conditions maybe not missing because reversing. I'd not include conditions. But mileage null. Date? received_at present. Incident date missing; \"date\" as in report date? The report has received_at, so maybe date not missing. But incident date is missing. However field \"date\" likely report date? Received_at gives date. Hmm. The intake normalizes incoming; missing_info includes date if absent. Date present received_at. So maybe only mileage. But mileage null. Include [\"mileage\"]. But date of incident missing? The report doesn't name incident date. The analysis may need date? It says \"missing_info\": [\"mileage\", \"date\", ...]. Since received_at is date, but not incident date. I'd include \"mileage\" only? Need not overdo. The user wants missing info facts analysis needs. Mileage null. Date is present as received_at, so not missing. Conditions present \"when reversing\". So missing_info [\"mileage\"]. But maybe component? present, symptom present. Good.\n\nNeed ensure JSON no other text. Use valid JSON. Quote exact. Check quotes:\n1 \"reverse camera settings\" appears: \"software update to correct issues regarding reverse camera settings.\" yes.\n2 \"has not corrected the issue in my polestar\" appears: \"This update has not corrected the issue in my polestar and\" yes lower \"has\" after This update. Quote \"has not corrected the issue in my polestar\" exact.\n3 \"caused many other disturbances forcing me to seek service\" appears: \"and, in fact, has caused many other disturbances forcing me to seek service at a the closest dealership.\" yes.\n4 \"When reversing, it will activate the emergency stop function\" exact with comma. yes.\n5 \"parking sensors nonfunctional\" appears: \"the parking sensors nonfunctional\" yes. Quote \"parking sensors nonfunctional\" exact substring yes.\n6 \"emergency breaks being activated without threat\" appears: \"the emergency breaks being activated without threat or my regard again\" yes. exact substring \"emergency breaks being activated without threat\" yes.\n7 \"much anxiety and stress\" exact.\n8 \"distressing and misleading\" exact.\n9 component quote \"BACK OVER PREVENTION: WARNINGS\" exact from component field. Good.\n\nNeed kind for \"caused many other disturbances forcing me to seek service\" maybe other. \"reverse camera settings\" symptom. \"has not corrected...\" symptom. \"When reversing...\" condition? It's condition+ symptom. Could kind condition quote \"When reversing, it will activate...\"? Actually quote includes symptom. Use kind \"condition\" quote \"When reversing\" exact? Narrative \"When reversing, it will activate...\" yes \"When reversing\" exact. Use condition clue quote \"When reversing\". Good. Then symptom quote \"it will activate the emergency stop function\" exact? Narrative \"When reversing, it will activate the emergency stop function\" yes. Use symptom. Need exact. Good.\n\nSafety quote: \"emergency stop function\" or \"emergency breaks being activated without threat\". Use full quote. Good.\n\nNeed maybe clue kind \"safety\" quote \"the emergency breaks being activated without threat or my regard again is distressing and misleading\" exact? Narrative: \"but the thought of the emergency breaks being activated without threat or my regard again is distressing and misleading.\" The substring from \"the emergency breaks...\" yes exact. Good.\n\nNow final JSON. Need no markdown? It says one JSON object and no other text. We can output raw JSON. Ensure valid.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793528633,
+      "id": "2824d43b283760c7298cfe54f9db0795",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2079,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1818,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00076731,
+          "billing_source": "go",
+          "list_cost": 0.00127885,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 202,
+            "output": 2079,
+            "reasoning": 1818
+          }
+        },
+        "prompt_tokens": 586,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2665
+      }
+    },
+    "text": "{\"summary\":\"Back over prevention warnings on a 2024 Polestar 2: reverse camera settings issue persists after software update, and reversing can trigger emergency stop while parking sensors are nonfunctional.\",\"group\":\"adas\",\"symptoms\":[\"reverse camera settings issue not corrected by software update\",\"emergency stop function activates when reversing\",\"parking sensors nonfunctional\",\"anxiety and stress from unintended emergency braking\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"BACK OVER PREVENTION: WARNINGS\"},{\"kind\":\"symptom\",\"quote\":\"reverse camera settings\"},{\"kind\":\"symptom\",\"quote\":\"has not corrected the issue in my polestar\"},{\"kind\":\"other\",\"quote\":\"caused many other disturbances forcing me to seek service\"},{\"kind\":\"condition\",\"quote\":\"When reversing\"},{\"kind\":\"symptom\",\"quote\":\"it will activate the emergency stop function\"},{\"kind\":\"symptom\",\"quote\":\"parking sensors nonfunctional\"},{\"kind\":\"safety\",\"quote\":\"the emergency breaks being activated without threat or my regard again is distressing and misleading\"},{\"kind\":\"symptom\",\"quote\":\"much anxiety and stress\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00076731,
+      "cached_tokens": 384,
+      "cost_usd": 0.00127885,
+      "input_tokens": 586,
+      "list_cost_usd": 0.00127885,
+      "output_tokens": 2079,
+      "reasoning_tokens": 1818
+    }
+  }
+}

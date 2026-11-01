@@ -1,0 +1,66 @@
+{
+  "key": "6dfc777f3603bb0508ff199183206858a0d59049f21d7acac395de7997629cc2",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 8529,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2015 Dodge Journey ADAS/ABS: ABS, traction control and emergency brake dash lights on; dealer confirmed ABS module replacement; VIN not in recall; awaiting part.\",\"group\":\"adas\",\"symptoms\":[\"ABS warning light on\",\"traction control warning light on\",\"emergency brake warning light on\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"conditions\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"My ABS, traction control and Emergency brake dash lights are on.\"},{\"kind\":\"component_group\",\"quote\":\"ABS module\"},{\"kind\":\"other\",\"quote\":\"they did confirm the ABS module needs to be replaced\"},{\"kind\":\"other\",\"quote\":\"my particular VIN wasn't included in the current recall\"},{\"kind\":\"other\",\"quote\":\"I am currently still waiting for the new part to come in with the dealership to have it replaced.\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize report. Need infer component group given adas. Symptoms: ABS, traction control and Emergency brake dash lights on. Conditions? None explicit? \"waiting for new part to come in\" maybe after service? No. Fault codes none. Safety_relevant? Report mentions no crash fire etc. But automatic emergency braking/ABS lights could be safety relevant? Rules: set true when mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. It doesn't mention risk explicitly. So false. Missing info: mileage, date? Conditions? Component given. Symptom present. Mileage null, date received_at but report date? missing mileage maybe conditions? It says no conditions. Need list missing_info only facts analysis needs: mileage, conditions? We have component symptom. Date? received_at. The report from NHTSA has date? received_at. Missing info could [\"mileage\", \"conditions\"]. Need clues verbatim spans. Need quotes copied verbatim. Summary one line: component, symptom, conditions. \"ABS/traction control/emergency brake warning lights on; dealership confirmed ABS module replacement; VIN not covered by recall; awaiting part.\" Conditions maybe none. Must no other text.\n\nNeed ensure quotes verbatim: \"My ABS, traction control and Emergency brake dash lights are on.\" exact. \"they did confirm the ABS module needs to be replaced\" exact. \"my particular VIN wasn't included in the current recall\" exact. \"I am currently still waiting for the new part to come in with the dealership to have it replaced.\" exact.\n\nClues kinds: symptom quote dash lights. component_group quote? \"ABS module\" maybe component. condition? none. fault_code none. safety? none. other quote recall? Could include other. Need include maybe symptom quote. component_group quote \"ABS module\" appears. But component group is adas? Hmm report component FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING, group adas. Clue kind component_group quote \"ABS module\" maybe not group? It is component. But allowed kind component_group. Could quote \"Emergency brake dash lights\" as symptom. \n\nNeed \"group\": \"adas\" or \"the electrical/electronic component group, or the given group\" Given group adas. Use \"adas\".\n\nNeed symptoms array plain words: \"ABS warning light on\", \"traction control warning light on\", \"emergency brake warning light on\". Could also \"ABS module needs replacement\" not symptom? Keep symptoms.\n\nConditions array: [] because no cold etc. It mentions \"waiting for new part\" no condition. Could \"after service\"? no. \"charging\"? no.\n\nFault_codes [].\n\nSafety false.\n\nMissing_info: mileage and conditions? Date present received_at. Component present. Symptom present. Conditions not stated. The schema says list missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. So include \"mileage\", \"conditions\". Maybe date? received_at is date of report but not incident date. We can include date? The report lacks incident date, but received_at. Is date needed? Hmm. It has received_at. Missing_info: [\"mileage\",\"conditions\"] likely.\n\nNeed summary one line: \"2015 Dodge Journey ADAS/ABS: ABS, traction control and emergency brake dash lights on; dealer confirmed ABS module replacement; VIN not in recall; awaiting part.\" Conditions: none.\n\nNeed ensure valid JSON. No markdown? User says answer one JSON object no other text. Final just JSON. Need no code fence? Probably just JSON. \n\nNeed quote \"My ABS, traction control and Emergency brake dash lights are on.\" Verbatim. Yes.\n\nQuote \"they did confirm the ABS module needs to be replaced\" verbatim? Report: \"they did confirm the ABS module needs to be replaced but they told me...\" yes substring. Good.\n\nQuote \"my particular VIN wasn't included in the current recall\" yes.\n\nQuote \"I am currently still waiting for the new part to come in with the dealership to have it replaced.\" yes.\n\nCould include \"recall\" other. Need not overdo.\n\nNeed maybe clue kind condition? No.\n\nLet's craft JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793527944,
+      "id": "e097b147085d0e562ecd5b34d86e3274",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1079,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 881,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00041181,
+          "billing_source": "go",
+          "list_cost": 0.00068635,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 252,
+            "output": 1079,
+            "reasoning": 881
+          }
+        },
+        "prompt_tokens": 636,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1715
+      }
+    },
+    "text": "{\"summary\":\"2015 Dodge Journey ADAS/ABS: ABS, traction control and emergency brake dash lights on; dealer confirmed ABS module replacement; VIN not in recall; awaiting part.\",\"group\":\"adas\",\"symptoms\":[\"ABS warning light on\",\"traction control warning light on\",\"emergency brake warning light on\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"conditions\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"My ABS, traction control and Emergency brake dash lights are on.\"},{\"kind\":\"component_group\",\"quote\":\"ABS module\"},{\"kind\":\"other\",\"quote\":\"they did confirm the ABS module needs to be replaced\"},{\"kind\":\"other\",\"quote\":\"my particular VIN wasn't included in the current recall\"},{\"kind\":\"other\",\"quote\":\"I am currently still waiting for the new part to come in with the dealership to have it replaced.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00041181,
+      "cached_tokens": 384,
+      "cost_usd": 0.00068635,
+      "input_tokens": 636,
+      "list_cost_usd": 0.00068635,
+      "output_tokens": 1079,
+      "reasoning_tokens": 881
+    }
+  }
+}

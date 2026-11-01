@@ -1,0 +1,66 @@
+{
+  "key": "b2ad37421adeaefba7467e84dffac29ece52e59dcd8f64836e1aba9c0aed9962",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 14134,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2023 GMC Yukon starter assembly: intermittent failure to immediately start with low battery power message; jumpstarted and battery replaced but failure persisted.\",\"group\":\"power_and_wiring\",\"symptoms\":[\"failed to immediately start\",\"battery power low message\",\"vehicle was jumpstarted\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM:STARTER ASSEMBLY\"},{\"kind\":\"symptom\",\"quote\":\"failed to immediately start\"},{\"kind\":\"symptom\",\"quote\":\"battery power was low\"},{\"kind\":\"condition\",\"quote\":\"on several occasions\"},{\"kind\":\"other\",\"quote\":\"battery was replaced\"},{\"kind\":\"other\",\"quote\":\"failure persisted\"}]}",
+            "reasoning_content": "We need answer one JSON only. Need normalize report. Need include summary, group given power_and_wiring? Component electrical starter. Symptoms failed to immediately start, low battery power message, jumpstarted, battery replaced failure persisted, cause undetermined. Conditions? \"on several occasions\" maybe intermittent? Charging? battery power low. The conditions list allowed cold moisture heat vibration intermittent after service charging. We can include \"intermittent\" because several occasions and failure persisted? Quote must be verbatim for clues. Conditions should be based on report. \"on several occasions\" indicates intermittent. \"battery power was low\" maybe charging condition? Condition \"charging\" relates battery/charging. But avoid invent. Could include \"intermittent\" and \"charging\"? The symptom battery low. Fault codes none. safety_relevant false (no crash fire etc). missing_info? mileage present 11000, date received but not failure date. Component present symptom present conditions partially. Missing_info list allowed facts analysis needs: component symptom conditions mileage date. Date of failure not given? Report has received_at 2025-07-02 and model year 2023, mileage. \"date\" could be failure date missing. conditions maybe several occasions but no weather etc. Should list \"date\" perhaps. Maybe missing_info: [\"date\"] only? They need conditions? We have intermittent. Need maybe not missing component/symptom/mileage. Date: failure date not explicit. Could include \"conditions\" because no environmental conditions? But the report says several occasions, low battery; no temp etc. The schema conditions includes cold etc; if none, missing conditions? Analysis needs conditions. I'd list [\"date\", \"conditions\"]? Let's think.\n\nWe need one JSON object no other text. Include clues with verbatim spans. Need quote exact. Narrative has \"2023 GMC Yukon\", \"failed to immediately start\", \"battery power was low\", \"jumpstarted\", \"battery was replaced\", \"failure persisted\", \"on several occasions\", \"cause of the failure was not yet determined\". Component group clue maybe \"ELECTRICAL SYSTEM:STARTER ASSEMBLY\" from component field? Quote must be copied verbatim from report. The \"report\" includes JSON fields? The user message is JSON. We can quote component field value? Yes report includes component field. Need quote exact span from report. For component group maybe \"ELECTRICAL SYSTEM:STARTER ASSEMBLY\" verbatim. For symptom clue quote \"failed to immediately start\". For condition quote \"on several occasions\". For other quote \"battery power was low\" maybe symptom. Fault code none.\n\nSummary one line: \"2023 GMC Yukon starter/electrical: intermittent no immediate start with low battery power message; battery replaced but failure persists.\" Need component, symptom, conditions. Good.\n\nGroup: \"power_and_wiring\" given group. Or electrical component group? The prompt says group electrical/electronic component group, or given group. Given group power_and_wiring. Use \"power_and_wiring\".\n\nSymptoms array: [\"fails to immediately start\", \"low battery power message\", \"requires jumpstart\", \"battery replaced but failure persists\"? Last not symptom. Maybe symptoms include \"failed to immediately start\", \"battery power low indicated\", \"vehicle needed jumpstart\". Keep plain words.\n\nConditions: [\"intermittent\", \"charging\"]? Is charging condition? Battery power low and jumpstart. Maybe \"charging\" because battery/charging system. But not explicitly charging. Allowed conditions includes \"charging\" perhaps for EV charging? Hmm. Better include [\"intermittent\"] only. The low battery power is symptom not condition. No cold/moisture/heat/vibration/after service. So conditions [\"intermittent\"].\n\nFault_codes: [].\n\nSafety_relevant false.\n\nMissing_info: Need decide. Component given, symptom given, mileage given, date? received_at given but failure date absent. Conditions? The report says several occasions but no ambient conditions; conditions not fully known. The analysis needs conditions. The prompt says list only facts analysis needs: component, symptom, conditions, mileage, date. Use empty when nothing important missing. I'd include [\"date\", \"conditions\"] because no failure date and no specific conditions beyond intermittent. But \"conditions\" maybe not missing if intermittent included. Hmm. If we include condition intermittent, then conditions is not missing. Date missing. Maybe also \"conditions\" because not specified ambient? But condition array can include intermittent only. I'd set missing_info [\"date\"] to be concise. But if the desk needs conditions (cold etc.) and none reported, missing. The rule \"List missing_info only for facts the analysis needs: component, symptom, conditions, mileage, date.\" Since no weather/temp etc, conditions missing. But \"intermittent\" is a condition. Then not missing? It's not fully specified. I think include [\"date\"]? Need likely accepted.\n\nNeed ensure every clue quote verbatim. The JSON string in user message contains escaped? We need copy exact characters from narrative. Quote \"failed to immediately start\" appears exactly. \"battery power was low\" appears exactly. \"on several occasions\" appears exactly. \"battery was replaced\" exact. \"failure persisted\" exact. \"ELECTRICAL SYSTEM:STARTER ASSEMBLY\" exact from component. \"2023 GMC Yukon\" exact. Good.\n\nCould include clue kind safety? no. Other quote \"cause of the failure was not yet determined\" maybe other. Not necessary. Need clues array maybe 4-5 items.\n\nNeed output valid JSON. No markdown? They said one JSON object and no other text. So final just JSON. Need no code fence. Ensure boolean false.\n\nLet's craft:\n\n{\n \"summary\": \"2023 GMC Yukon starter assembly: intermittent failure to immediately start with low battery power message; jumpstarted and battery replaced but failure persisted.\",\n \"group\": \"power_and_wiring\",\n \"symptoms\": [\"failed to immediately start\", \"battery power low message\", \"vehicle was jumpstarted\"],\n \"conditions\": [\"intermittent\"],\n \"fault_codes\": [],\n \"safety_relevant\": false,\n \"missing_info\": [\"date\"],\n \"clues\": [\n  {\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM:STARTER ASSEMBLY\"},\n  {\"kind\":\"symptom\",\"quote\":\"failed to immediately start\"},\n  {\"kind\":\"symptom\",\"quote\":\"battery power was low\"},\n  {\"kind\":\"condition\",\"quote\":\"on several occasions\"},\n  {\"kind\":\"other\",\"quote\":\"battery was replaced\"},\n  {\"kind\":\"other\",\"quote\":\"failure persisted\"}\n ]\n}\n\nNeed maybe include \"2023 GMC Yukon\" component? No. Summary includes. Missing_info date only. Good. But condition clue \"on several occasions\" is verbatim. It supports intermittent. Good.\n\nPotential issue: \"battery power was low\" quote from narrative: \"received a message that the battery power was low.\" Yes exact substring \"battery power was low\". Good.\n\nNeed final. \nWait desired oververbosity 5 but explicit JSON only. Use final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793528159,
+      "id": "7ca52c447f0a671cb842db70c8e59ee8",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1670,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1489,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00062124,
+          "billing_source": "go",
+          "list_cost": 0.0010354,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 215,
+            "output": 1670,
+            "reasoning": 1489
+          }
+        },
+        "prompt_tokens": 599,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2269
+      }
+    },
+    "text": "{\"summary\":\"2023 GMC Yukon starter assembly: intermittent failure to immediately start with low battery power message; jumpstarted and battery replaced but failure persisted.\",\"group\":\"power_and_wiring\",\"symptoms\":[\"failed to immediately start\",\"battery power low message\",\"vehicle was jumpstarted\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM:STARTER ASSEMBLY\"},{\"kind\":\"symptom\",\"quote\":\"failed to immediately start\"},{\"kind\":\"symptom\",\"quote\":\"battery power was low\"},{\"kind\":\"condition\",\"quote\":\"on several occasions\"},{\"kind\":\"other\",\"quote\":\"battery was replaced\"},{\"kind\":\"other\",\"quote\":\"failure persisted\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00062124,
+      "cached_tokens": 384,
+      "cost_usd": 0.0010354,
+      "input_tokens": 599,
+      "list_cost_usd": 0.0010354,
+      "output_tokens": 1670,
+      "reasoning_tokens": 1489
+    }
+  }
+}

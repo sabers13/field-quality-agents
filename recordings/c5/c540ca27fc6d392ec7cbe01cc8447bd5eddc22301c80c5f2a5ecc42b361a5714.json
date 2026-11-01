@@ -1,0 +1,66 @@
+{
+  "key": "c540ca27fc6d392ec7cbe01cc8447bd5eddc22301c80c5f2a5ecc42b361a5714",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 6774,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Forward collision avoidance warnings (ADAS); no warning symptom described; only unrepaired recall statuses listed.\",\"group\":\"adas\",\"symptoms\":[],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"symptom\",\"conditions\",\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: WARNINGS\"},{\"kind\":\"other\",\"quote\":\"Recall data refreshed on Aug 09,2025\"},{\"kind\":\"other\",\"quote\":\"Unrepaired Recalls associated with this VIN\"},{\"kind\":\"other\",\"quote\":\"High voltage battery hvb side rail inspection\"},{\"kind\":\"other\",\"quote\":\"Rear camera screen software update\"},{\"kind\":\"other\",\"quote\":\"Connecting rod inspection\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need parse report. Component FORWARD COLLISION AVOIDANCE: WARNINGS, group adas. Narrative is mostly recall data refreshed, unrepaired recalls: high voltage battery hvb side rail inspection, rear camera screen software update, connecting rod inspection. It doesn't mention a symptom of forward collision avoidance warning. We must normalise one incoming field-quality report. Need summary one line component symptom conditions. Since no symptom? We can say \"Forward collision avoidance warnings; no symptom described; recall status only\". Group \"adas\". Symptoms []? Maybe \"no symptom described\" not a symptom. Conditions [] maybe. Fault codes [] none. Safety_relevant false? Report mentions recalls including high voltage battery side rail inspection, rear camera software update, connecting rod inspection. No crash fire smoke injury loss control stall at speed. So false. Missing info: component? Given component. Symptom missing. Conditions missing. Mileage missing. Date present received_at 2025-08-09, recall refreshed Aug 09 2025. So missing_info [\"symptom\",\"conditions\",\"mileage\"] maybe. Clues: need verbatim spans from report. We can quote \"FORWARD COLLISION AVOIDANCE: WARNINGS\" but that is component field? The report in user message includes JSON fields; quotes from report? It says report in user message. We can quote component string? The \"report\" includes whole JSON. But clues should be from narrative maybe. Need quote verbatim. Use \"High voltage battery hvb side rail inspection\" exactly? Narrative says \"High voltage battery hvb side rail inspection Recall incomplete\" capital H. Quote. \"Rear camera screen software update\" quote. \"Connecting rod inspection\" quote. \"Recall data refreshed on Aug 09,2025\" quote. \"Unrepaired Recalls associated with this VIN\" quote. Kind other or condition? These are recall statuses, not symptom/condition/fault code/safety. kind \"other\". For component_group maybe quote \"FORWARD COLLISION AVOIDANCE: WARNINGS\" if allowed; kind component_group. Need be careful verbatim from report: JSON has \"component\": \"FORWARD COLLISION AVOIDANCE: WARNINGS\", so exact substring yes. Could include.\n\nSummary: \"Forward collision avoidance warnings (ADAS); no warning symptom described; only unrepaired recall statuses listed.\" One line.\n\nNeed valid JSON only. No extra text. Need ensure booleans. \"symptoms\": [] because no symptom. \"conditions\": []. \"fault_codes\": []. \"safety_relevant\": false. \"missing_info\": [\"symptom\",\"conditions\",\"mileage\"]. Clues array. Maybe include clue for recall statuses? The desk needs evidence. Include component_group quote and other quotes for recalls. Could mention \"no symptom\" not quote? no.\n\nNeed maybe group \"adas\". Good.\n\nLet's craft. Ensure quotes exact: \"FORWARD COLLISION AVOIDANCE: WARNINGS\" yes. \"Recall data refreshed on Aug 09,2025\" yes includes no space after comma? Narrative: \"Recall data refreshed on Aug 09,2025 0 Unrepaired...\" yes exact. \"Unrepaired Recalls associated with this VIN\" exact. \"High voltage battery hvb side rail inspection\" exact? Narrative: \"High voltage battery hvb side rail inspection Recall incomplete\" yes. \"Rear camera screen software update\" exact. \"Connecting rod inspection\" exact. Could include all. Kind other. No safety clue.\n\nNeed answer JSON only.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529358,
+      "id": "3923fcbd551f1dab6d5c4b59bfbd74c5",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 916,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 746,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00034881,
+          "billing_source": "go",
+          "list_cost": 0.00058135,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 204,
+            "output": 916,
+            "reasoning": 746
+          }
+        },
+        "prompt_tokens": 588,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1504
+      }
+    },
+    "text": "{\"summary\":\"Forward collision avoidance warnings (ADAS); no warning symptom described; only unrepaired recall statuses listed.\",\"group\":\"adas\",\"symptoms\":[],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"symptom\",\"conditions\",\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: WARNINGS\"},{\"kind\":\"other\",\"quote\":\"Recall data refreshed on Aug 09,2025\"},{\"kind\":\"other\",\"quote\":\"Unrepaired Recalls associated with this VIN\"},{\"kind\":\"other\",\"quote\":\"High voltage battery hvb side rail inspection\"},{\"kind\":\"other\",\"quote\":\"Rear camera screen software update\"},{\"kind\":\"other\",\"quote\":\"Connecting rod inspection\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00034881,
+      "cached_tokens": 384,
+      "cost_usd": 0.00058135,
+      "input_tokens": 588,
+      "list_cost_usd": 0.00058135,
+      "output_tokens": 916,
+      "reasoning_tokens": 746
+    }
+  }
+}

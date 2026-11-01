@@ -1,0 +1,66 @@
+{
+  "key": "a244ea429b49743b77a6fb9d4600e7856164f9b84b58ad956c61ca1913ff49c0",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12466,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Test the 2012 Jeep Liberty odometer/instrument cluster for a mileage discrepancy after a private sale showed 94,000 at purchase and 171,000 at registration.\",\n  \"rationale\": \"The narrative reports odometer fraud and a mileage discrepancy discovered while registering the vehicle. It states the vehicle was a private sale and that mileage was 94,000 at purchase versus 171,000 at registration. No recalls, investigations, similar cases, or rulebook matches were returned, so no targeted rulebook test applies; propose the standard field-quality test. The narrative does not show a risk to people.\",\n  \"group\": \"instrumentation\",\n  \"symptoms\": [\n    \"odometer fraud\",\n    \"mileage discrepancy\",\n    \"94,000 at purchase vs 171,000 at registration\"\n  ],\n  \"conditions\": [\n    \"private sale\",\n    \"mileage discrepancy discovered while attempting to register the vehicle\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"targeted\": false,\n  \"test_name\": \"standard field-quality test\",\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Odometer Fraud.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"mileage discrepancy\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"At the time of purchase, the vehicle mileage was 94,000 and at the time of registration, it was discovered that the mileage was 171,000.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"The vehicle was a private sale.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"while attempting to register the vehicle\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer JSON only. Need analyze. No rulebook matches. Case is odometer fraud/mileage discrepancy, not a physical fault test likely. Need propose standard test targeted false. But schema requires test_name \"the targeted test the rulebook names\" if targeted? For non-targeted standard test. Need choose test_name maybe \"standard field-quality test\"? Hmm. We must output fields. No rulebook entries. Safety false. Group instrumentation. Symptoms etc. Clues verbatim from narrative. Need include quotes. Verbatim span copied from case narrative. Narrative: \"Odometer Fraud. The contact purchased a 2012 Jeep Liberty. The contact stated that while attempting to register the vehicle, it was discovered that there was a mileage discrepancy. The vehicle was a private sale. At the time of purchase, the vehicle mileage was 94,000 and at the time of registration, it was discovered that the mileage was 171,000.\"\n\nCould quote \"Odometer Fraud.\" includes period. \"mileage discrepancy\" exact. Full sentence quote exact. Component group quote \"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\" is from case component not narrative? The rule says case narrative, but extraction included. In narrative not present. If quote must from narrative, don't cite component group quote unless it appears narrative? It doesn't. We can still include component_group clue? quote must narrative. No. Use \"2012 Jeep Liberty\" maybe component group? kind component_group quote not verbatim? It is in narrative. But kind component_group with quote \"2012 Jeep Liberty\" weird. Better clues only symptoms: \"Odometer Fraud.\", \"mileage discrepancy\", full sentence. Maybe condition \"private sale\" exact. But conditions array can include \"private sale\". clue kind condition quote \"The vehicle was a private sale.\" exact. Good.\n\nNeed summary one line. rationale condition/evidence. targeted false. test_name? Maybe \"Standard odometer/mileage discrepancy verification\" or \"standard field-quality test\". The instruction: \"Otherwise propose the standard test (`\"targeted\": false`).\" We don't know name. Could use \"standard test\". To be safe: \"standard field-quality test\". That's not a rulebook named targeted test. Since no rulebook, false. test_name \"standard field-quality test\". The schema says targeted test rulebook names but if false standard. Fine.\n\nNeed JSON only. Ensure no markdown. Also no extra text.\n\nNeed include safety_relevant false, targeted false. Fault_codes empty. conditions maybe [\"private sale\", \"mileage discrepancy discovered at registration\"]? Must be grounded. Conditions from narrative: \"private sale\", \"attempting to register the vehicle\". Use those. Symptoms: \"odometer fraud\", \"mileage discrepancy\", \"94,000 at purchase vs 171,000 at registration\". Fault codes [].\n\nClues: symptom quote \"Odometer Fraud.\"; symptom quote \"mileage discrepancy\"; symptom quote full sentence; condition quote \"The vehicle was a private sale.\"; condition quote \"while attempting to register the vehicle\" exact substring? Narrative: \"The contact stated that while attempting to register the vehicle, it was discovered that there was a mileage discrepancy.\" The substring \"while attempting to register the vehicle\" exact yes. Could include. Maybe clue kind condition. Need every quote verbatim. Good.\n\nComponent group clue? Could quote \"2012 Jeep Liberty\" kind component_group? Not needed.\n\nRationale: No recall/investigation/rulebook evidence; narrative reports title/registration mileage discrepancy after private sale, 94k purchase vs 171k registration; no safety risk; no targeted rulebook match so standard verification.\n\nNeed answer only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793526945,
+      "id": "549e1b8bff80fe632a287e5fb7f0b341",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1157,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 773,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00049113,
+          "billing_source": "go",
+          "list_cost": 0.00081855,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 829,
+            "output": 1157,
+            "reasoning": 773
+          }
+        },
+        "prompt_tokens": 829,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 1986
+      }
+    },
+    "text": "{\n  \"summary\": \"Test the 2012 Jeep Liberty odometer/instrument cluster for a mileage discrepancy after a private sale showed 94,000 at purchase and 171,000 at registration.\",\n  \"rationale\": \"The narrative reports odometer fraud and a mileage discrepancy discovered while registering the vehicle. It states the vehicle was a private sale and that mileage was 94,000 at purchase versus 171,000 at registration. No recalls, investigations, similar cases, or rulebook matches were returned, so no targeted rulebook test applies; propose the standard field-quality test. The narrative does not show a risk to people.\",\n  \"group\": \"instrumentation\",\n  \"symptoms\": [\n    \"odometer fraud\",\n    \"mileage discrepancy\",\n    \"94,000 at purchase vs 171,000 at registration\"\n  ],\n  \"conditions\": [\n    \"private sale\",\n    \"mileage discrepancy discovered while attempting to register the vehicle\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"targeted\": false,\n  \"test_name\": \"standard field-quality test\",\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Odometer Fraud.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"mileage discrepancy\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"At the time of purchase, the vehicle mileage was 94,000 and at the time of registration, it was discovered that the mileage was 171,000.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"The vehicle was a private sale.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"while attempting to register the vehicle\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00049113,
+      "cached_tokens": 0,
+      "cost_usd": 0.00081855,
+      "input_tokens": 829,
+      "list_cost_usd": 0.00081855,
+      "output_tokens": 1157,
+      "reasoning_tokens": 773
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "a471ef62087e66cdc6c24c265a83d693b03ea06aebe10929485c94173887078d",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10717,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2018 BMW X3 Lane Departure and Blind Spot deactivated unintentionally while driving over 45 MPH; deactivation message displayed\",\"group\":\"adas\",\"symptoms\":[\"Lane Departure and Blind Spot features deactivated unintentionally\",\"system deactivated message displayed\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"LANE DEPARTURE\"},{\"kind\":\"symptom\",\"quote\":\"Lane Departure and Blind Spot features deactivated unintendedly\"},{\"kind\":\"condition\",\"quote\":\"while driving over 45 MPH\"},{\"kind\":\"symptom\",\"quote\":\"The message that the system was deactivated was displayed\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize report. Need extract verbatim quotes. Component LANE DEPARTURE group adas. Symptom: Lane Departure and Blind Spot features deactivated unintendedly while driving over 45 MPH; message system deactivated displayed. Conditions:? \"while driving over 45 MPH\" is condition? The allowed conditions list includes cold, moisture, heat, vibration, intermittent, after service, charging. Not exactly speed. Could include? We must output conditions array from list? It says conditions: [\"cold\", ...]. We can use empty or maybe \"intermittent\"? Deactivated unintendedly not intermittent. Better conditions []? But clue kind condition quote \"while driving over 45 MPH\". Is that allowed? It says conditions list enumerated but clue kind condition can quote. The analysis conditions maybe no listed condition. Safety_relevant false given but also no crash/fire etc. missing_info: date? received_at is 2025-10-30 but that's report received not incident date. mileage present approx 71k. component present symptom present conditions maybe not missing? Need list only facts analysis needs: component, symptom, conditions, mileage, date. Date of failure missing. Conditions? It gives speed but not weather etc. Is conditions missing? We can include \"date\" perhaps. Maybe \"conditions\" too? Need be careful. The report says while driving over 45 MPH. That is a condition but not in enum. Missing_info maybe [\"date\"]. The prompt says use empty list when nothing important missing. Date of occurrence missing important. Mileage present. Component present. Symptom present. Conditions present? speed. I'd list [\"date\"]. Could include \"conditions\" because listed condition categories not present, but we have a condition (speed). Hmm.\n\nNeed summary one line: \"2018 BMW X3 lane departure and blind spot deactivated unintentionally above 45 MPH with deactivation message.\" Must not invent make model? Report narrative includes 2018 BMW X3, metadata. Fine.\n\nFault codes none. Clues verbatim spans: symptom quote \"Lane Departure and Blind Spot features deactivated unintendedly\", condition quote \"while driving over 45 MPH\", symptom quote \"The message that the system was deactivated was displayed\", component_group quote \"LANE DEPARTURE\"? Kind component_group. safety? no. Could include other? Maybe no.\n\nNeed ensure quotes exact character. Narrative: \"The contact stated that while driving over 45 MPH, the Lane Departure and Blind Spot features deactivated unintendedly. The message that the system was deactivated was displayed.\" Quote \"while driving over 45 MPH\" exact. \"Lane Departure and Blind Spot features deactivated unintendedly\" exact? Yes substring after comma space. \"The message that the system was deactivated was displayed\" exact. Component field \"LANE DEPARTURE\" exact. Could quote \"Lane Departure\" from narrative? Better component_group \"LANE DEPARTURE\" is in report field, but report includes JSON with component. The user message is entire report. Verbatim span okay.\n\nNeed output JSON only. No markdown? They said one JSON object and no other text. So raw JSON.\n\nCheck safety_relevant false. The metadata has false, but we set based on report; no risk. Good.\n\nMissing_info: [\"date\"] maybe. Could include conditions? The analysis needs conditions; report gives speed but not weather/road/system state. But \"conditions\" category in missing_info probably means driving conditions. We have \"while driving over 45 MPH\" but no weather etc. Should we list conditions? Hmm. If we list conditions missing, but we include condition clue speed. It's not contradictory? Conditions can be partially missing. The missing_info list allowed items. I think date is clearly missing. Conditions maybe not \"important missing\" because symptom occurred under speed. But \"conditions\" in this schema means cold/moisture/heat etc. Not present. Yet many reports lack. The instruction says only facts analysis needs: component, symptom, conditions, mileage, date. We can list [\"date\"] only. Maybe include \"conditions\" because no environmental conditions. But then the conditions array is empty. Hmm.\n\nThe summary \"2018 BMW X3 Lane Departure and Blind Spot deactivated unintentionally while driving over 45 MPH; deactivation message displayed.\" Good.\n\nNeed JSON strings. Use quotes.\n\nNeed conditions array: [] likely. Could include \"intermittent\"? No, unintended deactivation not intermittent. Do not invent. Empty.\n\nClues kind \"symptom\" for deactivated and message; kind \"condition\" for speed; kind \"component_group\" for LANE DEPARTURE. Maybe \"other\" for \"2018 BMW X3\"? Not needed. Ensure no extra fields.\n\nFinal.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531698,
+      "id": "6da4880e72e2a3be560c7557f04b9d55",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1151,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 992,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00043188,
+          "billing_source": "go",
+          "list_cost": 0.0007198,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 187,
+            "output": 1151,
+            "reasoning": 992
+          }
+        },
+        "prompt_tokens": 571,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1722
+      }
+    },
+    "text": "{\"summary\":\"2018 BMW X3 Lane Departure and Blind Spot deactivated unintentionally while driving over 45 MPH; deactivation message displayed\",\"group\":\"adas\",\"symptoms\":[\"Lane Departure and Blind Spot features deactivated unintentionally\",\"system deactivated message displayed\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"LANE DEPARTURE\"},{\"kind\":\"symptom\",\"quote\":\"Lane Departure and Blind Spot features deactivated unintendedly\"},{\"kind\":\"condition\",\"quote\":\"while driving over 45 MPH\"},{\"kind\":\"symptom\",\"quote\":\"The message that the system was deactivated was displayed\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00043188,
+      "cached_tokens": 384,
+      "cost_usd": 0.0007198,
+      "input_tokens": 571,
+      "list_cost_usd": 0.0007198,
+      "output_tokens": 1151,
+      "reasoning_tokens": 992
+    }
+  }
+}

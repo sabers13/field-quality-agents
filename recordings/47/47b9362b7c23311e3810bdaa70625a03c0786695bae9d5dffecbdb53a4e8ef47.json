@@ -1,0 +1,66 @@
+{
+  "key": "47b9362b7c23311e3810bdaa70625a03c0786695bae9d5dffecbdb53a4e8ef47",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 8352,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Range Rover Sport electrical system: electric fault message then total electrical power loss, with power steering and lights lost; suspected 12V–48V DC-DC converter short.\",\"group\":\"electrical_general\",\"symptoms\":[\"electric fault message\",\"total loss of electrical power\",\"loss of power steering\",\"loss of lights\",\"inability to use roadside assistance\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"My vehicle as well received an electric fault message shortly before loosing all electrical power.\"},{\"kind\":\"symptom\",\"quote\":\"I lost all power steering, lights, ability to use the roadside assistance.\"},{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"other\",\"quote\":\"the low voltage (12v) to high voltage (48v) I think dc to dc converter shorted out\"},{\"kind\":\"safety\",\"quote\":\"I lost all power steering, lights\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize report. Need extract summary, group given electrical_general, symptoms plain words, conditions, fault_codes if named, safety_relevant true? Report mentions electric fault message, loss all electrical power, lost power steering, lights, roadside assistance. Risk to people? Loss of power steering and lights while driving is safety risk. \"loosing all electrical power\" no crash/fire/smoke/injury/loss control/stall at speed explicitly but loss of power steering/lights = risk to people. Set true. Conditions: maybe none? \"shortly before losing all electrical power\" no cold moisture etc. Could include \"after service\"? They mention service department described issue, not after service. No. Fault codes none. Missing info: mileage null; date? received_at exists but incident date missing. Component present. Symptom present. Conditions missing? Need list missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Mileage missing. Date? Report received_at but not incident date; likely date missing. Conditions missing? There are no conditions specified (cold etc). The schema conditions array can empty. missing_info can include \"mileage\", \"date\", \"conditions\". But do we need conditions? It says list only facts analysis needs. Conditions important yes, not specified. Maybe include mileage, date, conditions. Need clues with verbatim quotes. Need ensure quote exact. Narrative has \"My vehicle as well received an electric fault message shortly before loosing all electrical power.\" Quote exact. \"I lost all power steering, lights, ability to use the roadside assistance.\" exact substring? Narrative: \"When this happened I lost all power steering, lights, ability to use the roadside assistance.\" We can quote \"I lost all power steering, lights, ability to use the roadside assistance.\" Check exact: \"When this happened I lost all power steering, lights, ability to use the roadside assistance.\" yes substring includes. \"the low voltage (12v) to high voltage (48v) I think dc to dc converter shorted out\" exact? Narrative: \"the low voltage (12v) to high voltage (48v) I think dc to dc converter shorted out.\" yes. Need component_group quote maybe \"ELECTRICAL SYSTEM\" from component? The report includes JSON field, but narrative? The report is whole JSON. Quote can be from report, so \"ELECTRICAL SYSTEM\" exact. kind component_group. safety quote: \"I lost all power steering, lights\" supports safety. Could include safety kind quote. Need not overdo. Summary one line: \"Range Rover Sport electrical system: electric fault message then total electrical power loss, power steering and lights lost; suspected 12V–48V DC-DC converter short.\" Use \"loosing\" maybe. Group \"electrical_general\". Symptoms: [\"electric fault message\", \"total loss of electrical power\", \"loss of power steering\", \"loss of lights\", \"inability to use roadside assistance\"] Maybe \"suspected DC-DC converter short\" is fault diagnosis not symptom. Include? Symptoms plain words include electric fault message. Conditions empty. fault_codes empty. safety_relevant true. missing_info [\"mileage\",\"date\",\"conditions\"]. Is date missing? Received_at exists; incident date missing. Yes. Clues array. Need JSON valid. No markdown. Ensure quotes verbatim. Use exact capitalization? \"loosing\" typo. Quote \"My vehicle as well received an electric fault message shortly before loosing all electrical power.\" Good.\n\nNeed consider \"fault_codes\": report names no code. \"electric fault message\" no code. Empty.\n\nPotential issue \"group\": given \"electrical_general\" not \"electrical/electronic component group\". Use given group.\n\nNeed answer only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793528505,
+      "id": "0c8b6d3406d0c2d735143232b80ee90a",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1004,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 781,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00038301,
+          "billing_source": "go",
+          "list_cost": 0.00063835,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 232,
+            "output": 1004,
+            "reasoning": 781
+          }
+        },
+        "prompt_tokens": 616,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1620
+      }
+    },
+    "text": "{\"summary\":\"Range Rover Sport electrical system: electric fault message then total electrical power loss, with power steering and lights lost; suspected 12V–48V DC-DC converter short.\",\"group\":\"electrical_general\",\"symptoms\":[\"electric fault message\",\"total loss of electrical power\",\"loss of power steering\",\"loss of lights\",\"inability to use roadside assistance\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"My vehicle as well received an electric fault message shortly before loosing all electrical power.\"},{\"kind\":\"symptom\",\"quote\":\"I lost all power steering, lights, ability to use the roadside assistance.\"},{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"other\",\"quote\":\"the low voltage (12v) to high voltage (48v) I think dc to dc converter shorted out\"},{\"kind\":\"safety\",\"quote\":\"I lost all power steering, lights\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00038301,
+      "cached_tokens": 384,
+      "cost_usd": 0.00063835,
+      "input_tokens": 616,
+      "list_cost_usd": 0.00063835,
+      "output_tokens": 1004,
+      "reasoning_tokens": 781
+    }
+  }
+}

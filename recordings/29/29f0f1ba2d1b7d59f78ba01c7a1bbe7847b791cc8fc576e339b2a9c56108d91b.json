@@ -1,0 +1,66 @@
+{
+  "key": "29f0f1ba2d1b7d59f78ba01c7a1bbe7847b791cc8fc576e339b2a9c56108d91b",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 6051,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Forward collision avoidance warnings: forward collision and automatic emergency braking failed to activate in heavy, slow traffic at approximately 15 mph with a stopped vehicle ahead.\",\"group\":\"adas\",\"symptoms\":[\"forward collision failed to activate\",\"automatic emergency braking failed to activate\"],\"conditions\":[\"heavy and slow moving traffic\",\"approximately 15 mph\",\"vehicle in front stopped\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: WARNINGS\"},{\"kind\":\"condition\",\"quote\":\"While driving in heavy and slow moving traffic at approximately 15 mph, the vehicle in front stopped.\"},{\"kind\":\"symptom\",\"quote\":\"The forward collision and automatic emergency braking failed to activate.\"},{\"kind\":\"safety\",\"quote\":\"rear end collision\"}]}",
+            "reasoning_content": "We need produce JSON only. Need normalize report. Component forward collision avoidance warnings, group adas given. Summary one line: component, symptom, conditions. Symptoms: forward collision and automatic emergency braking failed to activate. Conditions: heavy and slow moving traffic at approximately 15 mph; vehicle in front stopped. Safety relevant true (crash/rear end collision). Fault codes none. Missing info: mileage null, date? received_at is date but report date? missing_info only facts analysis needs: mileage, date maybe date missing? Report has received_at 2025-03-25 but not incident date. Could list mileage, date. Conditions present, component present, symptom present. Clues quotes verbatim. Need ensure quotes exactly from narrative. Could include \"While driving in heavy and slow moving traffic at approximately 15 mph\" quote. \"The forward collision and automatic emergency braking failed to activate.\" exact? Narrative: \"The forward collision and automatic emergency braking failed to activate.\" yes. \"rear end collision\" exact? Narrative says \"the rear end collision that occurred.\" quote \"rear end collision\" yes. safety clue. component_group quote? \"FORWARD COLLISION AVOIDANCE: WARNINGS\" from component field not narrative? The report includes component field. Quotes verbatim from report, can copy from component. But likely okay. Need JSON only. Missing_info: [\"mileage\",\"date\"]? date maybe received_at present, incident date not. Use mileage and date. Summary: \"Forward collision avoidance warnings: forward collision and automatic emergency braking failed to activate in heavy slow traffic at ~15 mph with stopped vehicle ahead.\" Good.\n\nNeed conditions array should use allowed values? Allowed examples: cold, moisture, heat, vibration, intermittent, after service, charging. But actual conditions heavy slow traffic, ~15 mph, stopped vehicle ahead. The schema says conditions array strings. Could include \"heavy and slow moving traffic\", \"approximately 15 mph\", \"vehicle in front stopped\". They aren't enumerated but okay? Prompt says normalise; conditions list examples. Better include descriptive conditions. But maybe expected allowed categories only? Hmm. \"conditions\": [\"cold\", \"moisture\", ...] are examples. We can include \"heavy traffic\", \"slow moving traffic\", \"approximately 15 mph\", \"vehicle in front stopped\". Need not overdo.\n\nClues include symptom, condition, safety. Verbatim spans. Need no extra text.\n\nLet's craft.\n\nCheck quote exact: \"While driving in heavy and slow moving traffic at approximately 15 mph, the vehicle in front stopped.\" Full sentence. Use perhaps full. \"The forward collision and automatic emergency braking failed to activate.\" yes. \"rear end collision\" yes. \"FORWARD COLLISION AVOIDANCE: WARNINGS\" yes from component. Could include component_group clue.\n\nsafety_relevant true. fault_codes [].\n\nNeed summary one line. Fine.\n\nFinal JSON only.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793525743,
+      "id": "46bf6a6426f9639937d23545e27770b4",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 788,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 601,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00029967,
+          "billing_source": "go",
+          "list_cost": 0.00049945,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 170,
+            "output": 788,
+            "reasoning": 601
+          }
+        },
+        "prompt_tokens": 554,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1342
+      }
+    },
+    "text": "{\"summary\":\"Forward collision avoidance warnings: forward collision and automatic emergency braking failed to activate in heavy, slow traffic at approximately 15 mph with a stopped vehicle ahead.\",\"group\":\"adas\",\"symptoms\":[\"forward collision failed to activate\",\"automatic emergency braking failed to activate\"],\"conditions\":[\"heavy and slow moving traffic\",\"approximately 15 mph\",\"vehicle in front stopped\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: WARNINGS\"},{\"kind\":\"condition\",\"quote\":\"While driving in heavy and slow moving traffic at approximately 15 mph, the vehicle in front stopped.\"},{\"kind\":\"symptom\",\"quote\":\"The forward collision and automatic emergency braking failed to activate.\"},{\"kind\":\"safety\",\"quote\":\"rear end collision\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00029967,
+      "cached_tokens": 384,
+      "cost_usd": 0.00049945,
+      "input_tokens": 554,
+      "list_cost_usd": 0.00049945,
+      "output_tokens": 788,
+      "reasoning_tokens": 601
+    }
+  }
+}

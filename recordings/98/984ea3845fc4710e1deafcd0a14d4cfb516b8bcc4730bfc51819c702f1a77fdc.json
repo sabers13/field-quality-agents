@@ -1,0 +1,66 @@
+{
+  "key": "984ea3845fc4710e1deafcd0a14d4cfb516b8bcc4730bfc51819c702f1a77fdc",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 14118,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2022 Nissan Leaf electrical system: heater blows cold air through defroster and not to feet after recall P4A17 service.\",\"group\":\"electrical_general\",\"symptoms\":[\"heater not working\",\"blows cold air through the defroster\",\"air not directed to feet despite HVAC indicator\",\"auto climate set to 68 degrees F\",\"heater slow to warm\"],\"conditions\":[\"after service\"],\"fault_codes\":[\"P4A17\"],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"heater isn't working now\"},{\"kind\":\"symptom\",\"quote\":\"It just blows cold air through the defroster and not at my feet as the HVAC indicator shows.\"},{\"kind\":\"symptom\",\"quote\":\"I always have my auto climate feature set to 68 degrees F.\"},{\"kind\":\"condition\",\"quote\":\"During my visit recall P4A17 was performed.\"},{\"kind\":\"fault_code\",\"quote\":\"P4A17\"},{\"kind\":\"symptom\",\"quote\":\"It didn't finally come on until I'm almost to work.\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize. Report: component ELECTRICAL SYSTEM group electrical_general. Symptom heater not working, blows cold air through defroster not at feet despite HVAC indicator, auto climate 68, didn't warm until almost to work. Conditions: after service (recall P4A17 performed). Fault codes: P4A17? It's recall code, report names one. Is fault_code? The schema fault_codes [\"code if report names one\"] likely include P4A17. Safety_relevant false (no crash/fire etc). Missing_info: mileage null, date? received_at date but narrative date redacted; maybe conditions present, component present, symptom present. Need missing_info only facts analysis needs: mileage, date maybe. Since date received_at given but incident date redacted? Missing mileage. Date? received_at 2025-02-19, but event date redacted. Could include date. Need clues verbatim. Must quote exact spans. Need ensure quotes exist. Quotes:\n- \"heater isn't working now\" (exact? narrative: \"my heater isn't working now.\" yes substring \"heater isn't working now\")\n- \"It just blows cold air through the defroster and not at my feet as the HVAC indicator shows.\" exact.\n- \"I always have my auto climate feature set to 68 degrees F.\" exact.\n- \"During my visit recall P4A17 was performed.\" exact.\n- \"It didn't finally come on until I'm almost to work.\" exact.\n- \"What did P4A17 do to my car?\" exact maybe other.\n- \"ELECTRICAL SYSTEM\"? That's field not narrative? Report includes component field. Quote can be from report; likely includes all JSON. Could quote \"ELECTRICAL SYSTEM\" as component_group. But \"report\" includes field. Fine.\nNeed summary one line: component, symptom, conditions. \"Electrical system; heater blows cold air/defroster only after recall P4A17 service.\" Conditions after service. Need JSON only.\n\nNeed conditions array standardized: [\"after service\"] maybe also \"cold\"? Symptom cold air not condition cold. No moisture/heat/vibration/intermittent? It \"now\" and \"didn't finally come on\" could be intermittent? Not necessarily. Conditions: after service. Maybe \"cold\" is not ambient condition; cold air is symptom. Do not include. \"charging\" no.\n\nSymptoms plain words: [\"heater not working\", \"blows cold air through defroster\", \"air not directed to feet despite HVAC indicator\", \"auto climate set to 68°F\", \"heater slow to warm\"]. Need plain.\n\nFault_codes: [\"P4A17\"] though recall not fault code. The report names code. Fine.\n\nMissing_info: [\"mileage\", \"date\"]? Date? received_at is date report received. But incident date redacted. Analysis needs date? Yes possibly. However \"date\" maybe received_at given. Narrative has \"[XXX]\" redacted. Could include \"date\" because exact incident date missing. Missing_info only important. Mileage null. Include mileage and date. Maybe conditions not missing because after service. Component present, symptom present. Good.\n\nClues array with kind. Need quote exact. For component_group quote \"ELECTRICAL SYSTEM\". For symptom quote exact. For condition quote \"During my visit recall P4A17 was performed.\" For fault_code quote \"recall P4A17\" or \"P4A17\" exact. Use \"P4A17\" (substring). Safety none. Other maybe \"What did P4A17 do to my car?\" but fault code enough. Need no extra text.\n\nEnsure JSON valid. Use escaped? no.\n\nNeed maybe summary mentions 2022 Nissan Leaf? Report has make/model/year. Summary one line component, symptom, conditions. Could include \"2022 Nissan Leaf electrical system: heater blows cold air...\" Good.\n\nNeed safety_relevant false boolean.\n\nLet's craft:\n\n{\n \"summary\": \"2022 Nissan Leaf electrical system: heater blows cold air through defroster and not to feet after recall P4A17 service.\",\n \"group\": \"electrical_general\",\n \"symptoms\": [\"heater not working\", \"blows cold air through the defroster\", \"air not directed to feet despite HVAC indicator\", \"auto climate set to 68 degrees F\", \"heater slow to warm\"],\n \"conditions\": [\"after service\"],\n \"fault_codes\": [\"P4A17\"],\n \"safety_relevant\": false,\n \"missing_info\": [\"mileage\", \"date\"],\n \"clues\": [\n  {\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},\n  {\"kind\":\"symptom\",\"quote\":\"heater isn't working now\"},\n  {\"kind\":\"symptom\",\"quote\":\"It just blows cold air through the defroster and not at my feet as the HVAC indicator shows.\"},\n  {\"kind\":\"symptom\",\"quote\":\"I always have my auto climate feature set to 68 degrees F.\"},\n  {\"kind\":\"condition\",\"quote\":\"During my visit recall P4A17 was performed.\"},\n  {\"kind\":\"fault_code\",\"quote\":\"P4A17\"},\n  {\"kind\":\"symptom\",\"quote\":\"It didn't finally come on until I'm almost to work.\"}\n ]\n}\n\nCheck quote \"heater isn't working now\" exact: narrative \"my heater isn't working now.\" yes substring. \"It just blows...\" exact includes period. Good. \"I always...\" exact. \"During...\" exact. \"P4A17\" exact. \"It didn't finally...\" exact. Good.\n\nNeed \"missing_info\" maybe \"date\" because received_at date not incident. Fine.\n\nFinal only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793525025,
+      "id": "83b05205e85ad7054e127fd4fbb30bff",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1459,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1199,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00058599,
+          "billing_source": "go",
+          "list_cost": 0.00097665,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 675,
+            "output": 1459,
+            "reasoning": 1199
+          }
+        },
+        "prompt_tokens": 675,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 2134
+      }
+    },
+    "text": "{\"summary\":\"2022 Nissan Leaf electrical system: heater blows cold air through defroster and not to feet after recall P4A17 service.\",\"group\":\"electrical_general\",\"symptoms\":[\"heater not working\",\"blows cold air through the defroster\",\"air not directed to feet despite HVAC indicator\",\"auto climate set to 68 degrees F\",\"heater slow to warm\"],\"conditions\":[\"after service\"],\"fault_codes\":[\"P4A17\"],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"heater isn't working now\"},{\"kind\":\"symptom\",\"quote\":\"It just blows cold air through the defroster and not at my feet as the HVAC indicator shows.\"},{\"kind\":\"symptom\",\"quote\":\"I always have my auto climate feature set to 68 degrees F.\"},{\"kind\":\"condition\",\"quote\":\"During my visit recall P4A17 was performed.\"},{\"kind\":\"fault_code\",\"quote\":\"P4A17\"},{\"kind\":\"symptom\",\"quote\":\"It didn't finally come on until I'm almost to work.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00058599,
+      "cached_tokens": 0,
+      "cost_usd": 0.00097665,
+      "input_tokens": 675,
+      "list_cost_usd": 0.00097665,
+      "output_tokens": 1459,
+      "reasoning_tokens": 1199
+    }
+  }
+}

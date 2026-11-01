@@ -1,0 +1,66 @@
+{
+  "key": "2be55f67f1e64f53c7ac3360ddfe1aee4647afc5f04da75e73829f41268270cd",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 7524,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Exterior lighting: passenger-side headlamp burned out and the headlight wiring pigtail melted; daytime running lights are disconnected to stop the melting.\",\n  \"group\": \"lighting\",\n  \"symptoms\": [\n    \"passenger side headlamp burned out\",\n    \"wiring pigtail to the headlight melted\",\n    \"headlight malfunction\",\n    \"daytime running lights cannot be used\"\n  ],\n  \"conditions\": [\n    \"heat\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"EXTERIOR LIGHTING\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Passenger side headlamp burned out\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"the wiring pigtail to the headlight has melted\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"the melting stops\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"fire hazard\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"safety issue\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer one JSON only. Need normalize report. Component exterior lighting group lighting. Summary one line component symptom conditions. Symptoms: passenger side headlamp burned out; wiring pigtail to headlight melted causing malfunction; daytime running lights must be disconnected to stop melting. Conditions maybe heat? melted, maybe \"after service\"? No. Conditions from allowed: cold moisture heat vibration intermittent after service charging. Melting indicates heat. Could include \"heat\". Fault codes none. Safety relevant? Report mentions fire hazard and safety issue, can't use DRL. Rule set safety_relevant when mentions fire, smoke, injury, loss control, stall etc. It says \"fire hazard\" explicitly. So true. Missing info: mileage null missing. Date? received_at exists, but report? missing_info includes mileage. Maybe component/symptom/conditions present. So [\"mileage\"]. Clues verbatim quotes: symptom quote \"Passenger side headlamp burned out\" ; \"wiring pigtail to the headlight has melted\" ; condition heat? quote \"the melting stops\" maybe; safety quote \"fire hazard\" ; maybe component_group quote \"EXTERIOR LIGHTING\" from report? The report includes component field. Quote verbatim. Also \"safety issue\". Need include fault_code none.\n\nNeed ensure JSON valid, no markdown? User says answer with one JSON object and no other text. So final only JSON. Need summary concise: \"Exterior lighting: passenger-side headlamp burned out and headlight wiring pigtail melted; DRLs disconnected to stop melting.\" Conditions [\"heat\"]. Clues kind condition quote \"melting\" or \"the melting stops\". Verbatim span. If kind condition, quote \"the melting stops\" okay. Symptom quotes exact: \"Passenger side headlamp burned out\" appears yes. \"wiring pigtail to the headlight has melted\" appears exactly lower? Narrative: \"the wiring pigtail to the headlight has melted causing it to malfunction\" yes. \"headlamp burned out\" maybe. Component group quote \"EXTERIOR LIGHTING\" exactly. Safety quote \"fire hazard\" yes. Other quote \"safety issue\" maybe safety. Include only relevant.\n\nNeed missing_info only mileage? The report has date received_at but not date of incident. Rule says missing date if needed. It doesn't specify incident date. Could include \"date\"? The analysis needs date maybe. But received_at present. The report lacks mileage. Could also missing \"conditions\" but heat inferred. I think missing_info [\"mileage\"]. Need not include date because received_at. But \"date\" maybe event date missing. Hmm.\n\nNeed no action suggestions. Good.\n\nFinal JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793527428,
+      "id": "d4747027a318464e52a60140f4fa7e1a",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 839,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 556,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0003237,
+          "billing_source": "go",
+          "list_cost": 0.0005395,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 233,
+            "output": 839,
+            "reasoning": 556
+          }
+        },
+        "prompt_tokens": 617,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1456
+      }
+    },
+    "text": "{\n  \"summary\": \"Exterior lighting: passenger-side headlamp burned out and the headlight wiring pigtail melted; daytime running lights are disconnected to stop the melting.\",\n  \"group\": \"lighting\",\n  \"symptoms\": [\n    \"passenger side headlamp burned out\",\n    \"wiring pigtail to the headlight melted\",\n    \"headlight malfunction\",\n    \"daytime running lights cannot be used\"\n  ],\n  \"conditions\": [\n    \"heat\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"EXTERIOR LIGHTING\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Passenger side headlamp burned out\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"the wiring pigtail to the headlight has melted\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"the melting stops\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"fire hazard\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"safety issue\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0003237,
+      "cached_tokens": 384,
+      "cost_usd": 0.0005395,
+      "input_tokens": 617,
+      "list_cost_usd": 0.0005395,
+      "output_tokens": 839,
+      "reasoning_tokens": 556
+    }
+  }
+}

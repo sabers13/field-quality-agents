@@ -1,0 +1,66 @@
+{
+  "key": "022efbd2409b1f118bf17e7dcd89082041fdb94d37638527a227c9f3d94240ca",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 6913,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Recall 25V302000 airbag remedy parts unavailable with no reported failure; verify recall status and perform the standard field-quality test.\",\"rationale\":\"The narrative reports notification of NHTSA campaign 25V302000 for air bags, but the part for the recall repair was not yet available and the contact had not experienced a failure. No rulebook entry, similar case, investigation, or recall-specific diagnostic result supports a targeted load test, so the standard test is appropriate.\",\"group\":\"restraints\",\"symptoms\":[],\"conditions\":[\"recall repair part not yet available\",\"no failure experienced\"],\"fault_codes\":[\"25V302000\"],\"safety_relevant\":false,\"targeted\":false,\"test_name\":\"standard field-quality test\",\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"fault_code\",\"quote\":\"NHTSA Campaign Number: 25V302000 (AIR BAGS)\"},{\"kind\":\"condition\",\"quote\":\"the part to do the recall repair was not yet available\"},{\"kind\":\"symptom\",\"quote\":\"The contact had not experienced a failure.\"},{\"kind\":\"other\",\"quote\":\"VIN tool confirms parts not available.\"}]}",
+            "reasoning_content": "We need answer JSON only. Need analyze. Case is recall parts unavailable, no failure. No rulebook matches, no similar, no investigations. Need propose standard test targeted false. Need be careful symptoms: \"The contact had not experienced a failure.\" That's not a symptom maybe none. Conditions: part unavailable. Fault code 25V302000. Group restraints. Safety_relevant false per narrative? It's airbag recall but no risk to people shown; extraction says false. Clues verbatim from narrative. Need include quotes exactly from case narrative. Narrative: \"The contact owns a 2023 Chrysler Pacifica. The contact received notification of NHTSA Campaign Number: 25V302000 (AIR BAGS); however, the part to do the recall repair was not yet available. The local dealer was contacted. The contact stated that the manufacturer had exceeded a reasonable amount of time for the recall repair. The manufacturer was not made aware of the issue. The contact had not experienced a failure. VIN tool confirms parts not available.\"\n\nNeed quotes verbatim spans. Could quote \"NHTSA Campaign Number: 25V302000 (AIR BAGS)\" yes. \"the part to do the recall repair was not yet available\" yes. \"The contact had not experienced a failure.\" yes. \"VIN tool confirms parts not available.\" yes. \"AIR BAGS\" appears in narrative? Yes within campaign. But component group maybe quote \"AIR BAGS\" appears. But duplicate with fault code quote. We can include.\n\nNeed summary \"Recall 25V302000 remedy parts unavailable; no failure reported; verify recall applicability/parts status, no targeted load test indicated.\" But desk doesn't close. We can propose standard test? The schema requires test_name \"the targeted test the rulebook names\" but if targeted false, maybe test_name \"standard field-quality test\". Need no rulebook. Could say \"standard verification test\". Need not propose closing.\n\nNeed rationale condition evidence. No rulebook match, so standard not targeted.\n\nNeed JSON valid. Ensure no extra text. targeted false. safety_relevant false. clues at least.\n\nLet's craft. \n{\n\"summary\":\"Recall 25V302000 airbag remedy parts unavailable with no reported failure; verify recall status and standard inspection only.\",\n\"rationale\":\"The narrative reports notification of NHTSA campaign 25V302000 for air bags but says the recall repair part was not yet available and no failure was experienced. No rulebook entry, similar case, recall-specific diagnostic result, or investigation supports a targeted load test, so the standard test is appropriate.\",\n\"group\":\"restraints\",\n\"symptoms\":[],\n\"conditions\":[\"recall repair part not yet available\",\"no failure experienced\"],\n\"fault_codes\":[\"25V302000\"],\n\"safety_relevant\":false,\n\"targeted\":false,\n\"test_name\":\"standard field-quality test\",\n\"clues\":[...]\n}\n\nNeed symptoms maybe [] because no failure. Conditions include. Clues quote \"the part to do the recall repair was not yet available\"; \"The contact had not experienced a failure.\"; \"NHTSA Campaign Number: 25V302000 (AIR BAGS)\"; \"VIN tool confirms parts not available.\"; component_group quote \"AIR BAGS\". Maybe \"other\" for VIN. Good. Ensure quote exactly. \"AIR BAGS\" appears in \"25V302000 (AIR BAGS)\" yes. Could include fault_code quote full. Good.\n\nNeed no markdown. final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793528604,
+      "id": "f05217df71e0763db3d06621b93d251f",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 978,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 725,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00049986,
+          "billing_source": "go",
+          "list_cost": 0.0008331,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 1642,
+            "output": 978,
+            "reasoning": 725
+          }
+        },
+        "prompt_tokens": 1642,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 2620
+      }
+    },
+    "text": "{\"summary\":\"Recall 25V302000 airbag remedy parts unavailable with no reported failure; verify recall status and perform the standard field-quality test.\",\"rationale\":\"The narrative reports notification of NHTSA campaign 25V302000 for air bags, but the part for the recall repair was not yet available and the contact had not experienced a failure. No rulebook entry, similar case, investigation, or recall-specific diagnostic result supports a targeted load test, so the standard test is appropriate.\",\"group\":\"restraints\",\"symptoms\":[],\"conditions\":[\"recall repair part not yet available\",\"no failure experienced\"],\"fault_codes\":[\"25V302000\"],\"safety_relevant\":false,\"targeted\":false,\"test_name\":\"standard field-quality test\",\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"fault_code\",\"quote\":\"NHTSA Campaign Number: 25V302000 (AIR BAGS)\"},{\"kind\":\"condition\",\"quote\":\"the part to do the recall repair was not yet available\"},{\"kind\":\"symptom\",\"quote\":\"The contact had not experienced a failure.\"},{\"kind\":\"other\",\"quote\":\"VIN tool confirms parts not available.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00049986,
+      "cached_tokens": 0,
+      "cost_usd": 0.0008331,
+      "input_tokens": 1642,
+      "list_cost_usd": 0.0008331,
+      "output_tokens": 978,
+      "reasoning_tokens": 725
+    }
+  }
+}

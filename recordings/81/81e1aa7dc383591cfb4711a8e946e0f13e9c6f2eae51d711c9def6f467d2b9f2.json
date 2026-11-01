@@ -1,0 +1,66 @@
+{
+  "key": "81e1aa7dc383591cfb4711a8e946e0f13e9c6f2eae51d711c9def6f467d2b9f2",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10994,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Lane departure assist/ADAS and sunroof stopped functioning on a 2020 Alfa Romeo Stelvio; driver reports a small gate accident after no warning; no conditions stated.\",\"group\":\"adas\",\"symptoms\":[\"all ADAS system stopped functioning\",\"sunroof stopped functioning\",\"no warning/advice from the system\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ADAS\"},{\"kind\":\"symptom\",\"quote\":\"stop functioning all the ADAS system as well as the sunroof\"},{\"kind\":\"symptom\",\"quote\":\"did not advised me\"},{\"kind\":\"safety\",\"quote\":\"small accident with a gate\"},{\"kind\":\"safety\",\"quote\":\"very serious issue\"},{\"kind\":\"safety\",\"quote\":\"tragic event\"}]}",
+            "reasoning_content": "We need answer one JSON object no other text. Need normalize report. Need read component LANE DEPARTURE: ASSIST group adas. Narrative: 2020 Alfa Romeo Stelvio on Oct 29,2025 stop functioning all ADAS system as well as sunroof. Because small accident with gate as it did not advised me. Websites others same issue serious issue fix before tragic event. Need summary one line component symptom conditions. Group adas. Symptoms plain words: all ADAS system stopped functioning; sunroof stopped functioning? Component is lane departure assist but narrative says all ADAS and sunroof. Need symptoms list. Conditions: date? conditions list allowed cold moisture heat vibration intermittent after service charging. Narrative doesn't mention those except maybe accident? No. Could include \"intermittent\"? no. Conditions empty. Fault codes none. safety_relevant true due accident with gate risk. missing_info: mileage missing (null), maybe date? date given Oct 29 2025 received. component? given. symptom given. conditions not given? The schema says missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Conditions not specified, so missing \"conditions\" perhaps. Mileage missing. Date present. Could include \"conditions\" because no environmental conditions; but provided date. Need decide. Since report says date but not conditions. Missing_info [\"mileage\",\"conditions\"]. Maybe also \"fault_codes\"? Not in list. Do not include. Clues verbatim spans copied. Need ensure exact substrings. Quotes:\n- \"stop functioning all the ADAS system as well as the sunroof\" yes exact? Narrative: \"on Oct 29,2025 stop functioning all the ADAS system as well as the sunroof.\" substring exact includes no period. Use \"stop functioning all the ADAS system as well as the sunroof\".\n- \"small accident with a gate\" exact.\n- \"did not advised me\" exact? It says \"as it did not advised me.\" quote \"did not advised me\" exact.\n- \"very serious issue\" exact.\n- Maybe \"LANE DEPARTURE: ASSIST\" from component? Quotes must be from report? The user message includes JSON fields; is component part of report? It says copied from report. Could quote \"LANE DEPARTURE: ASSIST\" because it's in component. But maybe safest quote narrative only. Clues kind component_group quote \"ADAS\" narrative has \"all the ADAS system\"; use \"ADAS\". safety quote \"small accident with a gate\" or \"tragic event\". Need include fault_code none. Conditions none. Clues include symptom, condition? Accident isn't listed condition, maybe safety. Could include \"other\" for sunroof? But symptom includes sunroof. Clues kind symptom quote. \"all the ADAS system as well as the sunroof\" exact. Also \"small accident with a gate\" safety. \"very serious issue\" safety? Maybe other. Need not overdo.\n\nNeed output valid JSON only. Summary one line: \"Lane departure assist/ADAS and sunroof stopped functioning on 2020 Alfa Romeo Stelvio; driver reports small gate accident because no warning.\" Conditions maybe date? Summary includes date. Conditions list empty. Group \"adas\". Symptoms [\"all ADAS system stopped functioning\", \"sunroof stopped functioning\", \"no warning/advice from system\"] Wait \"as it did not advised me\" means did not advise me, could be symptom? It's consequence. Symptom plain words: \"ADAS system not functioning\", \"sunroof not functioning\", \"no warning/advice before gate contact\". Is \"no warning\" symptom? Maybe yes. But report says small accident because it did not advise me; could be lack of warning. Include.\n\nMissing_info: mileage null. Conditions not specified. Should \"date\" not missing. \"component\" present. \"symptom\" present. So [\"mileage\", \"conditions\"]. Could also missing_info \"date\"? No. Conditions maybe not required? But says conditions facts analysis needs. Use [\"mileage\",\"conditions\"]. Good.\n\nNeed exact quotes:\n- \"stop functioning all the ADAS system as well as the sunroof\" yes.\n- \"small accident with a gate\" yes.\n- \"did not advised me\" yes.\n- \"very serious issue\" yes.\n- \"tragic event\" yes maybe safety.\nCould include \"ADAS\" quote? \"ADAS\" is in \"all the ADAS system\"; exact. Kind component_group? Hmm component group \"adas\" from group field, quote \"ADAS\" narrative. Use clue kind component_group quote \"ADAS\". But if quote must be from report, \"ADAS\" is present. Good.\n\nNeed safety_relevant true. Rules set when crash, fire, smoke, injury, loss control, stall at speed or risk. It mentions accident with gate, serious issue, tragic event. true.\n\nNeed no suggestion desk action. Fine.\n\nNeed ensure JSON valid. No markdown. Only JSON. Use double quotes. \"summary\": \"Lane departure assist/ADAS and sunroof stopped functioning on a 2020 Alfa Romeo Stelvio; driver reports a small gate accident after no warning.\" This is one line. Conditions none. Maybe \"conditions\": [] not include date. Good.\n\nNeed \"fault_codes\": [].\n\nClues:\n[\n {\"kind\":\"component_group\",\"quote\":\"ADAS\"},\n {\"kind\":\"symptom\",\"quote\":\"stop functioning all the ADAS system as well as the sunroof\"},\n {\"kind\":\"symptom\",\"quote\":\"did not advised me\"},\n {\"kind\":\"safety\",\"quote\":\"small accident with a gate\"},\n {\"kind\":\"safety\",\"quote\":\"very serious issue\"},\n {\"kind\":\"safety\",\"quote\":\"tragic event\"}\n]\nMaybe \"did not advised me\" as symptom? It is lack of warning. Good.\n\nNeed \"conditions\": [] and missing conditions. Good.\n\nPotential issue: \"summary\" should mention component, symptom, conditions. Conditions none; can say \"no conditions given\". But summary one line maybe \"Lane departure assist/ADAS and sunroof stopped functioning on 2020 Alfa Romeo Stelvio; driver reports a small gate accident after no warning; no conditions stated.\" That includes conditions. Good.\n\nNeed include \"date\" in summary? Not necessary.\n\nLet's final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531688,
+      "id": "fda840671d1c9cbe2a638f2272d5ec7a",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1532,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1336,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00056976,
+          "billing_source": "go",
+          "list_cost": 0.0009496,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 195,
+            "output": 1532,
+            "reasoning": 1336
+          }
+        },
+        "prompt_tokens": 579,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2111
+      }
+    },
+    "text": "{\"summary\":\"Lane departure assist/ADAS and sunroof stopped functioning on a 2020 Alfa Romeo Stelvio; driver reports a small gate accident after no warning; no conditions stated.\",\"group\":\"adas\",\"symptoms\":[\"all ADAS system stopped functioning\",\"sunroof stopped functioning\",\"no warning/advice from the system\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ADAS\"},{\"kind\":\"symptom\",\"quote\":\"stop functioning all the ADAS system as well as the sunroof\"},{\"kind\":\"symptom\",\"quote\":\"did not advised me\"},{\"kind\":\"safety\",\"quote\":\"small accident with a gate\"},{\"kind\":\"safety\",\"quote\":\"very serious issue\"},{\"kind\":\"safety\",\"quote\":\"tragic event\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00056976,
+      "cached_tokens": 384,
+      "cost_usd": 0.0009496,
+      "input_tokens": 579,
+      "list_cost_usd": 0.0009496,
+      "output_tokens": 1532,
+      "reasoning_tokens": 1336
+    }
+  }
+}

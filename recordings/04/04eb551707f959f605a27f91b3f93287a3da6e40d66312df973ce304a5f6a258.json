@@ -1,0 +1,66 @@
+{
+  "key": "04eb551707f959f605a27f91b3f93287a3da6e40d66312df973ce304a5f6a258",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12966,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2023 Ford Transit back-over prevention recall 25V315000; remedy part unavailable, no failure reported\",\"group\":\"adas\",\"symptoms\":[],\"conditions\":[],\"fault_codes\":[\"25V315000\"],\"safety_relevant\":false,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"BACK OVER PREVENTION\"},{\"kind\":\"fault_code\",\"quote\":\"NHTSA Campaign Number: 25V315000\"},{\"kind\":\"other\",\"quote\":\"the part to do the recall repair was not yet available\"},{\"kind\":\"symptom\",\"quote\":\"The contact had not experienced a failure.\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize report. Read only report. Component BACK OVER PREVENTION group adas. Narrative: 2023 Ford Transit, recall notification NHTSA Campaign Number 25V315000 (BACK OVER PREVENTION); part not available; dealer contacted; manufacturer exceeded reasonable time; referred to hotline; contact had not experienced a failure; VIN tool confirms parts not available. No symptom? \"had not experienced a failure\" means no symptom. Conditions? none. Fault codes: campaign number? It's recall campaign number not fault code. The schema fault_codes: \"code if report names one\" Could include 25V315000? It's a campaign number, not diagnostic fault code. But maybe likely include as fault_code? Need decide. Report names NHTSA Campaign Number: 25V315000. They ask fault_codes [\"code if report names one\"]. Could include \"25V315000\". But it's recall campaign, not fault code. Yet for desk, recall code relevant. The field \"fault_codes\" might capture named code. I think include 25V315000 as code? Hmm. Need ensure quotes verbatim.\n\nSummary one line: \"2023 Ford Transit back over prevention recall 25V315000; remedy part unavailable, no failure experienced.\" Conditions: none. Symptoms: maybe \"no failure experienced\" is not symptom. Since symptoms array should be symptoms in plain words. Could be empty. missing_info: mileage missing, maybe date? received_at date present, but incident date absent? The analysis needs date maybe recall notification date not given. Component and symptom present? Symptom is no failure. Conditions missing? They want list only facts analysis needs. Since no failure, missing symptom? But report says no failure. Maybe missing_info [\"mileage\", \"date\"]? Date received at 2025-05-21, but event date? Missing date maybe not? The report has received_at, but not date of notification? \"date\" could be report date. We can include mileage only? Need think.\n\nSafety_relevant false because no crash/fire/etc and provided false. Clues: need verbatim spans. Include component_group quote \"BACK OVER PREVENTION\"? It appears. symptom quote \"The contact had not experienced a failure.\" kind symptom? But that's absence of symptom. Could include as symptom? Maybe kind symptom quote \"had not experienced a failure\" to indicate no symptom. Condition? none. Fault code quote \"NHTSA Campaign Number: 25V315000\" or \"25V315000\". Safety? no. Other quote \"the part to do the recall repair was not yet available\" maybe condition? Could be other. Need include clues for summary basis: component group, fault code, symptom absence, other parts unavailable.\n\nNeed only JSON object. Ensure quotes exact. Let's draft with summary. \"2023 Ford Transit back-over prevention recall 25V315000; remedy part unavailable, no failure reported.\" That's one line. group \"adas\". symptoms []? Could include \"no failure experienced\"? But symptoms array is symptoms; no failure isn't symptom. Empty. conditions []? no conditions. fault_codes [\"25V315000\"]? Yes.\n\nmissing_info: mileage, date? The report has received_at, but no mileage. \"date\" maybe date of incident? Since no incident. Maybe missing_info [\"mileage\"]. But \"date\" not missing because received_at. Conditions missing? Since none. Component and symptom present. I'd list [\"mileage\"]. Could include \"date\" if notification date not specified? It says received_at 2025-05-21 but not recall notification date. For analysis, date received is present. Fine.\n\nclues:\n- {\"kind\":\"component_group\",\"quote\":\"BACK OVER PREVENTION\"}\n- {\"kind\":\"fault_code\",\"quote\":\"NHTSA Campaign Number: 25V315000\"}\n- {\"kind\":\"other\",\"quote\":\"the part to do the recall repair was not yet available\"}\n- {\"kind\":\"symptom\",\"quote\":\"The contact had not experienced a failure.\"} Is this a symptom? It's absence. Could kind other? But clue kind symptom expected. It is a symptom-related statement. Use kind \"symptom\".\n- maybe {\"kind\":\"other\",\"quote\":\"VIN tool confirms parts not available\"}. redundant.\n\nNeed \"safety_relevant\": false.\n\nNeed no markdown. Final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793527156,
+      "id": "703dc07685d8113429adcb3b37396504",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1057,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 916,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00039966,
+          "billing_source": "go",
+          "list_cost": 0.0006661,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 205,
+            "output": 1057,
+            "reasoning": 916
+          }
+        },
+        "prompt_tokens": 589,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1646
+      }
+    },
+    "text": "{\"summary\":\"2023 Ford Transit back-over prevention recall 25V315000; remedy part unavailable, no failure reported\",\"group\":\"adas\",\"symptoms\":[],\"conditions\":[],\"fault_codes\":[\"25V315000\"],\"safety_relevant\":false,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"BACK OVER PREVENTION\"},{\"kind\":\"fault_code\",\"quote\":\"NHTSA Campaign Number: 25V315000\"},{\"kind\":\"other\",\"quote\":\"the part to do the recall repair was not yet available\"},{\"kind\":\"symptom\",\"quote\":\"The contact had not experienced a failure.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00039966,
+      "cached_tokens": 384,
+      "cost_usd": 0.0006661,
+      "input_tokens": 589,
+      "list_cost_usd": 0.0006661,
+      "output_tokens": 1057,
+      "reasoning_tokens": 916
+    }
+  }
+}

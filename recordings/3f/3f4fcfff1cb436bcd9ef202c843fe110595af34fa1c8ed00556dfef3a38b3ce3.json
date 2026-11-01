@@ -1,0 +1,66 @@
+{
+  "key": "3f4fcfff1cb436bcd9ef202c843fe110595af34fa1c8ed00556dfef3a38b3ce3",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10237,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"EXTERIOR LIGHTING adaptive headlight system/motor in 2023 Mazda CX-5 buzzes and vibrates; reported as known defect, no conditions given.\",\n  \"group\": \"lighting\",\n  \"symptoms\": [\n    \"buzzing noise\",\n    \"vibration\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\",\n    \"conditions\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"adaptive headlight system and motor\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"buzzing noise and vibration\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"known defect\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer one JSON object no other text. Need normalize report. Need obey. Need extract quotes verbatim. Report text: \"The adaptive headlight system and motor in 2023 Mazda CX-5 has defect and it makes buzzing noise and vibration. It was recognized by Mazda and its known defect. They should replace the defective headlight system even after the warranty period since this is not normal wear and tear part.\"\n\nComponent EXTERIOR LIGHTING group lighting. Symptoms buzzing noise, vibration, defect? Component adaptive headlight system and motor. Conditions? none explicitly. Maybe \"after warranty period\" not condition category? conditions list includes cold moisture heat vibration intermittent after service charging. Vibration is both symptom and condition? In schema conditions includes vibration. Report says makes buzzing noise and vibration. We can put vibration in symptoms and conditions? Hmm conditions \"vibration\" is environmental? They list condition categories. We should include conditions: [\"vibration\"]? But symptom vibration. The rules say conditions from list. Report mentions vibration. It is a symptom, but could also be condition. We should likely include \"vibration\" as condition if in list. But summary: component, symptom, conditions. \"Adaptive headlight system/motor in 2023 Mazda CX-5 buzzes and vibrates; known defect, no conditions reported.\" group lighting. symptoms [\"buzzing noise\", \"vibration\"]. conditions []? Since no environmental conditions. However condition list has vibration but that's symptom. Could put conditions [\"vibration\"]? Need be accurate. The report says \"makes buzzing noise and vibration\" so symptom. It doesn't mention cold/moisture/heat/intermittent etc. \"after warranty period\" not in list. So conditions [].\n\nfault_codes [] no code.\nsafety_relevant false? The source says false. Report doesn't mention crash/fire etc. Set false.\nmissing_info: mileage null, date? received_at 2025-09-04 but not incident date. Missing info facts analysis needs: component? present, symptom present, conditions maybe absent, mileage missing, date missing. Should list [\"mileage\", \"date\", \"conditions\"]? They say list missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. Conditions not mentioned. Component present. Symptom present. Mileage missing (null). Date? Report has received_at and year but no incident date. \"date\" missing. Conditions missing. Do we include conditions? Yes no conditions. Maybe missing_info [\"mileage\",\"date\",\"conditions\"]. But perhaps conditions absent not always important? It is needed. Use that.\n\nClues: must quote verbatim spans. Need include symptom quote, component_group quote? component_group quote maybe \"adaptive headlight system and motor\" or \"EXTERIOR LIGHTING\" from field? The report narrative includes adaptive headlight. We can include:\n{\"kind\":\"component_group\",\"quote\":\"adaptive headlight system and motor\"}\n{\"kind\":\"symptom\",\"quote\":\"buzzing noise and vibration\"}\n{\"kind\":\"other\",\"quote\":\"known defect\"}? kind other for recognized known defect? Could include safety? No. \nNeed every quote verbatim. \"buzzing noise and vibration\" yes contiguous? Report: \"makes buzzing noise and vibration.\" So \"buzzing noise and vibration\" verbatim. \"adaptive headlight system and motor\" verbatim. \"known defect\" verbatim? It says \"its known defect\" yes substring \"known defect\". \"defective headlight system\" verbatim? yes. We can include other quote \"known defect\". \nMaybe condition? none. fault_code none.\n\nSummary one line: \"Adaptive headlight system/motor in 2023 Mazda CX-5 buzzes and vibrates; reported as known defect, no conditions given.\" Need concise. \"EXTERIOR LIGHTING adaptive headlight system/motor buzzes and vibrates; known defect; no conditions reported.\" Good.\n\nNeed JSON only. Ensure no markdown? The instruction says Answer with one JSON object and no other text. Final should be raw JSON. We can include code block? No, no other text; raw JSON.\n\nDouble-check schema: \"group\": \"the electrical/electronic component group, or the given group\" given group lighting. Use \"lighting\".\n\"safety_relevant\": false boolean.\n\"missing_info\": list. We can include \"conditions\" perhaps. Does missing_info allow conditions? yes. Mileage and date. Should we include \"date\" though received_at exists? The report has received_at 2025-09-04, but no incident date. Yes missing date. \nDo we include \"conditions\" if no conditions? yes because analysis needs. But the report may not need conditions for a known defect. Still allowed. \nCould include \"component\" missing? No. Symptom present. Good.\n\nNeed \"clues\" kind allowed: symptom|condition|fault_code|component_group|safety|other. Use component_group and symptom and other. \nQuote \"adaptive headlight system and motor\" has no \"The\"? Verbatim substring yes.\nQuote \"buzzing noise and vibration\" yes.\nQuote \"known defect\" yes.\nMaybe include \"defective headlight system\" as other? Not necessary. Could include \"not normal wear and tear part\" as other? Hmm.\n\nNeed no invented facts. Summary \"known defect\" okay. \"no conditions reported\" from report absence, okay? Summary conditions maybe \"conditions: none reported\". That's not inventing. Good.\n\nPotential issue: The report includes \"2023 Mazda CX-5\" and component \"EXTERIOR LIGHTING\". Summary can mention. Good.\n\nLet's produce raw JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530091,
+      "id": "b2196cbe3390a06c482fb2f8f7e94677",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1378,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1187,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00051135,
+          "billing_source": "go",
+          "list_cost": 0.00085225,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 162,
+            "output": 1378,
+            "reasoning": 1187
+          }
+        },
+        "prompt_tokens": 546,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1924
+      }
+    },
+    "text": "{\n  \"summary\": \"EXTERIOR LIGHTING adaptive headlight system/motor in 2023 Mazda CX-5 buzzes and vibrates; reported as known defect, no conditions given.\",\n  \"group\": \"lighting\",\n  \"symptoms\": [\n    \"buzzing noise\",\n    \"vibration\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\",\n    \"conditions\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"adaptive headlight system and motor\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"buzzing noise and vibration\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"known defect\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00051135,
+      "cached_tokens": 384,
+      "cost_usd": 0.00085225,
+      "input_tokens": 546,
+      "list_cost_usd": 0.00085225,
+      "output_tokens": 1378,
+      "reasoning_tokens": 1187
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "612981cc9c633aee36467c998624376e60374ef60c9f02a087c41c17152efecd",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 6941,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Test the backup-camera circuit for a recurring wiring-harness fault causing a blue screen.\",\"rationale\":\"The narrative reports the backup camera stopped working and displays a blue screen; Ford attributed it to a wiring harness problem, and the harness has reportedly been replaced three times. No rulebook, recall, or investigation match was returned, so a standard diagnostic test is proposed rather than a targeted load test.\",\"group\":\"electrical_general\",\"symptoms\":[\"backup camera stopped working\",\"blue screen\"],\"conditions\":[\"recurring wiring harness problem\",\"third harness replacement\"],\"fault_codes\":[],\"safety_relevant\":false,\"targeted\":false,\"test_name\":\"standard electrical diagnostic test\",\"clues\":[{\"kind\":\"symptom\",\"quote\":\"Backup Camera has stopped work\"},{\"kind\":\"symptom\",\"quote\":\"has a blue screen\"},{\"kind\":\"condition\",\"quote\":\"wiring harness that is having problems\"},{\"kind\":\"condition\",\"quote\":\"this is the 3rd time that i have had to replace it\"}]}",
+            "reasoning_content": "We need answer JSON only. Need analyze case. Rulebook empty, recalls/investigations empty. No targeted test named. So targeted false, test_name maybe standard test? Prompt says otherwise propose standard test (\"targeted\": false). But schema requires test_name \"the targeted test the rulebook names\" — if none, maybe empty string or standard diagnostic? Need infer. Use only facts. Summary one line. rationale condition and evidence. group electrical_general. symptoms backup camera stopped working, blue screen. conditions maybe recurring wiring harness failure / third replacement. fault_codes empty. safety_relevant false. targeted false. test_name maybe \"\" since no rulebook. clues quotes verbatim from narrative: \"Backup Camera has stopped work\", \"has a blue screen\", \"wiring harness that is having problems\", \"this is the 3rd time that i have had to replace it\". Could include component group \"ELECTRICAL SYSTEM\" but narrative says? The narrative has \"Backup Camera...\" not all caps ELECTRICAL SYSTEM? The case component field is separate, not narrative. Rule: quote copied verbatim from case narrative. \"ELECTRICAL SYSTEM\" not in narrative. So don't use. Clues can include symptom quotes exactly. Need ensure quotes exact: narrative \"Backup Camera has stopped work has a blue screen. Was told by Ford that it was a wiring harness that is having problems this is the 3rd time that i have had to replace it.\" Quotes: \"Backup Camera has stopped work\" exact yes. \"has a blue screen\" exact yes. \"wiring harness that is having problems\" exact substring yes. \"this is the 3rd time that i have had to replace it\" exact yes (lowercase i). Good.\n\nNeed JSON no other text. We can include empty fault_codes. targeted false. test_name maybe \"standard electrical diagnostic test\" — but rulebook doesn't name. The rules: \"Prefer a targeted load test when the reported conditions match a rulebook entry. Otherwise propose the standard test (`\"targeted\": false`).\" So test_name should be standard test? Could be \"standard diagnostic test\". Since schema says targeted test rulebook names but none. Better \"standard electrical diagnostic test\". But maybe no test named. Need be concise. conditions array: \"recurring wiring harness problem (third replacement)\" maybe quote? Conditions can be phrased. symptoms same. safety false. Clues kind symptom etc. Maybe include other clue as condition? Let's craft.\n\nNeed answer with one JSON object. Ensure valid JSON. No markdown.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793526760,
+      "id": "6be0b192e302e9d80fde76b220262ab2",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 754,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 532,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0004005,
+          "billing_source": "go",
+          "list_cost": 0.0006675,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 1434,
+            "output": 754,
+            "reasoning": 532
+          }
+        },
+        "prompt_tokens": 1434,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 2188
+      }
+    },
+    "text": "{\"summary\":\"Test the backup-camera circuit for a recurring wiring-harness fault causing a blue screen.\",\"rationale\":\"The narrative reports the backup camera stopped working and displays a blue screen; Ford attributed it to a wiring harness problem, and the harness has reportedly been replaced three times. No rulebook, recall, or investigation match was returned, so a standard diagnostic test is proposed rather than a targeted load test.\",\"group\":\"electrical_general\",\"symptoms\":[\"backup camera stopped working\",\"blue screen\"],\"conditions\":[\"recurring wiring harness problem\",\"third harness replacement\"],\"fault_codes\":[],\"safety_relevant\":false,\"targeted\":false,\"test_name\":\"standard electrical diagnostic test\",\"clues\":[{\"kind\":\"symptom\",\"quote\":\"Backup Camera has stopped work\"},{\"kind\":\"symptom\",\"quote\":\"has a blue screen\"},{\"kind\":\"condition\",\"quote\":\"wiring harness that is having problems\"},{\"kind\":\"condition\",\"quote\":\"this is the 3rd time that i have had to replace it\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0004005,
+      "cached_tokens": 0,
+      "cost_usd": 0.0006675,
+      "input_tokens": 1434,
+      "list_cost_usd": 0.0006675,
+      "output_tokens": 754,
+      "reasoning_tokens": 532
+    }
+  }
+}

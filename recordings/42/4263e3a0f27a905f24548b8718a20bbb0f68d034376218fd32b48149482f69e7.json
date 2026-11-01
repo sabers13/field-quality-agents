@@ -1,0 +1,66 @@
+{
+  "key": "4263e3a0f27a905f24548b8718a20bbb0f68d034376218fd32b48149482f69e7",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 7430,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2024 BMW I5 ESC; inadvertent acceleration while parking with brake depressed, collided with store wall.\",\"group\":\"safety_systems\",\"symptoms\":[\"vehicle inadvertently accelerated while parking with brake depressed\",\"collision with a store's side wall\"],\"conditions\":[\"parking\",\"brake depressed\"],\"fault_codes\":[\"24V104000\"],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRONIC STABILITY CONTROL (ESC)\"},{\"kind\":\"symptom\",\"quote\":\"the vehicle inadvertently accelerated and collided with a store's side wall\"},{\"kind\":\"condition\",\"quote\":\"while the insurer was parking the vehicle, and the brake was depressed\"},{\"kind\":\"fault_code\",\"quote\":\"NHTSA Campaign Number:\\u00a024V104000\"},{\"kind\":\"safety\",\"quote\":\"collided with a store's side wall\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize. Read report. Component ESC, group safety_systems given. Symptoms: vehicle inadvertently accelerated while parking with brake depressed, collided with store's side wall. Conditions: parking, brake depressed. Could include crash? safety relevant true. Fault codes: NHTSA Campaign Number 24V104000? Is that a fault code? The schema fault_codes \"code if report names one\". It names campaign number, not exactly fault code. Could include? Hmm fault_codes likely DTC; campaign number maybe code? We can include \"24V104000\" as fault code? It says fault_codes [\"code if report names one\"]. Report names NHTSA Campaign Number: 24V104000. Might be relevant. But kind fault_code quote must verbatim. We can quote \"NHTSA Campaign Number:\\u00a024V104000\" maybe verbatim includes NBSP. User message has \"\\u00a0\" in JSON. In final JSON, quote should be copied verbatim from report. We can include \"NHTSA Campaign Number: 24V104000\" but if exact has NBSP? JSON escape \\u00a0. We can use \"NHTSA Campaign Number:\\u00a024V104000\" in JSON string? Need ensure valid JSON: \\u00a0. Yes.\n\nClues: symptom quote \"the vehicle inadvertently accelerated and collided with a store's side wall\" verbatim. Condition \"while the insurer was parking the vehicle, and the brake was depressed\" verbatim? Check exact: \"The contact stated that while the insurer was parking the vehicle, and the brake was depressed, the vehicle inadvertently accelerated...\" Quote can be \"while the insurer was parking the vehicle, and the brake was depressed\". Verbatim yes with lowercase? Report \"that while the insurer...\" We can quote substring \"while the insurer was parking the vehicle, and the brake was depressed\". Good. Safety quote \"collided with a store's side wall\" or \"no injuries\" but safety. Could quote \"collided with a store's side wall\". Component group quote \"ELECTRONIC STABILITY CONTROL (ESC)\" from component field? It's in component field not narrative but report includes. User says read only report in user message. The whole JSON is report. Quote from component field is verbatim. Use kind component_group quote \"ELECTRONIC STABILITY CONTROL (ESC)\". Fault code clue quote \"NHTSA Campaign Number:\\u00a024V104000\". Other maybe total loss? not needed.\n\nMissing_info: mileage unknown. Date? received_at present, incident date? Not specified. Conditions present. Component present. Symptom present. Missing mileage. Maybe date? The report doesn't give incident date. It gives received_at. Analysis needs date? Could list \"mileage\" and \"date\" perhaps. The narrative says failure mileage unknown. Date of incident not given. So missing_info [\"mileage\",\"date\"]. Maybe \"conditions\" not missing since parking/brake depressed. Component present. Good.\n\nSummary one line: \"2024 BMW I5 ESC; inadvertent acceleration while parking with brake depressed, wall collision.\" Include conditions. Should mention no injuries? summary component symptom conditions. Good.\n\nGroup: \"safety_systems\" given group. Or electrical/electronic component group? ESC is safety system, given group. Use \"safety_systems\".\n\nSymptoms: [\"inadvertent acceleration while parking with brake depressed\", \"collision with a store's side wall\"] Plain words. Maybe \"vehicle unexpectedly accelerated\". Use list.\n\nConditions: [\"parking\", \"brake depressed\"] plus maybe \"after service\"? no. \"charging\"? no. \"cold\"? no. \"moisture\"? no. \"heat\"? no. \"vibration\"? no. \"intermittent\"? no. Good.\n\nsafety_relevant true.\n\nNeed ensure JSON only. No markdown? User says one JSON object no other text. Final should be raw JSON. Include escaped NBSP? In final, can represent as \\u00a0 inside string. Valid JSON. Quote \"NHTSA Campaign Number:\\u00a024V104000\" if parsed becomes NBSP. Is that verbatim? The original JSON has escaped \\u00a0, but actual text contains NBSP. Good.\n\nNeed include \"component_group\" clue maybe quote \"ELECTRONIC STABILITY CONTROL (ESC)\". The \"kind\" enum includes component_group. Good.\n\nMaybe \"fault_codes\": [\"24V104000\"]? If fault code quote \"NHTSA Campaign Number:\\u00a024V104000\" but code field should just code. Fine.\n\nPotential issue: safety clue quote \"collided with a store's side wall\" appears verbatim? Narrative: \"vehicle inadvertently accelerated and collided with a store's side wall.\" Yes. Good.\n\nNeed no action suggestions. Good.\n\nFinal JSON only.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530593,
+      "id": "6c72477a9bdbc70742e5933947be8e6a",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1221,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1018,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00046311,
+          "billing_source": "go",
+          "list_cost": 0.00077185,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 254,
+            "output": 1221,
+            "reasoning": 1018
+          }
+        },
+        "prompt_tokens": 638,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1859
+      }
+    },
+    "text": "{\"summary\":\"2024 BMW I5 ESC; inadvertent acceleration while parking with brake depressed, collided with store wall.\",\"group\":\"safety_systems\",\"symptoms\":[\"vehicle inadvertently accelerated while parking with brake depressed\",\"collision with a store's side wall\"],\"conditions\":[\"parking\",\"brake depressed\"],\"fault_codes\":[\"24V104000\"],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRONIC STABILITY CONTROL (ESC)\"},{\"kind\":\"symptom\",\"quote\":\"the vehicle inadvertently accelerated and collided with a store's side wall\"},{\"kind\":\"condition\",\"quote\":\"while the insurer was parking the vehicle, and the brake was depressed\"},{\"kind\":\"fault_code\",\"quote\":\"NHTSA Campaign Number:\\u00a024V104000\"},{\"kind\":\"safety\",\"quote\":\"collided with a store's side wall\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00046311,
+      "cached_tokens": 384,
+      "cost_usd": 0.00077185,
+      "input_tokens": 638,
+      "list_cost_usd": 0.00077185,
+      "output_tokens": 1221,
+      "reasoning_tokens": 1018
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "3488d23d75d75a73e54ee81f2d892eafeb3bf61051f316e23989b0d17043e175",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 5978,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\": \"Verify the reported odometer discrepancy on a 2014 Toyota Avalon (93,326 at purchase vs. 362,712 per Carfax); no rulebook targeted test matched.\", \"rationale\": \"The narrative reports odometer fraud and a mileage discrepancy found after a dealer sale. No recalls, investigations, similar cases, or rulebook entries were returned, so the standard non-targeted verification is proposed.\", \"group\": \"instrumentation\", \"symptoms\": [\"odometer mileage discrepancy\", \"suspected odometer fraud\"], \"conditions\": [], \"fault_codes\": [], \"safety_relevant\": false, \"targeted\": false, \"test_name\": \"standard odometer verification\", \"clues\": [{\"kind\": \"symptom\", \"quote\": \"Odometer Fraud\"}, {\"kind\": \"symptom\", \"quote\": \"there was a mileage discrepancy\"}, {\"kind\": \"symptom\", \"quote\": \"At the time of purchase the vehicle mileage was 93,326\"}, {\"kind\": \"symptom\", \"quote\": \"the mileage was 362,712\"}]}",
+            "reasoning_content": "We need to answer with JSON only. The case is odometer fraud, mileage discrepancy. No rulebook matches, no recalls, no investigations, no similar cases. Targeted false (no rulebook entry). Safety relevant false (no risk to people shown). Test name: standard test? The rulebook names no targeted test. Standard test maybe \"no standard test named\" or generic. We need propose standard test. The schema requires test_name. Since no rulebook, targeted false. test_name could be \"standard diagnostic test\" or \"odometer verification\". The desk never closes case etc. No action like that.\n\nClues must be verbatim quotes from case narrative. Narrative: \"Odometer Fraud. The contact purchased a 2014 Toyota Avalon. The contact stated that the vehicle was driven to AAA Auto Repair facility and the contact was informed that there was a mileage discrepancy. The vehicle was a dealer sale. At the time of purchase the vehicle mileage was 93,326, and after AAA retrieved the Carfax Report, it was discovered that the mileage was 362,712.\"\n\nQuotes: \"Odometer Fraud\", \"there was a mileage discrepancy\", \"At the time of purchase the vehicle mileage was 93,326\", \"the mileage was 362,712\". Component group quote \"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\" appears in case component, not narrative. The rule says quote copied verbatim from case narrative. The narrative does not include the component string. So cannot use component_group quote from component field? It says case narrative. We should not cite component_group unless in narrative. Narrative doesn't mention. Could omit or use \"other\" with quote from narrative? The extraction had component_group quote but likely invalid. We can include clues only from narrative. Symptoms: \"odometer mileage discrepancy\", \"suspected odometer fraud\". Conditions: none. Fault codes: none. Group instrumentation.\n\nSummary one line: \"Verify odometer discrepancy on a 2014 Toyota Avalon (93,326 at purchase vs 362,712 per Carfax); no rulebook targeted test matched.\" Rationale: \"Narrative reports odometer fraud/mileage discrepancy after dealer sale; no recalls, investigations, similar cases, or rulebook entries returned, so propose standard (non-targeted) verification.\" test_name: \"standard odometer verification\" maybe. targeted false. safety false.\n\nNeed ensure JSON valid, no other text. Use quotes exactly. Clue kind \"symptom\" quote \"Odometer Fraud\"; \"there was a mileage discrepancy\"; \"At the time of purchase the vehicle mileage was 93,326\"; \"the mileage was 362,712\". Maybe also \"The vehicle was a dealer sale\" as condition? Not necessary. Condition clue? Could include \"The vehicle was a dealer sale\" as condition? But conditions array maybe empty. Clues kind condition maybe \"The vehicle was a dealer sale\" — but is that a condition? It is context. Better not.\n\nNeed not include recall ids. Fine.\n\nFinal JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529902,
+      "id": "a872b3efc6a2932f12770d446dd46b08",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 871,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 635,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00038925,
+          "billing_source": "go",
+          "list_cost": 0.00064875,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 841,
+            "output": 871,
+            "reasoning": 635
+          }
+        },
+        "prompt_tokens": 841,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 1712
+      }
+    },
+    "text": "{\"summary\": \"Verify the reported odometer discrepancy on a 2014 Toyota Avalon (93,326 at purchase vs. 362,712 per Carfax); no rulebook targeted test matched.\", \"rationale\": \"The narrative reports odometer fraud and a mileage discrepancy found after a dealer sale. No recalls, investigations, similar cases, or rulebook entries were returned, so the standard non-targeted verification is proposed.\", \"group\": \"instrumentation\", \"symptoms\": [\"odometer mileage discrepancy\", \"suspected odometer fraud\"], \"conditions\": [], \"fault_codes\": [], \"safety_relevant\": false, \"targeted\": false, \"test_name\": \"standard odometer verification\", \"clues\": [{\"kind\": \"symptom\", \"quote\": \"Odometer Fraud\"}, {\"kind\": \"symptom\", \"quote\": \"there was a mileage discrepancy\"}, {\"kind\": \"symptom\", \"quote\": \"At the time of purchase the vehicle mileage was 93,326\"}, {\"kind\": \"symptom\", \"quote\": \"the mileage was 362,712\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00038925,
+      "cached_tokens": 0,
+      "cost_usd": 0.00064875,
+      "input_tokens": 841,
+      "list_cost_usd": 0.00064875,
+      "output_tokens": 871,
+      "reasoning_tokens": 635
+    }
+  }
+}

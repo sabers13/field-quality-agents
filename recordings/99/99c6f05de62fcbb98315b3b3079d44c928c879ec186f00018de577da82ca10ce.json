@@ -1,0 +1,66 @@
+{
+  "key": "99c6f05de62fcbb98315b3b3079d44c928c879ec186f00018de577da82ca10ce",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 5013,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system in a 2024 Jeep Wagoneer S with an ongoing electrical failure affecting multiple safety-critical systems in a new vehicle.\",\"group\":\"electrical_general\",\"symptoms\":[\"ongoing electrical system failure\",\"multiple safety-critical systems affected\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"ongoing electrical system failure\"},{\"kind\":\"symptom\",\"quote\":\"Multiple safety-critical systems are affected.\"},{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"safety\",\"quote\":\"putting both the driver and passengers at risk\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalise report. Need extract from narrative. Component electrical system, group given electrical_general. Symptoms: ongoing electrical system failure? Multiple safety-critical systems affected. Conditions none explicit. Fault codes none. Safety relevant: mentions safety-critical systems affected, putting driver/passengers at risk → true. Missing info: mileage null, date? received_at exists but report date? component given, symptom vague? Need list missing_info only facts analysis needs: mileage, date, conditions, component, symptom. Component present (ELECTRICAL SYSTEM). Symptom present but vague? Could include conditions missing, mileage missing, date maybe received_at is date but not incident date. Need maybe [\"mileage\",\"date\",\"conditions\"]. Need clues verbatim spans. Summary one line: electrical system, ongoing failure affecting multiple safety-critical systems in new vehicle. group electrical_general. symptoms: [\"ongoing electrical system failure\", \"multiple safety-critical systems affected\"] plain words. Conditions: [] because no cold etc. safety true. Clues: symptom quote \"ongoing electrical system failure\" exact from narrative? narrative: \"I believe this is an ongoing electrical system failure in a new vehicle\" contains \"ongoing electrical system failure\" yes. \"Multiple safety-critical systems are affected.\" exact. safety quote \"putting both the driver and passengers at risk\" yes. component_group quote \"ELECTRICAL SYSTEM\" from component field? Report includes component field. Is that in report? user message includes JSON. Verbatim span copied from report; can quote \"ELECTRICAL SYSTEM\" yes. Maybe condition none. Need no extra text.\n\nNeed ensure summary one line. missing_info: mileage null; date received_at but incident date unknown; conditions not stated; symptom is vague? But symptom exists. We can include [\"mileage\",\"date\",\"conditions\"]. Also \"component\" no. \"symptom\" no? The symptom is vague, but listed.\n\nNeed JSON valid. Use false? safety_relevant true. final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793527935,
+      "id": "bdf39ad734d6c16c80ccfa3d45f0812c",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 564,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 411,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00021669,
+          "billing_source": "go",
+          "list_cost": 0.00036115,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 144,
+            "output": 564,
+            "reasoning": 411
+          }
+        },
+        "prompt_tokens": 528,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1092
+      }
+    },
+    "text": "{\"summary\":\"Electrical system in a 2024 Jeep Wagoneer S with an ongoing electrical failure affecting multiple safety-critical systems in a new vehicle.\",\"group\":\"electrical_general\",\"symptoms\":[\"ongoing electrical system failure\",\"multiple safety-critical systems affected\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"ongoing electrical system failure\"},{\"kind\":\"symptom\",\"quote\":\"Multiple safety-critical systems are affected.\"},{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"safety\",\"quote\":\"putting both the driver and passengers at risk\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00021669,
+      "cached_tokens": 384,
+      "cost_usd": 0.00036115,
+      "input_tokens": 528,
+      "list_cost_usd": 0.00036115,
+      "output_tokens": 564,
+      "reasoning_tokens": 411
+    }
+  }
+}

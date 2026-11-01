@@ -1,0 +1,66 @@
+{
+  "key": "e016652c3c768b794dbb1597068fec7271c67d21c35c480bfe9d3275b683556e",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 14209,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Honda Ridgeline electrical system: engine failed to restart at stoplight 7 times in 6 months.\",\"group\":\"electrical_general\",\"symptoms\":[\"engine failed to restart at stoplight\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"fell to restart engine\"},{\"kind\":\"condition\",\"quote\":\"at the stoplight\"},{\"kind\":\"condition\",\"quote\":\"7 times\"},{\"kind\":\"condition\",\"quote\":\"In then last 6 months\"}]}",
+            "reasoning_content": "We need output JSON only. Need normalize report. Report narrative: \"In then last 6 months  my Honda Ridgeline fell to restart engine at the stoplight 7 times\". Component electrical system, group electrical_general. Symptom: engine fails to restart at stoplight / stalls? \"fell to restart engine\" means failed to restart. Safety? It happens at stoplight, not necessarily crash/fire. Given safety_relevant false in input, but rule says set when mentions crash/fire/smoke/injury/loss of control/stall at speed or risk. Stoplight restart failure could be risk? Not explicitly stall at speed. I'd keep false, but maybe loss of control? No. Conditions: intermittent? 7 times in 6 months, at stoplight. Could include \"intermittent\"? It says 7 times, so intermittent. Conditions list includes \"intermittent\"; \"cold\", \"moisture\", etc not mentioned. Maybe \"after service\" no. \"charging\" no. Missing info: mileage (null), date? received_at exists, but date of incident? Report says last 6 months; maybe date not exact. Component present, symptom present, conditions given (stoplight, 6 months, 7 times). Missing: mileage. Maybe date? The report has received_at and timeframe. The field \"date\" likely incident date missing. We can include \"mileage\" and maybe \"date\". Need clues with verbatim quotes. Quotes copied exactly. Need include component group quote? \"ELECTRICAL SYSTEM\" appears in component field, but the report? The user message includes JSON with component. It says read report in user message; can quote from fields? likely yes. But narrative only? \"Every quote copied verbatim from the report.\" The report includes component. Clues:\n- kind component_group, quote \"ELECTRICAL SYSTEM\"\n- kind symptom, quote \"fell to restart engine\"\n- kind condition, quote \"at the stoplight\"\n- kind condition, quote \"In then last 6 months\" maybe timeframe/intermittent. Or \"7 times\" for intermittent.\n- maybe kind symptom quote \"my Honda Ridgeline fell to restart engine at the stoplight 7 times\" exact full narrative.\nNeed summary one line: \"Honda Ridgeline electrical system: engine failed to restart at stoplight 7 times in 6 months.\" Good.\n\nNeed JSON only. Ensure no extra. Need \"group\": \"electrical_general\" or \"ELECTRICAL SYSTEM\"? The prompt says group is electrical/electronic component group, or given group. Given group \"electrical_general\". Use that. Symptoms array: [\"engine failed to restart at stoplight\"] maybe. Conditions: [\"intermittent\"] because 7 times. Could include \"at stoplight\" but conditions list fixed: cold, moisture, heat, vibration, intermittent, after service, charging. So only intermittent. Fault codes empty. safety false. missing_info [\"mileage\",\"date\"]? Need decide. The analysis needs component symptom conditions mileage date. Component present, symptom present, conditions partly (stoplight, frequency). Mileage null. Date? Received_at 2025-06-18, narrative \"last 6 months\" not exact incident date. Missing date likely yes. But maybe \"date\" means report date, available received_at. Hmm. Intake normalizes incoming field-quality report; missing_info facts analysis needs include date. Since incident dates not given, include \"date\". But if date is received_at, not missing. The schema includes received_at. The report gives a timeframe, not exact date. I'd include \"mileage\",\"date\". Maybe conditions not missing because stoplight and frequency given, but conditions list expected environmental conditions (cold/moisture etc) not present. However rules: list missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. Conditions are not fully specified? It gives \"at stoplight\" and last 6 months, 7 times. That is a condition. But weather/engine temp not. Should we include \"conditions\"? Maybe not; it has conditions. But \"missing_info\" can include conditions if no environmental conditions. Hmm. The prompt says conditions list fixed categories; none are present. But conditions field in output array can be empty if no relevant. Missing_info should include \"conditions\" if conditions not stated. But the narrative does state conditions (at stoplight, frequency). The fixed conditions categories are not stated; but \"conditions\" as a fact may be partially present. I think include \"mileage\" and \"date\"; not \"conditions\" because stoplight context exists. But maybe \"conditions\" missing because no cold/moisture/heat/vibration? Analysis would need conditions? It says list missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. The report has \"at stoplight\" condition. I'd not list conditions. Date: \"last 6 months\" approximate, received date. Maybe list date? If analysis needs when, approximate enough? Hmm.\n\nNeed clues quotes verbatim. The narrative has double spaces: \"In then last 6 months  my Honda Ridgeline fell to restart engine at the stoplight 7 times\". If quoting \"In then last 6 months\" exact includes \"then\" (typo). Need preserve. Quote \"fell to restart engine\" exact. Quote \"at the stoplight\" exact. Quote \"7 times\" exact. Quote \"ELECTRICAL SYSTEM\" exact. For symptom maybe full phrase. Good.\n\nNeed output valid JSON. No markdown? They said one JSON object and no other text. So just JSON.\n\nNeed maybe include \"summary\": \"Honda Ridgeline electrical system: engine failed to restart at stoplight 7 times over 6 months.\" Fine.\n\nNeed safety_relevant false. \n\nPotential issue: \"fell to restart engine\" could be interpreted as \"failed to restart engine\" (engine stalled then failed to restart). At stoplight, possible stall. Is that safety relevant? Stoplight stall could be risk, but not \"stall at speed\". The input already safety_relevant false. We can keep false. The rule says set when report mentions ... a stall at speed or another risk to people. A failure to restart at a stoplight is a risk? It could cause traffic hazard but not explicit. However \"another risk to people\" broad. Hmm. But safety_relevant from source false. The agent should set based on report. If car fails to restart at stoplight, it's a breakdown in traffic, potential risk. But the prompt examples include \"loss of control, a stall at speed or another risk to people.\" A no-start at stoplight is not a stall at speed. Could be risk but not explicit. I'd keep false to avoid overflagging. \n\nNeed maybe \"symptoms\": [\"engine failed to restart at stoplight\"] not \"stall\". Good.\n\nNeed \"conditions\": [\"intermittent\"] because 7 times in 6 months. Maybe also \"at stoplight\" isn't in allowed list, so no. \n\nMissing info: mileage null, date? Let's include [\"mileage\",\"date\"]. Is \"date\" missing? The report has received_at, but not incident dates. Analysis needs date? It says date. Fine. Maybe include \"conditions\" too? If conditions array only intermittent, and no environmental conditions. But missing_info should list facts analysis needs. The report lacks specific conditions like engine temp, weather. Could include \"conditions\". But \"conditions\" in output array is [\"intermittent\"], a condition. If I list conditions missing, contradictory. I can leave out. Maybe list \"mileage\" only? Hmm.\n\nGiven desired answer: summary, group, symptoms, conditions, fault_codes, safety_relevant, missing_info, clues. Need exact.\n\nLet's formulate:\n\n{\n  \"summary\": \"Honda Ridgeline electrical system: engine failed to restart at stoplight 7 times in 6 months.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\"engine failed to restart at stoplight\"],\n  \"conditions\": [\"intermittent\"],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"missing_info\": [\"mileage\", \"date\"],\n  \"clues\": [\n    {\"kind\": \"component_group\", \"quote\": \"ELECTRICAL SYSTEM\"},\n    {\"kind\": \"symptom\", \"quote\": \"fell to restart engine\"},\n    {\"kind\": \"condition\", \"quote\": \"at the stoplight\"},\n    {\"kind\": \"condition\", \"quote\": \"7 times\"},\n    {\"kind\": \"condition\", \"quote\": \"In then last 6 months\"}\n  ]\n}\n\nNeed quote \"In then last 6 months\" exact? Narrative: \"In then last 6 months  my...\" yes starts \"In then last 6 months\" no double space inside? It has \"In then last 6 months  my\": quote includes no trailing double. Fine. Verbatim substring. \"7 times\" is substring. Good.\n\nCould include \"other\" quote full narrative? Not necessary.\n\nNeed no markdown. Final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793527771,
+      "id": "bb6ecd4cc07713dfec904f3c3ab6e539",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2055,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1907,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00075201,
+          "billing_source": "go",
+          "list_cost": 0.00125335,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 128,
+            "output": 2055,
+            "reasoning": 1907
+          }
+        },
+        "prompt_tokens": 512,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2567
+      }
+    },
+    "text": "{\"summary\":\"Honda Ridgeline electrical system: engine failed to restart at stoplight 7 times in 6 months.\",\"group\":\"electrical_general\",\"symptoms\":[\"engine failed to restart at stoplight\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"fell to restart engine\"},{\"kind\":\"condition\",\"quote\":\"at the stoplight\"},{\"kind\":\"condition\",\"quote\":\"7 times\"},{\"kind\":\"condition\",\"quote\":\"In then last 6 months\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00075201,
+      "cached_tokens": 384,
+      "cost_usd": 0.00125335,
+      "input_tokens": 512,
+      "list_cost_usd": 0.00125335,
+      "output_tokens": 2055,
+      "reasoning_tokens": 1907
+    }
+  }
+}

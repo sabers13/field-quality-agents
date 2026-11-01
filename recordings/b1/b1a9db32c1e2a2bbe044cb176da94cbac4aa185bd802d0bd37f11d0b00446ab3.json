@@ -1,0 +1,66 @@
+{
+  "key": "b1a9db32c1e2a2bbe044cb176da94cbac4aa185bd802d0bd37f11d0b00446ab3",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12877,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Audi A4 lane departure assist/radar failed at highway speed with no warnings or intervention before a severe crash; airbags deployed.\",\"group\":\"adas\",\"symptoms\":[\"lane assist and radar did not operate as designed\",\"no warnings\",\"no steering correction\",\"no radar-based intervention prior to a severe crash\"],\"conditions\":[\"after service\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"advanced driver-assistance systems\"},{\"kind\":\"symptom\",\"quote\":\"the advanced driver-assistance systems (lane assist and radar) did not operate as designed.\"},{\"kind\":\"condition\",\"quote\":\"At highway speed\"},{\"kind\":\"symptom\",\"quote\":\"the vehicle gave no warnings, no steering correction, and no radar-based intervention prior to a severe crash\"},{\"kind\":\"safety\",\"quote\":\"placed my life at extreme risk\"},{\"kind\":\"safety\",\"quote\":\"nearly all airbags deployed\"},{\"kind\":\"condition\",\"quote\":\"properly serviced at an authorized dealer\"},{\"kind\":\"other\",\"quote\":\"there were no warning lights or fault messages prior to the incident\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize report. Component given LANE DEPARTURE: ASSIST group adas. Summary one line component symptom conditions. Symptoms: lane assist and radar did not operate as designed, no warnings, no steering correction, no radar-based intervention prior to severe crash; airbags deployed (but primary complaint not airbags). Conditions: at highway speed, driving southbound, after service? \"properly serviced at authorized dealer\" maybe condition after service? Not necessarily after service? It says vehicle had been properly serviced; conditions list includes \"after service\" perhaps clue? Need be careful. Include conditions: at highway speed? The allowed conditions list: cold moisture heat vibration intermittent after service charging. Hm these are enumerated options but can include plain? It says conditions: [\"cold\", ...] likely choose from list. Report has \"At highway speed\" not in list. Could include \"intermittent\"? no. \"after service\" because properly serviced at authorized dealer? That's not after service necessarily. Maybe omit conditions? But schema expects array. Could include \"after service\" if quote \"properly serviced at an authorized dealer\" indicates after service? Hmm. The rules: conditions list given categories. We should map only supported. No cold/moisture/heat/vibration/intermittent/charging. After service: vehicle had been properly serviced at authorized dealer. It's relevant, but not necessarily immediately after. Maybe include \"after service\". Need fault_codes none. safety_relevant true. missing_info: mileage is null, date? received_at date but incident date not given. component present symptom present conditions? Conditions present (highway speed, driving). Missing mileage and date. Maybe \"mileage\", \"date\". missing component? no. missing symptom? no. missing conditions? There are conditions but not full; maybe not. Clues: need verbatim spans copied. Include symptom clue: \"lane assist and radar) did not operate as designed\" or exact \"the advanced driver-assistance systems (lane assist and radar) did not operate as designed.\" Need verbatim. Also \"At highway speed, the vehicle gave no warnings, no steering correction, and no radar-based intervention prior to a severe crash.\" Exact. Safety: \"severe crash\"; \"nearly all airbags deployed\"; \"placed my life at extreme risk\". Component group: \"advanced driver-assistance systems (lane assist and radar)\" Maybe kind component_group quote exact. Condition quote \"At highway speed\". Other quote \"properly serviced at an authorized dealer\". Need JSON only.\n\nNeed ensure summary one line. Maybe \"Audi A4 lane departure assist/radar failed at highway speed with no warnings or intervention before a severe crash; airbags deployed and safety concern raised.\" That includes component symptom conditions.\n\nGroup \"adas\" or \"ADAS\"? Given group adas. Use \"adas\".\n\nSymptoms array: \"lane assist and radar did not operate as designed\"; \"no warnings\"; \"no steering correction\"; \"no radar-based intervention prior to a severe crash\". Maybe \"airbags deployed after crash\" not primary. Could include? It is symptom? It's crash outcome. Since primary complaint not airbags but report mentions. Maybe not.\n\nConditions array: [\"after service\"]? Hmm. Allowed list. Could include \"after service\" because serviced. But if not sure, maybe include? We can include quote as evidence. Conditions also \"at highway speed\" not allowed by enumerated list. The schema lists fixed values? It says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. Likely we should only use those. If no match, empty list. But condition at highway speed is important. Could include \"after service\" if quote supports. Is \"properly serviced at authorized dealer\" evidence of after service. I'll include [\"after service\"]? Hmm. It could be misleading: \"after service\" usually means problem occurred after service/repair. The report says vehicle had been properly serviced, no warning lights prior. It doesn't say immediately. But \"after service\" as a condition may be relevant. I can include clue kind condition quote \"properly serviced at an authorized dealer\". That is verbatim. Conditions array includes \"after service\". Is that okay? Need not invent. Maybe safe.\n\nFault codes [].\n\nMissing_info [\"mileage\",\"date\"] because mileage null and incident date not in narrative. Date of report received exists but not incident date. Missing conditions? It has highway speed, but not weather etc. Not important? Maybe missing_info only facts analysis needs. It has conditions enough. Mileage and date missing.\n\nClues: Need JSON array objects. We should include exact quotes. Need character-for-character. Watch apostrophes: report uses \"G\\u2019s\" in JSON, but narrative has curly apostrophe. We can avoid. Quotes:\n- \"the advanced driver-assistance systems (lane assist and radar) did not operate as designed.\"\nCheck narrative: \"the advanced driver-assistance systems (lane assist and radar) did not operate as designed.\" yes exact.\n- \"At highway speed, the vehicle gave no warnings, no steering correction, and no radar-based intervention prior to a severe crash.\" exact.\n- \"placed my life at extreme risk\" exact? Narrative: \"This failure of the safety systems placed my life at extreme risk.\" Yes quote \"placed my life at extreme risk\".\n- \"nearly all airbags deployed\" exact? \"After the crash, nearly all airbags deployed\" yes.\n- \"properly serviced at an authorized dealer\" exact? \"The vehicle had been properly serviced at an authorized dealer\" yes.\n- component_group maybe \"advanced driver-assistance systems\" exact? It appears as part previous. Could reuse? Kind component_group quote \"advanced driver-assistance systems\". Verbatim.\n- other quote \"no warning lights or fault messages prior to the incident\" exact? \"there were no warning lights or fault messages prior to the incident.\" yes. Could include as symptom? It's absence of warnings. Already.\nNeed not too many. The clues should support. Include fault_code none.\n\nNeed final one JSON object no other text. Ensure valid JSON, no markdown? The instruction says answer with one JSON object and no other text. So final should be raw JSON. Good.\n\nNeed maybe safety_relevant true.\n\nLet's formulate:\n\n{\n \"summary\": \"Audi A4 lane departure assist/radar failed at highway speed with no warnings or intervention before a severe crash; airbags deployed.\",\n \"group\": \"adas\",\n \"symptoms\": [\"lane assist and radar did not operate as designed\", \"no warnings\", \"no steering correction\", \"no radar-based intervention prior to a severe crash\"],\n \"conditions\": [\"after service\"],\n \"fault_codes\": [],\n \"safety_relevant\": true,\n \"missing_info\": [\"mileage\", \"date\"],\n \"clues\": [\n  {\"kind\":\"component_group\",\"quote\":\"advanced driver-assistance systems\"},\n  {\"kind\":\"symptom\",\"quote\":\"the advanced driver-assistance systems (lane assist and radar) did not operate as designed.\"},\n  {\"kind\":\"condition\",\"quote\":\"At highway speed\"},\n  {\"kind\":\"symptom\",\"quote\":\"the vehicle gave no warnings, no steering correction, and no radar-based intervention prior to a severe crash\"},\n  {\"kind\":\"safety\",\"quote\":\"placed my life at extreme risk\"},\n  {\"kind\":\"safety\",\"quote\":\"nearly all airbags deployed\"},\n  {\"kind\":\"condition\",\"quote\":\"properly serviced at an authorized dealer\"},\n  {\"kind\":\"other\",\"quote\":\"there were no warning lights or fault messages prior to the incident\"}\n ]\n}\n\nNeed quote \"the vehicle gave no warnings...\" exact? Narrative \"At highway speed, the vehicle gave no warnings, no steering correction, and no radar-based intervention prior to a severe crash.\" If quote begins \"the vehicle...\" yes substring exact with lowercase? Narrative after comma space \"the vehicle\". yes.\n\nFor component_group quote \"advanced driver-assistance systems\" exact substring. Good.\n\nPotential issue summary includes airbags deployed; okay.\n\nNeed no extra.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530405,
+      "id": "d83da52dafcb8cc3c8d5f9ff3a23692c",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1947,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1694,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00074589,
+          "billing_source": "go",
+          "list_cost": 0.00124315,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 492,
+            "output": 1947,
+            "reasoning": 1694
+          }
+        },
+        "prompt_tokens": 876,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2823
+      }
+    },
+    "text": "{\"summary\":\"Audi A4 lane departure assist/radar failed at highway speed with no warnings or intervention before a severe crash; airbags deployed.\",\"group\":\"adas\",\"symptoms\":[\"lane assist and radar did not operate as designed\",\"no warnings\",\"no steering correction\",\"no radar-based intervention prior to a severe crash\"],\"conditions\":[\"after service\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"advanced driver-assistance systems\"},{\"kind\":\"symptom\",\"quote\":\"the advanced driver-assistance systems (lane assist and radar) did not operate as designed.\"},{\"kind\":\"condition\",\"quote\":\"At highway speed\"},{\"kind\":\"symptom\",\"quote\":\"the vehicle gave no warnings, no steering correction, and no radar-based intervention prior to a severe crash\"},{\"kind\":\"safety\",\"quote\":\"placed my life at extreme risk\"},{\"kind\":\"safety\",\"quote\":\"nearly all airbags deployed\"},{\"kind\":\"condition\",\"quote\":\"properly serviced at an authorized dealer\"},{\"kind\":\"other\",\"quote\":\"there were no warning lights or fault messages prior to the incident\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00074589,
+      "cached_tokens": 384,
+      "cost_usd": 0.00124315,
+      "input_tokens": 876,
+      "list_cost_usd": 0.00124315,
+      "output_tokens": 1947,
+      "reasoning_tokens": 1694
+    }
+  }
+}

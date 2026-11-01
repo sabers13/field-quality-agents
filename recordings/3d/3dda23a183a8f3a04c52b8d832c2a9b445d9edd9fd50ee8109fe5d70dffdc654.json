@@ -1,0 +1,66 @@
+{
+  "key": "3dda23a183a8f3a04c52b8d832c2a9b445d9edd9fd50ee8109fe5d70dffdc654",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 5991,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Recall 25V315000 remedy unavailable and no failure reported; verify recall/camera software status with a standard field-quality check rather than a targeted load test.\",\n  \"rationale\": \"The narrative reports a 2023 Ford Transit with notification of NHTSA Campaign Number 25V315000 for back-over prevention, but the recall repair part was not yet available. The contact had not experienced a failure, and the rulebook returned no matching entry, so no targeted load test is indicated. A similar case describes a rearview/360 camera malfunction, but this case itself reports no failure.\",\n  \"group\": \"adas\",\n  \"symptoms\": [\n    \"No failure experienced\"\n  ],\n  \"conditions\": [\n    \"Recall 25V315000 remedy part not yet available\",\n    \"2023 Ford Transit\"\n  ],\n  \"fault_codes\": [\n    \"25V315000\"\n  ],\n  \"safety_relevant\": false,\n  \"targeted\": false,\n  \"test_name\": \"Standard field-quality test\",\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"BACK OVER PREVENTION\"\n    },\n    {\n      \"kind\": \"fault_code\",\n      \"quote\": \"NHTSA Campaign Number: 25V315000\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"the part to do the recall repair was not yet available\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The contact had not experienced a failure.\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"VIN tool confirms parts not available.\"\n    }\n  ]\n}",
+            "reasoning_content": "We need to produce JSON. Case is recall not yet repaired, no failure experienced. Rulebook empty, so targeted false? Need summary etc. We must use only facts. Safety false. Targeted false because no rulebook match. Test name? Standard test maybe \"standard field-quality test\" but prompt says propose standard test with targeted false. We can set test_name maybe \"Standard field-quality evaluation\" or null? Schema says string. Use \"standard field-quality test\". Clues must be verbatim from narrative. Need quotes matching narrative exactly. Narrative: \"The contact owns a 2023 Ford Transit. The contact received notification of NHTSA Campaign Number: 25V315000 (BACK OVER PREVENTION); however, the part to do the recall repair was not yet available. The local dealer was contacted. The contact stated that the manufacturer had exceeded a reasonable amount of time for the recall repair. The manufacturer was made aware of the failure and referred the contact to the NHSTA Hotline for assistance. The contact had not experienced a failure. VIN tool confirms parts not available.\"\n\nNeed quote for fault code \"NHTSA Campaign Number: 25V315000\" yes. Component group quote \"BACK OVER PREVENTION\" yes. Condition quote \"the part to do the recall repair was not yet available\" yes. Symptom quote \"The contact had not experienced a failure.\" yes. Other quote maybe \"VIN tool confirms parts not available.\" yes.\n\nSummary one line: \"Recall 25V315000 remedy unavailable; no failure reported—verify camera software remedy status rather than booking a targeted load test.\" Rationale: condition recall remedy unavailable and no experienced failure; rulebook no match; similar case shows camera malfunction but current no failure. Group adas. Symptoms include \"no failure reported\"? It says symptoms array. Could include \"No failure experienced\" but as symptom? Maybe empty? We can include \"No failure experienced\" maybe. Conditions: \"Recall 25V315000 remedy part unavailable\", \"2023 Ford Transit\". Fault codes [\"25V315000\"]. safety false. targeted false. test_name \"Standard field-quality test\". clues list with kind and verbatim.\n\nNeed ensure no invalid action. We shouldn't propose closing etc. Test booking standard okay. Rationale mention standard evaluation.\n\nFinal only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793527162,
+      "id": "3055417facd6c491bfb92b2fa14bfdb8",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 829,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 470,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00044505,
+          "billing_source": "go",
+          "list_cost": 0.00074175,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 1629,
+            "output": 829,
+            "reasoning": 470
+          }
+        },
+        "prompt_tokens": 1629,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 2458
+      }
+    },
+    "text": "{\n  \"summary\": \"Recall 25V315000 remedy unavailable and no failure reported; verify recall/camera software status with a standard field-quality check rather than a targeted load test.\",\n  \"rationale\": \"The narrative reports a 2023 Ford Transit with notification of NHTSA Campaign Number 25V315000 for back-over prevention, but the recall repair part was not yet available. The contact had not experienced a failure, and the rulebook returned no matching entry, so no targeted load test is indicated. A similar case describes a rearview/360 camera malfunction, but this case itself reports no failure.\",\n  \"group\": \"adas\",\n  \"symptoms\": [\n    \"No failure experienced\"\n  ],\n  \"conditions\": [\n    \"Recall 25V315000 remedy part not yet available\",\n    \"2023 Ford Transit\"\n  ],\n  \"fault_codes\": [\n    \"25V315000\"\n  ],\n  \"safety_relevant\": false,\n  \"targeted\": false,\n  \"test_name\": \"Standard field-quality test\",\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"BACK OVER PREVENTION\"\n    },\n    {\n      \"kind\": \"fault_code\",\n      \"quote\": \"NHTSA Campaign Number: 25V315000\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"the part to do the recall repair was not yet available\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The contact had not experienced a failure.\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"VIN tool confirms parts not available.\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00044505,
+      "cached_tokens": 0,
+      "cost_usd": 0.00074175,
+      "input_tokens": 1629,
+      "list_cost_usd": 0.00074175,
+      "output_tokens": 829,
+      "reasoning_tokens": 470
+    }
+  }
+}

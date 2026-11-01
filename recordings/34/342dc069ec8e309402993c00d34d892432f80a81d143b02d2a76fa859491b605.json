@@ -1,0 +1,66 @@
+{
+  "key": "342dc069ec8e309402993c00d34d892432f80a81d143b02d2a76fa859491b605",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10846,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\": \"Verify odometer and instrument cluster mileage records because conflicting mileage history suggests odometer fraud or recording error.\", \"rationale\": \"The narrative reports an odometer fraud allegation and a mileage discrepancy: a Carfax history report showed 193,889 on January 12, 2023, a later listing showed 212,000 on July 14, 2024, and the purchase-time mileage was 121,000. No rulebook entry, recall, or investigation matching this case was returned, so no targeted load test is named; propose the standard test.\", \"group\": \"instrumentation\", \"symptoms\": [\"odometer fraud allegation\", \"mileage discrepancy\"], \"conditions\": [\"private sale\", \"mileage discrepancy discovered during dealer trade\"], \"fault_codes\": [], \"safety_relevant\": false, \"targeted\": false, \"test_name\": \"standard odometer verification / instrument cluster inspection\", \"clues\": [{\"kind\": \"symptom\", \"quote\": \"Odometer Fraud.\"}, {\"kind\": \"symptom\", \"quote\": \"mileage discrepancy\"}, {\"kind\": \"condition\", \"quote\": \"The vehicle was a private sale.\"}, {\"kind\": \"condition\", \"quote\": \"while in the process of trading the vehicle at the dealer\"}, {\"kind\": \"other\", \"quote\": \"mileage was 193,889 on January 12, 2023\"}, {\"kind\": \"other\", \"quote\": \"previously listed for sale with a mileage of 212,000 on July 14, 2024\"}, {\"kind\": \"other\", \"quote\": \"At the time of purchase, the vehicle mileage was 121,000\"}, {\"kind\": \"other\", \"quote\": \"later discovered that the mileage was 212,000 on July 14, 2024\"}]}",
+            "reasoning_content": "We need answer JSON only. Need analyze. Case odometer fraud mileage discrepancy, no recalls investigations rulebook. No targeted test named. Standard test targeted false. Safety false. Need quotes verbatim from narrative. Note extraction quotes may not be verbatim? Need use case narrative. We can cite \"Odometer Fraud.\" yes narrative begins. \"mileage discrepancy\" appears. Need quote exact spans from narrative. Let's inspect narrative: \"Odometer Fraud. The contact purchased a 2011 Toyota Camry. The contact stated that while in the process of trading the vehicle at the dealer, it was discovered that there was a mileage discrepancy. The dealer informed the contact that the Carfax history report of the vehicle displayed that the mileage was 193,889 on January 12, 2023. The contact also discovered that the vehicle was previously listed for sale with a mileage of 212,000 on July 14, 2024. The vehicle was a private sale. At the time of purchase, the vehicle mileage was 121,000, and it was later discovered that the mileage was 212,000 on July 14, 2024.\"\n\nNeed group likely instrumentation. symptoms: odometer mileage discrepancy, possible odometer fraud. conditions maybe private sale, dealer trade discovery, conflicting mileage records. fault_codes empty. safety false. targeted false. test_name maybe standard test? There is no rulebook. Could say \"standard odometer/instrument cluster inspection\" but test_name \"the targeted test the rulebook names\" no rulebook. Set null? Schema says string? Example \"the targeted test...\" But if targeted false, test_name maybe \"standard test\". Need valid JSON. Maybe \"standard instrumentation inspection\". But instruction: \"Otherwise propose the standard test (`\"targeted\": false`).\" So test_name can be \"standard test\". Better: \"standard odometer verification / instrument cluster inspection\". But no rulebook. We must not invent? It's okay standard.\n\nNeed clues with kind and quote. Use quote verbatim. Include symptom \"Odometer Fraud.\" and \"mileage discrepancy\". Condition maybe \"The vehicle was a private sale.\" quote exact. Other quote \"mileage was 193,889 on January 12, 2023\" exact yes. \"previously listed for sale with a mileage of 212,000 on July 14, 2024\" exact yes? Narrative: \"vehicle was previously listed for sale with a mileage of 212,000 on July 14, 2024.\" Substring yes. \"At the time of purchase, the vehicle mileage was 121,000\" exact? Narrative has \"At the time of purchase, the vehicle mileage was 121,000, and...\" substring yes. Need component_group quote exact \"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\" appears in component field not narrative? Wait rule says quote copied verbatim from case narrative. Component is not narrative. So cannot use component_group clue quote from component field? \"case narrative\" is narrative field. Component text not in narrative. Avoid component_group clue? But schema clues can include component_group; quote must be narrative. The narrative does not mention electrical system. So don't include component_group clue. But maybe group is from component. Okay.\n\nNeed summary one line: \"Verify odometer/instrument cluster mileage records due to conflicting mileage history and suspected odometer fraud.\" Rationale mention no targeted rulebook entry/recalls/investigations, condition is mileage discrepancy found during dealer trade/private sale with conflicting readings. targeted false.\n\nPotential issue: \"Odometer Fraud.\" is a legal allegation, not a physical symptom. But okay symptom. \"safety_relevant\": false based narrative no risk to people (fraud financial). \n\nNeed no other text. JSON only.\n\nEnsure every quote exact. Let's list clues:\n- {\"kind\":\"symptom\",\"quote\":\"Odometer Fraud.\"}\n- {\"kind\":\"symptom\",\"quote\":\"mileage discrepancy\"}\n- {\"kind\":\"condition\",\"quote\":\"The vehicle was a private sale.\"}\n- {\"kind\":\"other\",\"quote\":\"mileage was 193,889 on January 12, 2023\"}\n- {\"kind\":\"other\",\"quote\":\"previously listed for sale with a mileage of 212,000 on July 14, 2024\"}\n- {\"kind\":\"other\",\"quote\":\"At the time of purchase, the vehicle mileage was 121,000\"}\n- {\"kind\":\"other\",\"quote\":\"later discovered that the mileage was 212,000 on July 14, 2024\"}\n\nCheck exact \"previously listed...\" narrative: \"The contact also discovered that the vehicle was previously listed for sale with a mileage of 212,000 on July 14, 2024.\" substring \"previously listed for sale with a mileage of 212,000 on July 14, 2024\" yes. \"later discovered that the mileage was 212,000 on July 14, 2024\" narrative: \"and it was later discovered that the mileage was 212,000 on July 14, 2024.\" substring yes.\n\nConditions: maybe \"private sale\" and \"dealer trade discovery\" — quote \"while in the process of trading the vehicle at the dealer\" exact? Narrative: \"while in the process of trading the vehicle at the dealer\" yes. Add condition quote. But \"conditions\": array strings not clues. Use \"private sale\", \"mileage discrepancy discovered during dealer trade\". Fine.\n\nFault codes [].\n\nTest name: \"standard odometer verification and instrument cluster inspection\" targeted false. Is that okay? The prompt says test_name \"the targeted test the rulebook names\". If no rulebook and targeted false, maybe \"standard test\". I'll use \"standard odometer verification / instrument cluster inspection\". It is not a named rulebook. But okay.\n\nNeed maybe summary \"Test for odometer/instrument cluster tampering or recording error because mileage readings conflict across history records.\" \n\nRationale: \"The narrative reports an odometer fraud allegation and a mileage discrepancy: Carfax showed 193,889 on 2023-01-12, a 2024 listing showed 212,000, and purchase-time mileage was 121,000. No rulebook entry, recall, or investigation matching this case was returned, so no targeted load test is named; use the standard test.\"\n\nNeed ensure \"safety_relevant\" boolean false. targeted false.\n\nLet's final JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793528308,
+      "id": "a51ed6ed61d7cc9737b77cfed5d6e47f",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1727,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1343,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00070749,
+          "billing_source": "go",
+          "list_cost": 0.00117915,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 953,
+            "output": 1727,
+            "reasoning": 1343
+          }
+        },
+        "prompt_tokens": 953,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 2680
+      }
+    },
+    "text": "{\"summary\": \"Verify odometer and instrument cluster mileage records because conflicting mileage history suggests odometer fraud or recording error.\", \"rationale\": \"The narrative reports an odometer fraud allegation and a mileage discrepancy: a Carfax history report showed 193,889 on January 12, 2023, a later listing showed 212,000 on July 14, 2024, and the purchase-time mileage was 121,000. No rulebook entry, recall, or investigation matching this case was returned, so no targeted load test is named; propose the standard test.\", \"group\": \"instrumentation\", \"symptoms\": [\"odometer fraud allegation\", \"mileage discrepancy\"], \"conditions\": [\"private sale\", \"mileage discrepancy discovered during dealer trade\"], \"fault_codes\": [], \"safety_relevant\": false, \"targeted\": false, \"test_name\": \"standard odometer verification / instrument cluster inspection\", \"clues\": [{\"kind\": \"symptom\", \"quote\": \"Odometer Fraud.\"}, {\"kind\": \"symptom\", \"quote\": \"mileage discrepancy\"}, {\"kind\": \"condition\", \"quote\": \"The vehicle was a private sale.\"}, {\"kind\": \"condition\", \"quote\": \"while in the process of trading the vehicle at the dealer\"}, {\"kind\": \"other\", \"quote\": \"mileage was 193,889 on January 12, 2023\"}, {\"kind\": \"other\", \"quote\": \"previously listed for sale with a mileage of 212,000 on July 14, 2024\"}, {\"kind\": \"other\", \"quote\": \"At the time of purchase, the vehicle mileage was 121,000\"}, {\"kind\": \"other\", \"quote\": \"later discovered that the mileage was 212,000 on July 14, 2024\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00070749,
+      "cached_tokens": 0,
+      "cost_usd": 0.00117915,
+      "input_tokens": 953,
+      "list_cost_usd": 0.00117915,
+      "output_tokens": 1727,
+      "reasoning_tokens": 1343
+    }
+  }
+}

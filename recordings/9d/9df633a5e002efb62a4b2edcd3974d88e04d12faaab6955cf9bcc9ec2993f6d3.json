@@ -1,0 +1,66 @@
+{
+  "key": "9df633a5e002efb62a4b2edcd3974d88e04d12faaab6955cf9bcc9ec2993f6d3",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 5683,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "```json\n{\n  \"summary\": \"Headlights (reported under VISIBILITY/WIPER) fill with condensate and stop working, suspected seal failure, said to match recall 22V261000\",\n  \"group\": \"lighting\",\n  \"symptoms\": [\n    \"condensate inside the headlights\",\n    \"headlight completely not working\",\n    \"no visible damage to the headlight\",\n    \"suspected failed seal\"\n  ],\n  \"conditions\": [\n    \"moisture\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"condensate inside vehicle headlights\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"have cause the headlight to completely not work anymore\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"problem with the seal\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"Recall number 22V261000-Recall Date 04-14-2022\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"Can\\u2019t drive vehicle at night due to headlight malfunction and it\\u2019s very unsafe for me and kids and family\"\n    },\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"headlights\"\n    }\n  ]\n}\n```",
+            "reasoning_content": "The report: component given as VISIBILITY/WIPER but narrative is about headlights (exterior lighting). I should normalise. The group given is body_controls — but headlights are exterior lighting. Rules say \"the electrical/electronic component group, or the given group\". Headlights are electrical/electronic — lighting group. Hmm. The component field says VISIBILITY/WIPER which is wrong for headlights. I should probably note headlight/lighting group. Let me set group to \"lighting\" maybe. Safer: \"exterior_lighting\". The instructions permit the electrical/electronic component group. I'll use \"lighting\".\n\nSymptoms: condensation inside headlights, headlight completely not working.\n\nConditions: moisture (condensate), maybe heat? No. Moisture yes. Not cold, not vibration.\n\nFault codes: recall number 22V261000 — that's a recall number, not a fault code. Could include as fault_code? It's a recall number, not a diagnostic code. I'd put it under clues as \"other\". Hmm, fault_codes: \"code if the report names one\". Recall number is a code of sorts but not a fault code. I'll leave fault_codes empty and put recall in clues kind \"other\".\n\nSafety: \"Can't drive vehicle at night due to headlight malfunction and it's very unsafe\" — risk to people; headlight failure at night. Yes, safety_relevant true.\n\nMissing info: mileage, date (of occurrence). Component given is wrong/mismatched — but component is provided. Missing: mileage. Also date of incident. List [\"mileage\", \"date\"].\n\nClues with verbatim quotes.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793528725,
+      "id": "67e1903ff977b40fc645aafdef6afd47",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 684,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 353,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00027069,
+          "billing_source": "go",
+          "list_cost": 0.00045115,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 264,
+            "output": 684,
+            "reasoning": 353
+          }
+        },
+        "prompt_tokens": 648,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1332
+      }
+    },
+    "text": "```json\n{\n  \"summary\": \"Headlights (reported under VISIBILITY/WIPER) fill with condensate and stop working, suspected seal failure, said to match recall 22V261000\",\n  \"group\": \"lighting\",\n  \"symptoms\": [\n    \"condensate inside the headlights\",\n    \"headlight completely not working\",\n    \"no visible damage to the headlight\",\n    \"suspected failed seal\"\n  ],\n  \"conditions\": [\n    \"moisture\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"condensate inside vehicle headlights\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"have cause the headlight to completely not work anymore\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"problem with the seal\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"Recall number 22V261000-Recall Date 04-14-2022\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"Can\\u2019t drive vehicle at night due to headlight malfunction and it\\u2019s very unsafe for me and kids and family\"\n    },\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"headlights\"\n    }\n  ]\n}\n```",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00027069,
+      "cached_tokens": 384,
+      "cost_usd": 0.00045115,
+      "input_tokens": 648,
+      "list_cost_usd": 0.00045115,
+      "output_tokens": 684,
+      "reasoning_tokens": 353
+    }
+  }
+}

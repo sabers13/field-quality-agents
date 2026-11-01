@@ -1,0 +1,66 @@
+{
+  "key": "5430e0fea333bbbe0a28b7c6b698bd3481a96116996d75a82f64abe49f0d0617",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 14397,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system: multiple dash lights flashed and the vehicle suddenly and completely lost acceleration while driving on the highway; the brake system alert persists after restart.\",\"group\":\"electrical_general\",\"symptoms\":[\"multiple dash lights flashing, including brake system, tire pressure, and check engine\",\"sudden complete loss of ability to accelerate\",\"gas pedal had no effect while the car was on and in drive\",\"brake system alert persists after restart\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"multiple vehicle dash lights began flashing, including brake system, tire pressure, check engine\"},{\"kind\":\"symptom\",\"quote\":\"the vehicle suddenly and completely lost the ability to accelerate\"},{\"kind\":\"symptom\",\"quote\":\"pressing the gas pedal had no effect\"},{\"kind\":\"symptom\",\"quote\":\"the brake system alert persists\"},{\"kind\":\"condition\",\"quote\":\"While driving on the highway\"},{\"kind\":\"safety\",\"quote\":\"Car was towed to dealer out of concern for safety\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize report. Need extract summary, group given electrical_general? The group field is \"electrical_general\". The prompt says group: electrical/electronic component group, or given group. Use \"electrical_general\". Symptoms: dash lights flashing including brake, tire pressure, check engine; sudden complete loss ability accelerate; car on and in drive but gas pedal no effect; brake system alert persists after restart. Conditions: while driving on highway; after turning off and restarting? Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. None? Maybe \"intermittent\"? Sudden loss? Not intermittent? We should only include allowed conditions if report mentions. It says while driving on highway, not in list. Could include \"intermittent\" because dash lights began flashing? Flashing not intermittent necessarily. No cold/moisture etc. So conditions empty. Fault codes none named. Safety_relevant true because sudden loss of acceleration at highway speed risk to people, towed concern safety. Missing_info: mileage (null), maybe date not missing (received_at). component present, symptom present, conditions present? conditions? We can list mileage only. The rule list missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Mileage missing. Date present. Conditions? It describes highway driving, but no weather etc. Maybe missing \"conditions\" because no environmental conditions? Hmm \"conditions\" fact could be absent. The report has driving on highway. But not cold/moisture/heat/vibration. In intake, maybe missing_info should include \"mileage\" only. Need clues with verbatim quotes. Must copy exact substrings. Need ensure character-for-character. Quotes:\n- \"multiple vehicle dash lights began flashing, including brake system, tire pressure, check engine\" exact? Narrative: \"While driving on the highway multiple vehicle dash lights began flashing, including brake system, tire pressure, check engine; and the vehicle suddenly and completely lost the ability to accelerate.\" So quote \"multiple vehicle dash lights began flashing, including brake system, tire pressure, check engine\" yes substring.\n- \"the vehicle suddenly and completely lost the ability to accelerate\" exact substring yes.\n- \"pressing the gas pedal had no effect\" exact substring yes.\n- \"the brake system alert persists\" exact substring? Narrative: \"After turning off the car and restarting after a few minutes, the brake system alert persists.\" quote \"the brake system alert persists\" yes.\n- \"Car was towed to dealer out of concern for safety\" exact substring? Narrative: \"Car was towed to dealer out of concern for safety.\" yes.\n- \"While driving on the highway\" exact substring yes, kind condition maybe? But conditions allowed list doesn't include highway. Clue kind \"condition\" can quote \"While driving on the highway\" though not mapping to allowed conditions? The clues kind condition can include any quote? The schema kind includes condition. It might be okay but condition list not include highway. The conditions array only allowed list. Clue condition can be \"While driving on the highway\" to evidence conditions? Might be fine, but if condition array empty, clue condition weird. Could omit. Need quote for safety: \"out of concern for safety\" or entire \"Car was towed to dealer out of concern for safety\". Safety relevance due to loss of acceleration, not just concern. Quote \"the vehicle suddenly and completely lost the ability to accelerate\" as safety? But kind symptom not safety. Need safety clue quote: \"Car was towed to dealer out of concern for safety\" kind safety. Also \"suddenly and completely lost the ability to accelerate\" risk; but kind symptom. Could include safety clue \"out of concern for safety\". Good.\n\nNeed summary one line: component, symptom, conditions. \"Electrical system: multiple dash lights flashing and sudden complete loss of acceleration while driving on highway; brake alert persists after restart.\" Ensure no invented. Conditions perhaps \"while driving on highway\". Good.\n\nNeed JSON only no markdown? User says answer with one JSON object and no other text. We should output raw JSON. Need valid JSON. Safety_relevant true. missing_info [\"mileage\"]. Group \"electrical_general\". Symptoms array plain words. Maybe \"multiple dash lights flashing (brake system, tire pressure, check engine)\" etc. Need include \"sudden complete loss of ability to accelerate\", \"gas pedal had no effect while car on and in drive\", \"brake system alert persists after restart\". Good.\n\nClues include component_group quote? Need quote \"ELECTRICAL SYSTEM\" exact? Report has \"component\": \"ELECTRICAL SYSTEM\". The quote must be from report; yes value. kind component_group. But group given electrical_general. Use quote \"ELECTRICAL SYSTEM\" maybe. Include? Good.\n\nNeed fault_codes empty.\n\nPotential missing_info: \"mileage\" only. But report has no conditions? It says while driving highway. The allowed conditions are cold/moisture/heat/vibration/intermittent/after service/charging. None mentioned. Missing_info list can include \"conditions\" because environmental conditions not specified. However \"conditions\" in missing_info likely refers to when/under what conditions symptom occurs. The report gives driving on highway. But not cold etc. Should we include \"conditions\"? The analysis may need conditions. The report says while driving on highway, after restart. That is condition. I'd not mark conditions missing. Mileage only.\n\nNeed be careful \"fault_codes\": no code. fine.\n\nLet's craft final JSON. No markdown. Ensure quotes exact:\n- \"multiple vehicle dash lights began flashing, including brake system, tire pressure, check engine\" yes.\n- \"the vehicle suddenly and completely lost the ability to accelerate\" yes.\n- \"pressing the gas pedal had no effect\" yes.\n- \"the brake system alert persists\" yes.\n- \"Car was towed to dealer out of concern for safety\" yes.\n- \"While driving on the highway\" yes.\n- \"ELECTRICAL SYSTEM\" yes.\n\nCould include clue kind \"condition\" quote \"While driving on the highway\". Conditions array empty though. Maybe okay. But if clue condition doesn't correspond conditions list? It's okay as evidence. However conditions list should include only allowed tokens. Since \"highway\" not allowed, not include. But clue condition may be weird. Maybe use clue kind \"other\" for highway? The kind enum includes condition. I think condition quote can be \"While driving on the highway\" even if not in allowed conditions list, but the conditions array must be allowed list. Could be inconsistent. Better avoid condition clue? But summary includes conditions. Need evidence for driving on highway? Could include clue kind \"other\" quote \"While driving on the highway\". Hmm.\n\nMaybe conditions include \"intermittent\" because dash lights flashing? No. Could include \"after service\"? no. So conditions empty. The prompt: conditions: [\"cold\", ...]. For report none. So empty.\n\nClues can include \"condition\" for \"While driving on the highway\" but condition list empty. The clue kind is not constrained to allowed condition tokens? It says kind symptom|condition|fault_code|component_group|safety|other. Quote is verbatim. It can be a condition phrase not in allowed list. I think okay. But maybe better kind \"other\" to avoid contradicting allowed conditions. Yet it's clearly condition. I'd include condition clue to support summary's \"while driving on highway\". Fine.\n\nNeed safety_relevant true. The initial JSON has safety_relevant false but we must set based on report. Good.\n\nFinal.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793526240,
+      "id": "52c31010e7925cf46096bb1ff25a3056",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1831,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1582,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00067767,
+          "billing_source": "go",
+          "list_cost": 0.00112945,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 198,
+            "output": 1831,
+            "reasoning": 1582
+          }
+        },
+        "prompt_tokens": 582,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2413
+      }
+    },
+    "text": "{\"summary\":\"Electrical system: multiple dash lights flashed and the vehicle suddenly and completely lost acceleration while driving on the highway; the brake system alert persists after restart.\",\"group\":\"electrical_general\",\"symptoms\":[\"multiple dash lights flashing, including brake system, tire pressure, and check engine\",\"sudden complete loss of ability to accelerate\",\"gas pedal had no effect while the car was on and in drive\",\"brake system alert persists after restart\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"multiple vehicle dash lights began flashing, including brake system, tire pressure, check engine\"},{\"kind\":\"symptom\",\"quote\":\"the vehicle suddenly and completely lost the ability to accelerate\"},{\"kind\":\"symptom\",\"quote\":\"pressing the gas pedal had no effect\"},{\"kind\":\"symptom\",\"quote\":\"the brake system alert persists\"},{\"kind\":\"condition\",\"quote\":\"While driving on the highway\"},{\"kind\":\"safety\",\"quote\":\"Car was towed to dealer out of concern for safety\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00067767,
+      "cached_tokens": 384,
+      "cost_usd": 0.00112945,
+      "input_tokens": 582,
+      "list_cost_usd": 0.00112945,
+      "output_tokens": 1831,
+      "reasoning_tokens": 1582
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "850819b930c51b11c974fa003442fcc82a9538b1d921a886f763d35fcc97a064",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 7518,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\": \"2024 Chevrolet Trax air bags did not deploy after a front driver-side collision with a deer while driving about 65 MPH; back injuries reported.\", \"group\": \"restraints\", \"symptoms\": [\"air bags did not deploy\"], \"conditions\": [], \"fault_codes\": [], \"safety_relevant\": true, \"missing_info\": [\"date\"], \"clues\": [{\"kind\": \"component_group\", \"quote\": \"AIR BAGS\"}, {\"kind\": \"symptom\", \"quote\": \"The air bags did not deploy.\"}, {\"kind\": \"condition\", \"quote\": \"while driving approximately at 65 MPH\"}, {\"kind\": \"condition\", \"quote\": \"hit the deer with the front driver side of the vehicle\"}, {\"kind\": \"safety\", \"quote\": \"The contact had received back injuries\"}]}",
+            "reasoning_content": "We need answer one JSON object no other text. Need normalize report. Need read only report. Need extract summary one line component, symptom, conditions. Group restraints given. Symptoms: air bags did not deploy. Conditions: driving approx 65 MPH, collision with deer front driver side. Maybe \"after collision\" not in list? conditions allowed cold moisture heat vibration intermittent after service charging. We shouldn't invent. Conditions list can be empty? The report has conditions like driving at 65 mph, collision. But schema conditions examples not exhaustive? It says conditions: [\"cold\", ...]. We can include relevant plain? Need likely only from list? It says conditions array with those. But report conditions \"while driving approximately at 65 MPH\", \"hit deer with front driver side\". Could include \"collision\"? Hmm allowed list has cold, moisture, heat, vibration, intermittent, after service, charging. None apply. Could leave empty. But \"conditions\" missing? No, conditions present. Missing_info: maybe date? Received date exists but not incident date. Mileage given. Component given. Symptom given. Conditions given. So empty maybe. Fault codes none. safety_relevant true due back injuries and airbag nondeploy crash. Clues with verbatim quotes. Need quotes exact. Need include only quotes from narrative. Need JSON. Summary: \"2024 Chevrolet Trax air bags did not deploy after front driver-side collision with a deer at ~65 MPH.\" All facts from report. \"front driver side\" exact. Need maybe \"back injuries\" safety. Clues: symptom quote \"The air bags did not deploy.\" condition quote \"while driving approximately at 65 MPH\" and \"hit the deer with the front driver side of the vehicle\"; safety quote \"The contact had received back injuries\" and \"A police report was filed\" maybe safety? Police report not necessarily safety. Injury yes. component_group quote \"AIR BAGS\" from component? Quote must be from report? The report includes component field \"AIR BAGS\"; user message includes JSON. \"verbatim span copied from the report\" Could quote \"AIR BAGS\". Need no extra text. Ensure valid JSON. missing_info maybe [\"date\"]? The report doesn't give incident date, only received_at. Analysis needs date. The rules list missing_info only facts analysis needs: component, symptom, conditions, mileage, date. We have component symptom conditions mileage, no incident date. Include \"date\"? It says missing_info [\"mileage\",\"date\",\"conditions\",\"component\",\"symptom\"]. So yes include date if absent. But received_at 2025-11-03 not incident date. Could include date. Conditions present. Summary one line. Need maybe \"safety_relevant\": true. Conditions empty? But if missing_info includes date, conditions not missing. Conditions allowed maybe include \"collision\"? The instructions examples not strict? \"conditions\": [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. It asks conditions in plain? It says conditions array. I'd keep [] because none of listed. But the event occurred during driving and crash, but not in enum. However \"conditions\" could be \"collision\" not listed, but risk. The summary captures. The clues condition can quote. Missing_info maybe date. Hmm.\n\nNeed final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531782,
+      "id": "49b4c6809fa932c2b1b3e92afad403db",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 871,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 692,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00033603,
+          "billing_source": "go",
+          "list_cost": 0.00056005,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 242,
+            "output": 871,
+            "reasoning": 692
+          }
+        },
+        "prompt_tokens": 626,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1497
+      }
+    },
+    "text": "{\"summary\": \"2024 Chevrolet Trax air bags did not deploy after a front driver-side collision with a deer while driving about 65 MPH; back injuries reported.\", \"group\": \"restraints\", \"symptoms\": [\"air bags did not deploy\"], \"conditions\": [], \"fault_codes\": [], \"safety_relevant\": true, \"missing_info\": [\"date\"], \"clues\": [{\"kind\": \"component_group\", \"quote\": \"AIR BAGS\"}, {\"kind\": \"symptom\", \"quote\": \"The air bags did not deploy.\"}, {\"kind\": \"condition\", \"quote\": \"while driving approximately at 65 MPH\"}, {\"kind\": \"condition\", \"quote\": \"hit the deer with the front driver side of the vehicle\"}, {\"kind\": \"safety\", \"quote\": \"The contact had received back injuries\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00033603,
+      "cached_tokens": 384,
+      "cost_usd": 0.00056005,
+      "input_tokens": 626,
+      "list_cost_usd": 0.00056005,
+      "output_tokens": 871,
+      "reasoning_tokens": 692
+    }
+  }
+}

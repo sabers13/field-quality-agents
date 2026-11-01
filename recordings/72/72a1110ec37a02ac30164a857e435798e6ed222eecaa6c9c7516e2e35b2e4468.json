@@ -1,0 +1,66 @@
+{
+  "key": "72a1110ec37a02ac30164a857e435798e6ed222eecaa6c9c7516e2e35b2e4468",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 8215,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system sudden stall and loss of power at about 45 MPH; no restart and intermittent instrument panel shutoff\",\"group\":\"electrical_general\",\"symptoms\":[\"vehicle suddenly stalled and lost power\",\"vehicle would not restart\",\"instrument panel intermittently turning off\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"the vehicle suddenly stalled and lost power\"},{\"kind\":\"condition\",\"quote\":\"at an estimated speed of 45 MPH\"},{\"kind\":\"symptom\",\"quote\":\"Despite multiple attempts, the vehicle would not restart\"},{\"kind\":\"symptom\",\"quote\":\"instrument panel was intermittently turning off\"},{\"kind\":\"safety\",\"quote\":\"causing a road hazard and impeding traffic\"}]}",
+            "reasoning_content": "We need answer one JSON only. Need normalize. Need read report. Component electrical system, group electrical_general. Symptoms: vehicle suddenly stalled and lost power; would not restart; instrument panel intermittently turning off. Conditions: stall at speed? \"traveling northbound... estimated speed 45 MPH, vehicle suddenly stalled and lost power\" safety relevant yes because stall at speed. Conditions list allowed: cold moisture heat vibration intermittent after service charging. \"intermittently\" yes. \"after service\"? serviced after incident, not condition causing. No. Fault codes none. missing_info: mileage? report says \"100 mile of fuel remaining\" not mileage. mileage null. date? narrative has [XXX] redacted, received_at 2025-06-01 but incident date missing. conditions maybe present. component present. symptom present. Need list missing_info mileage, date? The analysis needs mileage and date. Could include mileage, date. Need clues quotes verbatim. Must ensure quotes exact spans. Let's copy exact: \"ELECTRICAL SYSTEM\" from component? Is component field part of report? The user message is JSON; report includes component. Quote can be \"ELECTRICAL SYSTEM\" yes. Symptom quote: \"the vehicle suddenly stalled and lost power\" exact substring? Narrative: \"the vehicle suddenly stalled and lost power.\" yes lower-case. \"Despite multiple attempts, the vehicle would not restart\" exact. \"instrument panel was intermittently turning off\" exact substring? Narrative: \"the instrument panel was intermittently turning off.\" yes. Condition: \"at an estimated speed of 45 MPH\" exact. Safety: \"causing a road hazard and impeding traffic\" exact? Narrative: \"causing a road hazard and impeding traffic.\" yes. Could quote \"the vehicle suddenly stalled and lost power\" as safety too. Fault codes none. Clues kind condition for intermittent maybe quote \"intermittently\" but better quote entire. Need include component_group maybe quote \"ELECTRICAL SYSTEM\". Summary one line: Electrical system; sudden stall and loss of power at ~45 MPH; no restart, intermittent instrument panel shutoff. Need JSON only. Ensure safety_relevant true. missing_info [\"mileage\",\"date\"]. Conditions array [\"intermittent\"]? Also maybe no cold etc. Stalling at speed is condition? Allowed list doesn't include \"at speed\"; use \"intermittent\". Could include \"vibration\"? no. \"conditions\": [\"intermittent\"]. Maybe \"conditions\" include \"at speed\"? Rule says conditions list from set? It says \"conditions\": [\"cold\", ...], likely choose. Only intermittent.\n\nNeed consider \"group\": given \"electrical_general\". Good.\n\nClues: include symptom, condition, safety, component_group. Quote exactly. Need ensure verbatim spans from report. Let's verify exact strings:\n- \"ELECTRICAL SYSTEM\" appears component.\n- \"the vehicle suddenly stalled and lost power\" Narrative: \"at an estimated speed of 45 MPH, the vehicle suddenly stalled and lost power.\" yes exact lowercase. \n- \"Despite multiple attempts, the vehicle would not restart\" exact includes capital D. yes.\n- \"instrument panel was intermittently turning off\" exact? Narrative: \"and the instrument panel was intermittently turning off.\" substring starts \"instrument panel...\" yes.\n- \"at an estimated speed of 45 MPH\" exact.\n- \"causing a road hazard and impeding traffic\" exact.\nNeed maybe \"intermittently\" quote but okay.\nCould include \"The vehicle had no prior issues and was operated earlier in the day\" not needed.\n\nMissing info: date? There is received_at, but incident date redacted. mileage missing. Could also \"conditions\" not missing because intermittent. component/symptom present. Good.\n\nNeed final only JSON. No markdown? \"Answer with one JSON object and no other text\". So output raw JSON. Ensure valid.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793527437,
+      "id": "293f002cca324e6ca06fb2644bd1006b",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 996,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 801,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00038895,
+          "billing_source": "go",
+          "list_cost": 0.00064825,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 330,
+            "output": 996,
+            "reasoning": 801
+          }
+        },
+        "prompt_tokens": 714,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1710
+      }
+    },
+    "text": "{\"summary\":\"Electrical system sudden stall and loss of power at about 45 MPH; no restart and intermittent instrument panel shutoff\",\"group\":\"electrical_general\",\"symptoms\":[\"vehicle suddenly stalled and lost power\",\"vehicle would not restart\",\"instrument panel intermittently turning off\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"the vehicle suddenly stalled and lost power\"},{\"kind\":\"condition\",\"quote\":\"at an estimated speed of 45 MPH\"},{\"kind\":\"symptom\",\"quote\":\"Despite multiple attempts, the vehicle would not restart\"},{\"kind\":\"symptom\",\"quote\":\"instrument panel was intermittently turning off\"},{\"kind\":\"safety\",\"quote\":\"causing a road hazard and impeding traffic\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00038895,
+      "cached_tokens": 384,
+      "cost_usd": 0.00064825,
+      "input_tokens": 714,
+      "list_cost_usd": 0.00064825,
+      "output_tokens": 996,
+      "reasoning_tokens": 801
+    }
+  }
+}

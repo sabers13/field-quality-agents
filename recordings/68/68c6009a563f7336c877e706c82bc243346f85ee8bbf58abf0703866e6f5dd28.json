@@ -1,0 +1,66 @@
+{
+  "key": "68c6009a563f7336c877e706c82bc243346f85ee8bbf58abf0703866e6f5dd28",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 7201,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system: air bag, ABS, and ESP BAS warning lights stay on; vehicle not inspected.\",\"group\":\"electrical_general\",\"symptoms\":[\"air bag warning light stays on\",\"ABS warning light stays on\",\"ESP BAS warning light stays on\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"Air bag light stays on\"},{\"kind\":\"symptom\",\"quote\":\"ABS light stays on\"},{\"kind\":\"symptom\",\"quote\":\"ESP BAS light stays on\"},{\"kind\":\"other\",\"quote\":\"The vehicle has not been inspected and is available for inspection\"}]}",
+            "reasoning_content": "We need answer one JSON only. Need normalize report. Component ELECTRICAL SYSTEM group electrical_general. Narrative: \"1. Air bag light stays on 2. ABS light stays on  3. ESP BAS light stays on  The vehicle has not been inspected and is available for inspection\". Symptoms plain words: air bag warning light stays on, ABS warning light stays on, ESP BAS warning light stays on. Conditions: none explicit. Fault codes none. Safety relevant? Air bag light stays on could indicate airbag system fault, but rule safety_relevant when mentions crash fire smoke injury loss control stall at speed or other risk to people. It doesn't explicitly mention risk. Hm airbag light could be safety relevant? Need decide. Given source safety_relevant false. But prompt says set true when report mentions crash... It doesn't. So false. Missing_info: mileage, date? Received_at exists but report date? \"date\" maybe missing? We have received_at 2025-06-18. Conditions missing? It says not inspected. Analysis needs conditions? Missing_info list only facts analysis needs: component, symptom, conditions, mileage, date. Component present, symptom present. Mileage null missing. Date? received_at present but maybe incident date missing. Conditions absent. Could list [\"mileage\",\"conditions\",\"date\"]? Need not overdo. It says use empty when nothing important missing. For field-quality report, conditions important (when lights on? driving? after service?) and mileage. Date maybe received date present. But \"date\" likely date of incident/report? received_at is date. I'd include mileage and conditions. Maybe date? The report has received_at. Don't list date. Clues: verbatim spans. Need quote exact substring. Symptom quotes: \"Air bag light stays on\", \"ABS light stays on\", \"ESP BAS light stays on\". Note narrative has \"1. Air bag light stays on 2. ABS light stays on  3. ESP BAS light stays on\". Quotes should be verbatim. Component group clue: \"ELECTRICAL SYSTEM\" from component field? User message includes JSON. Quote can be from report? \"Read only report in user message\" includes whole JSON. We can quote \"ELECTRICAL SYSTEM\" as component_group. Safety no clue. Conditions no explicit. Other: \"The vehicle has not been inspected and is available for inspection\" as other? It is a fact. Could include kind other quote. Maybe not needed. Need summary one line: component, symptom, conditions. \"Electrical system: air bag, ABS, and ESP BAS warning lights stay on; vehicle not inspected.\" That's one line. Conditions absent. JSON only.\n\nNeed ensure valid JSON. Use double quotes. No markdown? User says answer one JSON object and no other text. So final only JSON. Need \"safety_relevant\": false. \"missing_info\": [\"mileage\",\"conditions\"] perhaps. \"clues\": includes symptom and component_group, maybe other. The \"clues\" quote for component group \"ELECTRICAL SYSTEM\" is in JSON. Good.\n\nNeed \"group\": \"electrical_general\" or \"electrical/electronic component group\". Given group. Use \"electrical_general\". Symptoms array plain words: \"air bag warning light stays on\", \"ABS warning light stays on\", \"ESP BAS warning light stays on\". Conditions [] no conditions. Fault codes [] none. Good.\n\nNeed maybe safety_relevant true due airbag? But rule specific mentions crash/fire/etc. It says \"or another risk to people.\" A persistent airbag light means supplemental restraint may not deploy, a risk. But \"report mentions\" not infer? It doesn't mention risk. The source says false. Keep false.\n\nNeed include \"component\" missing? No.\n\nFinal JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793527713,
+      "id": "2e7b89db73e0f74f2192f13a761bd286",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 947,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 781,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00035376,
+          "billing_source": "go",
+          "list_cost": 0.0005896,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 135,
+            "output": 947,
+            "reasoning": 781
+          }
+        },
+        "prompt_tokens": 519,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1466
+      }
+    },
+    "text": "{\"summary\":\"Electrical system: air bag, ABS, and ESP BAS warning lights stay on; vehicle not inspected.\",\"group\":\"electrical_general\",\"symptoms\":[\"air bag warning light stays on\",\"ABS warning light stays on\",\"ESP BAS warning light stays on\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"Air bag light stays on\"},{\"kind\":\"symptom\",\"quote\":\"ABS light stays on\"},{\"kind\":\"symptom\",\"quote\":\"ESP BAS light stays on\"},{\"kind\":\"other\",\"quote\":\"The vehicle has not been inspected and is available for inspection\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00035376,
+      "cached_tokens": 384,
+      "cost_usd": 0.0005896,
+      "input_tokens": 519,
+      "list_cost_usd": 0.0005896,
+      "output_tokens": 947,
+      "reasoning_tokens": 781
+    }
+  }
+}

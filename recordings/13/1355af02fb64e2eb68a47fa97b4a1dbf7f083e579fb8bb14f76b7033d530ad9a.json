@@ -1,0 +1,66 @@
+{
+  "key": "1355af02fb64e2eb68a47fa97b4a1dbf7f083e579fb8bb14f76b7033d530ad9a",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9357,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system: digital instrument panel blackout and red warning triangle while driving at normal speed, with all gauges lost.\",\"group\":\"electrical_general\",\"symptoms\":[\"entire digital instrument panel suddenly went black\",\"red warning triangle appeared\",\"lost all gauges including speedometer, fuel level, and warning indicators\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"condition\",\"quote\":\"While driving at normal speed\"},{\"kind\":\"symptom\",\"quote\":\"the entire digital instrument panel suddenly went black\"},{\"kind\":\"symptom\",\"quote\":\"a red warning triangle appeared\"},{\"kind\":\"symptom\",\"quote\":\"I lost all gauges, including speedometer, fuel level, and warning indicators\"},{\"kind\":\"safety\",\"quote\":\"This created a serious safety risk because I was in active traffic and had no way to know my speed or see alerts.\"},{\"kind\":\"other\",\"quote\":\"My VIN shows an open recall for this exact defect (instrument cluster blackout)\"}]}",
+            "reasoning_content": "We need to output JSON only. Need normalize report. Need copy quotes verbatim. Let's parse.\n\nComponent: ELECTRICAL SYSTEM, group electrical_general. Narrative: driving at normal speed, entire digital instrument panel suddenly went black, red warning triangle appeared. Lost all gauges including speedometer, fuel level, warning indicators. Serious safety risk because active traffic and no way to know speed or see alerts. VIN open recall for exact defect instrument cluster blackout, failure happened during normal driving. Unsafe to drive until repaired.\n\nNeed summary one line: component, symptom, conditions. E.g. \"Digital instrument panel blackout with red warning triangle while driving at normal speed, losing all gauges.\"\n\nGroup: electrical_general given. Symptoms: \"entire digital instrument panel suddenly went black\", \"red warning triangle appeared\", \"lost all gauges including speedometer, fuel level, and warning indicators\". Conditions: \"driving at normal speed\", maybe \"intermittent\"? No. \"after service\"? no. \"charging\"? no. Conditions array allowed values: cold, moisture, heat, vibration, intermittent, after service, charging. Hmm conditions should be from list? Prompt says conditions: [\"cold\", \"moisture\", ...]. We need map \"while driving at normal speed\" not in list. Could leave conditions empty? But clues can include condition quote. The conditions list only enumerated. There is no \"driving\". But summary includes conditions. The conditions array maybe should include none because none of listed. But \"normal speed\" not a listed condition. Could include \"intermittent\"? No. So conditions [].\n\nFault codes: none. safety_relevant true because serious safety risk, no speedometer in traffic. Quotes: \"This created a serious safety risk because I was in active traffic and had no way to know my speed or see alerts.\" Also \"I consider the vehicle unsafe to drive until repaired.\" But safety_relevant mention risk to people. Need quote verbatim.\n\nMissing_info: mileage null, date? received_at present but report date? The narrative no date of incident. missing_info list only component, symptom, conditions, mileage, date. Component and symptom present. Conditions? Driving at normal speed is condition but not in allowed list? Missing_info should list facts analysis needs. Mileage missing, date missing (incident date). Conditions maybe present? It says while driving at normal speed. Could include mileage, date. Maybe conditions? The condition \"normal speed\" is there but not detailed. I'd include \"mileage\", \"date\". Maybe \"conditions\" not missing. Need be careful.\n\nClues: kind symptom, condition, fault_code, component_group, safety, other. Need verbatim spans. \n- symptom: \"the entire digital instrument panel suddenly went black\"\n- symptom: \"a red warning triangle appeared\"\n- symptom: \"I lost all gauges, including speedometer, fuel level, and warning indicators\"\n- condition: \"While driving at normal speed\" (verbatim? Narrative: \"While driving at normal speed, the entire digital instrument panel suddenly went black\" yes quote \"While driving at normal speed\" exact).\n- safety: \"This created a serious safety risk because I was in active traffic and had no way to know my speed or see alerts.\"\n- other: \"My VIN shows an open recall for this exact defect (instrument cluster blackout)\" maybe other or fault_code? Recall not fault code. kind other.\n- component_group: \"ELECTRICAL SYSTEM\" is component field not narrative? The report includes component field. Quote must be copied from report. It's in report JSON. Could quote \"ELECTRICAL SYSTEM\". Kind component_group.\nNeed no extra text. Ensure JSON valid. \"safety_relevant\": true. Maybe summary one line.\n\nNeed note: The prompt says answer with one JSON object and no other text. Use exact keys.\n\nLet's craft. Quotes verbatim from narrative including punctuation. Need ensure quote \"I lost all gauges, including speedometer, fuel level, and warning indicators.\" contains period. Good. \"the entire digital instrument panel suddenly went black\" lower-case after comma? Narrative: \"While driving at normal speed, the entire digital instrument panel suddenly went black and a red warning triangle appeared.\" If quote starts \"the entire...\" exactly. Yes.\n\nNeed \"conditions\": []? Could include \"driving at normal speed\" not allowed by list. The schema examples allowed list. It says conditions: [\"cold\", ...]. So no. But clue condition has quote. That's fine.\n\nMissing_info: [\"mileage\", \"date\"] maybe also \"conditions\"? No. Conditions present as driving at normal speed. Date of incident missing though received_at date present. Should include date. Mileage null. Good.\n\nSummary: \"Electrical system: digital instrument panel blackout and red warning triangle while driving at normal speed, all gauges lost.\" One line.\n\nFinal JSON only.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793532677,
+      "id": "3df02aaf22bcf9b628a91ec14d241b49",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1256,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1012,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00047085,
+          "billing_source": "go",
+          "list_cost": 0.00078475,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 200,
+            "output": 1256,
+            "reasoning": 1012
+          }
+        },
+        "prompt_tokens": 584,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1840
+      }
+    },
+    "text": "{\"summary\":\"Electrical system: digital instrument panel blackout and red warning triangle while driving at normal speed, with all gauges lost.\",\"group\":\"electrical_general\",\"symptoms\":[\"entire digital instrument panel suddenly went black\",\"red warning triangle appeared\",\"lost all gauges including speedometer, fuel level, and warning indicators\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"condition\",\"quote\":\"While driving at normal speed\"},{\"kind\":\"symptom\",\"quote\":\"the entire digital instrument panel suddenly went black\"},{\"kind\":\"symptom\",\"quote\":\"a red warning triangle appeared\"},{\"kind\":\"symptom\",\"quote\":\"I lost all gauges, including speedometer, fuel level, and warning indicators\"},{\"kind\":\"safety\",\"quote\":\"This created a serious safety risk because I was in active traffic and had no way to know my speed or see alerts.\"},{\"kind\":\"other\",\"quote\":\"My VIN shows an open recall for this exact defect (instrument cluster blackout)\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00047085,
+      "cached_tokens": 384,
+      "cost_usd": 0.00078475,
+      "input_tokens": 584,
+      "list_cost_usd": 0.00078475,
+      "output_tokens": 1256,
+      "reasoning_tokens": 1012
+    }
+  }
+}

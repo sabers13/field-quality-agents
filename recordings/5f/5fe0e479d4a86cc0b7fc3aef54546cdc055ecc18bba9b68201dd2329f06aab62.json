@@ -1,0 +1,66 @@
+{
+  "key": "5fe0e479d4a86cc0b7fc3aef54546cdc055ecc18bba9b68201dd2329f06aab62",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 6220,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Run a long-run power cycling test to reproduce the intermittent fuel-door unlock noise and failure.\",\n  \"rationale\": \"The case reports an intermittent electrical concern: the fuel door makes noise when unlocking and sometimes does not unlock. The rulebook matches the intermittent condition and names the long-run power cycling test to reproduce faults that appear after repeated wake and sleep cycles.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"fuel door makes a noise when unlocking the vehicle\",\n    \"fuel door sometimes does not unlock\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"targeted\": true,\n  \"test_name\": \"Long-run power cycling test\",\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Fuel door is making a noise when I unlock my vehicle\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"sometimes fuel door doesn’t unlock.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"sometimes\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"when I unlock my vehicle\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer one JSON object only. Need analyze. Case 2016 Honda Civic electrical system, fuel door noise when unlock and sometimes doesn't unlock. Intermittent condition. Rulebook matched intermittent -> targeted \"Long-run power cycling test\". Safety false. Need clues verbatim from narrative. Narrative: \"Fuel door is making a noise when I unlock my vehicle and sometimes fuel door doesn’t unlock.\" Note unicode apostrophe. Need quote exact spans from narrative. Extraction quotes include \"Fuel door is making a noise when I unlock my vehicle\" and \"sometimes fuel door doesn’t unlock.\" We can use those. Also component \"ELECTRICAL SYSTEM\" is not in narrative? Narrative doesn't contain ELECTRICAL SYSTEM; it's component field. Clues must quote from case narrative. So only symptom quotes and condition maybe \"sometimes\" and \"when I unlock my vehicle\" are in narrative. Need ensure verbatim. Narrative has \"sometimes fuel door doesn’t unlock.\" Contains \"sometimes\" and \"when I unlock my vehicle\". Could include condition quote \"sometimes\". Need JSON fields summary, rationale, group, symptoms, conditions, fault_codes, safety_relevant, targeted, test_name, clues. group \"electrical_general\". symptoms array maybe \"fuel door makes a noise when unlocking the vehicle\", \"fuel door sometimes does not unlock\" (not verbatim but symptom field can be normalized; clues quotes verbatim). conditions [\"intermittent\"] maybe include \"intermittent\" not in narrative? Conditions can be derived; clue quote \"sometimes\". fault_codes []. safety_relevant false. targeted true. test_name \"Long-run power cycling test\".\n\nNeed rationale: intermittent fuel door lock/unlock noise and failure; rulebook matched intermittent; long-run power cycling reproduces after repeated wake/sleep. Ensure not propose action beyond test. Summary one line: \"Run a long-run power cycling test to reproduce the intermittent fuel-door unlock noise/failure.\" Good.\n\nNeed no other text. JSON valid. Use exact apostrophe? The narrative string in input uses \\u2019 (right single quote). Our clue quote must include same character. We can include \"sometimes fuel door doesn’t unlock.\" with curly apostrophe. Verify code likely compares exact. Need use UTF-8 curly. Also quote \"Fuel door is making a noise when I unlock my vehicle\". Good. Maybe include \"when I unlock my vehicle\" as condition. Include \"sometimes\" condition. Clues kind symptom/condition/component_group? component_group quote must be from narrative, cannot. No component_group clue. Could include no other. The requirement says every quote copied verbatim from case narrative. Fine.\n\nNeed maybe clue kind \"symptom\" quote \"Fuel door is making a noise when I unlock my vehicle\"; \"symptom\" quote \"sometimes fuel door doesn’t unlock.\"; \"condition\" quote \"when I unlock my vehicle\"; \"condition\" quote \"sometimes\". That's okay.\n\nNeed targeted true because rulebook entry. test_name exact \"Long-run power cycling test\".\n\nLet's craft concise JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531299,
+      "id": "0dc25e801b9f1bcfa952fdb89af1ac02",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 904,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 632,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00045153,
+          "billing_source": "go",
+          "list_cost": 0.00075255,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 1401,
+            "output": 904,
+            "reasoning": 632
+          }
+        },
+        "prompt_tokens": 1401,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 2305
+      }
+    },
+    "text": "{\n  \"summary\": \"Run a long-run power cycling test to reproduce the intermittent fuel-door unlock noise and failure.\",\n  \"rationale\": \"The case reports an intermittent electrical concern: the fuel door makes noise when unlocking and sometimes does not unlock. The rulebook matches the intermittent condition and names the long-run power cycling test to reproduce faults that appear after repeated wake and sleep cycles.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"fuel door makes a noise when unlocking the vehicle\",\n    \"fuel door sometimes does not unlock\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"targeted\": true,\n  \"test_name\": \"Long-run power cycling test\",\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Fuel door is making a noise when I unlock my vehicle\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"sometimes fuel door doesn’t unlock.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"sometimes\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"when I unlock my vehicle\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00045153,
+      "cached_tokens": 0,
+      "cost_usd": 0.00075255,
+      "input_tokens": 1401,
+      "list_cost_usd": 0.00075255,
+      "output_tokens": 904,
+      "reasoning_tokens": 632
+    }
+  }
+}

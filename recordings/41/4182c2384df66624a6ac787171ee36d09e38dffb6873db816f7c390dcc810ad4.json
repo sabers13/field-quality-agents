@@ -1,0 +1,66 @@
+{
+  "key": "4182c2384df66624a6ac787171ee36d09e38dffb6873db816f7c390dcc810ad4",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 13936,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2015 Ford F–150 electrical system: spontaneous under-hood fire originating in the fuse box/fuel pump relay area while parked and shut off at a gas station.\",\"group\":\"electrical_general\",\"symptoms\":[\"spontaneous under-hood fire\",\"fire originated in the fuse box area\",\"fuel pump relay area involved\",\"suspected electrical short\"],\"conditions\":[\"parked and shut off\",\"gas station\",\"near fuel pump\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"spontaneously caught fire under the hood\"},{\"kind\":\"symptom\",\"quote\":\"The fire appeared to originate in the fuse box area\"},{\"kind\":\"symptom\",\"quote\":\"specifically where the fuel pump relay is integrated\"},{\"kind\":\"condition\",\"quote\":\"While parked and shut off at a gas station in Lakeside, CA\"},{\"kind\":\"condition\",\"quote\":\"parked and shut off\"},{\"kind\":\"condition\",\"quote\":\"at a gas station\"},{\"kind\":\"safety\",\"quote\":\"The incident posed significant risk\"},{\"kind\":\"safety\",\"quote\":\"my child was in the vehicle\"},{\"kind\":\"other\",\"quote\":\"The cause is believed to be an electrical short.\"},{\"kind\":\"other\",\"quote\":\"There were no modifications or recent repairs.\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize. Report component electrical system group electrical_general. Summary one line component symptom conditions. Symptoms: spontaneous fire under hood, fire originated fuse box area fuel pump relay integrated, electrical short suspected. Conditions: parked and shut off, at gas station, near fuel pump, child in vehicle, no modifications/recent repairs. Need safety_relevant true. fault_codes none. missing_info: mileage? report mileage null, date? received_at but incident date not given. component given, symptom given, conditions given. Missing mileage and date (incident date). Maybe missing_info [\"mileage\",\"date\"]. Clues verbatim quotes. Must copy exact spans. Need JSON no other text. Ensure quotes exact from narrative. Verbatim includes \"Ford F–150\" with en dash? Narrative has \"F\\u2011150\" = F–150. Quotes can avoid weird. Need quote exact substring. Use quotes:\n- \"spontaneously caught fire under the hood\"\n- \"fire appeared to originate in the fuse box area\"\n- \"specifically where the fuel pump relay is integrated\"\n- \"While parked and shut off at a gas station\"\n- \"near a fuel pump while my child was in the vehicle\"\n- \"The cause is believed to be an electrical short\"\n- \"There were no modifications or recent repairs\"\nSafety quote maybe \"posed significant risk\" or \"my child was in the vehicle\". Need kind safety. Use quote \"my child was in the vehicle\" exact. Also fire symptom. Conditions \"parked and shut off\", \"gas station\". Need summary: \"2015 Ford F–150 electrical system: spontaneous under-hood fire originating near fuse box/fuel pump relay while parked and shut off at a gas station.\" Conditions include parked/shut off, gas station, near fuel pump. Symptoms array plain words. Group \"electrical_general\". Missing info mileage/date. Need valid JSON. Ensure no markdown? User says answer with one JSON object and no other text. final only JSON. Need quote \"While parked and shut off at a gas station in Lakeside, CA\" exact? Narrative: \"While parked and shut off at a gas station in Lakeside, CA, my 2015 Ford F–150 XLT spontaneously caught fire under the hood.\" Use quote \"While parked and shut off at a gas station in Lakeside, CA\" exact yes. Quote \"spontaneously caught fire under the hood\" exact. Quote \"The fire appeared to originate in the fuse box area\" exact? Narrative: \"The fire appeared to originate in the fuse box area, specifically...\" yes. Quote \"specifically where the fuel pump relay is integrated\" exact. Quote \"The incident posed significant risk\" exact. Quote \"occurring near a fuel pump while my child was in the vehicle\" exact? Narrative: \"The incident posed significant risk, occurring near a fuel pump while my child was in the vehicle.\" yes. Quote \"The cause is believed to be an electrical short.\" exact includes period. Quote \"There were no modifications or recent repairs.\" exact. Need condition quote \"parked and shut off\" maybe exact substring yes. \"at a gas station\" exact. Good.\n\nNeed include safety_relevant true. fault_codes []. missing_info [\"mileage\",\"date\"]. Maybe date could be incident date not received. Good.\n\nNeed decide symptoms array: [\"spontaneous under-hood fire\", \"fire originated in fuse box area\", \"fuel pump relay area involved\", \"suspected electrical short\"]. Plain words okay. Conditions: [\"parked\", \"shut off\", \"gas station\", \"near fuel pump\", \"no modifications\", \"no recent repairs\"]? Conditions list specified allowed values: \"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\". Hmm schema conditions list has examples? It says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. But narrative conditions parked/shut off/gas station. Should we only use allowed conditions? It says conditions array examples? It lists specific categories. Need not invent; \"after service\" no, \"charging\" no. Could include \"parked and shut off\" but not in enumerated? Prompt says conditions: [\"cold\", ...] maybe canonical. But rules say list conditions. The report mentions no modifications or recent repairs -> not after service. Parked/shut off not in list. Hm. For JSON conditions maybe []? But summary includes conditions. But \"conditions\" field expected canonical conditions. The report conditions do not match canonical except maybe heat? Fire/under hood not ambient heat. Do not invent. Could set conditions [] and clues include parked/shut off as condition? But kind condition can quote. However field \"conditions\" should include conditions. Since allowed list not exhaustive? It says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. Maybe these are expected controlled vocabulary. But report says parked/shut off at gas station; not in list. We can put []? But missing_info not conditions because given. Hmm. Could include \"parked and shut off\" in conditions even though not enumerated? The schema says conditions list, not restricted? It lists examples in prompt. But likely need canonical categories. Yet user wants normalise. I can include \"parked and shut off\", \"gas station\" maybe. But they specified conditions values perhaps. Need follow schema? Hmm.\n\nThe instructions: conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. It doesn't say only these, but the list is likely enumerated allowed. However report conditions \"parked and shut off\" are relevant. But if I include non-listed, maybe invalid? In previous tasks, conditions field can include \"cold\", \"moisture\", etc. The report doesn't mention those. So conditions should be []? But summary should mention parked/shut off. Clues can include condition quotes. Missing_info: conditions? No because report gives parked/shut off at gas station, but not weather. Is ambient condition missing? Not important? Maybe missing_info [\"mileage\",\"date\"] only.\n\nNeed maybe include \"no modifications or recent repairs\" as condition? Not allowed. Could clue kind condition. But conditions [] would seem weird. Hmm.\n\nLet's craft final JSON. Need no markdown. Use exact quotes. Check quote \"The fire appeared to originate in the fuse box area\" from narrative: \"The fire appeared to originate in the fuse box area, specifically where...\" Yes. Quote \"The incident posed significant risk\" exact. Quote \"occurring near a fuel pump while my child was in the vehicle\" exact? Narrative: \"The incident posed significant risk, occurring near a fuel pump while my child was in the vehicle.\" yes substring after comma includes space; quote starts \"occurring...\" exact. Good. Quote \"my child was in the vehicle\" exact substring. Good.\n\nNeed summary one line. Include component: \"2015 Ford F–150 electrical system; spontaneous under-hood fire originating in fuse box/fuel pump relay area while parked and shut off at a gas station.\" Conditions. Fine.\n\nNeed JSON with clues. Ensure quote exact char. For en dash in summary not quote okay. In quote if use \"2015 Ford F–150 XLT\" exact? Could skip. Use no en dash quotes. Fine.\n\nNeed include \"safety\" clue quote \"The incident posed significant risk\" maybe. Also \"my child was in the vehicle\". Good.\n\nNeed \"other\" clue for no modifications? kind condition? Could include \"other\" quote \"There were no modifications or recent repairs.\" But clues kind condition/other. Use condition for \"While parked and shut off at a gas station in Lakeside, CA\" and \"occurring near a fuel pump while my child was in the vehicle\"? That latter safety. Use condition quote \"parked and shut off\" exact. \"at a gas station\" exact. Fine.\n\nNeed fault_codes []. Missing info: mileage, date. date? received_at is 2025-07-08 but incident date not specified. Yes.\n\nFinal only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793528322,
+      "id": "9620bf17e3267c043fb5ac445d4da472",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2011,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1722,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00074292,
+          "billing_source": "go",
+          "list_cost": 0.0012382,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 203,
+            "output": 2011,
+            "reasoning": 1722
+          }
+        },
+        "prompt_tokens": 587,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2598
+      }
+    },
+    "text": "{\"summary\":\"2015 Ford F–150 electrical system: spontaneous under-hood fire originating in the fuse box/fuel pump relay area while parked and shut off at a gas station.\",\"group\":\"electrical_general\",\"symptoms\":[\"spontaneous under-hood fire\",\"fire originated in the fuse box area\",\"fuel pump relay area involved\",\"suspected electrical short\"],\"conditions\":[\"parked and shut off\",\"gas station\",\"near fuel pump\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"spontaneously caught fire under the hood\"},{\"kind\":\"symptom\",\"quote\":\"The fire appeared to originate in the fuse box area\"},{\"kind\":\"symptom\",\"quote\":\"specifically where the fuel pump relay is integrated\"},{\"kind\":\"condition\",\"quote\":\"While parked and shut off at a gas station in Lakeside, CA\"},{\"kind\":\"condition\",\"quote\":\"parked and shut off\"},{\"kind\":\"condition\",\"quote\":\"at a gas station\"},{\"kind\":\"safety\",\"quote\":\"The incident posed significant risk\"},{\"kind\":\"safety\",\"quote\":\"my child was in the vehicle\"},{\"kind\":\"other\",\"quote\":\"The cause is believed to be an electrical short.\"},{\"kind\":\"other\",\"quote\":\"There were no modifications or recent repairs.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00074292,
+      "cached_tokens": 384,
+      "cost_usd": 0.0012382,
+      "input_tokens": 587,
+      "list_cost_usd": 0.0012382,
+      "output_tokens": 2011,
+      "reasoning_tokens": 1722
+    }
+  }
+}

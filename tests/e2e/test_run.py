@@ -52,6 +52,22 @@ def test_two_replays_are_byte_identical(tmp_path: Path) -> None:
     assert _digest(first / "runs" / "test-run") == _digest(second / "runs" / "test-run")
 
 
+def test_export_with_an_explicit_run_id_names_only_that_run(tmp_path: Path) -> None:
+    from field_quality_agents.run.dashboard import export_dashboard
+
+    _run(tmp_path, "alpha")
+    _run(tmp_path, "beta")
+    out = tmp_path / "dist"
+    export_dashboard(
+        results_dir=tmp_path / "runs", run_id="alpha", out_dir=out
+    )
+
+    payload = read_json(out / "data" / "replay.json")
+    assert isinstance(payload, dict)
+    assert [run["run_id"] for run in payload["runs"]] == ["alpha"]
+    assert list(payload["events"]) == ["alpha"]
+
+
 def test_run_writes_every_documented_artifact(tmp_path: Path) -> None:
     cases, summary = _run(tmp_path)
     directory = summary.directory

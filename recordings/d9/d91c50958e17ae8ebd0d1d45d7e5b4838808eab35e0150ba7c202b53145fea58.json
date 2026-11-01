@@ -1,0 +1,66 @@
+{
+  "key": "d91c50958e17ae8ebd0d1d45d7e5b4838808eab35e0150ba7c202b53145fea58",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 7704,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2002 Mercury Grand Marquis cruise control malfunctioned at night at 50 MPH, speed increased independently and brakes failed to stop the vehicle.\",\"group\":\"adas\",\"symptoms\":[\"cruise control malfunction\",\"vehicle speed increased independently\",\"brake pedal depressed to floor but vehicle failed to stop\",\"check engine warning light illuminated\",\"low oil pressure warning light illuminated\"],\"conditions\":[\"night\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"cruise control\"},{\"kind\":\"symptom\",\"quote\":\"the cruise control mode malfunctioned\"},{\"kind\":\"symptom\",\"quote\":\"the speed of the vehicle increased independently\"},{\"kind\":\"condition\",\"quote\":\"while driving 50 MPH at night\"},{\"kind\":\"symptom\",\"quote\":\"the brake pedal was depressed several times to the floor, but the vehicle failed to stop\"},{\"kind\":\"safety\",\"quote\":\"the vehicle failed to stop\"},{\"kind\":\"symptom\",\"quote\":\"the check engine and the low oil pressure warning lights had illuminated two days prior to the failure\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize. Report component cruise control, group adas given. Symptoms: cruise control malfunctioned, speed increased independently, brake pedal depressed to floor vehicle failed to stop, check engine and low oil pressure warning lights illuminated two days prior. Conditions: driving 50 MPH at night. Maybe \"at night\". Safety relevant true: speed increased independently, failed to stop, afraid driving, risk. Fault codes none. Missing info? component given, symptom given, conditions given, mileage given, date? Received date but incident date not explicit. Narrative says two days prior etc no date. Missing_info maybe [\"date\"]? Rules list facts analysis needs: component, symptom, conditions, mileage, date. Component present, symptom present, conditions present (night, 50 mph), mileage present, date missing? There's received_at, but failure date not given. Should include \"date\". Could include? \"missing_info\": [\"date\"]. Need clues with verbatim quotes. Ensure exact spans. Summary one line. JSON no other text. Need quote exact from narrative. Let's craft.\n\nCheck exact substrings:\n\"while driving 50 MPH at night\" yes.\n\"the cruise control mode malfunctioned\" yes.\n\"the speed of the vehicle increased independently\" yes.\n\"the brake pedal was depressed several times to the floor, but the vehicle failed to stop\" yes.\n\"the check engine and the low oil pressure warning lights had illuminated two days prior to the failure\" yes.\n\"turned off the vehicle\" maybe not needed.\nSafety quote maybe \"the vehicle failed to stop\" or \"increased independently\" enough. \"safety_relevant\": true.\nGroup \"adas\".\nSymptoms array plain words. Could use \"cruise control malfunction\", \"vehicle speed increased independently\", \"brakes failed to stop vehicle\", \"check engine warning light illuminated\", \"low oil pressure warning light illuminated\". Keep symptoms maybe include warning lights as symptom? yes.\n\nConditions: [\"night\"]? The schema examples cold moisture heat vibration intermittent after service charging. But conditions can be arbitrary? \"night\", maybe \"driving at 50 mph\" not condition? We can include \"night\". Also \"two days prior warning lights\" maybe not condition. Maybe \"driving\" not. I'll include [\"night\"] and maybe \"intermittent\"? no. Conditions includes \"at night\". Could include \"driving 50 MPH\" but condition category maybe speed. Schema allows strings. I'll use [\"night\"].\n\nMissing_info: date. Maybe \"date\" not present. Is component group? no. Could include \"date\". No fault codes.\n\nClues: kind symptom quote cruise control malfunctioned; symptom speed increased; symptom brake failed; condition night; safety quote vehicle failed to stop? Could include safety kind quote \"the vehicle failed to stop\". Also component_group quote? \"cruise control\" exact yes. Fault_code none. Other warning lights. Need not overdo. Ensure every quote verbatim. Let's produce valid JSON. No markdown? User says one JSON object no other text. We can output raw JSON. \nNeed summary one line: \"2002 Mercury Grand Marquis cruise control malfunctioned at night at 50 MPH, speed increased independently and brakes failed to stop vehicle.\" This includes component symptom conditions. Good.\n\nPotential issue safety_relevant originally false in input but rules override. Set true.\n\nNeed maybe \"missing_info\": [\"date\"] because failure date missing. Received_at not failure date. Good.\n\nLet's final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793528677,
+      "id": "ff7cf5ea9fa4f9a2c0e1ff17902a2448",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 952,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 715,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00036978,
+          "billing_source": "go",
+          "list_cost": 0.0006163,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 293,
+            "output": 952,
+            "reasoning": 715
+          }
+        },
+        "prompt_tokens": 677,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1629
+      }
+    },
+    "text": "{\"summary\":\"2002 Mercury Grand Marquis cruise control malfunctioned at night at 50 MPH, speed increased independently and brakes failed to stop the vehicle.\",\"group\":\"adas\",\"symptoms\":[\"cruise control malfunction\",\"vehicle speed increased independently\",\"brake pedal depressed to floor but vehicle failed to stop\",\"check engine warning light illuminated\",\"low oil pressure warning light illuminated\"],\"conditions\":[\"night\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"cruise control\"},{\"kind\":\"symptom\",\"quote\":\"the cruise control mode malfunctioned\"},{\"kind\":\"symptom\",\"quote\":\"the speed of the vehicle increased independently\"},{\"kind\":\"condition\",\"quote\":\"while driving 50 MPH at night\"},{\"kind\":\"symptom\",\"quote\":\"the brake pedal was depressed several times to the floor, but the vehicle failed to stop\"},{\"kind\":\"safety\",\"quote\":\"the vehicle failed to stop\"},{\"kind\":\"symptom\",\"quote\":\"the check engine and the low oil pressure warning lights had illuminated two days prior to the failure\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00036978,
+      "cached_tokens": 384,
+      "cost_usd": 0.0006163,
+      "input_tokens": 677,
+      "list_cost_usd": 0.0006163,
+      "output_tokens": 952,
+      "reasoning_tokens": 715
+    }
+  }
+}

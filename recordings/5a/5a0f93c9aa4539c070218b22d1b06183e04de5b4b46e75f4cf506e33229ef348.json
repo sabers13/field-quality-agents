@@ -1,0 +1,66 @@
+{
+  "key": "5a0f93c9aa4539c070218b22d1b06183e04de5b4b46e75f4cf506e33229ef348",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 6954,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2021 Honda Pilot lane departure assist/ADAS: random brake flash, steering wheel lock-up, ghost electronic and CMBS warnings, intermittent over recent years\",\"group\":\"adas\",\"symptoms\":[\"random brake warning flash\",\"steering wheel lock-up\",\"nuisance electronic warnings when nothing is there\",\"CMBS warnings\",\"ghost electronic issues\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"LANE DEPARTURE: ASSIST\"},{\"kind\":\"symptom\",\"quote\":\"randomly flash brake\"},{\"kind\":\"symptom\",\"quote\":\"lock up the steering wheel\"},{\"kind\":\"safety\",\"quote\":\"lock up the steering wheel\"},{\"kind\":\"symptom\",\"quote\":\"electronic warnings going off when nothing was there\"},{\"kind\":\"symptom\",\"quote\":\"all of the CMBS warnings\"},{\"kind\":\"symptom\",\"quote\":\"ghost electronic issues\"},{\"kind\":\"condition\",\"quote\":\"over the last few years\"},{\"kind\":\"symptom\",\"quote\":\"multiple warnings\"}]}",
+            "reasoning_content": "We need to produce JSON. Need parse report. Component LANE DEPARTURE: ASSIST, group adas. Need summary one line component, symptom, conditions. Symptoms: randomly flash brake, lock up steering wheel, electronic warnings going off when nothing was there, all CMBS warnings came on, ghost electronic issues. Conditions: intermittent/random, over last few years. Safety relevant? Report mentions lock up steering wheel, brake flash randomly — could be risk to people? It says no accident but \"lock up steering wheel\" is loss of control risk. Rule: set safety_relevant when mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. Locking steering wheel is loss of control, so true. Even though input says safety_relevant false; must follow rules. Fault codes none. Missing info: mileage (null), date? received date given but maybe date event? Conditions somewhat present. Component present. Symptom present. Mileage missing. Maybe date missing (event date). List mileage and date? \"date\" fact analysis needs. The report has received_at but not incident date. Include \"mileage\",\"date\". Clues with verbatim quotes. Need exact substrings. Quote \"randomly flash brake\" exists. \"lock up the steering wheel\" exists. \"electronic warnings going off when nothing was there\" exact. \"all of the CMBS warnings  came on\" note double space? Narrative: \"and then all of the CMBS warnings  came on.\" There are two spaces before came. Need copy verbatim. Could quote \"all of the CMBS warnings\" avoid double. \"ghost electronic issues\" exact. \"over the last few years\" exact. \"before the system failed with multiple warnings\" exact. For safety clue quote \"lock up the steering wheel\" kind safety. Component group clue quote? Need quote from report; component field \"LANE DEPARTURE: ASSIST\" is from report? It's outside narrative but in user message object. Verbatim from report? We can quote \"LANE DEPARTURE: ASSIST\" maybe. But clues kind component_group. Need only report in user message includes component. Fine.\n\nNeed summary one line. \"2021 Honda Pilot lane departure assist/ADAS: random brake flash, steering lock-up, ghost electronic and CMBS warnings, intermittent over years.\" Conditions include intermittent, heat? no. \"randomly\" => intermittent. \"over last few years\" not a condition category. Conditions array allowed values: cold, moisture, heat, vibration, intermittent, after service, charging. Include \"intermittent\". Could include none else. Symptoms plain words: \"random brake warning flash\", \"steering wheel lock-up\", \"nuisance electronic warnings\", \"CMBS warnings\", \"ghost electronic issues\". Fault codes empty. missing_info [\"mileage\",\"date\"]. safety_relevant true.\n\nNeed ensure JSON only. Clues quotes verbatim. Let's craft.\n\nNeed quote for symptom \"randomly flash brake\" exact. \"lock up the steering wheel\" exact. \"electronic warnings going off when nothing was there\" exact. \"all of the CMBS warnings\" exact. \"ghost electronic issues\" exact. Condition \"over the last few years\" exact. Safety \"lock up the steering wheel\". Component group \"LANE DEPARTURE: ASSIST\" exact.\n\nCould include \"multiple warnings\" exact. Fine.\n\nNeed summary \"component, symptom, conditions\" one line. Good.\n\nFinal JSON only.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529754,
+      "id": "cfc5c24f4ff014c6869066d32e071347",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 966,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 722,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00036564,
+          "billing_source": "go",
+          "list_cost": 0.0006094,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 191,
+            "output": 966,
+            "reasoning": 722
+          }
+        },
+        "prompt_tokens": 575,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1541
+      }
+    },
+    "text": "{\"summary\":\"2021 Honda Pilot lane departure assist/ADAS: random brake flash, steering wheel lock-up, ghost electronic and CMBS warnings, intermittent over recent years\",\"group\":\"adas\",\"symptoms\":[\"random brake warning flash\",\"steering wheel lock-up\",\"nuisance electronic warnings when nothing is there\",\"CMBS warnings\",\"ghost electronic issues\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"LANE DEPARTURE: ASSIST\"},{\"kind\":\"symptom\",\"quote\":\"randomly flash brake\"},{\"kind\":\"symptom\",\"quote\":\"lock up the steering wheel\"},{\"kind\":\"safety\",\"quote\":\"lock up the steering wheel\"},{\"kind\":\"symptom\",\"quote\":\"electronic warnings going off when nothing was there\"},{\"kind\":\"symptom\",\"quote\":\"all of the CMBS warnings\"},{\"kind\":\"symptom\",\"quote\":\"ghost electronic issues\"},{\"kind\":\"condition\",\"quote\":\"over the last few years\"},{\"kind\":\"symptom\",\"quote\":\"multiple warnings\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00036564,
+      "cached_tokens": 384,
+      "cost_usd": 0.0006094,
+      "input_tokens": 575,
+      "list_cost_usd": 0.0006094,
+      "output_tokens": 966,
+      "reasoning_tokens": 722
+    }
+  }
+}

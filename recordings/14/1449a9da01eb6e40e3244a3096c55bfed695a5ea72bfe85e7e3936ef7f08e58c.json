@@ -1,0 +1,66 @@
+{
+  "key": "1449a9da01eb6e40e3244a3096c55bfed695a5ea72bfe85e7e3936ef7f08e58c",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12127,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"AIR BAGS: airbags did not deploy in a highway guardrail crash over 70 mph; driver head injury required stitches; no warning lights.\",\"group\":\"restraints\",\"symptoms\":[\"airbags did not deploy in a crash\",\"no warning lights or messages indicating an airbag problem\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"Airbags did not deploy\"},{\"kind\":\"condition\",\"quote\":\"vehicle hit 75 ft highway guardrail driving over 70 mph\"},{\"kind\":\"safety\",\"quote\":\"driver's head hit the steering wheel, requiring stitches\"},{\"kind\":\"symptom\",\"quote\":\"There were no warning lights or messages indicating a problem with airbags\"},{\"kind\":\"other\",\"quote\":\"Driver was wearing seatbelt.\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize incoming field-quality report. Need read report. Need include summary one line component symptom conditions. Group given restraints. Symptoms plain words. Conditions array from allowed: cold moisture heat vibration intermittent after service charging. Report mentions high speed crash, guardrail, no airbags deploy, head hit steering wheel stitches, no warning lights, seatbelt, inspected, manufacturer not informed. Conditions: none of listed? Maybe \"intermittent\"? No. \"after service\"? no. Could include? Conditions list only those. We should not invent. Conditions empty? But maybe \"conditions\" factual include \"highway crash at over 70 mph\" not in enum? Prompt conditions array specific terms. It says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. We should only include if report supports. None. But maybe \"vibration\" no. So conditions [].\n\nFault codes none. safety_relevant true. missing_info: mileage missing (null). date? received_at 2025-06-18 but incident date missing? The report lacks mileage, date of incident. Component present, symptom present, conditions? conditions maybe missing? The needed facts: component, symptom, conditions, mileage, date. Mileage missing, date (incident date) missing. Conditions? We have crash conditions maybe not in list. Should we list \"conditions\"? It says missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. Conditions present? It describes highway guardrail speed, no warning lights. But not environmental conditions. For airbag nondeploy, conditions relevant: speed, impact angle, crash severity. They included speed and guardrail. Maybe missing \"date\" and \"mileage\". Could include \"conditions\" if no environmental? But maybe not important? Hmm.\n\nClues: need quotes verbatim. We can quote \"Airbags did not deploy\" symptom. \"vehicle hit 75 ft highway guardrail driving over 70 mph\" condition? kind condition. \"driver's head hit the steering wheel, requiring stitches\" safety. \"There were no warning lights or messages indicating a problem with airbags\" symptom? maybe other. \"Driver was wearing seatbelt\" other. Component group quote? \"AIR BAGS\" appears in component field? Report is whole JSON? User says read report in user message. The report includes component \"AIR BAGS\". Quote can be from report? yes. But clues should quote verbatim spans from report. Could quote \"AIR BAGS\" as component_group. But JSON value is \"AIR BAGS\". Fine. Safety quote \"requiring stitches\" or full. Need include safety_relevant true. Clues kind safety quote \"requiring stitches\" is verbatim. But maybe better \"driver's head hit the steering wheel, requiring stitches\" exact. Check narrative: \"The car was totaled, the driver's head hit the steering wheel, requiring stitches.\" Quote exact substring \"driver's head hit the steering wheel, requiring stitches\" yes. Kind safety.\n\nSummary: \"AIR BAGS: airbags did not deploy in >70 mph highway guardrail crash; driver head injury required stitches; no warning lights.\" One line.\n\nGroup \"restraints\". Symptoms: [\"airbags did not deploy in a crash\", \"no warning lights or messages indicating an airbag problem\"]. Conditions: []? Hmm maybe include \"vibration\"? no. \"intermittent\"? no.\n\nFault_codes [].\n\nmissing_info: [\"mileage\", \"date\"] maybe \"conditions\"? Since conditions array empty, but the analysis needs conditions? The report does include crash conditions speed/guardrail. But the prompt's conditions categories not present. Missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Should we include \"conditions\" if no environmental conditions? It may be important for airbag nondeploy. But report gives crash conditions enough? It doesn't give impact angle, road conditions, temperature. However \"conditions\" in missing_info likely means the enumerated conditions. Hmm.\n\nNeed ensure JSON only. No markdown? They asked one JSON object and no other text. We can output raw JSON. Need not mention actions.\n\nNeed maybe include \"clues\" with quotes. Let's craft valid JSON.\n\nNeed verify every quote exact. Narrative:\n\"Airbags did not deploy when vehicle hit 75 ft highway guardrail driving over 70 mph. The car was totaled, the driver's head hit the steering wheel, requiring stitches. EMS and police at the scene were surprised to find airbags not deployed. Vehicle has been inspected by insurance. Manufacturer has not yet been informed, to my knowledge. There were no warning lights or messages indicating a problem with airbags or anything else for that matter. Driver was wearing seatbelt.\"\n\nQuotes:\n- \"Airbags did not deploy\" exact.\n- \"vehicle hit 75 ft highway guardrail driving over 70 mph\" exact? Narrative: \"when vehicle hit 75 ft highway guardrail driving over 70 mph.\" Yes substring includes \"vehicle hit...\" exact.\n- \"There were no warning lights or messages indicating a problem with airbags\" exact substring? Narrative: \"There were no warning lights or messages indicating a problem with airbags or anything else for that matter.\" yes.\n- \"driver's head hit the steering wheel, requiring stitches\" exact.\n- \"Driver was wearing seatbelt.\" exact.\n- \"AIR BAGS\" exact from component.\n\nCould include \"The car was totaled\" safety? maybe not.\n\nNeed maybe clue kind \"component_group\" quote \"AIR BAGS\". Since component field says AIR BAGS, group restraints. Good.\n\nNeed answer. Use safety true. Missing info maybe [\"mileage\",\"date\"]. Should include \"conditions\"? Hmm if conditions list empty, missing_info could include \"conditions\" but report includes speed/road. Since analysis needs conditions, and no weather/road surface/impact angle? But not in allowed missing_info? It is allowed. Could include \"conditions\". But if we include conditions in missing_info while conditions [] maybe okay. However the report does provide conditions: highway guardrail, >70 mph. That is crash condition. The enum conditions are cold/moisture/heat/vibration/intermittent/after service/charging; none. Missing_info should be facts needed. For airbag nondeploy, date of incident and mileage matter. Also conditions? maybe yes. But over-including missing_info may be less precise. Need decide.\n\nThe prompt: \"List missing_info only for facts the analysis needs: component, symptom, conditions, mileage, date. Use an empty list when nothing important is missing.\" The report lacks mileage and incident date. Conditions? It has crash context but not environmental conditions. The \"conditions\" category probably refers to cold/moisture/heat/vibration/intermittent/after service/charging. Since none mentioned, maybe missing conditions? Hmm if condition category not applicable, not missing. But for field quality, conditions missing maybe important. I can include [\"mileage\",\"date\",\"conditions\"]? But conditions are partially present (speed, guardrail). I think include mileage and date only. But \"date\" received_at is 2025-06-18, may be report received date not incident date. It doesn't state incident date. Yes missing date.\n\nNeed perhaps include \"model year\" not missing. Good.\n\nNeed produce compact JSON. Ensure no markdown.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793527757,
+      "id": "8b11ed42959d1e3ced4c59eb82ca498b",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1742,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1541,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00064536,
+          "billing_source": "go",
+          "list_cost": 0.0010756,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 195,
+            "output": 1742,
+            "reasoning": 1541
+          }
+        },
+        "prompt_tokens": 579,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2321
+      }
+    },
+    "text": "{\"summary\":\"AIR BAGS: airbags did not deploy in a highway guardrail crash over 70 mph; driver head injury required stitches; no warning lights.\",\"group\":\"restraints\",\"symptoms\":[\"airbags did not deploy in a crash\",\"no warning lights or messages indicating an airbag problem\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"Airbags did not deploy\"},{\"kind\":\"condition\",\"quote\":\"vehicle hit 75 ft highway guardrail driving over 70 mph\"},{\"kind\":\"safety\",\"quote\":\"driver's head hit the steering wheel, requiring stitches\"},{\"kind\":\"symptom\",\"quote\":\"There were no warning lights or messages indicating a problem with airbags\"},{\"kind\":\"other\",\"quote\":\"Driver was wearing seatbelt.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00064536,
+      "cached_tokens": 384,
+      "cost_usd": 0.0010756,
+      "input_tokens": 579,
+      "list_cost_usd": 0.0010756,
+      "output_tokens": 1742,
+      "reasoning_tokens": 1541
+    }
+  }
+}

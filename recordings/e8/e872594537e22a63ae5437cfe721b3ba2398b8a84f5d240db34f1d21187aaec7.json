@@ -1,0 +1,66 @@
+{
+  "key": "e872594537e22a63ae5437cfe721b3ba2398b8a84f5d240db34f1d21187aaec7",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 16333,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"ADAS (forward collision avoidance/adaptive cruise control); engine stalls at low speed approaching stoplights three times; safety hazard of crash\",\"group\":\"adas\",\"symptoms\":[\"engine stalls at low speed\",\"repeated stalling approaching stoplights\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\"},{\"kind\":\"symptom\",\"quote\":\"Engine stalls at low speed\"},{\"kind\":\"condition\",\"quote\":\"occurred three times approaching stoplights\"},{\"kind\":\"safety\",\"quote\":\"Safety hazard as it could cause a crash.\"}]}",
+            "reasoning_content": "We need answer one JSON object no other text. Need normalize report. Need read only report. Component given FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL, group adas. But narrative is engine stalls at low speed, safety hazard crash. Need decide group: \"the electrical/electronic component group, or the given group\". Given group adas. But component given ADAS while symptom engine stall? We should not invent. We can set group \"adas\" as given. Summary: component, symptom, conditions. Maybe \"Adaptive cruise control/forward collision avoidance (ADAS); engine stalls at low speed approaching stoplights; three occurrences; safety hazard crash risk.\" But component? The incoming component is FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL, but narrative says engine stalls. Need summary one line: \"ADAS (forward collision avoidance/adaptive cruise control); engine stalls at low speed approaching stoplights, three times; possible crash risk.\" Conditions: \"low speed\", \"approaching stoplights\"? Allowed conditions list: [\"cold\",\"moisture\",\"heat\",\"vibration\",\"intermittent\",\"after service\",\"charging\"]. Rule says conditions array list. It says conditions: [\"cold\", ...]. Should include only from list? It says conditions [\"cold\", ...]. We should map low speed? Not in list. \"intermittent\" because occurred three times? Yes. \"after service\"? No. Could include \"intermittent\". But conditions in schema are enumerated? It says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. We should use only those. Low speed isn't in allowed; can mention in summary and clues as condition quote? clue kind condition can quote \"at low speed\". But conditions array only allowed tokens. Maybe include \"intermittent\" since occurred three times? Actually intermittent yes. Could include \"low speed\"? The prompt says conditions: [\"cold\",...] as allowed. Better only include \"intermittent\". But low speed is condition but not allowed; summary covers. Fault_codes: no named code. safety_relevant true because \"Safety hazard as it could cause a crash.\" Missing_info: component? Hmm report has component ADAS and symptom. Conditions: low speed given. Mileage: narrative says 25,000 miles while field mileage null. So mileage not missing. Date: dates given. So missing_info empty? But maybe component mismatch? The report names ADAS component but symptom engine stall not related. Missing info: maybe component? But incoming component present. The analysis needs accurate component; however report's component field is ADAS but narrative engine. Should we list \"component\" missing? Hmm rule list missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Component is present (ADAS), symptom present, conditions present (low speed, approaching stoplights), mileage present in narrative, date present. So empty. But there is no fault code not in list. Safety relevant true.\n\nClues: need quotes verbatim from report. Verbatim spans copied. Need include symptom quote \"Engine stalls at low speed\" exactly (narrative contains \"Issue: Engine stalls at low speed \\u2013 occurred three times approaching stoplights.\" Actually quote \"Engine stalls at low speed\" is verbatim. Condition quote \"at low speed\" verbatim. Condition quote \"approaching stoplights\" verbatim. Safety quote \"Safety hazard as it could cause a crash.\" verbatim. Component group quote maybe \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\" is from component field? The report in user message includes component field? The \"report\" is entire JSON. Quote can be from report; yes component field. But \"component\" value is \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\". Use clue kind component_group quote exactly. Fault code none. Other? Maybe \"occurred three times\" as condition intermittent? Could be symptom? We can quote \"occurred three times approaching stoplights\" as condition? The kind condition. Need verbatim. It appears exactly: \"occurred three times approaching stoplights.\" Actually narrative: \"Engine stalls at low speed \\u2013 occurred three times approaching stoplights.\" So quote \"occurred three times approaching stoplights\" verbatim. But if kind condition, okay. Also \"Vehicle dropped off at Folsom Lake CDJR on Aug 8, 2025.\" date? clue kind other? We can include date? Not necessary but could. Need not overdo. Ensure every quote is in report. The quote \"Safety hazard as it could cause a crash.\" is exact? Narrative: \"Safety hazard as it could cause a crash.\" Yes.\n\nNeed summary one line: \"ADAS (forward collision avoidance/adaptive cruise control); engine stalls at low speed approaching stoplights three times; safety hazard of crash.\" Good.\n\nNeed group \"adas\" or \"electrical/electronic\"? Given group adas. Use \"adas\".\n\nSymptoms array: [\"engine stalls at low speed\", \"stalls approaching stoplights\"]? Plain words. Maybe \"engine stalling at low speed\". Use [\"engine stalls at low speed\", \"stalls three times approaching stoplights\"]. Need no invented. \"engine stalls at low speed\" plain. \"stalls while approaching stoplights\" okay, but symptom in plain words. We can include \"engine stall at low speed\". Maybe array [\"engine stalls at low speed\", \"repeated stalling approaching stoplights\"]. Good.\n\nConditions array: [\"intermittent\"]? Occurred three times. Low speed not allowed. Maybe include \"intermittent\". Could include \"after service\"? No. Use [\"intermittent\"].\n\nFault codes [].\n\nSafety true.\n\nMissing_info [] maybe. But there is no VIN? Not in list. No.\n\nClues:\n- {\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\"}\n- {\"kind\":\"symptom\",\"quote\":\"Engine stalls at low speed\"}\n- {\"kind\":\"condition\",\"quote\":\"occurred three times approaching stoplights\"}\n- {\"kind\":\"safety\",\"quote\":\"Safety hazard as it could cause a crash.\"}\nMaybe {\"kind\":\"condition\",\"quote\":\"at low speed\"} but duplicate. Could include \"approaching stoplights\". The \"occurred three times approaching stoplights\" includes both. Good.\n\nNeed ensure JSON only, no markdown? User says one JSON object and no other text. We can output raw JSON. Good.\n\nNeed consider safety_relevant false in input but we override true. Yes.\n\nPotential issue: \"The desk never closes a case, scraps a part or accepts a charge. Do not suggest such an action.\" We won't.\n\nNeed answer exactly JSON object. Use double quotes. Ensure no markdown code fence? \"no other text\" means just JSON. Good.\n\nLet's craft.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529490,
+      "id": "5f7a2f5a3e023d1e2d12b3f272b72a68",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1605,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1447,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00060423,
+          "billing_source": "go",
+          "list_cost": 0.00100705,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 286,
+            "output": 1605,
+            "reasoning": 1447
+          }
+        },
+        "prompt_tokens": 670,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2275
+      }
+    },
+    "text": "{\"summary\":\"ADAS (forward collision avoidance/adaptive cruise control); engine stalls at low speed approaching stoplights three times; safety hazard of crash\",\"group\":\"adas\",\"symptoms\":[\"engine stalls at low speed\",\"repeated stalling approaching stoplights\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\"},{\"kind\":\"symptom\",\"quote\":\"Engine stalls at low speed\"},{\"kind\":\"condition\",\"quote\":\"occurred three times approaching stoplights\"},{\"kind\":\"safety\",\"quote\":\"Safety hazard as it could cause a crash.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00060423,
+      "cached_tokens": 384,
+      "cost_usd": 0.00100705,
+      "input_tokens": 670,
+      "list_cost_usd": 0.00100705,
+      "output_tokens": 1605,
+      "reasoning_tokens": 1447
+    }
+  }
+}

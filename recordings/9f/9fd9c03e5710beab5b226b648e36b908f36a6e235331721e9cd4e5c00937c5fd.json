@@ -1,0 +1,66 @@
+{
+  "key": "9fd9c03e5710beab5b226b648e36b908f36a6e235331721e9cd4e5c00937c5fd",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10535,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system: while driving home, loss of power and truck slowing down despite accelerator input.\",\"group\":\"electrical_general\",\"symptoms\":[\"loss of power\",\"slowing down despite pressing the accelerator\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"Losing power\"},{\"kind\":\"symptom\",\"quote\":\"started slowing down\"},{\"kind\":\"condition\",\"quote\":\"I was driving home from work\"},{\"kind\":\"safety\",\"quote\":\"Losing power\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize report. Component electrical system, group electrical_general. Narrative: driving home from work, truck started losing power, press gas to make drive, started slowing down. Symptom loss of power, slowing down despite acceleration. Conditions? driving home from work maybe not cold/moisture/heat/vibration/intermittent/after service/charging. Could include none. Safety relevant? Loss of power while driving could be risk? Rule says stall at speed or other risk to people. \"Losing power\" while driving maybe safety relevant? It says set safety_relevant when mentions crash fire smoke injury loss of control stall at speed or another risk to people. Losing power could be stall at speed? Narrative doesn't explicitly say stall; started slowing down. Safety relevant maybe true? Need be careful. It says do not invent. \"Losing power\" while driving is risk. But safety_relevant field input false. We assess. I think set true? The prompt: \"Set safety_relevant when the report mentions a crash, fire, smoke, injury, loss of control, a stall at speed or another risk to people.\" Losing power while driving and slowing down is another risk to people? It is a risk. But maybe not explicit. Could set false? The report says driving home from work and truck started losing power, could press gas to make drive, started slowing down. That's loss of power while in motion, safety risk. I lean true. Need quote verbatim: \"Losing power\" and \"started slowing down\". Also \"I was driving home from work one day my truck started.\" Need summary one line: Electrical system: loss of power while driving, slowing despite acceleration. group electrical_general. Symptoms: [\"loss of power\", \"slowing down despite pressing accelerator\"] maybe plain. Conditions: [\"while driving\"]? Allowed conditions list only cold, moisture, heat, vibration, intermittent, after service, charging. Should only use those? It says conditions: [\"cold\", ...]. Could leave empty. \"driving home from work\" not in list. Maybe no conditions. Fault codes none. Missing info: mileage (null), date? received_at but not incident date. Component? given. Symptom? given. Conditions missing? It lacks conditions. Need list only facts analysis needs: mileage, date, conditions. Maybe \"date\" because event date not provided; received_at is report date. Also component present, symptom present. Include [\"mileage\", \"date\", \"conditions\"]. Conditions maybe not enough? Yes. Clues: kind symptom quote \"Losing power\"; symptom quote \"started slowing down\"; maybe condition quote \"driving home from work\" kind condition? But condition list doesn't include. It says kind condition; quote can be any verbatim. But conditions array only standardized. Could include clue kind condition \"driving home from work\" maybe not needed. Also component_group quote \"ELECTRICAL SYSTEM\". Safety quote \"Losing power\"? Kind safety? If safety true, quote \"Losing power\" maybe evidence of risk. But kind safety quote should be risk mention. Use \"Losing power\" as safety? Hmm.\n\nNeed output one JSON object no other text. Ensure valid JSON.\n\nNeed decide safety_relevant. I think true due to loss of power while driving. But source says false. However prompt asks set based on report. \"Losing power\" while driving is safety risk. Could be considered. We'll set true. If false maybe inconsistent? Let's consider if \"loss of power\" is just engine power loss, not electrical? Component electrical system. Slowing down. Could be dangerous. Set true.\n\nNeed summary: \"Electrical system: loss of power while driving, truck slows despite accelerator.\" One line. Conditions empty. Missing info maybe [\"mileage\",\"date\",\"conditions\"]. \"date\" event date missing; received_at exists. Good.\n\nClues:\n- {\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"}\n- {\"kind\":\"symptom\",\"quote\":\"Losing power\"}\n- {\"kind\":\"symptom\",\"quote\":\"started slowing down\"}\n- {\"kind\":\"condition\",\"quote\":\"driving home from work\"}? This is a condition (driving). But conditions standardized doesn't include; still clue kind condition could be \"while driving\" not verbatim? No. Use \"I was driving home from work\" quote. It supports driving condition. But conditions array empty; clue condition okay. Hmm.\n- safety: {\"kind\":\"safety\",\"quote\":\"Losing power\"}? Duplicate quote okay? Maybe use \"Losing power\" for safety. But clue kind safety quote should indicate risk. It does. Could include.\n\nNeed ensure \"quote\" copied exactly: Narrative: \"I was driving home from work one day my truck started. Losing power I could press the gas to make the truck drive it started slowing down\"\n\nVerbatim spans:\n\"I was driving home from work\" yes contiguous.\n\"Losing power\" yes.\n\"started slowing down\" yes contiguous at end. Actually \"it started slowing down\" includes. \"started slowing down\" contiguous? Narrative ends \"it started slowing down\" yes substring \"started slowing down\" exists.\n\"ELECTRICAL SYSTEM\" in component field. Good.\n\nNeed no Markdown? They say answer with one JSON object and no other text. So final just JSON. Use proper booleans. Could include conditions [] and fault_codes []. Good.\n\nNeed maybe summary \"Electrical system: while driving home, loss of power and truck slowing down despite accelerator.\" Conditions? No.\n\nNeed missing_info: maybe \"conditions\" because no weather/temp etc. \"date\" because no incident date. \"mileage\". Good.\n\nNeed safety relevant true. If include safety clue. Good.\n\nFinal.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793526922,
+      "id": "42ae74727bdcb65fab3c5f64a7e11646",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1347,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1199,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00049767,
+          "billing_source": "go",
+          "list_cost": 0.00082945,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 134,
+            "output": 1347,
+            "reasoning": 1199
+          }
+        },
+        "prompt_tokens": 518,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1865
+      }
+    },
+    "text": "{\"summary\":\"Electrical system: while driving home, loss of power and truck slowing down despite accelerator input.\",\"group\":\"electrical_general\",\"symptoms\":[\"loss of power\",\"slowing down despite pressing the accelerator\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"Losing power\"},{\"kind\":\"symptom\",\"quote\":\"started slowing down\"},{\"kind\":\"condition\",\"quote\":\"I was driving home from work\"},{\"kind\":\"safety\",\"quote\":\"Losing power\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00049767,
+      "cached_tokens": 384,
+      "cost_usd": 0.00082945,
+      "input_tokens": 518,
+      "list_cost_usd": 0.00082945,
+      "output_tokens": 1347,
+      "reasoning_tokens": 1199
+    }
+  }
+}

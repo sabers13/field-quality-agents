@@ -1,0 +1,66 @@
+{
+  "key": "6080bcfe395366af0f54f25e32b751c7e1077da4f7a65ec43c5acdcb9df0d7e1",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9972,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system HPCU caused sudden severe loss of power while driving on highway, then recurred in heavy traffic after HPCU replacement.\",\"group\":\"electrical_general\",\"symptoms\":[\"sudden and severe loss of power while driving\",\"same failure recurred\"],\"conditions\":[\"intermittent\",\"after service\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"sudden and severe loss of power while I was driving on the highway\"},{\"kind\":\"component_group\",\"quote\":\"High Power Control Unit (HPCU), part number 36601-3DPG3\"},{\"kind\":\"condition\",\"quote\":\"the same failure occurred again\"},{\"kind\":\"condition\",\"quote\":\"in heavy highway traffic\"},{\"kind\":\"safety\",\"quote\":\"creating a serious safety risk and increasing the chance of a collision\"},{\"kind\":\"symptom\",\"quote\":\"recurring and unpredictable nature\"},{\"kind\":\"safety\",\"quote\":\"another failure could lead to a serious accident or fatality\"}]}",
+            "reasoning_content": "We need answer one JSON only. Need normalize report. Need inspect narrative. Component electrical system, group given electrical_general. Symptoms: sudden severe loss of power while driving on highway; same failure occurred again in heavy highway traffic. Conditions: highway? maybe intermittent? recurring unpredictable. Fault codes none. Safety relevant true because loss of power at highway, collision risk, accident/fatality. Missing info: mileage absent, date? Dates present Oct 13 2025, Nov 6, received. Conditions present highway/heavy traffic. Component present electrical system/HPCU. Symptom present. Missing mileage only? date present. Maybe missing_info [\"mileage\"]. Clues quotes verbatim. Need quote exact spans from narrative. Need ensure character exact including en dash? We can quote simple spans. \"sudden and severe loss of power while I was driving on the highway\" yes exact. \"the same failure occurred again\" exact. \"in heavy highway traffic\" exact. \"creating a serious safety risk and increasing the chance of a collision\" exact. \"High Power Control Unit (HPCU), part number 36601-3DPG3\" exact. \"safety defect\" maybe safety. Need include component_group quote \"ELECTRICAL SYSTEM\"? That's from component field not narrative? Report includes component field. User says read report in user message; quote copied verbatim from report. Could quote \"ELECTRICAL SYSTEM\" from component field? It is in report. But clues from narrative better. Need group \"electrical_general\" or electrical/electronic component group. Given group electrical_general. summary one line: Electrical system (HPCU) sudden severe loss of power while driving highway, recurred in heavy traffic. Group electrical_general. Symptoms array \"sudden and severe loss of power while driving\" and \"recurring failure\". Conditions [\"intermittent\"]? Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. Highway/heavy traffic not in allowed list? The schema says conditions [\"cold\", ...]. But could include \"highway\"? It says conditions list examples? It says conditions: [\"cold\", ...]. Hm conditions should be from list? It says conditions [\"cold\", \"moisture\", ...] likely allowed set. Highway not an allowed condition? But summary includes highway. Could include \"intermittent\" because recurring unpredictable. Maybe not \"after service\" even HPCU replaced then failed less than month later, could be after service. Yes after service relevant: replaced HPCU, same failure less than month later. Include \"after service\", \"intermittent\". Not cold etc. Fault_codes [].\n\nNeed missing_info: mileage null. Maybe date? no. Conditions? yes highway/heavy traffic. component? yes. symptom yes. So [\"mileage\"].\n\nNeed safety_relevant true.\n\nNeed clues array with kind and quote. Use exact quotes. Need verify exact substring: narrative starts \"Safety Concern – 2025 Kia Sorento Prestige Hybrid (VIN [XXX] ) Around October 13, 2025, my leased 2025 Kia Sorento Prestige Hybrid experienced a sudden and severe loss of power while I was driving on the highway.\" Quote \"sudden and severe loss of power while I was driving on the highway\" exact yes. \"The vehicle was towed to the dealership, where the High Power Control Unit (HPCU), part number 36601-3DPG3, was replaced.\" Quote \"High Power Control Unit (HPCU), part number 36601-3DPG3\" exact. \"Less than a month later, on November 6, the same failure occurred again—this time in heavy highway traffic—creating a serious safety risk and increasing the chance of a collision.\" Quote \"the same failure occurred again\" exact; \"in heavy highway traffic\" exact; \"creating a serious safety risk and increasing the chance of a collision\" exact. \"recurring and unpredictable nature\" exact? narrative: \"The recurring and unpredictable nature of this issue has made us feel unsafe and anxious.\" Quote \"recurring and unpredictable nature\" exact. \"another failure could lead to a serious accident or fatality\" exact. Need maybe safety clue. We can include one safety quote.\n\nNeed no other text. JSON valid. Should group maybe \"electrical_general\" exactly. Summary one line no newline. Ensure no markdown.\n\nNeed consider \"safety_relevant\" in input false but narrative has safety risk; set true per rules. Good.\n\nNeed \"conditions\" includes \"after service\" quote? HPCU replaced then same failure less than month later. Is \"after service\" condition? yes. But condition list allowed includes \"after service\". Include. \"intermittent\" from recurring unpredictable. Could include \"highway\"? Not in list; avoid. But maybe conditions should capture highway traffic? Schema examples limited. We can include \"intermittent\",\"after service\". Maybe also \"heat\"? no.\n\nNeed missing_info only mileage. Date? Incident dates yes. Received date. Good.\n\nNeed answer exactly JSON. Use double quotes. Ensure no trailing.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531889,
+      "id": "35e228741611b980d3b2241e14f13bf6",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1299,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1067,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00050424,
+          "billing_source": "go",
+          "list_cost": 0.0008404,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 399,
+            "output": 1299,
+            "reasoning": 1067
+          }
+        },
+        "prompt_tokens": 783,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2082
+      }
+    },
+    "text": "{\"summary\":\"Electrical system HPCU caused sudden severe loss of power while driving on highway, then recurred in heavy traffic after HPCU replacement.\",\"group\":\"electrical_general\",\"symptoms\":[\"sudden and severe loss of power while driving\",\"same failure recurred\"],\"conditions\":[\"intermittent\",\"after service\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"sudden and severe loss of power while I was driving on the highway\"},{\"kind\":\"component_group\",\"quote\":\"High Power Control Unit (HPCU), part number 36601-3DPG3\"},{\"kind\":\"condition\",\"quote\":\"the same failure occurred again\"},{\"kind\":\"condition\",\"quote\":\"in heavy highway traffic\"},{\"kind\":\"safety\",\"quote\":\"creating a serious safety risk and increasing the chance of a collision\"},{\"kind\":\"symptom\",\"quote\":\"recurring and unpredictable nature\"},{\"kind\":\"safety\",\"quote\":\"another failure could lead to a serious accident or fatality\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00050424,
+      "cached_tokens": 384,
+      "cost_usd": 0.0008404,
+      "input_tokens": 783,
+      "list_cost_usd": 0.0008404,
+      "output_tokens": 1299,
+      "reasoning_tokens": 1067
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "7a2b7936187d9f64b5e45638d503e5f36f9e08ad77d74ba807f79da31a329bd8",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 6616,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Check the misfire-code repair after repeated service visits, starting with installation and connector integrity before testing.\",\n  \"rationale\": \"The engine light and misfire code returned within 20 miles after the vehicle was sent home repeatedly with the same error code while unrelated items were addressed. The rulebook matches the after-service condition and calls for an installation check before test.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"engine light on\",\n    \"misfire code\",\n    \"same code returns within 20 miles\"\n  ],\n  \"conditions\": [\n    \"after service\"\n  ],\n  \"fault_codes\": [\n    \"misfire code\"\n  ],\n  \"safety_relevant\": false,\n  \"targeted\": true,\n  \"test_name\": \"Installation check before test\",\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The engine light was on with the misfire code\"\n    },\n    {\n      \"kind\": \"fault_code\",\n      \"quote\": \"misfire code\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"within 20 miles the same code returned\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"sent back home with the same error code while fixing other items that were not the root cause of the issue\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"misdiagnosed multiple times\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"CAM shaft\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer JSON only. Need analyze. We have case narrative with quotes. Rulebook matched after_service test \"Installation check before test\". Conditions after service. Need targeted? Rulebook entry exists with test named \"Installation check before test\". The prompt says prefer targeted load test when reported conditions match rulebook entry. Here matched condition after service; rulebook test is installation check before test, not load test. But \"targeted\": true if targeted test rulebook names? It says \"Prefer a targeted load test when ... Otherwise propose standard test (targeted false).\" Rulebook names \"Installation check before test\" not load test. Hmm likely targeted true? Need infer. The test_name should be rulebook named. They ask \"test_name\": the targeted test the rulebook names. If rulebook match, targeted true. But rulebook reason says a fault after service checked for connector seating etc first. That's targeted check. We'll set targeted true, test_name \"Installation check before test\". Safety false. Group electrical_general. Symptoms: engine light on, misfire code, same code returns within 20 miles. Conditions after service. Fault codes misfire code. Clues verbatim quotes. Need ensure quotes copied from narrative exactly. Narrative: \"CAM shaft and yes it is available to be looked at. The vehicle was misdiagnosed multiple times and sent back home with the same error code while fixing other items that were not the root cause of the issue. The engine light was on with the misfire code when I brought it in and was repeatedly sent home and within 20 miles the same code returned.\"\n\nQuotes can include:\n- \"CAM shaft\" \n- \"misdiagnosed multiple times\"\n- \"sent back home with the same error code while fixing other items that were not the root cause of the issue\"\n- \"The engine light was on with the misfire code\"\n- \"within 20 miles the same code returned\"\n\nNeed clues kind mapping. component_group quote \"ELECTRICAL SYSTEM\" not in narrative? It is in case component field, but narrative? Rule says quote copied verbatim from case narrative. Narrative doesn't include ELECTRICAL SYSTEM. So don't use. Use quotes from narrative only. Could use \"CAM shaft\" as other. \"The engine light was on with the misfire code\" symptom and fault_code. \"within 20 miles the same code returned\" symptom. \"sent back home with the same error code...\" condition? It indicates after service? Hmm condition \"after service\" derived from sent home? The extraction says condition after service. We can clue quote \"sent back home with the same error code while fixing other items that were not the root cause of the issue\" kind condition maybe. But \"after service\" not verbatim. Quote can be supporting. Use exact.\n\nNeed summary one line. rationale condition evidence.\n\nEnsure no other text. JSON valid.\n\nPotential safety? Narrative no risk to people. false.\n\nTargeted true.\n\nTest_name exactly \"Installation check before test\".\n\nLet's craft concise.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529780,
+      "id": "0d9a7367df0e455678359d0571f4061f",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 973,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 628,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0004869,
+          "billing_source": "go",
+          "list_cost": 0.0008115,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 1518,
+            "output": 973,
+            "reasoning": 628
+          }
+        },
+        "prompt_tokens": 1518,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 2491
+      }
+    },
+    "text": "{\n  \"summary\": \"Check the misfire-code repair after repeated service visits, starting with installation and connector integrity before testing.\",\n  \"rationale\": \"The engine light and misfire code returned within 20 miles after the vehicle was sent home repeatedly with the same error code while unrelated items were addressed. The rulebook matches the after-service condition and calls for an installation check before test.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"engine light on\",\n    \"misfire code\",\n    \"same code returns within 20 miles\"\n  ],\n  \"conditions\": [\n    \"after service\"\n  ],\n  \"fault_codes\": [\n    \"misfire code\"\n  ],\n  \"safety_relevant\": false,\n  \"targeted\": true,\n  \"test_name\": \"Installation check before test\",\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The engine light was on with the misfire code\"\n    },\n    {\n      \"kind\": \"fault_code\",\n      \"quote\": \"misfire code\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"within 20 miles the same code returned\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"sent back home with the same error code while fixing other items that were not the root cause of the issue\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"misdiagnosed multiple times\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"CAM shaft\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0004869,
+      "cached_tokens": 0,
+      "cost_usd": 0.0008115,
+      "input_tokens": 1518,
+      "list_cost_usd": 0.0008115,
+      "output_tokens": 973,
+      "reasoning_tokens": 628
+    }
+  }
+}

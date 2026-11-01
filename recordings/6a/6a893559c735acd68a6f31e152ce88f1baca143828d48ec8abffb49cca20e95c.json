@@ -1,0 +1,66 @@
+{
+  "key": "6a893559c735acd68a6f31e152ce88f1baca143828d48ec8abffb49cca20e95c",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9543,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"ELECTRICAL SYSTEM: car shut off several times with steering lock, brake failure and erratic noises; crash occurred.\",\"group\":\"electrical_general\",\"symptoms\":[\"vehicle shut off repeatedly\",\"steering wheel locked and became stiff\",\"brakes failed to respond\",\"loud erratic sounds\",\"crash\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"The car shut off several times\"},{\"kind\":\"symptom\",\"quote\":\"steering wheel locking up and becoming stiff\"},{\"kind\":\"symptom\",\"quote\":\"brakes failing to respond\"},{\"kind\":\"symptom\",\"quote\":\"loud, erratic sounds emanating from the vehicle\"},{\"kind\":\"condition\",\"quote\":\"several times\"},{\"kind\":\"safety\",\"quote\":\"the car crashed resulting in damage to the car, driver, and other driver\"}]}",
+            "reasoning_content": "We need answer only JSON object. Need normalize. Need read report. Component electrical system group electrical_general. Symptoms: car shut off several times; steering wheel locking up/stiff; brakes failing to respond; loud erratic sounds; crash. Conditions? intermittent? \"shut off several times\" implies intermittent. No warning signs. Fault codes none. Safety relevant true due crash, loss of control? Need quotes verbatim spans. Missing info: mileage null (report no mileage), date? received_at but not incident date. Component given. Symptom present. Conditions? maybe missing? The missing_info list only facts analysis needs: component, symptom, conditions, mileage, date. Mileage missing; date of incident missing? It has received_at but not failure date. Conditions maybe not specified? There is \"no warning signs before failure\"; conditions not explicit (weather/driving). Should include mileage and date maybe conditions. Need be careful \"missing_info only for facts analysis needs\". We can list mileage, date, conditions. But maybe component and symptom present, so no. Need summary one line: ELECTRICAL SYSTEM: engine shut off repeatedly with steering lock, brake failure, noises, crash. Conditions include intermittent. Maybe \"after service\"? It was brought to dealership twice but that's after? Not condition. \"cold moisture heat vibration charging\" none. \"intermittent\" yes. Could include \"no warning signs\" as condition? kind condition quote \"There were no warning signs before the failure.\" But conditions array allowed only enumerated: cold, moisture, heat, vibration, intermittent, after service, charging. So conditions [\"intermittent\"]. Clues: symptom quotes: \"The car shut off several times\", \"steering wheel locking up and becoming stiff\", \"brakes failing to respond\", \"loud, erratic sounds emanating from the vehicle\", \"the car crashed\". condition quote \"shut off several times\" same as symptom maybe intermittent. fault_code none. component_group quote \"ELECTRICAL SYSTEM\". safety quote \"the car crashed resulting in damage to the car, driver, and other driver\". Other quote \"cannot identify the problem\"? Maybe not needed. Need JSON only. Ensure quotes exact. The narrative includes \"1. The car shut off several times, with the steering wheel locking up and becoming stiff, the brakes failing to respond, and loud, erratic sounds emanating from the vehicle.\" We can quote substrings exact. \"steering wheel locking up and becoming stiff\" exact? It appears \"with the steering wheel locking up and becoming stiff,\" yes substring. \"brakes failing to respond\" exact. \"loud, erratic sounds emanating from the vehicle\" exact. \"the car crashed resulting in damage to the car, driver, and other driver\" exact? Narrative: \"Yes, the car crashed resulting in damage to the car, driver, and other driver (e.g. car in front).\" So substring \"the car crashed resulting in damage to the car, driver, and other driver\" exact. \"The car shut off several times\" exact at start after \"1. \" yes. component quote \"ELECTRICAL SYSTEM\" from component field, is that report? User message includes JSON with component. Rules read report in user message; quote verbatim from report. Component field is report. Fine. But maybe clues quote from narrative only? It says report; okay.\n\nNeed summary: \"ELECTRICAL SYSTEM: car shut off several times with steering lock, brake failure and erratic noises; crash occurred.\" One line.\n\nNeed group: \"electrical_general\" given group or component group? Prompt says \"the electrical/electronic component group, or the given group\". Given group electrical_general. Use that.\n\nsymptoms array plain words. Could list \"engine/vehicle shut off repeatedly\", \"steering wheel locked and became stiff\", \"brakes failed to respond\", \"loud erratic sounds\", \"crash\". The symptom \"crash\" maybe safety not symptom? Could include. Need maybe \"no warning signs\" not symptom.\n\nconditions [\"intermittent\"]. Fault_codes [].\n\nsafety_relevant true.\n\nmissing_info: [\"mileage\", \"date\", \"conditions\"]? Date absent. Conditions? Only intermittent, but no weather/road/driving conditions. The analysis needs conditions. But if we put conditions in conditions array, still missing detailed conditions. List \"mileage\", \"date\", \"conditions\". Is \"date\" missing? received_at exists but incident date not. Yes.\n\nClues: Need kind values allowed. Include:\n{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"}\n{\"kind\":\"symptom\",\"quote\":\"The car shut off several times\"}\n{\"kind\":\"symptom\",\"quote\":\"steering wheel locking up and becoming stiff\"}\n{\"kind\":\"symptom\",\"quote\":\"brakes failing to respond\"}\n{\"kind\":\"symptom\",\"quote\":\"loud, erratic sounds emanating from the vehicle\"}\n{\"kind\":\"safety\",\"quote\":\"the car crashed resulting in damage to the car, driver, and other driver\"}\n{\"kind\":\"condition\",\"quote\":\"shut off several times\"}? But quote duplicate. Maybe condition quote \"several times\" indicates intermittent. Is \"several times\" exact. Use condition kind quote \"several times\". But condition array intermittent from that. Good.\n\nCould include other quote \"cannot identify the problem\" but not needed.\n\nNeed no other text. Ensure valid JSON. Use exact quotes. Let's craft.\n\nNeed consider \"safety_relevant\" already true in input but we set true.\n\nFinal only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793525011,
+      "id": "c6f55154e68b83401d1209bf38684a1c",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1356,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1135,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00054441,
+          "billing_source": "go",
+          "list_cost": 0.00090735,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 625,
+            "output": 1356,
+            "reasoning": 1135
+          }
+        },
+        "prompt_tokens": 625,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 1981
+      }
+    },
+    "text": "{\"summary\":\"ELECTRICAL SYSTEM: car shut off several times with steering lock, brake failure and erratic noises; crash occurred.\",\"group\":\"electrical_general\",\"symptoms\":[\"vehicle shut off repeatedly\",\"steering wheel locked and became stiff\",\"brakes failed to respond\",\"loud erratic sounds\",\"crash\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"The car shut off several times\"},{\"kind\":\"symptom\",\"quote\":\"steering wheel locking up and becoming stiff\"},{\"kind\":\"symptom\",\"quote\":\"brakes failing to respond\"},{\"kind\":\"symptom\",\"quote\":\"loud, erratic sounds emanating from the vehicle\"},{\"kind\":\"condition\",\"quote\":\"several times\"},{\"kind\":\"safety\",\"quote\":\"the car crashed resulting in damage to the car, driver, and other driver\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00054441,
+      "cached_tokens": 0,
+      "cost_usd": 0.00090735,
+      "input_tokens": 625,
+      "list_cost_usd": 0.00090735,
+      "output_tokens": 1356,
+      "reasoning_tokens": 1135
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "7398b267ce923f7b27bedc43218418ca27634e026096ea55da3bb88e5b8d5c4b",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 14672,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Audi Q5 Forward Collision Avoidance unintendedly activated while driving with no nearby objects; Automatic Emergency Braking engaged and greatly reduced speed; no warning lights.\",\"group\":\"adas\",\"symptoms\":[\"Forward Collision Avoidance unintended activation\",\"Automatic Emergency Braking engaged and greatly reduced speed\",\"No warning lights illuminated\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"Forward Collision Avoidance\"},{\"kind\":\"symptom\",\"quote\":\"unintendedly activated\"},{\"kind\":\"symptom\",\"quote\":\"Automatic Emergency Braking system engaged, greatly reducing the speed\"},{\"kind\":\"condition\",\"quote\":\"while driving at an undisclosed speed, with no other vehicles or objects nearby\"},{\"kind\":\"other\",\"quote\":\"No warning lights were illuminated\"},{\"kind\":\"safety\",\"quote\":\"greatly reducing the speed\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize. Need read report. Component Forward Collision Avoidance, group adas. Symptoms: unintended activation of Forward Collision Avoidance; Automatic Emergency Braking engaged reducing speed; no warning lights; dealer unable diagnose. Conditions? while driving at undisclosed speed, no other vehicles/objects nearby. Safety relevant? It activated unintendedly and greatly reduced speed—risk? The prompt says safety_relevant when mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. Unintended AEB reducing speed at speed could be risk? It says \"greatly reducing the speed\" while driving, no loss control, no crash. Is that another risk to people? Unintended braking at speed is safety risk. But source says safety_relevant false. We should set based on report. It mentions no crash but unintended automatic emergency braking at speed could be risk. The instruction says \"or another risk to people\" — I'd set true? Need decide. The report itself says safety_relevant false from source. But intake should set when mentions risk. It did not mention crash/fire/etc. \"greatly reducing the speed\" is a risk? Hm. It is an unintended activation of AEB, could cause rear-end collision. But not explicit. The rule says set when report mentions ... or another risk to people. It doesn't explicitly mention risk, but action is risk. We need not invent. I'd likely set true because unintended emergency braking at driving speed is safety relevant. But maybe they expect false because source field false and no explicit safety terms. Need careful.\n\nNeed include clues verbatim. Must copy exact spans from narrative. We can quote:\n- \"Forward Collision Avoidance system unintendedly activated\"\n- \"Automatic Emergency Braking system engaged, greatly reducing the speed before returning to normal functionality\"\n- \"No warning lights were illuminated\"\n- \"while driving at an undisclosed speed, with no other vehicles or objects nearby\"\nMaybe condition \"driving\" not list? Conditions allowed: cold, moisture, heat, vibration, intermittent, after service, charging. None apply. Could be [\"intermittent\"]? It occurred once, returned normal; not intermittent? Not explicitly. Conditions list empty.\n\nFault codes none.\n\nMissing_info: date? Received date present, failure date not. Mileage present. Component present. Symptom present. Conditions? Driving at undisclosed speed—conditions missing? The analysis needs conditions; conditions like weather/road? Report says no other vehicles/objects nearby but speed undisclosed. Missing info could [\"date\", \"conditions\"]? Date of incident not provided; received_at is report date. The schema says missing_info facts analysis needs: component, symptom, conditions, mileage, date. Component/symptom/mileage present. Date missing (failure date). Conditions maybe driving at undisclosed speed, no other objects; but environmental conditions not. Should include \"date\" and maybe \"conditions\" because speed undisclosed? Conditions refers cold/moisture etc; not provided. I'd include [\"date\", \"conditions\"]. But conditions list in output would be empty. That's okay. Could include speed? not allowed. Missing_info only those tokens.\n\nSummary one line: component, symptom, conditions. \"2019 Audi Q5 Forward Collision Avoidance unintended activation with Automatic Emergency Braking engaging and reducing speed while driving with no nearby objects; no warning lights.\" Need mention 2019 vs year field 2018 inconsistency? Report says 2019 Audi Q5, year field 2018. Should we flag? Not in missing_info allowed. Could summary use report's 2019? The report says 2019. But user data year 2018. Hmm. We should not invent; quote 2019. Maybe summary \"Audi Q5 Forward Collision Avoidance...\" no year. The component group is adas.\n\nNeed JSON no markdown. Ensure all quotes exact. Let's craft.\n\nSafety_relevant: Need decide. I lean true due unintended AEB greatly reducing speed at driving speed = safety risk. But source says false. The prompt says set when report mentions crash, fire, smoke, injury, loss of control, a stall at speed or another risk to people. \"greatly reducing the speed\" could be a risk, but does it mention risk? Not explicitly. The instruction \"or another risk to people\" could encompass unintended braking. If set true, not inventing; infer risk. If set false, ignore potential. The desk likely wants safety flag if potential. Hmm.\n\nWe can include clue kind safety with quote \"greatly reducing the speed\" if true. If false no safety clue. The \"safety_relevant\" field in input false may be source metadata, but we should normalize. I'd set true because automatic emergency braking at speed with no obstacle can cause loss of control/rear-end. But is that \"mentions\"? It doesn't mention collision risk. However \"unintendedly activated\" and \"greatly reducing the speed\" is a hazard. I'll set true. But final answer desired? Need follow prompt. I'll set true and clue \"greatly reducing the speed\". If evaluator expects false? Hmm.\n\nLet's revisit exact: \"Set safety_relevant when the report mentions a crash, fire, smoke, injury, loss of control, a stall at speed or another risk to people.\" It says mentions a risk. The report does not say \"risk\" or \"danger\". But \"greatly reducing the speed\" is not a mention of risk, it's a consequence. Another risk to people could be implicit. The instruction says do not invent facts. Safety relevance is an assessment. Hmm.\n\nGiven NHTSA report about unintended AEB is safety-related. I'd set true. The source field false might be a distractor. We can phrase summary not overstate. Good.\n\nClues:\n- {\"kind\":\"component_group\",\"quote\":\"Forward Collision Avoidance\"}\n- {\"kind\":\"symptom\",\"quote\":\"unintendedly activated\"}\n- {\"kind\":\"symptom\",\"quote\":\"Automatic Emergency Braking system engaged, greatly reducing the speed\"}\n- {\"kind\":\"condition\",\"quote\":\"while driving at an undisclosed speed, with no other vehicles or objects nearby\"} Is this a condition? It is operating condition. Allowed conditions list doesn't include driving, but kind condition can have quote. Conditions array should only allowed? The schema conditions list with allowed values. If none, empty. But clue kind condition can quote the driving context. Is that okay? Yes kind condition. But if conditions array empty, clue condition might imply a condition. Hmm. Could include condition clue with exact quote, but conditions array no allowed value. That's okay? The clue kind \"condition\" can be general. But conditions array must be from allowed set. I can include quote \"while driving at an undisclosed speed, with no other vehicles or objects nearby\" as condition context. Good.\n- {\"kind\":\"symptom\",\"quote\":\"No warning lights were illuminated\"} Is no warning lights a symptom/other? It is observation. Maybe kind other.\n- {\"kind\":\"other\",\"quote\":\"dealer, who was unable to diagnose the failure\"} maybe not necessary.\n- safety clue if true: {\"kind\":\"safety\",\"quote\":\"greatly reducing the speed\"} but same quote already symptom. Could use \"unintendedly activated\" as safety? Hmm. Need not include safety clue? It asks clues list kind includes safety. Include \"greatly reducing the speed\" kind safety maybe duplicate. That's okay.\n\nNeed ensure quote \"Automatic Emergency Braking system engaged, greatly reducing the speed\" exact: narrative: \"the Forward Collision Avoidance: Automatic Emergency Braking system engaged, greatly reducing the speed before returning to normal functionality.\" It includes colon. Our quote \"Automatic Emergency Braking system engaged, greatly reducing the speed\" is verbatim substring? Yes after colon and space. Good.\n\nQuote \"unintendedly activated\" exact? Narrative: \"Forward Collision Avoidance system unintendedly activated.\" Yes.\n\nQuote \"No warning lights were illuminated\" exact.\n\nSummary: \"Audi Q5 Forward Collision Avoidance unintendedly activated while driving with no nearby objects; Automatic Emergency Braking engaged and greatly reduced speed; no warning lights.\" Good.\n\nNeed maybe mention no diagnosis. Fine.\n\nMissing_info: [\"date\", \"conditions\"]? Is \"conditions\" missing? We have no weather/road. But allowed conditions array empty. Date missing. Maybe speed undisclosed is not in allowed. I'll include [\"date\", \"conditions\"] because conditions not specified and speed undisclosed. Could \"conditions\" be considered present? The report says driving, no objects nearby. Not environmental. I'd include conditions. The rule says use empty when nothing important missing. Date important? Yes for analysis. Conditions maybe. Good.\n\nNeed output valid JSON. No markdown. Let's final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529278,
+      "id": "c009cf1bd533115416253097adbd8245",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2053,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1849,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00076047,
+          "billing_source": "go",
+          "list_cost": 0.00126745,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 230,
+            "output": 2053,
+            "reasoning": 1849
+          }
+        },
+        "prompt_tokens": 614,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2667
+      }
+    },
+    "text": "{\"summary\":\"Audi Q5 Forward Collision Avoidance unintendedly activated while driving with no nearby objects; Automatic Emergency Braking engaged and greatly reduced speed; no warning lights.\",\"group\":\"adas\",\"symptoms\":[\"Forward Collision Avoidance unintended activation\",\"Automatic Emergency Braking engaged and greatly reduced speed\",\"No warning lights illuminated\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"Forward Collision Avoidance\"},{\"kind\":\"symptom\",\"quote\":\"unintendedly activated\"},{\"kind\":\"symptom\",\"quote\":\"Automatic Emergency Braking system engaged, greatly reducing the speed\"},{\"kind\":\"condition\",\"quote\":\"while driving at an undisclosed speed, with no other vehicles or objects nearby\"},{\"kind\":\"other\",\"quote\":\"No warning lights were illuminated\"},{\"kind\":\"safety\",\"quote\":\"greatly reducing the speed\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00076047,
+      "cached_tokens": 384,
+      "cost_usd": 0.00126745,
+      "input_tokens": 614,
+      "list_cost_usd": 0.00126745,
+      "output_tokens": 2053,
+      "reasoning_tokens": 1849
+    }
+  }
+}

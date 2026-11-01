@@ -1,0 +1,66 @@
+{
+  "key": "5e255f26fe403719f5f5812d81e269b9232b26b533a1c8ec8be4cd495aa16b60",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10771,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2025 Nissan Rogue electrical system fire after commute while parked; no dash warnings; engine compartment near battery.\",\"group\":\"electrical_general\",\"symptoms\":[\"vehicle caught fire\",\"no warning signs on the dash\",\"fire started in the engine compartment near the battery\",\"fire intensified and melted the hood\",\"windshield shattered\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"conditions\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"caught fire after my hour commute to work\"},{\"kind\":\"symptom\",\"quote\":\"no warning signs on the dash\"},{\"kind\":\"symptom\",\"quote\":\"fire started in the engine compartment, near the battery\"},{\"kind\":\"safety\",\"quote\":\"car was up in flames\"},{\"kind\":\"safety\",\"quote\":\"got hot enough to melt the hood\"},{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"}]}",
+            "reasoning_content": "We need to produce JSON only. Need parse report. Component: ELECTRICAL SYSTEM, group electrical_general. Symptoms: caught fire, no warning signs, fire started engine compartment near battery. Conditions: none explicit? \"after hour commute to work\" parked, within few minutes. Cold/moisture/heat? Fire = heat? Conditions list allowed: \"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\". Report mentions fire, hot enough to melt hood. Could include \"heat\" as condition? It's a consequence not condition. Better conditions empty? But maybe \"after service\" no. \"intermittent\" no. \"charging\" no. So [].\n\nFault codes: none. Safety relevant true (fire, flames). Missing_info: component? Given component electrical system. Symptom given. Conditions maybe missing? Mileage: narrative says approximately 12,000 miles but mileage field null. Date: November 17, received_at. Missing_info: mileage? Actually report narrative includes approx 12,000 miles, so not missing. Date included Nov 17. Conditions? Could list \"conditions\" missing? But analysis needs conditions. However fire conditions maybe not. Missing info: maybe none? Let's think. The report provides component, symptom, date, mileage approximate. Conditions not explicit (parked after commute) but enough. Missing_info empty.\n\nClues: verbatim spans. Need quote exact. \"caught fire after my hour commute to work\" exact? Narrative: \"On November 17, my 2025 Nissan Rogue caught fire after my hour commute to work.\" Quote \"caught fire after my hour commute to work\" is verbatim substring? Yes from \"caught fire after my hour commute to work.\" It includes caught fire... Good. \"no warning signs on the dash\" exact. \"fire started in the engine compartment, near the battery\" exact? Narrative: \"The fire started in the engine compartment, near the battery.\" Substring \"fire started in the engine compartment, near the battery\" yes (lowercase f? original \"The fire started...\" contains \"fire started...\" yes). \"within a few minutes a coworker called me to let me know the car was up in flames\" exact? Narrative: \"within a few minutes a coworker called me to let me know the car was up in flames.\" yes. Safety clue quote \"car was up in flames\" exact. \"melt the hood\" exact? \"got hot enough to melt the hood\" yes. Could include component group clue quote \"ELECTRICAL SYSTEM\" from component not narrative? Report includes component field. Rules quote copied from report. It's in report. kind component_group. But clue quote should be verbatim span from report; \"ELECTRICAL SYSTEM\" is exact. Good.\n\nSummary one line: \"2025 Nissan Rogue electrical system fire after commute; parked, no dash warnings, engine compartment near battery.\" Need one line.\n\nGroup: electrical_general.\n\nSymptoms: [\"vehicle caught fire\", \"no warning signs on dash\", \"fire started in engine compartment near battery\", \"fire intensified and melted hood\", \"windshield shattered\"]? Keep plain words. Could include \"fire entered interior\". But symptoms should be symptom. Fine.\n\nConditions: maybe [\"heat\"]? Hmm condition list includes heat. The report says fire got hot enough to melt hood. That's not environmental heat. Do not mislabel. Conditions empty.\n\nSafety_relevant true.\n\nMissing_info: [\"conditions\"]? Let's evaluate rules: List missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. Component is given. Symptom given. Conditions? It says parked after commute, no warnings. But not ambient conditions. The analysis might need conditions but not necessarily. The report has date and mileage. I'd put [] or [\"conditions\"]. Need be careful. The prompt says do not invent. If missing conditions, list. Is \"conditions\" missing? The report doesn't state weather, road, etc. But for fire analysis, conditions could be important. However \"conditions\" in schema means cold/moisture/heat/vibration/intermittent/after service/charging. None mentioned. So maybe missing_info [\"conditions\"]. But since safety fire, conditions less. The instructions: \"List missing_info only for facts the analysis needs: component, symptom, conditions, mileage, date. Use an empty list when nothing important is missing.\" Conditions could be important but not always. For a fire after parking, ambient conditions might matter. I'd include \"conditions\" maybe. But does report mention \"after my hour commute\" = after service? no. \"parked\" not condition category. Hmm.\n\nNeed output only JSON. Ensure valid JSON. Quotes exact. Let's craft.\n\nClues array:\n- kind symptom, quote \"caught fire after my hour commute to work\"\n- kind symptom, quote \"no warning signs on the dash\"\n- kind symptom, quote \"fire started in the engine compartment, near the battery\"\n- kind condition? \"parked the vehicle\" maybe condition? But allowed kind condition. Quote \"parked the vehicle\". Is that condition? It is a condition state. Could include. But conditions list empty? Hmm if clue kind condition quote parked, then conditions should include? Not in allowed conditions. So no.\n- kind safety, quote \"car was up in flames\"\n- kind safety, quote \"got hot enough to melt the hood\"\n- kind component_group, quote \"ELECTRICAL SYSTEM\"\n- kind other, quote \"approximately 12,000 miles\" maybe mileage clue but kind other? Schema kinds include other. But missing info no. Could include. But not necessary.\n\nNeed summary. \"2025 Nissan Rogue (ELECTRICAL SYSTEM) caught fire after commute while parked; no dash warnings; engine compartment near battery.\" Good.\n\nNeed group exactly \"electrical_general\".\n\nPotential issue: JSON \"safety_relevant\": true.\n\nLet's answer.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793532466,
+      "id": "c423b8e3348bf2b6fb6c33e63c1a29e8",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1441,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1242,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0005406,
+          "billing_source": "go",
+          "list_cost": 0.000901,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 235,
+            "output": 1441,
+            "reasoning": 1242
+          }
+        },
+        "prompt_tokens": 619,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2060
+      }
+    },
+    "text": "{\"summary\":\"2025 Nissan Rogue electrical system fire after commute while parked; no dash warnings; engine compartment near battery.\",\"group\":\"electrical_general\",\"symptoms\":[\"vehicle caught fire\",\"no warning signs on the dash\",\"fire started in the engine compartment near the battery\",\"fire intensified and melted the hood\",\"windshield shattered\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"conditions\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"caught fire after my hour commute to work\"},{\"kind\":\"symptom\",\"quote\":\"no warning signs on the dash\"},{\"kind\":\"symptom\",\"quote\":\"fire started in the engine compartment, near the battery\"},{\"kind\":\"safety\",\"quote\":\"car was up in flames\"},{\"kind\":\"safety\",\"quote\":\"got hot enough to melt the hood\"},{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0005406,
+      "cached_tokens": 384,
+      "cost_usd": 0.000901,
+      "input_tokens": 619,
+      "list_cost_usd": 0.000901,
+      "output_tokens": 1441,
+      "reasoning_tokens": 1242
+    }
+  }
+}

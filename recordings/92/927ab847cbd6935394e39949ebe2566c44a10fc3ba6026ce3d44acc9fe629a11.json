@@ -1,0 +1,66 @@
+{
+  "key": "927ab847cbd6935394e39949ebe2566c44a10fc3ba6026ce3d44acc9fe629a11",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 6577,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\": \"Test the cold-dependent transmission hard-shifting/no-movement complaint with a low-temperature cycling test; the wiper recall mismatch is noted but not covered for this VIN.\", \"rationale\": \"The narrative reports hard shifting and possible no movement while the transmission is cold, and the rulebook matches the condition \\\"cold\\\" to a low-temperature cycling test because cold-soak and cold-start behaviour separates a temperature-dependent fault from a permanent one. The wiper concern is described as a recalled version missing a block, but the narrative also states the recall is not for this VIN. No explicit risk to people is shown in the narrative.\", \"group\": \"body_controls\", \"symptoms\": [\"recalled wiper version missing the little block\", \"coolant keeps disappearing\", \"hard shifting while transmission is cold\", \"no movement at all while transmission is cold\"], \"conditions\": [\"cold\"], \"fault_codes\": [], \"safety_relevant\": false, \"targeted\": true, \"test_name\": \"Low-temperature cycling test\", \"clues\": [{\"kind\": \"symptom\", \"quote\": \"Wipers are the recalled version missing the little block.\"}, {\"kind\": \"other\", \"quote\": \"the recall is not for my VIN.\"}, {\"kind\": \"symptom\", \"quote\": \"Coolant keeps disappearing.\"}, {\"kind\": \"symptom\", \"quote\": \"Hard shifting and or no movement at all while transmission is cold.\"}, {\"kind\": \"condition\", \"quote\": \"while transmission is cold\"}]}",
+            "reasoning_content": "We need answer JSON only. Need analyze. Case narrative mentions wipers recalled version missing little block, recall not for VIN, coolant disappearing, hard shifting/no movement cold. Rulebook matched cold -> low-temperature cycling test targeted true. But component group body_controls. Safety? Narrative no explicit risk to people? Wipers failure could safety but no explicit. \"no movement at all while transmission is cold\" potential safety? Safety_relevant false in case. We should set false unless narrative shows risk. Need produce summary, rationale, group, symptoms, conditions, fault_codes, safety_relevant, targeted true, test_name \"Low-temperature cycling test\", clues with verbatim quotes from narrative. Need only quotes from case narrative. We can include symptoms quotes exactly: \"Wipers are the recalled version missing the little block.\" \"Coolant keeps disappearing.\" \"Hard shifting and or no movement at all while transmission is cold.\" condition quote \"while transmission is cold\" is verbatim substring? Narrative: \"Hard shifting and or no movement at all while transmission is cold.\" yes substring. Component group quote maybe \"VISIBILITY/WIPER\" isn't in narrative? Narrative doesn't include component field? It says case narrative. Rule says quote copied verbatim from case narrative. \"VISIBILITY/WIPER\" not in narrative. So don't include component_group clue unless quote from narrative? Could use \"Wipers are the recalled version missing the little block.\" kind symptom. For other maybe \"the recall is not for my VIN.\" exact. Need avoid citing recall id? We can mention recall in rationale? \"recall is not for my VIN\" from narrative. But rulebook match cold. Need concise.\n\nNeed ensure JSON valid. No markdown. Let's craft. targeted true because cold condition matches rulebook. test_name exact. fault_codes [].\n\nClues array:\n{\"kind\":\"symptom\",\"quote\":\"Wipers are the recalled version missing the little block.\"}\n{\"kind\":\"other\",\"quote\":\"the recall is not for my VIN.\"}\n{\"kind\":\"symptom\",\"quote\":\"Coolant keeps disappearing.\"}\n{\"kind\":\"symptom\",\"quote\":\"Hard shifting and or no movement at all while transmission is cold.\"}\n{\"kind\":\"condition\",\"quote\":\"while transmission is cold\"}\n\nMaybe conditions [\"cold\"]. Summary one line.\n\nRationale mention cold-soak/cold-start differentiates temp-dependent transmission fault; wiper recall mismatch noted but not VIN. No safety risk shown.\n\nGroup \"body_controls\". Safety_relevant false. targeted true.\n\nNeed final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793524868,
+      "id": "ff091bac0b968e891f82a7db6fa4f14b",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 857,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 531,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0004239,
+          "billing_source": "go",
+          "list_cost": 0.0007065,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 1282,
+            "output": 857,
+            "reasoning": 531
+          }
+        },
+        "prompt_tokens": 1282,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 2139
+      }
+    },
+    "text": "{\"summary\": \"Test the cold-dependent transmission hard-shifting/no-movement complaint with a low-temperature cycling test; the wiper recall mismatch is noted but not covered for this VIN.\", \"rationale\": \"The narrative reports hard shifting and possible no movement while the transmission is cold, and the rulebook matches the condition \\\"cold\\\" to a low-temperature cycling test because cold-soak and cold-start behaviour separates a temperature-dependent fault from a permanent one. The wiper concern is described as a recalled version missing a block, but the narrative also states the recall is not for this VIN. No explicit risk to people is shown in the narrative.\", \"group\": \"body_controls\", \"symptoms\": [\"recalled wiper version missing the little block\", \"coolant keeps disappearing\", \"hard shifting while transmission is cold\", \"no movement at all while transmission is cold\"], \"conditions\": [\"cold\"], \"fault_codes\": [], \"safety_relevant\": false, \"targeted\": true, \"test_name\": \"Low-temperature cycling test\", \"clues\": [{\"kind\": \"symptom\", \"quote\": \"Wipers are the recalled version missing the little block.\"}, {\"kind\": \"other\", \"quote\": \"the recall is not for my VIN.\"}, {\"kind\": \"symptom\", \"quote\": \"Coolant keeps disappearing.\"}, {\"kind\": \"symptom\", \"quote\": \"Hard shifting and or no movement at all while transmission is cold.\"}, {\"kind\": \"condition\", \"quote\": \"while transmission is cold\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0004239,
+      "cached_tokens": 0,
+      "cost_usd": 0.0007065,
+      "input_tokens": 1282,
+      "list_cost_usd": 0.0007065,
+      "output_tokens": 857,
+      "reasoning_tokens": 531
+    }
+  }
+}

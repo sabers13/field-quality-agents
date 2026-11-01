@@ -1,0 +1,66 @@
+{
+  "key": "0b510ddca02a3bb3bd1b10d9815c13a3d0a7dc3679df5e1de94e00d3e77dc2aa",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 16929,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"2019 Nissan Leaf electrical system recall 24V700000; fast charge cannot be used due to unrepaired recall, parts unavailable over 1.5 years, no failure reported.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\"cannot use fast charge because of unrepaired recall\"],\n  \"conditions\": [\"charging\"],\n  \"fault_codes\": [\"24V700000\"],\n  \"safety_relevant\": false,\n  \"missing_info\": [\"mileage\", \"date\"],\n  \"clues\": [\n    {\"kind\": \"component_group\", \"quote\": \"Electrical System\"},\n    {\"kind\": \"fault_code\", \"quote\": \"24V700000\"},\n    {\"kind\": \"symptom\", \"quote\": \"not to be able to use the fast charge\"},\n    {\"kind\": \"condition\", \"quote\": \"fast charge\"},\n    {\"kind\": \"other\", \"quote\": \"The contact had not experienced a failure.\"},\n    {\"kind\": \"other\", \"quote\": \"the parts had not been available for more than a year and a half\"}\n  ]\n}",
+            "reasoning_content": "We need answer JSON only. Need normalize report. Component electrical system group electrical_general given. Narrative: 2019 Nissan Leaf, recall 24V700000 Electrical System, part unavailable >1.5 years, inconvenience not able to use fast charge because unrepaired recall, no failure experienced. Need summary one line component symptom conditions. Symptoms? No failure. Maybe symptom \"fast charge unavailable due to unrepaired recall\"? But contact stated inconvenience not able to use fast charge. Is that symptom? Report says had not experienced a failure. Conditions? \"charging\" maybe fast charge use. fault_codes: campaign number? It says NHTSA Campaign Number: 24V700000 (Electrical System). Is that a fault code? It's recall campaign number, not fault code. Prompt says fault_codes code if report names one. Could include 24V700000? It is a campaign number not fault code. Better maybe empty list? But \"fault_codes\": [\"24V700000\"]? Hmm field says fault_codes: code if report names one. A recall campaign number is a code named. But kind fault_code? likely include? Need evidence quote. Safety false. missing_info: mileage? date? conditions? component? symptom? The report lacks mileage, date of incident? received date present. Component present. Symptom? It says no failure. Conditions? The condition is recall part unavailable; fast charge cannot be used. Missing info maybe mileage and date? Analysis needs mileage/date. Date? received_at given but no incident date. Include \"mileage\", \"date\"? Maybe \"symptom\" because no failure experienced? But report states no failure; no symptom. Need missing_info only facts analysis needs. The case is recall parts unavailable; component and symptom? Symptom is no failure, maybe no symptom. Could list \"mileage\", \"date\". But date received is 2025-11-17. The report narrative no event date. Include \"mileage\",\"date\". Maybe conditions? condition \"charging\" present as fast charge. Hmm.\n\nNeed clues verbatim quotes. Need ensure exact substrings. Narrative: \"The contact owns a 2019 Nissan Leaf. The contact received notification of NHTSA Campaign Number: 24V700000 (Electrical System); however, the part to the recall repair was unavailable. The dealer was contacted; however, the contact was informed that parts were unavailable. The contact stated that the parts had not been available for more than a year and a half. In addition, the contact stated it was an inconvenience not to be able to use the fast charge because of the unrepaired recall. The manufacturer was not contacted. The contact had not experienced a failure.\"\n\nQuotes:\n- component_group: \"Electrical System\" or \"ELECTRICAL SYSTEM\"? Report component field uppercase but narrative has \"(Electrical System)\". We can quote \"Electrical System\".\n- fault_code: \"24V700000\" verbatim yes.\n- symptom: \"not to be able to use the fast charge\" exact? Narrative: \"it was an inconvenience not to be able to use the fast charge because of the unrepaired recall.\" Quote can be \"not to be able to use the fast charge\". It is verbatim.\n- condition: \"because of the unrepaired recall\" maybe condition? Condition categories include charging. Quote \"fast charge\" for charging. Condition \"unrepaired recall\" other? We need kind condition quote \"fast charge\" exact. But condition list includes \"charging\", not \"fast charge\". That's okay.\n- other: \"The contact had not experienced a failure.\" as no failure. Kind other. Could include.\n- safety? no.\n\nNeed summary one line: \"2019 Nissan Leaf electrical system recall 24V700000; fast charge unavailable due to unrepaired recall and parts unavailable, no failure.\" Good.\n\nNeed group \"electrical_general\" given. Symptoms array: maybe [\"fast charge unavailable due to unrepaired recall\"]? But symptom plain words. Could say [\"cannot use fast charge because of unrepaired recall\"]? Is that invent? It's in report. But no failure. Maybe \"none reported (no failure experienced)\" as symptom? The schema expects symptoms list. Could include \"no failure experienced\" but that's not symptom. Maybe symptoms: [] because no failure. But report has inconvenience. Hmm field-quality report for recall parts. The symptom is inability to use fast charge due to unrepaired recall. But \"not able to use fast charge\" is not a vehicle failure; it's consequence of recall. We can include as symptom? The task: normalise incoming field-quality report. \"symptoms\": [\"symptom in plain words\"]. It says report had not experienced a failure. So symptoms could be [] and clue \"The contact had not experienced a failure.\" as other. But then missing_info includes symptom? Hmm.\n\nConditions: [\"charging\"] because fast charge mentioned. Maybe \"after service\"? no. \"intermittent\"? no. \"cold\" etc no. Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. Since fast charge inability, condition \"charging\". Need clue quote \"fast charge\".\n\nFault codes: Should we include 24V700000? It's named code. The field is fault_codes; but recall campaign number. Could put [\"24V700000\"]. Clue kind fault_code quote \"24V700000\". Good. Even though not a diagnostic trouble code. It is a code in report. But maybe \"fault_codes\" only for DTC; however prompt says code if report names one. Include.\n\nSafety false. Could there be safety relevant? No crash/fire etc. Recall electrical system might be safety but report doesn't mention risk. Set false.\n\nMissing_info: mileage is null. Date? received_at present but narrative lacks incident date. Conditions? We have charging. Component present. Symptom? no failure; maybe not missing. Include [\"mileage\",\"date\"] maybe. But missing_info allowed only component, symptom, conditions, mileage, date. We can list mileage and date. Should we list \"symptom\" because no failure? The report explicitly says no failure, so no symptom to capture. Not missing. But if analysis needs symptom, no symptom. Hmm.\n\nNeed answer JSON no other text. Ensure quotes exact character. Need check quote \"The contact had not experienced a failure.\" exact yes includes period. \"not to be able to use the fast charge\" exact substring? Narrative: \"it was an inconvenience not to be able to use the fast charge because...\" yes.\n\"The contact stated that the parts had not been available for more than a year and a half.\" exact yes.\n\"NHTSA Campaign Number: 24V700000 (Electrical System)\" exact? Narrative: \"notification of NHTSA Campaign Number: 24V700000 (Electrical System); however...\" yes. Use quote \"24V700000\" exact.\n\"fast charge\" exact.\n\"Electrical System\" exact.\nMaybe clue other \"The contact had not experienced a failure.\" exact.\nNeed maybe clue condition \"parts had not been available for more than a year and a half\" as other? Kind condition? It is condition of parts unavailable. Could include kind \"other\" or \"condition\". But conditions list doesn't include parts unavailable. Use other.\n\nNeed summary one line no newline? JSON string can include. Fine.\n\nNeed decide symptoms. If include symptom array maybe [\"fast charge unavailable due to unrepaired recall\"]. Clue quote \"not to be able to use the fast charge\". This is okay. But summary says no failure. The report explicitly \"had not experienced a failure\"; however inability to fast charge is inconvenience. For field-quality, could be symptom \"cannot use fast charge due to unrepaired recall\". But that's not component failure. Hmm.\n\nMaybe symptoms: [] and missing_info [\"mileage\",\"date\",\"symptom\"]? But there is no symptom because no failure; missing_info says facts analysis needs. It might need symptom; but report says none. Not missing? If no symptom, cannot analyze. But missing_info only for facts not supplied; symptom is explicitly none. So no.\n\nLet's produce:\n{\n \"summary\": \"2019 Nissan Leaf electrical system recall 24V700000; fast charge cannot be used due to unrepaired recall, parts unavailable over 1.5 years, no failure reported.\",\n \"group\": \"electrical_general\",\n \"symptoms\": [\"cannot use fast charge because of unrepaired recall\"],\n \"conditions\": [\"charging\"],\n \"fault_codes\": [\"24V700000\"],\n \"safety_relevant\": false,\n \"missing_info\": [\"mileage\", \"date\"],\n \"clues\": [\n  {\"kind\":\"component_group\",\"quote\":\"Electrical System\"},\n  {\"kind\":\"fault_code\",\"quote\":\"24V700000\"},\n  {\"kind\":\"symptom\",\"quote\":\"not to be able to use the fast charge\"},\n  {\"kind\":\"condition\",\"quote\":\"fast charge\"},\n  {\"kind\":\"other\",\"quote\":\"The contact had not experienced a failure.\"},\n  {\"kind\":\"other\",\"quote\":\"the parts had not been available for more than a year and a half\"}\n ]\n}\nNeed quote \"the parts had not been available for more than a year and a half\" exact? Narrative: \"The contact stated that the parts had not been available for more than a year and a half.\" substring starts lowercase \"the parts...\" yes exact after \"that \". Good.\n\nCheck symptoms plain words: \"cannot use fast charge because of unrepaired recall\" okay.\n\nNeed maybe include summary \"no failure\" but symptoms says cannot use fast charge; contradiction maybe not. Fine.\n\nNeed only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793532189,
+      "id": "70232515291c5df0162511dfea4bf87b",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2237,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 2001,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00082563,
+          "billing_source": "go",
+          "list_cost": 0.00137605,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 218,
+            "output": 2237,
+            "reasoning": 2001
+          }
+        },
+        "prompt_tokens": 602,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2839
+      }
+    },
+    "text": "{\n  \"summary\": \"2019 Nissan Leaf electrical system recall 24V700000; fast charge cannot be used due to unrepaired recall, parts unavailable over 1.5 years, no failure reported.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\"cannot use fast charge because of unrepaired recall\"],\n  \"conditions\": [\"charging\"],\n  \"fault_codes\": [\"24V700000\"],\n  \"safety_relevant\": false,\n  \"missing_info\": [\"mileage\", \"date\"],\n  \"clues\": [\n    {\"kind\": \"component_group\", \"quote\": \"Electrical System\"},\n    {\"kind\": \"fault_code\", \"quote\": \"24V700000\"},\n    {\"kind\": \"symptom\", \"quote\": \"not to be able to use the fast charge\"},\n    {\"kind\": \"condition\", \"quote\": \"fast charge\"},\n    {\"kind\": \"other\", \"quote\": \"The contact had not experienced a failure.\"},\n    {\"kind\": \"other\", \"quote\": \"the parts had not been available for more than a year and a half\"}\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00082563,
+      "cached_tokens": 384,
+      "cost_usd": 0.00137605,
+      "input_tokens": 602,
+      "list_cost_usd": 0.00137605,
+      "output_tokens": 2237,
+      "reasoning_tokens": 2001
+    }
+  }
+}

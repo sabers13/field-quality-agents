@@ -1,0 +1,66 @@
+{
+  "key": "93347b9156083634153cc65f08fb3b40d5769d5d2c277e5b9226ce0d1a17ca46",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12791,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Electrical system: manufacturer-acknowledged flawed fuel pump, ongoing frequent electrical issues, potential sudden loss of power while driving.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"fuel pump is flawed per manufacturer\",\n    \"ongoing electrical issues with no main source found\",\n    \"electrical issues becoming frequent\",\n    \"no direct warning lamp or message\",\n    \"potential sudden loss of power while driving\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\",\n    \"conditions\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"THE FUEL PUMP\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"THE MANUFACTER HAS ACKNOWLEDGED THAT THE FUEL PUMP IS FLAWED.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"ELECTRICAL ISSUES HAVE BEEN AN ONGOING PROBLEM\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"THE ELECTRICAL ISSUES ARE BECOMING FRECUENT\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"NO DIRECT WARNING OR MESSAGE\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"A SUDDEN LOSS OF POWER WHILE DRIVING COULD LEAD TO A DANGEROUS SITUATION ON THE ROAD.\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"IS SIGNIFICANT SAFETLY CONCERN FOR ME, MY PASSANGERS AND OTHERS IN THE ROAD AS WELL.\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer JSON only. Need normalize report. Component electrical system, group given electrical_general. Narrative mentions fuel pump flawed, sudden loss of power, electrical issues ongoing, no warning. Need summary one line component symptom conditions. Conditions? \"intermittent\"? ongoing/frequent electrical issues; no direct cold/moisture etc. Could include intermittent? The report says electrical issues becoming frequent, ongoing. Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. We can include \"intermittent\" maybe because ongoing/frequent not exactly intermittent. But \"sudden loss of power\" potential risk not confirmed symptom? Need not invent. Symptoms: fuel pump flawed per manufacturer; potential sudden loss of power; electrical issues ongoing/frequent; no direct warning/message. Safety_relevant true because loss of power while driving dangerous, significant safety concern. Fault_codes none. Missing_info: mileage (null), date? received date exists but incident date missing? Rule list date. Mileage missing. Conditions maybe missing? component given. Symptom present. We should list mileage, date? The analysis needs date; report has received_at but no occurrence date. So missing_info [\"mileage\",\"date\"]. Maybe conditions missing too? But conditions can be inferred? no. Since report doesn't mention cold etc. Could include conditions? The schema asks missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Conditions missing maybe yes. But maybe don't overdo. Need clues with verbatim quotes. Must copy exact spans. Need ensure quotes exact character for character from narrative. We can quote substrings. Need be careful with spelling. Let's identify exact spans:\n\n\"THE MANUFACTER HAS ACKNOWLEDGED THAT THE FUEL PUMP IS FLAWED.\"\n\"A SUDDEN LOSS OF POWER WHILE DRIVING COULD LEAD TO A DANGEROUS SITUATION ON THE ROAD.\"\n\"ELECTRICAL ISSUES HAVE BEEN AN ONGOING PROBLEM\"\n\"THE ELECTRICAL ISSUES ARE BECOMING FRECUENT\"\n\"NO DIRECT WARNING OR MESSAGE\"\n\"IS SIGNIFICANT SAFETLY CONCERN FOR ME, MY PASSANGERS AND OTHERS IN THE ROAD AS WELL.\" exact? Narrative: \"IS SIGNIFICANT SAFETLY CONCERN FOR ME, MY PASSANGERS AND OTHERS IN THE ROAD AS WELL.\" Yes.\n\"THE DEALERSHIP IS AWARE OF THIS ISSUE.\" maybe component? not necessary.\n\"VEHICLE HAS NOT BEEN FURTHER INSPECTED\" no.\n\nNeed clues kind mapping. For symptom: fuel pump flawed, electrical issues ongoing, no warning. condition: intermittent? Need quote for condition maybe \"THE ELECTRICAL ISSUES ARE BECOMING FRECUENT\" could be condition intermittent? Hmm kind condition quote. But \"frequent\" not \"intermittent\". Could include condition \"intermittent\" based on ongoing/frequent? Maybe no. Conditions list can be empty? But schema says conditions array. We can set [] if no explicit. But symptom \"sudden loss of power\" is potential risk not actual symptom. Could include as symptom because report says could lead. Hmm.\n\nSummary: \"Electrical system / fuel pump: manufacturer-acknowledged flawed fuel pump with ongoing frequent electrical issues and potential sudden loss of power while driving.\" That includes component and symptom and conditions. Conditions: \"while driving\" not allowed. Maybe conditions: [\"intermittent\"]? But conditions should be from allowed list. Is \"ongoing/frequent\" intermittent? I'd include \"intermittent\" as conditions? It's a stretch. Maybe use conditions: [] to avoid inventing. But summary says frequent. Maybe conditions list should include \"intermittent\" because electrical issues becoming frequent, not intermittent. Better conditions [].\n\nSafety_relevant true. Missing info: mileage, date, conditions? Maybe component? no. Since no specific occurrence date and mileage null. Conditions missing? The report doesn't specify when/under what conditions. Include \"conditions\" maybe. But \"conditions\" could include driving? It says while driving. Hmm. The analysis needs conditions; include \"conditions\" missing? It mentions while driving as potential. But conditions like cold/moisture not. We can include \"mileage\",\"date\",\"conditions\". But missing_info allowed list. Good.\n\nNeed JSON no other text. Ensure quotes verbatim. Need maybe group \"electrical_general\" because given group. Use that.\n\nLet's craft:\n\n{\n \"summary\": \"Electrical system: manufacturer-acknowledged flawed fuel pump, ongoing frequent electrical issues, potential sudden loss of power while driving.\",\n \"group\": \"electrical_general\",\n \"symptoms\": [\"fuel pump is flawed per manufacturer\", \"ongoing electrical issues with no main source found\", \"electrical issues becoming frequent\", \"no direct warning lamp or message\", \"potential sudden loss of power while driving\"],\n \"conditions\": [],\n \"fault_codes\": [],\n \"safety_relevant\": true,\n \"missing_info\": [\"mileage\",\"date\",\"conditions\"],\n \"clues\": [\n  {\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"}? Wait quote must from report. \"ELECTRICAL SYSTEM\" is in component field, not narrative? The report includes component field. It says read report; quote verbatim from report. Could quote \"ELECTRICAL SYSTEM\" from component value. But clues should be from narrative? It says report. Okay but maybe safer use narrative quotes. For component_group quote \"THE FUEL PUMP\" or \"ELECTRICAL ISSUES\". Hmm kind component_group quote \"THE FUEL PUMP\" exact substring. Good.\n  {\"kind\":\"symptom\",\"quote\":\"THE MANUFACTER HAS ACKNOWLEDGED THAT THE FUEL PUMP IS FLAWED.\"}\n  {\"kind\":\"symptom\",\"quote\":\"ELECTRICAL ISSUES HAVE BEEN AN ONGOING PROBLEM\"}\n  {\"kind\":\"symptom\",\"quote\":\"THE ELECTRICAL ISSUES ARE BECOMING FRECUENT\"}\n  {\"kind\":\"symptom\",\"quote\":\"NO DIRECT WARNING OR MESSAGE\"}\n  {\"kind\":\"safety\",\"quote\":\"A SUDDEN LOSS OF POWER WHILE DRIVING COULD LEAD TO A DANGEROUS SITUATION ON THE ROAD.\"}\n  {\"kind\":\"safety\",\"quote\":\"IS SIGNIFICANT SAFETLY CONCERN FOR ME, MY PASSANGERS AND OTHERS IN THE ROAD AS WELL.\"}\n ]\n}\n\nNeed check quote \"THE MANUFACTER HAS ACKNOWLEDGED THAT THE FUEL PUMP IS FLAWED.\" exact yes. \"ELECTRICAL ISSUES HAVE BEEN AN ONGOING PROBLEM\" exact? Narrative: \"ELECTRICAL ISSUES HAVE BEEN AN ONGOING PROBLEM BUT NO MAIN SOURCE HAVE EVER BEEN FOUND\" yes exact substring. \"THE ELECTRICAL ISSUES ARE BECOMING FRECUENT\" exact yes. \"NO DIRECT WARNING OR MESSAGE\" exact? Narrative: \"NO DIRECT WARNING OR MESSAGE HOWEVER\" yes. Good.\n\nShould we include \"condition\" clue for \"WHILE DRIVING\"? kind condition maybe? Conditions list doesn't include driving. Not allowed. No.\n\nNeed maybe fault_codes [] no codes. Safety true. Missing info includes mileage/date/conditions. Does missing_info need component? component present. symptom present.\n\nNeed final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531954,
+      "id": "9fa4eae41bc72161d42d6a0b88145641",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1977,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1576,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00075714,
+          "billing_source": "go",
+          "list_cost": 0.0012619,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 497,
+            "output": 1977,
+            "reasoning": 1576
+          }
+        },
+        "prompt_tokens": 881,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2858
+      }
+    },
+    "text": "{\n  \"summary\": \"Electrical system: manufacturer-acknowledged flawed fuel pump, ongoing frequent electrical issues, potential sudden loss of power while driving.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"fuel pump is flawed per manufacturer\",\n    \"ongoing electrical issues with no main source found\",\n    \"electrical issues becoming frequent\",\n    \"no direct warning lamp or message\",\n    \"potential sudden loss of power while driving\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\",\n    \"conditions\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"THE FUEL PUMP\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"THE MANUFACTER HAS ACKNOWLEDGED THAT THE FUEL PUMP IS FLAWED.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"ELECTRICAL ISSUES HAVE BEEN AN ONGOING PROBLEM\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"THE ELECTRICAL ISSUES ARE BECOMING FRECUENT\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"NO DIRECT WARNING OR MESSAGE\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"A SUDDEN LOSS OF POWER WHILE DRIVING COULD LEAD TO A DANGEROUS SITUATION ON THE ROAD.\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"IS SIGNIFICANT SAFETLY CONCERN FOR ME, MY PASSANGERS AND OTHERS IN THE ROAD AS WELL.\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00075714,
+      "cached_tokens": 384,
+      "cost_usd": 0.0012619,
+      "input_tokens": 881,
+      "list_cost_usd": 0.0012619,
+      "output_tokens": 1977,
+      "reasoning_tokens": 1576
+    }
+  }
+}

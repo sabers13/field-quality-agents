@@ -1,0 +1,66 @@
+{
+  "key": "260404dd8abb68b279d82cef70c003f10d467a75e5915e26366f52583f206294",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11275,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Forward collision avoidance warnings: unintended automatic braking in stop-and-go traffic on 4 occasions, stopping the car until accelerator pressed, with seatbelt injury and near misses.\",\"group\":\"adas\",\"symptoms\":[\"unintended automatic braking\",\"vehicle slams to a complete stop\",\"vehicle will not move until accelerator pressed\",\"seatbelt caught occupant hard, causing shoulder and neck pain\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: WARNINGS\"},{\"kind\":\"condition\",\"quote\":\"This braking issue happened on 4 occasions.\"},{\"kind\":\"symptom\",\"quote\":\"While in stop and go traffic I would be braking, nursing the brakes the car would take over and slam me to a complete stop.\"},{\"kind\":\"symptom\",\"quote\":\"It would not go again until I hit the gas.\"},{\"kind\":\"safety\",\"quote\":\"On two of those occasions the car behind me had to move into the nxt lane or over to the shoulder.\"},{\"kind\":\"safety\",\"quote\":\"The last time the seatbelt caught me so hard I had shoulder and neck pain for about 3 weeks\"},{\"kind\":\"safety\",\"quote\":\"the poor guy behind me almost hit the wall on the shoulder\"}]}",
+            "reasoning_content": "We need answer only JSON object. Need normalize. Report component forward collision avoidance warnings group adas. Symptoms: braking issue, car takes over and slams to complete stop during stop-and-go braking/nursing brakes; won't go until gas; seatbelt caught hard causing shoulder/neck pain; car behind had to move lanes/shoulder; near collision with wall. Conditions: stop and go traffic? \"conditions\" allowed list: cold, moisture, heat, vibration, intermittent, after service, charging. Report mentions 4 occasions, stop and go traffic. Intermittent? It happened on 4 occasions, yes intermittent. Maybe \"after service\" because took to Honda after first two incidences? But that's not condition causing? Could include after service? Hmm conditions categories constrained. We can include \"intermittent\" because 4 occasions. Maybe not stop and go as not in list. Fault codes none. Safety relevant true. Missing info: mileage null, date? received_at exists but incident date missing. Component present, symptom present, conditions? Conditions maybe stop and go but not in allowed list. Missing mileage and date. Need clues verbatim. Ensure quotes exactly from narrative. Quotes:\n- \"This braking issue happened on 4 occasions.\" (symptom/condition intermittent)\n- \"While in stop and go traffic I would be braking, nursing the brakes the car would take over and slam me to a complete stop.\" (symptom/condition)\n- \"It would not go again until I hit the gas.\" (symptom)\n- \"On two of those occasions the car behind me had to move into the nxt lane or over to the shoulder.\" (safety)\n- \"The last time the seatbelt caught me so hard I had shoulder and neck pain for about 3 weeks\" (safety/symptom? safety)\n- \"the poor guy behind me almost hit the wall on the shoulder\" (safety)\n- \"I did take it to Honda after the first two incidences\" (after service? maybe)\nNeed summary one line: component, symptom, conditions. \"Forward collision avoidance braking intervenes in stop-and-go traffic, stopping car on 4 occasions; seatbelt injury and near misses.\" Good.\n\nGroup: \"adas\" given. Symptoms array plain words: \"unintended automatic braking\", \"vehicle slams to complete stop\", \"vehicle will not move until accelerator pressed\", \"seatbelt pretensioner/retractor force causing shoulder and neck pain\". Is seatbelt caught? Could be seatbelt pretension? Don't invent. Say \"seatbelt caught occupant hard causing shoulder and neck pain\". Conditions [\"intermittent\"] maybe \"after service\" because dealer inspected after first two? The condition \"after service\" means fault after service? Not exactly. It says after first two incidences took to Honda and they said nothing wrong. Could be after service? Not a condition causing. Avoid unless clear. \"intermittent\" yes. \"stop and go traffic\" not allowed category. Could include \"vibration\"? no. \"charging\"? no. So conditions [\"intermittent\"]. Missing info [\"mileage\", \"date\"]. Date: report received_at but no incident date. Could include date. Mileage null. Conditions? They gave stop and go, but incident date missing. Component and symptom present. Good.\n\nSafety_relevant true.\n\nClues list include quotes. Need every kind allowed. component_group quote? component \"FORWARD COLLISION AVOIDANCE: WARNINGS\" from field? User report includes component field. Quote can be copied from report? The \"report\" includes JSON fields. Verbatim span from report could be \"FORWARD COLLISION AVOIDANCE: WARNINGS\" yes. But rules quote from report in user message. Could include. Maybe use component_group quote \"FORWARD COLLISION AVOIDANCE: WARNINGS\". fault code none no clue. condition quote \"This braking issue happened on 4 occasions.\" kind condition? It says 4 occasions -> intermittent. Could quote. Symptom quote. safety quote. Other quote \"I did take it to Honda after the first two incidences\" maybe after service? But not necessarily. Could include kind other. Need not overdo. JSON only.\n\nEnsure no extra text. final with JSON. Use valid JSON. No trailing comments. Need no markdown? User says answer with one JSON object and no other text. We'll output raw JSON. Need escape? Fine.\n\nLet's craft:\n\n{\n \"summary\": \"Forward collision avoidance warnings: unintended automatic braking in stop-and-go traffic on 4 occasions, stopping the car until accelerator pressed, with seatbelt injury and near misses.\",\n \"group\": \"adas\",\n \"symptoms\": [\"unintended automatic braking\", \"vehicle slams to a complete stop\", \"vehicle will not move until accelerator pressed\", \"seatbelt caught occupant hard, causing shoulder and neck pain\"],\n \"conditions\": [\"intermittent\"],\n \"fault_codes\": [],\n \"safety_relevant\": true,\n \"missing_info\": [\"mileage\", \"date\"],\n \"clues\": [\n  {\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: WARNINGS\"},\n  {\"kind\":\"symptom\",\"quote\":\"This braking issue happened on 4 occasions.\"},\n  {\"kind\":\"symptom\",\"quote\":\"While in stop and go traffic I would be braking, nursing the brakes the car would take over and slam me to a complete stop.\"},\n  {\"kind\":\"symptom\",\"quote\":\"It would not go again until I hit the gas.\"},\n  {\"kind\":\"condition\",\"quote\":\"This braking issue happened on 4 occasions.\"},\n  {\"kind\":\"safety\",\"quote\":\"On two of those occasions the car behind me had to move into the nxt lane or over to the shoulder.\"},\n  {\"kind\":\"safety\",\"quote\":\"The last time the seatbelt caught me so hard I had shoulder and neck pain for about 3 weeks\"},\n  {\"kind\":\"safety\",\"quote\":\"the poor guy behind me almost hit the wall on the shoulder\"}\n ]\n}\n\nNeed \"quote\" for condition duplicate same quote okay? Could be fine. Maybe avoid duplicate? It can be both symptom and condition? Clue kind condition with same quote. Accept. But \"This braking issue happened on 4 occasions\" is symptom? It's occurrence frequency; condition intermittent. Maybe not symptom. But summary. Could remove symptom kind for that quote and keep condition. Symptoms already. Need quote exact \"nxt\" typo yes. \"I work in rehab...\" not needed. Safety relevant due injury and near miss. Missing date? received_at 2025-08-27 but no incident date. Good.\n\nNeed ensure \"conditions\" allowed values only. [\"intermittent\"]. Good.\n\nFinal only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529874,
+      "id": "b6d89482f45e5466db31862a9ba86a64",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1697,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1404,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00064194,
+          "billing_source": "go",
+          "list_cost": 0.0010699,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 337,
+            "output": 1697,
+            "reasoning": 1404
+          }
+        },
+        "prompt_tokens": 721,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2418
+      }
+    },
+    "text": "{\"summary\":\"Forward collision avoidance warnings: unintended automatic braking in stop-and-go traffic on 4 occasions, stopping the car until accelerator pressed, with seatbelt injury and near misses.\",\"group\":\"adas\",\"symptoms\":[\"unintended automatic braking\",\"vehicle slams to a complete stop\",\"vehicle will not move until accelerator pressed\",\"seatbelt caught occupant hard, causing shoulder and neck pain\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: WARNINGS\"},{\"kind\":\"condition\",\"quote\":\"This braking issue happened on 4 occasions.\"},{\"kind\":\"symptom\",\"quote\":\"While in stop and go traffic I would be braking, nursing the brakes the car would take over and slam me to a complete stop.\"},{\"kind\":\"symptom\",\"quote\":\"It would not go again until I hit the gas.\"},{\"kind\":\"safety\",\"quote\":\"On two of those occasions the car behind me had to move into the nxt lane or over to the shoulder.\"},{\"kind\":\"safety\",\"quote\":\"The last time the seatbelt caught me so hard I had shoulder and neck pain for about 3 weeks\"},{\"kind\":\"safety\",\"quote\":\"the poor guy behind me almost hit the wall on the shoulder\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00064194,
+      "cached_tokens": 384,
+      "cost_usd": 0.0010699,
+      "input_tokens": 721,
+      "list_cost_usd": 0.0010699,
+      "output_tokens": 1697,
+      "reasoning_tokens": 1404
+    }
+  }
+}

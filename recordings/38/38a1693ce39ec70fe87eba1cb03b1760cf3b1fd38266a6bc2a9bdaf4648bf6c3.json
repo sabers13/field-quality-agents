@@ -1,0 +1,66 @@
+{
+  "key": "38a1693ce39ec70fe87eba1cb03b1760cf3b1fd38266a6bc2a9bdaf4648bf6c3",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9293,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"AIR BAGS: 2001 Honda Civic owner received recall 19V501000 notice and requests removal from distribution list; no symptom or conditions reported.\",\"group\":\"restraints\",\"symptoms\":[],\"conditions\":[],\"fault_codes\":[\"19V501000\"],\"safety_relevant\":false,\"missing_info\":[\"symptom\",\"conditions\",\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"fault_code\",\"quote\":\"NHTSA Campaign Number: 19V501000\"},{\"kind\":\"other\",\"quote\":\"The contact received notification of NHTSA Campaign Number: 19V501000 (Air Bags)\"},{\"kind\":\"other\",\"quote\":\"would like to be removed from the recall distribution list\"},{\"kind\":\"other\",\"quote\":\"The local dealer and manufacturer were contacted.\"}]}",
+            "reasoning_content": "We need answer one JSON object no other text. Need normalize report. Need read only. Need determine summary component, symptom, conditions. Report: AIR BAGS, Honda Civic 2001. Contact received notification of NHTSA Campaign Number 19V501000 (Air Bags) and would like to be removed from recall distribution list. Local dealer and manufacturer contacted. No symptom really, no conditions. Group restraints. Symptoms maybe none? Need list symptoms [\"recall notice received\"]? But symptom in plain words. The report is about recall notification, removal from distribution list. No fault symptom. safety_relevant false (explicit given and no crash/fire etc). fault_codes [\"19V501000\"]? It is campaign number not fault code. Schema says fault_codes code if report names one. Campaign Number is a code but not diagnostic fault code. Could include? It names NHTSA Campaign Number: 19V501000. Kind fault_code? Probably yes? Hmm fault_codes intended code if report names one. But 19V501000 is recall campaign not fault code. Could include in fault_codes to preserve. Clues kind fault_code quote \"NHTSA Campaign Number: 19V501000\" maybe verbatim. Also component_group quote \"AIR BAGS\" or \"Air Bags\". Need quote verbatim from narrative or fields? Report includes component \"AIR BAGS\"; narrative includes \"(Air Bags)\". Use quote \"AIR BAGS\" from component field. Safety? quote maybe no. Missing_info: mileage null, date? received_at exists, but date of incident? The report has date received. Analysis needs conditions? component exists, symptom? There is no symptom, so missing_info [\"symptom\", \"conditions\", \"mileage\", \"date\"]? Date maybe received date not event date. Could include mileage and symptom and conditions. The incident date absent. Need only facts analysis needs. Component given, group given. Symptom? The report doesn't describe a failure, just recall notification and removal request. Missing symptom, conditions, mileage, date. But maybe date received present. \"date\" likely incident date. Include.\n\nSummary one line: \"AIR BAGS / 2001 Honda Civic: owner received recall 19V501000 notice and requests removal from recall distribution list; no failure symptom described.\" Need one line. Could mention component, symptom, conditions. No conditions. Ensure JSON valid. Clues verbatim: \"The contact received notification of NHTSA Campaign Number: 19V501000 (Air Bags)\" quote exact. \"would like to be removed from the recall distribution list\" exact. \"The local dealer and manufacturer were contacted.\" exact. Kind other or symptom? For recall notice, kind other? Maybe symptom? It's not symptom. Use kind \"other\" for recall notice and removal request. Component_group quote \"AIR BAGS\". fault_code quote \"NHTSA Campaign Number: 19V501000\" exact? Narrative: \"NHTSA Campaign Number: 19V501000\" yes. Could use quote \"19V501000\" exact too. Need quote copied verbatim. Fine.\n\nNeed decide symptoms array. If no symptom, should be []? But schema expects array. The report doesn't have symptom. Set symptoms: [] and missing_info includes symptom. Summary mention no symptom. Could include symptoms [\"recall notification received\"] but that's not symptom. Better [].\n\nConditions [] because none. fault_codes [\"19V501000\"]. safety_relevant false. missing_info [\"symptom\", \"conditions\", \"mileage\", \"date\"]. Clues include component_group, fault_code, other. Could include safety clue? none.\n\nNeed answer JSON only. Ensure no markdown? They said one JSON object and no other text. We can output raw JSON. Use exact quotes. Check \"The contact received notification of NHTSA Campaign Number: 19V501000 (Air Bags)\" is verbatim. \"would like to be removed from the recall distribution list\" is verbatim? Narrative: \"and would like to be removed from the recall distribution list.\" Yes substring. \"The local dealer and manufacturer were contacted.\" exact.\n\nNeed maybe \"summary\": \"AIR BAGS: 2001 Honda Civic owner received recall 19V501000 notice and requests removal from distribution list; no symptom or conditions reported.\" Good.\n\nNeed \"group\": \"restraints\". Good.\n\nPotential issue fault_codes as campaign number not fault code. But report names code; likely include. If not, missing? I think include.\n\nNeed include clue kind \"component_group\" quote \"AIR BAGS\". Good.\n\nNeed \"safety_relevant\": false. Good.\n\nFinal only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793526088,
+      "id": "481b28574083483454431c10e786776a",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1157,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 973,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00043071,
+          "billing_source": "go",
+          "list_cost": 0.00071785,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 150,
+            "output": 1157,
+            "reasoning": 973
+          }
+        },
+        "prompt_tokens": 534,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1691
+      }
+    },
+    "text": "{\"summary\":\"AIR BAGS: 2001 Honda Civic owner received recall 19V501000 notice and requests removal from distribution list; no symptom or conditions reported.\",\"group\":\"restraints\",\"symptoms\":[],\"conditions\":[],\"fault_codes\":[\"19V501000\"],\"safety_relevant\":false,\"missing_info\":[\"symptom\",\"conditions\",\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"fault_code\",\"quote\":\"NHTSA Campaign Number: 19V501000\"},{\"kind\":\"other\",\"quote\":\"The contact received notification of NHTSA Campaign Number: 19V501000 (Air Bags)\"},{\"kind\":\"other\",\"quote\":\"would like to be removed from the recall distribution list\"},{\"kind\":\"other\",\"quote\":\"The local dealer and manufacturer were contacted.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00043071,
+      "cached_tokens": 384,
+      "cost_usd": 0.00071785,
+      "input_tokens": 534,
+      "list_cost_usd": 0.00071785,
+      "output_tokens": 1157,
+      "reasoning_tokens": 973
+    }
+  }
+}

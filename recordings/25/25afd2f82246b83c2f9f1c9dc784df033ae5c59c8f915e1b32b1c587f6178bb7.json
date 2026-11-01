@@ -1,0 +1,66 @@
+{
+  "key": "25afd2f82246b83c2f9f1c9dc784df033ae5c59c8f915e1b32b1c587f6178bb7",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 14819,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"AIR BAGS recall repair unavailable due to back-ordered part; no failure experienced.\",\"group\":\"restraints\",\"symptoms\":[],\"conditions\":[],\"fault_codes\":[\"24V834000\"],\"safety_relevant\":false,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"fault_code\",\"quote\":\"NHTSA Campaign Number: 24V834000 (AIR BAGS)\"},{\"kind\":\"other\",\"quote\":\"the part to do the recall repair was unavailable\"},{\"kind\":\"other\",\"quote\":\"the part was currently on back order\"},{\"kind\":\"other\",\"quote\":\"The contact had not experienced a failure.\"},{\"kind\":\"other\",\"quote\":\"Parts distribution disconnect.\"}]}",
+            "reasoning_content": "We need answer one JSON only. Need parse report. Component AIR BAGS group restraints. Narrative: no failure experienced. Recall part unavailable/back order. Symptoms? \"The contact had not experienced a failure.\" No symptom. Conditions? none. Fault codes none. Safety_relevant? Given false and no crash/fire etc. But recall air bags? Narrative no risk mention. Set false. missing_info? Component present, symptom absent? Since no failure, symptom maybe missing? Analysis needs symptom? Report says no failure. Could list missing_info [\"symptom\"]? But if explicitly no failure, symptom isn't missing; it's none. Conditions missing? They need conditions? Hmm. For field-quality report normalization, missing_info only facts analysis needs. Component present. Symptom not experienced. Mileage null → missing mileage. Date received present, not incident date. Conditions? Not mentioned. Could include \"conditions\"? But no event. The report is about recall repair availability, not failure. Need summary one line: AIR BAGS recall repair unavailable, part back order, no failure experienced. Group restraints. symptoms [] conditions []. fault_codes [\"24V834000\"]? It names NHTSA Campaign Number: 24V834000 (AIR BAGS). Is that fault code? It is recall campaign number; fault_codes field says code if report names one. Could include as fault_code? It is a code. Yes include. Clues quotes verbatim. Need quotes from report exactly. Could quote \"NHTSA Campaign Number: 24V834000 (AIR BAGS)\" but exact? Narrative has \"NHTSA Campaign Number: 24V834000 (AIR BAGS);\" include no semicolon? Quote can be span. \"The contact had not experienced a failure.\" exact. \"the part to do the recall repair was unavailable\" exact? Narrative: \"however, the part to do the recall repair was unavailable.\" quote maybe \"the part to do the recall repair was unavailable\". It appears with \"the\" lowercase after however comma? Yes substring \"the part to do the recall repair was unavailable\" exactly. \"the part was currently on back order\" exact? Narrative \"informed the contact that the part was currently on back order.\" substring exact. \"Parts distribution disconnect.\" exact. \"2013 Volkswagen Passat\" exact. Clues kind component_group quote \"AIR BAGS\"? The report component is AIR BAGS but narrative includes \"(AIR BAGS)\" exact. We can include component_group quote \"AIR BAGS\". safety? None. Maybe clue kind other for recall part unavailable. Need no extra text. Ensure JSON valid. missing_info: mileage? Since mileage null. date? received_at present but incident date? Missing date maybe not incident date. The schema missing_info options include \"date\"; report has received_at but not incident date. However no incident. Maybe missing mileage and date? Hmm. Analysis needs mileage/date for pattern. But if no failure, date not applicable? I'd list [\"mileage\"] maybe \"date\" too? The report includes received_at 2025-05-29. So date present. Do not invent. For missing_info only facts analysis needs. Mileage null so missing. Symptom not missing because explicitly none. Conditions not mentioned but no event. Could include \"conditions\"? Might be over. But rules: list missing_info only for facts analysis needs. Since it's a recall availability complaint, conditions irrelevant. Keep [\"mileage\"]. But if no failure, mileage maybe irrelevant. Yet field null. Hmm.\n\nNeed safety_relevant false. Summary one line.\n\nNeed include clues. For fault_code quote \"24V834000\" exact. It appears. kind fault_code. For symptom \"The contact had not experienced a failure.\" kind symptom? That's absence, not symptom. Could include kind other? The clue kind can be symptom but quote says no failure. Better kind other? Maybe clue kind \"symptom\" with quote \"had not experienced a failure\" but that is not symptom. Use kind \"other\" for no failure. Conditions none. Component group clue quote \"AIR BAGS\". Other clue for back order. Safety none. Need maybe clue for \"recall repair was unavailable\" kind other.\n\nNeed exact quotes:\n- \"AIR BAGS\" appears in component? Narrative includes \"(AIR BAGS)\" and user JSON component field. Quote from report? The report includes component field \"AIR BAGS\". Yes quote exact. Good.\n- \"NHTSA Campaign Number: 24V834000 (AIR BAGS)\" exact? Narrative: \"NHTSA Campaign Number: 24V834000 (AIR BAGS);\" Yes substring includes no semicolon: \"NHTSA Campaign Number: 24V834000 (AIR BAGS)\" exact? It includes colon after Number. Yes.\n- \"the part to do the recall repair was unavailable\" exact? Narrative: \"however, the part to do the recall repair was unavailable.\" Substring after comma space \"the part...\" yes.\n- \"the part was currently on back order\" exact? Narrative: \"that the part was currently on back order.\" yes.\n- \"The contact had not experienced a failure.\" exact.\n- \"Parts distribution disconnect.\" exact.\nMaybe \"2013 Volkswagen Passat\" exact.\n\nNeed final JSON only. Ensure no markdown? User says answer with one JSON object and no other text. We can output raw JSON. Use valid. Need no trailing commas.\n\nNeed decide group \"restraints\" given. symptoms []? Could symptoms [\"no failure experienced\"]? Rule symptom in plain words. But \"no failure\" isn't symptom. Leave empty. conditions [].\nfault_codes [\"24V834000\"].\nmissing_info [\"mileage\"] maybe? Let's consider if \"conditions\" missing because no conditions. But no event. If they analyze recall repair, conditions not needed. \"date\" present received_at. Component present. Symptom absent but explicitly no failure. Keep [\"mileage\"]? But mileage null in input. Yes.\n\nPotential issue: safety_relevant: The report mentions airbag recall; could be safety relevant? Rule says set when mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. It mentions AIR BAGS recall but no specific risk. The input safety_relevant false. Set false.\n\nNeed summary: \"AIR BAGS recall repair unavailable due to back-ordered part; no failure experienced.\" One line. Good.\n\nClues include safety? none. Could include kind \"other\" for \"Parts distribution disconnect.\" This is a phrase maybe source issue. Good.\n\nNeed quotes are verbatim from report. If I quote \"AIR BAGS\" but quote appears multiple. okay.\n\nNeed ensure all quotes are exact character for character. Let's verify narrative exact string:\n\"The contact owns a 2013 Volkswagen Passat. The contact received notification of NHTSA Campaign Number: 24V834000 (AIR BAGS); however, the part to do the recall repair was unavailable. The contact stated that the manufacturer had exceeded a reasonable amount of time for the recall repair. The manufacturer was made aware of the issue, and informed the contact that the part was currently on back order. The contact had not experienced a failure. Parts distribution disconnect.\"\n\nQuotes:\n\"2013 Volkswagen Passat\" exact yes.\n\"NHTSA Campaign Number: 24V834000 (AIR BAGS)\" exact? It includes \"NHTSA Campaign Number: 24V834000 (AIR BAGS)\" yes. There is colon after Number, space. Good.\n\"the part to do the recall repair was unavailable\" exact? The narrative has \"however, the part to do the recall repair was unavailable.\" Substring starting at \"the\" after comma+space. yes.\n\"the part was currently on back order\" exact? \"that the part was currently on back order.\" yes.\n\"The contact had not experienced a failure.\" exact.\n\"Parts distribution disconnect.\" exact.\n\"AIR BAGS\" exact.\n\nNeed maybe fault_code quote \"24V834000\" exact. Could include both? Fault_codes list includes 24V834000. Clue quote \"NHTSA Campaign Number: 24V834000 (AIR BAGS)\" kind fault_code. Good.\n\nNeed output JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793527347,
+      "id": "b86e10d86cf2444e51ca20597705709c",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1876,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1713,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00069378,
+          "billing_source": "go",
+          "list_cost": 0.0011563,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 197,
+            "output": 1876,
+            "reasoning": 1713
+          }
+        },
+        "prompt_tokens": 581,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2457
+      }
+    },
+    "text": "{\"summary\":\"AIR BAGS recall repair unavailable due to back-ordered part; no failure experienced.\",\"group\":\"restraints\",\"symptoms\":[],\"conditions\":[],\"fault_codes\":[\"24V834000\"],\"safety_relevant\":false,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"fault_code\",\"quote\":\"NHTSA Campaign Number: 24V834000 (AIR BAGS)\"},{\"kind\":\"other\",\"quote\":\"the part to do the recall repair was unavailable\"},{\"kind\":\"other\",\"quote\":\"the part was currently on back order\"},{\"kind\":\"other\",\"quote\":\"The contact had not experienced a failure.\"},{\"kind\":\"other\",\"quote\":\"Parts distribution disconnect.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00069378,
+      "cached_tokens": 384,
+      "cost_usd": 0.0011563,
+      "input_tokens": 581,
+      "list_cost_usd": 0.0011563,
+      "output_tokens": 1876,
+      "reasoning_tokens": 1713
+    }
+  }
+}

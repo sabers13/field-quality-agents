@@ -1,0 +1,66 @@
+{
+  "key": "949a586e7715973c61f960b6dcb46e6cf5cdc845abc73456041646a508d83a56",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 14075,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2014 Lexus CT200h brake booster/ABS pump/accumulator: inconsistent brake response, soft/spongy pedal, warning lights, repeated chimes; code C1391.\",\"group\":\"electrical_general\",\"symptoms\":[\"inconsistent brake response\",\"soft/spongy brake pedal\",\"ABS, traction control, brake and TPMS warning lights\",\"loud repeated chime unrelated to seatbelt use\",\"failing ABS pump and accumulator\",\"buzzing brake actuator\",\"hissing noises after shutdown\",\"external fluid leaks\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[\"C1391\"],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"brake booster and ABS pump/accumulator system\"},{\"kind\":\"symptom\",\"quote\":\"inconsistent brake response, a soft/spongy pedal, and warning lights: ABS, traction control, brake, and TPMS\"},{\"kind\":\"symptom\",\"quote\":\"a loud chime began sounding repeatedly\"},{\"kind\":\"symptom\",\"quote\":\"diagnosed a failing ABS pump and accumulator\"},{\"kind\":\"fault_code\",\"quote\":\"trouble code C1391, buzzing brake actuator, unexplained chimes, hissing noises after shutdown, and external fluid leaks\"},{\"kind\":\"condition\",\"quote\":\"after shutdown\"},{\"kind\":\"safety\",\"quote\":\"Loss of braking pressure compromises stopping distance and puts my safety and others at risk.\"},{\"kind\":\"safety\",\"quote\":\"serious injury or death\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize report. Need extract summary, group given electrical_general? component ELECTRICAL SYSTEM. Symptoms: inconsistent brake response, soft/spongy pedal, warning lights ABS traction control brake TPMS, loud chime repeatedly, failing ABS pump and accumulator, buzzing brake actuator, chimes, hissing after shutdown, external fluid leaks, trouble code C1391. Conditions? Maybe after shutdown for hissing, intermittent? It says inconsistent, reproducible. Safety relevant true: loss of braking pressure, risk, serious injury/death. Fault codes C1391. Missing info: mileage (null), date? received date but incident date not given. Conditions maybe? Component present. Symptom present. Missing mileage, date. Maybe conditions? It mentions after shutdown but general conditions maybe not needed. Clues quotes verbatim. Need ensure quotes exact substrings. Let's craft.\n\nNeed group: \"electrical_general\" given, but component group? The report is brake booster/ABS pump/accumulator, electrical? Given group. Rule says group \"the electrical/electronic component group, or the given group\". Use \"electrical_general\" maybe.\n\nSummary one line: \"2014 Lexus CT200h brake booster/ABS pump/accumulator: inconsistent brake response, soft pedal, warning lights, chimes; code C1391.\" Conditions: cold? no. moisture? no. heat? no. vibration? no. intermittent? inconsistent brake response. after service? no. charging? no. We can list [\"intermittent\"]? Is inconsistent = intermittent. Could include \"after shutdown\" not allowed list? conditions array should use listed tokens? It says conditions [\"cold\",...]. Only allowed maybe. Use [\"intermittent\"] if plain. But maybe no conditions. Need clues kind condition quote \"after shutdown\" maybe other? Condition quote can be \"after shutdown\". But conditions array only tokens? We can include \"after shutdown\"? It is allowed? The schema example list fixed. Better conditions: [\"intermittent\"] due inconsistent. Maybe \"after shutdown\" not standard. But clues can include condition \"hissing noises after shutdown\". However conditions array should maybe include \"intermittent\". Could omit if unsure. But report says issue reproducible not intermittent. Inconsistent brake response is symptom. Conditions: [] maybe. Missing conditions? It lacks environmental conditions but not important? For analysis maybe no. Missing mileage and date. Also component? present. Symptom present.\n\nNeed every quote verbatim. Use exact strings from narrative. Need watch smart apostrophes? We can copy. Quotes:\n- \"inconsistent brake response, a soft/spongy pedal, and warning lights: ABS, traction control, brake, and TPMS\" exact? Narrative: \"I noticed inconsistent brake response, a soft/spongy pedal, and warning lights: ABS, traction control, brake, and TPMS.\" Yes substring.\n- \"a loud chime began sounding repeatedly\"\n- \"diagnosed a failing ABS pump and accumulator\"\n- \"trouble code C1391, buzzing brake actuator, unexplained chimes, hissing noises after shutdown, and external fluid leaks\" exact.\n- safety: \"Loss of braking pressure compromises stopping distance and puts my safety and others at risk.\" exact. Also \"serious injury or death\" exact.\n- component_group: \"brake booster and ABS pump/accumulator system\" exact? Narrative: \"involving the brake booster and ABS pump/accumulator system.\" yes.\n- condition: \"after shutdown\" exact within hissing.\nCould include other quote \"The issue is reproducible\" but not condition.\n\nNeed JSON only. No markdown. Let's produce. Ensure safety_relevant true. missing_info [\"mileage\",\"date\"]. Maybe date of incident. Good.\n\nNeed summary one line no extra. Use group \"electrical_general\". Symptoms list plain words, can include \"ABS, traction control, brake and TPMS warning lights\" etc. Fault codes [\"C1391\"]. Clues include 6-8.\n\nNeed not suggest actions. Fine.\n\nFinal JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529137,
+      "id": "d3cd698708f8c88ae9093ef21dbdaac7",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1166,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 838,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00046869,
+          "billing_source": "go",
+          "list_cost": 0.00078115,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 536,
+            "output": 1166,
+            "reasoning": 838
+          }
+        },
+        "prompt_tokens": 920,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2086
+      }
+    },
+    "text": "{\"summary\":\"2014 Lexus CT200h brake booster/ABS pump/accumulator: inconsistent brake response, soft/spongy pedal, warning lights, repeated chimes; code C1391.\",\"group\":\"electrical_general\",\"symptoms\":[\"inconsistent brake response\",\"soft/spongy brake pedal\",\"ABS, traction control, brake and TPMS warning lights\",\"loud repeated chime unrelated to seatbelt use\",\"failing ABS pump and accumulator\",\"buzzing brake actuator\",\"hissing noises after shutdown\",\"external fluid leaks\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[\"C1391\"],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"brake booster and ABS pump/accumulator system\"},{\"kind\":\"symptom\",\"quote\":\"inconsistent brake response, a soft/spongy pedal, and warning lights: ABS, traction control, brake, and TPMS\"},{\"kind\":\"symptom\",\"quote\":\"a loud chime began sounding repeatedly\"},{\"kind\":\"symptom\",\"quote\":\"diagnosed a failing ABS pump and accumulator\"},{\"kind\":\"fault_code\",\"quote\":\"trouble code C1391, buzzing brake actuator, unexplained chimes, hissing noises after shutdown, and external fluid leaks\"},{\"kind\":\"condition\",\"quote\":\"after shutdown\"},{\"kind\":\"safety\",\"quote\":\"Loss of braking pressure compromises stopping distance and puts my safety and others at risk.\"},{\"kind\":\"safety\",\"quote\":\"serious injury or death\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00046869,
+      "cached_tokens": 384,
+      "cost_usd": 0.00078115,
+      "input_tokens": 920,
+      "list_cost_usd": 0.00078115,
+      "output_tokens": 1166,
+      "reasoning_tokens": 838
+    }
+  }
+}

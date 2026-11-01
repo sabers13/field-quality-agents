@@ -1,0 +1,66 @@
+{
+  "key": "98dcd98f0454b2e56efa7b97f4ebc5e275a3f8073b56dde55ad7a510bd1f4bab",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10435,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"AIR BAGS/restraints: while driving, steering was hard to turn and power steering, AdvancTrac and brake system lights flashed; airbag recall replacement also needed.\",\"group\":\"restraints\",\"symptoms\":[\"hard to make the turn\",\"power steering light on\",\"advanced track light on\",\"brake system light on\",\"warning lights flashing across message screen\",\"airbags need replacement due to recall\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"condition\",\"quote\":\"Was driving down parkway\"},{\"kind\":\"symptom\",\"quote\":\"it was hard to make the turn to even go up\"},{\"kind\":\"symptom\",\"quote\":\"power steering light\"},{\"kind\":\"symptom\",\"quote\":\"advanced track light\"},{\"kind\":\"symptom\",\"quote\":\"brake system\"},{\"kind\":\"symptom\",\"quote\":\"Light all came on flashing across the message screen one after another\"},{\"kind\":\"safety\",\"quote\":\"Thank god I was able to get vehicle pulled over to shoulder\"},{\"kind\":\"component_group\",\"quote\":\"airbags replaced due to recall\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize report. Component AIR BAGS group restraints. Narrative: driving parkway exit hard to make turn, power steering light, advanced track light, brake system light all came on flashing across message screen, pulled over, towed home. Also needs airbags replaced due to recall, contacted dealers etc. Need summary one line component symptom conditions. Group restraints. Symptoms: hard to make turn / steering difficulty? power steering warning light, advancetrac light, brake system warning lights flashing, airbags recall replacement needed. Conditions: driving? cold/moisture/heat/vibration/intermittent/after service/charging none. Could include \"while driving\" maybe not allowed list? conditions list specified enumerated: [\"cold\",\"moisture\",\"heat\",\"vibration\",\"intermittent\",\"after service\",\"charging\"]. No conditions. Fault_codes none. safety_relevant? Report mentions hard to make turn, lights, pulled over shoulder; no crash fire smoke injury loss control? \"hard to make the turn\" could be loss of control? But safety_relevant set when mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. Hard to make turn and multiple warning lights while driving could be risk. But given source safety_relevant false? We should not rely? The prompt says set when report mentions. It mentions \"hard to make the turn to even go up\", \"thank god I was able to get vehicle pulled over to shoulder\" implies safety risk. So safety_relevant true? Need decide. It is a report of steering difficulty and brake system light, potentially safety. Also airbag recall. I'd set true because risk to people (steering/brake warnings while driving, had to pull over). But safety_relevant in input false maybe source metadata, but prompt says set when report mentions. Yes true.\n\nMissing_info: mileage null, date? received_at given but report no incident date. Component given AIR BAGS but narrative actually steering/brake plus airbag recall. Symptom present. Conditions missing? The analysis needs conditions? Report lacks environmental conditions; but conditions list optional? Missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. Component is AIR BAGS but mismatch? Might list \"conditions\" and \"mileage\" and \"date\". Since mileage null. Date of incident missing. Conditions (weather/road?) missing. But if we list conditions, okay. Also component? The named component AIR BAGS doesn't match main symptom? The report includes airbags recall but main issue is steering/brake warnings. Hmm missing_info might include \"component\" because actual failing component unclear? But field component is AIR BAGS. The analysis needs component; given air bags but narrative mostly steering. However report explicitly \"Also needs airbags replaced due to recall!\" So component airbags present, but symptoms relate other systems. Maybe missing_info: mileage, date, conditions. Do not include component/symptom because present.\n\nClues: need verbatim spans. Need exact quote from narrative. We'll quote spans:\n- \"Was driving down parkway\" kind condition? maybe symptom/condition? condition? It is driving condition, but conditions list doesn't include driving. Clue kind condition maybe quote \"Was driving down parkway\" (driving). But allowed kinds include condition. Could include.\n- \"it was hard to make the turn to even go up\" symptom.\n- \"The exit ramp the power steering light and the advanced track light and brake system.\" Hmm exact sentence includes \"The exit ramp the power steering light and the advanced track light and brake system.\" Need quote exact. Could quote \"power steering light\" and \"advanced track light\" and \"brake system.\" But quote should be verbatim. Better:\n  - {\"kind\":\"symptom\",\"quote\":\"hard to make the turn\"}\n  - {\"kind\":\"symptom\",\"quote\":\"power steering light\"}\n  - {\"kind\":\"symptom\",\"quote\":\"advanced track light\"}\n  - {\"kind\":\"symptom\",\"quote\":\"brake system\"}\n  - {\"kind\":\"symptom\",\"quote\":\"Light all came on flashing across the message screen one after another\"} exact? Narrative: \"Light all came on flashing across the message screen one after another.\" yes.\n  - {\"kind\":\"safety\",\"quote\":\"thank god I was able to get vehicle pulled over to shoulder\"}? Exact \"Thank god I was able to get vehicle pulled over to shoulder\" (capital T). Use exact.\n  - {\"kind\":\"component_group\",\"quote\":\"airbags replaced due to recall\"}? exact \"airbags replaced due to recall\" yes lower. Or \"AIR BAGS\" from component not narrative? Report includes component field. Quotes from report? The report includes JSON fields, so quote can be \"AIR BAGS\". But \"report\" includes entire object. Use narrative quote \"airbags replaced due to recall\".\n  - {\"kind\":\"other\",\"quote\":\"had it towed home\"} maybe.\n\nNeed summary: \"AIR BAGS (restraints): steering hard to turn with power steering, AdvancTrac and brake system lights flashing while driving; airbag recall replacement needed.\" One line. Conditions: none. Maybe \"while driving\" is condition? The enumerated conditions list doesn't include driving. Should conditions array be empty. But clues can include condition \"Was driving down parkway\". The conditions list should only include allowed values if match. None match. So [].\n\nFault_codes empty. Safety relevant true. Missing_info maybe [\"mileage\",\"date\",\"conditions\"]. But if conditions no environmental info; analysis might need. Include. Maybe \"component\" not missing? Since component airbags but main issue not airbags? Hmm.\n\nNeed ensure JSON only no markdown. Final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530441,
+      "id": "29e579a4ac06b78324cc1ae2a44fcc55",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1450,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1196,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00054474,
+          "billing_source": "go",
+          "list_cost": 0.0009079,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 245,
+            "output": 1450,
+            "reasoning": 1196
+          }
+        },
+        "prompt_tokens": 629,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2079
+      }
+    },
+    "text": "{\"summary\":\"AIR BAGS/restraints: while driving, steering was hard to turn and power steering, AdvancTrac and brake system lights flashed; airbag recall replacement also needed.\",\"group\":\"restraints\",\"symptoms\":[\"hard to make the turn\",\"power steering light on\",\"advanced track light on\",\"brake system light on\",\"warning lights flashing across message screen\",\"airbags need replacement due to recall\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"condition\",\"quote\":\"Was driving down parkway\"},{\"kind\":\"symptom\",\"quote\":\"it was hard to make the turn to even go up\"},{\"kind\":\"symptom\",\"quote\":\"power steering light\"},{\"kind\":\"symptom\",\"quote\":\"advanced track light\"},{\"kind\":\"symptom\",\"quote\":\"brake system\"},{\"kind\":\"symptom\",\"quote\":\"Light all came on flashing across the message screen one after another\"},{\"kind\":\"safety\",\"quote\":\"Thank god I was able to get vehicle pulled over to shoulder\"},{\"kind\":\"component_group\",\"quote\":\"airbags replaced due to recall\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00054474,
+      "cached_tokens": 384,
+      "cost_usd": 0.0009079,
+      "input_tokens": 629,
+      "list_cost_usd": 0.0009079,
+      "output_tokens": 1450,
+      "reasoning_tokens": 1196
+    }
+  }
+}

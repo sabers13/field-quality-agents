@@ -1,0 +1,66 @@
+{
+  "key": "fcf4d5cf5ae982be60fc74e4ab6cb34de2764f2d6c89ab74076e2b66f5cfc3d4",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 7155,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Passenger airbag malfunction detection light is on with no known reason or conditions stated\",\"group\":\"restraints\",\"symptoms\":[\"passenger airbag malfunction detection light on\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"passenger airbag malfunction detection light is on\"},{\"kind\":\"other\",\"quote\":\"with no known reason displayed\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize. Report: component AIR BAGS, group restraints. Narrative: \"Unknown the passenger airbag malfunction detection light is on with no known reason displayed\". Symptom: passenger airbag malfunction detection light on. Conditions? none. Fault codes none. Safety_relevant? Airbag malfunction light could be safety relevant? Rules: set safety_relevant when report mentions crash, fire, smoke, injury, loss of control, stall at speed or other risk to people. It doesn't explicitly mention those. But airbag malfunction is safety system; \"other risk to people\"? Hmm safety_relevant field given false in input, but we should infer? The prompt says set when mentions crash fire etc or other risk. No explicit risk mention. However passenger airbag malfunction detection light on is a restraint system fault, potentially safety relevant but not mentioned as risk. Need not invent. Could set false. Missing_info: mileage null, date? received_at exists but date of incident unknown. conditions missing? component present symptom present. Missing mileage, date, conditions? The analysis needs mileage/date/conditions. Since narrative says no known reason, conditions absent. Missing_info include \"mileage\", \"date\", \"conditions\". Maybe \"date\" because received_at is not incident date. Yes.\n\nClues: quote verbatim. Need quote \"passenger airbag malfunction detection light is on\" exact? Narrative: \"Unknown the passenger airbag malfunction detection light is on with no known reason displayed\". We can quote \"passenger airbag malfunction detection light is on\" yes contiguous. \"with no known reason displayed\" condition? other? Could include symptom quote. Component group quote? component is AIR BAGS, group given restraints. Clue kind component_group quote \"AIR BAGS\"? Is that in report? The JSON includes component field. The \"report\" in user message includes component. Verbatim span \"AIR BAGS\" exists. But narrative is report? It says read report. Could include component group quote \"AIR BAGS\". But group is restraints. Clue kind component_group quote maybe \"AIR BAGS\". Need summary one line: component, symptom, conditions. \"Passenger airbag malfunction detection light on, no known reason/conditions.\" Good.\n\nNeed ensure JSON only no markdown. The final should be JSON object. Need no other text. Include symptoms array [\"passenger airbag malfunction detection light on\"]. Conditions empty. fault_codes empty. safety_relevant false. missing_info [\"mileage\",\"date\",\"conditions\"]. clues: symptom quote, other quote \"with no known reason displayed\"? kind condition? It's not condition. Other. Could include component_group quote \"AIR BAGS\". Maybe no need. But clues should evidence. Use quote exact. Need character for character. Narrative has \"Unknown the passenger airbag malfunction detection light is on with no known reason displayed\". The substring \"passenger airbag malfunction detection light is on\" is exact (lowercase passenger). Good. \"with no known reason displayed\" exact. Kind other. Also \"AIR BAGS\" exact from component. Good.\n\nPotential issue: \"safety_relevant\": input has false. We keep false. Good.\n\nNeed final JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793527270,
+      "id": "df290312e26d261beab00f2298d0e562",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 776,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 657,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00029031,
+          "billing_source": "go",
+          "list_cost": 0.00048385,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 114,
+            "output": 776,
+            "reasoning": 657
+          }
+        },
+        "prompt_tokens": 498,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1274
+      }
+    },
+    "text": "{\"summary\":\"Passenger airbag malfunction detection light is on with no known reason or conditions stated\",\"group\":\"restraints\",\"symptoms\":[\"passenger airbag malfunction detection light on\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"passenger airbag malfunction detection light is on\"},{\"kind\":\"other\",\"quote\":\"with no known reason displayed\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00029031,
+      "cached_tokens": 384,
+      "cost_usd": 0.00048385,
+      "input_tokens": 498,
+      "list_cost_usd": 0.00048385,
+      "output_tokens": 776,
+      "reasoning_tokens": 657
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "695101b3b924cb020b933be524d29aa8c37bb260152cb53ac70a0d04979d1de5",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 13410,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"2025 Chevrolet Traverse ADAS/AEB: ABS not working warning after reverse startup; unable to stop without hard braking and slow backward roll in driveway\",\n  \"group\": \"adas\",\n  \"symptoms\": [\n    \"ABS not working warning\",\n    \"braking requires very hard pedal pressure\",\n    \"vehicle keeps rolling backward slowly despite braking\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"after putting it in reverse\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"in my driveway\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"it notified me that the ABS was not working\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"I could not stop the vehicle without pressing the brakes very hard\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"even then it was still rolling backward slowly\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"I could not stop the vehicle\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"before the car rolled into my house\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer one JSON object only. Need normalise report. Need read only report. Need component group given adas. Need symptoms plain words. Conditions. Fault codes none. Safety relevant? Report mentions could not stop vehicle, rolling backward slowly, quickly put in park before car rolled into house. Risk to people? Loss of control? It is unintended rolling/braking issue. Mentions house not people, but inability to stop is safety risk. The supplied safety_relevant false but prompt says set when mentions crash fire smoke injury loss of control stall at speed or another risk to people. \"I could not stop the vehicle without pressing the brakes very hard and even then it was still rolling backward slowly.\" That is braking failure/loss of control risk, and \"before car rolled into my house\" property. Is it risk to people? likely yes safety_relevant true. Need be careful. The source says safety_relevant false but rule overrides? We normalise. Could set true due inability to stop. Need missing_info: mileage null, date? received_at exists but incident date missing. Conditions? Driveway, reverse, after start. Component present symptom present. Missing mileage and date maybe incident date. The schema missing_info options include mileage, date, conditions, component, symptom. Include \"mileage\", \"date\" because null and no incident date. Maybe conditions present (driveway, reverse, after start) so not missing. Need clues verbatim spans. Need summary one line component, symptom, conditions. Need symptoms: \"ABS not working notification\", \"vehicle could not be stopped without hard brake pressure\", \"vehicle continued rolling backward slowly despite hard braking\". Conditions: \"after startup\", \"reverse\", \"driveway\" maybe \"cold\"? Not cold. Conditions list allowed includes cold moisture heat vibration intermittent after service charging. Hm schema conditions array examples? It says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. It seems constrained to those tokens? But report conditions are after startup/reverse/driveway, not in list. Maybe should put conditions as []? But summary can mention. Clues kind condition with quote \"after putting it in reverse\" maybe okay though conditions array only canonical tokens. Need include clue for condition. Could include conditions [\"after service\"]? No. Don't invent. Maybe conditions [] because none of listed conditions. But \"after putting it in reverse\" is condition but not from canonical list. The JSON spec says conditions: [\"cold\", ...] likely allowed values. Use [] if none. Clues can include condition quote.\n\nNeed fault_codes [] because ABS notification not code. Group \"adas\". Symptoms plain words. Safety true? Need decide. The report explicitly says couldn't stop; risk. I'd set true. But the incoming field has safety_relevant false. Prompt says read report and set. I think true.\n\nNeed quotes exact: \"I started the vehicle to move it to a different place in my driveway\" (condition? other maybe). \"after putting it in reverse\" exact. \"it notified me that the ABS was not working\" exact. \"I could not stop the vehicle without pressing the brakes very hard\" exact. \"even then it was still rolling backward slowly\" exact. \"I quickly put the vehicle in park before the car rolled into my house\" exact. Need include safety clue quote maybe \"I could not stop the vehicle\" exact, kind safety. But quote must be verbatim substring: yes \"I could not stop the vehicle\" appears. Need clue kind symptom for ABS, braking, rolling. component_group quote \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\" (from component). Is that in report? The user message includes component field; yes. But \"quote copied verbatim from report\" likely from narrative? They say report in user message. Could quote component field. But to be safe use narrative quotes only. For component_group clue quote \"ABS\" maybe not component group? Hmm.\n\nNeed summary one line: \"2025 Chevrolet Traverse ADAS/AEB: ABS not working warning after reverse startup; unable to stop without hard braking and slow backward roll in driveway.\" No invented? 2025 Chevrolet Traverse from fields. Component FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING. But symptom is ABS not working, braking. Good.\n\nNeed missing_info: mileage, date (incident date). Date? received_at 2025-12-17, but incident date not given. Missing date. Conditions present. Component present. Symptom present. Could include \"mileage\", \"date\". Good.\n\nNeed ensure JSON only. No markdown? User says JSON object no other text. Final can be raw JSON. Need not include code fences. Good.\n\nPotential issue: conditions array canonical; maybe include \"intermittent\"? No, not stated. \"after service\"? no. Use [].\n\nClues: Each kind allowed. Need include \"condition\" for reverse/driveway. But conditions array empty. That's okay. Need maybe kind \"other\" for driveway. Clues:\n- component_group quote \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"\n- symptom quote \"it notified me that the ABS was not working\"\n- symptom quote \"I could not stop the vehicle without pressing the brakes very hard\"\n- symptom quote \"even then it was still rolling backward slowly\"\n- condition quote \"after putting it in reverse\"\n- condition quote \"in my driveway\"\n- safety quote \"I could not stop the vehicle\"\n- other quote \"I quickly put the vehicle in park before the car rolled into my house\" maybe safety? It mentions rolling into house; risk property, not people. But could be safety. Use safety quote \"before the car rolled into my house\"? It is risk. But if safety_relevant true, clue. Need quote exact: \"before the car rolled into my house\" appears? Narrative: \"I quickly put the vehicle in park before the car rolled into my house.\" Yes substring. Use safety.\n\nNeed maybe \"symptoms\": [\"ABS not working warning\", \"braking requires very hard pedal pressure\", \"vehicle keeps rolling backward slowly despite braking\"]. Plain.\n\nNeed no invented. Good.\n\nNeed consider \"fault_codes\": [] no code. Good.\n\nFinal JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793532988,
+      "id": "172b65b2acfbbd7b29b40f60807fbdd4",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1655,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1315,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00061287,
+          "billing_source": "go",
+          "list_cost": 0.00102145,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 182,
+            "output": 1655,
+            "reasoning": 1315
+          }
+        },
+        "prompt_tokens": 566,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2221
+      }
+    },
+    "text": "{\n  \"summary\": \"2025 Chevrolet Traverse ADAS/AEB: ABS not working warning after reverse startup; unable to stop without hard braking and slow backward roll in driveway\",\n  \"group\": \"adas\",\n  \"symptoms\": [\n    \"ABS not working warning\",\n    \"braking requires very hard pedal pressure\",\n    \"vehicle keeps rolling backward slowly despite braking\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"after putting it in reverse\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"in my driveway\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"it notified me that the ABS was not working\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"I could not stop the vehicle without pressing the brakes very hard\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"even then it was still rolling backward slowly\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"I could not stop the vehicle\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"before the car rolled into my house\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00061287,
+      "cached_tokens": 384,
+      "cost_usd": 0.00102145,
+      "input_tokens": 566,
+      "list_cost_usd": 0.00102145,
+      "output_tokens": 1655,
+      "reasoning_tokens": 1315
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "af097e96b6b94d358f4d123a4cfc69757dcedfbff1406965c9cb387a9d4e57a9",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11681,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Seat belts: seat belt ripped while putting seatbelt on; no obstruction reported.\",\n  \"group\": \"restraints\",\n  \"symptoms\": [\"seat belt ripped while putting seatbelt on\"],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\"mileage\", \"date\"],\n  \"clues\": [\n    {\"kind\": \"symptom\", \"quote\": \"Seat belt ripped while putting seatbelt on.\"},\n    {\"kind\": \"condition\", \"quote\": \"Nothing in the way of system.\"},\n    {\"kind\": \"safety\", \"quote\": \"safety issue\"}\n  ]\n}",
+            "reasoning_content": "We need answer only one JSON object. Need normalize. Report: component SEAT BELTS group restraints. Narrative seat belt ripped while putting seatbelt on. Nothing in way. parts dept advised 35 belts nationally requested weekly. shouldn't pay $500 for safety issue. Safety relevant? It mentions safety issue but not crash fire smoke injury loss control stall. The seat belt ripped while putting on—could be safety-relevant? Rule set safety_relevant when mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. \"safety issue\" and seat belt failure arguably risk to people. But source says safety_relevant false; however we must infer from report. It says \"their safety issue\" but doesn't explicitly mention crash/injury. \"another risk to people\" — a ripped seat belt is a restraint failure, risk to occupants. But strict? Need decide. The report: \"Seat belt ripped while putting seatbelt on.\" That is component failure, safety system. Rule says set when mentions crash, fire, smoke, injury, loss of control, a stall at speed or another risk to people. A ripped seat belt is another risk to people (restraint compromised). I'd set true? But maybe \"safety issue\" phrase suffices. Need not invent. We can quote \"safety issue\" as safety clue. Hmm.\n\nNeed symptoms: \"seat belt ripped while putting seatbelt on\" plain words. Conditions: maybe \"after service\"? No. \"while putting seatbelt on\" not in allowed list except intermittent? No. Conditions empty. Fault codes empty. Missing_info: mileage missing (null), date? received_at given but not event date. component present, symptom present, conditions? The analysis needs conditions; report says nothing in way, while putting on, but no cold/moisture etc. Should list \"mileage\", \"date\", \"conditions\"? Maybe missing_info includes mileage and date? The schema lists mileage/date/conditions/component/symptom. Mileage null. Date: received_at is 2025-08-01, but incident date not given. So \"date\" missing. Conditions? It gives \"while putting seatbelt on\" but not environmental conditions; conditions list empty. Is conditions important? For seat belt ripped, environmental conditions maybe not. But analysis needs conditions? Could list conditions. Need be careful: \"List missing_info only for facts the analysis needs: component, symptom, conditions, mileage, date. Use empty when nothing important missing.\" Since mileage null and date of incident absent; conditions absent. Component and symptom present. I'd include mileage, date, conditions? The event condition \"while putting seatbelt on\" is a condition but not among enumerated. The extraction conditions list is for cold moisture etc; none. Missing conditions maybe not necessary for torn seatbelt. But the desk may need mileage/date. Include [\"mileage\",\"date\"] maybe.\n\nClues: quote verbatim spans. Need copy exact including curly apostrophe? Narrative has \"We shouldn\\u2019t have to pay $500 for their safety issue.\" We can quote substrings exactly. Quotes:\n- {\"kind\":\"symptom\",\"quote\":\"Seat belt ripped while putting seatbelt on.\"}\n- {\"kind\":\"component_group\",\"quote\":\"SEAT BELTS\"}? The report has component \"SEAT BELTS\" not narrative. It says quote copied verbatim from report; entire JSON includes component field. Is that \"report\"? likely yes. Could use \"SEAT BELTS\". But clues should be from report. We can include quote \"Seat belt ripped while putting seatbelt on.\" for symptom. Condition \"Nothing in the way of system.\" maybe other/condition? It's condition? We can include as other or condition. Quote \"Nothing in the way of system.\" maybe condition. Also quote \"safety issue\" for safety. But if safety_relevant true. Need include clue kind safety quote \"safety issue\". Could also quote \"35 belts nationally are requested weekly\" as other? Not needed. Need exact span: \"safety issue\" appears. Good.\n\nSummary one line: \"Seat belts: seat belt ripped while putting seatbelt on; no obstruction reported.\" Conditions maybe none.\n\nGroup \"restraints\". Symptoms [\"seat belt ripped while putting seatbelt on\"]. Conditions [] maybe. Fault codes [].\n\nSafety_relevant? Let's reason. The prompt says source has safety_relevant false, but that's input field maybe not to trust? The report includes safety_relevant false. We are normalising; should set based on narrative. It explicitly says \"their safety issue.\" Also seat belt is safety equipment; ripped while donning. I'd set true because \"safety issue\" and risk. But rule says set when mentions crash, fire, smoke, injury, loss of control, a stall at speed or another risk to people. \"safety issue\" is a mention of risk? It doesn't specify risk to people. But seat belt ripped = restraint failure. I'd mark true. Need maybe if the expected output? Hmm.\n\nThe user asks answer JSON only. Need no markdown? \"one JSON object and no other text\". We should output raw JSON. Ensure valid JSON, no trailing commas.\n\nLet's craft:\n\n{\n  \"summary\": \"Seat belts: seat belt ripped while putting seatbelt on; no obstruction reported.\",\n  \"group\": \"restraints\",\n  \"symptoms\": [\"seat belt ripped while putting seatbelt on\"],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\"mileage\", \"date\"],\n  \"clues\": [\n    {\"kind\":\"symptom\",\"quote\":\"Seat belt ripped while putting seatbelt on.\"},\n    {\"kind\":\"condition\",\"quote\":\"Nothing in the way of system.\"},\n    {\"kind\":\"safety\",\"quote\":\"safety issue\"}\n  ]\n}\n\nNeed maybe missing conditions? If include conditions in missing_info, quote \"Nothing in way\" indicates no obstruction, not environmental conditions. The analysis for seat belt rip may need conditions? Not really. But schema says missing_info list facts analysis needs; conditions maybe if relevant. We can include [\"mileage\",\"date\"] only.\n\nNeed quote \"Seat belt ripped while putting seatbelt on.\" Exactly? Narrative: \"Seat belt ripped while putting seatbelt on. Nothing in the way...\" Yes.\n\n\"Nothing in the way of system.\" exact. Good.\n\n\"safety issue\" exact substring? \"their safety issue.\" yes includes \"safety issue\". Good.\n\nPotential issue: condition clue \"Nothing in the way of system.\" kind condition? It is not one of allowed conditions but clue kind condition can quote. Fine.\n\nNeed maybe safety_relevant false? Hmm. Let's inspect wording \"safety_relevant\": false in input. But prompt says \"Set safety_relevant when the report mentions a crash, fire, smoke, injury, loss of control, a stall at speed or another risk to people.\" The report mentions \"safety issue\" — not crash etc. But \"Seat belt ripped\" is risk to people because seat belt is safety. However every seat belt issue is safety-related? If it ripped while putting on, not necessarily in use. But compromised restraint. I'd set true. If expected by evaluator maybe they compare? We need likely no strict. But answer should be defensible. Let's include safety clue. Good.\n\nNeed ensure summary one line. Good.\n\nFinal only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529112,
+      "id": "bb553843ba09750f24538650115eae73",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1701,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1552,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00062592,
+          "billing_source": "go",
+          "list_cost": 0.0010432,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 143,
+            "output": 1701,
+            "reasoning": 1552
+          }
+        },
+        "prompt_tokens": 527,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2228
+      }
+    },
+    "text": "{\n  \"summary\": \"Seat belts: seat belt ripped while putting seatbelt on; no obstruction reported.\",\n  \"group\": \"restraints\",\n  \"symptoms\": [\"seat belt ripped while putting seatbelt on\"],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\"mileage\", \"date\"],\n  \"clues\": [\n    {\"kind\": \"symptom\", \"quote\": \"Seat belt ripped while putting seatbelt on.\"},\n    {\"kind\": \"condition\", \"quote\": \"Nothing in the way of system.\"},\n    {\"kind\": \"safety\", \"quote\": \"safety issue\"}\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00062592,
+      "cached_tokens": 384,
+      "cost_usd": 0.0010432,
+      "input_tokens": 527,
+      "list_cost_usd": 0.0010432,
+      "output_tokens": 1701,
+      "reasoning_tokens": 1552
+    }
+  }
+}

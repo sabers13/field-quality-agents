@@ -1,0 +1,66 @@
+{
+  "key": "7ac9ec0f9994532d52aee43595546614ad8f78cc2ac3627dedc85aea4a9046c5",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9053,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2017 Honda Accord Touring electrical/audio fault: intermittent scratching/static from all speakers in hot weather (85+), even with audio off, lasting minutes and recurring.\",\"group\":\"electrical_general\",\"symptoms\":[\"intermittent audio problem\",\"scratching sound from all speakers\",\"loud continuous static\",\"static becomes intolerably loud when audio power is turned on\",\"driver distraction\"],\"conditions\":[\"heat\",\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"intermittent audio problem\"},{\"kind\":\"condition\",\"quote\":\"in hot (85+) weather\"},{\"kind\":\"symptom\",\"quote\":\"a modest “scratching” sound begins from all speakers\"},{\"kind\":\"symptom\",\"quote\":\"loud, continuous static which lasts for 3 or 4 minutes\"},{\"kind\":\"symptom\",\"quote\":\"the static instantly becomes intolerably loud until I turn audio power off\"},{\"kind\":\"safety\",\"quote\":\"serious driver distraction\"},{\"kind\":\"condition\",\"quote\":\"More frequent in hot weather: 3 times in last 3 days.\"},{\"kind\":\"condition\",\"quote\":\"Symptoms occur randomly and don't last long enough to reach a dealer for diagnosis.\"},{\"kind\":\"component_group\",\"quote\":\"Electrical System\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize. Need parse report. Component electrical system, group electrical_general. Symptoms: intermittent audio problem, scratching sound from all speakers in hot weather even audio off, loud continuous static lasting 3-4 min then tapers, static becomes intolerably loud if audio power on, driver distraction, no way stop without turning car off. Conditions: hot (85+), intermittent, maybe \"after service\"? no. \"charging\"? no. Fault codes none. Safety relevant? Report says safety issue because serious driver distraction and impatience; no crash/fire etc. Prompt says set safety_relevant when mentions crash, fire, smoke, injury, loss of control, stall at speed or other risk to people. Driver distraction is risk to people? It explicitly says safety issue because serious driver distraction. I'd set true due to risk to people. But original safety_relevant false field? We should use report. It mentions \"safety issue\" and driver distraction. So true. Missing info: mileage null, date? It has first occurred May 2025, received date. Conditions present hot. Component present. Symptom present. So missing_info [\"mileage\"] maybe. Need clues verbatim quotes. Ensure exact spans from narrative. Need quote char-for-char. Could include:\n- \"intermittent audio problem\" exact.\n- \"in hot (85+) weather\" exact? Narrative: \"in hot (85+) weather, even with the audio system turned OFF\" yes.\n- \"a modest “scratching” sound begins from all speakers\" includes curly quotes. Need copy exactly from JSON? It has \\u201cscratching\\u201d. We can output curly quotes. Verbatim character. Good.\n- \"loud, continuous static which lasts for 3 or 4 minutes\" exact.\n- \"If I turn audio power ON while this is occurring, the static instantly becomes intolerably loud until I turn audio power off\" exact.\n- \"serious driver distraction\" exact.\n- \"More frequent in hot weather: 3 times in last 3 days.\" exact.\n- \"Symptoms occur randomly and don't last long enough to reach a dealer for diagnosis.\" exact.\n- \"Electric System\"? Component field is ELECTRICAL SYSTEM but report narrative has \"Electrical System\" in CarComplaints. Quote \"Electrical System\" exact? Narrative: \"under the Electrical System and Other Problems categories.\" yes. kind component_group.\n\nNeed summary one line: \"2017 Honda Accord Touring electrical/audio: intermittent scratching/static from all speakers in hot weather (85+), even with audio off; lasts minutes and repeats.\" Good.\n\nNeed symptoms array plain words. Conditions: cold? no; moisture? no; heat yes; vibration no; intermittent yes; after service no; charging no. Could include \"hot weather\". Allowed list includes \"heat\"; use \"heat\", \"intermittent\". Maybe \"hot (85+)\" is condition? condition array should use listed values, so [\"heat\",\"intermittent\"].\n\nFault_codes [].\n\nmissing_info: [\"mileage\"] because null. Is date missing? It gives first occurred May 2025 and received_at. no. Conditions present. component present. symptom present. So [\"mileage\"]. Maybe \"date\" not missing. Good.\n\nNeed JSON only no text. Ensure valid. Quotes must be copied. Let's craft.\n\nPotential issue safety_relevant true. The schema example false but we decide.\n\nNeed \"group\": \"electrical_general\" given. Good.\n\nNeed clues with kind. Use exact quote spans. Be careful with apostrophe in \"don't\" exact. JSON escape? apostrophe no. Curly quotes okay. Use straight? The narrative uses \\u201c and \\u201d. In output can include “ ”. Verbatim. Need no accidental. Let's produce.\n\nEnsure quote \"a modest “scratching” sound begins from all speakers\" exactly includes comma? Narrative: \"a modest \\u201cscratching\\u201d sound begins from all speakers, gradually becoming...\" So quote no comma okay substring. Good.\nQuote \"loud, continuous static which lasts for 3 or 4 minutes\" exact.\nQuote \"the static instantly becomes intolerably loud until I turn audio power off\" exact? Narrative: \"the static instantly becomes intolerably loud until I turn audio power off; then...\" yes substring.\nQuote \"serious driver distraction\" exact.\nQuote \"More frequent in hot weather: 3 times in last 3 days.\" exact.\nQuote \"Symptoms occur randomly and don't last long enough to reach a dealer for diagnosis.\" exact.\nQuote \"Electrical System\" exact.\n\nNeed summary mention component. Good.\n\nFinal JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530081,
+      "id": "3df9bd8214d066a7f7b933beffe512e6",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1261,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 973,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0005073,
+          "billing_source": "go",
+          "list_cost": 0.0008455,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 585,
+            "output": 1261,
+            "reasoning": 973
+          }
+        },
+        "prompt_tokens": 969,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2230
+      }
+    },
+    "text": "{\"summary\":\"2017 Honda Accord Touring electrical/audio fault: intermittent scratching/static from all speakers in hot weather (85+), even with audio off, lasting minutes and recurring.\",\"group\":\"electrical_general\",\"symptoms\":[\"intermittent audio problem\",\"scratching sound from all speakers\",\"loud continuous static\",\"static becomes intolerably loud when audio power is turned on\",\"driver distraction\"],\"conditions\":[\"heat\",\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"intermittent audio problem\"},{\"kind\":\"condition\",\"quote\":\"in hot (85+) weather\"},{\"kind\":\"symptom\",\"quote\":\"a modest “scratching” sound begins from all speakers\"},{\"kind\":\"symptom\",\"quote\":\"loud, continuous static which lasts for 3 or 4 minutes\"},{\"kind\":\"symptom\",\"quote\":\"the static instantly becomes intolerably loud until I turn audio power off\"},{\"kind\":\"safety\",\"quote\":\"serious driver distraction\"},{\"kind\":\"condition\",\"quote\":\"More frequent in hot weather: 3 times in last 3 days.\"},{\"kind\":\"condition\",\"quote\":\"Symptoms occur randomly and don't last long enough to reach a dealer for diagnosis.\"},{\"kind\":\"component_group\",\"quote\":\"Electrical System\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0005073,
+      "cached_tokens": 384,
+      "cost_usd": 0.0008455,
+      "input_tokens": 969,
+      "list_cost_usd": 0.0008455,
+      "output_tokens": 1261,
+      "reasoning_tokens": 973
+    }
+  }
+}

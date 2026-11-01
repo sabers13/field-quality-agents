@@ -1,0 +1,66 @@
+{
+  "key": "acffee71dbebe09ebde07d7849733a0bbaeff34a08f036fb84f5e032a6e88178",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10777,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2022 Chevrolet Tahoe wipers failed during heavy rain in traffic and on an interstate, then randomly recovered; no prior warnings.\",\"group\":\"body_controls\",\"symptoms\":[\"wipers failed during heavy rain\",\"wipers randomly started working\",\"wipers failed again during heavy rain\",\"unable to see while driving on an interstate\",\"no warnings before failures\"],\"conditions\":[\"moisture\",\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"VISIBILITY/WIPER\"},{\"kind\":\"symptom\",\"quote\":\"Wipers failed during heavy rain in heavy traffic on 7/3/25.\"},{\"kind\":\"symptom\",\"quote\":\"Wipers randomly started working.\"},{\"kind\":\"symptom\",\"quote\":\"The wipers failed again during a heavy rain on 8/13/25 again in moderate traffic.\"},{\"kind\":\"condition\",\"quote\":\"heavy rain\"},{\"kind\":\"symptom\",\"quote\":\"Wipers failed during heavy rain, was unable to see while driving on an Interstate.\"},{\"kind\":\"safety\",\"quote\":\"was unable to see while driving on an Interstate\"},{\"kind\":\"symptom\",\"quote\":\"No warnings of any kind prior to the failures.\"}]}",
+            "reasoning_content": "We need answer one JSON only. Need normalize. Need read report. Component VISIBILITY/WIPER group body_controls. Symptoms: wipers failed during heavy rain; randomly started working; failed again; unable to see while driving; no warnings prior. Conditions: heavy rain, heavy traffic, moderate traffic, interstate, intermittent? \"randomly started working\" implies intermittent. Conditions allowed list: cold, moisture, heat, vibration, intermittent, after service, charging. Heavy rain = moisture. Intermittent yes. Could include \"after service\"? Dealership repair occurred after failure, not condition before. No. Safety relevant? Report mentions unable to see while driving on Interstate, scary, heavy traffic. Is that risk to people? Yes loss of visibility while driving interstate could be safety risk. But source says safety_relevant false; instructions say set when mentions crash/fire/smoke/injury/loss control/stall at speed/another risk. Unable to see while driving on interstate in heavy traffic = risk to people. So true. Fault codes none. missing_info: mileage null; date? Report has dates of failures and received date; maybe date present. component present, symptom present, conditions present. Mileage missing. Maybe date present. So [\"mileage\"]. Clues with verbatim quotes. Need quotes exact character spans. Use narrative exact. Need JSON only no other text.\n\nNeed \"summary\": one line: component, symptom, conditions. E.g. \"2022 Chevrolet Tahoe wipers failed during heavy rain in traffic and on interstate; intermittent recovery; no warnings.\" That's okay.\n\nGroup: body_controls. Symptoms list plain words. Could include \"wipers failed during heavy rain\", \"wipers randomly started working\", \"wipers failed again during heavy rain\", \"unable to see while driving on an interstate\", \"no warnings before failures\". Conditions: [\"moisture\",\"intermittent\"] maybe also \"heavy traffic\"? Conditions allowed only listed? The schema examples list those, but says conditions array [\"cold\",...]. Use allowed values. Heavy rain moisture, intermittent. Maybe \"heat\"? no. \"after service\"? no. So [\"moisture\",\"intermittent\"].\n\nFault codes [].\n\nSafety true.\n\nMissing info [\"mileage\"].\n\nClues array. Need every quote verbatim from report. Examples:\n{\"kind\":\"symptom\",\"quote\":\"Wipers failed during heavy rain in heavy traffic on 7/3/25.\"}\n{\"kind\":\"condition\",\"quote\":\"heavy rain\"}\nBut quote \"heavy rain\" appears. Better exact spans. \"Wipers randomly started working.\" exact. \"The wipers failed again during a heavy rain on 8/13/25 again in moderate traffic.\" exact? Narrative: \"The wipers failed again during a heavy rain on 8/13/25 again in moderate traffic.  Wipers failed during heavy rain, was unable to see while driving on an Interstate.\" Contains double spaces. We can quote exact segments. Need ensure character-for-character. Use exact from narrative. Let's copy carefully:\n\n\"Wipers failed during heavy rain in heavy traffic on 7/3/25. Wipers randomly started working. The wipers failed again during a heavy rain on 8/13/25 again in moderate traffic.  Wipers failed during heavy rain, was unable to see while driving on an Interstate. I was able to navigate to the shoulder of the highway but was very scary being on an interstate highway in heavy traffic. Dealership repair occurred on 8/14/25.  No warnings of any kind prior to the failures.\"\n\nQuotes:\n- \"Wipers failed during heavy rain in heavy traffic on 7/3/25.\"\n- \"Wipers randomly started working.\"\n- \"The wipers failed again during a heavy rain on 8/13/25 again in moderate traffic.\"\n- \"Wipers failed during heavy rain, was unable to see while driving on an Interstate.\"\n- \"No warnings of any kind prior to the failures.\"\n- condition quote \"heavy rain\" or \"moderate traffic\"? \"heavy traffic\" is condition? Condition allowed maybe not. Use \"heavy rain\" exact. \"intermittent\" not verbatim? The clue kind condition quote must verbatim; cannot quote \"intermittent\" because not in report. But condition array can include intermittent inferred from random working. Clue for intermittent could quote \"Wipers randomly started working.\" as symptom maybe. We can include condition clue \"heavy rain\". For safety clue quote \"was unable to see while driving on an Interstate\" exact? It appears. Or \"very scary being on an interstate highway in heavy traffic\". Safety. Need kind safety quote. Use exact \"was unable to see while driving on an Interstate\" yes substring. But quote should maybe include? It is verbatim. Fine.\n- component_group clue quote \"VISIBILITY/WIPER\" appears in component field, not narrative? Report includes component. It says report in user message includes JSON. Quote can be from report, yes. Use \"VISIBILITY/WIPER\". Good.\n\nNeed JSON valid. No markdown? User says answer with one JSON object and no other text. We can output raw JSON. Final only. Ensure no trailing commas. Desired oververbosity 5 irrelevant.\n\nNeed think if safety_relevant true contradict input field false. Instructions set when report mentions risk; yes. The report says unable to see while driving on Interstate and scary. That's risk. Set true.\n\nMissing_info: mileage null. Date? It includes failure dates 7/3/25 8/13/25, repair 8/14/25, received 2025-09-08. Date present. Conditions present. Component present. Symptom present. So [\"mileage\"].\n\nSummary one line: \"2022 Chevrolet Tahoe wipers failed during heavy rain in traffic and on an interstate, then randomly recovered; no prior warnings.\" Good.\n\nSymptom list: Could be \"wipers failed\", \"wipers randomly started working\", \"unable to see while driving on an interstate\", \"no warnings before failures\". Plain words. Conditions [\"moisture\",\"intermittent\"].\n\nFault codes [].\n\nClues kind maybe include \"other\" for no warnings? No, symptom. For \"Dealership repair occurred on 8/14/25\" not needed. Could clue other? no.\n\nNeed quote exact \"heavy rain\" appears multiple. Fine.\n\nNeed maybe include \"heavy traffic\" as condition? Allowed conditions list doesn't include traffic. Better not. \"moisture\" covers rain. \"intermittent\" covers random. Good.\n\nNeed no extra. Final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530157,
+      "id": "b28b411eaa276c879dcfd3def4d3bba1",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1650,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1374,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00061386,
+          "billing_source": "go",
+          "list_cost": 0.0010231,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 213,
+            "output": 1650,
+            "reasoning": 1374
+          }
+        },
+        "prompt_tokens": 597,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2247
+      }
+    },
+    "text": "{\"summary\":\"2022 Chevrolet Tahoe wipers failed during heavy rain in traffic and on an interstate, then randomly recovered; no prior warnings.\",\"group\":\"body_controls\",\"symptoms\":[\"wipers failed during heavy rain\",\"wipers randomly started working\",\"wipers failed again during heavy rain\",\"unable to see while driving on an interstate\",\"no warnings before failures\"],\"conditions\":[\"moisture\",\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"VISIBILITY/WIPER\"},{\"kind\":\"symptom\",\"quote\":\"Wipers failed during heavy rain in heavy traffic on 7/3/25.\"},{\"kind\":\"symptom\",\"quote\":\"Wipers randomly started working.\"},{\"kind\":\"symptom\",\"quote\":\"The wipers failed again during a heavy rain on 8/13/25 again in moderate traffic.\"},{\"kind\":\"condition\",\"quote\":\"heavy rain\"},{\"kind\":\"symptom\",\"quote\":\"Wipers failed during heavy rain, was unable to see while driving on an Interstate.\"},{\"kind\":\"safety\",\"quote\":\"was unable to see while driving on an Interstate\"},{\"kind\":\"symptom\",\"quote\":\"No warnings of any kind prior to the failures.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00061386,
+      "cached_tokens": 384,
+      "cost_usd": 0.0010231,
+      "input_tokens": 597,
+      "list_cost_usd": 0.0010231,
+      "output_tokens": 1650,
+      "reasoning_tokens": 1374
+    }
+  }
+}

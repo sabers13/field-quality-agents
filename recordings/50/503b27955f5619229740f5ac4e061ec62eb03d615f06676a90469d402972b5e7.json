@@ -1,0 +1,66 @@
+{
+  "key": "503b27955f5619229740f5ac4e061ec62eb03d615f06676a90469d402972b5e7",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 16397,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2017 Volkswagen Passat electrical system: lost motive power while driving with check engine and unknown warning lights, then intermittent start/stop.\",\"group\":\"electrical_general\",\"symptoms\":[\"lost motive power\",\"check engine warning light and unknown warning light illuminated\",\"intermittently start and stop\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"lost motive power\"},{\"kind\":\"symptom\",\"quote\":\"check engine warning light and an unknown warning light illuminated\"},{\"kind\":\"symptom\",\"quote\":\"intermittently start and stop\"},{\"kind\":\"condition\",\"quote\":\"while driving at an undisclosed speed\"},{\"kind\":\"condition\",\"quote\":\"intermittently\"},{\"kind\":\"safety\",\"quote\":\"while driving at an undisclosed speed, the vehicle lost motive power\"},{\"kind\":\"other\",\"quote\":\"the failure could be related to an electrical malfunction\"}]}",
+            "reasoning_content": "We need answer one JSON only. Need normalize. Read report. Component ELECTRICAL SYSTEM group electrical_general. Summary one line component, symptom, conditions. Symptoms: lost motive power, check engine warning light illuminated, unknown warning light illuminated, intermittent start and stop. Conditions: while driving, intermittent, after service? no. cold moisture heat vibration charging no. Fault codes none. Safety relevant? Report says lost motive power while driving, stall at speed? It says while driving at undisclosed speed lost motive power; this is risk? Rule set safety_relevant when mentions crash, fire, smoke, injury, loss of control, a stall at speed or another risk to people. Lost motive power while driving at undisclosed speed is stall at speed? It is loss of motive power. This likely safety relevant true? The given safety_relevant false in input but we must normalize. Must set true when report mentions stall at speed or another risk. \"lost motive power\" while driving at undisclosed speed = risk. Also \"intermittently start and stop\" could be stall. So true. Need missing_info: date? received_at and year, mileage present. Component present, symptom present, conditions present (while driving, intermittent). Maybe fault codes missing? Not in list. missing_info only component, symptom, conditions, mileage, date. None missing? Maybe date of failure missing? \"undisclosed speed\" not in list. They have received_at not failure date. Date maybe missing? But report includes approximate failure mileage, received date. Need maybe missing_info empty. But \"date\" is analysis needs; no failure date specified, only received_at. Could include \"date\" because no incident date. But rules list missing_info for facts analysis needs: component, symptom, conditions, mileage, date. There is received_at, not failure date. Hm. The narrative doesn't state date of failure. Could list date. Mileage present. Conditions present. We can include \"date\". Need quotes verbatim. Clues: symptom quote \"lost motive power\", \"check engine warning light and an unknown warning light illuminated\", \"intermittently start and stop\"; condition \"while driving at an undisclosed speed\"; component_group \"ELECTRICAL SYSTEM\" quote exactly? The report has \"component\": \"ELECTRICAL SYSTEM\" but narrative? Quote can be from report, includes JSON? User says report in user message, whole JSON. Can quote \"ELECTRICAL SYSTEM\". Fault code none. Safety quote \"lost motive power\" or \"while driving at an undisclosed speed, the vehicle lost motive power\". For safety kind quote must verbatim. Could include safety clue. Need no other text. Ensure JSON valid. Summary one line.\n\nNeed think about quote exact character. \"The contact stated that while driving at an undisclosed speed, the vehicle lost motive power, with the check engine warning light and an unknown warning light illuminated.\" We can quote spans. Use exact substring. For \"intermittently start and stop\" exact in report: \"causing the vehicle to intermittently start and stop.\" Quote \"intermittently start and stop\". Good.\n\nNeed maybe symptom \"lost motive power\" and \"check engine warning light and an unknown warning light illuminated\" and \"intermittently start and stop\". Conditions: \"while driving at an undisclosed speed\", \"intermittent\" maybe from intermittently. Conditions array include \"intermittent\". Could include \"while driving\" but conditions allowed list: cold moisture heat vibration intermittent after service charging. The schema conditions array suggests these enumerated conditions. Use [\"intermittent\"] only? Summary mentions while driving. But conditions in output should be from allowed. The report has intermittent. No cold etc. So conditions [\"intermittent\"]. Good.\n\nGroup: \"electrical_general\" or \"ELECTRICAL SYSTEM\"? Prompt: group is electrical/electronic component group, or given group. Given group \"electrical_general\". Use that.\n\nFault_codes empty.\n\nSafety_relevant true. Missing_info maybe [\"date\"]. Need decide. Since no incident date, yes.\n\nClues: We need include component_group quote \"ELECTRICAL SYSTEM\" exact. Symptom quotes. Condition quote \"intermittently\" maybe quote \"intermittently\" exact. Safety quote \"lost motive power\" exact. Other quote \"independent mechanic\" maybe not needed. Clues no need exhaustive. But include evidence. \"unknown warning light\" maybe symptom. Let's craft.\n\nNeed ensure every quote verbatim. For summary no quote requirement. JSON only. No markdown? They said answer with one JSON object no other text. We can output raw JSON. Ensure no trailing comments. Use booleans.\n\nPotential issue safety_relevant: The input has \"safety_relevant\": false. But report mentions loss of motive power while driving. The instruction says set safety_relevant when mentions ... stall at speed or another risk. Loss of motive power at undisclosed speed qualifies. So true. Good.\n\nNeed \"summary\": \"2017 Volkswagen Passat electrical system: lost motive power while driving with check engine and unknown warning lights, then intermittent start/stop.\" One line. Good.\n\nMissing info: \"date\" because failure date not given. Could also \"conditions\" because speed undisclosed? But conditions include while driving and intermittent; not missing. Maybe \"fault_codes\" not in missing list. Okay.\n\nClues array:\n- {\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"}\n- {\"kind\":\"symptom\",\"quote\":\"lost motive power\"}\n- {\"kind\":\"symptom\",\"quote\":\"check engine warning light and an unknown warning light illuminated\"}\n- {\"kind\":\"symptom\",\"quote\":\"intermittently start and stop\"}\n- {\"kind\":\"condition\",\"quote\":\"while driving at an undisclosed speed\"}\n- {\"kind\":\"condition\",\"quote\":\"intermittently\"}\n- {\"kind\":\"safety\",\"quote\":\"while driving at an undisclosed speed, the vehicle lost motive power\"}\n\nCheck quote \"while driving at an undisclosed speed, the vehicle lost motive power\" exact? Report: \"stated that while driving at an undisclosed speed, the vehicle lost motive power, with...\" Yes substring exact. Good.\n\nNeed include \"other\" maybe mechanic said electrical malfunction. Not necessary but could: {\"kind\":\"other\",\"quote\":\"failure could be related to an electrical malfunction\"}. This supports group. But component_group quote already. Could include. It's exact substring: \"the failure could be related to an electrical malfunction\" yes. Add maybe. No issue.\n\nNeed answer only JSON. \nWait \"conditions\": allowed list includes \"intermittent\". Good.\n\nNeed \"missing_info\": [\"date\"]. Is date missing? The report has received_at 2025-11-10, but not incident date. The analysis likely needs failure date. Yes.\n\nNeed maybe \"safety_relevant\": true. Good.\n\nLet's final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531929,
+      "id": "294fd75390df44b05c224de78ba7a3fe",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1639,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1413,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00061287,
+          "billing_source": "go",
+          "list_cost": 0.00102145,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 246,
+            "output": 1639,
+            "reasoning": 1413
+          }
+        },
+        "prompt_tokens": 630,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2269
+      }
+    },
+    "text": "{\"summary\":\"2017 Volkswagen Passat electrical system: lost motive power while driving with check engine and unknown warning lights, then intermittent start/stop.\",\"group\":\"electrical_general\",\"symptoms\":[\"lost motive power\",\"check engine warning light and unknown warning light illuminated\",\"intermittently start and stop\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"lost motive power\"},{\"kind\":\"symptom\",\"quote\":\"check engine warning light and an unknown warning light illuminated\"},{\"kind\":\"symptom\",\"quote\":\"intermittently start and stop\"},{\"kind\":\"condition\",\"quote\":\"while driving at an undisclosed speed\"},{\"kind\":\"condition\",\"quote\":\"intermittently\"},{\"kind\":\"safety\",\"quote\":\"while driving at an undisclosed speed, the vehicle lost motive power\"},{\"kind\":\"other\",\"quote\":\"the failure could be related to an electrical malfunction\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00061287,
+      "cached_tokens": 384,
+      "cost_usd": 0.00102145,
+      "input_tokens": 630,
+      "list_cost_usd": 0.00102145,
+      "output_tokens": 1639,
+      "reasoning_tokens": 1413
+    }
+  }
+}

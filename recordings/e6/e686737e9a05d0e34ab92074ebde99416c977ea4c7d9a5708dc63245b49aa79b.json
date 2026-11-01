@@ -1,0 +1,66 @@
+{
+  "key": "e686737e9a05d0e34ab92074ebde99416c977ea4c7d9a5708dc63245b49aa79b",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 6202,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\": \"Run the Electrical load test because Level 1 and Level 2 charging stopped while Level 3 worked, pointing to the high-current AC charging path.\", \"rationale\": \"The narrative reports failure of Level 1 and Level 2 charging, a mid-Level 2 stop that tripped the circuit and bricked the Level 2 charger, and subsequent ICCU replacement. The rulebook matches the charging condition to the Electrical load test because charging and high-current loads stress the supply path, connectors and protection circuits.\", \"group\": \"electrical_general\", \"symptoms\": [\"Level 1 charging stopped\", \"Level 2 charging stopped\", \"Level 3 charging still worked\", \"Level 2 charging stopped midway\", \"circuit tripped during Level 2 charging\", \"Level 2 charger bricked\"], \"conditions\": [\"charging\"], \"fault_codes\": [], \"safety_relevant\": false, \"targeted\": true, \"test_name\": \"Electrical load test\", \"clues\": [{\"kind\": \"symptom\", \"quote\": \"The car stopped both Level 1 and 2 charging.\"}, {\"kind\": \"symptom\", \"quote\": \"Level 3 charging worked.\"}, {\"kind\": \"condition\", \"quote\": \"When it stopped in the middle of Level 2 charging\"}, {\"kind\": \"symptom\", \"quote\": \"it tripped my circuit and bricked my Juicebix Level 2 charger\"}, {\"kind\": \"other\", \"quote\": \"Hyundai replaced the ICCU.\"}]}",
+            "reasoning_content": "We need answer JSON only. Need analyze. Case charging issue level1/2 stopped level3 worked, trip circuit bricked charger, ICCU replaced. Rulebook match charging, test Electrical load test. Conditions charging. Symptoms. Safety? narrative no risk to people? It tripped circuit and bricked charger, no injury/fire. extraction safety false. targeted true. group electrical_general. fault_codes empty. clues verbatim spans from narrative. Must quote exactly from case narrative, not extraction. Narrative: \"The car stopped both Level 1 and 2 charging. But Level 3 charging worked. When it stopped in the middle of Level 2 charging, it tripped my circuit and bricked my Juicebix Level 2 charger.  Hyundai replaced the ICCU.\"\n\nNeed quotes verbatim: \"The car stopped both Level 1 and 2 charging.\" \"Level 3 charging worked.\" \"When it stopped in the middle of Level 2 charging\" \"it tripped my circuit and bricked my Juicebix Level 2 charger\" \"Hyundai replaced the ICCU.\" component group quote? \"ELECTRICAL SYSTEM\" from component? Narrative doesn't contain? case component is \"ELECTRICAL SYSTEM\" but quote must from narrative; no. Could use component_group clue quote? Must be verbatim from narrative, so cannot quote ELECTRICAL SYSTEM unless in narrative; not. Use kind component_group? No matching quote. Maybe omit. \"clues\" array can include only valid quotes. Need summary one line what test and why. Rationale condition evidence. targeted true. test_name \"Electrical load test\". safety_relevant false. fault_codes [] because none. symptoms list. conditions [\"charging\"]. group \"electrical_general\". targeted true.\n\nNeed ensure JSON valid, no extra text. Quotes exact including double spaces? Narrative has two spaces before Hyundai. Quote \"Hyundai replaced the ICCU.\" matches substring yes after spaces. \"it tripped my circuit and bricked my Juicebix Level 2 charger\" exact. Good.\n\nSummary: \"Run the Electrical load test because Level 1/2 charging stopped while Level 3 worked, pointing to the high-current AC charge path.\" Rationale mention rulebook charging condition. Maybe no recalls/investigations. targeted true.\n\nNeed maybe \"test_name\": \"Electrical load test\". \"targeted\": true.\n\nCould include clue other \"Hyundai replaced the ICCU.\" This indicates repair. Fine.\n\nNeed no markdown. final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793532974,
+      "id": "98d8a381cc285814569887b7c96a1c04",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 839,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 514,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00043704,
+          "billing_source": "go",
+          "list_cost": 0.0007284,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 1500,
+            "output": 839,
+            "reasoning": 514
+          }
+        },
+        "prompt_tokens": 1500,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 2339
+      }
+    },
+    "text": "{\"summary\": \"Run the Electrical load test because Level 1 and Level 2 charging stopped while Level 3 worked, pointing to the high-current AC charging path.\", \"rationale\": \"The narrative reports failure of Level 1 and Level 2 charging, a mid-Level 2 stop that tripped the circuit and bricked the Level 2 charger, and subsequent ICCU replacement. The rulebook matches the charging condition to the Electrical load test because charging and high-current loads stress the supply path, connectors and protection circuits.\", \"group\": \"electrical_general\", \"symptoms\": [\"Level 1 charging stopped\", \"Level 2 charging stopped\", \"Level 3 charging still worked\", \"Level 2 charging stopped midway\", \"circuit tripped during Level 2 charging\", \"Level 2 charger bricked\"], \"conditions\": [\"charging\"], \"fault_codes\": [], \"safety_relevant\": false, \"targeted\": true, \"test_name\": \"Electrical load test\", \"clues\": [{\"kind\": \"symptom\", \"quote\": \"The car stopped both Level 1 and 2 charging.\"}, {\"kind\": \"symptom\", \"quote\": \"Level 3 charging worked.\"}, {\"kind\": \"condition\", \"quote\": \"When it stopped in the middle of Level 2 charging\"}, {\"kind\": \"symptom\", \"quote\": \"it tripped my circuit and bricked my Juicebix Level 2 charger\"}, {\"kind\": \"other\", \"quote\": \"Hyundai replaced the ICCU.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00043704,
+      "cached_tokens": 0,
+      "cost_usd": 0.0007284,
+      "input_tokens": 1500,
+      "list_cost_usd": 0.0007284,
+      "output_tokens": 839,
+      "reasoning_tokens": 514
+    }
+  }
+}

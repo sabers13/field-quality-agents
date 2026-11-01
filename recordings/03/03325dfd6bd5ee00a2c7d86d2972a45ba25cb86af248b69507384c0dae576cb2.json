@@ -1,0 +1,66 @@
+{
+  "key": "03325dfd6bd5ee00a2c7d86d2972a45ba25cb86af248b69507384c0dae576cb2",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 6563,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"AIR BAGS: airbags failed to deploy in a collision, occupant was knocked unconscious, and the vehicle has an SRS fault code and open Takata airbag recall.\",\n  \"group\": \"restraints\",\n  \"symptoms\": [\n    \"airbags did not deploy in a collision\",\n    \"occupant knocked unconscious from hitting the steering wheel\",\n    \"SRS fault code present\",\n    \"vehicle unsafe to drive until recall completed\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [\n    \"SRS fault code\"\n  ],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\",\n    \"conditions\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"AIR BAGS\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"airbags did not deploy\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"knocked unconscious from hitting the steering wheel\"\n    },\n    {\n      \"kind\": \"fault_code\",\n      \"quote\": \"shows an SRS fault code\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"open Takata airbag recall\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"vehicle is unsafe to drive until the recall is completed\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer only JSON object. Need normalize report. Need extract summary one line component symptom conditions. Group given restraints. Symptoms plain words: airbags did not deploy in collision, knocked unconscious hitting steering wheel, SRS fault code, open Takata airbag recall, unsafe to drive. Conditions? Maybe after service? no. Collision? Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. None explicitly? Collision isn't in list. Maybe no conditions. Fault codes: \"SRS fault code\" but no specific code. Should we include \"SRS\" as code? It says code if report names one. It names \"SRS fault code\" not a code. Could include \"SRS\" maybe not. Better fault_codes []? Hmm \"SRS fault code\" is not a specific code. Could include \"SRS fault code\" maybe as fault code. The schema says fault_codes [\"code if report names one\"]. Report names \"SRS fault code\" generic. I'd include \"SRS fault code\"? But \"code\" maybe not. Need clues with verbatim quotes. Must copy exact. Need ensure quotes are substrings. Narrative has Unicode apostrophe. Need quote exact spans. Use spans no problematic? Let's craft quotes verbatim from narrative:\n- \"airbags did not deploy\" yes.\n- \"knocked unconscious from hitting the steering wheel\" yes.\n- \"shows an SRS fault code\" yes.\n- \"open Takata airbag recall\" yes.\n- \"vehicle is unsafe to drive until the recall is completed\" yes.\n- safety relevant quote \"knocked unconscious\" or \"unsafe to drive\". Use \"knocked unconscious from hitting the steering wheel\" kind safety.\n- component_group quote \"AIR BAGS\" from component field? Is report includes JSON component. Yes user message includes component. Quote \"AIR BAGS\" verbatim.\n\nSummary: \"AIR BAGS: airbags failed to deploy in a collision; occupant knocked unconscious; SRS fault code and open Takata recall.\" Conditions maybe [] because no allowed conditions. missing_info: mileage null, date? Received date exists but incident date missing. Conditions missing? The analysis needs conditions? We can list \"mileage\", \"date\", \"conditions\" maybe. Component and symptom present. Date: report received_at but not incident date. Include date? Yes. Conditions: collision is condition but not listed; incident conditions maybe. Missing info includes mileage, date, conditions? Could include. It asks only facts analysis needs. Since no mileage null, date missing incident date, conditions no environmental conditions. Fine.\n\nNeed no other text. Ensure JSON valid. Quotes exact. \"Toyota’s\" not needed. Use straight? Must copy exactly. Avoid quotes with apostrophe. Good.\n\nNeed output JSON object only.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531372,
+      "id": "8bf3d78e7636b35c553e910812e32dc6",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 891,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 583,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0003435,
+          "billing_source": "go",
+          "list_cost": 0.0005725,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 245,
+            "output": 891,
+            "reasoning": 583
+          }
+        },
+        "prompt_tokens": 629,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1520
+      }
+    },
+    "text": "{\n  \"summary\": \"AIR BAGS: airbags failed to deploy in a collision, occupant was knocked unconscious, and the vehicle has an SRS fault code and open Takata airbag recall.\",\n  \"group\": \"restraints\",\n  \"symptoms\": [\n    \"airbags did not deploy in a collision\",\n    \"occupant knocked unconscious from hitting the steering wheel\",\n    \"SRS fault code present\",\n    \"vehicle unsafe to drive until recall completed\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [\n    \"SRS fault code\"\n  ],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\",\n    \"conditions\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"AIR BAGS\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"airbags did not deploy\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"knocked unconscious from hitting the steering wheel\"\n    },\n    {\n      \"kind\": \"fault_code\",\n      \"quote\": \"shows an SRS fault code\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"open Takata airbag recall\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"vehicle is unsafe to drive until the recall is completed\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0003435,
+      "cached_tokens": 384,
+      "cost_usd": 0.0005725,
+      "input_tokens": 629,
+      "list_cost_usd": 0.0005725,
+      "output_tokens": 891,
+      "reasoning_tokens": 583
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "def856591dc0ba02d63f9590f3034df77a52046c5c7af4cbfde73179a5dba638",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 13634,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"ELECTRICAL SYSTEM: 2024 Tesla Model Y independently accelerated at about 30 MPH, crashed into another vehicle, airbags deployed, minor neck/shoulder pain.\",\"group\":\"electrical_general\",\"symptoms\":[\"independent acceleration\",\"crash into another vehicle\",\"airbags deployed\",\"neck and shoulder pain\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"independently accelerated\"},{\"kind\":\"condition\",\"quote\":\"driving at approximately 30 MPH\"},{\"kind\":\"symptom\",\"quote\":\"crashed into another vehicle\"},{\"kind\":\"safety\",\"quote\":\"air bags had deployed\"},{\"kind\":\"safety\",\"quote\":\"pain in her neck and shoulders\"},{\"kind\":\"other\",\"quote\":\"total loss\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize. Report: component ELECTRICAL SYSTEM group electrical_general. Symptoms: independently accelerated, crash into another vehicle, airbags deployed, injury neck/shoulders pain. Conditions? driving at ~30 MPH. Maybe \"crash\" not in allowed conditions list? conditions array allowed listed values: cold, moisture, heat, vibration, intermittent, after service, charging. We shouldn't invent. The report doesn't mention those. Could include conditions? Maybe none? But schema conditions array. Could put []? Need group electrical_general. fault_codes none. safety_relevant true. missing_info? Component given, symptom given, conditions maybe not specific environmental but driving speed given; mileage given; date received but incident date missing. The analysis needs date? Missing_info could include \"date\" because no incident date only received_at. Maybe conditions? It says conditions list only specific; we know driving at 30 MPH, not environmental. Missing_info maybe [\"date\"]? Also component vague? component ELECTRICAL SYSTEM but not specific component. Missing_info perhaps [\"component\"]? Since component is broad electrical system; analysis needs specific component. But user gave group. Need decide. The prompt says missing_info facts analysis needs: component, symptom, conditions, mileage, date. Component is broad but present. Symptom present. Conditions present? Speed present but not conditions like cold etc. Mileage present. Date missing? There is received_at, but failure date not. Could list \"date\". Also maybe \"conditions\" because no environmental/operating conditions beyond speed? But speed is condition. Hm.\n\nNeed quotes verbatim from narrative. Need clues. Kind symptom/condition/fault_code/component_group/safety/other. Quotes must be exact spans. Need ensure quotes exact.\n\nPossible quotes:\n- \"independently accelerated\" exact.\n- \"driving at approximately 30 MPH\" exact (condition? maybe condition)\n- \"crashed into another vehicle\" exact? Narrative: \"her daughter drove through an intersection and crashed into another vehicle.\" Quote \"crashed into another vehicle\" exact.\n- \"air bags had deployed\" exact? Narrative \"The contact stated that the air bags had deployed in her vehicle.\" substring \"air bags had deployed\" yes.\n- \"pain in her neck and shoulders\" exact.\n- \"total loss\" exact.\n- \"ELECTRICAL SYSTEM\" is in component not narrative? Rules quote copied from report; report includes component field. Quote \"ELECTRICAL SYSTEM\" exact. Kind component_group? But group is electrical_general, quote component. Could use \"ELECTRICAL SYSTEM\" as component_group.\n- safety: \"crashed into another vehicle\" or \"pain in her neck and shoulders\" or \"air bags had deployed\". Need safety quote.\n\nNeed summary one line: ELECTRICAL SYSTEM — vehicle independently accelerated at ~30 MPH, intersection crash, airbags deployed, minor neck/shoulder pain. Conditions: maybe \"driving at approximately 30 MPH\". The conditions field allowed values? It says array of [\"cold\", ...], but likely free? It says conditions: [\"cold\", ...] maybe examples, but should use only those? Hmm prompt: `\"conditions\": [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"],` This is schema indicating possible values? It might be allowed set. If no match, empty list. But the report has driving at 30 mph, not condition category. We can put [] or maybe [\"intermittent\"]? No, independent acceleration not intermittent. Don't include. But clues can include condition quote for speed? Kind \"condition\" maybe allowed? It says kind symptom|condition|fault_code|component_group|safety|other. Condition quote can be \"driving at approximately 30 MPH\" even if conditions array empty? Could include conditions [\"driving at approximately 30 MPH\"]? But that deviates from listed. The schema shows conditions list with examples not necessarily exhaustive? It says \"conditions\": [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"], likely expects those categories. The report's condition is driving at speed, not in set. I can put [] and clue kind condition with speed. But maybe conditions should capture \"driving at approximately 30 MPH\" as condition. Hmm.\n\nNeed \"group\": \"the electrical/electronic component group, or the given group\" so \"electrical_general\".\n\nNeed missing_info. Since component broad, maybe [\"component\", \"date\"]? But component field is ELECTRICAL SYSTEM; maybe specific failing component unknown. The analysis needs component; the report says electrical system but not which. Could list \"component\" as missing specific component. Date: incident date not given, only received_at. Conditions: driving at 30 mph but no weather/road? Not necessary. Mileage present. Symptom present. I'd include [\"component\", \"date\"]? But missing_info allowed facts: component, symptom, conditions, mileage, date. Since component broad, yes. But if we say component missing despite component field present, maybe contradictory? It is missing specific component. The prompt says \"component\" maybe field. Hmm. The report component is \"ELECTRICAL SYSTEM\". It is not missing, but vague. Could put [\"date\"] only. Need not overdo. Also \"conditions\" missing because no environmental conditions? But speed is present. Hmm.\n\nSafety relevant true due crash, airbags, injury. Good.\n\nNeed JSON only. Ensure no markdown? User says answer with one JSON object and no other text. Final should be raw JSON. Need no code fence? Probably raw. Use valid JSON.\n\nNeed include clues with exact quotes. Let's craft:\n\n{\n \"summary\": \"ELECTRICAL SYSTEM: 2024 Tesla Model Y independently accelerated at about 30 MPH, crashed into another vehicle, airbags deployed, minor neck/shoulder pain.\",\n \"group\": \"electrical_general\",\n \"symptoms\": [\"independent acceleration\", \"crash into another vehicle\", \"airbags deployed\", \"neck and shoulder pain\"],\n \"conditions\": [],\n \"fault_codes\": [],\n \"safety_relevant\": true,\n \"missing_info\": [\"date\"],\n \"clues\": [\n   {\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},\n   {\"kind\":\"symptom\",\"quote\":\"independently accelerated\"},\n   {\"kind\":\"condition\",\"quote\":\"driving at approximately 30 MPH\"},\n   {\"kind\":\"symptom\",\"quote\":\"crashed into another vehicle\"},\n   {\"kind\":\"safety\",\"quote\":\"air bags had deployed\"},\n   {\"kind\":\"safety\",\"quote\":\"pain in her neck and shoulders\"},\n   {\"kind\":\"other\",\"quote\":\"total loss\"}\n ]\n}\n\nCheck quote \"air bags had deployed\" exact? Narrative: \"The contact stated that the air bags had deployed in her vehicle.\" yes substring. \"pain in her neck and shoulders\" exact? \"The daughter only had pain in her neck and shoulders; there were no cuts or abrasions.\" yes. \"total loss\" exact? \"the vehicle was a total loss.\" yes. \"crashed into another vehicle\" exact? \"drove through an intersection and crashed into another vehicle.\" yes. \"independently accelerated\" exact? \"the vehicle had independently accelerated.\" yes. \"driving at approximately 30 MPH\" exact? \"The contact's daughter was driving at approximately 30 MPH when...\" yes. \"ELECTRICAL SYSTEM\" exact in component. Good.\n\nShould symptoms include \"vehicle independently accelerated\" not \"independent acceleration\"? Fine plain words.\n\nConditions maybe include \"driving at approximately 30 MPH\"? The conditions field likely should use plain conditions; maybe use [\"driving at approximately 30 MPH\"] instead of []. The schema's example list not necessarily exhaustive. But it explicitly lists condition categories; however \"driving at approximately 30 MPH\" is condition. Hmm. It says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"], likely the values. I think conditions should be [] because none of those. But then clue condition speed. That's okay.\n\nMissing_info: date only. But maybe \"conditions\" missing? No.\n\nNeed final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793527622,
+      "id": "474e94519881e40039d8ae2a11853f6b",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1923,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1728,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00072069,
+          "billing_source": "go",
+          "list_cost": 0.00120115,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 308,
+            "output": 1923,
+            "reasoning": 1728
+          }
+        },
+        "prompt_tokens": 692,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2615
+      }
+    },
+    "text": "{\"summary\":\"ELECTRICAL SYSTEM: 2024 Tesla Model Y independently accelerated at about 30 MPH, crashed into another vehicle, airbags deployed, minor neck/shoulder pain.\",\"group\":\"electrical_general\",\"symptoms\":[\"independent acceleration\",\"crash into another vehicle\",\"airbags deployed\",\"neck and shoulder pain\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"independently accelerated\"},{\"kind\":\"condition\",\"quote\":\"driving at approximately 30 MPH\"},{\"kind\":\"symptom\",\"quote\":\"crashed into another vehicle\"},{\"kind\":\"safety\",\"quote\":\"air bags had deployed\"},{\"kind\":\"safety\",\"quote\":\"pain in her neck and shoulders\"},{\"kind\":\"other\",\"quote\":\"total loss\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00072069,
+      "cached_tokens": 384,
+      "cost_usd": 0.00120115,
+      "input_tokens": 692,
+      "list_cost_usd": 0.00120115,
+      "output_tokens": 1923,
+      "reasoning_tokens": 1728
+    }
+  }
+}

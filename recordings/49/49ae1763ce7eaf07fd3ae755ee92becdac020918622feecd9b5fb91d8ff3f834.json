@@ -1,0 +1,66 @@
+{
+  "key": "49ae1763ce7eaf07fd3ae755ee92becdac020918622feecd9b5fb91d8ff3f834",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9346,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Electrical system: dashboard went dark/unresponsive with warning lights and flicker; brake pedal went to floor without slowing while driving about 40 mph.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"dashboard went dark and became unresponsive\",\n    \"multiple warning lights illuminated simultaneously\",\n    \"dashboard flickered as if repeatedly shutting down and restarting\",\n    \"brake pedal had no resistance and traveled to the floor without slowing the vehicle\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"ELECTRICAL SYSTEM\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"dashboard suddenly went dark and became unresponsive\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Multiple warning lights illuminated simultaneously\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"The dashboard appeared to flicker as though it was repeatedly shutting down and restarting.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"at approximately 40 miles per hour\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"When the brake pedal was applied, it offered no resistance and traveled completely to the floor without slowing the vehicle.\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"This incident raises serious safety concerns, as both electrical and braking systems appeared to fail simultaneously.\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer one JSON only. Need normalize. Must quote verbatim. Need safety_relevant true because loss of braking, potential accident, electrical/braking fail. Component electrical system group given electrical_general. Symptoms: dashboard dark/unresponsive, warning lights illuminated, flicker/restart, brake pedal no resistance to floor, no slowing, shifted neutral coast stop. Conditions: driving at ~40 mph. Maybe \"at approximately 40 miles per hour\" condition. Fault codes none. missing_info: mileage? date? It has received_at but no incident date. Mileage null. Conditions present. Component and symptom present. missing_info could include mileage, date. \"date\" maybe incident date missing. Need not include conditions. Safety relevant true. Clues quotes verbatim. Need ensure exact characters from narrative. Narrative has curly apostrophes? User message includes \\u2019. We can quote spans avoiding apostrophe? Need verbatim character for character. JSON can include unicode curly apostrophe if quote includes vehicle’s? Better choose spans without apostrophes. Examples:\n\"dashboard suddenly went dark and became unresponsive\" exact substring? Narrative: \"the vehicle\\u2019s dashboard suddenly went dark and became unresponsive.\" yes substring starts dashboard.\n\"Multiple warning lights illuminated simultaneously\"\n\"The dashboard appeared to flicker as though it was repeatedly shutting down and restarting.\"\n\"When the brake pedal was applied, it offered no resistance and traveled completely to the floor without slowing the vehicle.\"\n\"at approximately 40 miles per hour\" exact substring? narrative \"at approximately 40 miles per hour\" yes.\n\"This incident raises serious safety concerns, as both electrical and braking systems appeared to fail simultaneously.\" exact.\nNeed symptom quotes. Could include \"dashboard suddenly went dark and became unresponsive\" as symptom. \"Multiple warning lights illuminated simultaneously\" symptom. \"flicker ... restarting\" symptom. brake quote. Condition quote \"at approximately 40 miles per hour\". safety quote.\n\nSummary one line: \"Electrical system: dashboard dark/unresponsive with warning lights and flicker; brake pedal went to floor without slowing while driving ~40 mph.\" Good.\n\nGroup \"electrical_general\". Symptoms array plain words. Conditions [\"while driving\", \"at approximately 40 miles per hour\"] maybe condition quote. Rules conditions list allowed values [\"cold\",\"moisture\",\"heat\",\"vibration\",\"intermittent\",\"after service\",\"charging\"]. Hmm conditions should be from those? It says conditions list: [\"cold\", ...]. The report doesn't mention those exactly. But \"intermittent\" via flicker repeatedly shutting down/restarting? Could include \"intermittent\" because flicker/restart? It says conditions list those enumerated. Need not invent. We can include \"intermittent\" due to repeatedly shutting down/restarting. But quote \"The dashboard appeared to flicker as though it was repeatedly shutting down and restarting.\" That supports intermittent. Could include \"intermittent\". Not \"while driving\" because not in enumerated list? The schema says conditions array with examples? It lists specific values. Better use only enumerated if supported: \"intermittent\" supported. But also driving at 40 mph is a condition, but not in allowed set. Hmm instructions: `\"conditions\": [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]` meaning allowed condition labels. So include [\"intermittent\"]. But summary mentions driving 40 mph. Fine.\n\nMissing_info: mileage, date. Component present. Symptom present. Conditions? We have speed, but not weather etc. But missing_info only facts needed: component, symptom, conditions, mileage, date. Conditions maybe given driving. Not missing. Date incident missing. Mileage missing. So [\"mileage\",\"date\"].\n\nFault_codes empty.\n\nClues kind: symptom, condition, safety, component_group. component_group quote \"ELECTRICAL SYSTEM\"? That appears in component field not narrative? The report includes component field. Quote can be from report. Use quote \"ELECTRICAL SYSTEM\" exact. But \"report\" includes JSON; okay. For component_group clue quote \"ELECTRICAL SYSTEM\". For condition quote \"at approximately 40 miles per hour\". For intermittent maybe quote flicker. Safety quote. Need avoid duplicate? okay.\n\nNeed JSON no other text.\n\nEnsure valid JSON. Use curly? Quotes chosen no apostrophes. \"This incident raises serious safety concerns, as both electrical and braking systems appeared to fail simultaneously.\" exact includes comma. Good.\n\nNeed summary one line not too long. \nFinal.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531676,
+      "id": "7c77f45436d84eb586016f731acbc181",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1311,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 946,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00049713,
+          "billing_source": "go",
+          "list_cost": 0.00082855,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 272,
+            "output": 1311,
+            "reasoning": 946
+          }
+        },
+        "prompt_tokens": 656,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1967
+      }
+    },
+    "text": "{\n  \"summary\": \"Electrical system: dashboard went dark/unresponsive with warning lights and flicker; brake pedal went to floor without slowing while driving about 40 mph.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"dashboard went dark and became unresponsive\",\n    \"multiple warning lights illuminated simultaneously\",\n    \"dashboard flickered as if repeatedly shutting down and restarting\",\n    \"brake pedal had no resistance and traveled to the floor without slowing the vehicle\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"ELECTRICAL SYSTEM\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"dashboard suddenly went dark and became unresponsive\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Multiple warning lights illuminated simultaneously\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"The dashboard appeared to flicker as though it was repeatedly shutting down and restarting.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"at approximately 40 miles per hour\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"When the brake pedal was applied, it offered no resistance and traveled completely to the floor without slowing the vehicle.\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"This incident raises serious safety concerns, as both electrical and braking systems appeared to fail simultaneously.\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00049713,
+      "cached_tokens": 384,
+      "cost_usd": 0.00082855,
+      "input_tokens": 656,
+      "list_cost_usd": 0.00082855,
+      "output_tokens": 1311,
+      "reasoning_tokens": 946
+    }
+  }
+}

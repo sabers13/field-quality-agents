@@ -1,0 +1,66 @@
+{
+  "key": "a545a883b523ae5b8863d8356a9354c5971fd8940499f6c29d30783317f62b52",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 15016,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"2024 Tesla Model 3 backup camera proximity alert failed to provide audible obstacle warnings while reversing; visual display worked, repeated failure, damages.\",\n  \"group\": \"adas\",\n  \"symptoms\": [\n    \"backup camera proximity alert failed to provide audible warnings of an obstacle\",\n    \"visual display worked but no beeping or audible alerts\",\n    \"same alert failure happened again while backing out of a parking space\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"BACK OVER PREVENTION: WARNINGS\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"the backup camera proximity alert system failed to provide audible warnings of an obstacle\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The visual display worked, but the system provided no beeping or audible alerts\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"as I reversed toward a pole in the vehicle's blind spot\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"The same alert failure happened on 10/23/25\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"resulting in over $4K in damages\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"reported the safety issue\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"This accident was well within that window\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"49 CFR 571.111\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer only JSON. Need normalize report. Need extract quotes verbatim. Need component group adas? Given group adas, output group \"adas\". Summary one line component, symptom, conditions. Symptoms audible warning failure, no beeping, visual display worked. Conditions: reversing, blind spot, within range, intermittent repeated. Safety relevant true because \"resulting in over $4K in damages\" and \"safety issue\", obstacle in blind spot? It mentions accident? \"This accident was well within that window\" but that refers defect window? Also safety issue. Set true. Fault codes none. Missing info: mileage? report says warranty 50k but no actual mileage. date? It gives dates narrative; received date; maybe date of incident early 2025 and 10/23/25. But missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Component given, symptom present, conditions present, date? It has dates, but mileage null. Maybe missing_info [\"mileage\"] only. Conditions list allowed exact values: cold, moisture, heat, vibration, intermittent, after service, charging. Only \"intermittent\" applies? It happens multiple times, but not explicitly intermittent. We can include \"intermittent\" if repeated failures. The schema says conditions list from those. Could include \"intermittent\" because same failure happened twice? But \"intermittent\" may mean not consistent; visual worked but audible failed. Hmm. We need conditions. It mentions reversing, blind spot, parking space, but conditions allowed only those enum. Could leave empty? The prompt says conditions: [\"cold\", ...]. It might not be restricted? It says conditions array. We should include \"intermittent\" only if report supports repeated failures. Quote \"The same alert failure happened on 10/23/25\" supports repeated. Could use clue kind condition quote \"The same alert failure happened on 10/23/25\". But condition \"intermittent\" not verbatim. That's okay clue quote supports.\n\nNeed clues with kind symptom|condition|fault_code|component_group|safety|other and quote verbatim. Need ensure quotes exact substrings. Let's choose:\n- symptom: \"the backup camera proximity alert system failed to provide audible warnings of an obstacle\" exact? Narrative: \"the backup camera proximity alert system failed to provide audible warnings of an obstacle.\" Yes.\n- symptom: \"The visual display worked, but the system provided no beeping or audible alerts\" exact? Narrative: \"The visual display worked, but the system provided no beeping or audible alerts as I reversed toward a pole\" So quote can be \"The visual display worked, but the system provided no beeping or audible alerts\" exact substring yes.\n- condition: \"as I reversed toward a pole in the vehicle's blind spot\" exact? Narrative: \"as I reversed toward a pole in the vehicle's blind spot, even though...\" Yes.\n- condition: \"The same alert failure happened on 10/23/25\" exact? Narrative: \"The same alert failure happened on 10/23/25 as I backed out of a parking space.\" Yes.\n- safety: \"resulting in over $4K in damages\" exact.\n- safety: \"reported the safety issue\" exact? Narrative \"but reported the safety issue in person\" yes.\n- component_group: \"BACK OVER PREVENTION: WARNINGS\" from component field? Is that in report? The user message includes JSON; report includes component. Quote can be from entire report? It says copied verbatim from report. The component field is part of report. But \"report\" in user message is JSON. Yes. Could include component_group quote \"BACK OVER PREVENTION: WARNINGS\".\n- other: \"49 CFR 571.111\" exact, but maybe fault code? No.\n- other: \"New Vehicle Limited Warranty\" exact.\n- safety: \"This accident was well within that window\" exact? Hmm \"accident\" might indicate crash. But it says \"This accident\" maybe they refer to defect occurrence? Actually \"Presumption... defects occurring within 18 months/18,000 miles... This accident was well within that window.\" It could imply accident due to failure. Safety relevant already. Quote \"This accident was well within that window\" exact. Could include safety clue.\n- symptom: \"no beeping or audible alerts\" exact.\n\nNeed summary: \"2024 Tesla Model 3 backup camera proximity alert failed to give audible obstacle warnings while reversing, visual display worked; repeated failure and damages.\" Conditions include reversing, blind spot, repeated. Ensure one line.\n\nNeed JSON only. Missing_info [\"mileage\"]. Maybe date? It has dates. Mileage null. It mentions 4-year/50,000-mile warranty but not actual mileage. missing_info only mileage. Could include \"date\" because exact incident date for early 2025 missing? But narrative gives early 2025 and 10/23/25. Analysis needs date; one incident date approximate. But missing_info should only important. Maybe include \"mileage\" only.\n\nSafety_relevant true.\n\nNeed conditions array. Use [\"intermittent\"] maybe. But if no enum match, maybe []? The prompt's conditions list examples are categories; reversing isn't in allowed list. Could include \"intermittent\" because repeated. Let's set conditions [\"intermittent\"]. But is this inventing? The same alert failure happened twice, and visual worked. It is intermittent? It failed twice. Could be consistent when reversing toward obstacle. Hmm not necessarily intermittent. If no condition categories apply, use empty. But schema expects conditions array. The narrative conditions: reversing, parking space, blind spot. These aren't in list. Could include \"intermittent\" as condition? It is not verbatim. Better maybe conditions: [] and clues include condition quotes. But the intake's `conditions` field is meant to capture conditions from list. The allowed list doesn't include reversing. So empty is okay. But maybe \"intermittent\" is relevant due repeated failure. The user prompt says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. It might expect use when applicable. Is repeated failure \"intermittent\"? In automotive, intermittent means occasional. Here two occurrences. I'd include \"intermittent\" maybe. But if strict no invent, \"same alert failure happened\" supports repeated, not necessarily intermittent. Hmm.\n\nNeed summary mention \"reversing\". Good.\n\nLet's craft final JSON. Ensure no extra text. Need valid JSON, no trailing comments.\n\nQuotes must be exact. Let's verify each quote:\n\"the backup camera proximity alert system failed to provide audible warnings of an obstacle\" - exact lower-case after \"the\". In narrative: \"the backup camera proximity alert system failed to provide audible warnings of an obstacle.\" yes.\n\"The visual display worked, but the system provided no beeping or audible alerts\" - exact. yes.\n\"as I reversed toward a pole in the vehicle's blind spot\" - exact? Narrative: \"as I reversed toward a pole in the vehicle's blind spot, even though\" yes. Apostrophe in vehicle's is straight? JSON has \"vehicle's\" with straight apostrophe. We'll copy.\n\"The same alert failure happened on 10/23/25\" exact.\n\"resulting in over $4K in damages\" exact.\n\"reported the safety issue\" exact.\n\"BACK OVER PREVENTION: WARNINGS\" exact from component.\n\"49 CFR 571.111\" exact.\n\"This accident was well within that window\" exact.\n\"no beeping or audible alerts\" exact.\n\nNeed maybe clue kind \"other\" for legal/warranty? Not necessary. Clues can be enough. Could include \"safety\" quote \"resulting in over $4K in damages\" and \"reported the safety issue\". Good.\n\nNeed summary not too long. Use \"2024 Tesla Model 3 backup camera proximity alert failed to provide audible obstacle warnings while reversing; visual display worked, repeated failure, damages.\" Good.\n\nNeed missing_info: [\"mileage\"]. Could include \"date\"? The narrative has \"early 2025\" approximate; maybe no exact date first incident. But analysis has date. I'd leave only mileage.\n\nNeed fault_codes [] because no code named. Though \"49 CFR 571.111\" is regulation, not fault code. Do not include in fault_codes.\n\nNeed group \"adas\". Good.\n\nFinal only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531775,
+      "id": "0f6879f7b35c0ef4b540d4b3ee5f97a4",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2167,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1772,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00083067,
+          "billing_source": "go",
+          "list_cost": 0.00138445,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 554,
+            "output": 2167,
+            "reasoning": 1772
+          }
+        },
+        "prompt_tokens": 938,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 3105
+      }
+    },
+    "text": "{\n  \"summary\": \"2024 Tesla Model 3 backup camera proximity alert failed to provide audible obstacle warnings while reversing; visual display worked, repeated failure, damages.\",\n  \"group\": \"adas\",\n  \"symptoms\": [\n    \"backup camera proximity alert failed to provide audible warnings of an obstacle\",\n    \"visual display worked but no beeping or audible alerts\",\n    \"same alert failure happened again while backing out of a parking space\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"BACK OVER PREVENTION: WARNINGS\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"the backup camera proximity alert system failed to provide audible warnings of an obstacle\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The visual display worked, but the system provided no beeping or audible alerts\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"as I reversed toward a pole in the vehicle's blind spot\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"The same alert failure happened on 10/23/25\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"resulting in over $4K in damages\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"reported the safety issue\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"This accident was well within that window\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"49 CFR 571.111\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00083067,
+      "cached_tokens": 384,
+      "cost_usd": 0.00138445,
+      "input_tokens": 938,
+      "list_cost_usd": 0.00138445,
+      "output_tokens": 2167,
+      "reasoning_tokens": 1772
+    }
+  }
+}

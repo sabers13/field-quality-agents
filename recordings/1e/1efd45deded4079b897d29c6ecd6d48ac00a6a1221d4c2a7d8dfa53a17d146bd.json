@@ -1,0 +1,66 @@
+{
+  "key": "1efd45deded4079b897d29c6ecd6d48ac00a6a1221d4c2a7d8dfa53a17d146bd",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 6050,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Side mirror glass cracked after a cold start and remote-starter heating; coldest day, possible heating-element involvement.\",\"group\":\"body_controls\",\"symptoms\":[\"cracked side mirror glass\"],\"conditions\":[\"cold\",\"heat\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"there was a crack in the side mirror\"},{\"kind\":\"condition\",\"quote\":\"coldest day since I got my car\"},{\"kind\":\"condition\",\"quote\":\"used the remote starter to heat up the car\"},{\"kind\":\"other\",\"quote\":\"heating element in the mirror caused a crack in the glass\"},{\"kind\":\"component_group\",\"quote\":\"side mirror\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize report. Component field VISIBILITY/WIPER but narrative is side mirror crack. Group body_controls given. Need summary one line component symptom conditions. Symptoms plain words: cracked side mirror glass. Conditions: cold, heat? It says coldest day, remote starter to heat up car, heating element in mirror caused crack. Conditions list allowed: \"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\". We can include cold and heat. Fault codes none. safety_relevant false per report? It says false, but rules set when risk to people? Cracked mirror could affect visibility but no explicit crash/fire etc. Keep false. missing_info: mileage? mileage null. date? received_at present but event date \"Today Saturday\" vague, no explicit date. Component? Report component VISIBILITY/WIPER mismatches narrative? Maybe missing_info component? The component is given wiper but symptom side mirror. Hmm analysis needs component; report names side mirror. Could list mileage, date. Maybe \"component\" if mismatch? But it does identify side mirror. Missing info only facts analysis needs. Mileage missing, date not exact. Conditions present. Symptom present. Component present as side mirror. Use [\"mileage\",\"date\"]. Clues need verbatim spans. Need quotes copied exactly. Include symptom quote \"there was a crack in the side mirror\" or \"crack in the side mirror\" verbatim. Condition quote \"coldest day since I got my car\" and \"used the remote starter to heat up the car\"; \"heating element in the mirror caused a crack in the glass\" maybe condition heat and other. component_group quote \"side mirror\" maybe. Safety no quote? If safety_relevant false no safety clue. Could include other clue for \"other CRV owners have had similar issues\" maybe not needed. Ensure quotes exact from narrative. Let's craft valid JSON no markdown. Summary: \"Side mirror glass cracked after cold start and remote-starter heating; coldest day, possible heating-element involvement.\" That's okay. Group \"body_controls\". symptoms [\"cracked side mirror glass\"]. conditions [\"cold\",\"heat\"]. fault_codes []. safety_relevant false. missing_info [\"mileage\",\"date\"]. clues array. Quotes:\n- {\"kind\":\"symptom\",\"quote\":\"there was a crack in the side mirror\"}\n- {\"kind\":\"condition\",\"quote\":\"coldest day since I got my car\"}\n- {\"kind\":\"condition\",\"quote\":\"used the remote starter to heat up the car\"}\n- {\"kind\":\"other\",\"quote\":\"heating element in the mirror caused a crack in the glass\"}\n- {\"kind\":\"component_group\",\"quote\":\"side mirror\"}\nNeed quote \"side mirror\" appears in \"crack in the side mirror\" yes. All exact. Note \"used the remote starter...\" exact substring? Narrative: \"and I used the remote starter to heat up the car.\" Yes. Good. Final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793532443,
+      "id": "4e8e38532b2825a2c8a56892e32df592",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 787,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 623,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0003021,
+          "billing_source": "go",
+          "list_cost": 0.0005035,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 201,
+            "output": 787,
+            "reasoning": 623
+          }
+        },
+        "prompt_tokens": 585,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1372
+      }
+    },
+    "text": "{\"summary\":\"Side mirror glass cracked after a cold start and remote-starter heating; coldest day, possible heating-element involvement.\",\"group\":\"body_controls\",\"symptoms\":[\"cracked side mirror glass\"],\"conditions\":[\"cold\",\"heat\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"there was a crack in the side mirror\"},{\"kind\":\"condition\",\"quote\":\"coldest day since I got my car\"},{\"kind\":\"condition\",\"quote\":\"used the remote starter to heat up the car\"},{\"kind\":\"other\",\"quote\":\"heating element in the mirror caused a crack in the glass\"},{\"kind\":\"component_group\",\"quote\":\"side mirror\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0003021,
+      "cached_tokens": 384,
+      "cost_usd": 0.0005035,
+      "input_tokens": 585,
+      "list_cost_usd": 0.0005035,
+      "output_tokens": 787,
+      "reasoning_tokens": 623
+    }
+  }
+}

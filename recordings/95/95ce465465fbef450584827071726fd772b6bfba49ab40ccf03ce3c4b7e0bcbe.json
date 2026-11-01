@@ -1,0 +1,66 @@
+{
+  "key": "95ce465465fbef450584827071726fd772b6bfba49ab40ccf03ce3c4b7e0bcbe",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 17647,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2020 Honda Fit EX multipurpose camera failure disabling ACC, LKAS, and CBWS, with intermittent dashboard warnings becoming more frequent.\",\"group\":\"adas\",\"symptoms\":[\"multipurpose camera malfunction\",\"adaptive cruise control disabled\",\"lane keep assist disabled\",\"collision braking warning system disabled\",\"dashboard warning messages for ACC, LKAS, and CBWS malfunctions\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"The multi-purpose camera sensor system on my 2020 Honda Fit EX Hatchback has malfunctioned, disabling critical safety features such as Adaptive Cruise Control (ACC), Lane Keep Assist System (LKAS), and Collision Braking Warning System (CBWS).\"},{\"kind\":\"symptom\",\"quote\":\"warning messages appeared on the dashboard, including alerts for ACC, LKAS, and CBWS system malfunctions.\"},{\"kind\":\"condition\",\"quote\":\"These warnings initially appeared for a week or so and became more frequent over time.\"},{\"kind\":\"safety\",\"quote\":\"The failure of these systems creates significant safety risks.\"},{\"kind\":\"component_group\",\"quote\":\"multipurpose camera\"}]}",
+            "reasoning_content": "We need answer one JSON object no other text. Need normalize report. Need follow rules. Need extract component group adas given. Summary one line component symptom conditions. Symptoms plain words: adaptive cruise control disabled, lane keep assist disabled, collision braking warning disabled, dashboard warning messages for ACC LKAS CBWS malfunctions, multipurpose camera failure. Conditions: intermittent? Warning initially appeared for week and became more frequent over time—that's intermittent/progressive. No cold moisture heat vibration after service charging. Could include \"intermittent\"? It says became more frequent over time, warnings initially appeared for week or so. That's intermittent. Conditions list allowed includes intermittent. Also highway driving/heavy traffic are contexts not conditions? Could include? Allowed conditions are specific list. We should only use allowed values. Maybe \"intermittent\" because warnings appeared then more frequent. Safety_relevant? The report mentions safety risks, increased likelihood accidents, critical safety features disabled. Rule: safety_relevant when mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. It mentions significant safety risks and accidents likelihood. So true. Even though input safety_relevant false? We should set based on report. fault_codes none. missing_info: mileage? Report says less than 21,000 miles, but field mileage null. Missing info? Analysis needs mileage; it provides approximate <21k. Is that enough? Could still missing exact mileage. But \"less than 21,000 miles\" is info. Maybe missing date? It has inspection on [XXX] redacted, received date. Date of failure/inspection redacted. Missing date. Component/symptom present. Conditions present (intermittent). Mileage approximate given. Missing date only? Need consider \"missing_info\" only for facts analysis needs: component, symptom, conditions, mileage, date. Since date missing (inspection redacted), include \"date\". Mileage maybe not missing exactly? It says less than 21,000 miles; enough approximate. But field mileage null. The analysis might need mileage, but narrative gives <21k. Hmm. \"missing_info\" list only facts analysis needs. Exact mileage not necessary? Maybe no. Date of incident/inspection redacted. Include \"date\". Could include \"mileage\" because exact mileage missing despite <21k? But that might be overzealous. Need maybe include \"date\" only.\n\nClues: need verbatim quotes. Include kind symptom quote \"The multi-purpose camera sensor system on my 2020 Honda Fit EX Hatchback has malfunctioned, disabling critical safety features such as Adaptive Cruise Control (ACC), Lane Keep Assist System (LKAS), and Collision Braking Warning System (CBWS).\" This is verbatim. Could include condition quote \"These warnings initially appeared for a week or so and became more frequent over time.\" verbatim. safety quote \"The failure of these systems creates significant safety risks.\" or \"These malfunctions increase the likelihood of accidents, especially during highway driving or in heavy traffic.\" Verbatim. component_group quote maybe \"multipurpose camera\" or \"multi-purpose camera sensor system\". Need quote exact. Fault code none. Other? Could include \"diagnosed a failure in the multipurpose camera\" as symptom/component_group? Need not too many. Ensure quotes exact. The narrative has \"-The multi-purpose camera sensor system...\" Actually quote can start without hyphen. Verbatim span exists. Need character for character. Check \"multi-purpose\" vs \"multipurpose\" both appear. Quote: \"The multi-purpose camera sensor system on my 2020 Honda Fit EX Hatchback has malfunctioned, disabling critical safety features such as Adaptive Cruise Control (ACC), Lane Keep Assist System (LKAS), and Collision Braking Warning System (CBWS).\" Yes present starting after \"-\". Contains period. Good.\n\nCondition quote: \"These warnings initially appeared for a week or so and became more frequent over time.\" Present exactly? Narrative: \"These warnings initially appeared for a week or so and became more frequent over time.\" Yes.\n\nSafety quote: \"The failure of these systems creates significant safety risks.\" Present exactly. Yes.\n\nComponent_group quote: \"multipurpose camera\" present in \"diagnosed a failure in the multipurpose camera.\" Use quote \"multipurpose camera\" kind component_group. Verbatim yes.\n\nCould include symptom quote \"warning messages appeared on the dashboard, including alerts for ACC, LKAS, and CBWS system malfunctions.\" Present? Narrative: \"Before the failure, warning messages appeared on the dashboard, including alerts for ACC, LKAS, and CBWS system malfunctions.\" Yes exact substring. Use that. Symptoms array maybe: \"multipurpose camera malfunction\", \"adaptive cruise control disabled\", \"lane keep assist disabled\", \"collision braking warning system disabled\", \"dashboard warning messages for ACC, LKAS and CBWS malfunctions\". Good.\n\nSummary: \"2020 Honda Fit EX multipurpose camera failure disabling ACC, LKAS and CBWS; dashboard warnings became more frequent.\" Conditions? Summary says conditions? Could mention intermittent warnings. \"2020 Honda Fit EX multipurpose camera failure disabling ACC, LKAS, and CBWS, with intermittent dashboard warnings becoming more frequent.\" Good.\n\nNeed JSON only. Ensure no markdown? User says answer with one JSON object no other text. We can output raw JSON. Must not include code fences? \"no other text\" but code fence is text. So raw JSON.\n\nNeed ensure boolean true. \"safety_relevant\": true. missing_info [\"date\"]? Maybe include mileage? Let's decide. The report says \"vehicle has less than 21,000 miles\", so mileage approximate. The field mileage null but narrative supplies. Missing exact date due redaction. The inspection on [XXX]. Date received 2025-02-14. Date of failure unknown. Analysis needs date? Yes maybe. Include \"date\". Do not include mileage because approximate provided. Conditions present intermittent. Component present. Symptom present.\n\nNeed include \"group\": \"adas\". Symptoms list plain. Conditions list [\"intermittent\"]. Could include \"highway driving\" and \"heavy traffic\"? Not in allowed set? The conditions field examples include cold moisture heat vibration intermittent after service charging. It says conditions: [\"cold\", ...]. We should use allowed values only. Highway/heavy traffic not allowed; skip. \"after service\"? no. \"charging\" no.\n\nFault codes [].\n\nClues array maybe 4 items. Need kind values allowed. Use \"symptom\", \"condition\", \"safety\", \"component_group\". Ensure quotes exact. The safety quote \"The failure of these systems creates significant safety risks.\" exact? Narrative: \"-The failure of these systems creates significant safety risks. Without ACC...\" yes exact. Good.\n\nOne subtle: The quote with \"multi-purpose\" uses hyphen; narrative starts \"-The multi-purpose...\" yes includes \"The multi-purpose...\". Good.\n\nNeed maybe mention \"confirmed by Tony Honda in HI during inspection on [XXX]\" as condition? Not condition. Could include other? no.\n\nNeed final JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793524915,
+      "id": "bb19ebb2bef75caf61faafaa1445e697",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1730,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1467,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00070488,
+          "billing_source": "go",
+          "list_cost": 0.0011748,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 912,
+            "output": 1730,
+            "reasoning": 1467
+          }
+        },
+        "prompt_tokens": 912,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 2642
+      }
+    },
+    "text": "{\"summary\":\"2020 Honda Fit EX multipurpose camera failure disabling ACC, LKAS, and CBWS, with intermittent dashboard warnings becoming more frequent.\",\"group\":\"adas\",\"symptoms\":[\"multipurpose camera malfunction\",\"adaptive cruise control disabled\",\"lane keep assist disabled\",\"collision braking warning system disabled\",\"dashboard warning messages for ACC, LKAS, and CBWS malfunctions\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"The multi-purpose camera sensor system on my 2020 Honda Fit EX Hatchback has malfunctioned, disabling critical safety features such as Adaptive Cruise Control (ACC), Lane Keep Assist System (LKAS), and Collision Braking Warning System (CBWS).\"},{\"kind\":\"symptom\",\"quote\":\"warning messages appeared on the dashboard, including alerts for ACC, LKAS, and CBWS system malfunctions.\"},{\"kind\":\"condition\",\"quote\":\"These warnings initially appeared for a week or so and became more frequent over time.\"},{\"kind\":\"safety\",\"quote\":\"The failure of these systems creates significant safety risks.\"},{\"kind\":\"component_group\",\"quote\":\"multipurpose camera\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00070488,
+      "cached_tokens": 0,
+      "cost_usd": 0.0011748,
+      "input_tokens": 912,
+      "list_cost_usd": 0.0011748,
+      "output_tokens": 1730,
+      "reasoning_tokens": 1467
+    }
+  }
+}

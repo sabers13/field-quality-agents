@@ -1,0 +1,66 @@
+{
+  "key": "ff62db53ec15cc26ce5d6b6f327f91e0a99e2bcc3c42c475b4cad8b87a1b6431",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 13612,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2016 Ford Edge Sport infotainment/SYNC screen blackouts when using navigation and radio, with unpredictable failures and open recalls 25V572/25V544.\",\"group\":\"infotainment\",\"symptoms\":[\"SYNC screen experiences complete blackouts\",\"blackouts particularly when using navigation and radio\",\"infotainment system fails unpredictably\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"SYNC system\"},{\"kind\":\"symptom\",\"quote\":\"noticeable and hazardous defect in the SYNC system where the screen experiences complete blackouts, particularly when using the navigation and radio\"},{\"kind\":\"condition\",\"quote\":\"fails unpredictably\"},{\"kind\":\"condition\",\"quote\":\"particularly when using the navigation and radio\"},{\"kind\":\"safety\",\"quote\":\"creating significant distraction and safety risk\"},{\"kind\":\"safety\",\"quote\":\"vehicle I cannot safely drive due to the open recalls\"},{\"kind\":\"other\",\"quote\":\"safety recalls 25V572 and 25V544\"}]}",
+            "reasoning_content": "We need answer only JSON object. Need normalize report. Need parse. Component infotainment. Group infotainment. Symptoms: SYNC system screen complete blackouts, particularly when using navigation and radio; infotainment system fails unpredictably; distraction/safety risk? Symptoms plain words. Conditions? Maybe \"when using navigation and radio\" is condition? Allowed conditions list: cold, moisture, heat, vibration, intermittent, after service, charging. Report says fails unpredictably, blackouts particularly when using navigation and radio. \"intermittent\" likely yes? The conditions list specific; unpredictable suggests intermittent. Need quote verbatim for clues. Safety relevant: report mentions \"hazardous defect\", \"creating significant distraction and safety risk\", open recalls, vehicle cannot safely drive. But safety_relevant definition mentions crash fire smoke injury loss control stall at speed or another risk to people. It says safety risk and distraction. Could set true? The input has safety_relevant false but we must infer from report. It mentions \"significant distraction and safety risk\", \"hazardous defect\", \"cannot safely drive due to open recalls\". That is risk to people. Set true. Need fault_codes? Report names safety recalls 25V572 and 25V544. Are these fault codes? No, recall numbers not fault codes. The schema fault_codes \"code if report names one\". Could include recall codes? They are codes but not fault codes. Maybe include? Hmm likely fault_codes for DTC; recall numbers not fault codes. But clues can kind fault_code? The report names \"safety recalls 25V572 and 25V544\" not fault codes. Maybe fault_codes empty. But they might expect codes? The instruction \"fault_codes\": [\"code if report names one\"] Could include 25V572, 25V544 as codes? But they are recall campaign codes, not fault codes. Hmm intake normalises field-quality report; fault_codes likely DTCs. Do not invent. Safer empty? But if report names recall codes, could be relevant. However schema kind has fault_code. Could quote recall numbers as fault_code? Might be misleading. But no other field. The summary: \"2016 Ford Edge Sport infotainment (SYNC) screen blackouts when using navigation/radio; open recalls 25V572 and 25V544, dealership communication issues.\" Need one line component, symptom, conditions.\n\nMissing_info: mileage is present approximately 101,003 but mileage field null. report has approximate. Component present. Symptom present. Conditions? It gives navigation/radio use, unpredictable. Date? Received date present; event date not. The missing_info list only facts analysis needs: component, symptom, conditions, mileage, date. Mileage present in narrative, so not missing? Field null but report gives approx. Date? Received_at. Conditions maybe present as when using nav/radio and unpredictable. Missing? Could include \"date\" if no incident date? But received_at is date. The analysis may need date of symptom occurrence. Hmm likely missing_info empty or [\"date\"]? Need decide. The report has received_at. It says purchased just prior to recall; no exact dates. For analysis, date of report is enough. Mileage is in narrative. So missing_info [].\n\nClues with verbatim spans. Need copy exact spans from narrative. Need ensure character-for-character. Let's identify exact text:\n- \"noticeable and hazardous defect in the SYNC system where the screen experiences complete blackouts, particularly when using the navigation and radio\"\n- \"infotainment system that fails unpredictably\"\n- \"creating significant distraction and safety risk\"\n- \"safety recalls 25V572 and 25V544\"\n- \"vehicle I cannot safely drive due to the open recalls\"\n- component group? \"SYNC system\" quote.\nNeed kind for quotes. Use exact spans. Need not include too many. Every quote verbatim. Need avoid quotes not exact due to typo \"reca ll\" maybe no.\n\nNeed JSON only. Summary one line. Conditions array should include \"intermittent\" maybe because fails unpredictably. Do we include \"when using navigation and radio\"? Conditions allowed fixed set; not include? Could include \"intermittent\". The report says \"fails unpredictably\" = intermittent. Conditions [\"intermittent\"]. Maybe \"when using navigation and radio\" isn't in allowed list, but symptoms can mention. Good.\n\nSymptoms: [\"SYNC screen complete blackouts\", \"infotainment system fails unpredictably\", \"distraction and safety risk\"]? Safety risk not symptom. Use \"screen blackouts when using navigation and radio\", \"infotainment system fails unpredictably\". Maybe \"hazardous defect\" not symptom. Good.\n\nGroup \"infotainment\".\n\nSafety_relevant true.\n\nFault_codes: [] or include recalls? Let's think. The report names safety recalls 25V572 and 25V544; \"fault_codes\" if report names one. These are codes but not fault codes. The desk likely wants recall codes? But field \"fault_codes\" not \"recall_codes\". Could include? Hmm if omitted, clue kind fault_code? no. Could include in clues kind \"other\" quote \"safety recalls 25V572 and 25V544\". But then fault_codes empty. That seems accurate. However maybe expected fault_codes [\"25V572\",\"25V544\"]? They are recall IDs and relevant. The prompt says \"fault_codes\": [\"code if the report names one\"]; not \"diagnostic trouble code\". It could encompass recall codes? But \"fault_code\" clue kind. The report names \"safety recalls 25V572 and 25V544\" — these are codes. I might include them as fault_codes? But that could mislabel recall campaigns as fault codes. Hmm.\n\nNeed maybe summary mention open recalls. The component is infotainment but narrative also recalls. The intake field-quality report component is infotainment. We can include recall codes in fault_codes? The analysis may want them. But schema says fault_codes not recall_codes. Since no other field, include them? \"code if report names one\" broad. I'd include [\"25V572\", \"25V544\"]? But then clues kind fault_code with quote \"safety recalls 25V572 and 25V544\" perhaps. Hmm.\n\nSafety_relevant: The report says \"safety risk\", \"cannot safely drive\"; set true. The supplied field safety_relevant false is untrusted? We read report.\n\nMissing_info: maybe [\"date\"]? The narrative lacks date of blackout occurrences. But received_at. The intake wants missing info for analysis. Date of report exists. If condition intermittent, no exact. I think [].\n\nNeed answer one JSON object no text. Ensure valid JSON. Quote exact: Let's verify exact substring: \"noticeable and hazardous defect in the SYNC system where the screen experiences complete blackouts, particularly when using the navigation and radio.\" Yes from narrative. If include period? Quote can include period. Fine.\n\"infotainment system that fails unpredictably\" exact.\n\"creating significant distraction and safety risk\" exact.\n\"safety recalls 25V572 and 25V544\" exact? Narrative: \"handling of safety recalls 25V572 and 25V544 on my vehicle\" yes exact substring \"safety recalls 25V572 and 25V544\".\n\"vehicle I cannot safely drive due to the open recalls\" exact? Narrative: \"I have been left with a vehicle I cannot safely drive due to the open recalls and an infotainment system that fails unpredictably\" yes substring \"vehicle I cannot safely drive due to the open recalls\".\n\nNeed clue kind \"component_group\" quote \"SYNC system\" exact. Good.\n\nNeed maybe conditions clue \"fails unpredictably\" for intermittent. Quote exact \"fails unpredictably\". Good.\n\nCould include \"when using the navigation and radio\" as condition kind. Exact substring \"particularly when using the navigation and radio\". Good.\n\nNeed final JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793532094,
+      "id": "3ae1768c3a8866e00d87e032df424881",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1933,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1694,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00074121,
+          "billing_source": "go",
+          "list_cost": 0.00123535,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 496,
+            "output": 1933,
+            "reasoning": 1694
+          }
+        },
+        "prompt_tokens": 880,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2813
+      }
+    },
+    "text": "{\"summary\":\"2016 Ford Edge Sport infotainment/SYNC screen blackouts when using navigation and radio, with unpredictable failures and open recalls 25V572/25V544.\",\"group\":\"infotainment\",\"symptoms\":[\"SYNC screen experiences complete blackouts\",\"blackouts particularly when using navigation and radio\",\"infotainment system fails unpredictably\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"SYNC system\"},{\"kind\":\"symptom\",\"quote\":\"noticeable and hazardous defect in the SYNC system where the screen experiences complete blackouts, particularly when using the navigation and radio\"},{\"kind\":\"condition\",\"quote\":\"fails unpredictably\"},{\"kind\":\"condition\",\"quote\":\"particularly when using the navigation and radio\"},{\"kind\":\"safety\",\"quote\":\"creating significant distraction and safety risk\"},{\"kind\":\"safety\",\"quote\":\"vehicle I cannot safely drive due to the open recalls\"},{\"kind\":\"other\",\"quote\":\"safety recalls 25V572 and 25V544\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00074121,
+      "cached_tokens": 384,
+      "cost_usd": 0.00123535,
+      "input_tokens": 880,
+      "list_cost_usd": 0.00123535,
+      "output_tokens": 1933,
+      "reasoning_tokens": 1694
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "376c29ac82124f52fd00d6801b8ff391e4a118317305dd1a731210cb2b48647a",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11589,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Electrical system: repeated engine/AEB/Start-Stop warnings with intermittent airbag service light and unexpected AEB braking while driving.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"multiple warning messages for engine, AEB and Start/Stop Disabled\",\n    \"airbag warning light turns on and off daily with get service advice\",\n    \"error codes not present at dealership and issues cannot be duplicated\",\n    \"AEB unexpectedly activated and applied emergency braking while driving\",\n    \"exhaust leak sound reported three times but no issue found\"\n  ],\n  \"conditions\": [\n    \"intermittent\",\n    \"while driving\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"electrical system\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"repeatedly displays multiple warning messages\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"airbag warning light has begun turning on and off daily\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"turning on and off daily\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"error codes are no longer present\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"cannot duplicate the issues\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"the AEB system suddenly activated, causing unexpected emergency braking\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"while driving recently\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"This is extremely dangerous and could easily lead to an accident.\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"the airbags could deploy unexpectedly\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"what sounds like an exhaust leak\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer only JSON. Need normalize report. Need include summary, group given electrical_general? \"the electrical/electronic component group, or the given group\". Component ELECTRICAL SYSTEM group electrical_general. symptoms plain words: multiple warning messages engine AEB Start/Stop Disabled; airbag warning light turning on/off daily advising get service; error codes not present at dealership cannot duplicate; AEB unexpectedly activated causing emergency braking; exhaust leak sound no issue found three times. Conditions: intermittent? daily on/off, while driving, after service? Dealership visits, no duplicate. Could include intermittent, after service? \"When I bring vehicle to dealership error codes no longer present\" condition? It is after service? Hmm conditions list allowed cold moisture heat vibration intermittent after service charging. We can choose intermittent. Maybe also \"after service\" because shop three times? But condition for fault? Better intermittent. Fault_codes none named. safety_relevant true: unexpected emergency braking dangerous could accident, airbag deploy unexpected fears. Need quotes verbatim. Ensure exact spans. Quotes copied from narrative. Need be careful with curly quotes and en dash? We can quote simple spans. JSON only.\n\nNeed missing_info: mileage null, date? received_at is date but report date? Missing mileage; maybe date? The report has received_at and year, no incident date. Analysis needs date? likely missing date and mileage. Component and symptom present, conditions present. So missing_info [\"mileage\",\"date\"] maybe. Need summary one line: Electrical system, multiple warnings and intermittent airbag light, AEB false activation. Conditions: intermittent, while driving.\n\nClues: kind symptom quote \"repeatedly displays multiple warning messages\" exact? narrative: \"The electrical system in my 2025 Jeep Compass repeatedly displays multiple warning messages\" quote \"repeatedly displays multiple warning messages\" yes. Another symptom quote \"airbag warning light has begun turning on and off daily\" exact? narrative has \"the airbag warning light has begun turning on and off daily\" yes lowercase. \"the AEB system suddenly activated, causing unexpected emergency braking\" exact? narrative: \"the AEB system suddenly activated, causing unexpected emergency braking.\" We can quote that. Condition quote \"while driving recently\" exact? narrative \"However, while driving recently—with no other vehicles nearby—the AEB system...\" Quote \"while driving recently\" yes. Intermittent quote \"turning on and off daily\" exact. Safety quote \"This is extremely dangerous and could easily lead to an accident.\" exact. Also \"could deploy unexpectedly\" exact? narrative \"the airbags could deploy unexpectedly\" yes. component_group quote \"electrical system\" exact? Narrative has \"The electrical system\" but lowercase? \"electrical system\" appears in \"The electrical system\"; quote substring \"electrical system\" yes. Fault code none, no clues. Other exhaust? maybe symptom quote \"sounds like an exhaust leak\" exact? Narrative \"what sounds like an exhaust leak\" exact. Could include as symptom? It's not electrical but report includes. Summary maybe mention exhaust? It is incoming field-quality report, normalize. But component electrical system. Symptoms list should include all. Include \"exhaust leak sound with no issue found\" as symptom? plain words. Clue quote \"what sounds like an exhaust leak\" exact. Need not overdo.\n\nNeed safety_relevant true. Could include \"safety\" clues quote \"could easily lead to an accident\" exact? Narrative \"could easily lead to an accident\" yes. Or \"The airbag warning appearing and disappearing daily raises fears that the airbags could deploy unexpectedly\" exact. Good.\n\nNeed output valid JSON no markdown? User says answer with one JSON object and no other text. So final only JSON. Ensure no trailing. Need use true boolean.\n\nLet's craft:\n\n{\n \"summary\": \"Electrical system: repeated engine/AEB/Start-Stop warnings with intermittent airbag service light and unexpected AEB braking while driving.\",\n \"group\": \"electrical_general\",\n \"symptoms\": [\"multiple warning messages for engine, AEB and Start/Stop Disabled\", \"airbag warning light turns on and off daily with get service advice\", \"error codes not present at dealership and issues cannot be duplicated\", \"AEB unexpectedly activated and applied emergency braking while driving\", \"exhaust leak sound reported three times but no issue found\"],\n \"conditions\": [\"intermittent\", \"while driving\"],\n \"fault_codes\": [],\n \"safety_relevant\": true,\n \"missing_info\": [\"mileage\", \"date\"],\n \"clues\": [...]\n}\n\nQuotes exact:\n- \"repeatedly displays multiple warning messages\" yes.\n- \"airbag warning light has begun turning on and off daily\" yes.\n- \"error codes are no longer present\" exact? narrative: \"the error codes are no longer present\" quote \"error codes are no longer present\" yes.\n- \"cannot duplicate the issues\" exact? narrative \"technicians say they cannot duplicate the issues\" quote \"cannot duplicate the issues\" yes.\n- \"the AEB system suddenly activated, causing unexpected emergency braking\" exact? Need narrative has \"the AEB system suddenly activated, causing unexpected emergency braking.\" Yes.\n- \"while driving recently\" exact.\n- \"This is extremely dangerous and could easily lead to an accident.\" exact.\n- \"the airbags could deploy unexpectedly\" exact.\n- \"what sounds like an exhaust leak\" exact.\n- component_group quote \"electrical system\" exact? It appears \"The electrical system\" includes \"electrical system\" lowercase? Actually \"electrical system\" yes after The. Good.\nNeed condition \"intermittent\" quote \"turning on and off daily\" exact.\nCould include safety clue quote \"could easily lead to an accident\" exact. Good.\n\nNeed not include \"after service\" although dealership. Maybe condition \"after service\" no, because symptoms present before. Intermittent.\n\nCheck \"missing_info\": date maybe received_at present but incident date missing. Fine.\n\nNeed no markdown. Final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531965,
+      "id": "c9fedf818970bb3e90a9b03cce4ebc9f",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1706,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1244,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0006459,
+          "billing_source": "go",
+          "list_cost": 0.0010765,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 345,
+            "output": 1706,
+            "reasoning": 1244
+          }
+        },
+        "prompt_tokens": 729,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2435
+      }
+    },
+    "text": "{\n  \"summary\": \"Electrical system: repeated engine/AEB/Start-Stop warnings with intermittent airbag service light and unexpected AEB braking while driving.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"multiple warning messages for engine, AEB and Start/Stop Disabled\",\n    \"airbag warning light turns on and off daily with get service advice\",\n    \"error codes not present at dealership and issues cannot be duplicated\",\n    \"AEB unexpectedly activated and applied emergency braking while driving\",\n    \"exhaust leak sound reported three times but no issue found\"\n  ],\n  \"conditions\": [\n    \"intermittent\",\n    \"while driving\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"electrical system\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"repeatedly displays multiple warning messages\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"airbag warning light has begun turning on and off daily\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"turning on and off daily\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"error codes are no longer present\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"cannot duplicate the issues\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"the AEB system suddenly activated, causing unexpected emergency braking\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"while driving recently\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"This is extremely dangerous and could easily lead to an accident.\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"the airbags could deploy unexpectedly\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"what sounds like an exhaust leak\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0006459,
+      "cached_tokens": 384,
+      "cost_usd": 0.0010765,
+      "input_tokens": 729,
+      "list_cost_usd": 0.0010765,
+      "output_tokens": 1706,
+      "reasoning_tokens": 1244
+    }
+  }
+}

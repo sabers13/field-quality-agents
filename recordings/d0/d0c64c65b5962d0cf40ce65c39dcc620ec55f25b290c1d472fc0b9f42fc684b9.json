@@ -1,0 +1,66 @@
+{
+  "key": "d0c64c65b5962d0cf40ce65c39dcc620ec55f25b290c1d472fc0b9f42fc684b9",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 8749,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system/powertrain malfunction messages with no acceleration on 12/17/24, 4/11/25 and 10/5/25; driver reports potential collision and injury risk.\",\"group\":\"electrical_general\",\"symptoms\":[\"powertrain malfunction messages\",\"vehicle would not accelerate\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"Powertrain malfunctions have occurred on 12/17/24, 4/11/25 and 10/5/25.\"},{\"kind\":\"symptom\",\"quote\":\"Powertrain malfunction and yes.\"},{\"kind\":\"symptom\",\"quote\":\"The car would not accelerate\"},{\"kind\":\"safety\",\"quote\":\"someone could of ran into me, I could of been killed or badly injured\"},{\"kind\":\"safety\",\"quote\":\"same for any other occupants in the either vehicle\"},{\"kind\":\"other\",\"quote\":\"The messages appeared on 12/17/24, 4/11/25 and 10/5/25.\"}]}",
+            "reasoning_content": "We need answer only JSON object. Need normalize report. Need read only report. Component given ELECTRICAL SYSTEM group electrical_general. Narrative: Powertrain malfunctions occurred dates. \"Powertrain malfunction and yes. The car would not accelerate and someone could of ran into me, I could of been killed or badly injured and same for any other occupants in the either vehicle. Yes. Yes. The messages appeared...\" Symptoms: powertrain malfunction messages, car would not accelerate. Conditions? maybe none explicit? Dates only. Could include intermittent? Multiple occurrences over dates but not \"intermittent\". Conditions list should include only from enumerated: cold, moisture, heat, vibration, intermittent, after service, charging. None explicit. Maybe \"intermittent\" inferred? Rule don't invent. No. Fault codes none named. Safety_relevant true because mentions could have been killed/badly injured, someone could have run into me, risk to people. Missing_info: mileage null, maybe component? Component vague electrical system but given; symptom present. Conditions missing? date? dates present (narrative dates; received_at). Mileage missing. Maybe \"conditions\" missing important? The analysis needs conditions; report doesn't state weather/driving conditions. But missing_info list for facts analysis needs: component, symptom, conditions, mileage, date. We can include \"mileage\", \"conditions\". Maybe \"date\" not missing because dates given. Component is broad \"ELECTRICAL SYSTEM\" maybe component missing? But given component. The narrative says powertrain malfunctions, not specific component. But component field electrical system. Hmm.\n\nNeed quotes verbatim. We can quote spans exactly. Clues:\n- symptom quote \"Powertrain malfunctions have occurred\" or \"Powertrain malfunction\"\n- symptom quote \"The car would not accelerate\"\n- safety quote \"someone could of ran into me, I could of been killed or badly injured\"\n- condition maybe dates quote? kind condition? Dates aren't one of allowed condition categories. Could use \"other\" for dates? Clues kind other quote dates. But should evidence. group clue quote \"ELECTRICAL SYSTEM\"? That's in report field, yes report includes component. Could include component_group quote \"ELECTRICAL SYSTEM\". Need quotes copied from report. JSON fields include component. Good.\n\nSummary one line: \"Electrical system (powertrain malfunction) — no acceleration on multiple dates; safety risk reported.\" Need mention component, symptom, conditions. Conditions maybe \"on 12/17/24, 4/11/25 and 10/5/25\". Summary can include dates. \"Electrical system/powertrain malfunction messages with no acceleration on 12/17/24, 4/11/25 and 10/5/25; driver reports potential collision/injury.\" Good.\n\nGroup: \"electrical_general\" given. Or \"electrical/electronic component group\"? The prompt says \"the electrical/electronic component group, or the given group\". Given group electrical_general. Use that.\n\nSymptoms array: [\"powertrain malfunction messages\", \"vehicle would not accelerate\"] plain words.\n\nConditions array: []? Could include \"intermittent\" because multiple dates? No. Could include? The allowed conditions list, but no explicit conditions. Empty.\n\nFault_codes [].\n\nSafety_relevant true.\n\nMissing_info: [\"mileage\", \"conditions\"]? Does missing conditions include? Analysis needs conditions. Narrative not state weather etc. But dates given. Maybe also \"component\" because electrical system broad and powertrain malfunction not specific. However component field is present. But prompt says missing_info for facts analysis needs: component, symptom, conditions, mileage, date. Since component is broad, but not missing. Hmm. The report says ELECTRICAL SYSTEM. Could be enough. Mileage null. Conditions absent. I'll include mileage and conditions. Maybe \"component\" because no specific failed component named? The component field \"ELECTRICAL SYSTEM\" is a system not component. But given group. The analysis might need component. Yet \"component\" is provided. I think missing_info [\"mileage\", \"conditions\"] is safe. Could include \"date\" no, dates present in narrative. \n\nNeed ensure JSON only. Quotes exact:\n\"Powertrain malfunctions have occurred on 12/17/24, 4/11/25 and 10/5/25.\" \n\"Powertrain malfunction and yes.\"\n\"The car would not accelerate\"\n\"someone could of ran into me, I could of been killed or badly injured\"\n\"same for any other occupants in the either vehicle\"\n\"The messages appeared on 12/17/24, 4/11/25 and 10/5/25.\"\n\"ELECTRICAL SYSTEM\"\n\nUse kind safety for safety quotes. symptom for first and car. condition? Dates are not condition category. Could include kind other for dates. But clues can be other. Maybe no need.\n\nNeed mention \"Powertrain malfunction\" symptom. Good.\n\nFinal JSON no markdown? User says answer with one JSON object and no other text. So plain JSON. Ensure valid.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531049,
+      "id": "a21b26e56ba5ca005a82f46975713738",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1314,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1056,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00049182,
+          "billing_source": "go",
+          "list_cost": 0.0008197,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 201,
+            "output": 1314,
+            "reasoning": 1056
+          }
+        },
+        "prompt_tokens": 585,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1899
+      }
+    },
+    "text": "{\"summary\":\"Electrical system/powertrain malfunction messages with no acceleration on 12/17/24, 4/11/25 and 10/5/25; driver reports potential collision and injury risk.\",\"group\":\"electrical_general\",\"symptoms\":[\"powertrain malfunction messages\",\"vehicle would not accelerate\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"Powertrain malfunctions have occurred on 12/17/24, 4/11/25 and 10/5/25.\"},{\"kind\":\"symptom\",\"quote\":\"Powertrain malfunction and yes.\"},{\"kind\":\"symptom\",\"quote\":\"The car would not accelerate\"},{\"kind\":\"safety\",\"quote\":\"someone could of ran into me, I could of been killed or badly injured\"},{\"kind\":\"safety\",\"quote\":\"same for any other occupants in the either vehicle\"},{\"kind\":\"other\",\"quote\":\"The messages appeared on 12/17/24, 4/11/25 and 10/5/25.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00049182,
+      "cached_tokens": 384,
+      "cost_usd": 0.0008197,
+      "input_tokens": 585,
+      "list_cost_usd": 0.0008197,
+      "output_tokens": 1314,
+      "reasoning_tokens": 1056
+    }
+  }
+}

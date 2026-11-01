@@ -1,0 +1,66 @@
+{
+  "key": "83dd67e9394c2a37e0974bfc96af0c74c83c96c5f4eb99f5280f32896524b9cc",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 8389,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system: crankshaft position sensor keeps failing, causing forward collision trigger, power loss, dash failure, and car shutoff\",\"group\":\"electrical_general\",\"symptoms\":[\"crankshaft position sensor keeps going bad\",\"forward collision trigger\",\"loses power\",\"dash stops working\",\"car shuts off\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"The crankshaft position sensor keeps going bad\"},{\"kind\":\"symptom\",\"quote\":\"forward collision trigger\"},{\"kind\":\"symptom\",\"quote\":\"loses power\"},{\"kind\":\"symptom\",\"quote\":\"the dash stops working\"},{\"kind\":\"symptom\",\"quote\":\"causes the car to shut off\"},{\"kind\":\"safety\",\"quote\":\"loses power\"},{\"kind\":\"safety\",\"quote\":\"causes the car to shut off\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize report. Need read narrative. Component ELECTRICAL SYSTEM group electrical_general. Symptoms: crankshaft position sensor keeps going bad; forward collision trigger; loses power; dash stops working; car shuts off. Conditions? none explicit. Fault codes none. Safety relevant? Report says loses power and car shuts off. Does that mention stall at speed? Not explicitly speed. But \"loses power\" and \"car shut off\" risk to people? Rule set safety_relevant when report mentions crash, fire, smoke, injury, loss of control, a stall at speed or another risk to people. Car shuts off / loses power is another risk to people likely yes. But given input safety_relevant false is source field, but instruction says set when report mentions... We shouldn't trust? We normalise. \"causes the car to shut off\" is risk. \"loses power\" maybe. I'd set true. Need clues verbatim spans. Need missing_info: mileage null, date? received_at given. Conditions missing. Component given. Symptom given. Missing mileage and conditions maybe. Date? received_at is date report received not incident date. Missing_info list allowed component, symptom, conditions, mileage, date. Since date not incident date, missing date. But do we need? likely. Could include \"mileage\", \"conditions\", \"date\". But maybe too many? Analysis needs mileage, conditions. Date of incident maybe. We can include.\n\nSummary one line: Electrical system: crankshaft position sensor repeatedly fails causing forward collision activation, power loss, dash failure, and engine shutoff. Need not invent \"engine\" - car shuts off. \"repeatedly fails\" from keeps going bad. Conditions none.\n\nGroup: \"electrical_general\" or \"ELECTRICAL SYSTEM\"? Prompt says group \"the electrical/electronic component group, or the given group\". Given group electrical_general. Use that. Could use \"electrical_general\".\n\nSymptoms array plain: \"crankshaft position sensor repeatedly fails\", \"forward collision system triggers\", \"loss of power\", \"dash stops working\", \"car shuts off\". Need quotes: \"The crankshaft position sensor keeps going bad\"; \"it make the forward collision trigger\"; \"it loses power\"; \"the dash stops working\"; \"causes the car to shut off\". Note quote must verbatim. Use exact substrings. For symptom \"forward collision trigger\" quote \"forward collision trigger\" is verbatim? Narrative: \"and it make the forward collision trigger and\". Yes. \"loses power\" verbatim. \"dash stops working\" verbatim. \"car to shut off\" maybe. \"crankshaft position sensor keeps going bad\" verbatim.\n\nClues kind symptom etc. Include safety clue quote \"loses power\" or \"causes the car to shut off\". kind safety. Also component_group quote \"ELECTRICAL SYSTEM\" (from component not narrative? Report includes component field. It says quote copied from report; report JSON includes \"component\": \"ELECTRICAL SYSTEM\". Is that report? Yes user message report includes fields. But \"Read only the report\" includes all. Quote can be from component field. Need maybe use \"ELECTRICAL SYSTEM\". But clues quotes from narrative likely. For component_group quote \"ELECTRICAL SYSTEM\" verbatim in JSON field. Good.\n\nNeed JSON only no markdown maybe. Ensure valid. Safety_relevant true.\n\nPotential issue: \"safety_relevant\": false in input. But rules override. If mention car shuts off - another risk to people. Yes.\n\nMissing_info: \"mileage\", \"conditions\", \"date\". Is component missing? no. Symptom no. Could include date because received_at is 2025-11-13 but incident date unknown. The schema missing_info list includes date; okay. Maybe \"conditions\" because no cold/moisture/heat etc. Mileage null. Good.\n\nNeed maybe symptoms includes \"forward collision trigger\" plain. Fault_codes empty.\n\nNeed one JSON object only. Final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793532069,
+      "id": "c3f3bf5643fda58a94a1805a557354c7",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1067,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 844,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00039687,
+          "billing_source": "go",
+          "list_cost": 0.00066145,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 134,
+            "output": 1067,
+            "reasoning": 844
+          }
+        },
+        "prompt_tokens": 518,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1585
+      }
+    },
+    "text": "{\"summary\":\"Electrical system: crankshaft position sensor keeps failing, causing forward collision trigger, power loss, dash failure, and car shutoff\",\"group\":\"electrical_general\",\"symptoms\":[\"crankshaft position sensor keeps going bad\",\"forward collision trigger\",\"loses power\",\"dash stops working\",\"car shuts off\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"The crankshaft position sensor keeps going bad\"},{\"kind\":\"symptom\",\"quote\":\"forward collision trigger\"},{\"kind\":\"symptom\",\"quote\":\"loses power\"},{\"kind\":\"symptom\",\"quote\":\"the dash stops working\"},{\"kind\":\"symptom\",\"quote\":\"causes the car to shut off\"},{\"kind\":\"safety\",\"quote\":\"loses power\"},{\"kind\":\"safety\",\"quote\":\"causes the car to shut off\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00039687,
+      "cached_tokens": 384,
+      "cost_usd": 0.00066145,
+      "input_tokens": 518,
+      "list_cost_usd": 0.00066145,
+      "output_tokens": 1067,
+      "reasoning_tokens": 844
+    }
+  }
+}

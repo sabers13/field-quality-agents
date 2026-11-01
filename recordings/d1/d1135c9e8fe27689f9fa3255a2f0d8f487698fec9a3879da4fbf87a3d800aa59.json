@@ -1,0 +1,66 @@
+{
+  "key": "d1135c9e8fe27689f9fa3255a2f0d8f487698fec9a3879da4fbf87a3d800aa59",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12547,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"AIR BAGS: no failure experienced; recall repair parts unavailable.\",\"group\":\"restraints\",\"symptoms\":[],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"Air Bags\"},{\"kind\":\"symptom\",\"quote\":\"The contact had not experienced a failure.\"},{\"kind\":\"condition\",\"quote\":\"the part to do the recall repair was unavailable\"},{\"kind\":\"condition\",\"quote\":\"parts were not yet available\"},{\"kind\":\"other\",\"quote\":\"NHTSA Campaign Number: 23V865000 (Air Bags)\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize report. Component AIR BAGS group restraints. Narrative says recall parts unavailable, no failure experienced. Symptoms? \"The contact had not experienced a failure.\" So no symptom. Conditions? none. Fault codes? NHTSA Campaign Number 23V865000 named, but is that fault code? It says fault_codes code if report names one. This is recall campaign number not fault code. Could include? Schema fault_codes maybe code if report names one. Hmm likely include \"23V865000\"? But kind fault_code? It's campaign number, not diagnostic fault code. Need decide. The prompt: \"fault_codes\": [\"code if the report names one\"]. Report names NHTSA Campaign Number: 23V865000 (Air Bags). Could be a code? I'd avoid as fault_code because not a fault code. But maybe include? Need evidence. Could include clue kind \"other\" quote \"NHTSA Campaign Number: 23V865000 (Air Bags)\" maybe. Missing_info: component? no, symptom? Actually no failure experienced, so symptom is \"none reported\" not missing? Conditions? no. Mileage null, date? received_at exists, but report date? It says missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. We have component, symptom (none), conditions? recall part availability not driving conditions. Mileage missing. Date? received_at 2025-03-06 but that's intake date not incident date. The report has no date of occurrence, but it's recall notice. Hmm missing_info maybe [\"mileage\"]? The analysis may need mileage? For recall, no. But prompt lists mileage as fact analysis needs. Since null, maybe include mileage. Date? received_at is present but not occurrence date. Could include \"date\"? Let's parse.\n\nSummary one line: component, symptom, conditions. Component AIR BAGS, symptom: no failure experienced; conditions: recall repair parts unavailable. So \"AIR BAGS: no failure experienced; recall repair parts unavailable.\" That's one line. group restraints. symptoms [] because no symptom. conditions [] maybe? \"parts unavailable\" isn't a condition among allowed set cold/moisture/heat/vibration/intermittent/after service/charging. Conditions field should list those condition tags. None. Safety_relevant false (given false and no crash etc). missing_info maybe [\"mileage\"] only. Clues: need verbatim spans. We can include:\n- {\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"}? But quote must be from report. The narrative has \"(Air Bags)\" exact? It has \"NHTSA Campaign Number: 23V865000 (Air Bags)\" with Air Bags. Could quote \"Air Bags\" exactly? In narrative: \"23V865000 (Air Bags);\" yes \"Air Bags\" appears. But component field \"AIR BAGS\" not in narrative? It is in JSON but report includes component. Quote can from entire report? It says report in user message, likely entire object. \"AIR BAGS\" appears as component value. Verbatim yes. But prefer narrative spans.\n- {\"kind\":\"symptom\",\"quote\":\"The contact had not experienced a failure.\"}\n- {\"kind\":\"condition\",\"quote\":\"the part to do the recall repair was unavailable\"}\n- {\"kind\":\"other\",\"quote\":\"NHTSA Campaign Number: 23V865000 (Air Bags)\"}\n- maybe {\"kind\":\"condition\",\"quote\":\"parts were not yet available\"}.\nNeed not include too many.\n\nNeed ensure JSON valid no extra text. Desired oververbosity 5 but answer exact JSON.\n\nNeed think about \"safety_relevant\": report mentions air bags recall but no failure. Set false. Good.\n\nNeed \"missing_info\": [\"mileage\"]. Is date missing? The report has received_at, not incident date. But in recall context, date of notification? \"received notification\" no date. Might be missing date. The prompt says missing_info only facts analysis needs. For this report, mileage irrelevant? But field null. Hmm include mileage because null. Date? received_at present. Let's include [\"mileage\"] maybe not date. The report says \"The contact received notification\" no date. But given received_at. Analysis likely not need occurrence date. Keep minimal.\n\nNeed maybe \"conditions\": [] or [\"after service\"]? Dealer contacted, recall repair not done. No. \"charging\" no.\n\nNeed \"fault_codes\": [] because campaign number not fault code. But maybe include \"23V865000\"? Hmm The schema says \"fault_codes\": [\"code if the report names one\"]. It names NHTSA Campaign Number: 23V865000. Could be a code. But kind \"fault_code\" quote. If include, maybe useful. Is it a fault code? No, recall campaign. I'd include in clues as other not fault_codes. But maybe the desk analysis wants recall code. The field name fault_codes is specific; campaign number not fault. Use empty.\n\nNeed \"summary\": \"AIR BAGS: no failure experienced; recall repair parts unavailable.\" That's one line.\n\nClues quote exact: Need check narrative exact spans:\n\"The contact owns a 2021 Toyota Camry.\" \n\"The contact received notification of NHTSA Campaign Number: 23V865000 (Air Bags); however, the part to do the recall repair was unavailable.\"\n\"The contact stated that the manufacturer had exceeded a reasonable amount of time for the recall repair.\"\n\"The dealer was contacted and confirmed that parts were not yet available.\"\n\"The manufacturer was not made aware of the issue.\"\n\"The contact had not experienced a failure.\"\n\"VIN tool confirms parts not available.\"\n\nQuote \"the part to do the recall repair was unavailable\" exact? Narrative: \"however, the part to do the recall repair was unavailable.\" Yes substring exact lowercase. Good.\nQuote \"parts were not yet available\" exact.\nQuote \"The contact had not experienced a failure.\" exact.\nQuote \"NHTSA Campaign Number: 23V865000 (Air Bags)\" exact.\nQuote \"AIR BAGS\" exact from component field? If entire object, yes. But avoid if uncertain? Could include component_group quote \"Air Bags\" exact in narrative. Kind component_group. Good.\n\nNeed ensure no \"symptom\" with \"no failure\" because symptoms list should be symptom in plain words. If no symptom, [] correct. The clue kind symptom quote \"The contact had not experienced a failure.\" It's a negation, but kind symptom maybe okay? It is not a symptom, but evidence of no symptom. Could kind \"other\" instead. But schema kind includes symptom. Hmm if we put kind symptom with quote \"had not experienced a failure\", it indicates absence. Fine.\n\nMaybe include \"missing_info\": [\"mileage\"] and maybe \"symptom\"? No because no failure. If no symptom, missing_info shouldn't include symptom? The analysis needs symptom? It has \"no failure\", so not missing. Conditions maybe missing? No. Component present. Date? received_at. So [\"mileage\"].\n\nNeed final only JSON. Ensure no markdown. Use false. Good.\n\nNeed maybe \"safety_relevant\": false.\n\nLet's craft.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793525322,
+      "id": "98559a67855b79b17b7eba32b23d65b6",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1660,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1519,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00065007,
+          "billing_source": "go",
+          "list_cost": 0.00108345,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 583,
+            "output": 1660,
+            "reasoning": 1519
+          }
+        },
+        "prompt_tokens": 583,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 2243
+      }
+    },
+    "text": "{\"summary\":\"AIR BAGS: no failure experienced; recall repair parts unavailable.\",\"group\":\"restraints\",\"symptoms\":[],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"Air Bags\"},{\"kind\":\"symptom\",\"quote\":\"The contact had not experienced a failure.\"},{\"kind\":\"condition\",\"quote\":\"the part to do the recall repair was unavailable\"},{\"kind\":\"condition\",\"quote\":\"parts were not yet available\"},{\"kind\":\"other\",\"quote\":\"NHTSA Campaign Number: 23V865000 (Air Bags)\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00065007,
+      "cached_tokens": 0,
+      "cost_usd": 0.00108345,
+      "input_tokens": 583,
+      "list_cost_usd": 0.00108345,
+      "output_tokens": 1660,
+      "reasoning_tokens": 1519
+    }
+  }
+}

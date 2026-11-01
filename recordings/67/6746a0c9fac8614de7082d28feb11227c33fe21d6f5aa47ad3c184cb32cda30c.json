@@ -1,0 +1,66 @@
+{
+  "key": "6746a0c9fac8614de7082d28feb11227c33fe21d6f5aa47ad3c184cb32cda30c",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 13850,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"2022 Mazda CX-5 exterior lighting: persistent fan/vibrating noise from left headlight; suspected auto-leveling/adaptive headlight motor; began after lease buyout.\",\n  \"group\": \"lighting\",\n  \"symptoms\": [\n    \"persistent fan or vibrating noise from the left headlight\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\",\n    \"conditions\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"EXTERIOR LIGHTING\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"persistent noise coming from the left headlight\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"noise resembles a fan or vibrating sound\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"malfunctioning auto-leveling or adaptive headlight motor\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"started only a month after I bought out the vehicle following the lease expiration\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"could pose a safety risk if the auto-leveling function fails\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"increasing the risk of accidents\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer JSON only. Need parse report. Component exterior lighting, group lighting. Summary one line: component, symptom, conditions. Symptoms: persistent noise from left headlight resembling fan or vibrating sound; suspected malfunctioning auto-leveling/adaptive headlight motor. Conditions: after service? It started a month after bought out vehicle following lease expiration. Is \"after service\" applicable? Lease expiration/buyout not service. Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. Noise resembles fan or vibrating sound; \"vibration\" condition? Hmm conditions should be environmental/operational conditions. Report says persistent, sudden. \"vibration\" could be symptom not condition. But allowed conditions include vibration. We can include \"vibration\" because noise resembles vibrating sound? Need not overdo. Maybe conditions: [\"after service\"]? Not service. \"intermittent\" no, persistent. \"charging\" no. Cold/moisture/heat no. So conditions empty? But schema asks array; can be empty. Need fault_codes none. safety_relevant: report mentions safety risk if auto-leveling fails, improper beam alignment, nighttime visibility/glare increasing risk accidents. Does that count safety_relevant? Set true when report mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. It mentions potential safety risk and accidents. So true, even though given safety_relevant false? We should follow report. It explicitly says safety risk and increasing risk accidents. So true.\n\nMissing_info: mileage null; date? received_at present, but report doesn't give incident date. component present, symptom present, conditions maybe? missing info facts analysis needs. Mileage missing. Date? The report no date of occurrence. Could list mileage, date. Conditions? It mentions started after lease buyout; no weather/conditions. Maybe not necessary. Need include component? no. symptom? no. conditions? maybe conditions not specified. Missing_info allowed list: component, symptom, conditions, mileage, date. We can include [\"mileage\",\"date\",\"conditions\"]? But conditions maybe not important? Analysis needs conditions (when/under what conditions). The report has persistent noise, no weather. It says started suddenly. For field quality, conditions missing. But maybe \"conditions\" missing if no environmental conditions. Let's decide. The prompt: list missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. Here mileage null, date not explicit, conditions not environmental. Component and symptom present. So [\"mileage\",\"date\",\"conditions\"]. Could include date because no incident date. Yes.\n\nClues: need verbatim spans. We need quotes from report exact. Examples:\n- symptom: \"persistent noise coming from the left headlight\"\n- symptom: \"noise resembles a fan or vibrating sound\"\n- component_group: \"EXTERIOR LIGHTING\"? But quote must be from report; component field? The report in user message includes JSON, component \"EXTERIOR LIGHTING\". Is that part of report? It is in user message. We can quote \"EXTERIOR LIGHTING\". But narrative doesn't include. The \"report\" includes component. Fine.\n- condition: \"started only a month after I bought out the vehicle following the lease expiration\" — condition? Not in allowed condition categories, but kind condition can quote. But conditions array maybe no. Could include clue kind other? Hmm.\n- safety: \"could pose a safety risk if the auto-leveling function fails\" and \"increasing the risk of accidents\". Verbatim.\n- fault_code none.\n- other: \"malfunctioning auto-leveling or adaptive headlight motor\" as suspected component? kind \"other\" or component_group? It's a component. But group is lighting. Could quote as other.\nNeed ensure quotes exact character. Let's extract exact phrases:\n\"persistent noise coming from the left headlight\" yes narrative: \"have recently noticed a persistent noise coming from the left headlight.\" Exact substring.\n\"The noise resembles a fan or vibrating sound.\" includes period. Could quote \"noise resembles a fan or vibrating sound\" exact substring? Narrative: \"The noise resembles a fan or vibrating sound.\" Yes substring without period.\n\"malfunctioning auto-leveling or adaptive headlight motor\" exact: \"caused by a malfunctioning auto-leveling or adaptive headlight motor.\" yes.\n\"could pose a safety risk if the auto-leveling function fails\" exact: \"could pose a safety risk if the auto-leveling function fails, leading to improper headlight beam alignment.\" yes.\n\"increasing the risk of accidents\" exact.\n\"started only a month after I bought out the vehicle following the lease expiration\" exact? Narrative: \"Coincidentally, this issue started only a month after I bought out the vehicle following the lease expiration.\" substring \"started only a month after I bought out the vehicle following the lease expiration\" yes. Kind condition? It is timing/condition. But conditions array not include. Maybe clue kind \"condition\" despite not in list? The allowed kind includes condition. OK.\n\"persistent\" maybe.\n\nNeed summary: \"2022 Mazda CX-5 exterior lighting: persistent fan/vibrating noise from left headlight; suspected auto-leveling/adaptive headlight motor; started after lease buyout.\" Conditions? \"after lease buyout\" not allowed but summary can include. Keep one line. Summary no invented.\n\nNeed group: \"lighting\" or \"EXTERIOR LIGHTING\"? Given group lighting. Use \"lighting\".\n\nSymptoms array plain words: \"persistent fan or vibrating noise from left headlight\"; \"suspected malfunctioning auto-leveling or adaptive headlight motor\". Is suspected component a symptom? It's suspected cause; maybe not symptom. Symptoms should be symptom in plain words. Include noise only. Maybe also \"no warning lamps or dashboard alerts\" is not symptom? It's absence. Could include \"no warning lamps, messages, or dashboard alerts before noise started\" but symptom list maybe not. Hmm.\n\nConditions: The issue began suddenly and persistent; started a month after lease buyout. Allowed condition categories do not include \"after purchase\". Could include \"vibration\" because noise resembles vibrating sound. But condition array should list conditions from allowed set. Is \"vibration\" a condition? It is in allowed. But the report says noise resembles vibrating sound, not vehicle vibration. Might mislead. Maybe conditions: [] because none of allowed categories. But the schema says conditions: [\"cold\", ...]. It can be empty. Need missing_info conditions because not specified. Good.\n\nFault_codes: [].\n\nSafety_relevant true.\n\nNeed answer only JSON. Ensure valid JSON. Quotes exact. Let's craft.\n\nPotential issue: \"The component is still installed in the vehicle and can be inspected upon request by a dealer or manufacturer.\" Not needed.\n\nNeed mention \"left headlight\" exact phrase: \"persistent noise coming from the left headlight\" good.\n\nCould include clue kind \"symptom\" quote \"noise resembles a fan or vibrating sound\". good.\n\nCould include clue kind \"other\" quote \"malfunctioning auto-leveling or adaptive headlight motor\". Good.\n\nCould include clue kind \"condition\" quote \"started only a month after I bought out the vehicle following the lease expiration\". This quote includes \"started only...\" exact? Let's verify narrative: \"Coincidentally, this issue started only a month after I bought out the vehicle following the lease expiration.\" The substring \"started only a month after I bought out the vehicle following the lease expiration\" is exact. Good.\n\nCould include clue kind \"safety\" quote \"could pose a safety risk if the auto-leveling function fails\". Exact. And \"increasing the risk of accidents\". Exact.\n\nCould include component_group quote \"EXTERIOR LIGHTING\" exact from component field. Good.\n\nNeed no extra text. Final JSON. Use safety_relevant true. Missing_info: [\"mileage\",\"date\",\"conditions\"]. Is date missing? The report has received_at but not incident date. Yes.\n\nNeed maybe \"summary\": \"2022 Mazda CX-5 exterior lighting: persistent fan/vibrating noise from left headlight; suspected auto-leveling/adaptive motor; began after lease buyout.\" That includes conditions. One line.\n\nFinal.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793525251,
+      "id": "9a053be833ae1267835e54c76d8ee2fa",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2053,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1733,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00077469,
+          "billing_source": "go",
+          "list_cost": 0.00129115,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 388,
+            "output": 2053,
+            "reasoning": 1733
+          }
+        },
+        "prompt_tokens": 772,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2825
+      }
+    },
+    "text": "{\n  \"summary\": \"2022 Mazda CX-5 exterior lighting: persistent fan/vibrating noise from left headlight; suspected auto-leveling/adaptive headlight motor; began after lease buyout.\",\n  \"group\": \"lighting\",\n  \"symptoms\": [\n    \"persistent fan or vibrating noise from the left headlight\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\",\n    \"conditions\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"EXTERIOR LIGHTING\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"persistent noise coming from the left headlight\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"noise resembles a fan or vibrating sound\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"malfunctioning auto-leveling or adaptive headlight motor\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"started only a month after I bought out the vehicle following the lease expiration\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"could pose a safety risk if the auto-leveling function fails\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"increasing the risk of accidents\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00077469,
+      "cached_tokens": 384,
+      "cost_usd": 0.00129115,
+      "input_tokens": 772,
+      "list_cost_usd": 0.00129115,
+      "output_tokens": 2053,
+      "reasoning_tokens": 1733
+    }
+  }
+}

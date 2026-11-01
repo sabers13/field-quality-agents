@@ -1,0 +1,66 @@
+{
+  "key": "64dd2062d8447127e4df1f409704544af2d1834201265dcb60e68153066e09c4",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10383,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"2024 Jeep Wrangler 4xe ADAS/automatic emergency braking; sudden unintended acceleration while braking in a parking lot, crash into a pole, continued acceleration until shutoff\",\n  \"group\": \"adas\",\n  \"symptoms\": [\n    \"sudden unintended acceleration\",\n    \"acceleration continued despite brake application\",\n    \"vehicle impacted a concrete and metal pole\",\n    \"continued acceleration after impact until the engine was shut off\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"my 2024 Jeep Wrangler 4xe suddenly accelerated as if I had floored the gas\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Unintentional acceleration continued as I applied and pumped the brakes\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"Driving in parking lot, as I went to turn into a spot\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"The Jeep hit a concrete and metal pole in the lot\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"continued to try to accelerate, crawling up the pole until the engine was shut off\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer only JSON. Need normalize. Report component forward collision avoidance automatic emergency braking group adas. Narrative mentions sudden acceleration, unintentional acceleration continued while braking, hit pole, continued accelerate until engine shut off. Safety relevant true (crash). Symptoms: sudden/unintentional acceleration despite braking; vehicle hit concrete and metal pole; continued acceleration after impact until shutoff. Conditions: parking lot? \"Driving in parking lot\"; turning into spot. Is \"parking lot\" condition? Conditions list allowed cold moisture heat vibration intermittent after service charging. We should choose from list only? It says conditions: [\"cold\",...]. We can include \"intermittent\"? Sudden event maybe not. No cold etc. Could leave empty. Fault codes none. Missing info: mileage null, date? received_at 2025 but incident date missing. Component present symptom present conditions maybe parking lot given. Missing mileage, date. Maybe \"conditions\" not missing? It gives driving in parking lot. We list mileage and date. Clues verbatim quotes. Need ensure quotes exact from narrative. Summary one line: \"2024 Jeep Wrangler 4xe ADAS/automatic emergency braking; sudden unintended acceleration while braking in parking lot, crash into pole, continued acceleration until shutoff.\" Group adas.\n\nNeed JSON only no other text. Use exact quotes:\n\"my 2024 Jeep Wrangler 4xe suddenly accelerated as if I had floored the gas\"\n\"Unintentional acceleration continued as I applied and pumped the brakes\"\n\"The Jeep hit a concrete and metal pole in the lot\"\n\"continued to try to accelerate, crawling up the pole until the engine was shut off\"\n\"Driving in parking lot, as I went to turn into a spot\" exact? Narrative: \"Driving in parking lot, as I went to turn into a spot, my 2024...\" yes quote can be span \"Driving in parking lot, as I went to turn into a spot\". Good.\nComponent group quote? FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING is in component field not narrative? Report includes component. Quote verbatim from report can include component? It says copied from report. Use \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\". Kind component_group. Safety quote \"The Jeep hit a concrete and metal pole in the lot\" or \"Unintentional acceleration continued...\" Safety relevant because crash. Use quote with hit. Symptoms: \"sudden unintended acceleration\", \"acceleration continued despite brake application\", \"vehicle impacted concrete and metal pole\", \"continued acceleration after impact until engine shut off\". Conditions maybe [\"intermittent\"]? No, sudden single event. Do not invent. Empty list okay? Schema conditions array. Use [].\n\nMissing_info: \"mileage\", \"date\". Also could \"conditions\" missing because no weather/road? But parking lot given. They need conditions maybe only parking lot. Don't overlist. Date of incident missing though received_at. Yes.\n\nSafety_relevant true.\n\nNeed no markdown? \"Answer with one JSON object and no other text\". We can output raw JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793528040,
+      "id": "8f09ef79f536a7bcdbea94e9bc72a8c9",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 998,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 650,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00037743,
+          "billing_source": "go",
+          "list_cost": 0.00062905,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 194,
+            "output": 998,
+            "reasoning": 650
+          }
+        },
+        "prompt_tokens": 578,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1576
+      }
+    },
+    "text": "{\n  \"summary\": \"2024 Jeep Wrangler 4xe ADAS/automatic emergency braking; sudden unintended acceleration while braking in a parking lot, crash into a pole, continued acceleration until shutoff\",\n  \"group\": \"adas\",\n  \"symptoms\": [\n    \"sudden unintended acceleration\",\n    \"acceleration continued despite brake application\",\n    \"vehicle impacted a concrete and metal pole\",\n    \"continued acceleration after impact until the engine was shut off\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"my 2024 Jeep Wrangler 4xe suddenly accelerated as if I had floored the gas\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Unintentional acceleration continued as I applied and pumped the brakes\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"Driving in parking lot, as I went to turn into a spot\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"The Jeep hit a concrete and metal pole in the lot\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"continued to try to accelerate, crawling up the pole until the engine was shut off\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00037743,
+      "cached_tokens": 384,
+      "cost_usd": 0.00062905,
+      "input_tokens": 578,
+      "list_cost_usd": 0.00062905,
+      "output_tokens": 998,
+      "reasoning_tokens": 650
+    }
+  }
+}

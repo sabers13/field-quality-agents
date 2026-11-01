@@ -1,0 +1,66 @@
+{
+  "key": "1ae137143e9d76bfb989dcdf8173419932618e84b8b4b0dab6b925c2f1380e63",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 8836,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"ADAS blind spot/lane departure: automatic braking alerts/engages downhill and blind spot warning alerts with no traffic.\",\n  \"group\": \"adas\",\n  \"symptoms\": [\n    \"automatic braking alerts or engages while going downhill with no traffic\",\n    \"blind spot warning alerts when there is no traffic\"\n  ],\n  \"conditions\": [\n    \"downhill\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"LANE DEPARTURE: BLIND SPOT DETECTION\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The automatic braking system will alert/engage when going down hills, despite there being no traffic in the road.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"going down hills\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The blindsplot warning will also alert when there is no traffic.\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"The automatic braking system will alert/engage when going down hills\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer only JSON. Need normalize. Report component \"LANE DEPARTURE: BLIND SPOT DETECTION\", group adas, narrative: automatic braking alerts/engages going down hills no traffic; blindspot warning alerts no traffic. Symptoms: automatic braking engages/alerts downhill without traffic; blind spot warning alerts when no traffic. Conditions: going down hills. Fault codes none. Safety_relevant? Mentions automatic braking engaging when no traffic, going down hills—could be risk? Prompt says set safety_relevant when crash fire smoke injury loss of control stall at speed or another risk to people. Automatic braking engaging unexpectedly is risk to people? It is a risk. But report field says false, but we should infer from narrative. \"another risk to people\" unexpected automatic braking likely safety relevant. Need decide. It says automatic braking system will alert/engage going down hills despite no traffic. Unexpected automatic braking can be safety risk. So true. Need missing_info: mileage, date? received date present but date of incident missing? missing_info list facts analysis needs: component, symptom, conditions, mileage, date. Component present; symptom present; conditions present (\"going down hills\"); mileage null missing; date? received_at is 2025-05-02 but incident date not given. So missing_info [\"mileage\",\"date\"]. Maybe conditions present. Need clues with verbatim quotes. Need include component_group quote? \"LANE DEPARTURE: BLIND SPOT DETECTION\" or \"adas\"? The quote must be from report. Use \"LANE DEPARTURE: BLIND SPOT DETECTION\" as component_group. Symptom quote \"The automatic braking system will alert/engage when going down hills, despite there being no traffic in the road.\" Condition quote \"going down hills\" is substring but exact? Narrative has \"when going down hills\"; quote \"going down hills\" verbatim yes. Another symptom quote \"The blindsplot warning will also alert when there is no traffic.\" Note typo \"blindsplot\" exact. Safety quote maybe \"automatic braking system will alert/engage\" not explicit risk. But to support safety? kind safety quote could be same symptom quote? Hmm. Need every quote verbatim. For safety relevant maybe quote \"The automatic braking system will alert/engage when going down hills\" as safety. But kind safety quote must be quote. Okay.\n\nNeed summary one line: \"ADAS blind spot/lane departure: automatic braking alerts/engages downhill and blind spot warning alerts with no traffic.\" That's okay.\n\nNeed group \"adas\".\n\nsymptoms array plain words: \"automatic braking alerts or engages while going downhill with no traffic\"; \"blind spot warning alerts when there is no traffic\". Conditions [\"downhill\"]? The allowed examples include cold moisture heat vibration intermittent after service charging. But conditions should list conditions. Use \"downhill\". Maybe \"going down hills\". The schema says conditions array; examples. Use [\"downhill\"]. But clue quote must verbatim \"going down hills\". Hmm okay. Need no extra text. Ensure JSON valid. Missing info. Clues include kind symptom, condition, component_group, safety maybe. Need not overdo. Let's formulate.\n\nNeed maybe \"fault_codes\": [].\n\"missing_info\": [\"mileage\", \"date\"].\n\"clues\": [\n{\"kind\":\"component_group\",\"quote\":\"LANE DEPARTURE: BLIND SPOT DETECTION\"},\n{\"kind\":\"symptom\",\"quote\":\"The automatic braking system will alert/engage when going down hills, despite there being no traffic in the road.\"},\n{\"kind\":\"condition\",\"quote\":\"going down hills\"},\n{\"kind\":\"symptom\",\"quote\":\"The blindsplot warning will also alert when there is no traffic.\"},\n{\"kind\":\"safety\",\"quote\":\"The automatic braking system will alert/engage when going down hills\"}\n]\nNeed quote exact character for character. Narrative \"The automatic braking system will alert/engage when going down hills, despite there being no traffic in the road. The blindsplot warning will also alert when there is no traffic.\" Yes.\n\nCould include safety quote same as symptom. Good.\n\nNeed safety_relevant true. Final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793526590,
+      "id": "7ec3a76bfae127aed0b1c419c1b934e9",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1141,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 861,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00042423,
+          "billing_source": "go",
+          "list_cost": 0.00070705,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 142,
+            "output": 1141,
+            "reasoning": 861
+          }
+        },
+        "prompt_tokens": 526,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1667
+      }
+    },
+    "text": "{\n  \"summary\": \"ADAS blind spot/lane departure: automatic braking alerts/engages downhill and blind spot warning alerts with no traffic.\",\n  \"group\": \"adas\",\n  \"symptoms\": [\n    \"automatic braking alerts or engages while going downhill with no traffic\",\n    \"blind spot warning alerts when there is no traffic\"\n  ],\n  \"conditions\": [\n    \"downhill\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"LANE DEPARTURE: BLIND SPOT DETECTION\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The automatic braking system will alert/engage when going down hills, despite there being no traffic in the road.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"going down hills\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The blindsplot warning will also alert when there is no traffic.\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"The automatic braking system will alert/engage when going down hills\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00042423,
+      "cached_tokens": 384,
+      "cost_usd": 0.00070705,
+      "input_tokens": 526,
+      "list_cost_usd": 0.00070705,
+      "output_tokens": 1141,
+      "reasoning_tokens": 861
+    }
+  }
+}

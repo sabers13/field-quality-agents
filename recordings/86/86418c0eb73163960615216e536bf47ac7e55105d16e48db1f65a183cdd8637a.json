@@ -1,0 +1,66 @@
+{
+  "key": "86418c0eb73163960615216e536bf47ac7e55105d16e48db1f65a183cdd8637a",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10568,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2021 Chevrolet Tahoe electrical system: loss of power and shutdown while driving; fuel pump power control module faulty.\",\"group\":\"electrical_general\",\"symptoms\":[\"loss of power while driving\",\"vehicle shuts down and stops driving\",\"faulty fuel pump power control module\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"When driving the car just stops losing power then the car immediately shuts down and stops driving.\"},{\"kind\":\"symptom\",\"quote\":\"the fuel pump power control module is faulty\"},{\"kind\":\"condition\",\"quote\":\"I happen to be on a freeway going 70 mph\"},{\"kind\":\"safety\",\"quote\":\"could have been killed\"},{\"kind\":\"safety\",\"quote\":\"This is a danger for any driver on the road.\"},{\"kind\":\"safety\",\"quote\":\"no one gets injured or killed\"}]}",
+            "reasoning_content": "We need answer one JSON object no other text. Need normalize report. Need include summary, group electrical_general, symptoms plain words: vehicle stops losing power, shuts down while driving, fuel pump power control module faulty, fuel pump replaced? Conditions: driving, freeway 70 mph? maybe conditions list allowed: cold moisture heat vibration intermittent after service charging. None? \"when driving\" not in allowed list but conditions field expects those tokens. Could include \"intermittent\"? No. We can leave conditions empty? But report says driving at 70 mph, freeway. The allowed conditions list doesn't include driving/high speed. Could maybe include none. Fault_codes none. Safety_relevant true: mentions could have been killed, danger, risk injury/killed, loss of power at speed. Missing_info: date? received_at is 2025-08-29 but no incident date. Mileage null. Component given. Symptom present. Conditions present? It says driving/freeway 70 mph. Missing date and mileage. Maybe missing_info [\"mileage\",\"date\"]. Need clues with verbatim quotes. Ensure exact copy from narrative. Need be careful JSON escaping. Quotes can include unicode? Use plain apostrophes? Verbatim from report includes curly apostrophe in \"it’s\" and \"could’ve\" ; we can avoid those. Need quotes exact substrings. Use: \"When driving the car just stops losing power then the car immediately shuts down and stops driving.\" Exact? Narrative: \"When driving the car just stops losing power then the car immediately shuts down and stops driving.\" Yes. \"the fuel pump power control module is faulty\" exact lower? Narrative: \"the fuel pump power control module is faulty.\" yes. \"I happen to be on a freeway going 70 mph and could have been killed.\" exact yes. \"This is a danger for any driver on the road.\" exact yes. \"no one gets injured or killed\" exact yes. Need symptom quote maybe \"the car immediately shuts down and stops driving\" exact? Narrative has \"then the car immediately shuts down and stops driving.\" yes.\n\nNeed summary one line: Electrical system: 2021 Chevrolet Tahoe loses power and shuts down while driving; fuel pump power control module faulty. Conditions? no.\n\nNeed safety_relevant true. Group \"electrical_general\" given. Symptoms array plain words. Could include \"loss of power while driving\", \"vehicle shuts down and stops driving\", \"faulty fuel pump power control module\". Conditions maybe [] because no allowed condition terms. But maybe \"intermittent\" not. Could include \"driving\" though schema conditions allowed list fixed. It says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. Use []? Hmm.\n\nMissing_info includes \"mileage\", \"date\". Date? The report received_at, but incident date absent. Need include date. Component present, symptom present, conditions present? Conditions maybe driving at 70 mph, but allowed tokens don't cover. Missing conditions? Could include \"conditions\"? The analysis needs conditions; report has driving/freeway/70 mph. So not missing. Use [\"mileage\",\"date\"].\n\nClues: kind symptom quote \"When driving the car just stops losing power then the car immediately shuts down and stops driving.\" kind symptom quote \"the fuel pump power control module is faulty\". kind condition? \"I happen to be on a freeway going 70 mph\" maybe condition kind. kind safety \"could have been killed\", \"This is a danger for any driver on the road.\" Need quote exact. Could include safety quote. Maybe kind component_group quote \"ELECTRICAL SYSTEM\"? But that's from component field not narrative, still report. The instruction \"Read only report\" includes component. But clues quote verbatim from report; component field is in report. Could include component_group quote \"ELECTRICAL SYSTEM\". Fine. But maybe avoid.\n\nNeed no other text. Ensure valid JSON. Use double quotes. Need not include markdown? \"Answer with one JSON object and no other text\" so just JSON no code fences. Good.\n\nNeed maybe include fault_codes [] no code named. safety true.\n\nNeed summary exactly one line. Use \"2021 Chevrolet Tahoe electrical system: loss of power and shutdown while driving; fuel pump power control module faulty.\" Good.\n\nNeed symptoms plain words: \"loss of power while driving\", \"vehicle shuts down and stops driving\", \"faulty fuel pump power control module\". \"stall at speed\" maybe but plain. OK.\n\nNeed conditions []? Maybe include \"intermittent\"? No. Could include \"driving at 70 mph on freeway\" but not allowed token. Schema examples allowed; but maybe conditions should be allowed terms. We'll set [] because no listed conditions. But user asked normalize; maybe if conditions not among allowed, omit. Good.\n\nNeed clues quote exact. Let's verify each substring exact from narrative:\n- \"When driving the car just stops losing power then the car immediately shuts down and stops driving.\" starts after quote. Narrative: \"When driving the car just stops losing power then the car immediately shuts down and stops driving. I had...\" Yes exact.\n- \"the fuel pump power control module is faulty\" appears in \"when it’s taken to the dealership the fuel pump power control module is faulty.\" Yes exact lower t? Narrative \"the fuel pump...\" after dealership yes.\n- \"I happen to be on a freeway going 70 mph and could have been killed.\" Exact yes.\n- \"This is a danger for any driver on the road.\" Exact yes.\n- \"no one gets injured or killed\" Exact at end: \"so no one gets injured or killed.\" yes substring.\nCould add \"could have been killed\" as safety but enough.\n\nNeed maybe \"safety_relevant\": true despite input false; rules say set when report mentions. Good.\n\nNeed final only JSON. Ensure no markdown.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529987,
+      "id": "19124dfc44d88340e29eb47cc4f85135",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1456,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1247,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.000555,
+          "billing_source": "go",
+          "list_cost": 0.000925,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 335,
+            "output": 1456,
+            "reasoning": 1247
+          }
+        },
+        "prompt_tokens": 719,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2175
+      }
+    },
+    "text": "{\"summary\":\"2021 Chevrolet Tahoe electrical system: loss of power and shutdown while driving; fuel pump power control module faulty.\",\"group\":\"electrical_general\",\"symptoms\":[\"loss of power while driving\",\"vehicle shuts down and stops driving\",\"faulty fuel pump power control module\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"When driving the car just stops losing power then the car immediately shuts down and stops driving.\"},{\"kind\":\"symptom\",\"quote\":\"the fuel pump power control module is faulty\"},{\"kind\":\"condition\",\"quote\":\"I happen to be on a freeway going 70 mph\"},{\"kind\":\"safety\",\"quote\":\"could have been killed\"},{\"kind\":\"safety\",\"quote\":\"This is a danger for any driver on the road.\"},{\"kind\":\"safety\",\"quote\":\"no one gets injured or killed\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.000555,
+      "cached_tokens": 384,
+      "cost_usd": 0.000925,
+      "input_tokens": 719,
+      "list_cost_usd": 0.000925,
+      "output_tokens": 1456,
+      "reasoning_tokens": 1247
+    }
+  }
+}

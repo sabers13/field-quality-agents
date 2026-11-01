@@ -1,0 +1,66 @@
+{
+  "key": "7444c334b4bc8505ce0bc14d5d55fa74d3c542da045230afd43e80c3d2147c16",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 6511,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2023 Chevrolet Silverado 1500 electrical system: telematics control module intermittent connectivity with check engine light and OnStar/WiFi coming and going at 52k miles.\",\"group\":\"electrical_general\",\"symptoms\":[\"telematic control module has intermittent connectivity\",\"check engine light comes on and off\",\"OnStar comes and goes\",\"WiFi comes and goes\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"My telematic control module has intermittent connectivity\"},{\"kind\":\"symptom\",\"quote\":\"The check engine light comes on and off\"},{\"kind\":\"symptom\",\"quote\":\"on star and wifi comes and goes as well\"},{\"kind\":\"condition\",\"quote\":\"intermittent\"},{\"kind\":\"safety\",\"quote\":\"This is a safety issue due to no onstar\"}]}",
+            "reasoning_content": "We need to produce JSON per instructions. Need parse report. Component electrical system, group electrical_general. Summary: telematics control module intermittent connectivity, CEL on/off, OnStar/WiFi intermittent, 52k miles, 2023 Silverado. Symptoms: intermittent connectivity of telematic control module; check engine light comes on and off; OnStar comes and goes; WiFi comes and goes. Conditions: intermittent. Fault codes none. Safety_relevant? Report says \"This is a safety issue due to no onstar as onstar claims to be a safety feature.\" This mentions safety issue but not crash/fire/smoke/injury/loss control/stall. Rule: set safety_relevant when report mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. \"safety issue due to no onstar\" is a risk to people? OnStar safety feature; loss of OnStar could be safety risk. Need decide. It says \"This is a safety issue\" explicitly. Should set true? The rule includes \"another risk to people\". No OnStar as safety feature arguably risk. We can set safety_relevant true with quote \"This is a safety issue due to no onstar\". But system gave safety_relevant false maybe ignore? We normalize. I think true because explicitly safety issue. But careful: \"safety_relevant\": false in input maybe source default. We should use report. Set true.\n\nMissing_info: mileage? Narrative says 52k miles and year 2023, received date. Component given, symptom given, conditions intermittent. Mileage null field but narrative has 52k. Missing info list: maybe none? Date? received_at exists. Conditions present. Component present. Symptom present. Mileage present in narrative. So empty list. But \"mileage\" JSON field null, but narrative says 52k. We can consider not missing. Good.\n\nClues: verbatim spans. Need exact quotes. Report narrative: \"My telematic control module has intermittent connectivity. The check engine light comes on and off and the go's, on star and wifi comes and goes as well.   This vehicle has 52k miles on it and is only 2 years old.  The shop I took this to said it is VIN specific so the dealer is the only place that can fix it.  This is a safety issue due to no onstar as onstar claims to be a safety feature.   This needs a recall because this issue is all over the place on gm products.\"\n\nQuotes:\n- symptom: \"My telematic control module has intermittent connectivity\"\n- symptom: \"The check engine light comes on and off\"\n- symptom: \"on star and wifi comes and goes as well\"\n- condition: \"intermittent\"\n- component_group: \"ELECTRICAL SYSTEM\" (from component field) but quote must from report? \"Read only the report in user message\" includes component field? The JSON object includes component. Quote can be \"ELECTRICAL SYSTEM\" verbatim. Fine.\n- safety: \"This is a safety issue due to no onstar\" exact. Could quote full sentence? \"This is a safety issue due to no onstar as onstar claims to be a safety feature.\" Verbatim yes.\n- other maybe \"VIN specific\" but not needed.\n\nNeed output only JSON no other text. Ensure valid JSON. Summary one line. Group \"electrical_general\" given. Symptoms array. Conditions array. Fault codes empty. Safety true. Missing_info [].\n\nNeed maybe include \"go's\" typo? No.\n\nLet's craft.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531037,
+      "id": "f39d2207280638fa01aff6e009dfc374",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 964,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 751,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00036762,
+          "billing_source": "go",
+          "list_cost": 0.0006127,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 221,
+            "output": 964,
+            "reasoning": 751
+          }
+        },
+        "prompt_tokens": 605,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1569
+      }
+    },
+    "text": "{\"summary\":\"2023 Chevrolet Silverado 1500 electrical system: telematics control module intermittent connectivity with check engine light and OnStar/WiFi coming and going at 52k miles.\",\"group\":\"electrical_general\",\"symptoms\":[\"telematic control module has intermittent connectivity\",\"check engine light comes on and off\",\"OnStar comes and goes\",\"WiFi comes and goes\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"My telematic control module has intermittent connectivity\"},{\"kind\":\"symptom\",\"quote\":\"The check engine light comes on and off\"},{\"kind\":\"symptom\",\"quote\":\"on star and wifi comes and goes as well\"},{\"kind\":\"condition\",\"quote\":\"intermittent\"},{\"kind\":\"safety\",\"quote\":\"This is a safety issue due to no onstar\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00036762,
+      "cached_tokens": 384,
+      "cost_usd": 0.0006127,
+      "input_tokens": 605,
+      "list_cost_usd": 0.0006127,
+      "output_tokens": 964,
+      "reasoning_tokens": 751
+    }
+  }
+}

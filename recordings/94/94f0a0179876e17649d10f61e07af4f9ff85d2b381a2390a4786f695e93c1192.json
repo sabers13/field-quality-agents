@@ -1,0 +1,66 @@
+{
+  "key": "94f0a0179876e17649d10f61e07af4f9ff85d2b381a2390a4786f695e93c1192",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 5717,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Test the 2024 Honda Ridgeline electrical system after adaptive cruise control and road departure mitigation shut down while idling, with a brake system warning light but working brakes.\",\"rationale\":\"The narrative reports two driver-assistance systems shutting down while idling at a traffic light and the BRAKE SYSTEM light illuminating, while the brakes continued to work. No rulebook entry, recall, investigation, or similar case was returned, so a targeted load test is not supported; propose the standard electrical system test.\",\"group\":\"electrical_general\",\"symptoms\":[\"adaptive cruise control and road departure mitigation systems shut down\",\"brake system warning light illuminated\",\"brakes continued to work\"],\"conditions\":[\"while idling at a traffic light\"],\"fault_codes\":[],\"safety_relevant\":false,\"targeted\":false,\"test_name\":\"standard electrical system test\",\"clues\":[{\"kind\":\"condition\",\"quote\":\"While idling at a traffic light\"},{\"kind\":\"symptom\",\"quote\":\"Adaptive Cruise Control & Road Departure Mitigation System\"},{\"kind\":\"symptom\",\"quote\":\"the BRAKE SYSTEM light came on\"},{\"kind\":\"other\",\"quote\":\"the brakes continued to work\"}]}",
+            "reasoning_content": "We need answer JSON only. No rulebook entries, no similar cases. Need propose standard test targeted false. Need quotes verbatim from case narrative. Narrative: \"While idling at a traffic light,2 systems shut down: Adaptive Cruise Control & Road Departure Mitigation System. Also the BRAKE SYSTEM light came on, but the brakes continued to work.\"\n\nNeed summary, rationale, group electrical_general, symptoms, conditions, fault_codes empty, safety_relevant false (narrative brakes continued work no risk to people? But brake light maybe safety? Instruction set safety when narrative shows risk to people. No explicit risk, brakes worked. existing false). targeted false. test_name standard test? The prompt says \"Otherwise propose the standard test (`\"targeted\": false`).\" Need name standard test. Since no rulebook, maybe \"standard electrical system diagnostic test\" or \"standard test\". Need clues with quotes verbatim. Could include component_group quote \"ELECTRICAL SYSTEM\" from narrative? Narrative doesn't contain \"ELECTRICAL SYSTEM\" capital? The case narrative: \"While idling at a traffic light,2 systems shut down: Adaptive Cruise Control & Road Departure Mitigation System. Also the BRAKE SYSTEM light came on, but the brakes continued to work.\" It does not include \"ELECTRICAL SYSTEM\" in narrative; extraction has it but quote must copied from case narrative. The case object has component \"ELECTRICAL SYSTEM\" but narrative separate. Rule: quote copied verbatim from case narrative. So only quotes from narrative string. Quotes: \"While idling at a traffic light\", \"Adaptive Cruise Control & Road Departure Mitigation System\", \"the BRAKE SYSTEM light came on\", \"the brakes continued to work\". Also maybe \"2 systems shut down\". Need ensure exact substring includes comma? \"While idling at a traffic light\" exact yes. \"Adaptive Cruise Control & Road Departure Mitigation System\" exact yes. \"the BRAKE SYSTEM light came on\" exact yes. \"the brakes continued to work\" exact yes. Could include \"2 systems shut down\" exact yes. Clues kinds symptom/condition/other.\n\nNeed mention no recalls/investigations/rulebook matches. Rationale condition and evidence. Summary one line.\n\nNeed be careful with \"test_name\": maybe \"Standard electrical system functional test\". The rulebook names none, so standard test. targeted false.\n\nLet's craft JSON. No extra text.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530392,
+      "id": "6a84a269517395637c047898cf43f900",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 755,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 502,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00034227,
+          "billing_source": "go",
+          "list_cost": 0.00057045,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 783,
+            "output": 755,
+            "reasoning": 502
+          }
+        },
+        "prompt_tokens": 783,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 1538
+      }
+    },
+    "text": "{\"summary\":\"Test the 2024 Honda Ridgeline electrical system after adaptive cruise control and road departure mitigation shut down while idling, with a brake system warning light but working brakes.\",\"rationale\":\"The narrative reports two driver-assistance systems shutting down while idling at a traffic light and the BRAKE SYSTEM light illuminating, while the brakes continued to work. No rulebook entry, recall, investigation, or similar case was returned, so a targeted load test is not supported; propose the standard electrical system test.\",\"group\":\"electrical_general\",\"symptoms\":[\"adaptive cruise control and road departure mitigation systems shut down\",\"brake system warning light illuminated\",\"brakes continued to work\"],\"conditions\":[\"while idling at a traffic light\"],\"fault_codes\":[],\"safety_relevant\":false,\"targeted\":false,\"test_name\":\"standard electrical system test\",\"clues\":[{\"kind\":\"condition\",\"quote\":\"While idling at a traffic light\"},{\"kind\":\"symptom\",\"quote\":\"Adaptive Cruise Control & Road Departure Mitigation System\"},{\"kind\":\"symptom\",\"quote\":\"the BRAKE SYSTEM light came on\"},{\"kind\":\"other\",\"quote\":\"the brakes continued to work\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00034227,
+      "cached_tokens": 0,
+      "cost_usd": 0.00057045,
+      "input_tokens": 783,
+      "list_cost_usd": 0.00057045,
+      "output_tokens": 755,
+      "reasoning_tokens": 502
+    }
+  }
+}

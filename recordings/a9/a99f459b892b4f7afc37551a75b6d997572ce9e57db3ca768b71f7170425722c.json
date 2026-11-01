@@ -1,0 +1,66 @@
+{
+  "key": "a99f459b892b4f7afc37551a75b6d997572ce9e57db3ca768b71f7170425722c",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 7694,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Fuel pump fuse blown and melted into fuse box; vehicle failed to start with intermittent EVAP warning light while attempting to start.\",\"group\":\"power_and_wiring\",\"symptoms\":[\"vehicle failed to start as intended\",\"intermittent EVAP failure warning light illuminated\",\"fuel pump fuse blown and melted into the fuse box\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"the vehicle failed to start as intended\"},{\"kind\":\"symptom\",\"quote\":\"an intermittent warning light for EVAP failure was illuminated\"},{\"kind\":\"symptom\",\"quote\":\"the fuel pump fuse was blown and had melted into the fuse box\"},{\"kind\":\"condition\",\"quote\":\"intermittent\"},{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM:WIRING:FUSES AND CIRCUIT BREAKERS\"}]}",
+            "reasoning_content": "We need to produce JSON only. Need parse report. Component electrical wiring fuses. Group given power_and_wiring. Summary one line: component, symptom, conditions. Symptoms: vehicle failed to start, intermittent EVAP warning light, fuel pump fuse blown and melted into fuse box. Conditions: intermittent (warning light intermittent), maybe no others. Could include \"while attempting to start\". conditions array allowed values: cold, moisture, heat, vibration, intermittent, after service, charging. Only intermittent clearly. Fault codes: none. safety_relevant? Report mentions failed to start, no crash/fire/smoke/injury/stall at speed. Melting fuse could fire risk? But prompt says safety when crash fire smoke injury loss control stall at speed or other risk to people. \"melted into fuse box\" maybe risk but no explicit fire/smoke. Given input safety_relevant false. Set false. Missing_info: date? Received date present, but failure date absent. mileage present. component present. symptom present. conditions? intermittent present. Maybe \"date\" missing. Should list date. Could also missing_info conditions? They gave intermittent only. Need facts analysis needs. Date missing likely. Maybe \"date\" only. Clues verbatim spans. Need quote exact character for character. Use narrative. Quotes:\n- \"the vehicle failed to start as intended\"\n- \"an intermittent warning light for EVAP failure was illuminated\"\n- \"the fuel pump fuse was blown and had melted into the fuse box\"\n- component_group quote? \"ELECTRICAL SYSTEM:WIRING:FUSES AND CIRCUIT BREAKERS\" is from component field, in report? It's in input but user message report includes component. Can quote component field verbatim? Rules says copied verbatim from report; report is the JSON. Probably okay, but maybe use narrative only. For component_group clue could quote \"fuel pump fuse\" from narrative? Kind component_group quote \"fuel pump fuse\" maybe. Need include condition intermittent quote \"intermittent\". Safety? no.\n\nNeed summary line: \"Fuel pump fuse blown and melted into fuse box causing no-start; intermittent EVAP warning.\" Include conditions. Summary: \"Fuel pump fuse in fuse box blown/melted; no-start and intermittent EVAP warning while attempting to start.\" Good.\n\nNeed JSON no other text. Ensure valid. missing_info [\"date\"] maybe. Could include \"conditions\" because only intermittent is condition. But intermittent is a condition. No. Maybe missing_info mileage? present 104000. date absent. Use [\"date\"].\n\nClues array. Each quote exact. For symptom: \"the vehicle failed to start as intended\" exact substring? Narrative: \"the vehicle failed to start as intended.\" yes. \"an intermittent warning light for EVAP failure was illuminated\" exact? Narrative: \"an intermittent warning light for EVAP failure was illuminated.\" yes. \"the fuel pump fuse was blown and had melted into the fuse box\" exact. For condition: \"intermittent\" exact. For component_group: maybe \"ELECTRICAL SYSTEM:WIRING:FUSES AND CIRCUIT BREAKERS\" exact from component field. Is that \"report\"? I think okay. But to be safe include quote \"fuel pump fuse\" kind component_group? The kind component_group should quote component group. Use exact component string. It appears in report JSON. Good. For other maybe \"The contact performed an inspection of the vehicle\" not needed.\n\nNeed not mention safety. safety_relevant false.\n\nNeed JSON with no markdown? User says answer with one JSON object no other text. Could output raw JSON. Final only JSON. Ensure no trailing.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793528814,
+      "id": "f96ea48c92622d3661723237b837cbc8",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 950,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 749,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0003642,
+          "billing_source": "go",
+          "list_cost": 0.000607,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 239,
+            "output": 950,
+            "reasoning": 749
+          }
+        },
+        "prompt_tokens": 623,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1573
+      }
+    },
+    "text": "{\"summary\":\"Fuel pump fuse blown and melted into fuse box; vehicle failed to start with intermittent EVAP warning light while attempting to start.\",\"group\":\"power_and_wiring\",\"symptoms\":[\"vehicle failed to start as intended\",\"intermittent EVAP failure warning light illuminated\",\"fuel pump fuse blown and melted into the fuse box\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"the vehicle failed to start as intended\"},{\"kind\":\"symptom\",\"quote\":\"an intermittent warning light for EVAP failure was illuminated\"},{\"kind\":\"symptom\",\"quote\":\"the fuel pump fuse was blown and had melted into the fuse box\"},{\"kind\":\"condition\",\"quote\":\"intermittent\"},{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM:WIRING:FUSES AND CIRCUIT BREAKERS\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0003642,
+      "cached_tokens": 384,
+      "cost_usd": 0.000607,
+      "input_tokens": 623,
+      "list_cost_usd": 0.000607,
+      "output_tokens": 950,
+      "reasoning_tokens": 749
+    }
+  }
+}

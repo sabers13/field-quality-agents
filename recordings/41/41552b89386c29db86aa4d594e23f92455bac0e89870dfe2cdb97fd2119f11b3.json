@@ -1,0 +1,66 @@
+{
+  "key": "41552b89386c29db86aa4d594e23f92455bac0e89870dfe2cdb97fd2119f11b3",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 13544,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Nissan Sentra electrical system — smoke and flames from front while driving; no prior warnings; vehicle disabled.\",\"group\":\"electrical_general\",\"symptoms\":[\"smoke coming from the front of the vehicle while driving\",\"flames appeared in the engine area and spread quickly\",\"no warning lamps, error messages, or unusual behavior before the incident\",\"vehicle completely disabled and no longer operable due to fire damage\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"condition\",\"quote\":\"While driving\"},{\"kind\":\"symptom\",\"quote\":\"smoke coming from the front of the vehicle\"},{\"kind\":\"symptom\",\"quote\":\"flames appeared in the engine area and spread quickly\"},{\"kind\":\"symptom\",\"quote\":\"No warning lamps, error messages, or unusual behavior were observed prior to the incident.\"},{\"kind\":\"symptom\",\"quote\":\"vehicle was completely disabled and is no longer operable due to the fire damage\"},{\"kind\":\"component_group\",\"quote\":\"electrical system\"},{\"kind\":\"safety\",\"quote\":\"My safety and the safety of others nearby were put at risk as the fire escalated rapidly.\"},{\"kind\":\"other\",\"quote\":\"Cause of the fire is UNKNOWN at this time.\"}]}",
+            "reasoning_content": "We need answer JSON only. Need parse report. Component electrical system group electrical_general. Summary one line component symptom conditions. Symptoms: smoke from front while driving, flames in engine area spread quickly severe damage, no warning lamps/error messages/unusual behavior prior, fire started suddenly, vehicle disabled/inoperable, cause unknown. Conditions: while driving maybe \"driving\" not in enumerated list? Allowed conditions list includes cold, moisture, heat, vibration, intermittent, after service, charging. The report mentions while driving, fire; not those. We can include [] or maybe \"heat\" from fire? Don't invent. Conditions array should be from list? It says conditions: [\"cold\", ...]. Probably only listed. No condition named. But clue condition can quote \"While driving\". Hmm conditions field maybe list plain conditions; allowed exactly those. I'd use [] because no listed condition. But \"While driving\" is a condition? The schema says conditions list fixed. We can omit. However summary conditions: while driving. missing_info: mileage (null), date? received_at exists but incident date not given. Component given. Symptom given. Conditions? Maybe missing incident date and mileage. Need list only facts analysis needs: component, symptom, conditions, mileage, date. Mileage missing yes. Date missing (incident date) yes. Conditions? The report gives while driving but not ambient etc. Could say conditions missing? It does say while driving; enough? Maybe \"conditions\" missing if no specifics. But avoid over. Need fault_codes [].\n\nSafety relevant true. Clues verbatim spans. Need ensure quotes exact character for character. Let's pick:\n- symptom quote: \"smoke coming from the front of the vehicle\"\n- symptom quote: \"flames appeared in the engine area and spread quickly\"\n- safety quote: \"My safety and the safety of others nearby were put at risk as the fire escalated rapidly.\"\n- condition quote: \"While driving\" (verbatim? Narrative starts \"While driving, I noticed...\" yes substring \"While driving\")\n- component_group quote: \"electrical system\" lowercase? Narrative says \"engine, electrical system, and body.\" Component field \"ELECTRICAL SYSTEM\". Quote can be \"electrical system\" verbatim in narrative.\n- other quote: \"Cause of the fire is UNKNOWN at this time.\"\n- symptom quote: \"No warning lamps, error messages, or unusual behavior were observed prior to the incident.\"\n- symptom quote: \"vehicle was completely disabled and is no longer operable due to the fire damage\"\n\nNeed summary: \"Nissan Sentra electrical system — smoke and flames from front while driving; no prior warnings; vehicle disabled.\" One line.\n\nGroup \"electrical_general\".\n\nsymptoms plain words: \"smoke from front of vehicle while driving\", \"flames in engine area spreading quickly\", \"no warning lamps or error messages before incident\", \"vehicle disabled/inoperable due to fire damage\". Conditions: maybe [\"while driving\"]? But schema examples fixed. It says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. Hmm maybe conditions should be one or more of those, not arbitrary. \"while driving\" not allowed? But clue kind condition quote can support. The field might accept any condition? Prompt says conditions list exactly with examples? It says `\"conditions\": [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]` in schema, likely enumerated. Use []? But then clue condition \"While driving\" maybe kind condition even if not in conditions field? Could be contradictory. I think we can include \"while driving\" in conditions? The rules don't prohibit. But schema shows allowed values. To be safe, include [] for conditions because none of those listed. But the report does have condition \"while driving\"; not in allowed list. Hmm.\n\nNeed \"missing_info\": [\"mileage\", \"date\"] maybe \"conditions\"? The report lacks incident date; received_at not incident date. Mileage null. Component and symptom present. Conditions maybe present (\"While driving\") but not detailed; analysis may need conditions. Since list only facts analysis needs, include mileage, date. Maybe conditions too? The report says while driving, sudden; no weather/ambient. But \"conditions\" missing could be useful. However not overdo. Include [\"mileage\", \"date\"].\n\nNeed no other text. JSON valid. Use double quotes. Ensure quote \"While driving\" exact, no comma? It's substring \"While driving\" exact. Good.\n\nNeed maybe include fault_codes [] and safety_relevant true.\n\nLet's craft.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529976,
+      "id": "0394dd96bbc8862a558cbdbe964b134b",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1247,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 971,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00047139,
+          "billing_source": "go",
+          "list_cost": 0.00078565,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 242,
+            "output": 1247,
+            "reasoning": 971
+          }
+        },
+        "prompt_tokens": 626,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1873
+      }
+    },
+    "text": "{\"summary\":\"Nissan Sentra electrical system — smoke and flames from front while driving; no prior warnings; vehicle disabled.\",\"group\":\"electrical_general\",\"symptoms\":[\"smoke coming from the front of the vehicle while driving\",\"flames appeared in the engine area and spread quickly\",\"no warning lamps, error messages, or unusual behavior before the incident\",\"vehicle completely disabled and no longer operable due to fire damage\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"condition\",\"quote\":\"While driving\"},{\"kind\":\"symptom\",\"quote\":\"smoke coming from the front of the vehicle\"},{\"kind\":\"symptom\",\"quote\":\"flames appeared in the engine area and spread quickly\"},{\"kind\":\"symptom\",\"quote\":\"No warning lamps, error messages, or unusual behavior were observed prior to the incident.\"},{\"kind\":\"symptom\",\"quote\":\"vehicle was completely disabled and is no longer operable due to the fire damage\"},{\"kind\":\"component_group\",\"quote\":\"electrical system\"},{\"kind\":\"safety\",\"quote\":\"My safety and the safety of others nearby were put at risk as the fire escalated rapidly.\"},{\"kind\":\"other\",\"quote\":\"Cause of the fire is UNKNOWN at this time.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00047139,
+      "cached_tokens": 384,
+      "cost_usd": 0.00078565,
+      "input_tokens": 626,
+      "list_cost_usd": 0.00078565,
+      "output_tokens": 1247,
+      "reasoning_tokens": 971
+    }
+  }
+}

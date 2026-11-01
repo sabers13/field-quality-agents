@@ -1,0 +1,66 @@
+{
+  "key": "b716693557d74b98fd037cd916c456fd4e315a4dcf0746772c0e5d9c604947cc",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9968,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system: check engine light after recall service; dealer diagnosed Telematics Communication Interface Control Module as cause.\",\"group\":\"electrical_general\",\"symptoms\":[\"engine light illuminated\",\"Telematics Communication Interface Control Module diagnosed as cause\"],\"conditions\":[\"after service\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"my engine light started lighting up\"},{\"kind\":\"symptom\",\"quote\":\"bad Telematics Communication Interface Control Module that was causing my engine light to come on\"},{\"kind\":\"condition\",\"quote\":\"after they bring their vehicles in to be serviced\"}]}",
+            "reasoning_content": "We need answer only JSON object. Need normalize report. Need extract component group given electrical_general. Symptoms: engine light illuminating / check engine light came on after service, bad Telematics Communication Interface Control Module causing engine light. Conditions: after service (recall service then next week). Fault codes none named. Safety relevant? Report says engine light, no crash/fire/smoke/injury/loss control/stall. false. Missing info: mileage null, date? received date and dates in narrative. Need missing_info only facts analysis needs: component? It has component electrical system, symptom, conditions, mileage, date. Mileage missing. Maybe date? Narrative has dates but not event? It says July 26 2025 brought in, picked Aug 2, next week light. Date present enough. Component group given. Missing_info [\"mileage\"]. Could include no? Need summary one line: Electrical system - check engine light after recall service due to Telematics Communication Interface Control Module. Conditions \"after service\". Symptoms array plain words: \"engine light illuminated\", \"Telematics Communication Interface Control Module diagnosed as cause\". Conditions array maybe [\"after service\"]. Also \"charging\"? no. \"intermittent\"? no. Clues verbatim spans. Need quotes exactly. Let's choose quotes from narrative exact substrings:\n- \"my engine light started lighting up\" for symptom\n- \"bad Telematics Communication Interface Control Module that was causing my engine light to come on\" for symptom/component? Verbatim includes. Need exact substring yes.\n- \"right after they bring their vehicles in to be serviced\" for condition? It's about owners generally not their vehicle? Could quote \"the next week my engine light started lighting up\" condition after service? Better \"for the engine recall\" condition? Hmm.\n- \"we brought my 2023 gmc yukon into Parks GMC in greenville sc on july 26, 2025 for the engine recall\" condition? After service clue maybe \"picked it up the following saturday august 2nd. the next week my engine light started lighting up\" verbatim? Need quote exact span can include. We can use quote \"picked it up the following saturday august 2nd\" as condition? Not exactly. The condition \"after service\" can be quoted from \"after they bring their vehicles in to be serviced\" but that's general. Or quote \"the next week my engine light started lighting up\" as symptom and condition temporal. Need every quote in clues. The schema allows kind condition quote. Use \"after they bring their vehicles in to be serviced\" for after service? It says after they bring vehicles in to be serviced. But the user report's own timeline also. Could quote \"the next week my engine light started lighting up\" for symptom maybe condition too. Need \"after service\" condition evidence can be quote \"we brought my 2023 gmc yukon into Parks GMC in greenville sc on july 26, 2025 for the engine recall\" not after service. Hmm.\n\nNeed ensure JSON valid. No markdown? User says answer with one JSON object and no other text. We return raw JSON.\n\nNeed include component_group clue: \"ELECTRICAL SYSTEM\"? The report has component field not narrative. The user message includes JSON. Quotes copied verbatim from report; can quote field values? \"ELECTRICAL SYSTEM\" verbatim in report JSON. Use kind component_group quote \"ELECTRICAL SYSTEM\". Or group electrical_general? The report has \"group\": \"electrical_general\". We can quote \"electrical_general\". But maybe component_group clue quote \"ELECTRICAL SYSTEM\" okay.\n\nNeed summary: \"Electrical system: check engine light after recall service; dealer diagnosed Telematics Communication Interface Control Module.\" Conditions \"after service\". But \"after service\" not exact? conditions normalized allowed.\n\nSymptoms: [\"engine light illuminated\", \"Telematics Communication Interface Control Module diagnosed as cause\"] maybe symptom plain words. Could include \"check engine light\" no code.\n\nFault codes [].\n\nSafety false.\n\nMissing_info [\"mileage\"] maybe date? There is received_at and narrative dates. Mileage null. Good.\n\nClues:\n- {\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"}\n- {\"kind\":\"symptom\",\"quote\":\"my engine light started lighting up\"}\n- {\"kind\":\"symptom\",\"quote\":\"bad Telematics Communication Interface Control Module that was causing my engine light to come on\"}\n- {\"kind\":\"condition\",\"quote\":\"after they bring their vehicles in to be serviced\"} maybe but not their exact? It's in report. Could use for after service. But maybe better quote \"we brought my 2023 gmc yukon into Parks GMC in greenville sc on july 26, 2025 for the engine recall\" as condition \"after service\"? Not exactly. Need evidence for after service. The phrase \"after they bring their vehicles in to be serviced\" is verbatim. Use. It states common problem after service. Good.\n- {\"kind\":\"other\",\"quote\":\"we declined the repair\"}? no need.\nNeed no safety clue.\n\nNeed maybe group: \"electrical_general\" or \"electrical general\". In schema group: \"the electrical/electronic component group, or the given group\". Given group electrical_general. Use \"electrical_general\". Summary one line.\n\nNeed mention no fault code. Good.\n\nFinal raw JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529957,
+      "id": "23dd132e5245e4c425c71bd7d8a4299f",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1290,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1131,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0005019,
+          "billing_source": "go",
+          "list_cost": 0.0008365,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 409,
+            "output": 1290,
+            "reasoning": 1131
+          }
+        },
+        "prompt_tokens": 793,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2083
+      }
+    },
+    "text": "{\"summary\":\"Electrical system: check engine light after recall service; dealer diagnosed Telematics Communication Interface Control Module as cause.\",\"group\":\"electrical_general\",\"symptoms\":[\"engine light illuminated\",\"Telematics Communication Interface Control Module diagnosed as cause\"],\"conditions\":[\"after service\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"my engine light started lighting up\"},{\"kind\":\"symptom\",\"quote\":\"bad Telematics Communication Interface Control Module that was causing my engine light to come on\"},{\"kind\":\"condition\",\"quote\":\"after they bring their vehicles in to be serviced\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0005019,
+      "cached_tokens": 384,
+      "cost_usd": 0.0008365,
+      "input_tokens": 793,
+      "list_cost_usd": 0.0008365,
+      "output_tokens": 1290,
+      "reasoning_tokens": 1131
+    }
+  }
+}

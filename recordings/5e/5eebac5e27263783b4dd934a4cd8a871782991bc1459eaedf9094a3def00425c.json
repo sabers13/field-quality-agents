@@ -1,0 +1,66 @@
+{
+  "key": "5eebac5e27263783b4dd934a4cd8a871782991bc1459eaedf9094a3def00425c",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 6638,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2015 Nissan Frontier air bag warning light on and blinking after clock spring replacement; no fault found.\",\"group\":\"restraints\",\"symptoms\":[\"air bag warning light on\",\"air bag warning light blinking\"],\"conditions\":[\"after service\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"air bag light came on\"},{\"kind\":\"condition\",\"quote\":\"replaced clock spring\"},{\"kind\":\"symptom\",\"quote\":\"no change to air bag warning\"},{\"kind\":\"symptom\",\"quote\":\"blinking light still on\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize report. Need summary one line component symptom conditions. Group given restraints. Symptoms: air bag light came on, air bag warning blinking light still on? Report says no change to air bag warning, blinking light still on. Conditions: after service? replaced clock spring. Intermittent? no. Fault codes none. Safety relevant? Air bag light/warning, no crash/fire etc. But restraint system malfunction could be safety? Prompt says set when mentions crash fire smoke injury loss control stall at speed or another risk to people. Airbag warning not explicitly risk? We should maybe false per given? But report has safety_relevant false in metadata, but we decide. It's air bag system, warning light on; could be safety relevant? The rule examples. \"another risk to people\" vague. Airbag light indicates restraint may not deploy, but report doesn't mention risk. Use false to avoid inventing. Missing info: mileage missing (null), date? received date exists, but incident date missing? missing_info options include mileage, date, conditions, component, symptom. Component present, symptom present, conditions? It says after service? Actually condition includes after service because replaced clock spring and issue persists. Missing mileage; date maybe no event date. Could list [\"mileage\", \"date\"]? Analysis needs conditions? It says no fault found, after replacing clock spring. Condition after service. Date? report received_at but no occurrence date. Yes list mileage, date. Clues: quote verbatim spans. Need exact substrings from narrative. \"air bag light came on\" exists. \"replaced clock spring\" exists. \"no fault found\" exists. \"no change to air bag warning\" exists. \"blinking light still on\" exists. Component group quote? \"AIR BAGS\" is in component field not narrative? Report is whole JSON in user message. Quotes can be copied from report including component? \"AIR BAGS\" verbatim. kind component_group. Safety? none. Conditions: \"after service\" not verbatim. We can quote \"replaced clock spring\" as condition? Kind condition? Hmm quote can be \"replaced clock spring\" under condition? Condition \"after service\" derived. But clue quote should be evidence. Use \"replaced clock spring\" with kind condition? It supports after service. Also \"no fault found\" maybe other. Need no extra text.\n\nNeed ensure JSON only. Summary: \"2015 Nissan Frontier air bag warning light on and blinking after clock spring replacement; no fault found.\" That's one line. Symptoms: [\"air bag warning light on\", \"air bag warning light blinking\"] Conditions: [\"after service\"]? Conditions list allowed includes \"after service\". Also maybe no \"no fault\". Fault codes [].\n\nSafety_relevant false.\n\nMissing info: [\"mileage\", \"date\"]? The report has received_at; event date missing. Good.\n\nClues array include:\n{\"kind\":\"symptom\",\"quote\":\"air bag light came on\"}\n{\"kind\":\"condition\",\"quote\":\"replaced clock spring\"}\n{\"kind\":\"symptom\",\"quote\":\"no change to air bag warning\"}\n{\"kind\":\"symptom\",\"quote\":\"blinking light still on\"}\n{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"}\nMaybe \"no fault found\" kind other. Include? Could. But not necessary. Need maybe quote exact \"2015 Nissan Frontier, air bag light came on\" includes comma. We can use \"air bag light came on\".\n\nCheck quote \"no change to air bag warning\" exact yes. \"blinking light still on\" exact yes.\n\nNeed maybe missing_info conditions? It lists conditions after service, so not missing. Component present. Symptom present. Mileage missing. Date missing (incident date). Good.\n\nFinal JSON only.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530329,
+      "id": "862f2f95c3ea65e98d57b31c907a7c1c",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 935,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 782,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00034917,
+          "billing_source": "go",
+          "list_cost": 0.00058195,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 132,
+            "output": 935,
+            "reasoning": 782
+          }
+        },
+        "prompt_tokens": 516,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1451
+      }
+    },
+    "text": "{\"summary\":\"2015 Nissan Frontier air bag warning light on and blinking after clock spring replacement; no fault found.\",\"group\":\"restraints\",\"symptoms\":[\"air bag warning light on\",\"air bag warning light blinking\"],\"conditions\":[\"after service\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"air bag light came on\"},{\"kind\":\"condition\",\"quote\":\"replaced clock spring\"},{\"kind\":\"symptom\",\"quote\":\"no change to air bag warning\"},{\"kind\":\"symptom\",\"quote\":\"blinking light still on\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00034917,
+      "cached_tokens": 384,
+      "cost_usd": 0.00058195,
+      "input_tokens": 516,
+      "list_cost_usd": 0.00058195,
+      "output_tokens": 935,
+      "reasoning_tokens": 782
+    }
+  }
+}

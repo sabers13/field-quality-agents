@@ -1,0 +1,66 @@
+{
+  "key": "6f5bb698f0f2e9e2932742c47d4e7a377319899f1c066900596383122f2ca422",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9675,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\": \"ELECTRICAL SYSTEM, 2019 Jaguar I-PACE: fire danger unresolved for years; vehicle still used on public roads and charging in congested areas.\", \"group\": \"electrical_general\", \"symptoms\": [\"fire danger\", \"unresolved problem\", \"vehicle used on public roads despite safety concern\"], \"conditions\": [\"charging\"], \"fault_codes\": [], \"safety_relevant\": true, \"missing_info\": [\"mileage\", \"date\"], \"clues\": [{\"kind\": \"symptom\", \"quote\": \"Fire danger for years in my 2019 jaguar ipace\"}, {\"kind\": \"symptom\", \"quote\": \"Unable to solve\"}, {\"kind\": \"condition\", \"quote\": \"chaging in congested areas\"}, {\"kind\": \"safety\", \"quote\": \"before someone gets hurt\"}, {\"kind\": \"safety\", \"quote\": \"used on public roads\"}, {\"kind\": \"other\", \"quote\": \"13 months in the shop\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize report. Read only report. Need include summary component symptom conditions. Group given electrical_general or component group. Symptoms plain words. Conditions list from allowed? Could include \"charging\" because report mentions \"chaging\" typo? Need quote verbatim. Conditions array should include cold, moisture, heat, vibration, intermittent, after service, charging. Report mentions \"chaging in congested areas\" typo, likely charging. Condition \"charging\" maybe yes. Also safety relevant true because fire danger, someone gets hurt. Fault codes none. Missing info: mileage null, date? received date exists, date maybe incident date missing. Conditions? It has parking/charging/congested. Component present ELECTRICAL SYSTEM. Symptom present fire danger unable to solve. Missing info: mileage, date maybe. Need clues with verbatim spans. Ensure quotes exactly from narrative: \"Fire danger for years in my 2019 jaguar ipace.\" Actually narrative begins \"Fire danger for years in my 2019 jaguar ipace. Unable to solve.\" Quote char for char. Need avoid quote not exact. Let's craft clues:\n- symptom quote \"Fire danger\"\n- symptom quote \"Unable to solve\"\n- condition quote \"chaging in congested areas\" (verbatim typo)\n- safety quote \"before someone gets hurt\"\n- safety quote \"Fire danger\"\n- other quote \"13 months in the shop\"\n- condition maybe \"parking\"\nNeed summary one line: \"ELECTRICAL SYSTEM in 2019 Jaguar I-PACE: persistent fire danger unresolved, vehicle parked/charging in congested public areas; safety risk.\" Must not invent? \"persistent\" okay. Conditions array includes \"charging\". Maybe \"intermittent\"? no. \"after service\"? no. \"heat\"? no. \"cold\"? no. \"moisture\"? no. \"vibration\"? no.\n\nSafety_relevant true. missing_info [\"mileage\",\"date\"]? Date of incident not given, but received_at. Analysis needs date? Could include date. Component present, symptom present, conditions present. Mileage null. Date maybe received date exists but incident date missing. Include \"mileage\",\"date\". Could include \"conditions\"? no.\n\nNeed exact JSON no other text. Ensure \"group\": \"electrical_general\". Symptoms array maybe [\"fire danger\", \"unresolved problem\", \"vehicle unsafe on public roads\"]. Plain words. But symptom \"fire danger\" is risk not symptom. Fine. Maybe \"fire risk\" etc.\n\nNeed clues kind allowed. Use quote \"Fire danger for years in my 2019 jaguar ipace\" exact? It appears with period. We can include without period? Verbatim span can be substring; yes. But if quote includes no period, it's still verbatim span. Better include exact substring. \"Fire danger for years in my 2019 jaguar ipace\" exact. \"Unable to solve\" exact. \"13 months in the shop\" exact. \"chaging in congested areas\" exact? Narrative: \"parking and chaging in congested areas including next to hospitals\" yes \"chaging in congested areas\" exact. \"before someone gets hurt\" exact. \"used on public roads\" exact. \"carrying passengers\" exact.\n\nNeed maybe fault_codes empty.\n\nNeed \"summary\": \"ELECTRICAL SYSTEM, 2019 Jaguar I-PACE: fire danger unresolved for years; vehicle still used on public roads and charging in congested areas.\" This includes conditions. Good.\n\nNeed not mention buyback action? No.\n\nLet's final JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793525122,
+      "id": "9030f9f4a37233805a5be865a0af9d38",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 968,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 750,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00040095,
+          "billing_source": "go",
+          "list_cost": 0.00066825,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 583,
+            "output": 968,
+            "reasoning": 750
+          }
+        },
+        "prompt_tokens": 583,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 1551
+      }
+    },
+    "text": "{\"summary\": \"ELECTRICAL SYSTEM, 2019 Jaguar I-PACE: fire danger unresolved for years; vehicle still used on public roads and charging in congested areas.\", \"group\": \"electrical_general\", \"symptoms\": [\"fire danger\", \"unresolved problem\", \"vehicle used on public roads despite safety concern\"], \"conditions\": [\"charging\"], \"fault_codes\": [], \"safety_relevant\": true, \"missing_info\": [\"mileage\", \"date\"], \"clues\": [{\"kind\": \"symptom\", \"quote\": \"Fire danger for years in my 2019 jaguar ipace\"}, {\"kind\": \"symptom\", \"quote\": \"Unable to solve\"}, {\"kind\": \"condition\", \"quote\": \"chaging in congested areas\"}, {\"kind\": \"safety\", \"quote\": \"before someone gets hurt\"}, {\"kind\": \"safety\", \"quote\": \"used on public roads\"}, {\"kind\": \"other\", \"quote\": \"13 months in the shop\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00040095,
+      "cached_tokens": 0,
+      "cost_usd": 0.00066825,
+      "input_tokens": 583,
+      "list_cost_usd": 0.00066825,
+      "output_tokens": 968,
+      "reasoning_tokens": 750
+    }
+  }
+}

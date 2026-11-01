@@ -1,0 +1,66 @@
+{
+  "key": "991fc7d42412b3105daa817576f4bcefd0b18c5e6ef78ecb5d9c81c8091b1261",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 6919,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"No failure is reported and no rulebook entry matches; use the standard test rather than a targeted load test.\",\"rationale\":\"The narrative concerns recall 24V694000 for air bags, with the remedy part unavailable and no experienced failure. The rulebook returned no matching entry, so a targeted load test is not supported.\",\"group\":\"restraints\",\"symptoms\":[\"recall repair parts not available\"],\"conditions\":[\"recall remedy parts unavailable\",\"manufacturer exceeded reasonable time for recall repair\",\"no failure experienced\"],\"fault_codes\":[\"24V694000\"],\"safety_relevant\":false,\"targeted\":false,\"test_name\":\"standard test\",\"clues\":[{\"kind\":\"component_group\",\"quote\":\"Air Bags\"},{\"kind\":\"fault_code\",\"quote\":\"NHTSA Campaign Number: 24V694000\"},{\"kind\":\"symptom\",\"quote\":\"the part to do the recall repair was not yet available\"},{\"kind\":\"other\",\"quote\":\"The contact had not experienced a failure.\"},{\"kind\":\"other\",\"quote\":\"VIN tool confirms parts not available.\"}]}",
+            "reasoning_content": "We need answer JSON only. Need analyze case. Recall only, parts unavailable, no failure. Rulebook empty. Need propose standard test? Targeted load test only if rulebook entry matches. None. So targeted false. test_name? Maybe \"standard test\" or recall remedy verification? Need infer schema. It says \"test_name\": \"the targeted test the rulebook names\" but if not targeted, maybe standard test. Since rulebook empty, maybe test_name \"standard test\". Need group \"restraints\", symptoms etc. Safety_relevant false because no risk to people shown? Air bag recall could be safety but narrative no failure; extraction false. We should set false.\n\nNeed quotes verbatim from narrative. Use only those. Could include \"The contact had not experienced a failure.\" and \"the part to the recall repair was not yet available\" (verbatim? narrative: \"however, the part to do the recall repair was not yet available.\" Exact substring \"the part to the recall repair was not yet available\" is not verbatim because \"do\" omitted. Need exact spans. Use \"the part to do the recall repair was not yet available\" yes. \"NHTSA Campaign Number: 24V694000\" exact. \"Air Bags\" exact? narrative has \"(Air Bags)\" yes. \"VIN tool confirms parts not available.\" exact. \"The contact had not experienced a failure.\" exact. \"The manufacturer was made aware of the issue.\" maybe condition. Need no cited IDs? Fault code 24V694000 is recall id in tool. Fine.\n\nNeed summary one line. rationale condition evidence. targeted false. test_name maybe \"standard test\". Could say \"standard diagnostic/recall status check\". But JSON field says test_name. The standard test maybe not named by rulebook. We can write \"standard test\". Conditions maybe [\"recall remedy parts unavailable\", \"manufacturer exceeded reasonable time for recall repair\"]. Could include \"no failure experienced\". Symptoms maybe [\"recall repair parts not available\"]. Fault codes [\"24V694000\"]. Clues include component_group, fault_code, symptom, other. Need each quote exact from narrative. Ensure \"recall remedy parts unavailable\" not quote. Good.\n\nNeed maybe \"safety_relevant\": false. targeted true? No, targeted false. Because no rulebook matches. We should not propose recall repair? The desk never scraps etc. Can mention test booking. Test name maybe \"standard test\". Since no rulebook, targeted false. Summary: \"No failure and no rulebook match; run standard test/verify recall remedy availability.\" But standard test? Hmm.\n\nPotential issue: \"test_name\": \"the targeted test the rulebook names\" if targeted false maybe empty string? The schema requires string. We can set \"standard test\". Fine.\n\nNeed final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793524854,
+      "id": "da94094b3af83a6331229c11708f8978",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 809,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 579,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00038754,
+          "billing_source": "go",
+          "list_cost": 0.0006459,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 1070,
+            "output": 809,
+            "reasoning": 579
+          }
+        },
+        "prompt_tokens": 1070,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 1879
+      }
+    },
+    "text": "{\"summary\":\"No failure is reported and no rulebook entry matches; use the standard test rather than a targeted load test.\",\"rationale\":\"The narrative concerns recall 24V694000 for air bags, with the remedy part unavailable and no experienced failure. The rulebook returned no matching entry, so a targeted load test is not supported.\",\"group\":\"restraints\",\"symptoms\":[\"recall repair parts not available\"],\"conditions\":[\"recall remedy parts unavailable\",\"manufacturer exceeded reasonable time for recall repair\",\"no failure experienced\"],\"fault_codes\":[\"24V694000\"],\"safety_relevant\":false,\"targeted\":false,\"test_name\":\"standard test\",\"clues\":[{\"kind\":\"component_group\",\"quote\":\"Air Bags\"},{\"kind\":\"fault_code\",\"quote\":\"NHTSA Campaign Number: 24V694000\"},{\"kind\":\"symptom\",\"quote\":\"the part to do the recall repair was not yet available\"},{\"kind\":\"other\",\"quote\":\"The contact had not experienced a failure.\"},{\"kind\":\"other\",\"quote\":\"VIN tool confirms parts not available.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00038754,
+      "cached_tokens": 0,
+      "cost_usd": 0.0006459,
+      "input_tokens": 1070,
+      "list_cost_usd": 0.0006459,
+      "output_tokens": 809,
+      "reasoning_tokens": 579
+    }
+  }
+}

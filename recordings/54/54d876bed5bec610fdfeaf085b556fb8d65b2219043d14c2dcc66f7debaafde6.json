@@ -1,0 +1,66 @@
+{
+  "key": "54d876bed5bec610fdfeaf085b556fb8d65b2219043d14c2dcc66f7debaafde6",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12871,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"ADAS blind spot/lane departure system with intermittent malfunctions, engine stalling, braking and electronic failures, and recurring TPMS warnings after reset/rebalance.\",\n  \"group\": \"adas\",\n  \"symptoms\": [\n    \"intermittent and unpredictable system malfunctions\",\n    \"engine stalling\",\n    \"braking issues\",\n    \"electronic system failures\",\n    \"tire pressure monitor reset light warning recurring after reset\",\n    \"TPMS light reappears at same spots after tire rebalance\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"LANE DEPARTURE: BLIND SPOT DETECTION\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"intermittent and unpredictable system malfunctions\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"engine stalling\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"braking issues\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"electronic system failures\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"serious safety risks\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"driving increasingly hazardous\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"continual tire pressure monitor reset light warning after reset 100 % measurement successful\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"rebalance all tires light reappear distant same spots\"\n    }\n  ]\n}",
+            "reasoning_content": "We need to produce JSON only. Need parse report. Component given \"LANE DEPARTURE: BLIND SPOT DETECTION\", group adas. Narrative mentions recurring system failures, intermittent unpredictable system malfunctions, engine stalling, braking issues, electronic system failures, serious safety risks, driving hazardous. Also tire pressure monitor reset light warning after reset 100% measurement successful, rebalance all tires light reappear distant same spots. Need summary one line: component, symptom, conditions. Group \"adas\". Symptoms list plain words. Conditions list from allowed: cold, moisture, heat, vibration, intermittent, after service, charging. Narrative says intermittent. Also \"recurring\" not condition list? Use intermittent. Maybe \"after service\"? rebalance tires? Not exactly service. \"distant same spots\" maybe conditions? No. Fault codes none. Safety_relevant true due engine stalling braking issues serious safety risks. Missing_info: mileage null, date? received_at is date but report date? They ask missing_info facts analysis needs: component, symptom, conditions, mileage, date. Component present? given component, symptom present, conditions? intermittent present. Mileage missing. Date? received_at 2025-10-19 present; maybe date of incident missing? Hmm \"date\" could be missing if no occurrence date. Report has received_at. We can include mileage maybe date? Need only missing important. Since mileage null, include \"mileage\". Maybe \"date\" if no incident date? But received_at is date. The schema says missing_info [\"mileage\",\"date\",\"conditions\",\"component\",\"symptom\"]. We can include mileage. Conditions are intermittent. Component given. Symptom present. Date? received_at. I'd include mileage only. But maybe conditions missing? It says intermittent. No.\n\nClues: need verbatim spans copied from report. Must be exact substrings. Let's identify exact quotes from narrative. \"Recurring System Failures\" exact? Narrative: \"Recurring System Failures: My vehicle has exhibited intermittent and unpredictable system malfunctions, including engine stalling, braking issues, and electronic system failures.\" So quotes:\n- \"intermittent and unpredictable system malfunctions\" (symptom/condition)\n- \"engine stalling\" (symptom)\n- \"braking issues\" (symptom)\n- \"electronic system failures\" (symptom)\n- \"serious safety risks\" (safety)\n- \"driving increasingly hazardous\" (safety) exact? \"have made driving increasingly hazardous.\" Quote \"driving increasingly hazardous\" yes substring.\n- \"continual tire pressure monitor reset light warning after reset 100 % measurement successful.\" exact? Narrative: \"continual tire pressure monitor reset light warning after reset 100 % measurement successful. rebalance all tires light reappear distant same spots\" Need quote maybe \"continual tire pressure monitor reset light warning after reset 100 % measurement successful\" (without period). That's verbatim substring. symptom. Also \"rebalance all tires light reappear distant same spots\" exact. symptom/condition? Could be other.\n- \"intermittent\" condition quote.\n\nNeed ensure JSON valid no extra text. Summary one line: \"ADAS blind spot/lane departure system with intermittent system malfunctions, engine stalling, braking and electronic failures, plus recurring TPMS warnings.\" Conditions include intermittent. Safety true. Fault codes empty.\n\nNeed maybe group \"adas\" as given. Component group? group field \"adas\". Clues kind can be \"component_group\" quote? Need quote verbatim from report? The component is in user field, not narrative. The rule says every quote copied verbatim from report. The report includes JSON with component field. Could quote \"LANE DEPARTURE: BLIND SPOT DETECTION\" from component. Is that part of report? Yes entire user message is report. But narrative is report. However quote must be in report; component string exists. For component_group clue, quote \"LANE DEPARTURE: BLIND SPOT DETECTION\". That is verbatim. But kind component_group. Good. But maybe keep clues only narrative. We can include.\n\nNeed decide missing_info. It has mileage null. Include \"mileage\". Could include \"date\" because no incident date? received_at is date of report not incident; but schema says date. Hmm the analysis needs date of occurrence? The report has received_at; not necessarily missing. I'd include \"mileage\" only. But maybe \"conditions\" are intermittent, okay. \"component\" given. \"symptom\" given. So [\"mileage\"].\n\nNeed safety_relevant true. It was false in input but narrative mentions safety risks, stalling, braking. Rule set true. Good.\n\nNeed maybe mention \"tire pressure monitor\" as symptom despite component lane departure? Yes report has multiple symptoms. The intake normalizes incoming field-quality report. Include all symptoms. But summary should one line component, symptom, conditions. Could mention both.\n\nNeed output one JSON object no other text. Ensure no markdown. Let's craft:\n\n{\n  \"summary\": \"ADAS blind spot/lane departure system with intermittent malfunctions, engine stalling, braking and electronic failures, and recurring TPMS warnings after reset/rebalance.\",\n  \"group\": \"adas\",\n  \"symptoms\": [\"intermittent and unpredictable system malfunctions\", \"engine stalling\", \"braking issues\", \"electronic system failures\", \"tire pressure monitor reset light warning recurring after reset\", \"TPMS light reappears at same spots after tire rebalance\"],\n  \"conditions\": [\"intermittent\"],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\"mileage\"],\n  \"clues\": [\n    {\"kind\":\"component_group\",\"quote\":\"LANE DEPARTURE: BLIND SPOT DETECTION\"},\n    {\"kind\":\"condition\",\"quote\":\"intermittent and unpredictable system malfunctions\"},\n    {\"kind\":\"symptom\",\"quote\":\"engine stalling\"},\n    {\"kind\":\"symptom\",\"quote\":\"braking issues\"},\n    {\"kind\":\"symptom\",\"quote\":\"electronic system failures\"},\n    {\"kind\":\"safety\",\"quote\":\"serious safety risks\"},\n    {\"kind\":\"safety\",\"quote\":\"driving increasingly hazardous\"},\n    {\"kind\":\"symptom\",\"quote\":\"continual tire pressure monitor reset light warning after reset 100 % measurement successful\"},\n    {\"kind\":\"symptom\",\"quote\":\"rebalance all tires light reappear distant same spots\"}\n  ]\n}\n\nCheck quotes exact:\n- \"intermittent and unpredictable system malfunctions\" appears: \"exhibited intermittent and unpredictable system malfunctions\" yes.\n- \"engine stalling\" yes.\n- \"braking issues\" yes.\n- \"electronic system failures\" yes.\n- \"serious safety risks\" yes.\n- \"driving increasingly hazardous\" narrative: \"have made driving increasingly hazardous.\" yes substring.\n- \"continual tire pressure monitor reset light warning after reset 100 % measurement successful\" narrative has \"successful.\" then \" rebalance\" lowercase. Quote without period is substring yes.\n- \"rebalance all tires light reappear distant same spots\" exact? Narrative: \"rebalance all tires light reappear distant same spots\" yes. Good.\n- \"LANE DEPARTURE: BLIND SPOT DETECTION\" exact component field. Good.\n\nPotential issue condition clue quote \"intermittent and unpredictable system malfunctions\" kind condition but it's symptom phrase. Fine.\n\nNeed maybe \"conditions\": [\"intermittent\"] allowed. Good.\n\nFinal only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531335,
+      "id": "1597f7b0a648e0cf9f1486d95646a6b3",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1960,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1568,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00072213,
+          "billing_source": "go",
+          "list_cost": 0.00120355,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 176,
+            "output": 1960,
+            "reasoning": 1568
+          }
+        },
+        "prompt_tokens": 560,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2520
+      }
+    },
+    "text": "{\n  \"summary\": \"ADAS blind spot/lane departure system with intermittent malfunctions, engine stalling, braking and electronic failures, and recurring TPMS warnings after reset/rebalance.\",\n  \"group\": \"adas\",\n  \"symptoms\": [\n    \"intermittent and unpredictable system malfunctions\",\n    \"engine stalling\",\n    \"braking issues\",\n    \"electronic system failures\",\n    \"tire pressure monitor reset light warning recurring after reset\",\n    \"TPMS light reappears at same spots after tire rebalance\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"LANE DEPARTURE: BLIND SPOT DETECTION\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"intermittent and unpredictable system malfunctions\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"engine stalling\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"braking issues\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"electronic system failures\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"serious safety risks\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"driving increasingly hazardous\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"continual tire pressure monitor reset light warning after reset 100 % measurement successful\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"rebalance all tires light reappear distant same spots\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00072213,
+      "cached_tokens": 384,
+      "cost_usd": 0.00120355,
+      "input_tokens": 560,
+      "list_cost_usd": 0.00120355,
+      "output_tokens": 1960,
+      "reasoning_tokens": 1568
+    }
+  }
+}

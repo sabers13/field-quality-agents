@@ -1,0 +1,66 @@
+{
+  "key": "1933f360de9191477e405ae12f874bd779b2e36a71d3dde98053efa54e7be097",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9586,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system wire harness failures causing power steering loss while driving, with recurrent engine failures and replacements.\",\"group\":\"electrical_general\",\"symptoms\":[\"wire harness failure\",\"power steering failure while driving\",\"engine failure\",\"engine replaced multiple times\",\"vehicle stopped working at high speed\",\"engine fell apart\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"Currently the wire harness has failed.\"},{\"kind\":\"symptom\",\"quote\":\"causing power steering to fail while driving\"},{\"kind\":\"condition\",\"quote\":\"while driving at high speed\"},{\"kind\":\"condition\",\"quote\":\"several times\"},{\"kind\":\"safety\",\"quote\":\"The engine failed the first time while driving at high speed the car just stopped working.\"},{\"kind\":\"safety\",\"quote\":\"I don’t not trust my teen drivers around the vehicle or to drive.\"},{\"kind\":\"symptom\",\"quote\":\"The engine has failed and been replaced two times.\"},{\"kind\":\"other\",\"quote\":\"The vehicle has 70,000 miles.\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize. Report component electrical system, group electrical_general. Narrative mentions engine failures, wire harness failed, power steering fail while driving, safety concern teen drivers. Need symptoms plain words. Conditions: while driving at high speed? \"driving at high speed\", \"while driving\" intermittent? \"several times\". Fault codes none. Safety_relevant true because loss of power steering while driving, car stopped working at high speed, risk. Missing info: mileage actually has 70,000 miles in narrative despite mileage null; so missing none? component given, symptom present, conditions present, mileage in narrative, date received? The rules missing_info facts analysis needs: component, symptom, conditions, mileage, date. We have all? Date maybe received_at but not event date. \"date\" could be report date? There is received_at 2025-06-22. So no missing. Maybe model/year present. Need quotes verbatim. Must be exact spans. Quotes:\n- \"The vehicle has 70,000 miles.\" for mileage? kind other.\n- \"The engine has failed and been replaced two times.\" symptom? engine failure.\n- \"The engine failed the first time while driving at high speed the car just stopped working.\" symptom/condition/safety?\n- \"The second time we heard it failing and were able to drive it to the dealer where the engine fell apart in the parking lot\"\n- \"Currently the wire harness has failed.\" symptom.\n- \"This has happened several times\" condition intermittent.\n- \"Each time it\\u2019s failed while driving causing power steering to fail while driving.\" symptom/condition/safety.\n- \"I don\\u2019t not trust my teen drivers around the vehicle or to drive.\" safety? risk to people.\nNeed exact character: narrative contains \"it\\u2019s\" curly apostrophe; JSON can include \\u2019 or actual? We can include \"Each time it’s failed while driving causing power steering to fail while driving.\" Verbatim. Also \"I don’t not trust my teen drivers around the vehicle or to drive.\" exact includes \"don’t not\". Ensure.\n\nSummary: \"Electrical system; wire harness failure causing power steering loss while driving; recurrent engine failures.\" But component is electrical system; report includes engine too. One line: \"Electrical system / wire harness failures causing power steering loss while driving, with recurrent engine failures.\" Conditions: while driving, high speed, intermittent (several times). \"after service\"? replaced engines? Not after service. \"vibration\"? no. \"heat\"? no. \"cold\"? no. \"moisture\"? no. \"charging\"? no. Maybe \"while driving\" not in allowed list? conditions allowed: cold, moisture, heat, vibration, intermittent, after service, charging. But prompt says conditions [\"cold\",...] maybe only those? It says conditions list with examples? It enumerates exact. Need choose from list? The rules mention conditions facts. The JSON schema shows conditions with specific values. Could include \"while driving\"? Hmm prompt: \"conditions\": [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. That looks allowed vocabulary. We shouldn't invent condition outside? But report explicitly says while driving/high speed. Could include \"intermittent\" for several times. But \"while driving\" is condition and important; yet not in allowed list. Maybe include \"intermittent\". In clues can quote while driving. But conditions array should be from allowed? It says \"conditions\": [\"cold\", ...] means populate with these. We can use [\"intermittent\"]. Maybe include \"high speed\"? Not allowed. We can put in summary. Safety true. Fault_codes [].\n\nSymptoms: \"wire harness failure\", \"power steering failure while driving\", \"engine failure\", \"engine replacement\", \"vehicle stopped working at high speed\", \"engine fell apart\". Symptoms plain words.\n\nGroup: \"electrical_general\" given group. Maybe \"electrical_general\".\n\nMissing_info: [] because all present. But date? Event dates 2021, 2024 present. Mileage 70,000. Component. Symptom. Conditions. None. Good.\n\nClues list with kind. Need every quote exact. Include:\n{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"}? Is that in report? The component field is \"ELECTRICAL SYSTEM\" yes report includes JSON. Verbatim. Good.\n{\"kind\":\"symptom\",\"quote\":\"Currently the wire harness has failed.\"}\n{\"kind\":\"symptom\",\"quote\":\"causing power steering to fail while driving\"}\n{\"kind\":\"condition\",\"quote\":\"while driving at high speed\"}\n{\"kind\":\"condition\",\"quote\":\"several times\"}\n{\"kind\":\"safety\",\"quote\":\"The engine failed the first time while driving at high speed the car just stopped working.\"}\n{\"kind\":\"safety\",\"quote\":\"I don’t not trust my teen drivers around the vehicle or to drive.\"}\n{\"kind\":\"symptom\",\"quote\":\"The engine has failed and been replaced two times.\"}\n{\"kind\":\"other\",\"quote\":\"The vehicle has 70,000 miles.\"}\nNeed ensure quote \"while driving at high speed\" exists exact: \"while driving at high speed the car just stopped working\" yes substring. \"several times\" exists: \"This has happened several times\" yes. \"causing power steering to fail while driving\" exists exact substring: \"Each time it’s failed while driving causing power steering to fail while driving.\" yes. Good.\nCould include \"engine fell apart in the parking lot\" exact. Fine.\n\nNeed JSON no other text. final only.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793527820,
+      "id": "744bc2e5064d17860cbd6561bf2313d1",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1427,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1176,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00053979,
+          "billing_source": "go",
+          "list_cost": 0.00089965,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 282,
+            "output": 1427,
+            "reasoning": 1176
+          }
+        },
+        "prompt_tokens": 666,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2093
+      }
+    },
+    "text": "{\"summary\":\"Electrical system wire harness failures causing power steering loss while driving, with recurrent engine failures and replacements.\",\"group\":\"electrical_general\",\"symptoms\":[\"wire harness failure\",\"power steering failure while driving\",\"engine failure\",\"engine replaced multiple times\",\"vehicle stopped working at high speed\",\"engine fell apart\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"Currently the wire harness has failed.\"},{\"kind\":\"symptom\",\"quote\":\"causing power steering to fail while driving\"},{\"kind\":\"condition\",\"quote\":\"while driving at high speed\"},{\"kind\":\"condition\",\"quote\":\"several times\"},{\"kind\":\"safety\",\"quote\":\"The engine failed the first time while driving at high speed the car just stopped working.\"},{\"kind\":\"safety\",\"quote\":\"I don’t not trust my teen drivers around the vehicle or to drive.\"},{\"kind\":\"symptom\",\"quote\":\"The engine has failed and been replaced two times.\"},{\"kind\":\"other\",\"quote\":\"The vehicle has 70,000 miles.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00053979,
+      "cached_tokens": 384,
+      "cost_usd": 0.00089965,
+      "input_tokens": 666,
+      "list_cost_usd": 0.00089965,
+      "output_tokens": 1427,
+      "reasoning_tokens": 1176
+    }
+  }
+}

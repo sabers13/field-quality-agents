@@ -1,0 +1,66 @@
+{
+  "key": "d7135a4c1d9bd03635d67e83812fb24824c4cfdfa63b923a95571c2f2b5eece0",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10814,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system: EPC light comes on intermittently while driving, with loss of power and shaking.\",\"group\":\"electrical_general\",\"symptoms\":[\"EPC light comes on\",\"loss of power\",\"shaking\",\"light resets after restart\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"THE EPC LIGHT WILL COME ON AT ANYTIME.\"},{\"kind\":\"condition\",\"quote\":\"MEANING WHILE DRIVING ON A STREET HIGHWAY OR FREEWAY.\"},{\"kind\":\"safety\",\"quote\":\"WHICH IS A SAFETY ISSUE.\"},{\"kind\":\"symptom\",\"quote\":\"THE VEICHLE WILL LOSE POWER AND START TO SHAKE.\"},{\"kind\":\"symptom\",\"quote\":\"THE LIGHT WILL GO OFF ONCE TURNED OFF AND TURNED BACK ON.\"},{\"kind\":\"other\",\"quote\":\"THIS HAS BEEN AN ISSUE FOR MONTHS.\"}]}",
+            "reasoning_content": "We need answer one JSON object no other text. Need normalize. Need parse report.\n\nComponent: ELECTRICAL SYSTEM, group given electrical_general. Narrative: EPC light comes on anytime while driving street highway freeway. Safety issue. Vehicle will lose power and start to shake. Light goes off once turned off and back on. Electrical issue. No recall 2018 complaints. Issue for months.\n\nNeed summary one line: component, symptom, conditions. Group electrical_general. Symptoms: EPC light comes on, loss of power, shaking. Conditions: while driving (street/highway/freeway), intermittent? \"at any time\"; after restart light off? Conditions list allowed: cold moisture heat vibration intermittent after service charging. We can include intermittent because at anytime and resets? Maybe condition \"intermittent\" supported by EPC light comes on at anytime and goes off after restart. We should not invent. \"while driving\" not in allowed conditions list? The schema conditions array example values but maybe can include plain conditions? It says conditions: [\"cold\", ...] likely allowed categories. We can put \"intermittent\". Maybe no other. Fault codes: EPC is not code? It's light, not fault code. Do not include as fault code unless named code. Empty.\n\nSafety_relevant true: mentions safety issue, lose power while driving. Need quote verbatim: \"WHICH IS A SAFETY ISSUE.\" and \"THE VEICHLE WILL LOSE POWER AND START TO SHAKE.\" Could include.\n\nMissing info: mileage null. date? received date present but incident date missing? Missing_info list facts analysis needs: component, symptom, conditions, mileage, date. Component present, symptom present, conditions present (driving), mileage missing. Date? Report says issue for months, received_at; no specific date of occurrence. Could include \"mileage\", \"date\". Maybe date missing? It has received_at, but not occurrence date. The analysis needs date maybe yes. Include mileage and date. Could include \"conditions\" not missing because driving conditions given. Missing component? no.\n\nClues: kind symptom quote for EPC light: \"THE EPC LIGHT WILL COME ON AT ANYTIME.\" Conditions quote: \"MEANING WHILE DRIVING ON A STREET HIGHWAY OR FREEWAY.\" Safety quote: \"WHICH IS A SAFETY ISSUE.\" Symptom quote: \"THE VEICHLE WILL LOSE POWER AND START TO SHAKE.\" Symptom quote: \"THE LIGHT WILL GO OFF ONCE TURNED OFF AND TURNED BACK ON.\" Condition intermittent quote maybe \"THIS HAS BEEN AN ISSUE FOR MONTHS.\" That's duration not condition. Component_group quote \"ELECTRICAL SYSTEM\" is from component field? The report includes component field. The instruction read report in user message; quote can be from whole JSON? It says report. The narrative is main. But component field contains \"ELECTRICAL SYSTEM\". Quote verbatim from report. Could include component_group quote \"ELECTRICAL SYSTEM\". But the narrative also \"THERE MOST BE SOME ELECTRICAL ISSUE.\" maybe component group. Need ensure quotes exactly character for character. Use uppercase as given.\n\nNeed output valid JSON only. Summary maybe \"Electrical system: EPC light illuminates intermittently while driving, causing loss of power and shaking.\" Conditions? \"while driving\". Good.\n\nNeed not include suggestions.\n\nNeed think about \"EPC light\" is symptom not fault code. Fault codes empty. group electrical_general.\n\nCould include clue kind condition for \"while driving on a street highway or freeway\" quote exact \"MEANING WHILE DRIVING ON A STREET HIGHWAY OR FREEWAY.\" Good.\n\nCould include clue kind other for \"THE LIGHT WILL GO OFF ONCE TURNED OFF AND TURNED BACK ON.\" That's symptom too.\n\nNeed \"symptoms\": [\"EPC light comes on\", \"loss of power\", \"shaking\", \"light resets after restart\"] Plain words. Good.\n\nConditions: [\"intermittent\"] maybe also \"while driving\"? The allowed set includes only listed? It says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. Should stick to allowed values. Intermittent is supported. Vibration? \"shake\" is symptom not condition. Could include \"intermittent\". No cold etc.\n\nSafety relevant true.\n\nMissing_info [\"mileage\", \"date\"]. Is date missing? It has received_at 2025-03-07, but not incident date. Yes.\n\nNeed maybe \"conditions\" missing? It gives while driving but not ambient; no.\n\nNeed final only JSON. Ensure no markdown? \"Answer with one JSON object and no other text\". So final just JSON.\n\nDouble-check quotes:\n- \"THE EPC LIGHT WILL COME ON AT ANYTIME.\" yes.\n- \"MEANING WHILE DRIVING ON A STREET HIGHWAY OR FREEWAY.\" yes.\n- \"WHICH IS A SAFETY ISSUE.\" yes.\n- \"THE VEICHLE WILL LOSE POWER AND START TO SHAKE.\" yes spelling VEICHLE.\n- \"THE LIGHT WILL GO OFF ONCE TURNED OFF AND TURNED BACK ON.\" yes.\n- \"THIS HAS BEEN AN ISSUE FOR MONTHS.\" yes.\n- \"THERE MOST BE SOME ELECTRICAL ISSUE.\" yes. Could include as component_group or other. We have component field. Use \"ELECTRICAL SYSTEM\" quote from component field. Is that a verbatim span? Yes in JSON. Good.\n\nCould include safety quote \"WHICH IS A SAFETY ISSUE.\" and loss power quote is both safety and symptom. Fine.\n\nNeed ensure summary one line includes component symptom conditions. \"Electrical system: EPC light comes on intermittently while driving, with loss of power and shaking.\" Good.\n\nFinal.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793525342,
+      "id": "46404bc4741b7d69a5576661c6af527b",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1471,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1229,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00058473,
+          "billing_source": "go",
+          "list_cost": 0.00097455,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 613,
+            "output": 1471,
+            "reasoning": 1229
+          }
+        },
+        "prompt_tokens": 613,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 2084
+      }
+    },
+    "text": "{\"summary\":\"Electrical system: EPC light comes on intermittently while driving, with loss of power and shaking.\",\"group\":\"electrical_general\",\"symptoms\":[\"EPC light comes on\",\"loss of power\",\"shaking\",\"light resets after restart\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"THE EPC LIGHT WILL COME ON AT ANYTIME.\"},{\"kind\":\"condition\",\"quote\":\"MEANING WHILE DRIVING ON A STREET HIGHWAY OR FREEWAY.\"},{\"kind\":\"safety\",\"quote\":\"WHICH IS A SAFETY ISSUE.\"},{\"kind\":\"symptom\",\"quote\":\"THE VEICHLE WILL LOSE POWER AND START TO SHAKE.\"},{\"kind\":\"symptom\",\"quote\":\"THE LIGHT WILL GO OFF ONCE TURNED OFF AND TURNED BACK ON.\"},{\"kind\":\"other\",\"quote\":\"THIS HAS BEEN AN ISSUE FOR MONTHS.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00058473,
+      "cached_tokens": 0,
+      "cost_usd": 0.00097455,
+      "input_tokens": 613,
+      "list_cost_usd": 0.00097455,
+      "output_tokens": 1471,
+      "reasoning_tokens": 1229
+    }
+  }
+}

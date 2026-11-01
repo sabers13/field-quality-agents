@@ -1,0 +1,66 @@
+{
+  "key": "c14ba78cc72381904f15f7f0f5405301483439c4b3b0582fcccc55b0fd090dc3",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11950,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2018 Acura MDX forward collision avoidance/adaptive cruise control: five warning lights on (ACC, lane departure, lane keeping, front light, emergency braking); dealer reports front multipurpose camera internal error.\",\"group\":\"adas\",\"symptoms\":[\"five warning lights on: Adaptive Cruise Control, Lane Departure Warning, Lane Keeping Assistance, front light, and emergency braking\",\"front multipurpose camera has internal error\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"Adaptive Cruise Control\"},{\"kind\":\"symptom\",\"quote\":\"Lane Departure Warning\"},{\"kind\":\"symptom\",\"quote\":\"Lane Keeping Assistance\"},{\"kind\":\"symptom\",\"quote\":\"front light\"},{\"kind\":\"symptom\",\"quote\":\"emergency braking\"},{\"kind\":\"other\",\"quote\":\"front multipurpose camera has internal error\"},{\"kind\":\"safety\",\"quote\":\"very dangerous\"},{\"kind\":\"safety\",\"quote\":\"must be fixed before I can drive it on road\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize report. Need parse narrative. Component: FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL group adas. Summary one line component symptom conditions. Symptoms: 5 warning lights on: Adaptive Cruise Control, Lane Departure Warning, Lane Keeping Assistance, front light, emergency braking; dealer says front multipurpose camera internal error. Conditions? None explicitly? Maybe none. Safety relevant? The report says \"very dangerous since all these functions must be fixed before I can drive it on road.\" Does that mention risk to people? It says dangerous, functions must be fixed before drive. Safety_relevant true? Rule: set when mentions crash fire smoke injury loss control stall at speed or another risk to people. \"very dangerous\" and ADAS functions disabled could be another risk to people. But given input field safety_relevant false from source; however we should set based on report. It does mention \"very dangerous\" and must be fixed before driving. I'd set true? Need be careful not invent. \"It is very dangerous since all these functions must be fixed before I can drive it on road.\" That is a risk to people? It implies unsafe to drive. I'll set true. Fault codes none. Missing info: mileage null? Report has no mileage. Date? received_at present but report date? \"date\" maybe incident date missing. Conditions missing? Analysis needs conditions? Maybe no conditions mentioned. missing_info include mileage, date, conditions? The schema facts analysis needs: component, symptom, conditions, mileage, date. Component present, symptom present. Mileage missing (mileage null). Date? received_at is 2025-06-13 but that's received date not incident date; report doesn't name date. Conditions not mentioned. Could list [\"mileage\",\"date\",\"conditions\"]. But \"conditions\" absent maybe yes. Missing_info only facts analysis needs. I'll include mileage, date, conditions. But maybe missing conditions not critical for ADAS? It is. Clues quotes verbatim from narrative. Need exact quotes. Narrative: \"5 waning lights on : Adaptive Cruise Control ,  Lane Departure Warning , Lane Keeping Assistance , front light, and the emergency braking . Service crew at Acura Dealer told me that the front multipurpose camera has internal error. It is very dangerous since all these functions must be fixed before I can drive it on road.\"\n\nNeed quotes verbatim. Note \"waning\" typo. Quotes:\n- symptom: \"5 waning lights on : Adaptive Cruise Control ,  Lane Departure Warning , Lane Keeping Assistance , front light, and the emergency braking .\" Need double spaces? The narrative has \"Control ,  Lane\" with two spaces after comma? Let's copy carefully: `5 waning lights on : Adaptive Cruise Control ,  Lane Departure Warning , Lane Keeping Assistance , front light, and the emergency braking .` There is space before colon? \"on :\" yes. There are double spaces after \"Control ,\"? It shows \"Control ,  Lane\" two spaces. Need verbatim character for character. Could use shorter quotes to avoid spacing complexity: \"Adaptive Cruise Control\" verbatim. \"Lane Departure Warning\" verbatim. \"Lane Keeping Assistance\" verbatim. \"front light\" verbatim. \"emergency braking\" verbatim. \"front multipurpose camera has internal error\" verbatim. Safety quote: \"very dangerous\" verbatim. Also \"must be fixed before I can drive it on road\" maybe safety. Component group clue quote? Need component_group kind quote verbatim from report? Could quote \"Adaptive Cruise Control\" but that's symptom too. Maybe \"front multipurpose camera\" component group? Hmm. Need clues list with kinds. Could include symptom quotes for each symptom, condition none, fault_code none, component_group maybe \"front multipurpose camera\" quote. safety quote \"very dangerous\" or \"must be fixed before I can drive it on road\". other maybe \"Service crew at Acura Dealer told me\" but not needed.\n\nNeed summary one line: \"2018 Acura MDX adaptive cruise control / forward collision avoidance: five warning lights (ACC, lane departure, lane keeping, front light, emergency braking); dealer reports front multipurpose camera internal error.\" That's one line but includes make model year? okay. Need group \"adas\".\n\nJSON only no markdown? User says answer with one JSON object and no other text. We can output raw JSON. Need ensure valid JSON.\n\nPotential issue: safety_relevant from input false. But prompt says set when report mentions risk. I will set true. Could safety quote \"very dangerous since all these functions must be fixed before I can drive it on road.\" Need exact substring: \"It is very dangerous since all these functions must be fixed before I can drive it on road.\" That's verbatim. Use quote for safety.\n\nMissing_info: [\"mileage\", \"date\", \"conditions\"]. But maybe conditions not missing? Hmm.\n\nSymptoms array plain words: [\"five warning lights on: Adaptive Cruise Control, Lane Departure Warning, Lane Keeping Assistance, front light, emergency braking\", \"front multipurpose camera internal error\"]. Could include \"dangerous to drive\" as symptom? No safety.\n\nConditions array: [] because no cold/moisture etc. Could include none.\n\nFault_codes [].\n\nClues: Need each quote verbatim. Let's verify quotes from narrative exactly:\n\"5 waning lights on : Adaptive Cruise Control ,  Lane Departure Warning , Lane Keeping Assistance , front light, and the emergency braking .\"\nThe quote includes weird spacing. But if I use shorter exact substrings:\n- \"Adaptive Cruise Control\" appears.\n- \"Lane Departure Warning\" appears.\n- \"Lane Keeping Assistance\" appears.\n- \"front light\" appears.\n- \"emergency braking\" appears.\n- \"front multipurpose camera has internal error\" appears.\n- \"very dangerous\" appears.\n- \"must be fixed before I can drive it on road\" appears.\nNeed component_group quote? Maybe \"front multipurpose camera\" appears. But kind component_group? The component group is adas from given group; but clue kind component_group could quote \"Adaptive Cruise Control\" but that's also symptom. Could skip component_group clue. But schema shows kinds. Not required all. Maybe include component_group quote \"front multipurpose camera\" to evidence component area. But component_group for ADAS? \"front multipurpose camera\" is component, not group. Hmm.\n\nNeed \"conditions\" no clues.\n\nEnsure summary no newline? JSON string can contain no newline. Fine.\n\nNeed \"safety_relevant\": true. Good.\n\nLet's craft final JSON only.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793527634,
+      "id": "f5ea29e9c02c184fe8a2386ac2a1deba",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1624,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1387,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00060108,
+          "billing_source": "go",
+          "list_cost": 0.0010018,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 175,
+            "output": 1624,
+            "reasoning": 1387
+          }
+        },
+        "prompt_tokens": 559,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2183
+      }
+    },
+    "text": "{\"summary\":\"2018 Acura MDX forward collision avoidance/adaptive cruise control: five warning lights on (ACC, lane departure, lane keeping, front light, emergency braking); dealer reports front multipurpose camera internal error.\",\"group\":\"adas\",\"symptoms\":[\"five warning lights on: Adaptive Cruise Control, Lane Departure Warning, Lane Keeping Assistance, front light, and emergency braking\",\"front multipurpose camera has internal error\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"Adaptive Cruise Control\"},{\"kind\":\"symptom\",\"quote\":\"Lane Departure Warning\"},{\"kind\":\"symptom\",\"quote\":\"Lane Keeping Assistance\"},{\"kind\":\"symptom\",\"quote\":\"front light\"},{\"kind\":\"symptom\",\"quote\":\"emergency braking\"},{\"kind\":\"other\",\"quote\":\"front multipurpose camera has internal error\"},{\"kind\":\"safety\",\"quote\":\"very dangerous\"},{\"kind\":\"safety\",\"quote\":\"must be fixed before I can drive it on road\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00060108,
+      "cached_tokens": 384,
+      "cost_usd": 0.0010018,
+      "input_tokens": 559,
+      "list_cost_usd": 0.0010018,
+      "output_tokens": 1624,
+      "reasoning_tokens": 1387
+    }
+  }
+}

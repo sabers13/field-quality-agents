@@ -1,0 +1,66 @@
+{
+  "key": "3d030620fcbf8220bf6f361f30a2eea7d3631ba34fb5850f8f0f18ec1f8b763b",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9442,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\": \"Run a standard SRS diagnostic test on the 2000 Honda Accord because the SRS warning lamp is continuously illuminated with no determined cause.\", \"rationale\": \"The narrative reports that the SRS warning light was illuminated and remained illuminated while operating the vehicle immediately after purchase, and the cause was not yet determined. No rulebook entry matches the reported conditions, so the standard diagnostic test is appropriate rather than a targeted load test. A related NHTSA investigation for the 2000 Accord describes OPDS moisture/electrical interference that can illuminate the SRS readiness indicator, but no targeted test is named.\", \"group\": \"restraints\", \"symptoms\": [\"SRS warning light illuminated and remained illuminated while operating the vehicle\"], \"conditions\": [], \"fault_codes\": [], \"safety_relevant\": false, \"targeted\": false, \"test_name\": \"standard SRS diagnostic test\", \"clues\": [{\"kind\": \"symptom\", \"quote\": \"SRS warning light was illuminated and remained illuminated while operating the vehicle\"}, {\"kind\": \"component_group\", \"quote\": \"AIR BAGS:SRS MALFUNCTION WARNING LAMP/LIGHT\"}, {\"kind\": \"condition\", \"quote\": \"immediately after purchasing the vehicle\"}, {\"kind\": \"other\", \"quote\": \"The cause of the failure was not yet determined.\"}]}",
+            "reasoning_content": "We need answer JSON only. Need analyze. Rulebook empty, no targeted test named. Need propose standard test targeted false. Need clues quotes verbatim from case narrative. Narrative: \"The contact owns a 2000 Honda Accord. The contact stated that immediately after purchasing the vehicle, it was discovered that the SRS warning light was illuminated and remained illuminated while operating the vehicle. The cause of the failure was not yet determined. The manufacturer and local dealer were not contacted regarding the failure. No further information was available. The failure mileage was 129,000.\"\n\nNeed summary one line what to test and why. rationale condition evidence. group restraints. symptoms list. conditions maybe none? Could include \"immediately after purchasing\" but condition? Need fault_codes []. safety_relevant? Narrative no risk to people; SRS warning lamp could relate safety but prompt says set when narrative shows risk to people. Not explicitly. extraction false. So false. targeted false. test_name maybe standard test? Rulebook names none. Need maybe \"standard SRS diagnostic test\" or \"standard test\". The schema asks \"the targeted test the rulebook names\". Since none, maybe empty string? Need valid. Could set \"standard diagnostic scan / SRS system inspection\" but not rulebook. Hmm. Rules: prefer targeted load test when conditions match rulebook entry. Otherwise propose standard test (\"targeted\": false). So test_name perhaps \"standard test\". We need answer JSON. clues with kind and quote. Need verbatim spans. Include symptom quote, component group quote, other quote. Could include \"immediately after purchasing the vehicle\" condition? \"while operating the vehicle\" condition? Need conditions maybe [\"SRS warning lamp remains illuminated while operating the vehicle\"] not quote. But clues are quotes only.\n\nNeed no mention recalls IDs? We can mention investigation PE05043? Do not cite id if tool contains yes. But no need. Could mention similar investigation? Rationale can include evidence: SRS lamp illuminated; NHTSA investigation PE05043 describes OPDS moisture/electrical interference causing SRS readiness indicator illumination for MY 2000 Accord. But do not overdo. Is citing okay? Tool contains. But summary should be one line.\n\nNeed include \"fault_codes\": [] because none. \"conditions\": maybe [\"SRS warning light illuminated immediately after purchase\", \"remains illuminated while operating vehicle\"]? Those are symptom/condition. The extraction conditions empty. We can set conditions [] to be safe. Symptoms [\"SRS warning light illuminated and remained illuminated while operating the vehicle\"]. Group restraints.\n\nClues: \n- {\"kind\":\"symptom\",\"quote\":\"SRS warning light was illuminated and remained illuminated while operating the vehicle\"}\n- {\"kind\":\"component_group\",\"quote\":\"AIR BAGS:SRS MALFUNCTION WARNING LAMP/LIGHT\"}\n- {\"kind\":\"other\",\"quote\":\"The cause of the failure was not yet determined.\"}\nMaybe also quote \"immediately after purchasing the vehicle\" as condition? It's verbatim. Could be kind condition. But conditions list? Hmm. Use clue kind condition quote \"immediately after purchasing the vehicle\". Is that a condition? It is temporal context. Could include. Also \"The failure mileage was 129,000.\" maybe other. But need only evidence. Keep 3 or 4.\n\nNeed \"test_name\": maybe \"standard SRS diagnostic test\". Since no rulebook entry, targeted false.\n\nNeed \"summary\": \"Run a standard SRS diagnostic test on the 2000 Honda Accord because the SRS warning lamp is continuously illuminated with no determined cause.\" Good.\n\nRationale: \"The narrative reports the SRS warning light illuminated and staying on while driving immediately after purchase; cause undetermined, no dealer/manufacturer contact. No rulebook match, so standard diagnostic test; related investigation PE05043 notes OPDS moisture/electrical interference can illuminate SRS readiness indicator on this model/year, but no targeted load test is specified.\" Is citing investigation okay yes. But \"related investigation\" no id? fine. Could mention no rulebook. Need not cite recall. Safety false.\n\nNeed final JSON only. Ensure no markdown.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793532768,
+      "id": "7d30b5394437dd2aa2606443dcb9807b",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1137,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 853,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00068787,
+          "billing_source": "go",
+          "list_cost": 0.00114645,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 3095,
+            "output": 1137,
+            "reasoning": 853
+          }
+        },
+        "prompt_tokens": 3095,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 4232
+      }
+    },
+    "text": "{\"summary\": \"Run a standard SRS diagnostic test on the 2000 Honda Accord because the SRS warning lamp is continuously illuminated with no determined cause.\", \"rationale\": \"The narrative reports that the SRS warning light was illuminated and remained illuminated while operating the vehicle immediately after purchase, and the cause was not yet determined. No rulebook entry matches the reported conditions, so the standard diagnostic test is appropriate rather than a targeted load test. A related NHTSA investigation for the 2000 Accord describes OPDS moisture/electrical interference that can illuminate the SRS readiness indicator, but no targeted test is named.\", \"group\": \"restraints\", \"symptoms\": [\"SRS warning light illuminated and remained illuminated while operating the vehicle\"], \"conditions\": [], \"fault_codes\": [], \"safety_relevant\": false, \"targeted\": false, \"test_name\": \"standard SRS diagnostic test\", \"clues\": [{\"kind\": \"symptom\", \"quote\": \"SRS warning light was illuminated and remained illuminated while operating the vehicle\"}, {\"kind\": \"component_group\", \"quote\": \"AIR BAGS:SRS MALFUNCTION WARNING LAMP/LIGHT\"}, {\"kind\": \"condition\", \"quote\": \"immediately after purchasing the vehicle\"}, {\"kind\": \"other\", \"quote\": \"The cause of the failure was not yet determined.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00068787,
+      "cached_tokens": 0,
+      "cost_usd": 0.00114645,
+      "input_tokens": 3095,
+      "list_cost_usd": 0.00114645,
+      "output_tokens": 1137,
+      "reasoning_tokens": 853
+    }
+  }
+}

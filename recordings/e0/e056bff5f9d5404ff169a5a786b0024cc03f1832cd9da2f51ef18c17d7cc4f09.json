@@ -1,0 +1,66 @@
+{
+  "key": "e056bff5f9d5404ff169a5a786b0024cc03f1832cd9da2f51ef18c17d7cc4f09",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 6904,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"ELECTRICAL SYSTEM: horn completely inoperative three times since purchase\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\"horn completely inoperative\"],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\"mileage\"],\n  \"clues\": [\n    {\"kind\": \"component_group\", \"quote\": \"ELECTRICAL SYSTEM\"},\n    {\"kind\": \"symptom\", \"quote\": \"horn has become completely inoperative a total of three times\"},\n    {\"kind\": \"condition\", \"quote\": \"Since buying this vehicle\"},\n    {\"kind\": \"safety\", \"quote\": \"increases the risk of getting involved in a motor vehicle accident\"}\n  ]\n}",
+            "reasoning_content": "We need answer JSON only. Need normalize. Report: component ELECTRICAL SYSTEM, group electrical_general. Symptom horn completely inoperative three times. Conditions? Since buying vehicle; Georgia; no cold/moisture/heat/vibration etc. Mention increases risk accident. Safety_relevant? Rules: crash fire smoke injury loss control stall at speed or another risk to people. It says increases risk of getting involved in motor vehicle accident, not actual crash. Does \"risk to people\" maybe yes? Safety relevant when mentions risk to people. It mentions risk of accident. But not crash occurred. The prompt says \"another risk to people.\" A horn inoperative could be safety relevant due to accident risk. Need decide. Likely safety_relevant true? Hm \"Not having a working horn ... increases the risk of getting involved in a motor vehicle accident.\" That's explicit risk. Set true. Missing_info: mileage null. Date? It says since buying on [XXX] redacted, received_at. Missing mileage. Conditions? Maybe none. Component present, symptom present. missing_info [\"mileage\"]. Fault codes none. Summary one line component symptom conditions. Conditions could be \"intermittent\"? Three times? Not intermittent. \"since purchase\". Quotes verbatim: need exact spans. We can quote \"horn has become completely inoperative a total of three times\" (check exact: \"my horn has become completely inoperative a total of three times.\" yes substring). Quote \"increases the risk of getting involved in a motor vehicle accident\" exact. Component group quote? \"ELECTRICAL SYSTEM\" from component field? The report in user includes component. Quotes can be from report? It says report in user message; whole JSON includes component. Could quote \"ELECTRICAL SYSTEM\". But clues should be verbatim span copied from report. Fine. Condition quote \"Since buying this vehicle\" exact. Need maybe no condition. Group electrical_general. symptoms [\"horn completely inoperative\"] conditions [\"since purchase\"]? Allowed conditions list: cold moisture heat vibration intermittent after service charging. \"since purchase\" not in list. They instruct conditions array from those? \"conditions\": [\"cold\", ...]. If none use []. Could include? Better only listed. No conditions. But summary says conditions maybe \"since purchase\". Hmm conditions array should be standardized tags; none. Missing info mileage. Safety relevant true. Clues include symptom quote, condition? Since buying not in condition enum? clue kind condition quote \"Since buying this vehicle\". But conditions array empty? Contradiction maybe okay? The clue kind condition can quote since buying. But rules for conditions list maybe predefined. Use conditions [] and clue condition \"Since buying this vehicle\". Also safety quote. component_group quote \"ELECTRICAL SYSTEM\". Fault codes empty. Summary: \"ELECTRICAL SYSTEM: horn completely inoperative three times since purchase.\" Need one line. No other text.\n\nEnsure JSON valid, no markdown? User says answer with one JSON object and no other text. We can output raw JSON. Need no code fence maybe. final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793525830,
+      "id": "eed23866e249f5344ec3de0895c5280d",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 796,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 631,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00031263,
+          "billing_source": "go",
+          "list_cost": 0.00052105,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 282,
+            "output": 796,
+            "reasoning": 631
+          }
+        },
+        "prompt_tokens": 666,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1462
+      }
+    },
+    "text": "{\n  \"summary\": \"ELECTRICAL SYSTEM: horn completely inoperative three times since purchase\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\"horn completely inoperative\"],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\"mileage\"],\n  \"clues\": [\n    {\"kind\": \"component_group\", \"quote\": \"ELECTRICAL SYSTEM\"},\n    {\"kind\": \"symptom\", \"quote\": \"horn has become completely inoperative a total of three times\"},\n    {\"kind\": \"condition\", \"quote\": \"Since buying this vehicle\"},\n    {\"kind\": \"safety\", \"quote\": \"increases the risk of getting involved in a motor vehicle accident\"}\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00031263,
+      "cached_tokens": 384,
+      "cost_usd": 0.00052105,
+      "input_tokens": 666,
+      "list_cost_usd": 0.00052105,
+      "output_tokens": 796,
+      "reasoning_tokens": 631
+    }
+  }
+}

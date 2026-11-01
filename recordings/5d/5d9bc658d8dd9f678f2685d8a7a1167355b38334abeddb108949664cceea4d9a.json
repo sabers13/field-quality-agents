@@ -1,0 +1,66 @@
+{
+  "key": "5d9bc658d8dd9f678f2685d8a7a1167355b38334abeddb108949664cceea4d9a",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 20265,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Back over prevention camera: unreliable reverse view with delayed display, stutter/flicker, and intermittent \\\"Camera is temporarily unavailable\\\".\",\"group\":\"adas\",\"symptoms\":[\"backup camera unreliable\",\"delayed camera view when selecting reverse\",\"camera view stutters and flickers\",\"Camera is temporarily unavailable\"],\"conditions\":[\"selecting reverse\",\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"The backup camera on this vehicle is very unreliable.\"},{\"kind\":\"condition\",\"quote\":\"upon selecting reverse\"},{\"kind\":\"symptom\",\"quote\":\"take too long to display the camera view\"},{\"kind\":\"symptom\",\"quote\":\"stutter and flicker\"},{\"kind\":\"symptom\",\"quote\":\"Camera is temporarily unavailable\"},{\"kind\":\"component_group\",\"quote\":\"backup camera\"},{\"kind\":\"condition\",\"quote\":\"Often upon selecting reverse\"},{\"kind\":\"other\",\"quote\":\"recalled by the Polestar for this issue (25V-280)\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize report. Need extract component group given adas. Symptoms: backup camera unreliable, delayed display upon reverse, stutter flicker, \"Camera is temporarily unavailable\". Conditions? selecting reverse, intermittent? The report says often, unreliable. Conditions list allowed: cold moisture heat vibration intermittent after service charging. We can include \"intermittent\" maybe symptom? Conditions: intermittent? It's an intermittent fault. Also \"after service\"? Software updates attempted? Not after service. Conditions maybe [\"intermittent\"]. Fault codes: none named? 25V-280 is recall number not fault code. Should not include as fault code maybe no. Safety relevant? Report does not mention crash/fire/smoke/injury/loss control/stall. Backup camera failure could be safety but rule says set when mentions those. So false. Missing info: mileage missing (null), date? received_at exists but report date? The analysis needs date maybe received_at available, not missing. Conditions present intermittent? Component present, symptom present. missing_info [\"mileage\"]. Clues verbatim quotes. Need exact spans. Let's copy.\n\nNarrative exact: \"The backup camera on this vehicle is very unreliable. Often upon selecting reverse, it will take too long to display the camera view, then it will stutter and flicker for a few moments before finally giving up with the message \\\"Camera is temporarily unavailable\\\". This model was recalled by the Polestar for this issue (25V-280), and Polestar attempted to work around the issue with software updates multiple times (3.1.9 and 3.6.4) but they still have not resolved the problem even with the most recent software. This has been a well-known issue on a number of Volvo models as well which share software with the Polestar, and they were also recently recalled for the same issue (25V-282). It is possible this issue has also not been resolved for those vehicles.\"\n\nNeed quotes verbatim. For symptom: \"The backup camera on this vehicle is very unreliable.\" exact includes period. Or \"take too long to display the camera view\" is substring? \"it will take too long to display the camera view\" exact. \"stutter and flicker\" exact. \"Camera is temporarily unavailable\" exact without escaped? In JSON quote should be \"Camera is temporarily unavailable\" maybe exact span inside quotes. We can quote \\\"Camera is temporarily unavailable\\\"? The quote value should contain Camera is temporarily unavailable maybe no surrounding quotes? Verbatim span could include message? If include quotes need escape. Better quote \"Camera is temporarily unavailable\" as text excludes quotation marks? Is that verbatim span? It appears inside quotes; the characters are present. Quote value \"Camera is temporarily unavailable\" is substring characters, yes. It omits surrounding quotation marks but still verbatim span. Fine.\n\nComponent group: \"adas\" given. Summary one line: component, symptom, conditions. \"Back over prevention camera: unreliable, delayed, stuttering/flickering reverse view, intermittent 'Camera is temporarily unavailable' on reverse.\" Need maybe mention conditions selecting reverse and intermittent. Keep one line.\n\nClues array: include kind symptom for unreliable, delayed, stutter flicker, unavailable. condition selecting reverse? kind condition quote \"upon selecting reverse\" exact. intermittent? kind condition quote \"Often\" maybe not strong. Fault_code? None? Recall codes 25V-280 and 25V-282 are recall IDs, not fault codes. Could include as other? The schema fault_codes only code if report names one; recall numbers aren't fault codes. But clues kind fault_code? Better not. Could include other quote \"recalled by the Polestar for this issue (25V-280)\"? But kind other maybe. Not necessary. component_group quote \"backup camera\" exact? It says \"backup camera\" lower? Narrative \"The backup camera\" includes. kind component_group quote \"backup camera\". Safety no.\n\nNeed missing_info: mileage. Date? received_at 2025-06-23, year 2021. Date maybe report received date available but incident date not. Schema missing_info can include date if missing. The analysis needs date? The report doesn't give occurrence date; received_at is given. Is \"date\" missing? It has received_at but not incident date. The rule says list missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. Since date of report is given? received_at. But incident date not. Should we include \"date\"? Hmm. Need be careful. It might expect mileage because null. It may also expect conditions? Conditions has intermittent and reverse. date maybe not missing due received_at. But \"date\" in missing_info likely means report date/occurrence date. Since received_at present, not missing. We'll list [\"mileage\"]. Maybe \"date\" if no incident date? The prompt \"missing_info\": [\"mileage\", \"date\", ...]. It says only facts analysis needs. The data includes received_at; date is not missing. Use [\"mileage\"].\n\nNeed ensure JSON valid. No markdown? User said answer with one JSON object and no other text. Final should be raw JSON. Need no code fences. Let's craft.\n\nSummary: \"Back over prevention camera: unreliable reverse view with delayed display, stutter/flicker, and intermittent 'Camera is temporarily unavailable'.\" Conditions: selecting reverse, intermittent. Include \"intermittent\" as condition. Symptoms: \"backup camera unreliable\", \"delayed camera view when selecting reverse\", \"camera view stutters and flickers\", \"Camera is temporarily unavailable\". Good.\n\nClues:\n- {\"kind\":\"symptom\",\"quote\":\"The backup camera on this vehicle is very unreliable.\"}\n- {\"kind\":\"condition\",\"quote\":\"upon selecting reverse\"} exact substring? Narrative: \"Often upon selecting reverse, it will...\" yes \"upon selecting reverse\" exact.\n- {\"kind\":\"symptom\",\"quote\":\"take too long to display the camera view\"} exact? \"it will take too long to display the camera view\" yes substring \"take too long to display the camera view\" exact.\n- {\"kind\":\"symptom\",\"quote\":\"stutter and flicker\"} exact.\n- {\"kind\":\"symptom\",\"quote\":\"Camera is temporarily unavailable\"} exact.\n- {\"kind\":\"component_group\",\"quote\":\"backup camera\"} exact? \"The backup camera\" yes substring \"backup camera\" exact.\n- {\"kind\":\"other\",\"quote\":\"recalled by the Polestar for this issue (25V-280)\"} exact? Narrative: \"This model was recalled by the Polestar for this issue (25V-280)\" yes substring. Maybe include recall context; not fault code. It may be useful. But kind other. Fine. Could include \"software updates\" as condition after service? Hmm no.\n- condition intermittent: quote \"Often\" exact. But \"Often\" indicates frequent not intermittent. The symptom is intermittent because sometimes? The report says often, unreliable. \"intermittent\" condition perhaps quote \"Often\" not exact semantic. Could quote \"very unreliable\" but that's symptom. Maybe don't include condition intermittent? But conditions list allowed; if we include \"intermittent\", should have clue quote? Not strictly required but evidence. Could quote \"Often upon selecting reverse\" to show repeated. But \"intermittent\" not verbatim. The rules require quote verbatim for clues; conditions can be inferred. But clue kind condition quote \"Often\" maybe evidence. However \"Often\" means frequent, not intermittent exactly. The camera sometimes works? It says \"Often ... then ... giving up\"; not necessarily intermittent. It is unreliable and often fails. Conditions allowed include intermittent; maybe not include as condition to avoid unsupported? But condition list can include \"intermittent\" if symptom is intermittent? It says often, not always, so yes. Could include condition \"intermittent\" and clue \"Often upon selecting reverse\" exact. Hmm.\n\nNeed maybe \"after service\" because software updates attempted, but not vehicle service. No.\n\nSafety_relevant false. But backup camera failure could be safety risk, but rule says mentions crash etc. It doesn't. false.\n\nNeed ensure no extra text. Final only JSON.\n\nLet's produce concise.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793527841,
+      "id": "24f65abb82c3db91851239a41832867c",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1946,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1715,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.000726,
+          "billing_source": "go",
+          "list_cost": 0.00121,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 275,
+            "output": 1946,
+            "reasoning": 1715
+          }
+        },
+        "prompt_tokens": 659,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2605
+      }
+    },
+    "text": "{\"summary\":\"Back over prevention camera: unreliable reverse view with delayed display, stutter/flicker, and intermittent \\\"Camera is temporarily unavailable\\\".\",\"group\":\"adas\",\"symptoms\":[\"backup camera unreliable\",\"delayed camera view when selecting reverse\",\"camera view stutters and flickers\",\"Camera is temporarily unavailable\"],\"conditions\":[\"selecting reverse\",\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"The backup camera on this vehicle is very unreliable.\"},{\"kind\":\"condition\",\"quote\":\"upon selecting reverse\"},{\"kind\":\"symptom\",\"quote\":\"take too long to display the camera view\"},{\"kind\":\"symptom\",\"quote\":\"stutter and flicker\"},{\"kind\":\"symptom\",\"quote\":\"Camera is temporarily unavailable\"},{\"kind\":\"component_group\",\"quote\":\"backup camera\"},{\"kind\":\"condition\",\"quote\":\"Often upon selecting reverse\"},{\"kind\":\"other\",\"quote\":\"recalled by the Polestar for this issue (25V-280)\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.000726,
+      "cached_tokens": 384,
+      "cost_usd": 0.00121,
+      "input_tokens": 659,
+      "list_cost_usd": 0.00121,
+      "output_tokens": 1946,
+      "reasoning_tokens": 1715
+    }
+  }
+}

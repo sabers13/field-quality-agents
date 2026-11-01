@@ -1,0 +1,66 @@
+{
+  "key": "4bfd082bd8b1a04f58727ecc188541af7707c1fc4a5503004315f5a9d00adf07",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10912,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"2023 Chevrolet Suburban seat belt retractor locked and tightened around a child while driving, causing entrapment; the belt was cut to free him.\",\n  \"group\": \"restraints\",\n  \"symptoms\": [\n    \"seat belt locked in automatic locking mode\",\n    \"retractor would not release tension\",\n    \"belt continued tightening around torso\",\n    \"child unable to breathe comfortably or free himself\",\n    \"locking mechanism would not disengage after vehicle was stopped and turned off\",\n    \"seat belt would not retract or loosen\",\n    \"seat belt had to be cut to free the child\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"SEAT BELTS\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"While driving a 2023 Chevrolet Suburban\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"the seatbelt fully extended and then locked in the automatic locking mode\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The retractor would not release tension afterward.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The belt continued tightening around his torso\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"he was unable to breathe comfortably or free himself\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"the locking mechanism would not disengage even after the vehicle was stopped and turned off\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The seatbelt remained fully cinched and would not retract or loosen under any circumstances.\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"serious entrapment hazard\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"I was forced to cut the seatbelt to free him\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer only JSON. Need normalize. Need quote verbatim from narrative. Component SEAT BELTS group restraints. Symptoms: seatbelt fully extended and locked in automatic locking mode; retractor would not release tension; belt continued tightening; unable to breathe/free himself; locking mechanism would not disengage; belt remained fully cinched and would not retract or loosen; cut seatbelt to free him. Conditions: while driving? The incident while driving, child turned around. Conditions list allowed: \"cold\",\"moisture\",\"heat\",\"vibration\",\"intermittent\",\"after service\",\"charging\". We shouldn't invent. Could include \"intermittent\"? no. No listed condition applies? Maybe none. But conditions field can be []? yes. Fault codes none. Safety true (serious entrapment hazard, unable to breathe). Missing info: date? received date but incident date missing. mileage null. Conditions maybe not necessary? Component and symptom present. Missing_info should include mileage, date. Maybe conditions? The report says while driving, vehicle stopped/turned off, but no weather etc. The analysis needs component, symptom, conditions, mileage, date. Missing mileage and date. Conditions perhaps present enough? Might include \"conditions\" because no specific environmental/usage conditions beyond driving? But there is \"while driving\" and child movement. Hmm.\n\nNeed clues array with kind and quote verbatim. Need ensure quotes exactly from narrative. We can include:\n- component_group: \"SEAT BELTS\"? That's from component field not narrative. The report in user message includes JSON component. Rule read only report. quote can be from report including fields? likely yes. But clues quote from report. Better use narrative quotes.\n- symptom: \"the seatbelt fully extended and then locked in the automatic locking mode\"\n- symptom: \"The retractor would not release tension afterward.\"\n- symptom: \"The belt continued tightening around his torso\"\n- symptom: \"he was unable to breathe comfortably or free himself\"\n- symptom: \"the locking mechanism would not disengage even after the vehicle was stopped and turned off\"\n- symptom: \"The seatbelt remained fully cinched and would not retract or loosen under any circumstances.\"\n- safety: \"serious entrapment hazard\"\n- safety: \"I was forced to cut the seatbelt to free him\"\n- other maybe \"2023 Chevrolet Suburban\" component group? Not needed. We can include component_group quote \"SEAT BELTS\" from component field? The quote is verbatim in JSON. Kind component_group. Fine.\n\nNeed summary one line: \"2023 Chevrolet Suburban seat belt retractor locked and tightened around child, causing entrapment while driving; belt cut to free him.\" Conditions: while driving. Conditions array only allowed categories. Could put [] because none of listed. But summary includes while driving. Conditions field maybe [\"intermittent\"]? No, not intermittent; it locked. We cannot invent. Use [].\n\nBut missing_info: [\"mileage\",\"date\"] maybe conditions? The allowed list includes \"conditions\"; there are conditions while driving, but not environmental. The analysis may need specific conditions? Hmm. Since the report includes \"While driving\" and child turned, conditions not missing. So missing mileage/date. Maybe no VIN? Not required. Could include \"date\" since received_at is not incident date. Yes.\n\nNeed output only JSON. Ensure valid JSON. No markdown. Let's craft.\n\nCheck quote exactness: Narrative begins \"While driving a 2023 Chevrolet Suburban (VIN: [XXX] ), my [XXX]  son...\" There are weird spaces. We can quote spans exact.\n\nQuotes:\n\"While driving a 2023 Chevrolet Suburban\" exact? Yes substring.\n\"the seatbelt fully extended and then locked in the automatic locking mode\" exact? Narrative: \"during that movement the seatbelt fully extended and then locked in the automatic locking mode.\" yes.\n\"The retractor would not release tension afterward.\" exact.\n\"The belt continued tightening around his torso\" exact (sentence: \"The belt continued tightening around his torso, and no amount...\") yes.\n\"he was unable to breathe comfortably or free himself\" exact.\n\"the locking mechanism would not disengage even after the vehicle was stopped and turned off\" exact? Narrative: \"and the locking mechanism would not disengage even after the vehicle was stopped and turned off.\" yes.\n\"The seatbelt remained fully cinched and would not retract or loosen under any circumstances.\" exact.\n\"serious entrapment hazard\" exact.\n\"I was forced to cut the seatbelt to free him\" exact? Narrative: \"I was forced to cut the seatbelt to free him.\" yes.\n\"SEAT BELTS\" exact from component field. okay.\n\nCould include \"significant safety risk\" quote. Maybe.\n\nNeed safety_relevant true. fault_codes [].\n\nGroup: \"restraints\" given. Component group? ok.\n\nSymptoms array plain words: maybe \"seat belt locked in automatic locking mode\", \"retractor would not release tension\", \"belt tightened around torso\", \"unable to breathe or free himself\", \"locking mechanism would not disengage after vehicle stopped and off\", \"belt would not retract or loosen\", \"belt had to be cut to free child\". Good.\n\nConditions array: [] or [\"while driving\"] not allowed. The schema says conditions: [\"cold\", ...] but not strict? It says list from categories. Use [].\n\nMissing_info [\"mileage\",\"date\"]. Should we include \"conditions\"? No.\n\nNeed final no other text.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793532436,
+      "id": "2343a543a6dae18b94be2bc8200d7dfc",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1608,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1143,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00061206,
+          "billing_source": "go",
+          "list_cost": 0.0010201,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 361,
+            "output": 1608,
+            "reasoning": 1143
+          }
+        },
+        "prompt_tokens": 745,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2353
+      }
+    },
+    "text": "{\n  \"summary\": \"2023 Chevrolet Suburban seat belt retractor locked and tightened around a child while driving, causing entrapment; the belt was cut to free him.\",\n  \"group\": \"restraints\",\n  \"symptoms\": [\n    \"seat belt locked in automatic locking mode\",\n    \"retractor would not release tension\",\n    \"belt continued tightening around torso\",\n    \"child unable to breathe comfortably or free himself\",\n    \"locking mechanism would not disengage after vehicle was stopped and turned off\",\n    \"seat belt would not retract or loosen\",\n    \"seat belt had to be cut to free the child\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"SEAT BELTS\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"While driving a 2023 Chevrolet Suburban\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"the seatbelt fully extended and then locked in the automatic locking mode\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The retractor would not release tension afterward.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The belt continued tightening around his torso\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"he was unable to breathe comfortably or free himself\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"the locking mechanism would not disengage even after the vehicle was stopped and turned off\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The seatbelt remained fully cinched and would not retract or loosen under any circumstances.\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"serious entrapment hazard\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"I was forced to cut the seatbelt to free him\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00061206,
+      "cached_tokens": 384,
+      "cost_usd": 0.0010201,
+      "input_tokens": 745,
+      "list_cost_usd": 0.0010201,
+      "output_tokens": 1608,
+      "reasoning_tokens": 1143
+    }
+  }
+}

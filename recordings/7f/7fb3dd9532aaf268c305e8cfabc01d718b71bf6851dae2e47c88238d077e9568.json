@@ -1,0 +1,66 @@
+{
+  "key": "7fb3dd9532aaf268c305e8cfabc01d718b71bf6851dae2e47c88238d077e9568",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 14412,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2015 Toyota Sienna ADAS automatic emergency braking; sudden braking and pull to side on flat, curving and straight roads with intermittent ABS/slip lights.\",\"group\":\"adas\",\"symptoms\":[\"sudden braking\",\"vehicle pulls toward side of road\",\"ABS code appears sometimes\",\"slip indicator light appears\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"},{\"kind\":\"symptom\",\"quote\":\"the car will suddenly brake and pull me towards the side of the road\"},{\"kind\":\"symptom\",\"quote\":\"I get the ABS code sometimes and also the slip indicator light.\"},{\"kind\":\"condition\",\"quote\":\"driving on a regular flat paved road\"},{\"kind\":\"condition\",\"quote\":\"It will do it on curving roads as well as straight roads.\"},{\"kind\":\"safety\",\"quote\":\"When this happens, it is terrifying!\"},{\"kind\":\"safety\",\"quote\":\"this is unsafe and unsafe to the extent that I no longer allow my 17 year old to drive it\"},{\"kind\":\"other\",\"quote\":\"I've replaced the ABS sensors on this and am still having this issue.\"}]}",
+            "reasoning_content": "We need answer JSON only. Need parse report. Component forward collision avoidance automatic emergency braking, group adas. Symptoms: sudden braking, pulls toward side of road, ABS code sometimes, slip indicator light, occurs on flat paved road, curving and straight roads. Conditions? driving regular flat paved road, curving roads/straight roads. Cold/moisture/heat/vibration? none. Intermittent? \"sometimes\" code, \"will suddenly brake\" maybe intermittent. After service? brought to Toyota, replaced ABS sensors but issue persists maybe after service? Not exactly condition. Charging no. Safety relevant true because unsafe, terrifying, sudden braking/pull toward side, risk to people. Fault codes: mentions ABS code but no specific code; \"slip indicator light\" not code. So fault_codes empty. Missing info: mileage, date? date received but report doesn't give occurrence date. Component present, symptom present, conditions present. Missing mileage and date. Maybe \"fault code\" not in enum. missing_info only component symptom conditions mileage date. Include mileage, date. Summary one line component symptom conditions. Clues quotes verbatim. Need ensure quotes exact substrings. Let's craft.\n\nNeed quote spans verbatim. Use exact text from narrative. Could quote \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\" from component? Report? The user message includes JSON with component field. Is that \"report\"? It says read only report in user message. Quote can be from component field? likely yes. But clues should be verbatim spans from report. Use narrative substrings. For component_group quote maybe \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\" is in report. For symptom: \"the car will suddenly brake and pull me towards the side of the road\" exact? Narrative: \"when the car will suddenly brake and pull me towards the side of the road.\" Yes substring: \"the car will suddenly brake and pull me towards the side of the road\" exact. Another: \"I get the ABS code sometimes and also the slip indicator light.\" exact. Condition: \"driving on a regular flat paved road\" exact? Narrative: \"I will be driving on a regular flat paved road when...\" substring \"driving on a regular flat paved road\" yes. \"It will do it on curving roads as well as straight roads.\" exact. Safety: \"this is unsafe and unsafe to the extent that I no longer allow my 17 year old to drive it\" exact? Narrative: \"I  don't know what else to do, as this is unsafe and unsafe to the extent that I no longer allow my 17 year old to drive it.\" There are two spaces after I? Quote substring can start \"this is unsafe and unsafe to the extent that I no longer allow my 17 year old to drive it\" yes exact. Also \"When this happens, it is terrifying!\" exact.\n\nNeed summary: \"2015 Toyota Sienna ADAS automatic emergency braking; sudden braking and pull to side on flat/curving/straight roads; intermittent ABS/slip lights.\" one line. Include component, symptom, conditions. Good.\n\nGroup: \"adas\" or \"ADAS\"? Given group \"adas\" in input. Use \"adas\". Symptoms plain words array: \"sudden automatic braking\", \"vehicle pulls toward side of road\", \"ABS warning code appears intermittently\", \"slip indicator light appears\". Could include \"ABS code\" but code not specific. Conditions: \"intermittent\"? Yes sudden issue intermittent. \"driving\" not condition. Conditions enum allowed: cold, moisture, heat, vibration, intermittent, after service, charging. We can include \"intermittent\" because sometimes code and sudden. Maybe \"after service\" because brought to Toyota and replaced ABS sensors? The condition \"after service\" means issue occurs after service? Could be relevant: issue persists after ABS sensor replacement. But not necessarily condition trigger. We can include \"after service\" if quote \"I've replaced the ABS sensors on this and am still having this issue.\" Hmm condition after service. The issue ongoing after replacement. But conditions field should be conditions under which symptom occurs. It does occur after service? Maybe not. Include only intermittent. Maybe \"vibration\"? no. \"cold\"? no. \"moisture\"? no. So [\"intermittent\"]. But conditions array in schema includes \"intermittent\". Good.\n\nFault_codes: [] no specific code. Could include \"ABS\" not code. No.\n\nSafety_relevant true.\n\nMissing_info: [\"mileage\",\"date\"] maybe also \"fault code\"? Not allowed. Date? Report received_at 2025-04-02 but no incident date. Missing date. Mileage null. Component present. Symptom present. Conditions present. Good.\n\nClues array with kind. Need include \"component_group\" quote from component field? \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\". kind component_group. symptom quotes. condition quotes. safety quote. other maybe \"I have had this car for 7 years\" not needed. Could include fault_code? none. Need not overdo. Ensure all quotes verbatim. Let's verify exact strings:\n\nComponent field: \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\" yes.\n\nNarrative exact:\n\"I have had this car for 7 years. Started having issues a year ago and despite bringing it to Toyota 2x, they cannot tell me what the issue is. I will be driving on a regular flat paved road when the car will suddenly brake and pull me towards the side of the road. I get the ABS code sometimes and also the slip indicator light.   I've explained this each x I've brought it in and they have told me it's due to me \\\"driving too fast\\\" or \\\"accidentally having my foot on the brake.\\\" LOL I am a typical soccer mom and drive conservatively and don't brake when I don't have to. It will do it on curving roads as well as straight roads.   When this happens, it is terrifying!  I have gone to different mechanics as well and no one can determine this issue. I've replaced the ABS sensors on this and am still having this issue. I  don't know what else to do, as this is unsafe and unsafe to the extent that I no longer allow my 17 year old to drive it. Please help!!!!!!!!\"\n\nQuote \"the car will suddenly brake and pull me towards the side of the road\" exact substring yes.\nQuote \"I get the ABS code sometimes and also the slip indicator light.\" exact yes.\nQuote \"driving on a regular flat paved road\" exact yes.\nQuote \"It will do it on curving roads as well as straight roads.\" exact yes.\nQuote \"When this happens, it is terrifying!\" exact yes.\nQuote \"this is unsafe and unsafe to the extent that I no longer allow my 17 year old to drive it\" exact? There is \"as this is unsafe and unsafe to the extent...\" substring starts \"this is unsafe...\" yes because \"as \" before, so substring exact. Good.\nQuote \"I've replaced the ABS sensors on this and am still having this issue.\" exact yes. Could use condition after service? Kind condition. But if conditions includes after service, need quote. Should we include after service? Hmm. The issue still occurs after ABS sensor replacement. That is a condition/context. But conditions enum includes after service, which usually means symptom appears after service. Here service was attempted remedy, not trigger. But \"after service\" could be relevant. Better include in clues as other? Hmm. If conditions includes after service, quote supports replacement and still issue. But the issue did not start after service. I think avoid condition \"after service\" to not mislead. Clues can include other quote for replaced sensors.\n\nNeed JSON only. No markdown? It says answer with one JSON object and no other text. We can output raw JSON. Ensure valid. Use lowercase safety_relevant true. Use \"missing_info\": [\"mileage\",\"date\"]. Summaries one line. Good.\n\nNeed maybe include \"symptoms\": [\"sudden braking\", \"vehicle pulls toward side of road\", \"ABS code appears sometimes\", \"slip indicator light appears\"]. \"fault_codes\": [].\nClues kind \"symptom\" for both. \"condition\" for flat road, curving/straight. \"safety\". \"other\" for replaced ABS sensors? Could include because evidence of persistence. But not necessary. Need every quote exact. We can include.\n\nPotential issue: \"fault_codes\" if report names \"ABS code\" not specific. Should not include \"ABS\". Good.\n\nNeed summary mention \"2015 Toyota Sienna\". Is year/make/model from report. Fine. \"ADAS automatic emergency braking\" component. Conditions flat/curving/straight. Good.\n\nFinal only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793525902,
+      "id": "761ae5f0788a697308f247defd0015ae",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2146,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1864,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00080385,
+          "billing_source": "go",
+          "list_cost": 0.00133975,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 340,
+            "output": 2146,
+            "reasoning": 1864
+          }
+        },
+        "prompt_tokens": 724,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2870
+      }
+    },
+    "text": "{\"summary\":\"2015 Toyota Sienna ADAS automatic emergency braking; sudden braking and pull to side on flat, curving and straight roads with intermittent ABS/slip lights.\",\"group\":\"adas\",\"symptoms\":[\"sudden braking\",\"vehicle pulls toward side of road\",\"ABS code appears sometimes\",\"slip indicator light appears\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"},{\"kind\":\"symptom\",\"quote\":\"the car will suddenly brake and pull me towards the side of the road\"},{\"kind\":\"symptom\",\"quote\":\"I get the ABS code sometimes and also the slip indicator light.\"},{\"kind\":\"condition\",\"quote\":\"driving on a regular flat paved road\"},{\"kind\":\"condition\",\"quote\":\"It will do it on curving roads as well as straight roads.\"},{\"kind\":\"safety\",\"quote\":\"When this happens, it is terrifying!\"},{\"kind\":\"safety\",\"quote\":\"this is unsafe and unsafe to the extent that I no longer allow my 17 year old to drive it\"},{\"kind\":\"other\",\"quote\":\"I've replaced the ABS sensors on this and am still having this issue.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00080385,
+      "cached_tokens": 384,
+      "cost_usd": 0.00133975,
+      "input_tokens": 724,
+      "list_cost_usd": 0.00133975,
+      "output_tokens": 2146,
+      "reasoning_tokens": 1864
+    }
+  }
+}

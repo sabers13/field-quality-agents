@@ -1,0 +1,66 @@
+{
+  "key": "82cfd396826f21ab1622403b917a5bee20b6538ab3e24bb6df2bd01d465689d2",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12148,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2011 Lincoln MKZ electrical system: flames from driver's door interior seal by rocker panel after starting while parked; moisture leaking into rocker panel wiring and severe rear corrosion.\",\"group\":\"electrical_general\",\"symptoms\":[\"flames from driver's door interior seal by rocker panel\",\"moisture leaking into rocker panel wiring\",\"severe corrosion at the rear\"],\"conditions\":[\"parked\",\"moisture\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"flames coming from the interior seal of the driver's door, located by the rocker panel\"},{\"kind\":\"condition\",\"quote\":\"while the vehicle was parked\"},{\"kind\":\"condition\",\"quote\":\"moisture leaking into the rocker panel wiring\"},{\"kind\":\"symptom\",\"quote\":\"the whole rear of the vehicle was severely corroded\"},{\"kind\":\"safety\",\"quote\":\"was able to extinguish the fire\"},{\"kind\":\"other\",\"quote\":\"The failure mileage was approximately 100,000.\"},{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need parse report. Component electrical system group electrical_general. Summary one line component symptom conditions. Symptoms: flames coming from interior seal of driver's door by rocker panel; moisture leaking into rocker panel wiring; severe corrosion at rear. Conditions: parked? started vehicle, moisture. Fault codes none. Safety relevant true (fire/flames). Missing info? component present, symptom present, conditions present, mileage present, date? received_at date present but event date not. The missing_info allowed \"mileage\", \"date\", \"conditions\", \"component\", \"symptom\". Report has mileage approx 100000, no event date. Should list date? It says only facts analysis needs; date maybe missing. Could include \"date\" as missing. But date of incident not stated. Maybe missing_info [\"date\"]. Need clues with verbatim quotes. Must copy exact spans. Need ensure quote exact including special apostrophe? \"The contact's spouse started the vehicle and noticed flames coming from the interior seal of the driver's door, located by the rocker panel.\" Contains contact's with straight apostrophe? Narrative has \"contact's\" first, later \"contact’s\" curly. We can copy exact. Quote must be substring. Use shorter exact spans.\n\nNeed summary: \"2011 Lincoln MKZ electrical system: flames from driver's door interior seal by rocker panel after starting while parked; moisture leaking into rocker panel wiring and severe rear corrosion.\" Conditions: parked, moisture. Maybe \"after service\"? no. \"intermittent\"? no. \"charging\"? no. \"heat\"? no. \"cold\"? no. \"vibration\"? no. Include \"parked\", \"moisture\". Conditions array should use allowed values? It lists [\"cold\",\"moisture\",\"heat\",\"vibration\",\"intermittent\",\"after service\",\"charging\"]. \"parked\" not in allowed but conditions can be plain? Prompt says conditions: [\"cold\", ...] maybe expected condition labels. But report says parked. Hmm condition \"parked\" not in list. Use \"moisture\" only? But parked is condition. The schema examples not exhaustive? It says conditions array. We can include \"parked\" maybe. But rules list allowed? \"conditions\": [\"cold\", \"moisture\", ...]. Maybe better include \"moisture\" and \"parked\"? Could be okay. Need not invent. \"while vehicle was parked\" is condition. Could include \"parked\". The prompt expects conditions from list? It says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. It may be a set, not strict? In previous tasks likely allowed tags. But \"parked\" is a condition, but not listed. If include \"parked\" maybe accepted. Hmm.\n\nSymptoms: \"flames coming from the interior seal of the driver's door, located by the rocker panel\"; \"moisture leaking into the rocker panel wiring\"; \"severe corrosion of the whole rear of the vehicle\". These are symptoms? Corrosion maybe condition/other. Symptom of electrical? Fire. Moisture leak is condition. Severe corrosion maybe condition. But symptoms array can include plain words. Need not overdo. Put symptoms: [\"flames from driver's door interior seal by rocker panel\", \"moisture leaking into rocker panel wiring\", \"severe corrosion at the rear\"]. Conditions: [\"parked\", \"moisture\"]. Fault_codes empty. safety_relevant true. missing_info [\"date\"]? Also \"conditions\" maybe no? Conditions present. Component present. Mileage present. Date of incident missing; received date present. Could list \"date\". Maybe no missing info since report has received_at? But event date absent. The schema missing_info includes date. Analysis might need incident date. Use [\"date\"].\n\nClues: need kind and quote verbatim. Include symptom quote \"noticed flames coming from the interior seal of the driver's door, located by the rocker panel\" exactly? Check narrative: \"started the vehicle and noticed flames coming from the interior seal of the driver's door, located by the rocker panel.\" Yes substring. Use quote without leading \"noticed\"? It is verbatim substring: \"flames coming from the interior seal of the driver's door, located by the rocker panel\". Good.\nCondition quote \"while the vehicle was parked\" exact. Also \"moisture leaking into the rocker panel wiring\" exact.\nSafety quote \"was able to extinguish the fire\" exact? Narrative \"The contact\\u2019s spouse was able to extinguish the fire.\" Yes substring \"was able to extinguish the fire\". That indicates fire. Or \"flames\" already. safety kind quote \"flames coming from...\" but same. Need a safety clue maybe \"was able to extinguish the fire\". Good.\nOther quote \"The failure mileage was approximately 100,000.\" exact? Narrative has \"The failure mileage was approximately 100,000.\" yes.\nComponent_group quote \"ELECTRICAL SYSTEM\" from component field? Is that in report? User message includes component field. The report is entire JSON including \"component\": \"ELECTRICAL SYSTEM\". So quote can be \"ELECTRICAL SYSTEM\" verbatim. But narrative doesn't. It says read report in user message, includes fields. Good.\n\nNeed output JSON only. Ensure no markdown. Use valid JSON. Summary one line. Avoid suggesting actions. Good.\n\nNeed decide group. Given group \"electrical_general\"; also component group electrical system. Output \"electrical_general\" or \"ELECTRICAL SYSTEM\"? Schema: \"the electrical/electronic component group, or the given group\". Given group is electrical_general. Use \"electrical_general\". Good.\n\nNeed include \"group\": \"electrical_general\".\n\nNeed quotes exactly character for character. Let's inspect narrative for exact substrings:\n\"The contact's spouse stated that while the vehicle was parked, the contact's spouse started the vehicle and noticed flames coming from the interior seal of the driver's door, located by the rocker panel.\"\nQuote \"while the vehicle was parked\" yes.\n\"flames coming from the interior seal of the driver's door, located by the rocker panel\" yes.\n\"The contact stated that after inspecting the vehicle, the contact noticed moisture leaking into the rocker panel wiring.\" Quote \"moisture leaking into the rocker panel wiring\" yes.\n\"The contact and the mechanic noticed that the whole rear of the vehicle was severely corroded.\" Quote \"the whole rear of the vehicle was severely corroded\" yes.\n\"The contact\\u2019s spouse was able to extinguish the fire.\" In actual JSON string has \\u2019 but rendered curly apostrophe. If we quote \"was able to extinguish the fire\" no apostrophe. Good.\n\"The failure mileage was approximately 100,000.\" yes.\n\nNeed maybe \"safety\": quote \"flames coming...\"? Use \"was able to extinguish the fire\" kind safety.\n\nNeed missing_info: only \"date\". Could also \"conditions\" because not enough? But conditions have parked, moisture. No.\n\nNeed final no other text.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529514,
+      "id": "76a796084e2c4590a82f6c41c1af81e8",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1740,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1494,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00065166,
+          "billing_source": "go",
+          "list_cost": 0.0010861,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 273,
+            "output": 1740,
+            "reasoning": 1494
+          }
+        },
+        "prompt_tokens": 657,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2397
+      }
+    },
+    "text": "{\"summary\":\"2011 Lincoln MKZ electrical system: flames from driver's door interior seal by rocker panel after starting while parked; moisture leaking into rocker panel wiring and severe rear corrosion.\",\"group\":\"electrical_general\",\"symptoms\":[\"flames from driver's door interior seal by rocker panel\",\"moisture leaking into rocker panel wiring\",\"severe corrosion at the rear\"],\"conditions\":[\"parked\",\"moisture\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"flames coming from the interior seal of the driver's door, located by the rocker panel\"},{\"kind\":\"condition\",\"quote\":\"while the vehicle was parked\"},{\"kind\":\"condition\",\"quote\":\"moisture leaking into the rocker panel wiring\"},{\"kind\":\"symptom\",\"quote\":\"the whole rear of the vehicle was severely corroded\"},{\"kind\":\"safety\",\"quote\":\"was able to extinguish the fire\"},{\"kind\":\"other\",\"quote\":\"The failure mileage was approximately 100,000.\"},{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00065166,
+      "cached_tokens": 384,
+      "cost_usd": 0.0010861,
+      "input_tokens": 657,
+      "list_cost_usd": 0.0010861,
+      "output_tokens": 1740,
+      "reasoning_tokens": 1494
+    }
+  }
+}

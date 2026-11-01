@@ -1,0 +1,66 @@
+{
+  "key": "885588fb16c1b99c38b378f7c4765d4855a3ff62b71472e3a6894253f26037ad",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12316,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Low beam headlights do not reflect or shine bright enough due to degraded reflector/housing, causing poor night visibility and a near deer collision.\",\"group\":\"body_controls\",\"symptoms\":[\"low beam headlights do not reflect\",\"barely see when driving at night\",\"bulbs do not shine bright enough\",\"degraded reflector or housing\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"component\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"Low beam headlights\"},{\"kind\":\"symptom\",\"quote\":\"Low beam headlights do not reflect.\"},{\"kind\":\"symptom\",\"quote\":\"I can barely see when driving at night due to the low beams.\"},{\"kind\":\"symptom\",\"quote\":\"The Reflector or Housing is degraded so the bulbs do not shine bright enough.\"},{\"kind\":\"safety\",\"quote\":\"This is a serious safety issue.\"},{\"kind\":\"safety\",\"quote\":\"I almost hit a deer that I couldn\\u2019t see in my neighborhood.\"},{\"kind\":\"condition\",\"quote\":\"We have great street lighting and it was 7:50pm so not very dark.\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize. Report component says VISIBILITY/WIPER but narrative low beam headlights. Need group given body_controls? Prompt: group \"the electrical/electronic component group, or the given group\". Given group body_controls. We can use body_controls? But headlights maybe lighting. Need not invent. Summary one line: low beam headlights not bright/reflect due degraded reflector/housing, night driving poor visibility, bulbs replaced lenses restored, near deer. Symptoms: low beams do not reflect; barely see at night; bulbs not shine bright enough; degraded reflector/housing. Conditions: night? Conditions list allowed cold moisture heat vibration intermittent after service charging. Night not in list. Could include? It says conditions array e.g. those. We should only use listed? It says conditions: [\"cold\", ...]. We can maybe include none because no relevant conditions from allowed list. But \"at night\" is condition but not allowed list. We can include \"night\"? Rules says conditions list? Probably should use allowed. Maybe no conditions. Safety_relevant true because mentions serious safety issue and almost hit deer. Fault codes none. Missing_info: component? The component field is wiper but narrative headlights inconsistent; mileage missing; maybe date? received date present but incident date not. missing_info include mileage and component? Analysis needs component, symptom, conditions, mileage, date. Symptom present. Conditions present? night, street lighting, time. Component inconsistent, so missing accurate component. Mileage missing. Date? received_at but not incident date; maybe missing date. Include [\"mileage\",\"component\",\"date\"]? Need only facts analysis needs. Component field says VISIBILITY/WIPER but narrative about headlights, so accurate component missing/ambiguous. Include component. Mileage null. Date of incident? Not given except 7:50pm, received at date. Could include date. Conditions? We have night, lighting. Not missing. Need clues verbatim. Quotes must be exact spans. Ensure verbatim from narrative. Use ASCII? Narrative contains \\u2019 for apostrophe. If quote includes couldn’t need exact curly? We can avoid. Quotes:\n- \"Low beam headlights do not reflect.\"\n- \"I can barely see when driving at night due to the low beams.\"\n- \"The Reflector or Housing is degraded so the bulbs do not shine bright enough.\"\n- \"This is a serious safety issue.\"\n- \"I almost hit a deer that I couldn\\u2019t see in my neighborhood.\" In JSON we can include escaped \\u2019? The quote should be verbatim; in output JSON string can contain \\u2019. Need valid JSON. Could use \"I almost hit a deer that I couldn\\u2019t see in my neighborhood.\" This is verbatim characters if parsed. Good.\n- \"We have great street lighting and it was 7:50pm so not very dark.\" condition? kind condition maybe other? It is condition. Use kind condition quote.\nNeed component_group clue? Could quote? \"Low beam headlights\" not component group? kind component_group quote \"low beam headlights\"? But exact case? Narrative \"Low beam headlights do not reflect.\" Could quote \"Low beam headlights\" exact. Kind component_group.\n\nNeed group maybe \"body_controls\" given. Summary no invent. \"Low beam headlights do not reflect / are too dim due to degraded reflector or housing; poor night visibility, near deer collision.\" That's one line.\n\nNeed JSON only. Ensure arrays. safety_relevant true. missing_info maybe [\"mileage\",\"component\",\"date\"] but date maybe received_at not incident. Analysis needs date; received_at is report date not incident. Include. Could \"component\" because given component wiper conflicts. Good.\n\nNeed \"symptoms\": plain words. \"low beam headlights do not reflect\"; \"barely see at night\"; \"bulbs do not shine bright enough\"; \"degraded reflector or housing\". Maybe \"poor night visibility\". Conditions: Could include \"night\" though not allowed? Hmm instructions: conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. It gives allowed values likely. \"night\" isn't in list. But conditions can be plain? It says conditions array with examples. To be safe, include only allowed? None apply. But night is important. Could put in clues only. The JSON schema examples not strict? It says conditions: [\"cold\", ...]. I'd include [] to avoid invalid. But summary includes night. Conditions missing? No.\n\nNeed clues include safety. For safety quote \"This is a serious safety issue.\" and near deer. Good.\n\nNeed no other text.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530976,
+      "id": "58ce10e1fb414bafd8b7e0af4a31b340",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1234,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 981,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00046329,
+          "billing_source": "go",
+          "list_cost": 0.00077215,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 204,
+            "output": 1234,
+            "reasoning": 981
+          }
+        },
+        "prompt_tokens": 588,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1822
+      }
+    },
+    "text": "{\"summary\":\"Low beam headlights do not reflect or shine bright enough due to degraded reflector/housing, causing poor night visibility and a near deer collision.\",\"group\":\"body_controls\",\"symptoms\":[\"low beam headlights do not reflect\",\"barely see when driving at night\",\"bulbs do not shine bright enough\",\"degraded reflector or housing\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"component\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"Low beam headlights\"},{\"kind\":\"symptom\",\"quote\":\"Low beam headlights do not reflect.\"},{\"kind\":\"symptom\",\"quote\":\"I can barely see when driving at night due to the low beams.\"},{\"kind\":\"symptom\",\"quote\":\"The Reflector or Housing is degraded so the bulbs do not shine bright enough.\"},{\"kind\":\"safety\",\"quote\":\"This is a serious safety issue.\"},{\"kind\":\"safety\",\"quote\":\"I almost hit a deer that I couldn\\u2019t see in my neighborhood.\"},{\"kind\":\"condition\",\"quote\":\"We have great street lighting and it was 7:50pm so not very dark.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00046329,
+      "cached_tokens": 384,
+      "cost_usd": 0.00077215,
+      "input_tokens": 588,
+      "list_cost_usd": 0.00077215,
+      "output_tokens": 1234,
+      "reasoning_tokens": 981
+    }
+  }
+}

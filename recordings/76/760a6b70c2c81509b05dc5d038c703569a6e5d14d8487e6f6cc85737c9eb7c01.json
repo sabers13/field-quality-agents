@@ -1,0 +1,66 @@
+{
+  "key": "760a6b70c2c81509b05dc5d038c703569a6e5d14d8487e6f6cc85737c9eb7c01",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 19329,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2024 KIA SORENTO air bags failed to deploy in a driver-side T-bone collision with rollover; seatbelt released and occupant ejected through shattered moonroof.\",\"group\":\"restraints\",\"symptoms\":[\"air bags did not deploy\",\"seatbelt released\",\"occupant ejected through moon roof\"],\"conditions\":[\"collision\",\"driver-side impact\",\"rollover\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"All of my air bags did not deploy even though my vehicle rolled over twice.\"},{\"kind\":\"symptom\",\"quote\":\"my seatbelt released me\"},{\"kind\":\"symptom\",\"quote\":\"I was ejected through the moon roof\"},{\"kind\":\"condition\",\"quote\":\"T- Bone collision on the driver side\"},{\"kind\":\"condition\",\"quote\":\"My vehicle flipped on it's side\"},{\"kind\":\"condition\",\"quote\":\"vehicle rolled over twice\"},{\"kind\":\"safety\",\"quote\":\"The vehicle landed on top of me.\"}]}",
+            "reasoning_content": "We need answer one JSON object no other text. Need normalize report. Need include summary component symptom conditions. Component AIR BAGS group restraints. Symptoms: air bags did not deploy despite rollover/collision; seatbelt released and occupant ejected? The report says seatbelt released me and ejected through moon roof. That's symptom maybe restraint failure. Conditions: collision, T-bone, driver side, vehicle flipped/rolled over twice. Allowed conditions list: cold, moisture, heat, vibration, intermittent, after service, charging. None apply? We should only choose from allowed? Prompt says conditions array with examples? It says [\"cold\", \"moisture\", ...]. We can include \"collision\", \"rollover\"? Hmm rules: conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. It might expect only those canonical conditions. But report has crash/rollover conditions. Need maybe conditions [] because none of canonical. But summary can mention. Clues kind condition quote \"T- Bone collision on the driver side\" maybe kind \"condition\" quote. Allowed clue kind symptom|condition|fault_code|component_group|safety|other. Conditions can include \"collision\", \"rollover\" as plain words? The schema example conditions list only those categories. It says conditions: [\"cold\", ...] perhaps fixed vocabulary. But \"conditions\" likely should capture environmental/operating conditions. Crash is condition. However instructions \"conditions\": [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. It doesn't explicitly forbid others, but likely canonical. We need decide. The intake normalizes field-quality report; conditions relevant to analysis: collision, rollover. But list provided maybe not exhaustive? Hm.\n\nNeed safety_relevant true. fault_codes none. missing_info: mileage null; date? received_at exists but incident date missing? \"date\" missing because no incident date. component present, symptom present, conditions present. So missing_info [\"mileage\",\"date\"]. Could include mileage and date. Maybe \"mileage\" and \"date\". \n\nClues verbatim: \n- component_group quote \"AIR BAGS\" from component? Is that in report? The user message JSON includes \"component\": \"AIR BAGS\". Yes verbatim.\n- symptom: \"All of my air bags did not deploy even though my vehicle rolled over twice.\"\n- symptom: \"my seatbelt released me and I was ejected through the moon roof\" maybe.\n- condition: \"T- Bone collision on the driver side\"\n- condition: \"My vehicle flipped on it's side\"\n- safety: \"I was ejected through the moon roof\" or \"The vehicle landed on top of me.\" Need quote exact. Safety relevant mention crash injury? It says ejected, landed on top. Use quote \"The vehicle landed on top of me.\" verifies safety. Also \"I was involved in an automobile collision.\" \nNeed every quote exactly. Ensure apostrophe \"it's\" exactly. JSON escaping not needed for apostrophe. Need quote \"T- Bone collision on the driver side.\" includes period? Narrative: \"It was a T- Bone collision on the driver side.\" Could quote \"T- Bone collision on the driver side\" without period, verbatim span. Good.\n- \"vehicle rolled over twice\" etc.\n- \"moon roof completely shattered\" symptom? maybe other.\nNeed summary one line: \"2024 Kia Sorento air bags failed to deploy in driver-side T-bone collision with rollover; seatbelt released and occupant ejected through shattered moonroof.\" That's concise. Conditions crash. \nNeed group \"restraints\". Symptoms plain words: [\"air bags did not deploy\", \"seatbelt released\", \"occupant ejected through moon roof\"]. Is \"seatbelt released\" symptom? Yes. But careful seatbelt released me could be normal? It is a restraint issue. Include. \nConditions: We can include \"collision\", \"driver-side impact\", \"rollover\". But schema examples? I think acceptable because report conditions. The prompt says conditions array with list of canonical; maybe need use those exact words if applicable. It says \"conditions\": [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. It could be a closed enum? If closed, \"collision\" not allowed. But how capture crash? Safety and clues. The summary has. But \"conditions\" should include \"collision\"? Let's parse prompt: \n```\n\"conditions\": [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"],\n```\nThis is likely a template showing allowed condition vocabulary. But \"collision\" isn't there. However reports can have crash conditions, but safety_relevant handles. The condition field might only be environmental/usage conditions. Yet if crash not in vocabulary, conditions empty. But then \"conditions\" in summary. Hmm.\n\nNeed not invent. The desk analysis needs conditions. The condition \"collision\" is stated. I'd include \"collision\", \"driver-side impact\", \"rollover\" despite example. The instruction \"conditions\": [\"cold\",...] maybe not \"only these\". But it's formatted as value list. If model expected exact enum, extra could be considered wrong? There's no explicit \"use only these values\". It says \"conditions\": [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"], likely examples. I'll include \"collision\", \"driver-side impact\", \"rollover\" because important. But desired maybe canonical? The \"conditions\" field in schema likely expects list from that vocabulary; if none, empty. But crash is not one of categories. The prompt: \"conditions\": [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"] no \"collision\". Could include \"collision\" as plain condition? Hm.\n\nMaybe conditions should only list applicable from that set. None. So [] is okay. But summary and clues include collision. The \"conditions\" missing_info? Conditions present. But if canonical empty, not missing.\n\nNeed output JSON only. Let's craft. Need no markdown? User says answer with one JSON object and no other text. Final should be raw JSON. Ensure valid JSON with double quotes. \nClues: kind must be one of. For component_group quote \"AIR BAGS\" from field. Is quoting field allowed? It says report; user message includes JSON. likely yes. \nUse quotes verbatim:\n- \"AIR BAGS\"\n- \"All of my air bags did not deploy even though my vehicle rolled over twice.\"\n- \"my seatbelt released me and I was ejected through the moon roof\"\n- \"T- Bone collision on the driver side\"\n- \"My vehicle flipped on it's side\"\n- \"vehicle rolled over twice\"\n- \"The vehicle landed on top of me.\"\n- \"I was involved in an automobile collision.\"\nNeed not too many. Include safety quote \"The vehicle landed on top of me.\" Good.\nFor symptom \"seatbelt released\" quote exact \"my seatbelt released me\" yes.\nFor symptom \"ejected through moon roof\" quote exact \"I was ejected through the moon roof\" yes. But narrative has \"and I was ejected through the moon roof.\" Good.\n\nMissing_info: mileage, date. Maybe date field received_at is 2025-11-12 but incident date missing. The analysis needs date. Yes.\nsafety_relevant true.\nfault_codes [].\ngroup restraints.\nConditions array maybe [\"collision\", \"driver-side impact\", \"rollover\"]? But if strict, maybe bad. Let's think expected by benchmark? They probably evaluate key fields. The prompt is from an agent; maybe they expect normalized. Conditions allowed categories include intermittent etc. For airbag nondeploy after crash, no environmental. Could conditions = [\"collision\", \"rollover\"] maybe okay. If we include \"driver-side impact\" as condition, no quote maybe. We have clues. The prompt says \"conditions\": [\"cold\",...] not \"collision\", but \"conditions\" in summary. Hmm.\n\nMaybe include conditions = [\"collision\", \"rollover\"] because these are conditions. The clue kind condition for \"T- Bone collision on the driver side\" and \"My vehicle flipped on it's side\". Good. Does \"driver-side impact\" not exact quote; use \"T- Bone collision on the driver side\" clue. If conditions array contains \"driver-side impact\" it's plain words not quote. That's okay. But no need.\nSummary: \"2024 KIA SORENTO air bags failed to deploy in a driver-side T-bone collision with rollover; seatbelt released and occupant ejected through shattered moonroof.\" Good.\n\nNeed \"symptoms\": [\"air bags did not deploy\", \"seatbelt released\", \"occupant ejected through moon roof\"].\nNeed group \"restraints\".\nNeed \"missing_info\": [\"mileage\",\"date\"].\nNo markdown. Final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793532026,
+      "id": "8c7f0d7aa3224de426aca61a28ff472d",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2155,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1915,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00079188,
+          "billing_source": "go",
+          "list_cost": 0.0013198,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 171,
+            "output": 2155,
+            "reasoning": 1915
+          }
+        },
+        "prompt_tokens": 555,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2710
+      }
+    },
+    "text": "{\"summary\":\"2024 KIA SORENTO air bags failed to deploy in a driver-side T-bone collision with rollover; seatbelt released and occupant ejected through shattered moonroof.\",\"group\":\"restraints\",\"symptoms\":[\"air bags did not deploy\",\"seatbelt released\",\"occupant ejected through moon roof\"],\"conditions\":[\"collision\",\"driver-side impact\",\"rollover\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"All of my air bags did not deploy even though my vehicle rolled over twice.\"},{\"kind\":\"symptom\",\"quote\":\"my seatbelt released me\"},{\"kind\":\"symptom\",\"quote\":\"I was ejected through the moon roof\"},{\"kind\":\"condition\",\"quote\":\"T- Bone collision on the driver side\"},{\"kind\":\"condition\",\"quote\":\"My vehicle flipped on it's side\"},{\"kind\":\"condition\",\"quote\":\"vehicle rolled over twice\"},{\"kind\":\"safety\",\"quote\":\"The vehicle landed on top of me.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00079188,
+      "cached_tokens": 384,
+      "cost_usd": 0.0013198,
+      "input_tokens": 555,
+      "list_cost_usd": 0.0013198,
+      "output_tokens": 2155,
+      "reasoning_tokens": 1915
+    }
+  }
+}

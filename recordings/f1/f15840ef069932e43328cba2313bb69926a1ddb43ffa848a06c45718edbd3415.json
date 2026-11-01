@@ -1,0 +1,66 @@
+{
+  "key": "f15840ef069932e43328cba2313bb69926a1ddb43ffa848a06c45718edbd3415",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 7501,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\": \"Test intermittent EyeSight/lane-departure faults with the rulebook's long-run power cycling test.\", \"rationale\": \"The narrative reports EyeSight Assist working intermittently, stopping without apparent reason regardless of weather, and lane departure warning malfunctioning with false warning sounds and yellow lines while within the lane. The rulebook matches the condition \\\"intermittent\\\" to a long-run power cycling test, which reproduces faults that appear after repeated wake and sleep cycles.\", \"group\": \"adas\", \"symptoms\": [\"EyeSight Assist works intermittently\", \"assist stops working without apparent reason across weather conditions\", \"lane departure warning not working or malfunctioning at times\", \"false warning sounds while within the lane\", \"yellow lines shown on screen\"], \"conditions\": [\"intermittent\"], \"fault_codes\": [], \"safety_relevant\": false, \"targeted\": true, \"test_name\": \"Long-run power cycling test\", \"clues\": [{\"kind\": \"component_group\", \"quote\": \"EyeSight Assist\"}, {\"kind\": \"symptom\", \"quote\": \"The EyeSight Assist appears to be working intermittently since the car was purchased.\"}, {\"kind\": \"symptom\", \"quote\": \"It stops working without any apparent reason, regardless of whether it is a sunny day, cloudy, or rainy.\"}, {\"kind\": \"symptom\", \"quote\": \"The lane departure warning also appears to be either not working or malfunctioning at times.\"}, {\"kind\": \"symptom\", \"quote\": \"Even if I am within the lane, it still makes warning sounds at times and shows yellow lines on the screen.\"}, {\"kind\": \"condition\", \"quote\": \"intermittently\"}]}",
+            "reasoning_content": "We need to produce JSON only. Need to follow rules. The narrative has quotes from case narrative, not extraction. Need verbatim spans from case narrative. We have narrative text. Need clues quote exactly from narrative. We can include component group? \"LANE DEPARTURE: ASSIST\" appears in component field, not narrative. The rule says quote copied verbatim from case narrative. So component group clue should be from narrative? The narrative doesn't mention \"LANE DEPARTURE: ASSIST\" exactly? It says \"The lane departure warning\" lower case. So can't use component field as narrative. But schema allows kind component_group, quote verbatim from narrative. Could quote \"lane departure warning\". But kind component_group? Maybe okay but quote must be verbatim. We can include symptom quotes from narrative. Conditions intermittent? Narrative says \"intermittently\". Quote \"intermittently\" verbatim. Need safety_relevant false. targeted true since rulebook matched intermittent and test named \"Long-run power cycling test\". test_name exactly. summary one line. rationale condition and evidence. group adas. symptoms list. conditions [\"intermittent\"]. fault_codes []. clues: symptom quotes. Need avoid citing case/recall ids not in tool results. No similar cases. Fine.\n\nNeed output JSON object no other text. Ensure quotes exact. Let's identify exact spans:\n- \"The EyeSight Assist appears to be working intermittently since the car was purchased.\" yes.\n- \"It stops working without any apparent reason, regardless of whether it is a sunny day, cloudy, or rainy.\" yes.\n- \"The lane departure warning also appears to be either not working or malfunctioning at times.\" yes.\n- \"Even if I am within the lane, it still makes warning sounds at times and shows yellow lines on the screen.\" yes.\n- condition quote \"intermittently\" from first sentence? It appears as substring \"intermittently\". The code verifies quote matches narrative. Substring okay likely. Could use full sentence. For condition kind, quote \"intermittently\" maybe okay. But clue kind condition quote must be verbatim span. Use \"intermittently\" exactly. Or use \"regardless of whether it is a sunny day, cloudy, or rainy\" as condition? Not condition. Intermittent is condition. Use quote \"intermittently\". Good.\n- component_group clue quote \"lane departure warning\" exact lower-case in narrative. Kind component_group. Or \"EyeSight Assist\" exact. Use \"EyeSight Assist\". Component group? Maybe.\n\nNeed targeted true. safety false.\n\nSummary: \"Test the intermittent EyeSight/lane-departure faults with a long-run power cycling test because the rulebook matches intermittent symptoms.\" Maybe one line.\n\nRationale: \"The narrative reports EyeSight Assist and lane departure warning working intermittently, stopping without apparent reason across weather, and false warnings/yellow lines while in lane. The rulebook matches condition intermittent to a long-run power cycling test, which reproduces faults after repeated wake/sleep cycles.\"\n\nNeed JSON valid. No markdown. Ensure no extra text.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529474,
+      "id": "ef355f3e3c9620ef51821107b38e3534",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1010,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 642,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00044838,
+          "billing_source": "go",
+          "list_cost": 0.0007473,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 942,
+            "output": 1010,
+            "reasoning": 642
+          }
+        },
+        "prompt_tokens": 942,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 1952
+      }
+    },
+    "text": "{\"summary\": \"Test intermittent EyeSight/lane-departure faults with the rulebook's long-run power cycling test.\", \"rationale\": \"The narrative reports EyeSight Assist working intermittently, stopping without apparent reason regardless of weather, and lane departure warning malfunctioning with false warning sounds and yellow lines while within the lane. The rulebook matches the condition \\\"intermittent\\\" to a long-run power cycling test, which reproduces faults that appear after repeated wake and sleep cycles.\", \"group\": \"adas\", \"symptoms\": [\"EyeSight Assist works intermittently\", \"assist stops working without apparent reason across weather conditions\", \"lane departure warning not working or malfunctioning at times\", \"false warning sounds while within the lane\", \"yellow lines shown on screen\"], \"conditions\": [\"intermittent\"], \"fault_codes\": [], \"safety_relevant\": false, \"targeted\": true, \"test_name\": \"Long-run power cycling test\", \"clues\": [{\"kind\": \"component_group\", \"quote\": \"EyeSight Assist\"}, {\"kind\": \"symptom\", \"quote\": \"The EyeSight Assist appears to be working intermittently since the car was purchased.\"}, {\"kind\": \"symptom\", \"quote\": \"It stops working without any apparent reason, regardless of whether it is a sunny day, cloudy, or rainy.\"}, {\"kind\": \"symptom\", \"quote\": \"The lane departure warning also appears to be either not working or malfunctioning at times.\"}, {\"kind\": \"symptom\", \"quote\": \"Even if I am within the lane, it still makes warning sounds at times and shows yellow lines on the screen.\"}, {\"kind\": \"condition\", \"quote\": \"intermittently\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00044838,
+      "cached_tokens": 0,
+      "cost_usd": 0.0007473,
+      "input_tokens": 942,
+      "list_cost_usd": 0.0007473,
+      "output_tokens": 1010,
+      "reasoning_tokens": 642
+    }
+  }
+}

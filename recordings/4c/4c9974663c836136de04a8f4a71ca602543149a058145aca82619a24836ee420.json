@@ -1,0 +1,66 @@
+{
+  "key": "4c9974663c836136de04a8f4a71ca602543149a058145aca82619a24836ee420",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 7173,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system: engine caught fire after starting; front of car charred, fire department extinguished it, vehicle totaled.\",\"group\":\"electrical_general\",\"symptoms\":[\"engine caught fire\",\"front of car completely charred\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"engine caught fire\"},{\"kind\":\"symptom\",\"quote\":\"Front of the car is completely charred\"},{\"kind\":\"safety\",\"quote\":\"fire had to be put out by the fire department\"},{\"kind\":\"other\",\"quote\":\"Car is totaled now.\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize report. Component ELECTRICAL SYSTEM group electrical_general. Narrative: Started car then engine caught fire. Front completely charred fire dept put out. Car totaled. Complaint raised with Nissan Consumer Affairs. Safety relevant true due fire. Symptoms: engine caught fire, front charred. Conditions: maybe none explicitly? \"Started the car\" is condition? Could include \"after starting\"? Conditions list allowed cold moisture heat vibration intermittent after service charging. Started car not one. So conditions empty. Fault codes none. missing_info: mileage missing? date? received_at is date but incident date missing. Component present, symptom present, conditions maybe missing? They ask missing info only facts analysis needs: component, symptom, conditions, mileage, date. Mileage null, date? received_at 2025-12-15 but no incident date. Conditions not specified. Need include mileage, date, conditions? The report has no conditions beyond started. Missing conditions maybe important. But if no condition? I'd include mileage, date, conditions. Safety relevant true. Clues with verbatim quotes. Need quote exact spans from narrative. Ensure quotes exist: \"Started the car and then the engine caught fire.\" exact yes. \"Front of the car is completely charred\" exact. \"fire had to be put out by the fire department\" exact. \"Car is totaled now.\" exact. For safety clue quote fire. For symptom quote engine caught fire. Component group clue maybe \"ELECTRICAL SYSTEM\" verbatim from component field? The report includes component. Quote can be from report? User message includes JSON fields. We can quote \"ELECTRICAL SYSTEM\". But clues should be from report; okay. Need summary one line: \"Electrical system: engine caught fire after starting; front charred, fire department extinguished, vehicle totaled.\" Maybe mention conditions after starting. Group electrical_general. Symptoms [\"engine caught fire\", \"front of car charred\"]. Conditions maybe [\"after starting\"]? But allowed list doesn't include after starting. It says conditions [\"cold\", ...]. Should not invent. Could include \"after service\"? no. So empty. But \"Started the car\" is a condition? Not in enum. The schema example list allowed values, but likely can have strings? The prompt says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. So use only these. None. missing_info includes conditions. Safety true.\n\nNeed no other text. JSON. Ensure valid. Could include fault_codes empty. Clues array. Use kind \"safety\" quote \"engine caught fire\" or full sentence. For component_group quote \"ELECTRICAL SYSTEM\". For symptom quote \"engine caught fire\"; condition maybe \"Started the car\"? kind condition quote \"Started the car\" maybe condition not in allowed? Hmm clue kind condition can quote a condition. But if conditions list empty, having condition clue \"Started the car\" might conflict. But \"Started the car\" is an event/condition? The allowed conditions are categories. It might be okay to include as other? Better not include. Need evidence for summary. Clues: component_group ELECTRICAL SYSTEM; symptom engine caught fire; symptom Front of the car is completely charred; safety fire had to be put out by the fire department. Other \"Car is totaled now.\" maybe not needed. Missing info quote? no.\n\nNeed maybe \"safety_relevant\": true. Good.\n\nFinal only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793532850,
+      "id": "b613ebbfc4aa4029feb7bd04effef7f0",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 884,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 722,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00033216,
+          "billing_source": "go",
+          "list_cost": 0.0005536,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 147,
+            "output": 884,
+            "reasoning": 722
+          }
+        },
+        "prompt_tokens": 531,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1415
+      }
+    },
+    "text": "{\"summary\":\"Electrical system: engine caught fire after starting; front of car charred, fire department extinguished it, vehicle totaled.\",\"group\":\"electrical_general\",\"symptoms\":[\"engine caught fire\",\"front of car completely charred\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"engine caught fire\"},{\"kind\":\"symptom\",\"quote\":\"Front of the car is completely charred\"},{\"kind\":\"safety\",\"quote\":\"fire had to be put out by the fire department\"},{\"kind\":\"other\",\"quote\":\"Car is totaled now.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00033216,
+      "cached_tokens": 384,
+      "cost_usd": 0.0005536,
+      "input_tokens": 531,
+      "list_cost_usd": 0.0005536,
+      "output_tokens": 884,
+      "reasoning_tokens": 722
+    }
+  }
+}

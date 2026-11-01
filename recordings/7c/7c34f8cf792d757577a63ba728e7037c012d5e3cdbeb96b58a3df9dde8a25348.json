@@ -1,0 +1,66 @@
+{
+  "key": "7c34f8cf792d757577a63ba728e7037c012d5e3cdbeb96b58a3df9dde8a25348",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 7450,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Exterior lighting on a 2024 Tesla Model 3 shut off completely while FSD was active at night on an unlit freeway, causing loss of visibility and an off-road incident.\",\"group\":\"lighting\",\"symptoms\":[\"exterior lights completely shut off\",\"zero visibility\",\"FSD prompted driver takeover\",\"vehicle careened off the road\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"EXTERIOR LIGHTING\"},{\"kind\":\"symptom\",\"quote\":\"exterior lights completely shut off\"},{\"kind\":\"condition\",\"quote\":\"My partner was using FSD (full self driving)\"},{\"kind\":\"condition\",\"quote\":\"The section of the freeway we were on had no lights, so it was completely dark.\"},{\"kind\":\"condition\",\"quote\":\"at night\"},{\"kind\":\"safety\",\"quote\":\"we careened off the road because there was zero visibility\"},{\"kind\":\"other\",\"quote\":\"only hit a traffic reflector\"},{\"kind\":\"other\",\"quote\":\"software malfunction\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize. Read report. Component EXTERIOR LIGHTING group lighting. Summary one line component symptom conditions. Symptoms: exterior lights completely shut off; loss of visibility/FSD takeover/careened off road? Need symptoms plain words. Conditions: at night, no lights on freeway section, FSD active, attempted Bluetooth? The listed allowed conditions: cold moisture heat vibration intermittent after service charging. None match? We should maybe conditions empty? But schema says conditions array from list? It says \"conditions\": [\"cold\", ...] likely choose applicable. Report conditions: at night, dark, FSD active. But allowed condition categories don't include night. Could include \"intermittent\"? Not necessarily. We shouldn't invent. But clues can quote condition spans with kind condition. However conditions field likely only predefined tags. Use []? Could use \"intermittent\" only if shut off completely not intermittent. No. Use empty.\n\nFault codes none. safety_relevant true. missing_info: mileage missing, date? It gives incident date June 30 but no year? It says 2024 vehicle, incident June 30 around midnight maybe 2025? Report received Sep 2025, incident maybe June 30 2025. Date exists. Mileage null so missing mileage. Component exists. Symptom exists. Conditions exists. missing_info [\"mileage\"]. Maybe \"date\" not missing because June 30. Could mention exact year missing? Hmm report says \"occurred on June 30th\" no year. But received 2025, model 2024. Date year ambiguous. Analysis needs date maybe year. But date partly present. Rule missing only facts analysis needs. Include mileage? yes. Maybe date? Since incident date lacks year. But \"June 30th\" is enough? I'd include \"mileage\" only, perhaps \"date\" because no year? Need avoid over. It says list missing_info for facts analysis needs: component, symptom, conditions, mileage, date. Date present but incomplete. Hm.\n\nClues: need verbatim spans. Must copy exact from narrative. Use quotes:\n- \"exterior lights completely shut off\" exact.\n- \"My partner was using FSD (full self driving)\" exact.\n- \"driving down i5 towards Vancouver, WA\" exact.\n- \"The section of the freeway we were on had no lights, so it was completely dark.\" exact.\n- \"we careened off the road because there was zero visibility\" exact.\n- \"only hit a traffic reflector\" exact? safety.\n- \"at night\" exact phrase? In \"should be able to shut off completely at night\" exact.\n- \"software malfunction\" exact.\nCould include component group quote \"EXTERIOR LIGHTING\"? Is that in report? component field yes. Quote from report? \"EXTERIOR LIGHTING\" appears in component not narrative. The report includes component field. Verbatim from report. Good.\n\nNeed JSON only. Summary one line. \"Exterior lighting on 2024 Tesla Model 3 shut off completely while FSD was active at night on an unlit freeway, causing loss of visibility and off-road incident.\" Good.\n\nSymptoms: [\"exterior lights completely shut off\", \"zero visibility\", \"FSD disengaged and driver took over\", \"vehicle careened off the road\"]. Are these symptoms? Fine plain words. Could include \"lights shut off at night while driving\". Need not overdo. Conditions maybe [] or include \"intermittent\"? no. But perhaps \"conditions\" field from fixed list, none applicable. Use [].\n\nFault codes [].\n\nSafety true.\n\nMissing info [\"mileage\"].\n\nClues with kind. Ensure all quotes exact. Need not include too many. Let's craft. \"exterior lights completely shut off\" appears exact? Narrative: \"when the exterior lights completely shut off.\" Yes substring exact. \"My partner was using FSD (full self driving)\" exact. \"The section of the freeway we were on had no lights, so it was completely dark.\" exact. \"we careened off the road because there was zero visibility\" exact. \"only hit a traffic reflector\" exact? Text: \"we only hit a traffic reflector.\" substring \"only hit a traffic reflector\" yes. \"at night\" exact in \"completely at night\"? Actually \"shut off completely at night\" yes substring. \"software malfunction\" exact. Component group quote \"EXTERIOR LIGHTING\" exact.\n\nNeed no markdown? User says answer with JSON object no other text. We can output raw JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530776,
+      "id": "54606be81ec875cb437a7642ebe229d3",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1188,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 952,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00046599,
+          "billing_source": "go",
+          "list_cost": 0.00077665,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 418,
+            "output": 1188,
+            "reasoning": 952
+          }
+        },
+        "prompt_tokens": 802,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1990
+      }
+    },
+    "text": "{\"summary\":\"Exterior lighting on a 2024 Tesla Model 3 shut off completely while FSD was active at night on an unlit freeway, causing loss of visibility and an off-road incident.\",\"group\":\"lighting\",\"symptoms\":[\"exterior lights completely shut off\",\"zero visibility\",\"FSD prompted driver takeover\",\"vehicle careened off the road\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"EXTERIOR LIGHTING\"},{\"kind\":\"symptom\",\"quote\":\"exterior lights completely shut off\"},{\"kind\":\"condition\",\"quote\":\"My partner was using FSD (full self driving)\"},{\"kind\":\"condition\",\"quote\":\"The section of the freeway we were on had no lights, so it was completely dark.\"},{\"kind\":\"condition\",\"quote\":\"at night\"},{\"kind\":\"safety\",\"quote\":\"we careened off the road because there was zero visibility\"},{\"kind\":\"other\",\"quote\":\"only hit a traffic reflector\"},{\"kind\":\"other\",\"quote\":\"software malfunction\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00046599,
+      "cached_tokens": 384,
+      "cost_usd": 0.00077665,
+      "input_tokens": 802,
+      "list_cost_usd": 0.00077665,
+      "output_tokens": 1188,
+      "reasoning_tokens": 952
+    }
+  }
+}

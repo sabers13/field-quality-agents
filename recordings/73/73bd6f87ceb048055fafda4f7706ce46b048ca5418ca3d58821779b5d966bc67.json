@@ -1,0 +1,66 @@
+{
+  "key": "73bd6f87ceb048055fafda4f7706ce46b048ca5418ca3d58821779b5d966bc67",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 6962,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Instrument panel/odometer mileage discrepancy on a 2018 Honda Pilot purchased privately; 98,423 at purchase vs over 230,000 at registration.\",\"group\":\"instrumentation\",\"symptoms\":[\"odometer mileage discrepancy\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"conditions\",\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"mileage discrepancy\"},{\"kind\":\"component_group\",\"quote\":\"Odometer Fraud\"},{\"kind\":\"other\",\"quote\":\"The vehicle was a private sale.\"},{\"kind\":\"other\",\"quote\":\"At the time of purchase, the vehicle mileage was 98,423 and at the time of registration, it was discovered that the mileage was over 230,000.\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize report. Must read only report. Need include summary, group, symptoms, conditions, fault_codes, safety_relevant, missing_info, clues. Need quotes verbatim. Component given electrical/instrument panel speedometer/odometer; group instrumentation. Narrative: Odometer Fraud. contact purchased 2018 Honda Pilot. stated while attempting register discovered mileage discrepancy. private sale. At purchase mileage 98,423 and at registration discovered mileage over 230,000.\n\nNeed decide symptoms: odometer mileage discrepancy? \"mileage discrepancy\" is symptom? plain words. Conditions: maybe none? There is \"private sale\", \"registration\" not listed conditions. Could include \"after service\"? No. \"charging\"? no. Conditions array should include from allowed list? Prompt says conditions [\"cold\",\"moisture\",\"heat\",\"vibration\",\"intermittent\",\"after service\",\"charging\"] but perhaps only these. No conditions mentioned. Empty. Fault codes empty. Safety false (given and report no safety). Missing_info: component? no given/component. symptom? has mileage discrepancy. conditions? maybe missing conditions. mileage present (230000 and narrative values). date? received_at but not event date; missing date of purchase/registration? The analysis needs date maybe missing. Should list \"date\" maybe. Also conditions missing. Need not invent. Could list [\"date\",\"conditions\"] or maybe [\"conditions\"] only. Need decide. Rule list missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Component present, symptom present, mileage present, date? report has received_at but not purchase/registration date. The narrative lacks date of purchase/registration; date could be missing. Conditions absent. So missing_info [\"conditions\",\"date\"].\n\nClues with kind and quote. Need include symptom quote \"mileage discrepancy\" or \"it was discovered that there was a mileage discrepancy\". Condition? maybe \"The vehicle was a private sale.\" kind other? \"other\" maybe. Component group quote \"Odometer Fraud\" kind component_group? or symptom? Need quote verbatim. Clues:\n- {\"kind\":\"symptom\",\"quote\":\"mileage discrepancy\"} exact substring yes.\n- {\"kind\":\"component_group\",\"quote\":\"Odometer Fraud\"} maybe symptom? Odometer Fraud is issue.\n- {\"kind\":\"other\",\"quote\":\"The vehicle was a private sale.\"}\n- {\"kind\":\"other\",\"quote\":\"At the time of purchase, the vehicle mileage was 98,423 and at the time of registration, it was discovered that the mileage was over 230,000.\"} This supports mileage discrepancy.\nNeed no safety clue because false.\n\nSummary one line: \"Instrument panel/odometer mileage discrepancy on a 2018 Honda Pilot purchased privately; 98,423 at purchase vs over 230,000 at registration.\" Good.\n\nNeed JSON only. Ensure valid JSON. \"symptoms\": [\"mileage discrepancy\"] or [\"odometer mileage discrepancy\"]. Plain words. Use \"odometer mileage discrepancy\". Conditions empty. fault_codes empty. safety_relevant false. missing_info [\"conditions\",\"date\"].\n\nNeed group \"instrumentation\". Could include exact. final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793527736,
+      "id": "2e25ea8a29aaa7f26e381aca9cf11b2d",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 821,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 656,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0003138,
+          "billing_source": "go",
+          "list_cost": 0.000523,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 195,
+            "output": 821,
+            "reasoning": 656
+          }
+        },
+        "prompt_tokens": 579,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1400
+      }
+    },
+    "text": "{\"summary\":\"Instrument panel/odometer mileage discrepancy on a 2018 Honda Pilot purchased privately; 98,423 at purchase vs over 230,000 at registration.\",\"group\":\"instrumentation\",\"symptoms\":[\"odometer mileage discrepancy\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"conditions\",\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"mileage discrepancy\"},{\"kind\":\"component_group\",\"quote\":\"Odometer Fraud\"},{\"kind\":\"other\",\"quote\":\"The vehicle was a private sale.\"},{\"kind\":\"other\",\"quote\":\"At the time of purchase, the vehicle mileage was 98,423 and at the time of registration, it was discovered that the mileage was over 230,000.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0003138,
+      "cached_tokens": 384,
+      "cost_usd": 0.000523,
+      "input_tokens": 579,
+      "list_cost_usd": 0.000523,
+      "output_tokens": 821,
+      "reasoning_tokens": 656
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "067e39851c3b813bdec3ed4bc1ab7073f4788fefc82a068175f194d9af8454c4",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 5987,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\": \"Run a standard TPMS diagnostic on the 2012 Toyota Highlander because the TPMS warning lamp is illuminated and the cause remains undetermined.\", \"rationale\": \"The narrative reports an illuminated TPMS warning light at about 90,200 miles, a tire center unable to determine the cause, and the owner linking the issue to NHTSA Campaign Number 24V452000. No rulebook entry supports a targeted load test, so the standard TPMS diagnostic is appropriate.\", \"group\": \"safety_systems\", \"symptoms\": [\"TPMS warning light illuminated\"], \"conditions\": [], \"fault_codes\": [\"24V452000\"], \"safety_relevant\": false, \"targeted\": false, \"test_name\": \"Standard TPMS diagnostic inspection\", \"clues\": [{\"kind\": \"symptom\", \"quote\": \"TPMS warning light was illuminated\"}, {\"kind\": \"fault_code\", \"quote\": \"NHTSA Campaign Number: 24V452000\"}, {\"kind\": \"other\", \"quote\": \"The failure mileage was approximately 90,200.\"}]}",
+            "reasoning_content": "We need to output JSON only. Need use facts from tool results. Rulebook empty, so no targeted test named; targeted false. Safety_relevant false per narrative (no risk to people shown). Component group safety_systems. Symptoms TPMS warning light illuminated. Conditions maybe none. Fault codes: NHTSA Campaign Number 24V452000? The extraction has fault_codes 24V452000, but investigation/recall results empty. Narrative mentions campaign. Can include fault_code quote \"NHTSA Campaign Number: 24V452000\" verbatim. Clues must be verbatim from case narrative. Need copy quotes exactly from narrative. Check narrative: \"The contact stated that the TPMS warning light was illuminated.\" So quote \"TPMS warning light was illuminated\" is verbatim substring. Component group quote \"TIRES:PRESSURE MONITORING AND REGULATING SYSTEMS\" appears in component field but not narrative? The rule says quote copied verbatim from case narrative. The narrative does not include component string. So cannot cite component group quote from narrative. We can include clue kind component_group? Need quote verbatim from narrative; perhaps \"2012 Toyota Highlander\" for component? Better not include component_group clue unless narrative has \"TPMS\" which is a substring. But kind component_group with quote \"TPMS\" is verbatim from narrative? Narrative has \"TPMS warning light\". Yes \"TPMS\" occurs. But it's not exactly component group; still can be clue. Need every quote verbatim. Fault code quote \"NHTSA Campaign Number: 24V452000\" appears in narrative? Narrative: \"NHTSA Campaign Number: 24V452000 (Tires).\" Yes exact substring includes colon? \"NHTSA Campaign Number: 24V452000\" yes.\n\nNeed summary one line: what to test and why. But no rulebook. Standard test? The prompt says propose standard test if no targeted. But test_name? Maybe \"Standard TPMS diagnostic test\" or \"Standard tire pressure monitoring system inspection\". Need not be rulebook named because no rulebook. targeted false. test_name maybe \"Standard TPMS diagnostic inspection\". Summary: \"Run standard TPMS diagnostic on 2012 Toyota Highlander; warning lamp illuminated with cause undetermined and possible link to campaign 24V452000.\" Rationale: \"TPMS warning light illuminated at ~90,200 miles; tire center could not determine cause; owner linked to NHTSA campaign 24V452000; no rulebook entry to justify targeted load test.\" But don't cite ids not in tool results? 24V452000 is in narrative and extraction, so ok. Case id? Avoid. Similar case id 1723335 in tool results; can cite? Not needed. Could mention similar case? No.\n\nClues: symptom quote, fault_code quote, maybe other mileage quote. But \"other\" mileage quote is verbatim: \"The failure mileage was approximately 90,200.\" Yes. Include component_group quote maybe \"TPMS\" verbatim. Conditions empty. fault_codes [\"24V452000\"]. safety_relevant false. targeted false. test_name \"Standard TPMS diagnostic inspection\".\n\nNeed valid JSON no other text. Ensure no markdown. Let's craft.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530749,
+      "id": "ceb6b771ab484588aa7fc12c24159414",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 910,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 677,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00041769,
+          "billing_source": "go",
+          "list_cost": 0.00069615,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 1001,
+            "output": 910,
+            "reasoning": 677
+          }
+        },
+        "prompt_tokens": 1001,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 1911
+      }
+    },
+    "text": "{\"summary\": \"Run a standard TPMS diagnostic on the 2012 Toyota Highlander because the TPMS warning lamp is illuminated and the cause remains undetermined.\", \"rationale\": \"The narrative reports an illuminated TPMS warning light at about 90,200 miles, a tire center unable to determine the cause, and the owner linking the issue to NHTSA Campaign Number 24V452000. No rulebook entry supports a targeted load test, so the standard TPMS diagnostic is appropriate.\", \"group\": \"safety_systems\", \"symptoms\": [\"TPMS warning light illuminated\"], \"conditions\": [], \"fault_codes\": [\"24V452000\"], \"safety_relevant\": false, \"targeted\": false, \"test_name\": \"Standard TPMS diagnostic inspection\", \"clues\": [{\"kind\": \"symptom\", \"quote\": \"TPMS warning light was illuminated\"}, {\"kind\": \"fault_code\", \"quote\": \"NHTSA Campaign Number: 24V452000\"}, {\"kind\": \"other\", \"quote\": \"The failure mileage was approximately 90,200.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00041769,
+      "cached_tokens": 0,
+      "cost_usd": 0.00069615,
+      "input_tokens": 1001,
+      "list_cost_usd": 0.00069615,
+      "output_tokens": 910,
+      "reasoning_tokens": 677
+    }
+  }
+}

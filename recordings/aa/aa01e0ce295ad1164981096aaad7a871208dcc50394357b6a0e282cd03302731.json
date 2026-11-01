@@ -1,0 +1,66 @@
+{
+  "key": "aa01e0ce295ad1164981096aaad7a871208dcc50394357b6a0e282cd03302731",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10670,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Visibility/defroster/rear window glass: rear window popped and spider-cracked from the defroster grid while the rear defroster was on in a parked 2020 Ford Explorer, compromising glass integrity and visibility.\",\"group\":\"body_controls\",\"symptoms\":[\"rear window suddenly made a popping noise\",\"spider-crack from a point near the defroster grid\",\"cracking continued slowly across the entire rear window\",\"rear glass integrity compromised\",\"visibility reduced\"],\"conditions\":[\"heat\",\"moisture\"],\"fault_codes\":[\"N192265660\"],\"safety_relevant\":true,\"missing_info\":[],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"Affected Component: Visibility / Defroster / Rear Window Glass\"},{\"kind\":\"condition\",\"quote\":\"While the rear defroster was on\"},{\"kind\":\"symptom\",\"quote\":\"suddenly made a popping noise and began to spider-crack from a point near the defroster grid\"},{\"kind\":\"symptom\",\"quote\":\"The cracking continued slowly across the entire rear window after the noise.\"},{\"kind\":\"condition\",\"quote\":\"parked outdoors in normal fall weather conditions in Pennsylvania\"},{\"kind\":\"condition\",\"quote\":\"the rear defroster had been turned on to clear condensation\"},{\"kind\":\"other\",\"quote\":\"rear defroster thermal event\"},{\"kind\":\"fault_code\",\"quote\":\"N192265660\"},{\"kind\":\"other\",\"quote\":\"defroster overheating and rear-window damage\"},{\"kind\":\"safety\",\"quote\":\"The defect presents a safety concern\"},{\"kind\":\"safety\",\"quote\":\"rear glass integrity is compromised and visibility is reduced\"},{\"kind\":\"safety\",\"quote\":\"It is not safe to drive to a dealership.\"}]}",
+            "reasoning_content": "We need answer one JSON object no other text. Need parse report. Component VISIBILITY/WIPER but narrative affected Visibility / Defroster / Rear Window Glass. Group given body_controls. Need summary one line component symptom conditions. Symptoms: rear window suddenly made popping noise and spider-crack from point near defroster grid; cracking continued slowly across entire rear window; rear glass integrity compromised and visibility reduced? Symptom plain words. Conditions: rear defroster was on; parked outdoors normal fall weather Pennsylvania; condensation; maybe cold? Not explicit cold, heat? Defroster thermal event. Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. Can include \"heat\"? Report says thermal event, defroster on, clear condensation. Moisture? condensation. We should only use explicit or infer? Conditions list from report: rear defroster on; parked outdoors; normal fall weather; condensation. The allowed condition values don't include \"defroster on\"; we can include \"heat\" because thermal event? Hmm conditions array accepts those tokens. Should use \"heat\" if report mentions defroster overheating/thermal event. Also \"moisture\" for condensation? The conditions list is likely fixed categories. Could include \"heat\" and maybe \"moisture\". Need fault_codes: N192265660 named as Customer Satisfaction Program, not exactly fault code? It says fault_codes code if report names one. This is a program number; maybe include. Clues verbatim. Need safety_relevant true because report mentions safety concern, compromised glass, visibility reduced, not safe to drive. Though source has false but must override based on narrative. missing_info: mileage present approx 82000; date present Oct 24 2025; conditions present; component present; symptom present. So empty list. Need quotes verbatim. Ensure JSON valid, no markdown? Answer with one JSON object and no other text. final should be JSON. Need quotes exact substrings from narrative. Need be careful with apostrophes? Report includes Unicode \\u2019 maybe. Use plain? Verbatim copied from report character for character. We can include \"While the rear defroster was on\" exact. \"suddenly made a popping noise and began to spider-crack from a point near the defroster grid\" exact. \"The cracking continued slowly across the entire rear window after the noise.\" exact. \"rear defroster thermal event\" exact? It says \"This appears to be a rear defroster thermal event\". \"defroster overheating and rear-window damage\" exact. \"safety concern\" exact. \"rear glass integrity is compromised and visibility is reduced\" exact. \"It is not safe to drive to a dealership.\" exact. \"N192265660\" exact. \"Affected Component: Visibility / Defroster / Rear Window Glass\" exact? It is in narrative. Good. Summary one line: \"Visibility/defroster/rear window glass: rear window popped and spider-cracked from defroster grid while rear defroster on in parked 2020 Ford Explorer; glass integrity/visibility compromised.\" Good.\n\nNeed decide group: \"body_controls\" given group. The component group electrical/electronic? It says group \"the electrical/electronic component group, or the given group\". Given group body_controls. Use body_controls.\n\nSymptoms array: \"rear window suddenly made a popping noise\"; \"spider-crack from a point near the defroster grid\"; \"cracking continued slowly across the entire rear window\"; \"rear glass integrity compromised\"; \"visibility reduced\". Maybe \"rear defroster thermal event\". Keep plain.\n\nConditions: [\"heat\",\"moisture\"]? Is moisture okay? It says condensation. The allowed \"moisture\" maybe yes. \"cold\"? Normal fall weather in Pennsylvania could be cold? Don't infer. \"heat\" due thermal event and defroster on. Maybe include \"heat\". Should conditions include \"intermittent\"? No. \"after service\"? No. \"charging\"? No. \"vibration\"? No. Could include \"moisture\" because condensation. I'll include [\"heat\",\"moisture\"] but is \"heat\" from report? It mentions thermal event and overheating. Good.\n\nFault_codes: [\"N192265660\"]. It is not a fault code but named program; rule says code if report names one. Could include as fault_code clue. Maybe fault_codes should be codes like Pxxxx. This is Customer Satisfaction Program, not fault code. But the report names a code-like identifier. The schema says \"fault_codes\": [\"code if the report names one\"]. I'd include N192265660. Clue kind fault_code quote N192265660. Good.\n\nSafety_relevant true. Need include safety clue quote \"The defect presents a safety concern\" or \"It is not safe to drive to a dealership.\" Use both? Clues can include multiple. Need not too many but sufficient. Need every quote exact. Let's craft.\n\nNeed ensure JSON no trailing commas. Use quotes. Need escape? Use normal apostrophes? Verbatim quotes include \"Ford’s\" with curly apostrophe? Avoid. Use exact substrings without special apostrophe. \"The defect presents a safety concern\" exact. \"It is not safe to drive to a dealership.\" exact. Good.\n\nNeed summary one line no newline? JSON string. Fine.\n\nFinal only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531532,
+      "id": "85963c9a3946c63522d3cf102e035747",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1495,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1128,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00057201,
+          "billing_source": "go",
+          "list_cost": 0.00095335,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 368,
+            "output": 1495,
+            "reasoning": 1128
+          }
+        },
+        "prompt_tokens": 752,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2247
+      }
+    },
+    "text": "{\"summary\":\"Visibility/defroster/rear window glass: rear window popped and spider-cracked from the defroster grid while the rear defroster was on in a parked 2020 Ford Explorer, compromising glass integrity and visibility.\",\"group\":\"body_controls\",\"symptoms\":[\"rear window suddenly made a popping noise\",\"spider-crack from a point near the defroster grid\",\"cracking continued slowly across the entire rear window\",\"rear glass integrity compromised\",\"visibility reduced\"],\"conditions\":[\"heat\",\"moisture\"],\"fault_codes\":[\"N192265660\"],\"safety_relevant\":true,\"missing_info\":[],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"Affected Component: Visibility / Defroster / Rear Window Glass\"},{\"kind\":\"condition\",\"quote\":\"While the rear defroster was on\"},{\"kind\":\"symptom\",\"quote\":\"suddenly made a popping noise and began to spider-crack from a point near the defroster grid\"},{\"kind\":\"symptom\",\"quote\":\"The cracking continued slowly across the entire rear window after the noise.\"},{\"kind\":\"condition\",\"quote\":\"parked outdoors in normal fall weather conditions in Pennsylvania\"},{\"kind\":\"condition\",\"quote\":\"the rear defroster had been turned on to clear condensation\"},{\"kind\":\"other\",\"quote\":\"rear defroster thermal event\"},{\"kind\":\"fault_code\",\"quote\":\"N192265660\"},{\"kind\":\"other\",\"quote\":\"defroster overheating and rear-window damage\"},{\"kind\":\"safety\",\"quote\":\"The defect presents a safety concern\"},{\"kind\":\"safety\",\"quote\":\"rear glass integrity is compromised and visibility is reduced\"},{\"kind\":\"safety\",\"quote\":\"It is not safe to drive to a dealership.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00057201,
+      "cached_tokens": 384,
+      "cost_usd": 0.00095335,
+      "input_tokens": 752,
+      "list_cost_usd": 0.00095335,
+      "output_tokens": 1495,
+      "reasoning_tokens": 1128
+    }
+  }
+}

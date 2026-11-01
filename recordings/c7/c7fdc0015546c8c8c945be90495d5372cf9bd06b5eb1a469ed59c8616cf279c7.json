@@ -1,0 +1,66 @@
+{
+  "key": "c7fdc0015546c8c8c945be90495d5372cf9bd06b5eb1a469ed59c8616cf279c7",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 15871,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Front driver's side door latch actuator will not release despite electronic locks operating; occurred after parking in driveway.\",\n  \"group\": \"body_controls\",\n  \"symptoms\": [\n    \"front driver's side door will not open\",\n    \"door release is not functioning\",\n    \"door latch will not release even though locks release\",\n    \"mechanical failure\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"LATCHES/LOCKS/LINKAGES:ELECTRONIC LOCK/LATCH ACTUATOR\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Front driver's side door will not open.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Electronic locks are operating, but the door release is not functioning.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"When attempting to exit the car after pulling into the driveway\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The locks would release, but the door latch would not.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"it was not an electrical issue, but mechanical failure.\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"What if I was in a situation where I did need to get out of the vehicle immediately?\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"Such as a high-water incident, fire, etc.\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer only JSON. Need normalize report. Need extract component group given body_controls. Symptoms: front driver's side door will not open; electronic locks operating but door release not functioning; door latch would not release; mechanical failure. Conditions? maybe after service? No. \"after pulling into driveway\" not condition list? Conditions allowed cold, moisture, heat, vibration, intermittent, after service, charging. Report mentions not electrical but mechanical failure, key actuates locks. No listed conditions. Safety relevant true? Report mentions safety concern fire high-water, need get out immediately. It asks what if fire etc, not actual crash/fire. Rule set safety_relevant when report mentions crash, fire, smoke, injury, loss of control, stall at speed or other risk to people. It mentions fire and high-water incident, risk inability exit. Also back surgery injury? Not caused. Safety concern explicitly. I'd set true. Fault codes none. Missing info: mileage null, date? received date but vehicle event date not given. Component present, symptom present, conditions? Conditions maybe not missing? Need list only facts analysis needs: mileage, date maybe. Missing_info [\"mileage\",\"date\"] possibly conditions. Since no conditions specified? But report includes driveway, after pulling in. Could include conditions missing? We can include mileage, date. Summary one line: component, symptom, conditions. Quote verbatim spans. Need ensure quotes from narrative. Clues: symptom quote \"Front driver's side door will not open.\" condition? \"after pulling into the driveway\" quote? kind condition maybe \"When attempting to exit the car after pulling into the driveway\" but allowed condition not in list? clue kind condition can quote. Safety quote \"What if I was in a situation where I did need to get out of the vehicle immediately?\" or \"Such as a high-water incident, fire, etc.\" Need exact. Component group quote? \"door latch\" or \"actuator\". Kind component_group quote \"door latch\" maybe. Fault code none.\n\nNeed JSON no other text. Ensure valid JSON. Missing_info maybe [\"mileage\",\"date\"] no conditions? The component field present. symptom present. conditions? Some condition info after driveway but not environmental. For analysis maybe need exact date of incident. Include mileage and date. Could include conditions? Since report doesn't state weather/temp etc. But conditions not necessary? The schema says missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Use empty when nothing important missing. Mileage null important for older vehicle. Date received at but incident date missing. I'll include mileage and date.\n\nNeed \"summary\": \"Front driver's side door latch actuator will not release despite electronic locks operating; occurred after parking in driveway.\" That's one line. Component, symptom, conditions. Conditions \"after parking in driveway\" maybe okay. Group body_controls.\n\nNeed safety_relevant true. Even though input has false, we override due mention fire/high-water risk. Should we? Rules: Set safety_relevant when report mentions a crash, fire, smoke, injury, loss of control, a stall at speed or another risk to people. It mentions fire in hypothetical safety concern and inability to exit. Yes.\n\nQuotes exact:\n- \"Front driver's side door will not open.\" yes.\n- \"Electronic locks are operating, but the door release is not functioning.\" yes.\n- \"the door latch would not release\" yes? Narrative: \"The locks would release, but the door latch would not.\" Contains \"door latch would not\". Better quote \"The locks would release, but the door latch would not.\" exact.\n- \"it was not an electrical issue, but mechanical failure.\" exact.\n- safety: \"What if I was in a situation where I did need to get out of the vehicle immediately?\" exact. Also \"Such as a high-water incident, fire, etc.\" exact.\n- condition: \"When attempting to exit the car after pulling into the driveway\" exact? Narrative: \"When attempting to exit the car after pulling into the driveway, I could not open the driver's door.\" yes.\n- component_group quote \"LATCHES/LOCKS/LINKAGES:ELECTRONIC LOCK/LATCH ACTUATOR\" is in component field not narrative? Report in user message includes component. Quote verbatim from report (whole JSON). Can quote component value? The report includes that field. But \"component_group\" clue maybe quote \"ELECTRONIC LOCK/LATCH ACTUATOR\" which is in report. Good.\n\nNeed no markdown? Answer JSON only. Final should be JSON object. Ensure no extra text. \nNeed \"fault_codes\": [].\n\"conditions\": []? The allowed conditions list. It doesn't mention cold/moisture/heat/vibration/intermittent/after service/charging. So [] despite clue condition quote? Could include \"after service\"? no. I can include no conditions. But summary says after parking. That's not in conditions list. Hmm conditions array should list from allowed. [] acceptable. Clue condition can be \"When attempting...\" but kind condition. Fine.\n\nNeed \"symptoms\": [\"front driver's side door will not open\", \"door release not functioning\", \"door latch will not release despite locks releasing\", \"mechanical failure\"]. Maybe \"mechanical failure\" not symptom? Could be symptom? Better include.\n\nNeed missing_info: [\"mileage\",\"date\"]. Maybe \"conditions\" since no environmental conditions. But report has operational condition. I'd include \"mileage\", \"date\". It already has component, symptom. Date of incident missing though received_at. Conditions not necessary.\n\nNeed quotes character exact. Check case: Narrative begins \"My vehicle: 2003 4Runner SR5 2WD VIN: [XXX]   Issue: Front driver's side door will not open. Electronic locks are operating, but the door release is not functioning.  Safety Concern: What if I was in a situation where I did need to get out of the vehicle immediately? Such as a high-water incident, fire, etc. Especially for a person [XXX], as myself, this would be a big issue.  When attempting to exit the car after pulling into the driveway, I could not open the driver's door. The locks would release, but the door latch would not. I had to crawl over the console to get out through the passenger side.  This was not easy as I had back fusion surgery and 8 disc replaced, fused.  I had to open the sunroof to help with get over and out.   After I did get out, I tried the key in the driver's door, it would actuate the door locks on all doors, but the driver's side door latch would still not release. I even disconnected the battery and reconnected. No help. And after knowing more, it was not an electrical issue, but mechanical failure.   I now have it at the repair shop after talking with Toyota Service manage who admitted it was a poor design as the repair for this is to destroy the door panel to get to the actuator to attempt to release the door latch. The estimate for this work is 1,150.00.   I am beyond frustration, and especially when I see there is no recall for this issue. There are penty of conversations on this same issue on 4Runner forums as well as all over YouTube.   Thank you for looking into this. You can reach me at:  [XXX]  [XXX]  [XXX]  INFORMATION REDACTED PURSUANT TO THE FREEDOM OF INFORMATION ACT (FOIA), 5 U.S.C. 552(B)(6)\"\n\nQuote \"Electronic locks are operating, but the door release is not functioning.\" yes. \"The locks would release, but the door latch would not.\" yes. \"it was not an electrical issue, but mechanical failure.\" yes. \"Such as a high-water incident, fire, etc.\" yes. \"What if I was in a situation where I did need to get out of the vehicle immediately?\" yes. \"When attempting to exit the car after pulling into the driveway\" yes. \"ELECTRONIC LOCK/LATCH ACTUATOR\" yes in component. Need exact substring includes colon? Component: \"LATCHES/LOCKS/LINKAGES:ELECTRONIC LOCK/LATCH ACTUATOR\". Quote that whole or substring. Use whole.\n\nNeed maybe \"door latch would still not release\" exact: \"but the driver's side door latch would still not release.\" Yes. Can use.\n\nNeed ensure JSON valid: single line? Can pretty. Final answer only JSON. \nPotential issue \"safety_relevant\": true although source false. Good.\n\nNeed answer no other text. Use JSON code? The instruction says one JSON object and no other text. Do not wrap in code fences. Final plain JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793527143,
+      "id": "1b870167f3c4403f64ee246d1080670b",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2200,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1823,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00083985,
+          "billing_source": "go",
+          "list_cost": 0.00139975,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 524,
+            "output": 2200,
+            "reasoning": 1823
+          }
+        },
+        "prompt_tokens": 908,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 3108
+      }
+    },
+    "text": "{\n  \"summary\": \"Front driver's side door latch actuator will not release despite electronic locks operating; occurred after parking in driveway.\",\n  \"group\": \"body_controls\",\n  \"symptoms\": [\n    \"front driver's side door will not open\",\n    \"door release is not functioning\",\n    \"door latch will not release even though locks release\",\n    \"mechanical failure\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"LATCHES/LOCKS/LINKAGES:ELECTRONIC LOCK/LATCH ACTUATOR\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Front driver's side door will not open.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Electronic locks are operating, but the door release is not functioning.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"When attempting to exit the car after pulling into the driveway\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The locks would release, but the door latch would not.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"it was not an electrical issue, but mechanical failure.\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"What if I was in a situation where I did need to get out of the vehicle immediately?\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"Such as a high-water incident, fire, etc.\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00083985,
+      "cached_tokens": 384,
+      "cost_usd": 0.00139975,
+      "input_tokens": 908,
+      "list_cost_usd": 0.00139975,
+      "output_tokens": 2200,
+      "reasoning_tokens": 1823
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "c60dbce4e54c55df744d7e18923cd734b6935ec0ac8bd6f40f43d836627a2bf8",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10039,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system: complete electrical shutdown at 55 mph after about 15 miles, no restart, then normal next day with no codes.\",\"group\":\"electrical_general\",\"symptoms\":[\"complete electrical shutdown\",\"engine shut off\",\"power steering failed\",\"lights shut off\",\"hazard lights inoperative\",\"vehicle would not restart\",\"vehicle locked in park\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"condition\",\"quote\":\"Driving vehicle home on main highway at 55MPH\"},{\"kind\":\"symptom\",\"quote\":\"vehicle completely shut down\"},{\"kind\":\"symptom\",\"quote\":\"Engine shut off, power steering failed, lights shut off, everything electric shut down.\"},{\"kind\":\"symptom\",\"quote\":\"was unable to steer the vehicle to the shoulder\"},{\"kind\":\"safety\",\"quote\":\"rolled to a stop in the middle of the 2 lane road in the dark\"},{\"kind\":\"symptom\",\"quote\":\"Hazard lights would not work either\"},{\"kind\":\"symptom\",\"quote\":\"would not restart\"},{\"kind\":\"condition\",\"quote\":\"couldnt get the vehicle to duplicate the incident\"}]}",
+            "reasoning_content": "We need answer only JSON. Need parse. Component electrical system, group electrical_general. Symptoms: vehicle completely shut down, engine shut off, power steering failed, lights shut off, everything electric shut down, unable to steer, rolled to stop, locked in park, hazard lights wouldn't work, wouldn't restart, started next day no codes, couldn't duplicate. Conditions: driving at 55MPH, about 15 miles, dark, intermittent? \"unable to duplicate\", \"started like nothing wrong\" intermittent. Safety relevant true: loss of control? \"unable to steer\", shut down at 55MPH in middle road in dark, risk. Missing info: mileage null, date? received_at but incident date missing. Component present symptom present conditions present. missing_info [\"mileage\",\"date\"]. Fault codes none named (showed no codes, but no specific). Could include fault_codes [].\nClues verbatim: quotes exact. Need ensure quote spans exactly. Let's craft.\n\nSummary one line: \"Electrical system: complete electrical shutdown at 55 mph after ~15 miles, no restart, then normal next day with no codes.\" This is not quote but summary.\n\nGroup \"electrical_general\".\n\nSymptoms array plain words: \"complete electrical shutdown\", \"engine shut off\", \"power steering failed\", \"lights shut off\", \"hazard lights inoperative\", \"vehicle would not restart\", \"vehicle locked in park\". Conditions: [\"intermittent\", \"heat\"? no. \"cold\"? dark not cold. \"vibration\"? no. maybe \"after service\"? no. \"charging\"? no. Conditions allowed list: cold, moisture, heat, vibration, intermittent, after service, charging. Only intermittent. Could also \"driving\"? Not in enumerated. Use [\"intermittent\"].\n\nFault codes [].\n\nSafety true.\n\nMissing info: mileage, date. Maybe \"conditions\" already there, component/symptom present. Date incident missing although received_at. So [\"mileage\",\"date\"].\n\nClues: kind symptom quote \"vehicle completely shut down.\" exact from narrative. Quote includes period? narrative: \"vehicle completely shut down. Engine shut off...\" yes quote \"vehicle completely shut down\" or with period. Verbatim span. Use exact substrings.\n\nNeed include condition quote \"Driving vehicle home on main highway at 55MPH\" exact. symptom quote \"Engine shut off, power steering failed, lights shut off, everything electric shut down.\" exact. symptom \"was unable to steer the vehicle to the shoulder\" exact. symptom \"Hazard lights would not work either\" exact. symptom \"would not restart\" exact. condition intermittent quote \"couldnt get the vehicle to duplicate the incident\" exact. safety quote \"rolled to a stop in the middle of the 2 lane road in the dark\" exact. Maybe \"Car behind us saw us in time and stopped\" but safety.\n\nNeed JSON no markdown? User says one JSON object and no other text. Answer raw JSON. Ensure valid JSON. No trailing commas. \n\nNeed \"safety_relevant\": true.\n\nClues kind condition for intermittent. Could quote \"at dealership the next day the vehicle started like nothing was wrong\" as intermittent. But exact. Use \"couldnt get the vehicle to duplicate the incident\".\n\nAlso fault code clue? \"showed no codes\" not fault code. no.\n\nNeed \"component_group\" clue: quote \"ELECTRICAL SYSTEM\" from component field? Is component field part of report? It says read report in user message. Quote can be from report; component value is in JSON. Could include quote \"ELECTRICAL SYSTEM\" yes. But not necessary. Clues evidence.\n\nEnsure summary one line no newline. \n\nLet's final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793525956,
+      "id": "41be0e8ba73cfaab8d5da545202dbe07",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1046,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 769,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00040353,
+          "billing_source": "go",
+          "list_cost": 0.00067255,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 292,
+            "output": 1046,
+            "reasoning": 769
+          }
+        },
+        "prompt_tokens": 676,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1722
+      }
+    },
+    "text": "{\"summary\":\"Electrical system: complete electrical shutdown at 55 mph after about 15 miles, no restart, then normal next day with no codes.\",\"group\":\"electrical_general\",\"symptoms\":[\"complete electrical shutdown\",\"engine shut off\",\"power steering failed\",\"lights shut off\",\"hazard lights inoperative\",\"vehicle would not restart\",\"vehicle locked in park\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"condition\",\"quote\":\"Driving vehicle home on main highway at 55MPH\"},{\"kind\":\"symptom\",\"quote\":\"vehicle completely shut down\"},{\"kind\":\"symptom\",\"quote\":\"Engine shut off, power steering failed, lights shut off, everything electric shut down.\"},{\"kind\":\"symptom\",\"quote\":\"was unable to steer the vehicle to the shoulder\"},{\"kind\":\"safety\",\"quote\":\"rolled to a stop in the middle of the 2 lane road in the dark\"},{\"kind\":\"symptom\",\"quote\":\"Hazard lights would not work either\"},{\"kind\":\"symptom\",\"quote\":\"would not restart\"},{\"kind\":\"condition\",\"quote\":\"couldnt get the vehicle to duplicate the incident\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00040353,
+      "cached_tokens": 384,
+      "cost_usd": 0.00067255,
+      "input_tokens": 676,
+      "list_cost_usd": 0.00067255,
+      "output_tokens": 1046,
+      "reasoning_tokens": 769
+    }
+  }
+}

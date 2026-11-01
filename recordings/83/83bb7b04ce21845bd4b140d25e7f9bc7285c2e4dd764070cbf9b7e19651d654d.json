@@ -1,0 +1,66 @@
+{
+  "key": "83bb7b04ce21845bd4b140d25e7f9bc7285c2e4dd764070cbf9b7e19651d654d",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 7434,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2020 Honda Odyssey ADAS: windshield monocular camera faulty, disabling adaptive cruise control, lane departure and forward collision braking\",\"group\":\"adas\",\"symptoms\":[\"windshield monocular camera faulty\",\"adaptive cruise control unavailable\",\"lane departure unavailable\",\"forward collision braking unavailable\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"conditions\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"Windshield monocular camera has became faulty.\"},{\"kind\":\"symptom\",\"quote\":\"No longer have adaptive cruise control, lane departure, forward collision braking.\"},{\"kind\":\"safety\",\"quote\":\"No longer have adaptive cruise control, lane departure, forward collision braking.\"},{\"kind\":\"other\",\"quote\":\"Seems like a very common problem.\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize. Report: component adaptive cruise control, group adas. Narrative: windshield monocular camera faulty. No longer adaptive cruise control, lane departure, forward collision braking. Expense 1500 common problem. Safety relevant? It mentions loss of forward collision braking/adaptive cruise/lane departure. Does that count safety? The prompt says set safety_relevant when mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. It doesn't explicitly mention crash etc. But loss of ADAS safety systems could be risk. Need decide. Given field safety_relevant false in input but we should not blindly. \"forward collision braking\" loss could be safety risk. However rules: mention loss of control? no. another risk to people? Disabling forward collision braking arguably safety risk. But need be careful. The report says no longer have forward collision braking, lane departure, adaptive cruise control. That is a safety system failure. I'd set safety_relevant true? The prompt says set when report mentions crash, fire, smoke, injury, loss of control, a stall at speed or another risk to people. It doesn't mention a risk explicitly, but loss of forward collision braking is a safety feature unavailable. Hmm. The input has safety_relevant false (source). We normalise. I think true because safety system unavailable. But \"another risk to people\" maybe yes. We can include clue quote \"No longer have adaptive cruise control, lane departure, forward collision braking.\" kind safety? Or symptom. Need only quotes verbatim. Summary one line component symptom conditions. Conditions: none explicit? Maybe \"intermittent\"? no. \"after service\"? no. Cold/moisture/heat/vibration no. Could be empty. Symptoms: \"windshield monocular camera faulty\", \"adaptive cruise control unavailable\", \"lane departure unavailable\", \"forward collision braking unavailable\". Fault codes none. Missing info: mileage? mileage null, date present received_at. Conditions missing? For analysis maybe component and symptom present; conditions absent. Mileage missing. Date present received_at 2025-10-07. Missing_info should include \"mileage\", \"conditions\" maybe. Component present, symptom present. Need maybe missing_info [\"mileage\",\"conditions\"]. Clues with quotes: \"Windshield monocular camera has became faulty.\" kind symptom; \"No longer have adaptive cruise control, lane departure, forward collision braking.\" kind symptom or safety. Component group quote? \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\" is component field not narrative? User message report includes JSON. Quotes copied verbatim from report; can quote field values? Probably yes. \"Windshield monocular camera has became faulty.\" exact includes grammar. \"No longer have adaptive cruise control, lane departure, forward collision braking.\" exact. \"Seems like a very common problem.\" other. Group \"adas\" given. Summary: \"2020 Honda Odyssey ADAS: windshield monocular camera faulty; adaptive cruise, lane departure, forward collision braking unavailable.\" Conditions none. Need JSON only no markdown. Ensure valid. Safety relevant maybe true with clue quote \"No longer have adaptive cruise control, lane departure, forward collision braking.\" as safety? But this same quote could be symptom. We can have multiple clues. Need not overdo. Let's craft:\n\n{\n \"summary\": \"2020 Honda Odyssey ADAS: windshield monocular camera faulty, disabling adaptive cruise control, lane departure and forward collision braking\",\n \"group\": \"adas\",\n \"symptoms\": [\"windshield monocular camera faulty\", \"adaptive cruise control unavailable\", \"lane departure unavailable\", \"forward collision braking unavailable\"],\n \"conditions\": [],\n \"fault_codes\": [],\n \"safety_relevant\": true,\n \"missing_info\": [\"mileage\", \"conditions\"],\n \"clues\": [\n  {\"kind\":\"symptom\",\"quote\":\"Windshield monocular camera has became faulty.\"},\n  {\"kind\":\"symptom\",\"quote\":\"No longer have adaptive cruise control, lane departure, forward collision braking.\"},\n  {\"kind\":\"safety\",\"quote\":\"No longer have adaptive cruise control, lane departure, forward collision braking.\"},\n  {\"kind\":\"other\",\"quote\":\"Seems like a very common problem.\"}\n ]\n}\n\nNeed check quote exact: Narrative: \"Windshield monocular camera has became faulty. No longer have adaptive cruise control, lane departure, forward collision braking. Looks like about a $1,500 expense to fix. Seems like a very common problem.\" Yes.\n\nShould safety_relevant be true? The given safety_relevant false maybe conflict. The instruction says set safety_relevant when report mentions crash etc. It doesn't mention risk. But \"forward collision braking\" unavailable is safety relevant. I think true is defensible. However if strict, only mentions loss of systems not risk. \"another risk to people\" includes safety system disabled. I'll keep true. Desired oververbosity 5 but JSON only.\n\nNeed no other text. Final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531056,
+      "id": "87459a30e5ec04e22caf1f9bc5ad9755",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1200,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1030,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00044646,
+          "billing_source": "go",
+          "list_cost": 0.0007441,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 153,
+            "output": 1200,
+            "reasoning": 1030
+          }
+        },
+        "prompt_tokens": 537,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1737
+      }
+    },
+    "text": "{\"summary\":\"2020 Honda Odyssey ADAS: windshield monocular camera faulty, disabling adaptive cruise control, lane departure and forward collision braking\",\"group\":\"adas\",\"symptoms\":[\"windshield monocular camera faulty\",\"adaptive cruise control unavailable\",\"lane departure unavailable\",\"forward collision braking unavailable\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"conditions\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"Windshield monocular camera has became faulty.\"},{\"kind\":\"symptom\",\"quote\":\"No longer have adaptive cruise control, lane departure, forward collision braking.\"},{\"kind\":\"safety\",\"quote\":\"No longer have adaptive cruise control, lane departure, forward collision braking.\"},{\"kind\":\"other\",\"quote\":\"Seems like a very common problem.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00044646,
+      "cached_tokens": 384,
+      "cost_usd": 0.0007441,
+      "input_tokens": 537,
+      "list_cost_usd": 0.0007441,
+      "output_tokens": 1200,
+      "reasoning_tokens": 1030
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "235d20cc17e861b564ab593b83c7b77cc366e8dca5ea00a6238042748dca6e14",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 6791,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2021 Ford F-150 passenger-side LED DRL is dim; heat-damaged fiber-optic tube blocks light.\",\"group\":\"lighting\",\"symptoms\":[\"passenger-side LED daytime running light is noticeably dim compared with the driver’s side\",\"fiber-optic light tube becomes heat-damaged over time\",\"burned spot blocks light from passing through the DRL\"],\"conditions\":[\"heat\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"passenger-side LED daytime running light (DRL) has become noticeably dim compared to the driver’s side\"},{\"kind\":\"condition\",\"quote\":\"heat-damaged over time\"},{\"kind\":\"symptom\",\"quote\":\"burned spot blocks light from passing through the DRL\"},{\"kind\":\"safety\",\"quote\":\"increases the risk of daytime collisions\"},{\"kind\":\"other\",\"quote\":\"The problem is not electrical.\"},{\"kind\":\"component_group\",\"quote\":\"EXTERIOR LIGHTING\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize. Component exterior lighting group lighting. Symptoms: passenger-side LED daytime running light dim compared driver side; fiber-optic light tube heat-damaged/burned spot blocks light. Conditions: heat? Report says heat-damaged over time, not cold etc. It says not electrical. Safety concern mentions increased risk daytime collisions, reduced visibility. safety_relevant true because report mentions risk to people? It says safety-critical, increases risk of collisions. Yes. Fault codes none. missing_info: mileage, date? received_at exists but report date maybe missing? The report doesn't give mileage or date. Conditions? It gives heat over time but not ambient conditions. Analysis needs component yes present, symptom present. missing_info [\"mileage\",\"date\"] maybe conditions not missing because heat condition. Need quotes verbatim. Need ensure quotes exact substrings. Let's craft.\n\nSummary: \"2021 Ford F-150 passenger-side LED DRL dim; heat-damaged fiber-optic tube blocks light.\" One line.\n\nGroup lighting.\n\nSymptoms array: \"passenger-side LED daytime running light (DRL) has become noticeably dim compared to the driver’s side\"; \"fiber-optic style light tube ... becomes heat-damaged\"; \"burned spot blocks light from passing through the DRL\". Quotes must exact for clues. For symptoms plain words can paraphrase? Rules symptoms plain words. Clues quote verbatim.\n\nConditions: [\"heat\"] maybe \"over time\" not a condition list? Conditions allowed cold moisture heat vibration intermittent after service charging. Heat is mentioned. Maybe \"intermittent\" no.\n\nfault_codes [].\n\nsafety_relevant true.\n\nmissing_info [\"mileage\",\"date\"]? Date received_at but not incident date. The report doesn't explicitly date; the analysis needs date maybe. Mileage null. Conditions? Heat given. Component given. Symptom given. So [\"mileage\",\"date\"].\n\nClues: need verbatim spans copied. Include:\n- symptom quote \"passenger-side LED daytime running light (DRL) has become noticeably dim compared to the driver’s side\" Note curly apostrophe in driver’s. Need copy exact from narrative. It has \"driver\\u2019s\" yes curly.\n- condition quote \"heat-damaged over time\" exact? Narrative: \"becomes heat-damaged over time.\" yes substring.\n- symptom \"burned spot blocks light from passing through the DRL\" exact? Narrative: \"This burned spot blocks light from passing through the DRL\" quote \"burned spot blocks light from passing through the DRL\".\n- safety quote \"increases the risk of daytime collisions\" exact? Narrative: \"This increases the risk of daytime collisions.\" substring yes.\n- component_group quote maybe \"EXTERIOR LIGHTING\" from component field? Is that in report? The report JSON has component. Quote can be \"EXTERIOR LIGHTING\". But clues should from report. okay.\n- other quote \"The problem is not electrical.\" exact. Kind other. But maybe not needed. Could include to note not electrical. But clues should evidence. We can include.\n\nNeed be careful JSON valid. No markdown. Only JSON. Need no extra text.\n\nLet's produce.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530062,
+      "id": "3f113a47a139f00e5ea443c598ed6b23",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 899,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 669,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00036636,
+          "billing_source": "go",
+          "list_cost": 0.0006106,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 467,
+            "output": 899,
+            "reasoning": 669
+          }
+        },
+        "prompt_tokens": 851,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1750
+      }
+    },
+    "text": "{\"summary\":\"2021 Ford F-150 passenger-side LED DRL is dim; heat-damaged fiber-optic tube blocks light.\",\"group\":\"lighting\",\"symptoms\":[\"passenger-side LED daytime running light is noticeably dim compared with the driver’s side\",\"fiber-optic light tube becomes heat-damaged over time\",\"burned spot blocks light from passing through the DRL\"],\"conditions\":[\"heat\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"passenger-side LED daytime running light (DRL) has become noticeably dim compared to the driver’s side\"},{\"kind\":\"condition\",\"quote\":\"heat-damaged over time\"},{\"kind\":\"symptom\",\"quote\":\"burned spot blocks light from passing through the DRL\"},{\"kind\":\"safety\",\"quote\":\"increases the risk of daytime collisions\"},{\"kind\":\"other\",\"quote\":\"The problem is not electrical.\"},{\"kind\":\"component_group\",\"quote\":\"EXTERIOR LIGHTING\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00036636,
+      "cached_tokens": 384,
+      "cost_usd": 0.0006106,
+      "input_tokens": 851,
+      "list_cost_usd": 0.0006106,
+      "output_tokens": 899,
+      "reasoning_tokens": 669
+    }
+  }
+}

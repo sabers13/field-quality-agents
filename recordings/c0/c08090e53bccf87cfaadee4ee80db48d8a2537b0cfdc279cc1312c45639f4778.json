@@ -1,0 +1,66 @@
+{
+  "key": "c08090e53bccf87cfaadee4ee80db48d8a2537b0cfdc279cc1312c45639f4778",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 7098,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"ADAS forward collision avoidance warnings with a recurring battery/charging system detection warning that returns after service and cannot be replicated.\",\"group\":\"adas\",\"symptoms\":[\"recurring battery/charging system detection warning\",\"warning reappears after service\",\"dealer cannot replicate the issue\"],\"conditions\":[\"after service\",\"intermittent\",\"charging\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: WARNINGS\"},{\"kind\":\"symptom\",\"quote\":\"recurring battery/charging system detection warning\"},{\"kind\":\"condition\",\"quote\":\"warning continues to reappear after the vehicle is returned to me\"},{\"kind\":\"condition\",\"quote\":\"has not been resolved despite multiple service visits\"},{\"kind\":\"condition\",\"quote\":\"cannot replicate the issue\"},{\"kind\":\"other\",\"quote\":\"ongoing electrical issue\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize. Report component \"FORWARD COLLISION AVOIDANCE: WARNINGS\" group adas. Narrative mentions recurring battery/charging system detection warning, multiple service visits, returns after vehicle returned, cannot replicate, no permanent fix, ongoing electrical issue concerns reliability and safety. Need symptoms: battery/charging system detection warning; warning reappears; cannot replicate? Symptom plain words. Conditions: after service? charging? \"charging\" maybe because battery/charging system. \"after service\" because warning continues after returned from service. \"intermittent\" because reappears and cannot replicate. Safety_relevant? Prompt says set true when mentions crash fire smoke injury loss control stall at speed or another risk to people. Narrative says raises concerns about reliability and safety, but no specific risk to people. Given source safety_relevant false but we decide based report. It mentions safety concern but not crash/fire/etc. Could set false. Need missing_info: mileage is null, date? received_at present but report no incident date; maybe missing mileage and date. Component present, symptom present, conditions present (after service/intermittent/charging). So missing_info [\"mileage\",\"date\"]. Fault codes none. Clues verbatim spans. Need quote exact. Could include:\n- \"recurring battery/charging system detection warning\" kind symptom\n- \"warning continues to reappear after the vehicle is returned to me\" symptom/condition? condition after service\n- \"has not been resolved despite multiple service visits\" condition after service\n- \"cannot replicate the issue\" condition intermittent\n- \"ongoing electrical issue\" other? component_group? group is adas but narrative electrical. Could include component_group quote \"FORWARD COLLISION AVOIDANCE: WARNINGS\"? But quote must be copied from report. The report includes component field. Is that \"report\"? User message includes JSON entire; yes can quote \"FORWARD COLLISION AVOIDANCE: WARNINGS\". But clue kind component_group. Also \"battery/charging system\" condition charging? Quote exact \"battery/charging system detection warning\".\n- safety clue? \"raises concerns about the reliability and safety of the vehicle\" kind safety, but safety_relevant false? Could include quote if safety. Hmm if set false but include safety clue maybe inconsistent. Prompt says set safety_relevant when report mentions ... another risk to people. It mentions safety concerns generically. Not specific risk. I'd set false and maybe not include safety clue. But could include \"safety\" clue? Better not.\n\nNeed summary one line: ADAS forward collision avoidance warnings; recurring battery/charging system detection warning after service, not replicated.\n\nNeed group \"adas\". Symptoms array: [\"recurring battery/charging system detection warning\", \"warning reappears after service\", \"dealer cannot replicate the issue\"]. Conditions: [\"after service\",\"intermittent\",\"charging\"]. Fault_codes [].\n\nNeed JSON only. Ensure quotes verbatim. Let's craft exact quotes from narrative:\n\"recurring battery/charging system detection warning\"\n\"warning continues to reappear after the vehicle is returned to me\"\n\"has not been resolved despite multiple service visits\"\n\"cannot replicate the issue\"\n\"ongoing electrical issue\"\n\"FORWARD COLLISION AVOIDANCE: WARNINGS\" exact from component. Good.\n\nNeed missing_info only facts analysis needs. Mileage null. Date? There is received_at but no incident date. Include \"date\". Maybe \"conditions\" not missing because after service/intermittent/charging. Component present symptom present. Good.\n\nFinal JSON. Ensure no markdown? User says answer one JSON object and no other text. We can output raw JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793533148,
+      "id": "4d037fac5fb49eeb19b7abd30d82eab2",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 964,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 761,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00037563,
+          "billing_source": "go",
+          "list_cost": 0.00062605,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 310,
+            "output": 964,
+            "reasoning": 761
+          }
+        },
+        "prompt_tokens": 694,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1658
+      }
+    },
+    "text": "{\"summary\":\"ADAS forward collision avoidance warnings with a recurring battery/charging system detection warning that returns after service and cannot be replicated.\",\"group\":\"adas\",\"symptoms\":[\"recurring battery/charging system detection warning\",\"warning reappears after service\",\"dealer cannot replicate the issue\"],\"conditions\":[\"after service\",\"intermittent\",\"charging\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: WARNINGS\"},{\"kind\":\"symptom\",\"quote\":\"recurring battery/charging system detection warning\"},{\"kind\":\"condition\",\"quote\":\"warning continues to reappear after the vehicle is returned to me\"},{\"kind\":\"condition\",\"quote\":\"has not been resolved despite multiple service visits\"},{\"kind\":\"condition\",\"quote\":\"cannot replicate the issue\"},{\"kind\":\"other\",\"quote\":\"ongoing electrical issue\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00037563,
+      "cached_tokens": 384,
+      "cost_usd": 0.00062605,
+      "input_tokens": 694,
+      "list_cost_usd": 0.00062605,
+      "output_tokens": 964,
+      "reasoning_tokens": 761
+    }
+  }
+}

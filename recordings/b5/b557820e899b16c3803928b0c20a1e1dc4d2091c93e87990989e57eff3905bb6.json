@@ -1,0 +1,66 @@
+{
+  "key": "b557820e899b16c3803928b0c20a1e1dc4d2091c93e87990989e57eff3905bb6",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 14405,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"ADAS forward collision avoidance/automatic emergency braking: adaptive cruise control, collision detection and lane departure warnings failed due to multipurpose camera internal failure; vehicle remained drivable.\",\"group\":\"adas\",\"symptoms\":[\"Adaptive Cruise Control warnings\",\"Collision Detection warnings\",\"Lane Departure not working\",\"multipurpose camera internal failure\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"multipurpose camera\"},{\"kind\":\"symptom\",\"quote\":\"several warnings related to Adaptive Cruise Control, Collision Detection, Lane Departure not working\"},{\"kind\":\"symptom\",\"quote\":\"multipurpose camera internal failure\"},{\"kind\":\"safety\",\"quote\":\"no safety features related to the multipurpose camera were available\"}]}",
+            "reasoning_content": "We need to produce JSON. Need parse report. Component: FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING, group adas. Narrative: warnings related to Adaptive Cruise Control, Collision Detection, Lane Departure not working. Due to multipurpose camera internal failure. Camera replaced by authorized Honda Dealer cost $2,200. Car drivable but no safety features related to multipurpose camera available. No indications prior. Driver concern about cost.\n\nNeed summary one line: component, symptom, conditions. Group \"adas\". Symptoms: warnings for Adaptive Cruise Control, Collision Detection, Lane Departure not working; multipurpose camera internal failure. Conditions: none explicit? Maybe \"while driving\"? No cold/moisture etc. Could be empty. Fault codes none. Safety_relevant? The report mentions safety features unavailable, but no crash/fire/injury/loss of control/stall. Prompt says set true when mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. Loss of ADAS safety features could be risk? It says \"no safety features related to the multipurpose camera were available\" — that's a risk? But initial safety_relevant in input false. We must decide based on rules. \"another risk to people\" — safety features unavailable arguably risk. But examples: crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. The report says no safety features available while drivable; could be safety relevant. However not a direct risk event. The user provided safety_relevant false, but we must not just copy? Intake normalizes. I'd set true? Need be careful. They mention \"no safety features related to the multipurpose camera were available\" — that is a safety risk. I'd set safety_relevant true and include clue quote. But maybe the desk's safety flag is for incidents, not potential. Prompt explicitly includes \"another risk to people.\" Unavailable collision avoidance/adaptive cruise/lane departure is risk. I'll set true. Need missing_info: mileage null, date? received_at exists but report date? missing mileage. Conditions? No conditions specified; maybe conditions missing? The schema says list only facts analysis needs: component, symptom, conditions, mileage, date. Component and symptom present. Conditions not explicit but not necessarily needed. Mileage missing. Date? received_at 2025-11-06 is present, not necessarily incident date. The report has no incident date. Should list \"mileage\"? Maybe \"date\" if incident date missing? The field \"date\" likely report/incident date; received_at is not incident date. But the instructions say missing_info only facts analysis needs. Mileage null. Date? We have received_at, but no occurrence date. I'd include mileage and date? Need decide. The report says \"We began getting several warnings...\" no date. For analysis, date of failure could matter. But maybe received_at suffices for intake. The missing_info list examples include date. I'd include \"mileage\" and \"date\" maybe. Conditions? No environmental conditions, but not critical. Component present. Symptom present. I think missing_info: [\"mileage\", \"date\"]? Hmm. The prompt: \"List missing_info only for facts the analysis needs: component, symptom, conditions, mileage, date. Use an empty list when nothing important is missing.\" Mileage is null. Date of incident missing. Conditions not specified but may not be important. I'd include mileage and date. But could be over-inclusive. Need output one JSON object no other text.\n\nClues: Need verbatim quotes. Include:\n- kind component_group quote \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"? Is that in report? The user message JSON has component field, yes verbatim. But \"report\" includes that. Clue kind component_group maybe quote \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\" or \"multipurpose camera\". For component group, quote \"multipurpose camera internal failure\"? kind component_group quote \"multipurpose camera\". But quote must verbatim span. \"multipurpose camera\" appears. Good.\n- symptom: \"several warnings related to Adaptive Cruise Control, Collision Detection, Lane Departure not working\" — exact? Narrative: \"We began getting several warnings related to Adaptive Cruise Control, Collision Detection, Lane Departure not working.\" Quote can be \"several warnings related to Adaptive Cruise Control, Collision Detection, Lane Departure not working\". Verbatim yes.\n- symptom: \"multipurpose camera internal failure\" verbatim.\n- safety: \"no safety features related to the multipurpose camera were available\" verbatim.\n- condition? \"While the car was drivable\" not one of conditions. Could clue kind other? Maybe condition \"The camera had to be replaced by a authorized Honda Dealer\" not condition. Maybe \"after service\"? No. \"There were no indications of issues prior to the camera going bad.\" not condition. Could use kind other quote \"The camera had to be replaced\". But clues only evidence. Need include component_group: \"adas\"? Not in report. Maybe quote \"multipurpose camera\" as component. Fault codes none.\n\nNeed ensure JSON valid. Summary: \"Forward collision avoidance / automatic emergency braking (ADAS): adaptive cruise control, collision detection and lane departure warnings not working due to multipurpose camera internal failure; vehicle remained drivable.\" Conditions maybe empty. The summary includes conditions \"vehicle remained drivable\" not condition. Fine.\n\nNeed \"group\": \"adas\". \"symptoms\": [\"Adaptive Cruise Control warnings\", \"Collision Detection warnings\", \"Lane Departure not working\", \"multipurpose camera internal failure\"]. Maybe \"warnings related to Adaptive Cruise Control, Collision Detection, Lane Departure not working\". Good.\n\n\"conditions\": [] maybe. Could include \"vehicle drivable\"? Not condition category. No cold etc. So [].\n\n\"fault_codes\": [].\n\n\"safety_relevant\": true. Need if input says false? We decide true. Is that okay? The prompt says set when report mentions ... another risk to people. It does. Good.\n\n\"missing_info\": [\"mileage\", \"date\"]? Hmm if date is received_at, but no incident date. Include \"mileage\". Maybe \"date\" because no date of occurrence. The report has \"received_at\": \"2025-11-06\" but that's not in narrative. For analysis date of report maybe available. The missing_info is for facts analysis needs: date likely incident date. I'll include both. But maybe \"conditions\" missing? No conditions. The report doesn't specify when warnings began or environmental conditions. But conditions list only for cold, moisture, heat, vibration, intermittent, after service, charging. There are no such conditions. Analysis might need conditions? Not necessarily. I'd not include conditions. Missing \"mileage\" definitely. Date maybe. Since received_at exists, but that's not event date. I include \"date\". If strict, maybe only mileage. But prompt asks missing_info only important. Date of onset can be important. I'll include [\"mileage\", \"date\"].\n\nClues quotes:\n1 {\"kind\": \"component_group\", \"quote\": \"multipurpose camera\"}\n2 {\"kind\": \"symptom\", \"quote\": \"several warnings related to Adaptive Cruise Control, Collision Detection, Lane Departure not working\"}\n3 {\"kind\": \"symptom\", \"quote\": \"multipurpose camera internal failure\"}\n4 {\"kind\": \"safety\", \"quote\": \"no safety features related to the multipurpose camera were available\"}\n5 maybe {\"kind\": \"other\", \"quote\": \"The camera had to be replaced by a authorized Honda Dealer\"}? Not necessary. Could include \"While the car was drivable\" as condition? Not a condition category. Maybe clue kind condition quote \"While the car was drivable\" no. It indicates drivable but not a condition. Not needed.\n6 maybe {\"kind\": \"other\", \"quote\": \"There were no indications of issues prior to the camera going bad.\"} This is maybe other. Not needed.\n\nNeed ensure quotes character-for-character. Check narrative: \"We began getting several warnings related to Adaptive Cruise Control, Collision Detection, Lane Departure not working.\" The quote \"several warnings related to Adaptive Cruise Control, Collision Detection, Lane Departure not working\" is exact substring? Yes after \"getting \". It includes no period. Good.\n\"multipurpose camera internal failure\" exact substring in \"This was due to the multipurpose camera internal failure.\" Yes.\n\"no safety features related to the multipurpose camera were available\" exact in \"While the car was drivable no safety features related to the multipurpose camera were available.\" Yes.\n\"multipurpose camera\" exact.\n\nNeed output only JSON. Use no markdown? The instruction: Answer with one JSON object and no other text. So final should be raw JSON. Good.\n\nNeed maybe safety_relevant true despite initial false. Good.\n\nPotential issue: \"group\" is given as \"adas\"; use that. Summary one line. Good.\n\nLet's craft final JSON. Ensure no trailing commas. ",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531849,
+      "id": "b2f813c23114367497ecf210ca8fbc6b",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2106,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1924,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00077964,
+          "billing_source": "go",
+          "list_cost": 0.0012994,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 231,
+            "output": 2106,
+            "reasoning": 1924
+          }
+        },
+        "prompt_tokens": 615,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2721
+      }
+    },
+    "text": "{\"summary\":\"ADAS forward collision avoidance/automatic emergency braking: adaptive cruise control, collision detection and lane departure warnings failed due to multipurpose camera internal failure; vehicle remained drivable.\",\"group\":\"adas\",\"symptoms\":[\"Adaptive Cruise Control warnings\",\"Collision Detection warnings\",\"Lane Departure not working\",\"multipurpose camera internal failure\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"multipurpose camera\"},{\"kind\":\"symptom\",\"quote\":\"several warnings related to Adaptive Cruise Control, Collision Detection, Lane Departure not working\"},{\"kind\":\"symptom\",\"quote\":\"multipurpose camera internal failure\"},{\"kind\":\"safety\",\"quote\":\"no safety features related to the multipurpose camera were available\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00077964,
+      "cached_tokens": 384,
+      "cost_usd": 0.0012994,
+      "input_tokens": 615,
+      "list_cost_usd": 0.0012994,
+      "output_tokens": 2106,
+      "reasoning_tokens": 1924
+    }
+  }
+}

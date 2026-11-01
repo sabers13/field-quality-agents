@@ -1,0 +1,66 @@
+{
+  "key": "55a7807147257eabd7d3f67c5743eaaef363ccf550876db35812b7e4cebdea08",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 15028,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Air bags (2021 Honda Civic) recall repair parts unavailable; owner reports no failure experienced.\",\"group\":\"restraints\",\"symptoms\":[],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"other\",\"quote\":\"the part to do the recall repair was not yet available\"},{\"kind\":\"other\",\"quote\":\"The contact had not experienced a failure.\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize report. Component AIR BAGS group restraints. Summary one line component symptom conditions. Report says no failure experienced, recall part unavailable. Symptoms? No symptom. Conditions? none. Fault codes none. Safety_relevant? The report mentions air bags recall but no crash fire etc. Given safety_relevant false. Need maybe safety relevant? Rule set when mentions crash fire smoke injury loss control stall etc. None. So false. missing_info: component? present; symptom? actually no failure, so symptom not applicable? Analysis needs maybe mileage missing (null), date present received_at but report date? The report no incident date. missing_info list for facts analysis needs: component, symptom, conditions, mileage, date. Since no failure, symptom absent? But report explicitly says no failure. Could include mileage and date? Date: received_at is 2025-10-28, but no incident date. The prompt says missing_info only for facts analysis needs. Mileage missing. Date? There is received_at, but not event date. Hmm. We should include \"mileage\" maybe \"date\"? The report has received_at but not event date. Conditions missing. Symptom? \"The contact had not experienced a failure.\" So no symptom; but missing symptom? Since no failure, symptom not missing? But if analyzing, symptom absent. The report is recall availability complaint, no failure symptom. Missing_info could include mileage, conditions? But no failure, conditions not needed. Need be careful.\n\nClues: kind symptom/condition/fault_code/component_group/safety/other. Quotes verbatim. We can include component_group quote \"AIR BAGS\"? But that's from component field? The report in user message is JSON, not narrative? It says read report. The report includes component \"AIR BAGS\", group \"restraints\", narrative. Quote must be copied verbatim from report. Could quote from component field? \"AIR BAGS\" appears. Also quote \"The contact had not experienced a failure.\" kind symptom? Actually no symptom. Could quote as other? Need clues evidence. Include component_group quote \"AIR BAGS\". Maybe other quote \"NHTSA Campaign Number: 24V064000 (Air Bags)\"? Fault code? Is campaign number a fault code? No, fault_codes should code if report names one. Recall campaign number isn't a fault code. Should not include in fault_codes. Clues can include other quote. Safety? No. We can include \"The contact had not experienced a failure.\" kind symptom? It's absence of symptom, maybe kind \"other\". But clues kind symptom should be symptom in plain words. Since no symptom, maybe don't include. But evidence for summary? The summary says no failure experienced. Need quote. kind other.\n\nNeed JSON only. Ensure valid. Summary: \"Air bags recall repair parts unavailable; owner reports no failure experienced.\" Conditions empty. Symptoms empty. group restraints. missing_info maybe [\"mileage\",\"date\"]? Let's decide. The report has received_at date, but no incident date. Since no failure, date of failure not applicable. Mileage missing. Conditions not applicable. The analysis of recall availability might need mileage? Not really. The instructions list missing_info facts analysis needs: component, symptom, conditions, mileage, date. Use empty when nothing important missing. Since no failure, maybe nothing important missing? But mileage is null. However component and symptom? No symptom. Hmm.\n\nMaybe missing_info should be [\"mileage\"] because mileage is null and could matter. Date? received_at present. Conditions absent but no failure. I'd include [\"mileage\"] only. But maybe \"symptom\" missing because no failure symptom? The report says no failure, so not missing, it's known absence. Conditions missing? no event.\n\nNeed answer exactly JSON. Use safety_relevant false. Clues:\n- {\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"}\n- {\"kind\":\"other\",\"quote\":\"The contact had not experienced a failure.\"}\n- {\"kind\":\"other\",\"quote\":\"the part to do the recall repair was not yet available\"}\nMaybe also \"NHTSA Campaign Number: 24V064000 (Air Bags)\" as other. But quote includes colon etc. It is verbatim. Could include. Fault_codes empty because not fault code. But maybe campaign number could be considered code? The schema says fault_codes: code if report names one. Campaign number is a code but not fault code. Better empty.\n\nNeed ensure summary one line. \"Air bags (2021 Honda Civic) recall repair parts unavailable; no failure experienced.\" Conditions empty.\n\nNeed no markdown? They said answer with one JSON object and no other text. Final should be raw JSON. Use no code fences. Good.\n\nDouble-check quote verbatim: \"AIR BAGS\" exactly in component value. \"The contact had not experienced a failure.\" exactly narrative. \"the part to do the recall repair was not yet available\" exact substring? Narrative: \"however, the part to do the recall repair was not yet available.\" Yes substring lower-case \"the\". Good.\n\nCould include \"2021 Honda Civic\" other? Not needed.\n\nNeed missing_info maybe [\"mileage\",\"conditions\"]? Hmm conditions list could include none. The report doesn't mention cold/moisture etc. Since no failure, conditions not needed. Mileage null. Date present. I'll set [\"mileage\"]. But is \"date\" missing? There is received_at 2025-10-28, but not date of failure (none). No. Good.\n\nNeed maybe \"symptoms\": [] and \"conditions\": []. Yes.\n\nFinal JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793531605,
+      "id": "f8d3c015633705dcac9d3554d69d0542",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1281,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1170,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0004785,
+          "billing_source": "go",
+          "list_cost": 0.0007975,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 185,
+            "output": 1281,
+            "reasoning": 1170
+          }
+        },
+        "prompt_tokens": 569,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1850
+      }
+    },
+    "text": "{\"summary\":\"Air bags (2021 Honda Civic) recall repair parts unavailable; owner reports no failure experienced.\",\"group\":\"restraints\",\"symptoms\":[],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"other\",\"quote\":\"the part to do the recall repair was not yet available\"},{\"kind\":\"other\",\"quote\":\"The contact had not experienced a failure.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0004785,
+      "cached_tokens": 384,
+      "cost_usd": 0.0007975,
+      "input_tokens": 569,
+      "list_cost_usd": 0.0007975,
+      "output_tokens": 1281,
+      "reasoning_tokens": 1170
+    }
+  }
+}

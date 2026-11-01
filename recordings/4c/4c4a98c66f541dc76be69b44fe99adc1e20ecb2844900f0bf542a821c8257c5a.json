@@ -1,0 +1,66 @@
+{
+  "key": "4c4a98c66f541dc76be69b44fe99adc1e20ecb2844900f0bf542a821c8257c5a",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 4550,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Electrical system: smoke from behind the steering wheel/dashboard suggesting overheating or fire; dealer found a burning left rear tail light assembly with fluid inside; no warning lamps\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"aggressive smoke coming from behind the steering wheel within the dashboard\",\n    \"burning left rear tail light assembly with fluid inside it\",\n    \"no warning lamps or prompts during the incident\"\n  ],\n  \"conditions\": [\"heat\"],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\"mileage\", \"date\"],\n  \"clues\": [\n    {\"kind\": \"symptom\", \"quote\": \"an aggressive flow of smoke coming from behind the steering wheel within the dashboard\"},\n    {\"kind\": \"condition\", \"quote\": \"indicating overheating and/or a fire\"},\n    {\"kind\": \"safety\", \"quote\": \"and/or a fire\"},\n    {\"kind\": \"other\", \"quote\": \"a burning left rear tail light assembly with fluid inside of it\"},\n    {\"kind\": \"symptom\", \"quote\": \"No warning lamps or prompts appeared during the incident\"},\n    {\"kind\": \"component_group\", \"quote\": \"ELECTRICAL SYSTEM\"}\n  ]\n}",
+            "reasoning_content": "Let me produce JSON per schema.\n\nSummary: component ELECTRICAL SYSTEM, symptom smoke from behind steering wheel, conditions...\n\nConditions: heat (overheating) — report says \"indicating overheating and/or a fire\". So conditions: [\"heat\"]? The conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. \"fluid inside\" tail light — moisture? Hmm, fluid inside the assembly — could be moisture. But careful not invent. Quote \"fluid inside of it\" — I could tag condition moisture though it's fluid not necessarily moisture. Maybe safer to include \"heat\" only from \"overheating\". I'll include heat.\n\nFault codes: none.\n\nmissing_info: mileage, date. Date of incident missing (received_at is given but incident date not). Include \"mileage\", \"date\".\n\nClues with verbatim quotes.\n\n\"aggressive flow of smoke coming from behind the steering wheel\" — verbatim substring: \"there was an aggressive flow of smoke coming from behind the steering wheel within the dashboard indicating overheating and/or a fire\". Use exact substring.\n\nSafety relevant: true, quote \"aggressive flow of smoke\" or the fire mention.\n\nClues:\n- symptom: \"an aggressive flow of smoke coming from behind the steering wheel within the dashboard\"\n- condition: \"indicating overheating and/or a fire\"\n- component_group: \"ELECTRICAL SYSTEM\" — is that verbatim in report? Yes, the component field.\n- other: \"burning left rear tail light assembly with fluid inside of it\"\n- safety: \"a fire\"\n\nCheck verbatim: narrative: \"During the incident, there was an aggressive flow of smoke coming from behind the steering wheel within the dashboard indicating overheating and/or a fire.\" So \"an aggressive flow of smoke coming from behind the steering wheel within the dashboard\" is verbatim ✓.\n\n\"their inspection found a burning left rear tail light assembly with fluid inside of it\" ✓.\n\nSymptoms: \"smoke from behind the steering wheel/dashboard\", \"burning left rear tail light assembly with fluid inside\".\n\nGroup: \"electrical_general\".",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793530735,
+      "id": "7c14919abcfd2981f3aca414b0c30273",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 704,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 433,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00026961,
+          "billing_source": "go",
+          "list_cost": 0.00044935,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 172,
+            "output": 704,
+            "reasoning": 433
+          }
+        },
+        "prompt_tokens": 556,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1260
+      }
+    },
+    "text": "{\n  \"summary\": \"Electrical system: smoke from behind the steering wheel/dashboard suggesting overheating or fire; dealer found a burning left rear tail light assembly with fluid inside; no warning lamps\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"aggressive smoke coming from behind the steering wheel within the dashboard\",\n    \"burning left rear tail light assembly with fluid inside it\",\n    \"no warning lamps or prompts during the incident\"\n  ],\n  \"conditions\": [\"heat\"],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\"mileage\", \"date\"],\n  \"clues\": [\n    {\"kind\": \"symptom\", \"quote\": \"an aggressive flow of smoke coming from behind the steering wheel within the dashboard\"},\n    {\"kind\": \"condition\", \"quote\": \"indicating overheating and/or a fire\"},\n    {\"kind\": \"safety\", \"quote\": \"and/or a fire\"},\n    {\"kind\": \"other\", \"quote\": \"a burning left rear tail light assembly with fluid inside of it\"},\n    {\"kind\": \"symptom\", \"quote\": \"No warning lamps or prompts appeared during the incident\"},\n    {\"kind\": \"component_group\", \"quote\": \"ELECTRICAL SYSTEM\"}\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00026961,
+      "cached_tokens": 384,
+      "cost_usd": 0.00044935,
+      "input_tokens": 556,
+      "list_cost_usd": 0.00044935,
+      "output_tokens": 704,
+      "reasoning_tokens": 433
+    }
+  }
+}

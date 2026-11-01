@@ -1,0 +1,66 @@
+{
+  "key": "29e067998cbde54f25df78eead13c7bf08dc339131a01914223d3f341e83c2b1",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9595,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"AIR BAGS: no deployment in a head-on collision despite safety warnings and expected deployment; vehicle deemed total loss\",\"group\":\"restraints\",\"symptoms\":[\"airbags did not deploy in a head-on collision\",\"safety warnings alerted but airbags never deployed\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"condition\",\"quote\":\"I was involved in a head on collision\"},{\"kind\":\"symptom\",\"quote\":\"all of my safety warning notified me but my airbags NEVER deployed\"},{\"kind\":\"safety\",\"quote\":\"This is a serious safety hazard\"},{\"kind\":\"symptom\",\"quote\":\"The adjuster and collision center both stated at the rate of speed from the accident, the airbags should have definitely deployed.\"},{\"kind\":\"other\",\"quote\":\"My car was deemed a total loss from the damage even without the deployment.\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize report. Need include summary, group, symptoms, conditions, fault_codes, safety_relevant, missing_info, clues verbatim. Need read only report. Component AIR BAGS group restraints. Narrative says head on collision, all safety warning notified but airbags NEVER deployed. Serious safety hazard. Adjuster/collision center stated at rate speed airbags should have deployed. Total loss. Safety relevant true. Conditions? collision? The allowed conditions list: cold, moisture, heat, vibration, intermittent, after service, charging. Collision not in allowed? We can include conditions array maybe empty because no listed conditions. Symptoms: airbags did not deploy after head-on collision; safety warnings notified? Need plain words. Fault codes none. Missing info: mileage is null. Date? received_at exists but incident date not. Conditions? They mention collision; but missing date/mileage. Component and symptom present. Missing_info should include mileage and date? The report gives received_at but not incident date; analysis maybe needs date? Prompt says list missing_info only facts analysis needs component symptom conditions mileage date. Mileage null. Date of incident not given. Conditions? collision is condition but not among allowed? It is a condition, but list missing_info \"conditions\" maybe no because collision is stated. Need include missing_info [\"mileage\",\"date\"] maybe. Summary one line: AIR BAGS, no deployment in head-on collision despite warnings and expected deployment. Group restraints. Symptoms [\"airbags did not deploy in a head-on collision\", \"safety warnings alerted but airbags never deployed\"]? Actually \"all of my safety warning notified me\" ambiguous. Keep. Conditions [] maybe? Could include \"collision\" not allowed? Schema conditions examples list cold etc. It says conditions [\"cold\",...]. We should use only allowed? It says conditions: [\"cold\", ...] likely enumerated. Since collision isn't in enum, conditions empty. But clues kind condition can quote head on collision? Kind condition maybe \"condition\" quote \"head on collision\" although not in conditions array? Hmm. We can include clue kind condition quote \"head on collision\" to evidence. It may be okay. But conditions array should only listed categories. There is no cold etc. So empty.\n\nClues with verbatim spans:\n- symptom: \"my airbags NEVER deployed\"\n- symptom: \"all of my safety warning notified me\" maybe condition? It's symptom? Maybe warning notified but no deploy. Could include.\n- condition: \"head on collision\" or \"I was involved in a head on collision\"\n- safety: \"This is a serious safety hazard\"\n- other: \"The adjuster and collision center both stated at the rate of speed from the accident, the airbags should have definitely deployed.\" This supports symptom expected deployment. Kind symptom? Quote exact.\nNeed ensure verbatim character for character. Narrative: \"I was involved in a head on collision, all of my safety warning notified me but my airbags NEVER deployed. This is a serious safety hazard especially with many problems being reported with airbag deployment. The adjuster and collision center both stated at the rate of speed from the accident, the airbags should have definitely deployed. My car was deemed a total loss from the damage even without the deployment.\"\n\nQuotes exact:\n\"I was involved in a head on collision\"\n\"all of my safety warning notified me but my airbags NEVER deployed\"\n\"This is a serious safety hazard\"\n\"The adjuster and collision center both stated at the rate of speed from the accident, the airbags should have definitely deployed.\"\nCould include \"My car was deemed a total loss from the damage even without the deployment.\" kind other maybe. But not necessary. Need not invent. Fault codes [].\n\nSafety_relevant true.\n\nMissing_info: mileage, date. Date? received_at is 2025-03-24; incident date missing. Conditions? The report says collision, so not missing. Maybe \"conditions\" not missing. Component present. Symptom present. So [\"mileage\", \"date\"].\n\nNeed summary one line: \"AIR BAGS: no deployment in a head-on collision despite safety warnings and expected deployment; vehicle total loss.\" Conditions maybe \"head-on collision\". But conditions array empty due enum. Summary can mention.\n\nNeed JSON object only. Ensure no markdown. Final should be JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793525711,
+      "id": "dd1775912aaefa54dbeb80ac7528ecfc",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1093,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 892,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0004101,
+          "billing_source": "go",
+          "list_cost": 0.0006835,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 177,
+            "output": 1093,
+            "reasoning": 892
+          }
+        },
+        "prompt_tokens": 561,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1654
+      }
+    },
+    "text": "{\"summary\":\"AIR BAGS: no deployment in a head-on collision despite safety warnings and expected deployment; vehicle deemed total loss\",\"group\":\"restraints\",\"symptoms\":[\"airbags did not deploy in a head-on collision\",\"safety warnings alerted but airbags never deployed\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"condition\",\"quote\":\"I was involved in a head on collision\"},{\"kind\":\"symptom\",\"quote\":\"all of my safety warning notified me but my airbags NEVER deployed\"},{\"kind\":\"safety\",\"quote\":\"This is a serious safety hazard\"},{\"kind\":\"symptom\",\"quote\":\"The adjuster and collision center both stated at the rate of speed from the accident, the airbags should have definitely deployed.\"},{\"kind\":\"other\",\"quote\":\"My car was deemed a total loss from the damage even without the deployment.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0004101,
+      "cached_tokens": 384,
+      "cost_usd": 0.0006835,
+      "input_tokens": 561,
+      "list_cost_usd": 0.0006835,
+      "output_tokens": 1093,
+      "reasoning_tokens": 892
+    }
+  }
+}

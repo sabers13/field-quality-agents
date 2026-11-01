@@ -1,0 +1,66 @@
+{
+  "key": "f91fb32a5d85e0a1ed9661c72efbd01105d062236dfd0737961794c671116c5d",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11358,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Instrument cluster/panel: computer system failed while driving at 60 MPH, with warning lights, power steering seizure, tire slip, brake failure, crash, and injuries.\",\"group\":\"instrumentation\",\"symptoms\":[\"computer system failed\",\"traction control warning light illuminated\",\"tire pressure warning system light illuminated\",\"several unknown warning lights illuminated\",\"power steering seized\",\"tires slipped\",\"brake pedal depressed but vehicle failed to stop as intended\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM: INSTRUMENT CLUSTER/PANEL\"},{\"kind\":\"symptom\",\"quote\":\"while driving at 60 MPH, the computer system failed\"},{\"kind\":\"symptom\",\"quote\":\"traction control, tire pressure warning system, and several unknown warning lights were illuminated\"},{\"kind\":\"symptom\",\"quote\":\"power steering seized\"},{\"kind\":\"symptom\",\"quote\":\"tires slipped\"},{\"kind\":\"symptom\",\"quote\":\"brake pedal was depressed; however, the vehicle failed to stop as intended\"},{\"kind\":\"condition\",\"quote\":\"while driving at 60 MPH\"},{\"kind\":\"safety\",\"quote\":\"crashed into a metal wall several times\"},{\"kind\":\"safety\",\"quote\":\"sustained injuries to the left shoulder and his neck\"},{\"kind\":\"safety\",\"quote\":\"sustained multiple bruises and bumps\"}]}",
+            "reasoning_content": "We need answer one JSON only. Need normalize. Need follow rules. Report has component electrical system instrument cluster/panel, group instrumentation given. Symptoms: computer system failed, warning lights illuminated (traction control, tire pressure, several unknown), power steering seized, tires slipped, brake pedal depressed vehicle failed to stop, crashed into metal wall, injuries. Conditions? driving at 60 MPH. Could include intermittent? No. Conditions list allowed: cold moisture heat vibration intermittent after service charging. None mentioned. Maybe \"at speed\" not in allowed list? Conditions field should list only from given? Prompt says conditions array [\"cold\",...]. We should include none? It asks conditions: [\"cold\", ...]. Could leave empty. But summary conditions: while driving 60 MPH. Clues verbatim spans. Need safety_relevant true because crash injury. Fault codes none. Missing_info? Component present, symptom present, conditions present? Mileage present, date received not date? The report has received_at but not incident date. Missing date maybe yes. Missing_info list only facts analysis needs component, symptom, conditions, mileage, date. Component, symptom, conditions (driving at 60 mph) present; mileage present; date missing (incident date). Could list [\"date\"]. But received_at is present, but date of failure not. The narrative no date. Should include date. Maybe also \"component\" present. No.\n\nNeed quote exact verbatim. Need ensure quotes copied. Could quote \"while driving at 60 MPH, the computer system failed\" yes exact? Narrative: \"The contact stated that while driving at 60 MPH, the computer system failed.\" Substring includes \"while driving at 60 MPH, the computer system failed\" exact. Clue kind symptom. Another \"traction control, tire pressure warning system, and several unknown warning lights were illuminated\" exact substring. Another \"power steering seized\" exact. \"tires slipped\" exact. \"brake pedal was depressed; however, the vehicle failed to stop as intended\" exact substring? Narrative has \"In addition, the brake pedal was depressed; however, the vehicle failed to stop as intended.\" Yes. \"crashed into a metal wall several times\" exact. \"sustained injuries to the left shoulder and his neck\" exact. \"multiple bruises and bumps\" exact. Safety quote maybe crash/injuries. Component group quote? \"ELECTRICAL SYSTEM: INSTRUMENT CLUSTER/PANEL\" is from component field, not narrative? The report includes component field. User message includes JSON with component. It says read only report. Quotes can be from report including component field? It says quote copied from report. The report includes component string. Could use component_group quote \"ELECTRICAL SYSTEM: INSTRUMENT CLUSTER/PANEL\" exact. But narrative doesn't mention instrument cluster. Group given instrumentation. Need group \"instrumentation\" or \"electrical/electronic component group\"? The component is electrical system instrument cluster/panel. Since given group instrumentation, use \"instrumentation\". Summary: \"Instrument cluster/panel computer system failed at 60 MPH causing warning lights, power steering seizure, braking failure, crash and injuries.\" One line.\n\nNeed maybe symptom list plain words. Symptoms: [\"computer system failed\", \"traction control warning light illuminated\", \"tire pressure warning system light illuminated\", \"several unknown warning lights illuminated\", \"power steering seized\", \"tires slipped\", \"brake pedal depressed but vehicle failed to stop as intended\", \"vehicle crashed into a metal wall\", \"injuries to left shoulder and neck\", \"bruises and bumps\"]. Are crash/injuries symptoms? Maybe include as other/safety clues. Symptoms should be vehicle symptoms. Could include crash? It's event. But okay? Better symptoms list: computer system failed; warning lights illuminated (traction control, tire pressure, unknown); power steering seized; tires slipped; brakes failed to stop vehicle. The crash and injuries in safety clue. But summary includes crash. Maybe symptoms include \"crash into metal wall\" but plain words. The schema says symptoms [\"symptom in plain words\"]. Crash is not symptom. Keep vehicle symptoms.\n\nConditions: Could include \"driving at 60 MPH\" not allowed in conditions list? The allowed list is examples? It says `\"conditions\": [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]`. It likely wants one or more of those. No match. Empty list. But conditions in summary \"while driving at 60 MPH\". Missing_info date. Clues conditions maybe no condition clue? We can include \"while driving at 60 MPH\" as condition clue? kind condition. But if conditions array empty, that seems inconsistent. The clue kind can be condition for driving at 60 MPH. But conditions allowed list doesn't include speed. Hmm.\n\nNeed answer only JSON. Ensure valid JSON. No markdown? The prompt says answer with one JSON object and no other text. So final should be raw JSON. Use quotes escaped? Verbatim includes apostrophe? We can avoid curly. Need exact quote \"The contact sustained injuries to the left shoulder and his neck.\" Use substring without period maybe. It includes \"The contact sustained injuries to the left shoulder and his neck.\" exact? Narrative: \"The contact sustained injuries to the left shoulder and his neck.\" yes. \"The contact sustained multiple bruises and bumps.\" exact. \"The contact\\u2019s vehicle crashed into a metal wall several times.\" Contains curly apostrophe; avoid. Use \"crashed into a metal wall several times\" exact. Good.\n\nNeed safety_relevant true. Fault codes empty.\n\nMissing_info: [\"date\"] maybe. Does analysis need date? Yes incident date missing. Mileage present approx 31,000. Conditions present. Component present. Symptom present. Could include \"date\" only.\n\nClues: include component_group quote from component field. Is that verbatim? Yes exact \"ELECTRICAL SYSTEM: INSTRUMENT CLUSTER/PANEL\". Include safety quote \"crashed into a metal wall several times\"; \"sustained injuries to the left shoulder and his neck\"; maybe \"sustained multiple bruises and bumps\". Include symptom quotes. Need not include every symptom but enough. We can include 10 clues. Ensure valid.\n\nSummary one line: \"Instrument cluster/panel: computer system failed while driving at 60 MPH, with warning lights, power steering seizure, tire slip, brake failure, crash, and injuries.\" Good.\n\nNeed maybe group \"instrumentation\". final raw JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529731,
+      "id": "3d7d58c9467c2f3a668f157b30500ce5",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1669,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1356,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00063321,
+          "billing_source": "go",
+          "list_cost": 0.00105535,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 352,
+            "output": 1669,
+            "reasoning": 1356
+          }
+        },
+        "prompt_tokens": 736,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2405
+      }
+    },
+    "text": "{\"summary\":\"Instrument cluster/panel: computer system failed while driving at 60 MPH, with warning lights, power steering seizure, tire slip, brake failure, crash, and injuries.\",\"group\":\"instrumentation\",\"symptoms\":[\"computer system failed\",\"traction control warning light illuminated\",\"tire pressure warning system light illuminated\",\"several unknown warning lights illuminated\",\"power steering seized\",\"tires slipped\",\"brake pedal depressed but vehicle failed to stop as intended\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM: INSTRUMENT CLUSTER/PANEL\"},{\"kind\":\"symptom\",\"quote\":\"while driving at 60 MPH, the computer system failed\"},{\"kind\":\"symptom\",\"quote\":\"traction control, tire pressure warning system, and several unknown warning lights were illuminated\"},{\"kind\":\"symptom\",\"quote\":\"power steering seized\"},{\"kind\":\"symptom\",\"quote\":\"tires slipped\"},{\"kind\":\"symptom\",\"quote\":\"brake pedal was depressed; however, the vehicle failed to stop as intended\"},{\"kind\":\"condition\",\"quote\":\"while driving at 60 MPH\"},{\"kind\":\"safety\",\"quote\":\"crashed into a metal wall several times\"},{\"kind\":\"safety\",\"quote\":\"sustained injuries to the left shoulder and his neck\"},{\"kind\":\"safety\",\"quote\":\"sustained multiple bruises and bumps\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00063321,
+      "cached_tokens": 384,
+      "cost_usd": 0.00105535,
+      "input_tokens": 736,
+      "list_cost_usd": 0.00105535,
+      "output_tokens": 1669,
+      "reasoning_tokens": 1356
+    }
+  }
+}

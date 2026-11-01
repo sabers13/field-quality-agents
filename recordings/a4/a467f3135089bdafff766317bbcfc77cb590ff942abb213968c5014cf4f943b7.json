@@ -1,0 +1,66 @@
+{
+  "key": "a467f3135089bdafff766317bbcfc77cb590ff942abb213968c5014cf4f943b7",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 8541,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Front windshield cracked randomly from the bottom heating element in a 2018 Subaru Legacy and recurred 11 months later; no conditions stated.\",\"group\":\"body_controls\",\"symptoms\":[\"windshield cracked randomly\",\"crack originating from bottom heating element\",\"recurrent windshield crack 11 months later\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"VISIBILITY/WIPER\"},{\"kind\":\"symptom\",\"quote\":\"Front Windshield had crack in it randomly one day.\"},{\"kind\":\"symptom\",\"quote\":\"Coming up from bottom heating element.\"},{\"kind\":\"symptom\",\"quote\":\"Broke again 11 months later [FEB 2025] in similar fashion, randomly one day.\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need parse report. Component visibility/wiper, group body_controls. Narrative: windshield crack, from bottom heating element, similar online, broke again 11 months later. Symptoms: windshield cracked randomly, crack originating from bottom heating element, recurrence. Conditions: cold? It mentions heating element but not necessarily cold; \"randomly one day\"; maybe heat? We need conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. Does report mention heat via heating element? It says \"Coming up from bottom heating element.\" That's component condition maybe heat? But condition as environmental? Could include heat? The rules say only report. We shouldn't invent. Heating element is part of windshield, not necessarily condition. Conditions may be missing? It gives dates and mileage 36,000 miles in narrative but mileage field null. Missing info: mileage? The narrative has 36,000-miles. So not missing. Date? Narrative gives MAR 2024, FEB 2025, received date. Conditions? It doesn't explicitly say cold/moisture etc. Could list missing_info conditions? It has dates. Component given. Symptom given. Mileage given in narrative. So missing_info empty? But conditions not specified—analysis needs conditions maybe. However narrative mentions \"randomly one day\", no weather. Should we include \"conditions\" in missing_info? Rules list missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Conditions are not stated; likely yes missing. But it says \"Use empty list when nothing important is missing.\" Conditions important. So missing_info [\"conditions\"]. But perhaps we can infer heat from heating element? No.\n\nFault_codes empty. Safety_relevant false (no crash/fire etc). Clues with verbatim quotes from narrative. Need exact spans. Quotes can be \"Front Windshield had crack in it randomly one day.\" \"Coming up from bottom heating element.\" \"Broke again 11 months later [FEB 2025] in similar fashion, randomly one day.\" Need ensure exact substring char-for-char. Original: \"MAR 2024: 2018 Subaru Legacy, 36,000-miles. (1) Front Windshield had crack in it randomly one day. Coming up from bottom heating element. Easily able to find similar crack shape online. Find lots of windshield crack issues online for Subarus. Zero action from Subaru on this. (2) Broke again 11 months later [FEB 2025] in similar fashion, randomly one day.\"\n\nQuotes:\n- \"Front Windshield had crack in it randomly one day.\" yes exact.\n- \"Coming up from bottom heating element.\" exact.\n- \"Broke again 11 months later [FEB 2025] in similar fashion, randomly one day.\" exact? It includes \"(2) Broke again...\" The substring \"Broke again 11 months later [FEB 2025] in similar fashion, randomly one day.\" is present after \"(2) \". Yes.\n- component_group quote maybe \"VISIBILITY/WIPER\" from component field? User says read report; quote from report? The JSON has component field. Could quote \"VISIBILITY/WIPER\". Kind component_group. But rules quote copied verbatim from report; component field is part of report. Fine.\n- safety? no.\n\nSummary one line: VISIBILITY/WIPER windshield cracked randomly from bottom heating element, recurred 11 months later. Need component, symptom, conditions. Conditions none. Maybe \"no conditions stated\". Summary: \"Front windshield cracked randomly from bottom heating element in a 2018 Subaru Legacy; recurred 11 months later; no conditions stated.\" That's one line.\n\nGroup: given \"body_controls\" or electrical/electronic component group? The schema says \"the electrical/electronic component group, or the given group\". Given group body_controls. Component visibility/wiper. Use \"body_controls\".\n\nSymptoms array plain words: [\"windshield cracked randomly\", \"crack originating from bottom heating element\", \"recurrent windshield crack 11 months later\"]. Plain. Maybe \"windshield crack\". Keep.\n\nConditions array: [] because none stated. But if missing_info includes conditions. Clues maybe no condition. Could clue kind condition? None. Maybe \"randomly one day\" is condition? No, it's timing. Could kind condition quote \"randomly one day\" maybe not an allowed condition. Better not.\n\nMissing_info: [\"conditions\"]? Also \"date\"? It has dates. Mileage in narrative. Component and symptom. So only conditions.\n\nSafety false. Fault codes [].\n\nNeed ensure JSON only. Desired oververbosity 5 but answer JSON only. Use valid JSON.\n\nLet's craft.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793529423,
+      "id": "73a757f101fe1d57533f324eb785f9e7",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1170,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 991,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00043962,
+          "billing_source": "go",
+          "list_cost": 0.0007327,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 197,
+            "output": 1170,
+            "reasoning": 991
+          }
+        },
+        "prompt_tokens": 581,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1751
+      }
+    },
+    "text": "{\"summary\":\"Front windshield cracked randomly from the bottom heating element in a 2018 Subaru Legacy and recurred 11 months later; no conditions stated.\",\"group\":\"body_controls\",\"symptoms\":[\"windshield cracked randomly\",\"crack originating from bottom heating element\",\"recurrent windshield crack 11 months later\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"VISIBILITY/WIPER\"},{\"kind\":\"symptom\",\"quote\":\"Front Windshield had crack in it randomly one day.\"},{\"kind\":\"symptom\",\"quote\":\"Coming up from bottom heating element.\"},{\"kind\":\"symptom\",\"quote\":\"Broke again 11 months later [FEB 2025] in similar fashion, randomly one day.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00043962,
+      "cached_tokens": 384,
+      "cost_usd": 0.0007327,
+      "input_tokens": 581,
+      "list_cost_usd": 0.0007327,
+      "output_tokens": 1170,
+      "reasoning_tokens": 991
+    }
+  }
+}
