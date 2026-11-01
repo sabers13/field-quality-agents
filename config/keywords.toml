@@ -1,0 +1,310 @@
+# Keyword rules for the linear "before" pipeline.
+#
+# This file is the whole rule set: no model, prompt or learned weight appears
+# here. `fqa baseline` reads it, sorts each incoming report to one component
+# group, and raises a safety flag. It was committed before any model result
+# existed in the repository (see git log for config/keywords.toml).
+#
+# Matching is deterministic:
+#
+#   1. Lower-case both the component text and the narrative.
+#   2. Split into alphanumeric tokens; a keyword phrase matches only as a
+#      contiguous run of whole tokens (so "abs" does not match "absolutely").
+#   3. A hit in the component text counts three times the phrase length; a hit
+#      in the narrative counts once. The group with the highest score wins.
+#   4. Ties go to the earlier group in this file, so the more specific groups
+#      are listed first.
+#   5. `fallback` is tried only when no other group matches. It keeps generic
+#      "electrical system" reports from outranking a specific group.
+#   6. No match at all sorts to `unclear`, which counts as wrong in macro-F1.
+#
+# The vocabulary is deliberately a readable rule of thumb, not a copy of the
+# NHTSA component prefixes: the baseline is meant to look like a keyword sort a
+# small team would actually write, including its gaps.
+
+version = "v1"
+unclear = "unclear"
+fallback = "electrical_general"
+
+# Safety flag: any hit routes the case to priority before the standard test.
+# The flag is intentionally broad; PLAN §7 reports its precision and recall
+# against the crash/fire/injury/death fields rather than assuming it is right.
+[safety]
+keywords = [
+  "crash",
+  "crashed",
+  "crashing",
+  "accident",
+  "collision",
+  "collided",
+  "struck",
+  "fire",
+  "caught fire",
+  "on fire",
+  "electrical fire",
+  "battery fire",
+  "smoke",
+  "smoking",
+  "burning",
+  "burned",
+  "burnt",
+  "melted",
+  "melting",
+  "explosion",
+  "exploded",
+  "thermal runaway",
+  "injury",
+  "injured",
+  "hurt",
+  "death",
+  "died",
+  "fatal",
+  "fatality",
+  "hospital",
+  "medical attention",
+  "airbag deployed",
+  "air bag deployed",
+  "lost control",
+  "loss of control",
+  "steering failure",
+  "brake failure",
+  "brakes failed",
+  "unintended acceleration",
+  "fuel leak",
+  "fluid leak",
+  "shut off",
+  "stalled",
+  "no power",
+]
+
+[[group]]
+id = "adas"
+keywords = [
+  "forward collision",
+  "collision avoidance",
+  "automatic emergency braking",
+  "automatic braking",
+  "adaptive cruise",
+  "cruise control",
+  "lane departure",
+  "lane keeping",
+  "lane assist",
+  "blind spot",
+  "back over prevention",
+  "rear cross traffic",
+  "backup camera",
+  "back up camera",
+  "rear camera",
+  "rearview camera",
+  "collision warning",
+  "pre collision",
+  "pedestrian detection",
+  "pedestrian warning",
+  "driver monitoring",
+  "traffic sign recognition",
+]
+
+[[group]]
+id = "ev_propulsion"
+keywords = [
+  "traction battery",
+  "propulsion system",
+  "hybrid propulsion",
+  "electric propulsion",
+  "high voltage battery",
+  "hv battery",
+  "battery management",
+  "regenerative braking",
+  "charging port",
+  "charge port",
+  "fast charging",
+  "fuel cell",
+  "electric motor",
+  "drive unit",
+  "inverter",
+  "plug in hybrid",
+  "electric vehicle",
+  "hybrid",
+  "ev",
+]
+
+[[group]]
+id = "infotainment"
+keywords = [
+  "infotainment",
+  "head unit",
+  "touchscreen",
+  "touch screen",
+  "display screen",
+  "navigation",
+  "gps",
+  "bluetooth",
+  "wifi",
+  "wi fi",
+  "apple carplay",
+  "android auto",
+  "software update",
+  "over the air",
+  "ota",
+  "telematics",
+  "radio",
+  "speaker",
+  "usb",
+  "software",
+  "communication",
+]
+
+[[group]]
+id = "instrumentation"
+keywords = [
+  "instrument cluster",
+  "instrument panel",
+  "speedometer",
+  "odometer",
+  "fuel gauge",
+  "temperature gauge",
+  "tachometer",
+  "driver display",
+  "dashboard display",
+  "gauge",
+]
+
+[[group]]
+id = "restraints"
+keywords = [
+  "air bag",
+  "air bags",
+  "airbag",
+  "airbags",
+  "srs",
+  "seat belt",
+  "seat belts",
+  "seatbelt",
+  "seatbelts",
+  "pretensioner",
+  "buckle",
+  "restraint",
+  "inflator",
+  "occupant classification",
+  "clock spring",
+  "clockspring",
+  "curtain airbag",
+  "side airbag",
+]
+
+[[group]]
+id = "lighting"
+keywords = [
+  "exterior lighting",
+  "interior lighting",
+  "headlight",
+  "headlights",
+  "headlamp",
+  "headlamps",
+  "tail light",
+  "taillight",
+  "brake light",
+  "turn signal",
+  "blinker",
+  "hazard light",
+  "fog light",
+  "daytime running",
+  "interior light",
+  "dome light",
+  "backup light",
+  "back up light",
+  "reverse light",
+  "license plate light",
+  "led",
+  "bulb",
+]
+
+[[group]]
+id = "safety_systems"
+keywords = [
+  "stability control",
+  "electronic stability",
+  "traction control",
+  "antilock",
+  "anti lock",
+  "abs",
+  "abs light",
+  "parking brake",
+  "electronic parking brake",
+  "tpms",
+  "tire pressure",
+  "tires pressure",
+  "tyre pressure",
+  "wheel speed sensor",
+  "brake control",
+  "trailer brake",
+  "pressure monitoring",
+]
+
+[[group]]
+id = "body_controls"
+keywords = [
+  "body control",
+  "bcm",
+  "power window",
+  "window regulator",
+  "window motor",
+  "door lock",
+  "lock actuator",
+  "latch",
+  "wiper",
+  "washer",
+  "horn",
+  "mirror",
+  "sunroof",
+  "moon roof",
+  "seat heater",
+  "heated seat",
+  "key fob",
+  "remote start",
+  "trunk",
+  "liftgate",
+  "tailgate",
+]
+
+[[group]]
+id = "power_and_wiring"
+keywords = [
+  "wiring harness",
+  "wiring",
+  "fuse",
+  "fuses",
+  "circuit breaker",
+  "circuit breakers",
+  "battery",
+  "12v",
+  "24v",
+  "48v",
+  "12 volt",
+  "24 volt",
+  "48 volt",
+  "alternator",
+  "generator",
+  "starter",
+  "ignition",
+  "spark plug",
+  "spark plugs",
+  "ignition coil",
+  "jump start",
+  "dead battery",
+  "charging system",
+  "power supply",
+]
+
+[[group]]
+id = "electrical_general"
+keywords = [
+  "electrical system",
+  "electrical",
+  "short circuit",
+  "ground wire",
+  "corrosion",
+  "parasitic drain",
+  "battery drain",
+  "voltage drop",
+]
