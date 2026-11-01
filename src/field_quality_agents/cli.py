@@ -18,7 +18,6 @@ _NOT_IMPLEMENTED = {
     "run": "Q8 (end-to-end run)",
     "issues": "Q8 (issue agent)",
     "report": "Q8 (report agent)",
-    "serve": "Q7 (FastAPI backend)",
     "export": "Q10 (static export)",
 }
 
@@ -78,6 +77,21 @@ def build_parser() -> argparse.ArgumentParser:
     serve = sub.add_parser("serve", help="serve the API and dashboard (Q7)")
     serve.add_argument("--host", default="127.0.0.1")
     serve.add_argument("--port", type=int, default=8000)
+    serve.add_argument(
+        "--results-dir",
+        default="results/runs",
+        help="directory holding recorded runs (default: results/runs)",
+    )
+    serve.add_argument(
+        "--run-id",
+        default=None,
+        help="serve one recorded run instead of the newest",
+    )
+    serve.add_argument(
+        "--static-dir",
+        default="web/dist",
+        help="built dashboard to serve (default: web/dist)",
+    )
     serve.set_defaults(handler="serve")
 
     export = sub.add_parser("export", help="write the offline dashboard export (Q10)")
@@ -156,6 +170,17 @@ def _run_baseline(args: argparse.Namespace) -> int:
     return 0
 
 
+def _run_serve(args: argparse.Namespace) -> int:
+    import uvicorn
+
+    from field_quality_agents.api import FileResultStore, create_app
+
+    store = FileResultStore(args.results_dir, run_id=args.run_id)
+    app = create_app(store=store, mode="replay", static_dir=args.static_dir)
+    uvicorn.run(app, host=args.host, port=args.port, log_level="info")
+    return 0
+
+
 def main(argv: Sequence[str] | None = None) -> int:
     parser = build_parser()
     args = parser.parse_args(argv)
@@ -163,6 +188,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         return _run_data(args)
     if args.handler == "baseline":
         return _run_baseline(args)
+    if args.handler == "serve":
+        return _run_serve(args)
     if args.handler == "mcp":
         from field_quality_agents.mcp_server import serve
 
