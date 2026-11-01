@@ -1,0 +1,60 @@
+{
+  "key": "109dc71f6e6d131230502e17f6b591141fac4ef1bd06de8ac865fd127082fcec",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 15526,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Back Over Prevention backup camera froze while reversing, causing a collision; recall repair parts were unavailable.\",\"group\":\"adas\",\"symptoms\":[\"backup camera froze\",\"collision with a vehicle behind while reversing\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"Back Over Prevention\"},{\"kind\":\"symptom\",\"quote\":\"the backup camera froze\"},{\"kind\":\"symptom\",\"quote\":\"hitting a vehicle that had quickly pulled up behind him\"},{\"kind\":\"condition\",\"quote\":\"reversing the vehicle\"},{\"kind\":\"safety\",\"quote\":\"resulted in the contact hitting a vehicle\"},{\"kind\":\"other\",\"quote\":\"the part to do the recall repair was not yet available\"}]}",
+            "reasoning_content": "We need answer one JSON only. Need normalize. Need read report. Component BACK OVER PREVENTION, group adas. Summary one line: component, symptom, conditions. Symptoms: backup camera froze, collision with vehicle behind? Report says reversing, backup camera froze which resulted in hitting vehicle. Safety relevant true (crash). Conditions: reversing? condition list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. Hmm \"reversing\" not in allowed list. Conditions should include only from list? It says conditions array [\"cold\",...]. We should use if report mentions. None of those. Could include \"intermittent\"? Frozen not intermittent. No. fault_codes: none. missing_info: need facts analysis needs. We have component, symptom, conditions? Conditions not specified besides reversing and recall part unavailable. Mileage present 4500. Date received present. Maybe missing_info empty? But conditions maybe not relevant? The allowed missing_info includes conditions. Since no environmental conditions, but not necessarily missing. The report has enough. Could list \"conditions\" if we think need? It has reversing scenario, but allowed conditions list doesn't include reversing. Need not invent. missing_info: maybe [] because component symptom mileage date present. The report doesn't mention date of incident, only received_at. But date is received date, maybe missing incident date? The rule says list missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. We have date received, not incident date. Is \"date\" missing? It gives received_at. The report narrative no date of occurrence. We could include \"date\" if incident date absent. But intake field has received_at. Hmm.\n\nClues: need verbatim spans. Include:\n- component_group quote \"BACK OVER PREVENTION\"? The component field value is \"BACK OVER PREVENTION\". Is that in report? The report narrative includes \"(Back Over Prevention)\" yes. Quote \"Back Over Prevention\" verbatim in narrative. Good.\n- symptom quote \"the backup camera froze\"\n- symptom quote \"hitting a vehicle that had quickly pulled up behind him\"\n- condition quote \"reversing the vehicle\"\n- safety quote \"resulted in the contact hitting a vehicle\" or \"No injuries were reported\". Safety relevant due crash. Quote \"hitting a vehicle\" verbatim. Need exact: \"resulted in the contact hitting a vehicle that had quickly pulled up behind him\" includes. Use quote.\n- fault_code? NHTSA Campaign Number: 24V684000? Is that fault code? It's recall campaign number, not fault code. The field fault_codes should code if report names one. It names campaign number not fault code. Could include as fault_code? It's not a diagnostic fault code. Probably fault_codes empty. Clues kind fault_code? No. Could include other quote about recall. But not necessary. Need maybe clue kind condition for \"part to do the recall repair was not yet available\" not allowed condition. Other? Could include \"other\": quote \"the part to do the recall repair was not yet available\". But maybe not needed.\n\nNeed summary: \"Back Over Prevention backup camera froze while reversing, causing collision; recall repair parts unavailable.\" Conditions: reversing, recall parts unavailable. But summary one line component, symptom, conditions. Conditions maybe \"while reversing; recall repair unavailable\". Fine.\n\nNeed ensure JSON valid no extra text.\n\nLet's craft:\n\n{\n \"summary\": \"Back Over Prevention backup camera froze while reversing, causing a collision; recall repair parts were unavailable.\",\n \"group\": \"adas\",\n \"symptoms\": [\"backup camera froze\", \"collision with a vehicle behind while reversing\"],\n \"conditions\": [],\n \"fault_codes\": [],\n \"safety_relevant\": true,\n \"missing_info\": [],\n \"clues\": [\n  {\"kind\":\"component_group\",\"quote\":\"Back Over Prevention\"},\n  {\"kind\":\"symptom\",\"quote\":\"the backup camera froze\"},\n  {\"kind\":\"symptom\",\"quote\":\"hitting a vehicle that had quickly pulled up behind him\"},\n  {\"kind\":\"condition\",\"quote\":\"reversing the vehicle\"},\n  {\"kind\":\"safety\",\"quote\":\"resulted in the contact hitting a vehicle\"},\n  {\"kind\":\"other\",\"quote\":\"the part to do the recall repair was not yet available\"}\n ]\n}\n\nNeed check quote \"resulted in the contact hitting a vehicle\" exact? Report: \"which resulted in the contact hitting a vehicle that had quickly pulled up behind him.\" So quote \"resulted in the contact hitting a vehicle\" is verbatim substring. Good.\n\nCould conditions include \"after service\"? No.\n\nMissing info: maybe \"date\" because incident date absent. But received_at date present. Hmm rules \"date\" likely incident date. The report says \"One day\" no date. Analysis might need date. But if include missing_info [\"date\"] maybe okay. However we have received_at not incident date. Need decide. The desk analysis needs date maybe incident date. The prompt says list missing_info for facts analysis needs: component, symptom, conditions, mileage, date. Component present, symptom present, conditions? It mentions reversing but not environmental. Mileage present. Date: received_at present, but incident date missing. I'd include \"date\" maybe. But \"missing_info\" could be empty when nothing important missing. Is incident date important? For field-quality maybe yes. But not critical. The given input has received_at. Hmm.\n\nConditions: no cold/moisture etc. Should conditions be empty. Fine.\n\nCould include \"fault_codes\": [\"24V684000\"]? It's campaign number not fault code. The schema says fault_codes code if report names one. It doesn't name diagnostic code. Better empty. Clues could include kind \"fault_code\" quote \"NHTSA Campaign Number: 24V684000\" but that might mislabel. Could include kind \"other\" quote. Not necessary.\n\nNeed no markdown. Final JSON only. Ensure no trailing. Done.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793522942,
+      "id": "gw-c068bf5dd6ff-2b263d",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1414,
+        "completion_tokens_details": {
+          "reasoning_tokens": 1242
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00053457,
+          "billing_source": "go",
+          "list_cost": 0.00089095,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 276,
+            "output": 1414,
+            "reasoning": 1242
+          }
+        },
+        "prompt_tokens": 660,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "total_tokens": 2074
+      }
+    },
+    "text": "{\"summary\":\"Back Over Prevention backup camera froze while reversing, causing a collision; recall repair parts were unavailable.\",\"group\":\"adas\",\"symptoms\":[\"backup camera froze\",\"collision with a vehicle behind while reversing\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"Back Over Prevention\"},{\"kind\":\"symptom\",\"quote\":\"the backup camera froze\"},{\"kind\":\"symptom\",\"quote\":\"hitting a vehicle that had quickly pulled up behind him\"},{\"kind\":\"condition\",\"quote\":\"reversing the vehicle\"},{\"kind\":\"safety\",\"quote\":\"resulted in the contact hitting a vehicle\"},{\"kind\":\"other\",\"quote\":\"the part to do the recall repair was not yet available\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00053457,
+      "cached_tokens": 384,
+      "cost_usd": 0.00089095,
+      "input_tokens": 660,
+      "list_cost_usd": 0.00089095,
+      "output_tokens": 1414,
+      "reasoning_tokens": 1242
+    }
+  }
+}

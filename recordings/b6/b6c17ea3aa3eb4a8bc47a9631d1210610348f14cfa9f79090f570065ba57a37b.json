@@ -1,0 +1,60 @@
+{
+  "key": "b6c17ea3aa3eb4a8bc47a9631d1210610348f14cfa9f79090f570065ba57a37b",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 16841,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system: intermittent stall while turning, parking brake engagement, battery/engine lights, battery drain and no restart; one stall across traffic.\",\"group\":\"electrical_general\",\"symptoms\":[\"stall while turning a corner\",\"parking brake engages during stall\",\"engine does not always restart immediately after stall\",\"battery warning light and engine light illuminate\",\"battery drains and truck stalls and does not run\",\"diagnostic codes clear after shutdown and restart\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"condition\",\"quote\":\"repeatedly while turning a corner\"},{\"kind\":\"symptom\",\"quote\":\"Will stall and engage the barking brake.\"},{\"kind\":\"symptom\",\"quote\":\"The engine will not always start up immediately following the stall.\"},{\"kind\":\"symptom\",\"quote\":\"However, the battery light will come on as well as an engine light.\"},{\"kind\":\"symptom\",\"quote\":\"Then eventually, what will happen Is it will drain the battery And the truck will just stall and not run at all.\"},{\"kind\":\"safety\",\"quote\":\"The scariest episode, where the truck stalled, was where I was turning left off a major highway and the vehicle stalled across 2 lanes of traffic and would not start.\"},{\"kind\":\"other\",\"quote\":\"all codes will delete themselves from the memory\"},{\"kind\":\"other\",\"quote\":\"Multiple times they are unable to recreate the issue.\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize report. Need extract summary, group given electrical_general, symptoms, conditions, fault_codes, safety_relevant true because stall across lanes traffic risk? Report mentions stall across 2 lanes of traffic, will not start; risk to people. Also \"barking brake\" likely parking brake typo, quote verbatim if clue. Need conditions: intermittent? repeatedly while turning a corner; after service? dealership multiple times unable recreate; not necessarily after service. Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. We can infer intermittent because repeatedly and unable recreate? Need quote condition \"repeatedly while turning a corner\" maybe condition. But allowed conditions only listed; likely \"intermittent\". Need symptoms plain words: stalls while turning corner; parking brake engages; engine not always restart immediately; battery light and engine light come on; battery drains; stalls and won't run; codes delete after shutdown/restart. Need fault_codes none named. missing_info mileage (null), date? received date but incident date? date missing yes. conditions maybe present. component present symptom present. Need clues with verbatim quotes. Must ensure exact spans copied character for character from narrative. Need quote exact including typos? Let's craft quotes from narrative:\n\n\"The truck repeatedly while turning a corner.\" This sentence is grammatically missing verb but exact. Actually narrative: \"The truck repeatedly while turning a corner. Will stall and engage the barking brake.\" Quote \"Will stall and engage the barking brake.\" exact. \"The engine will not always start up immediately following the stall.\" exact. \"However, the battery light will come on as well as an engine light.\" exact. \"Then eventually, what will happen Is it will drain the battery And the truck will just stall and not run at all.\" exact includes capital Is And. \"The scariest episode, where the truck stalled, was where I was turning left off a major highway and the vehicle stalled across 2 lanes of traffic and would not start.\" exact. \"all codes will delete themselves from the memory\" exact? Narrative: \"all codes will delete themselves from the memory.\" yes. \"Multiple times they are unable to recreate the issue.\" exact? Narrative \"Multiple times they are unable to recreate the issue.\" yes.\n\nNeed safety_relevant true. Summary one line component symptom conditions: \"Electrical system: intermittent stall while turning, parking brake engagement, battery/engine lights, battery drain, no restart; stalls across traffic.\" Need concise.\n\nNeed group: electrical_general.\n\nsymptoms array plain words. Could include \"stall while turning a corner\", \"parking brake engages on stall\", \"engine does not always restart immediately after stall\", \"battery warning light and engine light illuminate\", \"battery drains and truck stalls/does not run\", \"diagnostic codes clear after shutdown/restart\". Need perhaps \"barking brake\" is parking brake. Plain words can normalize.\n\nconditions: [\"intermittent\"] perhaps also \"vibration\"? turning corner not vibration. Could include \"intermittent\" only. Maybe \"after service\" because been dealership multiple times? Not necessarily condition of fault. Don't include.\n\nfault_codes: [].\n\nsafety_relevant true.\n\nmissing_info: [\"mileage\", \"date\"] maybe conditions? Conditions partly present but not environmental. The analysis needs date? received date exists, but incident date missing. Include mileage and date. Maybe \"conditions\" missing? It mentions turning corner, but not weather/temp. However conditions field can be intermittent. Missing_info list for facts analysis needs: component, symptom, conditions, mileage, date. We have component, symptom, conditions intermittent, mileage null, date? received_at but not event date. Include mileage, date. Might include \"conditions\" if need more specifics? But rule list only missing important; conditions partially. I can include \"mileage\", \"date\". Maybe \"date\" because no occurrence date. Need no other text.\n\nNeed ensure JSON valid. Quotes exact. Let's produce. Need no markdown? User says one JSON object and no other text. We can output raw JSON. Use proper escaping. Need clue kind. For safety quote use \"The scariest episode...\" kind safety. For condition quote maybe \"repeatedly while turning a corner\" exact? narrative has \"The truck repeatedly while turning a corner.\" The span \"repeatedly while turning a corner\" is verbatim. Use kind condition? It's symptom/condition. Could use clue kind condition quote \"repeatedly while turning a corner\". But condition list says intermittent; quote supports repeated. Need exact. For component_group quote \"ELECTRICAL SYSTEM\" from component? The report has component field; narrative? The user message includes component \"ELECTRICAL SYSTEM\". Is that part of report? Yes JSON. Quote can be from report? It says copied from report. The component field is in report. Use quote \"ELECTRICAL SYSTEM\". Kind component_group. Good.\n\nNeed maybe quote for symptom \"Will stall and engage the barking brake.\" exact. Good.\n\nNeed mention \"barking brake\" as quote but symptom plain words \"parking brake engages\". Fine.\n\nNeed summary: one line. Ensure no action suggestions. Good.\n\nLet's final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793523049,
+      "id": "gw-c068bf5dd6ff-2b4efa",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1420,
+        "completion_tokens_details": {
+          "reasoning_tokens": 1085
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00054897,
+          "billing_source": "go",
+          "list_cost": 0.00091495,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 412,
+            "output": 1420,
+            "reasoning": 1085
+          }
+        },
+        "prompt_tokens": 796,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "total_tokens": 2216
+      }
+    },
+    "text": "{\"summary\":\"Electrical system: intermittent stall while turning, parking brake engagement, battery/engine lights, battery drain and no restart; one stall across traffic.\",\"group\":\"electrical_general\",\"symptoms\":[\"stall while turning a corner\",\"parking brake engages during stall\",\"engine does not always restart immediately after stall\",\"battery warning light and engine light illuminate\",\"battery drains and truck stalls and does not run\",\"diagnostic codes clear after shutdown and restart\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"condition\",\"quote\":\"repeatedly while turning a corner\"},{\"kind\":\"symptom\",\"quote\":\"Will stall and engage the barking brake.\"},{\"kind\":\"symptom\",\"quote\":\"The engine will not always start up immediately following the stall.\"},{\"kind\":\"symptom\",\"quote\":\"However, the battery light will come on as well as an engine light.\"},{\"kind\":\"symptom\",\"quote\":\"Then eventually, what will happen Is it will drain the battery And the truck will just stall and not run at all.\"},{\"kind\":\"safety\",\"quote\":\"The scariest episode, where the truck stalled, was where I was turning left off a major highway and the vehicle stalled across 2 lanes of traffic and would not start.\"},{\"kind\":\"other\",\"quote\":\"all codes will delete themselves from the memory\"},{\"kind\":\"other\",\"quote\":\"Multiple times they are unable to recreate the issue.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00054897,
+      "cached_tokens": 384,
+      "cost_usd": 0.00091495,
+      "input_tokens": 796,
+      "list_cost_usd": 0.00091495,
+      "output_tokens": 1420,
+      "reasoning_tokens": 1085
+    }
+  }
+}

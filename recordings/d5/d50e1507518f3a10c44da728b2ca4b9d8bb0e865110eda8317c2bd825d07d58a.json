@@ -1,0 +1,60 @@
+{
+  "key": "d50e1507518f3a10c44da728b2ca4b9d8bb0e865110eda8317c2bd825d07d58a",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 8527,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Test the intermittent ABS/cruise-control/shift fault with a long-run power cycling test because repeated wake/sleep cycles match the intermittent rulebook entry.\",\n  \"rationale\": \"The narrative reports ABS brake warning lights on constantly, no cruise control, and intermittent inability to shift into gear. The rulebook matches the intermittent condition to a long-run power cycling test intended to reproduce faults that appear after repeated wake and sleep cycles.\",\n  \"group\": \"adas\",\n  \"symptoms\": [\n    \"ABS brake warning lights on all the time\",\n    \"no cruise control\",\n    \"intermittent inability to shift vehicle into gear\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"targeted\": true,\n  \"test_name\": \"Long-run power cycling test\",\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The ABS brake warning lights are on all the time.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"I have no cruise control.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"There are times when I can't even shift my vehicle into gear.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"There are times when I can't even shift my vehicle into gear.\"\n    },\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"I will be checking to see if I even have 4wd with this light on.\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer JSON only. Need analyze. Case: 2018 RAM 2500, ABS brake warning lights on all time, no cruise control, intermittent can't shift into gear. Group adas. Rulebook matched intermittent -> Long-run power cycling test targeted. Safety? Narrative no clear risk to people? ABS warning, no cruise, shift inability. Could be safety relevant? The extraction says false. Prompt: set safety_relevant when narrative shows risk to people. ABS brake warning lights on could indicate brake system fault, no cruise, can't shift. Is that risk to people? Hmm \"ABS brake warning lights are on all the time\" means ABS may be disabled; braking still conventional. But safety relevance? The case field says safety_relevant false. We should probably keep false unless narrative shows risk. It doesn't explicitly mention accident/injury. So false.\n\nTargeted true because rulebook intermittent matches. test_name \"Long-run power cycling test\". Summary one line. Rationale condition and evidence. Clues verbatim. Need quotes exact from narrative. Use those extraction quotes verified. Could include \"The ABS brake warning lights are on all the time.\", \"I have no cruise control.\", \"There are times when I can't even shift my vehicle into gear.\", \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\", \"I will be checking to see if I even have 4wd with this light on.\" Also maybe quote \"haven't tried it since the lights have been on.\" but enough.\n\nSymptoms list, conditions [\"intermittent\"], fault_codes [] (none). targeted true. Summary mention test.\n\nNeed no other text. Ensure JSON valid.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793523664,
+      "id": "gw-c2a0aa5c2d63-25a9e8",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 724,
+        "completion_tokens_details": {
+          "reasoning_tokens": 345
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00039804,
+          "billing_source": "go",
+          "list_cost": 0.0006634,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 1519,
+            "output": 724,
+            "reasoning": 345
+          }
+        },
+        "prompt_tokens": 1903,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "total_tokens": 2627
+      }
+    },
+    "text": "{\n  \"summary\": \"Test the intermittent ABS/cruise-control/shift fault with a long-run power cycling test because repeated wake/sleep cycles match the intermittent rulebook entry.\",\n  \"rationale\": \"The narrative reports ABS brake warning lights on constantly, no cruise control, and intermittent inability to shift into gear. The rulebook matches the intermittent condition to a long-run power cycling test intended to reproduce faults that appear after repeated wake and sleep cycles.\",\n  \"group\": \"adas\",\n  \"symptoms\": [\n    \"ABS brake warning lights on all the time\",\n    \"no cruise control\",\n    \"intermittent inability to shift vehicle into gear\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"targeted\": true,\n  \"test_name\": \"Long-run power cycling test\",\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The ABS brake warning lights are on all the time.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"I have no cruise control.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"There are times when I can't even shift my vehicle into gear.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"There are times when I can't even shift my vehicle into gear.\"\n    },\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"I will be checking to see if I even have 4wd with this light on.\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00039804,
+      "cached_tokens": 384,
+      "cost_usd": 0.0006634,
+      "input_tokens": 1903,
+      "list_cost_usd": 0.0006634,
+      "output_tokens": 724,
+      "reasoning_tokens": 345
+    }
+  }
+}

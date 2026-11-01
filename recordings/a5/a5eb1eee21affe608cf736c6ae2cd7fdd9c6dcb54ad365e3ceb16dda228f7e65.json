@@ -1,0 +1,60 @@
+{
+  "key": "a5eb1eee21affe608cf736c6ae2cd7fdd9c6dcb54ad365e3ceb16dda228f7e65",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 13485,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\": \"AIR BAGS: seat pressure sensor for SRS routinely fails, generates an error and disables front passenger airbag, clears when vehicle is turned off.\", \"group\": \"restraints\", \"symptoms\": [\"seat pressure sensor for supplemental restraint system (SRS) routinely fails\", \"system generates an error and disables the front passenger airbag\", \"condition clears when the vehicle is turned off\", \"system still routinely fails after recalibration\"], \"conditions\": [\"intermittent\"], \"fault_codes\": [], \"safety_relevant\": true, \"missing_info\": [\"mileage\", \"date\"], \"clues\": [{\"kind\": \"component_group\", \"quote\": \"AIR BAGS\"}, {\"kind\": \"symptom\", \"quote\": \"Seat pressure sensor for supplemental restraint system (SRS) routinely fails.\"}, {\"kind\": \"symptom\", \"quote\": \"The system generates and error and disables the front passenger airbag.\"}, {\"kind\": \"condition\", \"quote\": \"The condition clears when the vehicle is turned off.\"}, {\"kind\": \"other\", \"quote\": \"Sensors have been recalibrated multiple times.\"}, {\"kind\": \"symptom\", \"quote\": \"System still routinely fails.\"}, {\"kind\": \"safety\", \"quote\": \"disables the front passenger airbag\"}]}",
+            "reasoning_content": "We need answer one JSON object no other text. Need normalize report. Read only report. Need summary component symptom conditions. Group restraints given. Symptoms: seat pressure sensor for SRS routinely fails; system generates error and disables front passenger airbag; condition clears when vehicle turned off; sensors recalibrated multiple times system still routinely fails. Conditions: intermittent? \"routinely fails\", \"clears when vehicle turned off\" -> intermittent maybe. \"after service\" because recalibrated multiple times? That's service action not condition? Conditions list includes after service. Could include intermittent. Missing info: mileage null, date? received_at date exists but report date? missing_info facts analysis needs: component present symptom present conditions maybe conditions? It says conditions intermittent? Mileage missing, date? received_at present but maybe date of incident missing. We can list mileage and date? Need be careful. Safety relevant? Airbag disabled is risk to people? Prompt says set safety_relevant when mentions crash fire smoke injury loss control stall at speed or another risk to people. Disabling front passenger airbag is safety risk. The input has safety_relevant false but we should set based on report. Yes true. Fault codes none. Clues verbatim spans. Need quotes exact from narrative. Ensure quote copied. Possible clues:\n- symptom quote \"Seat pressure sensor for supplemental restraint system (SRS) routinely fails.\"\n- symptom quote \"The system generates and error and disables the front passenger airbag.\"\n- condition quote \"The condition clears when the vehicle is turned off.\"\n- condition? \"Sensors have been recalibrated multiple times.\" This could be after service? maybe quote.\n- symptom quote \"System still routinely fails.\"\n- safety quote \"disables the front passenger airbag\" but quote must be verbatim span; can include within sentence? Yes \"disables the front passenger airbag\" is verbatim. kind safety.\n- component_group quote \"AIR BAGS\"? from component field not narrative? Report includes component \"AIR BAGS\"; quote can be from report, not necessarily narrative. Use \"AIR BAGS\" exact. But maybe quote \"supplemental restraint system (SRS)\" for component group. Need one object per clue.\n\nSummary one line: \"AIR BAGS seat pressure sensor routinely fails, disables front passenger airbag, clears when vehicle off.\" Conditions: [\"intermittent\"] maybe \"after service\" because recalibrated multiple times? Is \"after service\" a condition? It failed after recalibration? \"Sensors have been recalibrated multiple times. System still routinely fails.\" Could be after service. But condition list includes \"after service\", likely if occurs after service. Since recalibrated multiple times and still fails, not necessarily after service. Use intermittent only. Maybe \"cold moisture heat vibration charging\" absent. Missing_info: [\"mileage\", \"date\"]? The report has received_at but not incident date. Analysis needs date? Could list \"mileage\", \"date\". Conditions are present (intermittent). Component present. Symptom present. Good.\n\nNeed answer only JSON. Ensure valid JSON. No markdown? User says answer one JSON object and no other text. We can output raw JSON. Use quotes. Need no trailing commas.\n\nNeed decide safety_relevant true. They provided false, but rules override. Quote \"disables the front passenger airbag\" is safety. Good.\n\nNeed summary one line. \"AIR BAGS: seat pressure sensor for SRS routinely fails, generates an error and disables front passenger airbag, clears when vehicle is turned off.\" That's one line. Fine.\n\nClues:\n1 kind component_group quote \"AIR BAGS\" (from component field)\n2 kind symptom quote \"Seat pressure sensor for supplemental restraint system (SRS) routinely fails.\"\n3 kind symptom quote \"The system generates and error and disables the front passenger airbag.\"\n4 kind condition quote \"The condition clears when the vehicle is turned off.\"\n5 kind condition quote \"Sensors have been recalibrated multiple times.\" Maybe kind other? It's service history. Conditions include after service. Use kind condition? Hmm \"Sensors have been recalibrated multiple times.\" indicates service attempts. Could be \"after service\" condition. But safer kind \"other\". But clues kind condition if condition. It isn't a condition exactly. Use \"other\".\n6 kind symptom quote \"System still routinely fails.\"\n7 kind safety quote \"disables the front passenger airbag\"\n\nNeed keep \"error\" typo from report: \"generates and error\" exact. Use exact.\n\nShould include fault_codes empty. missing_info list. Good.\n\nNeed maybe \"conditions\": [\"intermittent\"]. Is \"clears when vehicle turned off\" not intermittent? It is intermittent. Good.\n\nFinal raw JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793523589,
+      "id": "gw-c026736306b7-2ce598",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1269,
+        "completion_tokens_details": {
+          "reasoning_tokens": 983
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00047184,
+          "billing_source": "go",
+          "list_cost": 0.0007864,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 159,
+            "output": 1269,
+            "reasoning": 983
+          }
+        },
+        "prompt_tokens": 543,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "total_tokens": 1812
+      }
+    },
+    "text": "{\"summary\": \"AIR BAGS: seat pressure sensor for SRS routinely fails, generates an error and disables front passenger airbag, clears when vehicle is turned off.\", \"group\": \"restraints\", \"symptoms\": [\"seat pressure sensor for supplemental restraint system (SRS) routinely fails\", \"system generates an error and disables the front passenger airbag\", \"condition clears when the vehicle is turned off\", \"system still routinely fails after recalibration\"], \"conditions\": [\"intermittent\"], \"fault_codes\": [], \"safety_relevant\": true, \"missing_info\": [\"mileage\", \"date\"], \"clues\": [{\"kind\": \"component_group\", \"quote\": \"AIR BAGS\"}, {\"kind\": \"symptom\", \"quote\": \"Seat pressure sensor for supplemental restraint system (SRS) routinely fails.\"}, {\"kind\": \"symptom\", \"quote\": \"The system generates and error and disables the front passenger airbag.\"}, {\"kind\": \"condition\", \"quote\": \"The condition clears when the vehicle is turned off.\"}, {\"kind\": \"other\", \"quote\": \"Sensors have been recalibrated multiple times.\"}, {\"kind\": \"symptom\", \"quote\": \"System still routinely fails.\"}, {\"kind\": \"safety\", \"quote\": \"disables the front passenger airbag\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00047184,
+      "cached_tokens": 384,
+      "cost_usd": 0.0007864,
+      "input_tokens": 543,
+      "list_cost_usd": 0.0007864,
+      "output_tokens": 1269,
+      "reasoning_tokens": 983
+    }
+  }
+}

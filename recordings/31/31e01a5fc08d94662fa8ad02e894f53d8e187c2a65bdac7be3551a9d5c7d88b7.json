@@ -1,0 +1,60 @@
+{
+  "key": "31e01a5fc08d94662fa8ad02e894f53d8e187c2a65bdac7be3551a9d5c7d88b7",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9881,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Test the battery and hold-down clamps under load to confirm the corrosion-related battery failure; no rulebook targeted test applies.\",\"rationale\":\"The narrative states that corrosion was found on the battery hold down clamps and that a battery test indicated a faulty battery. The vehicle was at an independent mechanic for routine service at 68,000 miles, and recall 23V734000 is mentioned with parts unavailable. No rulebook match or investigation result was returned, so a standard battery/electrical inspection and load test is appropriate rather than a targeted rulebook test.\",\"group\":\"electrical_general\",\"symptoms\":[\"corrosion on battery hold down clamps\",\"faulty battery\"],\"conditions\":[\"vehicle parked at independent mechanic for routine service\",\"failure mileage 68,000\",\"recall 23V734000 remedy parts unavailable\"],\"fault_codes\":[\"23V734000\"],\"safety_relevant\":false,\"targeted\":false,\"test_name\":\"Battery inspection and load test\",\"clues\":[{\"kind\":\"symptom\",\"quote\":\"corrosion was present on the battery hold down clamps\"},{\"kind\":\"symptom\",\"quote\":\"the battery test indicated a faulty battery\"},{\"kind\":\"fault_code\",\"quote\":\"NHTSA Campaign Number: 23V734000 (Electrical System)\"},{\"kind\":\"condition\",\"quote\":\"parked at an independent mechanic for a routine service appointment\"},{\"kind\":\"condition\",\"quote\":\"failure mileage was 68,000\"}]}",
+            "reasoning_content": "We need answer JSON only. Need analyze. Case: corrosion battery hold down clamps, faulty battery, recall 23V734000 parts unavailable. Rulebook empty, recalls result empty (interesting but narrative has recall). Investigations empty. Similar cases recall only. Need propose test. No rulebook targeted. So targeted false. Test name standard? We need choose appropriate standard test perhaps \"Battery inspection and load test\" or \"Electrical system inspection\". The prompt: prefer targeted load test when conditions match rulebook entry; otherwise standard test. Rulebook empty, so standard test. Need test_name maybe \"Battery load test\". Summary one line what to test and why. Rationale condition evidence. Group electrical_general. Symptoms corrosion clamps, faulty battery. Conditions maybe parked at independent mechanic routine service, mileage 68000, recall 23V734000 parts unavailable. Fault codes [\"23V734000\"]? It's recall campaign, not fault code, but extraction has fault_codes. We can include. Safety_relevant false. Targeted false. Clues verbatim quotes from narrative, not extraction? Must be copied verbatim from case narrative. Need ensure exact spans. Narrative: \"corrosion was present on the battery hold down clamps\" yes exact. \"the battery test indicated a faulty battery\" exact. \"NHTSA Campaign Number: 23V734000 (Electrical System)\" exact. \"parked at an independent mechanic for a routine service appointment\" exact. \"failure mileage was 68,000\" exact. Could include. Need JSON no other text. Ensure valid. \"test_name\": \"Battery inspection and load test\" maybe. Since no rulebook. Could be \"Standard electrical system inspection and battery load test\". Need targeted false. Summary: \"Test the battery and hold-down clamps under load to confirm corrosion-related battery failure; no rulebook targeted test applies.\" That's one line. Rationale mention mechanic found corrosion on clamps and battery test faulty; recall parts unavailable; rulebook empty so standard test. No proposing desk action. Don't say repair recall? Avoid. Use only facts.\n\nNeed maybe safety_relevant false. Clues include component_group? We can include group? kind component_group quote? Narrative doesn't explicitly say electrical system except recall. Could use quote \"NHTSA Campaign Number: 23V734000 (Electrical System)\" for component_group? But already fault_code. Fine.\n\nNeed \"conditions\": [\"vehicle parked at independent mechanic for routine service\", \"failure mileage 68,000\", \"recall remedy parts unavailable\"]. Conditions quote? Conditions array not necessarily quote. But clues quotes.\n\nNeed maybe \"symptoms\": [\"corrosion on battery hold down clamps\", \"faulty battery\"]. Good.\n\nFinal only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793522847,
+      "id": "gw-c026736306b7-2bcae1",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 877,
+        "completion_tokens_details": {
+          "reasoning_tokens": 565
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00045144,
+          "billing_source": "go",
+          "list_cost": 0.0007524,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 1508,
+            "output": 877,
+            "reasoning": 565
+          }
+        },
+        "prompt_tokens": 1508,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 2385
+      }
+    },
+    "text": "{\"summary\":\"Test the battery and hold-down clamps under load to confirm the corrosion-related battery failure; no rulebook targeted test applies.\",\"rationale\":\"The narrative states that corrosion was found on the battery hold down clamps and that a battery test indicated a faulty battery. The vehicle was at an independent mechanic for routine service at 68,000 miles, and recall 23V734000 is mentioned with parts unavailable. No rulebook match or investigation result was returned, so a standard battery/electrical inspection and load test is appropriate rather than a targeted rulebook test.\",\"group\":\"electrical_general\",\"symptoms\":[\"corrosion on battery hold down clamps\",\"faulty battery\"],\"conditions\":[\"vehicle parked at independent mechanic for routine service\",\"failure mileage 68,000\",\"recall 23V734000 remedy parts unavailable\"],\"fault_codes\":[\"23V734000\"],\"safety_relevant\":false,\"targeted\":false,\"test_name\":\"Battery inspection and load test\",\"clues\":[{\"kind\":\"symptom\",\"quote\":\"corrosion was present on the battery hold down clamps\"},{\"kind\":\"symptom\",\"quote\":\"the battery test indicated a faulty battery\"},{\"kind\":\"fault_code\",\"quote\":\"NHTSA Campaign Number: 23V734000 (Electrical System)\"},{\"kind\":\"condition\",\"quote\":\"parked at an independent mechanic for a routine service appointment\"},{\"kind\":\"condition\",\"quote\":\"failure mileage was 68,000\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00045144,
+      "cached_tokens": 0,
+      "cost_usd": 0.0007524,
+      "input_tokens": 1508,
+      "list_cost_usd": 0.0007524,
+      "output_tokens": 877,
+      "reasoning_tokens": 565
+    }
+  }
+}

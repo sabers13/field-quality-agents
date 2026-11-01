@@ -1,0 +1,60 @@
+{
+  "key": "97f5d2e07904c0f5fdea49ba5cff9bb697631fde4b426037518aa3bcc803d577",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 14547,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"LANE DEPARTURE: WARNING on 2025 Polestar 3: lane departure warnings and steering interventions cannot be disabled; vehicle self-steers when feature is off, including toward potholes and bicyclists.\",\"group\":\"adas\",\"symptoms\":[\"lane departure warnings cannot be disabled\",\"steering interventions cannot be disabled\",\"vehicle still intervenes and self-steers with feature turned off\",\"steered back toward potholes and bicyclists\"],\"conditions\":[\"feature turned off\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"Lane Departure warnings cannot be disabled\"},{\"kind\":\"symptom\",\"quote\":\"steering interventions also cannot be disabled\"},{\"kind\":\"condition\",\"quote\":\"With feature turned “off”\"},{\"kind\":\"symptom\",\"quote\":\"vehicle still intervenes and self-steers\"},{\"kind\":\"symptom\",\"quote\":\"Car has steered back toward potholes and bicyclists that I was trying to avoid\"},{\"kind\":\"safety\",\"quote\":\"I could have destroyed a wheel in the 1st case or killed somebody in the second case\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize report. Component \"LANE DEPARTURE: WARNING\", group adas. Narrative mentions lane keeping/departure warnings cannot be disabled, steering interventions cannot be disabled contrary manual/control panel button. With off still intervenes self-steers. Car steered back toward potholes and bicyclists trying avoid. Could have destroyed wheel or killed somebody. Safety relevant true due loss of control? Steering interventions contrary, risk to people, killed somebody. Conditions? intermittent? Not explicit. Conditions list maybe none? \"with feature turned off\" is condition? The schema conditions include cold moisture heat vibration intermittent after service charging. Not applicable. Could include none. Symptoms: lane departure warnings cannot be disabled; steering interventions cannot be disabled; vehicle still intervenes/self-steers when feature off; steered back toward potholes/bicyclists. Fault codes none. missing_info: mileage? mileage null, date? received_at exists but not report date? missing_info only facts analysis needs component symptom conditions mileage date. Component and symptom present. Conditions maybe absent? But conditions not necessarily needed? Missing mileage yes. Date maybe received_at present but that's received date, not incident date. Could list mileage, date. Conditions? Could list conditions? Report doesn't give weather etc but not crucial? Need list only important missing. For ADAS unintended steering, conditions maybe road context present. Could list mileage, date. Safety true. Clues with verbatim quotes. Need ensure quotes exact. Verbatim span from narrative. Quotes:\n- \"Lane Keeping and Lane Departure: Lane Departure warnings cannot be disabled\" exact? Narrative: \"Lane Keeping and Lane Departure: Lane Departure warnings cannot be disabled, but steering interventions also cannot be disabled, contrary to manual’s instructions and control panel button.\" yes substring includes colon. Quote can be \"Lane Departure warnings cannot be disabled\" exact? yes. \n- \"steering interventions also cannot be disabled\" exact.\n- \"With feature turned “off”, vehicle still intervenes and self-steers.\" Exact uses curly quotes and comma. Need copy character for character. Could quote \"vehicle still intervenes and self-steers\" exact substring yes.\n- \"Car has steered back toward potholes and bicyclists that I was trying to avoid.\" exact.\n- \"I could have destroyed a wheel in the 1st case or killed somebody in the second case.\" exact. Safety quote.\n\nSummary one line: \"LANE DEPARTURE: WARNING on 2025 Polestar 3: warnings and steering interventions cannot be disabled; vehicle self-steers when feature off, including toward potholes and bicyclists.\" Conditions maybe [\"with feature turned off\"]? But conditions enum? The instruction says conditions: [\"cold\", ...] maybe can include other? It says conditions array examples. We can include \"feature turned off\" as condition? It asks conditions list; likely should include \"with feature turned off\"? But schema examples are specific. The rules list possible conditions. It says conditions: [\"cold\", \"moisture\", ...] not exhaustive? It includes \"intermittent\", \"after service\", \"charging\". But \"feature turned off\" is condition of symptom. Hmm should we include? To be safe, conditions can be [\"feature turned off\"]? But the field expected condition categories maybe. The prompt: \"conditions\": [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"] — likely choose from these. \"feature turned off\" isn't in list but is relevant. However output can have plain conditions? It says symptoms plain words, conditions list examples. Maybe include \"feature turned off\" as condition because it's a condition. But if strict, maybe not. Need no other text.\n\nMissing_info: [\"mileage\", \"date\"]? Date received_at 2025-02-01 but not incident date. Does analysis need date? Yes.\n\nGroup: \"adas\". Symptoms array:\n\"lane departure warnings cannot be disabled\"\n\"steering interventions cannot be disabled\"\n\"vehicle still intervenes and self-steers with feature turned off\"\n\"steered back toward potholes and bicyclists\"\n\nFault_codes [].\n\nClues:\n{\"kind\":\"symptom\",\"quote\":\"Lane Departure warnings cannot be disabled\"}\n{\"kind\":\"symptom\",\"quote\":\"steering interventions also cannot be disabled\"}\n{\"kind\":\"condition\",\"quote\":\"With feature turned “off”\"} maybe exact substring: Narrative has \"With feature turned “off”, vehicle...\" So quote \"With feature turned “off”\" exact includes curly quotes. Good.\n{\"kind\":\"symptom\",\"quote\":\"vehicle still intervenes and self-steers\"}\n{\"kind\":\"symptom\",\"quote\":\"Car has steered back toward potholes and bicyclists that I was trying to avoid\"}\n{\"kind\":\"safety\",\"quote\":\"I could have destroyed a wheel in the 1st case or killed somebody in the second case\"}\n\nNeed maybe quote \"contrary to manual’s instructions and control panel button\" as other? Not needed.\n\nSafety_relevant true.\n\nNeed output JSON only. Ensure valid JSON. Curly quotes okay. Use exact quote. Check \"With feature turned “off”\" includes left/right curly quotes. Good.\n\nNeed summary \"LANE DEPARTURE: WARNING on 2025 Polestar 3: lane departure warnings and steering interventions cannot be disabled; vehicle self-steers when feature is off, including toward potholes and bicyclists.\" One line.\n\nPotential issue: \"group\" given adas. Good.\n\nMissing_info: maybe component? component present. symptom present. conditions? present. mileage/date missing. Use [\"mileage\",\"date\"]. But date? received_at given; report date maybe not. Fine.\n\nNeed not include safety false from input. Override true.\n\nFinal with JSON only.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793523387,
+      "id": "gw-c068bf5dd6ff-2bcf05",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1492,
+        "completion_tokens_details": {
+          "reasoning_tokens": 1231
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00055608,
+          "billing_source": "go",
+          "list_cost": 0.0009268,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 203,
+            "output": 1492,
+            "reasoning": 1231
+          }
+        },
+        "prompt_tokens": 587,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "total_tokens": 2079
+      }
+    },
+    "text": "{\"summary\":\"LANE DEPARTURE: WARNING on 2025 Polestar 3: lane departure warnings and steering interventions cannot be disabled; vehicle self-steers when feature is off, including toward potholes and bicyclists.\",\"group\":\"adas\",\"symptoms\":[\"lane departure warnings cannot be disabled\",\"steering interventions cannot be disabled\",\"vehicle still intervenes and self-steers with feature turned off\",\"steered back toward potholes and bicyclists\"],\"conditions\":[\"feature turned off\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"Lane Departure warnings cannot be disabled\"},{\"kind\":\"symptom\",\"quote\":\"steering interventions also cannot be disabled\"},{\"kind\":\"condition\",\"quote\":\"With feature turned “off”\"},{\"kind\":\"symptom\",\"quote\":\"vehicle still intervenes and self-steers\"},{\"kind\":\"symptom\",\"quote\":\"Car has steered back toward potholes and bicyclists that I was trying to avoid\"},{\"kind\":\"safety\",\"quote\":\"I could have destroyed a wheel in the 1st case or killed somebody in the second case\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00055608,
+      "cached_tokens": 384,
+      "cost_usd": 0.0009268,
+      "input_tokens": 587,
+      "list_cost_usd": 0.0009268,
+      "output_tokens": 1492,
+      "reasoning_tokens": 1231
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "key": "52fae052cf8e105cd12537883922ff6c6d019cf070b8f528c7690ea3ba9f6247",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 15404,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Lane departure warning/ADAS: condensation in front of camera; vehicle jerks across road and cannot keep lane; disable features reactivate automatically\",\"group\":\"adas\",\"symptoms\":[\"condensation builds in front of the camera\",\"car jerks all over the road\",\"car cannot keep itself in the lane\",\"lane departure features turn back on automatically when trying to disable them\"],\"conditions\":[\"moisture\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"LANE DEPARTURE: WARNING\"},{\"kind\":\"condition\",\"quote\":\"Condensation builds in front of the camera\"},{\"kind\":\"symptom\",\"quote\":\"The car starts jerking all over the road with no warning\"},{\"kind\":\"symptom\",\"quote\":\"the car cannot keep itself in the lane\"},{\"kind\":\"symptom\",\"quote\":\"they get turned back on automatically\"},{\"kind\":\"safety\",\"quote\":\"The car starts jerking all over the road with no warning\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need parse report. Component LANE DEPARTURE: WARNING group adas. Narrative: Condensation builds in front of camera. Car starts jerking all over road with no warning. No error other than noticing car cannot keep itself in lane. When trying to disable features, they get turned back on automatically.\n\nNeed summary one line: component, symptom, conditions. Group \"adas\". Symptoms plain words: \"jerking all over the road\", \"cannot keep itself in lane\", \"features turn back on automatically when trying to disable\"? Symptoms includes warning? Component lane departure warning. Conditions: condensation? list allowed conditions includes cold moisture heat vibration intermittent after service charging. Condensation -> moisture. \"no warning\" maybe conditions? Safety relevant? It says car jerking all over road with no warning, cannot keep lane. Risk to people? It mentions no crash/fire/injury/loss of control? \"jerking all over the road\" could be loss of control? The schema says set safety_relevant when mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. \"jerking all over the road\" with lane keeping unable keep lane could be risk/loss of control. But input says safety_relevant false, but instructions say read report and set. We should judge. It is a lane keeping system jerking all over road; could be loss of control risk. Need set true? Need be careful. It says \"The car starts jerking all over the road with no warning. There is no error other than noticing that the car cannot keep itself in the lane.\" This is ADAS unintended steering, safety relevant. I'd set true. Need fault_codes empty. missing_info: mileage (null), date? received_at is date but report date? Analysis needs date maybe received_at exists. Conditions present (condensation). Component present. Symptom present. Missing mileage. Maybe date? received_at given, so no. missing_info [\"mileage\"].\n\nClues: need verbatim spans. Include:\n- component_group? quote \"LANE DEPARTURE: WARNING\" maybe kind component_group? But component group is adas; quote from component. Could use kind component_group quote \"LANE DEPARTURE: WARNING\" perhaps.\n- symptom: \"Condensation builds in front of the camera\" (condition? symptom? It's condition). kind condition quote \"Condensation builds in front of the camera\"\n- symptom: \"The car starts jerking all over the road with no warning\"\n- symptom: \"the car cannot keep itself in the lane\"\n- symptom: \"they get turned back on automatically\"\n- safety: \"jerking all over the road\" maybe quote \"The car starts jerking all over the road with no warning\"\nNeed no invented. Quote exact. \"When trying to disable the features, they get turned back on automatically.\" Use exact substring \"they get turned back on automatically\" yes verbatim. \"cannot keep itself in the lane\" exact appears \"the car cannot keep itself in the lane\". Good.\nNeed summary one line: \"Lane departure warning/ADAS: condensation in front of camera; vehicle jerks across road and cannot keep lane; disable features reactivate automatically.\" Good.\n\nNeed output exactly JSON no other text. Ensure valid JSON, no markdown? User said answer with one JSON object and no other text. We can output raw JSON. Need include all keys. Conditions list: [\"moisture\"] maybe \"intermittent\"? Jerking starts? Not intermittent. \"no warning\" not allowed. Include \"moisture\". Symptoms list plain words:\n[\"condensation builds in front of the camera\", \"car jerks all over the road\", \"car cannot keep itself in the lane\", \"lane departure features turn back on automatically when trying to disable them\"]\nMaybe \"jerking all over the road with no warning\" and \"cannot keep itself in lane\" are symptoms. The summary includes conditions.\n\nSafety_relevant true. Missing_info [\"mileage\"]. Fault_codes [].\n\nClues need quote exact. Let's list:\n{\"kind\":\"condition\",\"quote\":\"Condensation builds in front of the camera\"}\n{\"kind\":\"symptom\",\"quote\":\"The car starts jerking all over the road with no warning\"}\n{\"kind\":\"symptom\",\"quote\":\"the car cannot keep itself in the lane\"}\n{\"kind\":\"symptom\",\"quote\":\"they get turned back on automatically\"}\n{\"kind\":\"safety\",\"quote\":\"jerking all over the road\"} - quote exact? It is substring, yes \"jerking all over the road\" appears within. But duplicate okay. Use full \"The car starts jerking all over the road with no warning\" for safety? Could duplicate. Maybe don't duplicate? Clues can include same quote with different kind? It says clues kind. But okay. Use safety quote \"The car starts jerking all over the road with no warning\". Maybe enough.\n{\"kind\":\"component_group\",\"quote\":\"LANE DEPARTURE: WARNING\"}? The group given adas. But quote is component. kind component_group maybe okay. It says component_group. But \"LANE DEPARTURE: WARNING\" is not group? It is component. Could include as other? Maybe no need. The quote verifies component. But clues should evidence. Include kind \"component_group\" quote \"LANE DEPARTURE: WARNING\" maybe acceptable. It asks \"the electrical/electronic component group, or given group\"; group is adas. Quote \"LANE DEPARTURE: WARNING\" identifies component. Hmm.\n\nNeed maybe \"other\" quote \"When trying to disable the features\" no.\n\nNeed ensure \"safety_relevant\" as boolean true. Do not mention action.\n\nFinal JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793523430,
+      "id": "gw-c0c301b7e952-2ef1c3",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1422,
+        "completion_tokens_details": {
+          "reasoning_tokens": 1195
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00052674,
+          "billing_source": "go",
+          "list_cost": 0.0008779,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 157,
+            "output": 1422,
+            "reasoning": 1195
+          }
+        },
+        "prompt_tokens": 541,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "total_tokens": 1963
+      }
+    },
+    "text": "{\"summary\":\"Lane departure warning/ADAS: condensation in front of camera; vehicle jerks across road and cannot keep lane; disable features reactivate automatically\",\"group\":\"adas\",\"symptoms\":[\"condensation builds in front of the camera\",\"car jerks all over the road\",\"car cannot keep itself in the lane\",\"lane departure features turn back on automatically when trying to disable them\"],\"conditions\":[\"moisture\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"LANE DEPARTURE: WARNING\"},{\"kind\":\"condition\",\"quote\":\"Condensation builds in front of the camera\"},{\"kind\":\"symptom\",\"quote\":\"The car starts jerking all over the road with no warning\"},{\"kind\":\"symptom\",\"quote\":\"the car cannot keep itself in the lane\"},{\"kind\":\"symptom\",\"quote\":\"they get turned back on automatically\"},{\"kind\":\"safety\",\"quote\":\"The car starts jerking all over the road with no warning\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00052674,
+      "cached_tokens": 384,
+      "cost_usd": 0.0008779,
+      "input_tokens": 541,
+      "list_cost_usd": 0.0008779,
+      "output_tokens": 1422,
+      "reasoning_tokens": 1195
+    }
+  }
+}

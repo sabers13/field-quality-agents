@@ -1,0 +1,60 @@
+{
+  "key": "c086a88b9520cc92249a2f69ecd484ffde1bb5092fc8290d4fdb2b7becd832f3",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11502,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Electrical system: Jeep stopped moving during acceleration with noise when pressing the gas pedal; crash with injuries.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"stopped moving during acceleration\",\n    \"made noise when pressing the gas pedal but did not move\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\",\n    \"conditions\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"ELECTRICAL SYSTEM\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"my Jeep stopped moving in the middle of a 4 lane highway\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"It made noise when I pressed on the gas pedal but didn’t go anywhere.\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"I was hit by a car that couldn’t avoid me, and my daughter and I were injured in the crash.\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer JSON only. Need normalize. Report: component electrical system group electrical_general. Narrative: Jeep stopped moving middle highway during acceleration, made noise when pressed gas but didn't go anywhere, hit by car, injuries, crash, total loss. Need summary one line component symptom conditions. Symptoms: stopped moving during acceleration; made noise when pressing gas pedal but didn't go anywhere; crash/injuries? Safety relevant true. Conditions: maybe none? \"during acceleration\" could be condition? The list conditions includes cold moisture heat vibration intermittent after service charging. None explicit. Could include \"intermittent\"? no. missing_info: mileage, date? Report has received_at but not incident date. component present? symptom present. conditions missing? The analysis needs conditions maybe not specified. mileage null, date missing. We should list mileage, date, conditions. Maybe component? component is generic electrical system, but given. Symptom present. Safety relevant true. Clues need verbatim quotes. Need include symptom, safety, component_group maybe. Quotes exact from narrative. Ensure character for character. We have escaped apostrophes? In JSON, quotes can include apostrophes. Need quote spans: \"my Jeep stopped moving in the middle of a 4 lane highway\" exact? Narrative: \"I was crossing a road to get to the median and my Jeep stopped moving in the middle of a 4 lane highway, separated by a median that I never made it to due to it stopping moving during acceleration.\" Quote \"my Jeep stopped moving in the middle of a 4 lane highway\" verbatim yes. \"It made noise when I pressed on the gas pedal but didn\\u2019t go anywhere.\" Need quote exact with curly apostrophe? We can include \"It made noise when I pressed on the gas pedal but didn’t go anywhere.\" Verbatim includes \\u2019 rendered. Fine. Safety quote: \"I was hit by a car that couldn\\u2019t avoid me, and my daughter and I were injured in the crash.\" exact. Or \"my daughter and I were injured in the crash\" exact. Clue kind safety. Component_group quote \"ELECTRICAL SYSTEM\" from component not narrative? Rule quote copied verbatim from report; report includes component field. Could quote \"ELECTRICAL SYSTEM\". Good. Summary: \"Electrical system: Jeep stopped moving during acceleration with noise when pressing gas pedal; crash with injuries.\" Conditions empty? Maybe \"during acceleration\" not in condition list. The schema conditions enum list; we can include none. But summary mentions during acceleration. Conditions list perhaps [\"intermittent\"]? No. Missing_info: mileage, date, conditions. Date: received_at is 2025-01-23 but incident date not given. Use \"date\". Safety_relevant true.\n\nNeed no extra text. JSON valid. Ensure arrays. \"symptoms\": [\"stopped moving during acceleration\", \"made noise when pressing gas pedal but did not move\"]. Plain words. Maybe include \"crash injuries\"? Symptom? no safety.\n\nFault codes empty.\n\nClues: include symptom quote exactly. Need quote \"stopped moving during acceleration\" substring? Narrative has \"it stopping moving during acceleration\" not \"stopped moving during acceleration\". Could quote \"stopping moving during acceleration\" but symptom plain says stopped. Better quote full \"my Jeep stopped moving in the middle of a 4 lane highway\" and \"It made noise when I pressed on the gas pedal but didn’t go anywhere.\" For condition? none. For safety quote. For component_group quote \"ELECTRICAL SYSTEM\". For other? no.\n\nNeed missing_info includes \"mileage\",\"date\",\"conditions\". Maybe \"component\" not missing because component given but generic. No.\n\nLet's craft. Ensure JSON only.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793522973,
+      "id": "gw-c0c301b7e952-2e4393",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1021,
+        "completion_tokens_details": {
+          "reasoning_tokens": 771
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00038958,
+          "billing_source": "go",
+          "list_cost": 0.0006493,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 237,
+            "output": 1021,
+            "reasoning": 771
+          }
+        },
+        "prompt_tokens": 621,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "total_tokens": 1642
+      }
+    },
+    "text": "{\n  \"summary\": \"Electrical system: Jeep stopped moving during acceleration with noise when pressing the gas pedal; crash with injuries.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"stopped moving during acceleration\",\n    \"made noise when pressing the gas pedal but did not move\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\",\n    \"conditions\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"ELECTRICAL SYSTEM\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"my Jeep stopped moving in the middle of a 4 lane highway\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"It made noise when I pressed on the gas pedal but didn’t go anywhere.\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"I was hit by a car that couldn’t avoid me, and my daughter and I were injured in the crash.\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00038958,
+      "cached_tokens": 384,
+      "cost_usd": 0.0006493,
+      "input_tokens": 621,
+      "list_cost_usd": 0.0006493,
+      "output_tokens": 1021,
+      "reasoning_tokens": 771
+    }
+  }
+}

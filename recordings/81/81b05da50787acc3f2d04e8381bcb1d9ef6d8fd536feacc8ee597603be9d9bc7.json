@@ -1,0 +1,60 @@
+{
+  "key": "81b05da50787acc3f2d04e8381bcb1d9ef6d8fd536feacc8ee597603be9d9bc7",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 20629,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Lane keeping system in 2023 Ford Escape Hybrid Platinum keeps vehicle too far left/too close to center lane marker while driving.\",\"group\":\"adas\",\"symptoms\":[\"lane keeping system keeps vehicle too far to the left\",\"lane keeping system keeps vehicle too close to the center lane marker\"],\"conditions\":[\"driving\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"The lane keeping system in my 2023 ford escape hybrid platinum keeps me too far to the left.\"},{\"kind\":\"symptom\",\"quote\":\"When driving the lane keeping system keeps me too close to the center lane marker.\"},{\"kind\":\"condition\",\"quote\":\"When driving\"},{\"kind\":\"safety\",\"quote\":\"I believe it is a potential safety issue for my car to be so close to the left side lane marker\"},{\"kind\":\"other\",\"quote\":\"My local ford dealer says the lane keeping system can not be recalibrated\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize. Component given FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL but narrative lane keeping. Group adas. Summary one line component symptom conditions. Need symptoms plain words: lane keeping system keeps vehicle too far left / too close to center lane marker. Conditions? driving maybe; no cold etc. Conditions list maybe [\"driving\"]? The schema conditions examples cold moisture heat vibration intermittent after service charging. Narrative says \"When driving\" perhaps condition \"driving\". Should include? It says conditions list, from examples. Could include \"driving\". Need fault_codes empty. safety_relevant: report mentions potential safety issue and close to lane marker, edge mirror inches. Does that count risk? It says set safety_relevant when mentions crash fire smoke injury loss of control stall at speed or other risk to people. \"potential safety issue\" is explicit safety issue but not crash etc. \"other risk to people\" maybe potential safety issue. Need decide true? It says \"I believe it is a potential safety issue...\" That is safety mention. I'd set true? But original safety_relevant false in input maybe not authoritative? We must derive. The prompt says set safety_relevant when report mentions ... or another risk to people. It mentions potential safety issue due close to left lane marker, mirror inches. That's a risk. So true. Missing_info: mileage (null), date? received_at date exists, but report date? It has received_at. Missing mileage only? Component? We have component (though mismatch). Symptom present. Conditions present? Driving. Date present received_at. Maybe missing \"mileage\" only. Should we include component? The given component is adaptive cruise control but narrative is lane keeping; mismatch. But component is named as FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL; actual symptom for lane keeping. Missing_info could include \"component\" because report's stated component doesn't match symptom? Hmm analysis needs component. But component field exists. However the narrative says lane keeping, not adaptive cruise. The component group adas. Need not mark missing component? Maybe missing_info [\"mileage\"]. Could include \"component\" due mismatch? The rules list facts needed. Since component is provided (though maybe wrong), not missing. But if mismatched maybe clue? We need clues verbatim. Need quote spans copied. Summary line: \"Lane keeping system in 2023 Ford Escape Hybrid Platinum keeps vehicle too far left/close to center lane marker while driving.\" That's okay.\n\nClues kind symptom: quote \"The lane keeping system in my 2023 ford escape hybrid platinum keeps me too far to the left.\" Verbatim includes lowercase ford etc. Another symptom quote \"When driving the lane keeping system keeps me too close to the center lane marker.\" Condition quote \"When driving\". Safety quote \"I believe it is a potential safety issue for my car to be so close to the left side lane marker\" verbatim? Check narrative: \"I believe it is a potential safety issue for my car to be so close to the left side lane marker, often with the edge of my rear view mirror only inches from the left side lane marker.\" Need exact substring. Yes \"I believe it is a potential safety issue for my car to be so close to the left side lane marker\" exists. Component_group quote? Could quote \"lane keeping system\" but kind component_group? It says component group or given group. Group is adas. Quote maybe \"lane keeping system\" but that's component not group. For component_group clue could quote \"lane keeping system\" maybe kind component_group. But need not include all. Clues can include symptom, condition, safety. Fault code none. Other maybe dealer recalibration not possible quote: \"My local ford dealer says the lane keeping system can not be recalibrated to center the vehicle about 6 inches more to the right (passenger) side\" kind other. But maybe not needed. Need JSON valid no extra.\n\nNeed ensure every quote verbatim. Let's select quotes exactly from narrative:\n\n1. \"The lane keeping system in my 2023 ford escape hybrid platinum keeps me too far to the left.\" Check narrative starts \"The lane keeping system in my 2023 ford escape hybrid platinum keeps me too far to the left.\" yes.\n\n2. \"When driving the lane keeping system keeps me too close to the center lane marker.\" Narrative: \"When driving the lane keeping system keeps me too close to the center lane marker.\" yes.\n\n3. \"I believe it is a potential safety issue for my car to be so close to the left side lane marker\" yes.\n\n4. \"My local ford dealer says the lane keeping system can not be recalibrated\" maybe exact: \"My local ford dealer says the lane keeping system can not be recalibrated to center the vehicle about 6 inches more to the right (passenger) side to provide a lager safety buffer on the left side of the car.\" Could quote a portion \"My local ford dealer says the lane keeping system can not be recalibrated\" yes exact. Kind other.\n\nNeed conditions: [\"driving\"] maybe. Is \"driving\" valid condition? It is plain. It says conditions examples but not exhaustive. Good.\n\nMissing_info: [\"mileage\"]. But maybe \"date\" no because received_at. Component? The report's component given adaptive cruise but symptom lane keeping. If we include missing_info [\"mileage\", \"component\"] maybe because actual component mismatch? Hmm the analysis needs correct component. The \"component\" field is present but inconsistent with narrative. The intake agent normalizes one incoming field-quality report. \"group\": \"the electrical/electronic component group, or the given group\". The given group adas. We need not correct. Missing_info should list facts analysis needs: component, symptom, conditions, mileage, date. Since component field exists but narrative describes lane keeping, not adaptive cruise. Could say missing_info [\"mileage\", \"component\"]? But then component field not missing. However \"component\" as exact affected system is perhaps lane keeping system, which is clear. So not missing. Conditions: driving is present. Date: received_at. Symptom present. Only mileage.\n\nNeed safety_relevant true. The input has safety_relevant false but that's likely supplied metadata not to trust? Prompt: \"Set safety_relevant when...\" so true.\n\nNeed summary one line: \"Lane keeping system in 2023 Ford Escape Hybrid Platinum keeps vehicle too far left/too close to center lane marker while driving.\" Good.\n\nGroup \"adas\".\n\nSymptoms array [\"lane keeping system keeps vehicle too far to the left\", \"lane keeping system keeps vehicle too close to the center lane marker\"] plain.\n\nConditions [\"driving\"].\n\nFault codes [].\n\nMissing info [\"mileage\"].\n\nClues as above. Need \"kind\": \"symptom\" two, \"condition\" quote \"When driving\" maybe exact. But quote \"When driving\" exists. Kind condition. Safety quote. Other quote.\n\nNeed JSON only.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793523571,
+      "id": "gw-c11b106115d1-22bb15",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1673,
+        "completion_tokens_details": {
+          "reasoning_tokens": 1455
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00062547,
+          "billing_source": "go",
+          "list_cost": 0.00104245,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 250,
+            "output": 1673,
+            "reasoning": 1455
+          }
+        },
+        "prompt_tokens": 634,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "total_tokens": 2307
+      }
+    },
+    "text": "{\"summary\":\"Lane keeping system in 2023 Ford Escape Hybrid Platinum keeps vehicle too far left/too close to center lane marker while driving.\",\"group\":\"adas\",\"symptoms\":[\"lane keeping system keeps vehicle too far to the left\",\"lane keeping system keeps vehicle too close to the center lane marker\"],\"conditions\":[\"driving\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"The lane keeping system in my 2023 ford escape hybrid platinum keeps me too far to the left.\"},{\"kind\":\"symptom\",\"quote\":\"When driving the lane keeping system keeps me too close to the center lane marker.\"},{\"kind\":\"condition\",\"quote\":\"When driving\"},{\"kind\":\"safety\",\"quote\":\"I believe it is a potential safety issue for my car to be so close to the left side lane marker\"},{\"kind\":\"other\",\"quote\":\"My local ford dealer says the lane keeping system can not be recalibrated\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00062547,
+      "cached_tokens": 384,
+      "cost_usd": 0.00104245,
+      "input_tokens": 634,
+      "list_cost_usd": 0.00104245,
+      "output_tokens": 1673,
+      "reasoning_tokens": 1455
+    }
+  }
+}

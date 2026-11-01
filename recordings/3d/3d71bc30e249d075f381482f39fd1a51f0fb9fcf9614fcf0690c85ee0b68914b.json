@@ -1,0 +1,60 @@
+{
+  "key": "3d71bc30e249d075f381482f39fd1a51f0fb9fcf9614fcf0690c85ee0b68914b",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 20812,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2013 Toyota Tacoma airbag/SRS warning lights for driver and passenger turn on with seat belt warnings; airbag off indicator stays on until engine off and returns on restart.\",\"group\":\"restraints\",\"symptoms\":[\"SRS airbag warning lights on for both driver and passenger\",\"airbag off indicator remains on until engine off\",\"seat belt warning triggers airbag warning lights\",\"seat belt and airbag warning lights return when engine restarts\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"THE SRS AIRBAGS BOTH DRIVER AND PASSENDER SIDE WARNING LIGHTS TURNED ON\"},{\"kind\":\"symptom\",\"quote\":\"THE AIR BAG FAILED TO TURN OFF WHEN THE SEAT BELT IS FASTEN TO THE SEATBELT BUCKLE.\"},{\"kind\":\"condition\",\"quote\":\"WHEN THE ENGINE IS TURNED BACK ON\"},{\"kind\":\"symptom\",\"quote\":\"THE WARNING LIGHTS OF BOTH DRIVER AND PASSENGER SEAT BELT IS ON.\"},{\"kind\":\"safety\",\"quote\":\"A INDICATOR SRS AIRBAGS OFF\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize. Need parse report. Component AIR BAGS group restraints. Symptoms: SRS airbag warning lights both driver/passenger on; airbag off indicator remains on until engine off; seat belt warning triggers airbag lights; warning lights on when engine restarted. Conditions: after work? \"right after I got home from work\" not one of allowed? conditions list: cold, moisture, heat, vibration, intermittent, after service, charging. Report doesn't mention these. Could include \"after service\"? no. \"intermittent\"? no. Maybe conditions empty. Fault codes none. Safety_relevant? Report mentions air bag warning lights, SRS airbags off, but no crash/fire/smoke/injury/loss control/stall. Airbag system safety relevant? The rule says set when mentions crash, fire, smoke, injury, loss control, stall at speed or another risk to people. Airbag failure could be risk to people, but no explicit. Given input safety_relevant false, but prompt asks set. Hmm \"another risk to people\" airbag warning could indicate restraint system fault, risk. But strict: report doesn't mention crash etc. However \"AIR BAG FAILED\" and SRS off could be risk. The supplied safety_relevant false maybe from source. We should decide. The instruction says set safety_relevant when report mentions crash, fire, smoke, injury, loss of control, a stall at speed or another risk to people. It mentions airbag warning and airbag off; that's a safety system malfunction = risk to people? Could set true. But maybe not because no actual event. Need not invent. \"AIR BAG FAILED TO TURN OFF\" is not risk? It's airbag off indicator. I'd set true? The output field could be safety_relevant true due to SRS airbag system warning. But given original false. Need answer likely should honor report only; safety relevant if risk to people. Airbags not functioning is safety risk. Yet rule examples specific. I think set true? Hmm.\n\nNeed missing_info: mileage null, date? received_at and narrative date present. Component present, symptom present, conditions? It has date/time and circumstance but not environmental conditions. The allowed missing_info list includes conditions. Do we list conditions? The analysis needs conditions maybe. But report lacks cold/moisture etc. Could list \"mileage\", \"conditions\". Date present. Component present. Symptom present. Conditions? It says right after got home from work, engine status. Conditions could be absent. Yes missing_info [\"mileage\",\"conditions\"]. Maybe date not missing.\n\nClues: verbatim spans. Need quote copied exactly. We can include:\n- {\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"}? Report JSON component has \"AIR BAGS\" not narrative. Is that \"report\"? Yes user message includes field. Quote can be from report. Good.\n- symptom quote: \"THE SRS AIRBAGS BOTH DRIVER AND PASSENDER SIDE WARNING LIGHTS TURNED ON\" verbatim yes (PASSENDER misspelled). \n- symptom quote: \"THE AIR BAG FAILED TO TURN OFF WHEN THE SEAT BELT IS FASTEN TO THE SEATBELT BUCKLE.\" verbatim.\n- condition? \"RIGHT AFTER I GOT HOME FROM WORK\" not one of condition categories? kind condition quote? It's circumstance but not cold etc. Could include as condition? The condition field list fixed tokens, but clues kind condition can quote. Maybe \"WHEN THE ENGINE IS TURNED BACK ON\" as condition. It is a condition. Include {\"kind\":\"condition\",\"quote\":\"WHEN THE ENGINE IS TURNED BACK ON\"}. Also \"THE INDICATOR RESUMES AS THE AIRBAG OFF LIGHTS REMAIN ON UNTIL THE CAR ENGINE IS OFF.\" symptom? Could include. Need not too many.\n\nFault codes empty.\n\nSummary one line: \"2013 Toyota Tacoma airbag/SRS warning lights for driver and passenger turn on with seat belt warnings; airbag off indicator stays on until engine off and returns on restart.\" Need mention component, symptom, conditions. Conditions: after work / engine restart. Good.\n\nNeed exact JSON no other text. Ensure quotes verbatim including punctuation. The narrative quote has \"PASSENDER\" yes. \"THE SRS AIRBAGS BOTH DRIVER AND PASSENDER SIDE WARNING LIGHTS TURNED ON\" exactly. \"THE AIR BAG FAILED TO TURN OFF WHEN THE SEAT BELT IS FASTEN TO THE SEATBELT BUCKLE.\" exactly includes period. \"WHEN THE ENGINE IS TURNED BACK ON\" exactly. \"THE WARNING LIGHTS OF BOTH DRIVER AND PASSENGER SEAT BELT IS ON.\" maybe symptom.\n\nNeed group \"restraints\". Symptoms plain words: \"SRS airbag warning lights on for both driver and passenger\"; \"airbag off indicator remains on until engine off\"; \"seat belt warning triggers airbag warning lights\"; \"seat belt and airbag warning lights return on engine restart\". Conditions list: maybe [\"after service\"? no]. Conditions fixed allowed. Could include \"intermittent\"? The lights turn on and remain until engine off, then on restart. Is that intermittent? It is recurring. But not explicitly. Use [].\n\nSafety_relevant maybe false? Let's think. System airbags. The prompt: \"Set safety_relevant when the report mentions a crash, fire, smoke, injury, loss of control, a stall at speed or another risk to people.\" Airbag warning is another risk? It is a safety system malfunction, so yes another risk to people. But no mention of actual risk. The source says false but we should not blindly copy? The intake agent normalises; original field includes safety_relevant false but rules ask set. Hmm. If set true, might be considered overflag. Airbag warning lights indicate possible restraint failure; safety relevant. I lean true. But the examples are about incidents; \"another risk to people\" broad. Airbag failure is risk to people in crash. Use true. Need quote for safety kind: \"THE SRS AIRBAGS BOTH DRIVER AND PASSENDER SIDE WARNING LIGHTS TURNED ON\" or \"A INDICATOR SRS AIRBAGS OFF\". Include safety clue with quote same. But \"safety\" clue kind. Good.\n\nNeed output only JSON. Ensure valid JSON. No markdown. Use double quotes. Quotes have apostrophe? no. The quote \"A INDICATOR SRS AIRBAGS OFF\" appears? Narrative: \"WITH A INDICATOR SRS AIRBAGS OFF.\" yes. Use exact substring \"A INDICATOR SRS AIRBAGS OFF\" (without period). Good.\n\nNeed maybe clue for component \"AIR BAGS\" from field. That is verbatim. Fine.\n\nLet's craft final compact.\n\nPotential issue: \"conditions\": [] but missing_info includes \"conditions\". Is that inconsistent? Missing_info can include conditions even if conditions list empty. Yes.\n\nCould conditions include \"after service\"? No. Could include \"intermittent\" because warning recurs? Not exactly. Don't.\n\nNeed summary mention date? \"SRS airbag/seat belt warning lights turn on after work and remain until engine off, returning on restart.\" Fine.\n\nFinal.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793522984,
+      "id": "gw-c1efd3264bbc-2b76a2",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1813,
+        "completion_tokens_details": {
+          "reasoning_tokens": 1533
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00068145,
+          "billing_source": "go",
+          "list_cost": 0.00113575,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 312,
+            "output": 1813,
+            "reasoning": 1533
+          }
+        },
+        "prompt_tokens": 696,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "total_tokens": 2509
+      }
+    },
+    "text": "{\"summary\":\"2013 Toyota Tacoma airbag/SRS warning lights for driver and passenger turn on with seat belt warnings; airbag off indicator stays on until engine off and returns on restart.\",\"group\":\"restraints\",\"symptoms\":[\"SRS airbag warning lights on for both driver and passenger\",\"airbag off indicator remains on until engine off\",\"seat belt warning triggers airbag warning lights\",\"seat belt and airbag warning lights return when engine restarts\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"THE SRS AIRBAGS BOTH DRIVER AND PASSENDER SIDE WARNING LIGHTS TURNED ON\"},{\"kind\":\"symptom\",\"quote\":\"THE AIR BAG FAILED TO TURN OFF WHEN THE SEAT BELT IS FASTEN TO THE SEATBELT BUCKLE.\"},{\"kind\":\"condition\",\"quote\":\"WHEN THE ENGINE IS TURNED BACK ON\"},{\"kind\":\"symptom\",\"quote\":\"THE WARNING LIGHTS OF BOTH DRIVER AND PASSENGER SEAT BELT IS ON.\"},{\"kind\":\"safety\",\"quote\":\"A INDICATOR SRS AIRBAGS OFF\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00068145,
+      "cached_tokens": 384,
+      "cost_usd": 0.00113575,
+      "input_tokens": 696,
+      "list_cost_usd": 0.00113575,
+      "output_tokens": 1813,
+      "reasoning_tokens": 1533
+    }
+  }
+}

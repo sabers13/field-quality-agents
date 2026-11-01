@@ -1,0 +1,60 @@
+{
+  "key": "2c4df55afc00d02a67349dfbdff0f5f7b5aaabdfd56dac1f227eb9a442875b6c",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 20266,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system: intermittent cylinder shutdown at highway speed causing loss of power, backfire and vibration; ongoing since July 2024.\",\"group\":\"electrical_general\",\"symptoms\":[\"cylinder randomly shuts down\",\"loss of power\",\"backfires\",\"vibrates\",\"nearly undriveable\"],\"conditions\":[\"highway driving\",\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"condition\",\"quote\":\"This has been an ongoing issue since I purchased the vehicle in July 2024.\"},{\"kind\":\"symptom\",\"quote\":\"the vehicle is nearly un-driveable\"},{\"kind\":\"condition\",\"quote\":\"when driving on the highway\"},{\"kind\":\"symptom\",\"quote\":\"a cylinder just randomly shuts down\"},{\"kind\":\"symptom\",\"quote\":\"the vehicle loses power and backfires and vibrates\"},{\"kind\":\"safety\",\"quote\":\"it is a safety concern\"}]}",
+            "reasoning_content": "We need to parse the report. Component: ELECTRICAL SYSTEM, group electrical_general. Narrative describes ongoing issue since July 2024, nearly undriveable, highway cylinder randomly shuts down, loses power, backfires, vibrates, safety concern. No fault codes named. Conditions: highway driving? \"when driving on the highway\" is condition. Intermittent? \"randomly shuts down\". Safety relevant true: loss of power at highway, cylinder shutdown, backfires, vibrates, mentions safety concern. Missing info: mileage null, maybe date? received date given but event date? Missing mileage. Component is given. Symptom present. Conditions present. So missing_info: [\"mileage\"]. Maybe date? The report says since July 2024, received Jan 2025. Date of incident? Could list mileage only. Need summary one line: Electrical system, cylinder shutdown causing loss of power/backfire/vibration at highway, ongoing since July 2024. Group electrical_general. Symptoms: cylinder randomly shuts down; vehicle loses power; backfires; vibrates; nearly undriveable. Conditions: highway driving; intermittent (randomly). Maybe \"after service\"? no. \"charging\"? no. \"cold/moisture/heat/vibration\" - vibration is symptom not condition, but condition list includes vibration? The schema conditions includes \"vibration\" as a condition. But here vibration is symptom. Could include \"intermittent\" due randomly. \"highway\" is not in allowed list but conditions array examples are not exhaustive? They list cold, moisture, heat, vibration, intermittent, after service, charging. We can include \"highway\" maybe? The instruction: conditions: [\"cold\", ...]. It says list conditions, examples. We can add \"highway driving\" maybe. But to be safe use allowed plus highway? The quote must be verbatim. Conditions: [\"intermittent\", \"highway\"]. Hmm \"highway\" not a standard condition but valid. We'll include \"highway driving\" maybe. But condition array should be simple. I'll include \"intermittent\" and \"highway\". Also \"vibration\" is symptom but condition list includes vibration; however report says \"vibrates\" as symptom. I'd not duplicate.\n\nFault codes: none. safety_relevant true.\n\nClues: verbatim quotes:\n- \"This has been an ongoing issue since I purchased the vehicle in July 2024.\" kind condition? maybe other.\n- \"the vehicle is nearly un-driveable\" symptom.\n- \"when driving on the highway and a cylinder just randomly shuts down, the vehicle loses power and backfires and vibrates it is a safety concern.\" This is one long quote, can use kind safety or symptom. Need quotes exactly. We can split? Verbatim span must be contiguous. The quote includes \"when driving on the highway and a cylinder just randomly shuts down, the vehicle loses power and backfires and vibrates it is a safety concern.\" That's verbatim? Check narrative: \"And while FORD might state it is an \\\"inconvenience\\\", when driving on the highway and a cylinder just randomly shuts down, the vehicle loses power and backfires and vibrates it is a safety concern.\" Yes exact substring from \"when driving...\" to \"safety concern.\" Good. Use kind safety. Also symptom quote \"a cylinder just randomly shuts down\" is substring. Could include. Need every quote verbatim. We can include clues:\n{\"kind\":\"condition\",\"quote\":\"This has been an ongoing issue since I purchased the vehicle in July 2024.\"}\n{\"kind\":\"symptom\",\"quote\":\"the vehicle is nearly un-driveable\"}\n{\"kind\":\"symptom\",\"quote\":\"a cylinder just randomly shuts down\"}\n{\"kind\":\"symptom\",\"quote\":\"the vehicle loses power and backfires and vibrates\"}\n{\"kind\":\"safety\",\"quote\":\"it is a safety concern\"}\n{\"kind\":\"condition\",\"quote\":\"when driving on the highway\"}\nNeed ensure exact character for character including punctuation? \"the vehicle is nearly un-driveable.\" includes period maybe. We can quote without period? Must be exact span; quote can be substring. If we include \"the vehicle is nearly un-driveable\" without period, it's still exact substring (characters appear). Good. For \"the vehicle loses power and backfires and vibrates\" exact substring? Narrative: \"the vehicle loses power and backfires and vibrates it is a safety concern.\" Yes. Good. For \"it is a safety concern\" exact substring yes. For \"when driving on the highway\" exact. For \"a cylinder just randomly shuts down\" exact? Narrative: \"a cylinder just randomly shuts down\" yes.\n\nSummary: \"Electrical system: intermittent cylinder shutdown at highway speed causing loss of power, backfire and vibration; ongoing since July 2024.\" One line. Good.\n\nMissing_info: mileage. Could also missing \"date\"? The narrative gives since July 2024 but not specific incident date. Analysis might need date. The prompt says missing_info list only facts analysis needs: component, symptom, conditions, mileage, date. Date could be missing because no specific date of occurrence. But received_at given. The narrative says ongoing since July 2024, so date context exists. Mileage null. Component given. Symptom given. Conditions given. So [\"mileage\"]. Maybe include \"date\" because no exact event date? But there is a timeframe. I'd include mileage only.\n\nGroup: \"electrical_general\" given. The instruction says group: the electrical/electronic component group, or the given group. Use given.\n\nSafety_relevant true.\n\nNeed answer with one JSON object no other text. Ensure valid JSON. Use double quotes. No trailing commas.\n\nLet's craft.\n\nNeed \"symptoms\": [\"cylinder randomly shuts down\", \"loss of power\", \"backfires\", \"vibrates\", \"nearly undriveable\"]. Plain words. Good.\n\nConditions: [\"highway driving\", \"intermittent\"]. But allowed examples include \"intermittent\"; \"highway driving\" okay. Maybe \"vibration\" not condition. Use \"highway\" or \"highway driving\". Quote is \"when driving on the highway\"; condition is highway driving. Good.\n\nFault_codes: [].\n\nClues list. Need kind values among symptom|condition|fault_code|component_group|safety|other. Use.\n\nPotential issue: quote \"a cylinder just randomly shuts down\" not exactly? Let's verify narrative text: \"when driving on the highway and a cylinder just randomly shuts down, the vehicle loses power and backfires and vibrates it is a safety concern.\" Yes substring \"a cylinder just randomly shuts down\" exists. Good.\n\nQuote \"the vehicle loses power and backfires and vibrates\" exists. Good.\n\nQuote \"it is a safety concern\" exists. Good.\n\nQuote \"when driving on the highway\" exists. Good.\n\nQuote \"the vehicle is nearly un-driveable\" exists? Narrative: \"It has become so bad  that the vehicle is nearly un-driveable.\" There are two spaces between bad and that? But substring \"the vehicle is nearly un-driveable\" yes. Good.\n\nQuote \"This has been an ongoing issue since I purchased the vehicle in July 2024.\" exists. Good.\n\nNeed maybe \"component_group\" clue quote \"ELECTRICAL SYSTEM\"? That's from component field, not narrative. The report includes component field. Can quote from report? Yes report is JSON. But narrative only? \"Read only the report in user message.\" The report includes component. Quote \"ELECTRICAL SYSTEM\" is in report. But clues should evidence narrative? Could include component_group quote \"ELECTRICAL SYSTEM\". But not necessary. Maybe include to support group. It says every quote copied verbatim from the report. The report has \"component\": \"ELECTRICAL SYSTEM\". So valid. But maybe not needed. We'll include? Clues length okay. Include kind component_group quote \"ELECTRICAL SYSTEM\". Good.\n\nBut the quote must be verbatim. Yes.\n\nSafety relevant quote: \"it is a safety concern\" plus driving highway. Good.\n\nMissing info: mileage. Should we include \"date\" because no incident date? The narrative has \"since July 2024\" but no specific date. The analysis needs date of event? The field received_at is 2025-01-23. I'd include \"mileage\" only. If include \"date\", would be arguably missing. But prompt says list only facts analysis needs: component, symptom, conditions, mileage, date. There is no exact date of failure, only ongoing. I think missing_info [\"mileage\"] is fine. Maybe include \"date\" because no incident date. But then \"since July 2024\" is a date. Hmm. I'll include only mileage to avoid overclaim. But the report has no mileage. Good.\n\nLet's final JSON. Ensure no markdown? The instruction: Answer with one JSON object and no other text. So final should be raw JSON. Good.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793523028,
+      "id": "gw-c0c301b7e952-2e57bd",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2116,
+        "completion_tokens_details": {
+          "reasoning_tokens": 1891
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00078774,
+          "billing_source": "go",
+          "list_cost": 0.0013129,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 281,
+            "output": 2116,
+            "reasoning": 1891
+          }
+        },
+        "prompt_tokens": 665,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "total_tokens": 2781
+      }
+    },
+    "text": "{\"summary\":\"Electrical system: intermittent cylinder shutdown at highway speed causing loss of power, backfire and vibration; ongoing since July 2024.\",\"group\":\"electrical_general\",\"symptoms\":[\"cylinder randomly shuts down\",\"loss of power\",\"backfires\",\"vibrates\",\"nearly undriveable\"],\"conditions\":[\"highway driving\",\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"condition\",\"quote\":\"This has been an ongoing issue since I purchased the vehicle in July 2024.\"},{\"kind\":\"symptom\",\"quote\":\"the vehicle is nearly un-driveable\"},{\"kind\":\"condition\",\"quote\":\"when driving on the highway\"},{\"kind\":\"symptom\",\"quote\":\"a cylinder just randomly shuts down\"},{\"kind\":\"symptom\",\"quote\":\"the vehicle loses power and backfires and vibrates\"},{\"kind\":\"safety\",\"quote\":\"it is a safety concern\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00078774,
+      "cached_tokens": 384,
+      "cost_usd": 0.0013129,
+      "input_tokens": 665,
+      "list_cost_usd": 0.0013129,
+      "output_tokens": 2116,
+      "reasoning_tokens": 1891
+    }
+  }
+}

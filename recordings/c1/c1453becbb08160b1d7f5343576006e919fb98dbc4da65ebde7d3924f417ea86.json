@@ -1,0 +1,60 @@
+{
+  "key": "c1453becbb08160b1d7f5343576006e919fb98dbc4da65ebde7d3924f417ea86",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 19581,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Forward collision avoidance automatic emergency braking unexpectedly engages with no object ahead on a 2019 Nissan Leaf; four intermittent incidents in a lighted garage, on a highway turn in daylight, and on a highway straight at night.\",\"group\":\"adas\",\"symptoms\":[\"automatic braking system engages and brakes when no object ahead should require stopping\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"automatic braking system\"},{\"kind\":\"symptom\",\"quote\":\"automatic braking system engaging and braking when there was no object in front of the car that should have required it to stop\"},{\"kind\":\"condition\",\"quote\":\"Twice in a lighted garage.\"},{\"kind\":\"condition\",\"quote\":\"Once on a highway while making a turn during daylight, and once on a highway going straight at night.\"},{\"kind\":\"condition\",\"quote\":\"There doesn't seem to be a common factor.\"},{\"kind\":\"safety\",\"quote\":\"It's very dangerous.\"}]}",
+            "reasoning_content": "We need answer one JSON only. Need normalise report. Need parse component, symptoms, conditions, fault_codes, safety_relevant true because dangerous? Report says \"It's very dangerous.\" Also automatic braking engaging unexpectedly at highway could risk. Safety_relevant when report mentions crash fire smoke injury loss of control stall at speed or other risk to people. \"It's very dangerous\" and braking on highway at night/straight. Should set true. Symptoms: automatic emergency braking engages/brakes when no object in front; no common factor. Conditions: \"lighted garage\" twice, highway making turn during daylight, highway going straight at night. Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. We need map? The schema conditions suggests fixed list. But can include other? It says conditions: [\"cold\", ...]. We should use allowed normalized conditions. The incidents are intermittent, multiple incidents. \"There doesn't seem to be a common factor\" indicates intermittent. Could conditions include \"intermittent\". Also maybe \"daylight\", \"night\", \"garage\" aren't in list. But conditions array likely should contain normalized conditions only from list. It says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. So put [\"intermittent\"]? The report mentions highway, daylight, night, garage. But no cold/moisture etc. We can include conditions as [\"intermittent\"]? Is intermittent supported by four incidents and no common factor. Yes. However clues need quote verbatim. For condition clue, quote \"There doesn't seem to be a common factor.\" Could kind condition. Maybe quote \"four incidents\" etc. For symptom quote \"automatic braking system engaging and braking when there was no object in front of the car that should have required it to stop\" exact? Narrative: \"I've had four incidents of the automatic braking system engaging and braking when there was no object in front of the car that should have required it to stop.\" We can quote substring \"automatic braking system engaging and braking when there was no object in front of the car that should have required it to stop\". Good.\n\nNeed group: given \"adas\" or component group electrical/electronic? User says \"group\": \"the electrical/electronic component group, or the given group\". Given group adas. Use \"adas\".\n\nSummary one line: \"Forward collision avoidance automatic emergency braking on 2019 Nissan Leaf unexpectedly engages/brakes with no object ahead; four incidents in garage, highway turn daylight, highway straight at night.\" Need one line. Avoid inventing? Year/model from report yes. Component from report. Conditions from narrative.\n\nFault_codes empty. Missing_info: mileage null. date? received_at exists, but report date? Missing \"mileage\" only? Component present, symptom present, conditions present. Date? There is received_at, but maybe incident date missing. The analysis needs date? The report doesn't give incident dates. Use [\"mileage\", \"date\"]? It says list missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. Since mileage null, date absent (only received_at). But maybe date of report provided. Incident date not. Should include \"mileage\" and \"date\"? Need maybe \"date\" because incidents date not given. Could include \"mileage\". The input has received_at not incident date. We'll include [\"mileage\", \"date\"]? The prompt: \"missing_info\": [\"mileage\", \"date\", \"conditions\", \"component\", \"symptom\"]. Yes. Conditions present though no common factor; still conditions info given. Component present. Symptom present. Mileage missing. Date? The report does not name incident dates; received_at is 2025-02-04 but not incident date. Missing date. Good.\n\nClues: Need include symptom quote, condition quote, safety quote, component_group? Component group quote? \"automatic braking system\" or \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"? Quote must be verbatim from report. The narrative has \"automatic braking system\". Component field is not in narrative? It is from report but quote should be copied from report. We can quote \"automatic braking system\" as component group. For safety: quote \"It's very dangerous.\" exact includes apostrophe? Narrative: \"It's very dangerous.\" Yes. For condition: quote \"Twice in a lighted garage.\" or \"Once on a highway while making a turn during daylight, and once on a highway going straight at night.\" These are conditions but not normalized allowed? The clue kind can be condition. Use exact quote. For intermittent: quote \"There doesn't seem to be a common factor.\" maybe condition. Also quote \"four incidents\". Need not overdo.\n\nNeed ensure every quote exact. Let's copy narrative exactly:\n\"I've had four incidents of the automatic braking system engaging and braking when there was no object in front of the car that should have required it to stop.  There doesn't seem to be a common factor.  Twice in a lighted garage.  Once on a highway while making a turn during daylight, and once on a highway going straight at night. It's very dangerous.\"\n\nNote double spaces after periods in narrative. Quotes should preserve. If we quote a substring not crossing double spaces, fine. \"It's very dangerous.\" exact single space? Narrative has \". It's\" after night. It's. Good.\n\nPotential quote: \"automatic braking system engaging and braking when there was no object in front of the car that should have required it to stop\" exact? Starts after \"of the \". Check text: \"of the automatic braking system engaging...\" Yes substring exact. Good.\n\nQuote for condition: \"Twice in a lighted garage.\" exact, but after it two spaces. Substring exact fine.\nQuote: \"Once on a highway while making a turn during daylight, and once on a highway going straight at night.\" exact? Narrative: \"Once on a highway while making a turn during daylight, and once on a highway going straight at night.\" Yes.\nQuote: \"There doesn't seem to be a common factor.\" exact? Narrative: \"There doesn't seem to be a common factor.\" yes.\nQuote: \"four incidents\" exact? yes.\n\nNeed JSON only. Use safety_relevant true. Conditions array maybe [\"intermittent\"] only. But clues include garage/daylight/night conditions. Could conditions include those? The schema fixed list but it's not explicitly prohibited? It says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. Better stick to allowed normalized. But there are conditions in report: lighted garage, highway turn daylight, highway straight night; none of allowed except intermittent. Hm maybe \"conditions\" should include \"intermittent\" because multiple incidents no common factor. Good.\n\nSummary: \"Forward collision avoidance automatic emergency braking unexpectedly engages with no object ahead on 2019 Nissan Leaf; four intermittent incidents in garage, highway turn daylight and highway straight at night.\" Good.\n\nMissing_info: [\"mileage\", \"date\"]. Is date missing? received_at present but incident dates missing. Yes.\n\nClues:\n- kind \"component_group\", quote \"automatic braking system\"\n- kind \"symptom\", quote \"automatic braking system engaging and braking when there was no object in front of the car that should have required it to stop\"\n- kind \"condition\", quote \"Twice in a lighted garage.\"\n- kind \"condition\", quote \"Once on a highway while making a turn during daylight, and once on a highway going straight at night.\"\n- kind \"condition\", quote \"There doesn't seem to be a common factor.\"\n- kind \"safety\", quote \"It's very dangerous.\"\n\nShould include fault_code none. Could include quote \"four incidents\" as symptom? Not necessary. But clues should evidence. Maybe include \"four incidents\" as symptom? quote exact \"four incidents\". Hmm.\n\nNeed answer only JSON. Ensure no markdown. final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793523501,
+      "id": "gw-c068bf5dd6ff-2bf83d",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1915,
+        "completion_tokens_details": {
+          "reasoning_tokens": 1686
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00070701,
+          "billing_source": "go",
+          "list_cost": 0.00117835,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 188,
+            "output": 1915,
+            "reasoning": 1686
+          }
+        },
+        "prompt_tokens": 572,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "total_tokens": 2487
+      }
+    },
+    "text": "{\"summary\":\"Forward collision avoidance automatic emergency braking unexpectedly engages with no object ahead on a 2019 Nissan Leaf; four intermittent incidents in a lighted garage, on a highway turn in daylight, and on a highway straight at night.\",\"group\":\"adas\",\"symptoms\":[\"automatic braking system engages and brakes when no object ahead should require stopping\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"automatic braking system\"},{\"kind\":\"symptom\",\"quote\":\"automatic braking system engaging and braking when there was no object in front of the car that should have required it to stop\"},{\"kind\":\"condition\",\"quote\":\"Twice in a lighted garage.\"},{\"kind\":\"condition\",\"quote\":\"Once on a highway while making a turn during daylight, and once on a highway going straight at night.\"},{\"kind\":\"condition\",\"quote\":\"There doesn't seem to be a common factor.\"},{\"kind\":\"safety\",\"quote\":\"It's very dangerous.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00070701,
+      "cached_tokens": 384,
+      "cost_usd": 0.00117835,
+      "input_tokens": 572,
+      "list_cost_usd": 0.00117835,
+      "output_tokens": 1915,
+      "reasoning_tokens": 1686
+    }
+  }
+}

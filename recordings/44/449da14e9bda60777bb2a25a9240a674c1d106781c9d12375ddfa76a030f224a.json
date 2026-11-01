@@ -1,0 +1,60 @@
+{
+  "key": "449da14e9bda60777bb2a25a9240a674c1d106781c9d12375ddfa76a030f224a",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 18270,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Battery/electrical: lost electrical power and stalled at a traffic light with warning lights and black screen; battery failed; later heating failure traced to water pump and gaskets.\",\"group\":\"power_and_wiring\",\"symptoms\":[\"lost electrical power and stalled\",\"warning lights illuminated then screen went black\",\"battery failed\",\"heating system failed\",\"passenger side vents not blowing hot air\",\"water pump and gaskets failed\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"the vehicle lost electrical power and stalled\"},{\"kind\":\"condition\",\"quote\":\"while stopped at a traffic light\"},{\"kind\":\"symptom\",\"quote\":\"several unknown warning lights illuminated before the screen went black\"},{\"kind\":\"symptom\",\"quote\":\"the battery had failed\"},{\"kind\":\"condition\",\"quote\":\"while driving at undisclosed speeds\"},{\"kind\":\"symptom\",\"quote\":\"the heating system failed\"},{\"kind\":\"symptom\",\"quote\":\"the passenger’s side vents were not blowing hot air\"},{\"kind\":\"other\",\"quote\":\"the water pump and gaskets had failed\"}]}",
+            "reasoning_content": "We need answer one JSON only. Need normalize report. Need parse. Component electrical battery group power_and_wiring. Summary one line component symptom conditions. Symptoms: lost electrical power and stalled, warning lights illuminated then screen went black, battery failed, heating system failed/passenger vents not blowing hot air, water pump and gaskets failed (maybe symptom? Component? It's mentioned diagnosis). Conditions: while stopped at traffic light, while driving at undisclosed speeds. Intermittent? \"on another occasion\" maybe. Safety relevant? Report says stalled while stopped at traffic light, not at speed. Prompt safety when stall at speed or risk. It stalled at traffic light stopped, not safety? Given safety_relevant false in input but we should set based on report. It mentions lost electrical power and stalled while stopped; no crash/fire. Stall at traffic light not at speed. So false. Fault codes none. Missing_info? Mileage present, date received, component, symptoms, conditions present. Maybe missing exact speed? Not required. Empty list likely. Clues verbatim quotes. Need ensure quotes exact. Use spans from narrative. Need JSON. Quotes:\n- \"the vehicle lost electrical power and stalled\"\n- \"several unknown warning lights illuminated before the screen went black\"\n- \"the battery had failed\"\n- \"while stopped at a traffic light\"\n- \"while driving at undisclosed speeds\"\n- \"the heating system failed\"\n- \"the passenger’s side vents were not blowing hot air\" Note curly apostrophe exact. Need include? Could include.\n- \"the water pump and gaskets had failed\"\nNeed kind mapping. symptom for lost power/stall, warning lights, heating, vents, water pump? water pump is component failure not electrical? But clue kind other/component? Since group electrical, water pump not electrical? But report includes. We can list symptom \"heating system failed\" and \"passenger side vents not blowing hot air\". \"water pump and gaskets had failed\" maybe other. Need not overdo.\n\nConditions list allowed values: cold, moisture, heat, vibration, intermittent, after service, charging. We cannot invent cold etc. Conditions from report: stopped at traffic light, driving at undisclosed speeds. Those aren't in allowed enum. The schema says conditions array examples? It says conditions: [\"cold\", ...]. Rules mention list missing_info conditions. But output conditions should likely include normalized conditions from allowed set. There is no condition category for \"stopped at traffic light\" or \"driving\". Could include \"intermittent\" due another occasion? Is that a condition? It says on another occasion, not intermittent. Could include? Hmm.\n\nNeed output conditions maybe [] because none of enumerated conditions. But clues can quote conditions. The schema conditions examples are specific. It says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. We should use only those if applicable. \"while driving at undisclosed speeds\" not listed. \"stopped at traffic light\" not listed. Could conditions be [\"intermittent\"]? \"on another occasion\" indicates separate occurrence not intermittent. Avoid. So conditions [].\n\nSummary: \"12V/24V/48V battery: lost electrical power and stalled at a traffic light; battery failed; later heating failure due to water pump/gaskets.\" One line. Need maybe component group. Group \"power_and_wiring\".\n\nSymptoms array: \"lost electrical power and stalled\", \"warning lights illuminated then screen went black\", \"battery failed\", \"heating system failed\", \"passenger side vents not blowing hot air\", \"water pump and gaskets failed\". Maybe include stall. Good.\n\nFault codes [].\n\nSafety_relevant false. Missing_info []? Analysis needs component symptom conditions mileage date. All present. Maybe exact conditions? It has conditions. So [].\n\nClues: include kind condition quote \"while stopped at a traffic light\", \"while driving at undisclosed speeds\". Kind symptom quotes. Kind other for water pump. Kind component_group maybe \"battery\"? Hmm.\n\nNeed every quote verbatim from report. The report narrative is one string. Need exact substring. Curly apostrophe in passenger’s. We can avoid quote with apostrophe. Use \"the passenger\\u2019s side vents were not blowing hot air\" but in JSON can include literal curly? Need quote exact. Could include \"the passenger’s side vents were not blowing hot air\". Ensure exact. Or avoid to reduce risk. Use \"the heating system failed\" exact. Good.\n\nNeed maybe \"The contact stated while stopped at a traffic light, the vehicle lost electrical power and stalled.\" But quote can be \"while stopped at a traffic light\". Exact substring yes.\n\nNeed no markdown? \"Answer with one JSON object and no other text\". Final should be raw JSON. Ensure valid JSON. Use double quotes. No trailing commas. Need escape? No.\n\nLet's craft.\n\nNeed summary one line. \"Battery/electrical: lost electrical power and stalled at a traffic light with warning lights and black screen; battery failed; later heating failure traced to water pump and gaskets.\" Good.\n\nClues array:\n{\"kind\":\"symptom\",\"quote\":\"the vehicle lost electrical power and stalled\"}\n{\"kind\":\"condition\",\"quote\":\"while stopped at a traffic light\"}\n{\"kind\":\"symptom\",\"quote\":\"several unknown warning lights illuminated before the screen went black\"}\n{\"kind\":\"symptom\",\"quote\":\"the battery had failed\"}\n{\"kind\":\"condition\",\"quote\":\"while driving at undisclosed speeds\"}\n{\"kind\":\"symptom\",\"quote\":\"the heating system failed\"}\n{\"kind\":\"symptom\",\"quote\":\"the passenger’s side vents were not blowing hot air\"}\n{\"kind\":\"other\",\"quote\":\"the water pump and gaskets had failed\"}\nThis is fine. Does \"the passenger’s side vents were not blowing hot air\" exact? Report: \"The contact stated that the passenger\\u2019s side vents were not blowing hot air.\" Yes substring lower-case? Original has \"the passenger’s side vents were not blowing hot air\" after \"that \" so yes exact with lowercase t? Original: \"The contact stated that the passenger\\u2019s side vents were not blowing hot air.\" The substring \"the passenger’s side vents were not blowing hot air\" begins with lowercase \"the\" which is present after \"that\" (space then the). Yes.\n\nNeed \"the water pump and gaskets had failed\" exact? Original: \"the water pump and gaskets had failed and needed to be replaced.\" yes.\n\nShould we include \"battery did not support the function of the vehicle\" no.\n\nmissing_info: [] because all.\n\nPotential issue: safety_relevant input false; we agree.\n\nNeed final raw JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793523467,
+      "id": "gw-c2a0aa5c2d63-25673a",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1661,
+        "completion_tokens_details": {
+          "reasoning_tokens": 1407
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00062475,
+          "billing_source": "go",
+          "list_cost": 0.00104125,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 290,
+            "output": 1661,
+            "reasoning": 1407
+          }
+        },
+        "prompt_tokens": 674,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "total_tokens": 2335
+      }
+    },
+    "text": "{\"summary\":\"Battery/electrical: lost electrical power and stalled at a traffic light with warning lights and black screen; battery failed; later heating failure traced to water pump and gaskets.\",\"group\":\"power_and_wiring\",\"symptoms\":[\"lost electrical power and stalled\",\"warning lights illuminated then screen went black\",\"battery failed\",\"heating system failed\",\"passenger side vents not blowing hot air\",\"water pump and gaskets failed\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"the vehicle lost electrical power and stalled\"},{\"kind\":\"condition\",\"quote\":\"while stopped at a traffic light\"},{\"kind\":\"symptom\",\"quote\":\"several unknown warning lights illuminated before the screen went black\"},{\"kind\":\"symptom\",\"quote\":\"the battery had failed\"},{\"kind\":\"condition\",\"quote\":\"while driving at undisclosed speeds\"},{\"kind\":\"symptom\",\"quote\":\"the heating system failed\"},{\"kind\":\"symptom\",\"quote\":\"the passenger’s side vents were not blowing hot air\"},{\"kind\":\"other\",\"quote\":\"the water pump and gaskets had failed\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00062475,
+      "cached_tokens": 384,
+      "cost_usd": 0.00104125,
+      "input_tokens": 674,
+      "list_cost_usd": 0.00104125,
+      "output_tokens": 1661,
+      "reasoning_tokens": 1407
+    }
+  }
+}

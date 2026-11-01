@@ -1,0 +1,60 @@
+{
+  "key": "db3f97f2976d01fcd330191f6f23d9f7d6682fdca5bd0f9c634ed75c1b3fd303",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 20854,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system: recurring rear differential and transmission failures every 10k miles; Apple CarPlay lags/fails and hands-free is inoperative.\",\"group\":\"electrical_general\",\"symptoms\":[\"rear differential keeps going out\",\"transmission keeps failing every 10k miles\",\"Apple CarPlay doesn’t work and lags out\",\"hands-free doesn’t work\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"Rear differential keeps going out\"},{\"kind\":\"symptom\",\"quote\":\"transmission keeps failing every 10k miles\"},{\"kind\":\"symptom\",\"quote\":\"apple car play doesn’t work and lags out\"},{\"kind\":\"symptom\",\"quote\":\"hand free doesn’t work\"},{\"kind\":\"condition\",\"quote\":\"lags out\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize report. Component given ELECTRICAL SYSTEM group electrical_general. Narrative mentions rear differential keeps going out and transmission keeps failing every 10k miles, apple car play doesn’t work and lags out. So hand free doesn’t work. Need summary one line: component, symptom, conditions. Group electrical_general? Rule group electrical/electronic component group or given group. Given group electrical_general. Symptoms: rear differential keeps going out? That's not electrical maybe symptom. transmission keeps failing every 10k miles. Apple CarPlay doesn't work and lags out. Hands-free doesn't work. Conditions: intermittent? \"lags out\" maybe intermittent? every 10k miles? Not cold/moisture etc. Could conditions include \"intermittent\" because lags out? Need be careful not invent. The report says \"keeps going out\", \"keeps failing every 10k miles\", \"lags out\" - intermittent could be inferred but conditions list allowed includes intermittent. Is that a condition? Could include \"intermittent\" because lags out/keeps going out. But quote for condition? Need clues. fault_codes empty. safety_relevant false (given and no crash etc). missing_info: mileage null? The report has mileage null, analysis needs mileage? Could list mileage. date? received_at exists but not necessarily incident date. missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. Component present, symptom present, conditions? maybe not explicit. Mileage missing (null). Date? received_at is date but not incident date; maybe missing date. But don't overdo. The prompt: list missing_info only facts analysis needs. Mileage missing. Date? There is received_at 2025-01-24 but not necessarily occurrence date. Could include date. Conditions maybe not specified (when it happens). But conditions can be inferred? Better missing_info [\"mileage\",\"date\",\"conditions\"]? Need include only important. The report lacks mileage and date of occurrence, conditions under which symptoms occur. Component is present (ELECTRICAL SYSTEM but some symptoms non-electrical). Symptom present. Conditions maybe not explicit. \n\nNeed clues with verbatim quotes. Must copy exact spans. Narrative has \"Rear differential keeps going out and transmission keeps failing every 10k miles, apple car play doesn\\u2019t work and lags out. So hand free doesn\\u2019t work\". Need quotes exact including curly apostrophe. We can quote substrings: \"Rear differential keeps going out\", \"transmission keeps failing every 10k miles\", \"apple car play doesn’t work and lags out\", \"hand free doesn’t work\". Note original has \"So hand free doesn’t work\" with capital S? Actually \"So hand free doesn’t work\"; quote \"hand free doesn’t work\" is substring. For condition intermittent, quote \"lags out\" maybe. But if condition quote is \"lags out\" kind condition, okay. Also \"keeps going out\" maybe intermittent. Need kinds. component_group quote? \"ELECTRICAL SYSTEM\" from component? Is report includes component field. Quote can be from report? The report JSON includes component \"ELECTRICAL SYSTEM\". So quote \"ELECTRICAL SYSTEM\" kind component_group. Symptom quotes as above. Condition quote \"every 10k miles\" maybe condition? Hmm condition kinds include \"intermittent\", \"after service\", etc. \"every 10k miles\" is recurrence, not in list but can quote condition? Kind condition quote \"every 10k miles\" maybe. But conditions array should maybe [\"intermittent\"] due to lags out/keeps going out. Clue for intermittent: quote \"lags out\" or \"keeps going out\". Since quote verbatim. Good.\n\nSafety relevant false, no clue safety.\n\nNeed decide summary. \"Electrical system: rear differential and transmission recurring failures, Apple CarPlay lag/nonfunction, hands-free nonfunction.\" One line. But component is electrical system, symptoms include non-electrical drivetrain. Summary should mention component, symptom, conditions. Conditions: recurring every 10k miles, intermittent. Maybe \"Electrical system: recurring rear differential/transmission failures every 10k miles; Apple CarPlay lags/fails and hands-free inoperative.\" That's one line. Conditions \"recurring every 10k miles\" and \"intermittent\" maybe.\n\nSymptoms array plain words: [\"rear differential keeps going out\", \"transmission keeps failing every 10k miles\", \"Apple CarPlay doesn’t work and lags out\", \"hands-free doesn’t work\"]. Need use exact? Symptoms can be plain words not necessarily quote. But likely okay. Use \"rear differential failure recurrence\", \"transmission failure every 10k miles\", \"Apple CarPlay inoperative and lagging\", \"hands-free inoperative\". But \"plain words\". Fine. Maybe \"rear differential keeps going out\" is exact-ish.\n\nConditions array: allowed [\"cold\",\"moisture\",\"heat\",\"vibration\",\"intermittent\",\"after service\",\"charging\"]. Only \"intermittent\" plausible due to lags out/keeps going out. Do not include \"every 10k miles\" because not allowed? Conditions list says these values. Use [\"intermittent\"]. Need clue kind condition quote \"lags out\" or \"keeps going out\". If we use intermittent, quote \"lags out\" supports intermittent? Maybe \"keeps going out\" supports intermittent. But \"lags out\" could be intermittent. Use quote \"lags out\" kind condition. Also \"keeps failing every 10k miles\" could be condition? Maybe not.\n\nFault codes empty.\n\nMissing info: mileage missing. Date? received_at exists but not incident date. Conditions not explicit? But we inferred intermittent. Could say missing_info [\"mileage\", \"date\"]. Is \"conditions\" missing? The report doesn't explicitly state when symptoms occur. But conditions array has intermittent inferred. Hmm. The prompt says list missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Conditions is a fact. Since no environmental conditions, maybe missing conditions. But if we inferred intermittent from \"lags out\", not missing. Still actual conditions of when it fails not specified. Include \"conditions\"? Could be overzealous. Need \"missing_info\": [\"mileage\", \"date\"]. Mileage is null. Date of incident? received_at only, so yes. Component and symptom present. Conditions maybe partially present? \"every 10k miles\" is a condition? Not one of allowed. I'd include \"conditions\" maybe because no cold/moisture/heat/vibration etc. But the desk can analyze intermittent. Hmm.\n\nLet's think of evaluation. They may expect exact fields. Need not invent. Group given \"electrical_general\". Symptoms from narrative. Conditions: maybe [\"intermittent\"] because \"lags out\" and \"keeps going out\". Missing info: mileage (null). Date? received_at exists; but not date of failure. The prompt says missing_info facts analysis needs: component, symptom, conditions, mileage, date. Since mileage null, include mileage. Date? There is received_at. But \"date\" likely date of report? It has received_at. If report has date, don't list missing date. But date of incident absent. The field \"date\" in missing_info likely report date; received_at present. So maybe don't list date. Conditions? The report doesn't mention conditions. Include \"conditions\". But conditions array has intermittent. Is that explicit? \"lags out\" yes. Hmm.\n\nNeed answer one JSON object only. Ensure valid JSON. Curly apostrophe in quote must be exact. The narrative in JSON has \\u2019, actual curly apostrophe. We can include curly apostrophe. Quotes:\n- \"Rear differential keeps going out\" exact? Narrative: \"Rear differential keeps going out and transmission keeps failing every 10k miles, apple car play doesn’t work and lags out. So hand free doesn’t work\" Yes.\n- \"transmission keeps failing every 10k miles\" exact.\n- \"apple car play doesn’t work and lags out\" exact.\n- \"hand free doesn’t work\" exact.\n- \"lags out\" exact.\n- \"ELECTRICAL SYSTEM\" exact from component.\n\nCould include clue kind symptom for rear differential, transmission, carplay, handfree. condition for \"lags out\". component_group for \"ELECTRICAL SYSTEM\". other? no.\n\nSafety_relevant false. No safety clue.\n\nSummary one line: \"Electrical system: recurring rear differential and transmission failures every 10k miles; Apple CarPlay lags/fails and hands-free is inoperative.\" Conditions mention recurring every 10k miles. Good.\n\nNeed maybe group \"electrical_general\". Good.\n\nFinal JSON only.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793523065,
+      "id": "gw-c0c301b7e952-2e665b",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2073,
+        "completion_tokens_details": {
+          "reasoning_tokens": 1859
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00075984,
+          "billing_source": "go",
+          "list_cost": 0.0012664,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 143,
+            "output": 2073,
+            "reasoning": 1859
+          }
+        },
+        "prompt_tokens": 527,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "total_tokens": 2600
+      }
+    },
+    "text": "{\"summary\":\"Electrical system: recurring rear differential and transmission failures every 10k miles; Apple CarPlay lags/fails and hands-free is inoperative.\",\"group\":\"electrical_general\",\"symptoms\":[\"rear differential keeps going out\",\"transmission keeps failing every 10k miles\",\"Apple CarPlay doesn’t work and lags out\",\"hands-free doesn’t work\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"Rear differential keeps going out\"},{\"kind\":\"symptom\",\"quote\":\"transmission keeps failing every 10k miles\"},{\"kind\":\"symptom\",\"quote\":\"apple car play doesn’t work and lags out\"},{\"kind\":\"symptom\",\"quote\":\"hand free doesn’t work\"},{\"kind\":\"condition\",\"quote\":\"lags out\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00075984,
+      "cached_tokens": 384,
+      "cost_usd": 0.0012664,
+      "input_tokens": 527,
+      "list_cost_usd": 0.0012664,
+      "output_tokens": 2073,
+      "reasoning_tokens": 1859
+    }
+  }
+}

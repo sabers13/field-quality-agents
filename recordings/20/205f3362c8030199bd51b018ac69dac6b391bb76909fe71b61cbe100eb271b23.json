@@ -1,0 +1,60 @@
+{
+  "key": "205f3362c8030199bd51b018ac69dac6b391bb76909fe71b61cbe100eb271b23",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 14563,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"VISIBILITY/WIPER windshield wipers intermittently malfunction and the vehicle is reported unsafe\",\"group\":\"body_controls\",\"symptoms\":[\"windshield wipers malfunctioning\",\"intermittent wiper operation\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"VISIBILITY/WIPER\"},{\"kind\":\"symptom\",\"quote\":\"the windshield wipers started malfunctioning\"},{\"kind\":\"condition\",\"quote\":\"Sometimes they work, sometimes they don't.\"},{\"kind\":\"safety\",\"quote\":\"This vehicle is unsafe with malfunctioning wipers.\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize report. Component VISIBILITY/WIPER group body_controls. Narrative: windshield wipers started malfunctioning on 11/14/2024 leased Toyota Tacoma. Sometimes work sometimes don't. On 11/22/2024 took to Premier Toyota for service. Told no parts, 9 weeks ago. Vehicle unsafe with malfunctioning wipers. Need summary one line component symptom conditions. Group given body_controls. Symptoms: windshield wipers malfunctioning; intermittent operation (\"Sometimes they work, sometimes they don't\"). Conditions: intermittent, after service? It says took for service, no parts; not necessarily after service. Condition \"intermittent\" yes. Maybe \"after service\" no because malfunction before service. Could include? The conditions list allowed cold moisture heat vibration intermittent after service charging. We can include intermittent. Maybe \"after service\" not because symptom pre-service. Safety_relevant: Report says \"This vehicle is unsafe with malfunctioning wipers.\" Safety relevant? Rule set when mentions crash fire smoke injury loss control stall at speed or another risk to people. Unsafe with malfunctioning wipers is risk; yes safety_relevant true. But original field safety_relevant false; we should infer? The prompt says set safety_relevant when report mentions ... another risk to people. It explicitly says unsafe. So true. Missing_info: mileage null. Date present (incident dates and received). Conditions? It has intermittent. Component present. Symptom present. Mileage missing. Maybe date present. So missing_info [\"mileage\"]. Fault codes none. Clues: need verbatim quotes. We need exact spans copied. Narrative: \"On 11/14/2024 the windshield wipers started malfunctioning on my leased Toyota Tacoma.  Sometimes they work, sometimes they don't.   On 11/22/2024 I took the vehicle to Premier Toyota for service.   I was told they do not have the parts, that was 9 weeks ago.  This vehicle is unsafe with malfunctioning wipers.\" Need quote exact including spaces? Use spans without leading/trailing maybe. Verbatim. Clues:\n- kind symptom quote \"the windshield wipers started malfunctioning\" (exact substring? yes: \"the windshield wipers started malfunctioning\" appears after \"On 11/14/2024 \". It is exact including lowercase. Good.)\n- symptom quote \"Sometimes they work, sometimes they don't.\" exact.\n- condition quote \"Sometimes they work, sometimes they don't.\" Could be condition intermittent? But quote same. We can include kind condition with quote \"Sometimes they work, sometimes they don't.\" This is evidence of intermittent. But duplicate quote maybe okay. Need clues array. Could include component_group quote \"VISIBILITY/WIPER\"? But report in user message includes component field; quote must be copied verbatim from report. Is component field part of report? The \"report\" includes JSON. We can quote \"VISIBILITY/WIPER\" yes from component. But clues kind component_group. However narrative doesn't mention. Use \"VISIBILITY/WIPER\". \n- safety quote \"This vehicle is unsafe with malfunctioning wipers.\" exact. Good.\n- other quote \"I was told they do not have the parts\" maybe not needed. Could include condition? \"that was 9 weeks ago\" not a listed condition. No.\nNeed summary: \"VISIBILITY/WIPER: windshield wipers intermittently malfunction; unsafe.\" Conditions include intermittent. Maybe \"VISIBILITY/WIPER wipers intermittently malfunction, vehicle reported unsafe.\" Good.\n\nNeed ensure JSON no other text. Fields exactly. safety_relevant true. missing_info [\"mileage\"]. fault_codes []. conditions [\"intermittent\"]. symptoms [\"windshield wipers malfunctioning\", \"intermittent wiper operation\"]. Is \"intermittent wiper operation\" plain words derived. Fine. Summary one line. Group \"body_controls\". Clues include quote exact. Need maybe quote \"the windshield wipers started malfunctioning\" exact? Narrative: \"On 11/14/2024 the windshield wipers started malfunctioning on my leased Toyota Tacoma.\" Yes substring. \"Sometimes they work, sometimes they don't.\" exact including period. \"This vehicle is unsafe with malfunctioning wipers.\" exact. \"VISIBILITY/WIPER\" exact. Good.\n\nNeed maybe quote for symptom \"malfunctioning wipers\" exact appears in safety quote and narrative? \"malfunctioning wipers\" exact in last sentence. But first quote okay.\n\nNeed consider \"conditions\" includes \"after service\"? It was taken to service after malfunction, not after service. Do not include. \"charging\" no. \"cold\" no. \"moisture\" no. \"heat\" no. \"vibration\" no. Only intermittent. Good.\n\nNeed maybe missing_info includes \"conditions\" because only intermittent but no weather? Hmm facts analysis needs conditions; report has intermittent. We can say no. Mileage missing. Date present. Component present. Symptom present. So [\"mileage\"].\n\nNeed final JSON only. Use proper escaping. No markdown? The instruction says answer with one JSON object and no other text. So final should be raw JSON. Ensure no code fences.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793522858,
+      "id": "gw-c068bf5dd6ff-2b064e",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1243,
+        "completion_tokens_details": {
+          "reasoning_tokens": 1093
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00049851,
+          "billing_source": "go",
+          "list_cost": 0.00083085,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 567,
+            "output": 1243,
+            "reasoning": 1093
+          }
+        },
+        "prompt_tokens": 567,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 1810
+      }
+    },
+    "text": "{\"summary\":\"VISIBILITY/WIPER windshield wipers intermittently malfunction and the vehicle is reported unsafe\",\"group\":\"body_controls\",\"symptoms\":[\"windshield wipers malfunctioning\",\"intermittent wiper operation\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"VISIBILITY/WIPER\"},{\"kind\":\"symptom\",\"quote\":\"the windshield wipers started malfunctioning\"},{\"kind\":\"condition\",\"quote\":\"Sometimes they work, sometimes they don't.\"},{\"kind\":\"safety\",\"quote\":\"This vehicle is unsafe with malfunctioning wipers.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00049851,
+      "cached_tokens": 0,
+      "cost_usd": 0.00083085,
+      "input_tokens": 567,
+      "list_cost_usd": 0.00083085,
+      "output_tokens": 1243,
+      "reasoning_tokens": 1093
+    }
+  }
+}

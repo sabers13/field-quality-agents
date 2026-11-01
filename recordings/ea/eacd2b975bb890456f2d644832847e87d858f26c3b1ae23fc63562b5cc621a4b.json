@@ -1,0 +1,60 @@
+{
+  "key": "eacd2b975bb890456f2d644832847e87d858f26c3b1ae23fc63562b5cc621a4b",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 14937,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Instrument screen went dark, cannot see vehicle information; recall mentioned for other Jeeps.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"instrument screen went dark\",\n    \"cannot see vehicle information\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\",\n    \"conditions\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The Instrument Screen on our Trialhawk went dark.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"We cannot see anything in terms of what is going on with the vehicle.\"\n    },\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"ELECTRICAL SYSTEM\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"This is for other Jeeps that a recall has been called, but it's not showing up for ours.\"\n    }\n  ]\n}",
+            "reasoning_content": "We need to parse the report. The component is \"ELECTRICAL SYSTEM\", group \"electrical_general\". Narrative: \"The Instrument Screen on our Trialhawk went dark.  We cannot see anything in terms of what is going on with the vehicle.  This is for other Jeeps that a recall has been called, but it's not showing up for ours.\"\n\nWe need to output JSON with summary, group, symptoms, conditions, fault_codes, safety_relevant, missing_info, clues.\n\nSummary: one line: component, symptom, conditions. Component: instrument screen (electrical system). Symptom: went dark, cannot see anything. Conditions: not explicitly stated? Maybe none. But we can note \"recall mentioned for other Jeeps\" not condition. So summary: \"Instrument screen went dark, cannot see vehicle information; recall mentioned for other Jeeps.\"\n\nGroup: \"electrical_general\" as given.\n\nSymptoms: [\"instrument screen went dark\", \"cannot see vehicle information\"] or more plain: \"screen dark\", \"no display\". Use plain words. Could be \"instrument screen went dark\" and \"cannot see what is going on with the vehicle\". Let's list: [\"instrument screen went dark\", \"cannot see vehicle information\"].\n\nConditions: The report doesn't mention cold, moisture, heat, vibration, intermittent, after service, charging. So empty list.\n\nFault_codes: none named. Empty list.\n\nSafety_relevant: report says false? But we need to set based on content. It mentions instrument screen dark, cannot see what's going on. That could be safety relevant because you can't see speed, warning lights etc. But the prompt says set safety_relevant when report mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. Here it doesn't explicitly mention those, but inability to see vehicle information could be a risk. However, the input has \"safety_relevant\": false. We should follow the rules: if report mentions risk to people? It says \"cannot see anything in terms of what is going on with the vehicle\" — that could be a risk but not explicitly. The rule says \"another risk to people\" — we need to judge. It's borderline. Since the report itself has safety_relevant false, and no explicit mention, we should set false to be safe. But the instruction: \"Set safety_relevant when the report mentions a crash, fire, smoke, injury, loss of control, a stall at speed or another risk to people.\" The narrative does not mention any of those. So false.\n\nMissing_info: The analysis needs component, symptom, conditions, mileage, date. Component is given (ELECTRICAL SYSTEM, instrument screen). Symptom is given. Conditions not given? We have no conditions. Mileage is null. Date is received_at 2025-02-04, but that's received date, not incident date? The prompt says missing_info list facts: component, symptom, conditions, mileage, date. We have component and symptom. Conditions missing (none stated). Mileage missing (null). Date: we have received_at, but is that the date of incident? Probably not; it's the report date. The analysis might need the date of the incident. So date might be missing. However, the report has received_at, which could be considered the date. But the field \"date\" likely refers to when the issue occurred. Since not given, list \"date\". Also conditions missing. Mileage missing. So missing_info: [\"mileage\", \"date\", \"conditions\"]. Check if component or symptom missing? No. So list those three.\n\nClues: Need verbatim quotes. From narrative: \"The Instrument Screen on our Trialhawk went dark.\" Quote that. \"We cannot see anything in terms of what is going on with the vehicle.\" Quote that. \"This is for other Jeeps that a recall has been called, but it's not showing up for ours.\" Could quote that as other? But clues kind: symptom, condition, fault_code, component_group, safety, other. For symptom: quote \"went dark\" or the whole sentence. For component_group: maybe \"Instrument Screen\" is component. But component_group is electrical_general given. Could quote \"ELECTRICAL SYSTEM\" from component field? The report includes component: \"ELECTRICAL SYSTEM\". That is verbatim from the input. We can include a clue with kind \"component_group\" and quote \"ELECTRICAL SYSTEM\". Also symptom: \"went dark\". Also \"cannot see anything\". Also \"recall has been called\" might be other. But we should only include relevant. Let's construct clues:\n\n- kind: \"symptom\", quote: \"The Instrument Screen on our Trialhawk went dark.\"\n- kind: \"symptom\", quote: \"We cannot see anything in terms of what is going on with the vehicle.\"\n- kind: \"component_group\", quote: \"ELECTRICAL SYSTEM\" (from component field)\n- kind: \"other\", quote: \"This is for other Jeeps that a recall has been called, but it's not showing up for ours.\" (maybe indicates recall context)\n- kind: \"condition\"? No conditions.\n\nEnsure quotes are verbatim. The narrative has double spaces after periods? \"dark.  We cannot\" — there are two spaces. Our quote should match exactly. For the first sentence: \"The Instrument Screen on our Trialhawk went dark.\" The narrative: \"The Instrument Screen on our Trialhawk went dark.  We cannot see anything in terms of what is going on with the vehicle.  This is for other Jeeps that a recall has been called, but it's not showing up for ours.\" So quotes: first sentence includes period. Second sentence: \"We cannot see anything in terms of what is going on with the vehicle.\" includes period. Third: \"This is for other Jeeps that a recall has been called, but it's not showing up for ours.\" includes period. Component field: \"ELECTRICAL SYSTEM\" is exact.\n\nWe need to output JSON only. No other text.\n\nLet's produce.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793523534,
+      "id": "gw-c1efd3264bbc-2c4a67",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1499,
+        "completion_tokens_details": {
+          "reasoning_tokens": 1268
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00055401,
+          "billing_source": "go",
+          "list_cost": 0.00092335,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 152,
+            "output": 1499,
+            "reasoning": 1268
+          }
+        },
+        "prompt_tokens": 536,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "total_tokens": 2035
+      }
+    },
+    "text": "{\n  \"summary\": \"Instrument screen went dark, cannot see vehicle information; recall mentioned for other Jeeps.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"instrument screen went dark\",\n    \"cannot see vehicle information\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\",\n    \"conditions\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The Instrument Screen on our Trialhawk went dark.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"We cannot see anything in terms of what is going on with the vehicle.\"\n    },\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"ELECTRICAL SYSTEM\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"This is for other Jeeps that a recall has been called, but it's not showing up for ours.\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00055401,
+      "cached_tokens": 384,
+      "cost_usd": 0.00092335,
+      "input_tokens": 536,
+      "list_cost_usd": 0.00092335,
+      "output_tokens": 1499,
+      "reasoning_tokens": 1268
+    }
+  }
+}

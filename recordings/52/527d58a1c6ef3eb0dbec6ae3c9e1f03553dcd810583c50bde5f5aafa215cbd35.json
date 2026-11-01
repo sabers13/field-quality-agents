@@ -1,0 +1,60 @@
+{
+  "key": "527d58a1c6ef3eb0dbec6ae3c9e1f03553dcd810583c50bde5f5aafa215cbd35",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 20727,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"AIR BAGS did not deploy and the seatbelt did not respond in a frontal collision with palm vegetation, causing facial and tongue injuries.\",\n  \"group\": \"restraints\",\n  \"symptoms\": [\"airbags did not deploy\", \"seatbelt did not respond\"],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\"mileage\", \"date\"],\n  \"clues\": [\n    {\"kind\": \"component_group\", \"quote\": \"AIR BAGS\"},\n    {\"kind\": \"symptom\", \"quote\": \"las bolsa de aire no abrieron\"},\n    {\"kind\": \"symptom\", \"quote\": \"el cinturón de seguridad tampoco respondio\"},\n    {\"kind\": \"condition\", \"quote\": \"chocando mi vehiculo de frente\"},\n    {\"kind\": \"condition\", \"quote\": \"impacte con una malta de palma\"},\n    {\"kind\": \"safety\", \"quote\": \"me ocasionó lecciones de en la cara y la lengua\"}\n  ]\n}",
+            "reasoning_content": "We need answer JSON only. Need parse Spanish narrative. Component AIR BAGS group restraints. Summary one line component symptom conditions. Symptoms: airbags did not deploy/open, seatbelt did not respond, collision frontal with palm? \"malta de palma\" maybe \"mata de palma\" (palm bush). Injuries face and tongue. Conditions: frontal impact/crash. Safety relevant true. Fault codes none. Missing_info: mileage null, date? received_at exists but incident date missing maybe date. Conditions? has collision. Component present, symptom present. Need missing_info only facts analysis needs: mileage, date? Report has received_at but not incident date. conditions present. Could include \"mileage\", \"date\". Need clues verbatim quotes. Quotes exact from narrative. Need include symptom quotes: \"las bolsa de aire no abrieron\", \"el cintur\\u00f3n de seguridad tampoco respondio\", \"chocando mi vehiculo de frente\", \"me ocasion\\u00f3 lecciones de en la cara y la lengua\" (sic lecciones). Safety quote maybe \"chocando mi vehiculo de frente\" or injuries. Component group quote? \"bolsa de aire\" maps airbags; but component group? We can include kind component_group quote \"AIR BAGS\"? Quote must be from report; component field? The report includes component \"AIR BAGS\" in JSON. It says read report in user message. Quote from report maybe can quote fields too? Better quotes from narrative. For component_group quote \"bolsa de aire\" exact? Narrative says \"las bolsa de aire\". Use quote \"bolsa de aire\" is substring verbatim yes. condition quote \"impacte con una malta de palma\" exact. Need ensure accents exact. \"cinturón\" in narrative escaped as \\u00f3; actual char ó. Use \"cinturón de seguridad tampoco respondio\" exact? Narrative has \"el cintur\\u00f3n de seguridad tampoco respondio\" yes. \"lecciones\" exact typo. Summary: \"AIR BAGS did not deploy and seatbelt did not respond in a frontal collision with palm vegetation; facial and tongue injuries.\" But one line component, symptom, conditions. Need no extra. JSON only. Conditions array allowed values: cold, moisture, heat, vibration, intermittent, after service, charging. Hmm strict list? It says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. But narrative condition is frontal collision. The schema examples? It lists these only? It says conditions array, but allowed values maybe those only. However prompt: \"conditions\": [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. That suggests use only these predefined condition tags. Collision isn't in list. But report condition is crash. Could put conditions empty? But summary includes frontal collision. Clues can condition \"chocando mi vehiculo de frente\" kind condition. But conditions array maybe should include? The instructions: \"conditions\": [\"cold\", ...]. It may require from that set. Since collision not in allowed, maybe conditions [] and clues include condition. But \"conditions\" field in output expected list of condition tags. Use [] because no listed condition. But missing_info? conditions present but not in taxonomy. Hmm.\n\nNeed group \"restraints\". Symptoms plain words: \"airbags did not deploy\", \"seatbelt did not respond/restrain\", \"facial and tongue injuries\" injuries not symptom? Symptom of component is airbag no deploy, seatbelt no response. Could include \"frontal collision\" as condition clue not symptom. Fault_codes []. safety_relevant true. missing_info: [\"mileage\",\"date\"] because mileage null; date of incident missing though received_at. Maybe \"date\" is missing. Component and symptom and conditions present. Need clues array with quotes. Include safety kind quote \"lecciones de en la cara y la lengua\" or \"chocando mi vehiculo de frente\". For safety, quote \"me ocasionó lecciones de en la cara y la lengua\" exact? Narrative: \"me ocasion\\u00f3 lecciones de en la cara y la lengua\" yes. Use exact \"me ocasionó lecciones de en la cara y la lengua\". But actual string has \"ocasion\\u00f3\". JSON output can use ó. Need quote copied verbatim; Unicode equivalence? likely okay if actual char. To be safe use escaped \\u00f3? JSON decoded same. We can write \"me ocasion\\u00f3 lecciones de en la cara y la lengua\". But final answer should JSON; escapes accepted. Need no markdown? It says one JSON object no other text. We can output raw JSON. Need ensure valid.\n\nQuotes:\n- symptom: \"las bolsa de aire no abrieron\" exact substring? Narrative: \"lo cual las bolsa de aire no abrieron\" yes.\n- symptom: \"el cinturón de seguridad tampoco respondio\" exact substring? Narrative: \"porque el cintur\\u00f3n de seguridad tampoco respondio\" yes.\n- condition: \"chocando mi vehiculo de frente\" exact.\n- condition/other: \"impacte con una malta de palma\" exact. Maybe \"malta\" typo.\n- safety: \"me ocasionó lecciones de en la cara y la lengua\" exact (includes \"lecciones\").\n- component_group: \"bolsa de aire\" exact substring. But maybe not enough; use \"AIR BAGS\" from component field. It is in report. kind component_group quote \"AIR BAGS\". Since quote from report includes component value. Allowed? Yes report includes. But \"every quote copied verbatim from report\"; component field is part of report. Fine.\n\nNeed summary one line: \"AIR BAGS: no deployment and seatbelt non-response in a frontal collision with palm vegetation, causing facial and tongue injuries.\" Good.\n\nPotential issue \"FAV4\" typo? Summary can mention RAV4? component? It says component, symptom, conditions. Use \"AIR BAGS on 2024 RAV4...\" but component no. Fine.\n\nMissing_info \"mileage\", \"date\" only. Date: received_at present; incident date absent. Use \"date\". Maybe \"conditions\" missing? No. Component present. Symptom present.\n\nNeed maybe \"safety_relevant\": true. Already.\n\nOutput JSON with conditions []? The conditions array in schema likely expects condition tags; collision is not one. But perhaps conditions should include \"frontal collision\" even though not in list? The rule list seems fixed allowed values. It says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. I'd stick to [] to avoid invalid. But the summary and clues capture crash. Hmm but \"conditions\" field is meant to list conditions like cold etc. Collision not a condition tag. Use [].\n\nNeed \"symptoms\": [\"airbags did not deploy\", \"seatbelt did not respond\"]. Could include \"occupant injuries\" not component symptom? no.\n\nNeed \"fault_codes\": [].\n\nNeed final exactly JSON. Ensure quotes with escaped unicode or actual. I'll use actual Spanish characters? JSON supports UTF-8. Fine.\n\nNeed no markdown.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793523764,
+      "id": "gw-c2a0aa5c2d63-25ccb6",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1802,
+        "completion_tokens_details": {
+          "reasoning_tokens": 1566
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0006666,
+          "billing_source": "go",
+          "list_cost": 0.001111,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 191,
+            "output": 1802,
+            "reasoning": 1566
+          }
+        },
+        "prompt_tokens": 575,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "total_tokens": 2377
+      }
+    },
+    "text": "{\n  \"summary\": \"AIR BAGS did not deploy and the seatbelt did not respond in a frontal collision with palm vegetation, causing facial and tongue injuries.\",\n  \"group\": \"restraints\",\n  \"symptoms\": [\"airbags did not deploy\", \"seatbelt did not respond\"],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\"mileage\", \"date\"],\n  \"clues\": [\n    {\"kind\": \"component_group\", \"quote\": \"AIR BAGS\"},\n    {\"kind\": \"symptom\", \"quote\": \"las bolsa de aire no abrieron\"},\n    {\"kind\": \"symptom\", \"quote\": \"el cinturón de seguridad tampoco respondio\"},\n    {\"kind\": \"condition\", \"quote\": \"chocando mi vehiculo de frente\"},\n    {\"kind\": \"condition\", \"quote\": \"impacte con una malta de palma\"},\n    {\"kind\": \"safety\", \"quote\": \"me ocasionó lecciones de en la cara y la lengua\"}\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0006666,
+      "cached_tokens": 384,
+      "cost_usd": 0.001111,
+      "input_tokens": 575,
+      "list_cost_usd": 0.001111,
+      "output_tokens": 1802,
+      "reasoning_tokens": 1566
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "key": "f14f8b233d11b157db9ff4f8d105ed3ed5d476871d0c75dda42bb671244b555f",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 16446,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2018 RAM 1500 electrical system: engine noise and alarms, then engine fire; EGR Cooler code and cracked cooler noted after recall concern.\",\"group\":\"electrical_general\",\"symptoms\":[\"noise coming from the engine\",\"alarms went off\",\"engine fire\",\"EGR Cooler is not functioning properly\",\"cracked EGR cooler\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"heard noise coming from the engine\"},{\"kind\":\"symptom\",\"quote\":\"alarms went off\"},{\"kind\":\"symptom\",\"quote\":\"my engine was on fire\"},{\"kind\":\"safety\",\"quote\":\"my engine was on fire\"},{\"kind\":\"symptom\",\"quote\":\"throwing a code stating the EGR Cooler is not functioning properly\"},{\"kind\":\"symptom\",\"quote\":\"Currently mine is cracked\"},{\"kind\":\"other\",\"quote\":\"This EGR Cooler was supposed to be replaced during the recall (NHTSA Campaign # 19V757000), however I don't believe it was.\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize. Need include summary component symptom conditions. Report: RAM 1500 2018 electrical system? Narrative engine fire, EGR cooler code, recall. Need group given electrical_general or component group? Prompt says group electrical/electronic component group, or given group. Given group \"electrical_general\". Use that? Component is ELECTRICAL SYSTEM. Need symptoms plain: noise from engine, alarms went off, engine fire, EGR cooler not functioning properly / code, cracked EGR cooler. Conditions: highway travel, after stop/restart, after fire repair? \"after service\" maybe after recall repair? Hmm conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. We can include heat? Fire implies heat but condition? Maybe \"intermittent\" alarms? Better only explicit conditions? Highway, alarms recurring, after restart? Conditions should be from allowed list. We can include \"intermittent\" because alarms went off again? Heat from fire? Not exactly. Could include \"after service\" because truck repaired and put back together? But after service not cause. Need missing_info: mileage null, date? received date exists but incident date missing. component? component given. symptom yes. conditions maybe? Need list missing_info only important missing: mileage, date. Could include conditions? There are conditions highway. Maybe missing date. We should not invent. Fault codes: no explicit code, says throwing a code stating EGR Cooler not functioning properly, but no code. So empty list. Safety true because fire. Clues verbatim: \"engine was on fire\", \"my engine was on fire\", \"alarms went off\", \"heard noise coming from the engine\", \"The truck has been throwing a code stating the EGR Cooler is not functioning properly.\", \"Currently mine is cracked\", \"Traveling on highway\", \"I don't believe it was.\" maybe recall. Need quote exact. Ensure verbatim. Summary one line: RAM 1500 electrical system: engine noise and alarms then engine fire; EGR cooler code/cracked after recall. Need no other text.\n\nNeed JSON. Must include all keys. \"symptoms\": [\"noise coming from the engine\", \"alarms went off\", \"engine fire\", \"EGR Cooler is not functioning properly\", \"cracked EGR cooler\"]. Conditions: [\"intermittent\"]? Hmm alarms went off again after restart indicates intermittent? Also \"highway\" not allowed list. Conditions list only allowed tokens? Prompt says conditions: [\"cold\", ...] so likely choose from list. Report mentions highway not in list. Could include \"heat\" due fire? But condition \"heat\" maybe environmental heat, not fire. Better empty conditions? But conditions are facts; there are conditions but not in list. The schema examples include only list. Could include \"intermittent\" because alarms repeated. But quote? \"all the alarms went off again\" indicates intermittent. I'll include \"intermittent\". Also maybe \"after service\" since repairs done? But not relevant. Maybe no. Use [\"intermittent\"]. Safety true. missing_info: [\"mileage\", \"date\", \"conditions\"]? Conditions are somewhat present. But analysis needs incident date, mileage. Could include mileage and date. Date received exists but incident date missing. Missing info list allowed \"date\". Good.\n\nClues: need quote. Use exact spans:\n- {\"kind\":\"symptom\",\"quote\":\"heard noise coming from the engine\"}\n- {\"kind\":\"symptom\",\"quote\":\"alarms went off\"}\n- {\"kind\":\"symptom\",\"quote\":\"my engine was on fire\"}\n- {\"kind\":\"safety\",\"quote\":\"my engine was on fire\"}\n- {\"kind\":\"fault_code\",\"quote\":\"throwing a code stating the EGR Cooler is not functioning properly\"} but fault_code? It's not code; maybe kind \"other\" or symptom. Since no code named, don't include fault_code clue? Could include kind symptom quote. But fault_codes empty. Clue kind \"other\" for recall. Need component_group clue quote \"ELECTRICAL SYSTEM\"? But report JSON has component not narrative? The report in user message is whole JSON; quote can be from report, including component field? It says report. Could quote \"ELECTRICAL SYSTEM\" verbatim. But clues should quote spans from report. We can include component_group quote \"ELECTRICAL SYSTEM\". But maybe avoid because narrative? It is in report. Need \"EGR Cooler was supposed to be replaced during the recall\" quote. Kind other. Conditions clue \"Traveling on highway\" but kind condition? Highway not allowed condition token but quote. Could include condition quote \"Traveling on highway\" maybe not. But condition kind should align. Hmm.\n\nNeed ensure JSON valid no comments. Use false boolean. Final only JSON. Could include safety_relevant true. Summary concise.\n\nNeed decide group: \"electrical_general\" given. But component group maybe \"ELECTRICAL SYSTEM\". Schema says group the electrical/electronic component group, or given group. Given group is electrical_general; use that. Good.\n\nNeed no action suggestions. Good.\n\nLet's craft final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793523749,
+      "id": "gw-c11b106115d1-22efb0",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1344,
+        "completion_tokens_details": {
+          "reasoning_tokens": 1077
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00052323,
+          "billing_source": "go",
+          "list_cost": 0.00087205,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 430,
+            "output": 1344,
+            "reasoning": 1077
+          }
+        },
+        "prompt_tokens": 814,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "total_tokens": 2158
+      }
+    },
+    "text": "{\"summary\":\"2018 RAM 1500 electrical system: engine noise and alarms, then engine fire; EGR Cooler code and cracked cooler noted after recall concern.\",\"group\":\"electrical_general\",\"symptoms\":[\"noise coming from the engine\",\"alarms went off\",\"engine fire\",\"EGR Cooler is not functioning properly\",\"cracked EGR cooler\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"heard noise coming from the engine\"},{\"kind\":\"symptom\",\"quote\":\"alarms went off\"},{\"kind\":\"symptom\",\"quote\":\"my engine was on fire\"},{\"kind\":\"safety\",\"quote\":\"my engine was on fire\"},{\"kind\":\"symptom\",\"quote\":\"throwing a code stating the EGR Cooler is not functioning properly\"},{\"kind\":\"symptom\",\"quote\":\"Currently mine is cracked\"},{\"kind\":\"other\",\"quote\":\"This EGR Cooler was supposed to be replaced during the recall (NHTSA Campaign # 19V757000), however I don't believe it was.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00052323,
+      "cached_tokens": 384,
+      "cost_usd": 0.00087205,
+      "input_tokens": 814,
+      "list_cost_usd": 0.00087205,
+      "output_tokens": 1344,
+      "reasoning_tokens": 1077
+    }
+  }
+}

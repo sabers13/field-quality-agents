@@ -1,0 +1,60 @@
+{
+  "key": "14f401f9f6797bb5ad8098e6a751a4a4231ee5be64cce6430bd5d41824399a55",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11202,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"VISIBILITY/WIPER low visibility due to safety recall; guard-rail crash at 35 mph on exit ramp.\",\"group\":\"body_controls\",\"symptoms\":[\"low visibility\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"VISIBILITY/WIPER\"},{\"kind\":\"symptom\",\"quote\":\"low visibility\"},{\"kind\":\"safety\",\"quote\":\"I hit the guard rail going 35 mph on an exit ramp\"},{\"kind\":\"other\",\"quote\":\"safety recall\"}]}",
+            "reasoning_content": "We need answer JSON only. Need parse report. Component VISIBILITY/WIPER group body_controls. Narrative: hit guard rail going 35 mph on exit ramp because low visibility because of safety recall. Went to get recall fixed when found out and they refused to fix recall because bumper messed up. Need summary one line: component, symptom, conditions. Group given body_controls. Symptoms: low visibility? Maybe \"low visibility\". Conditions: none? Could include \"crash\" not in conditions list? Conditions allowed cold moisture heat vibration intermittent after service charging. Report mentions going 35 mph exit ramp, safety recall, bumper messed up. We can include conditions? \"after service\" no. \"intermittent\" no. Should conditions be [] likely. Fault_codes [] no code. Safety_relevant true because crash/guard rail. Missing_info: mileage, date? Component present, symptom present, conditions maybe present? It says exit ramp 35 mph, low visibility due recall. Mileage null => missing mileage. Date? received_at but no incident date. missing_info [\"mileage\",\"date\"] maybe. Need clues verbatim spans. Need ensure quotes exact substrings. We can quote \"I hit the guard rail going 35 mph on an exit ramp\" exact. \"low visibility\" exact. \"safety recall\" exact? Narrative: \"because of the low visibility because of the safety recall.\" yes \"safety recall\" substring. \"they refused to fix the recall because my bumper is messed up\" exact. But clue kind condition? maybe other. Need not overdo. Need summary mention component, symptom, conditions. \"VISIBILITY/WIPER: low visibility due to safety recall; crash into guard rail at 35 mph on exit ramp.\" Conditions? include crash? Conditions allowed list doesn't include crash; but summary can mention. Group body_controls. Symptoms [\"low visibility\"]. Conditions []? Maybe \"after service\"? no. Could include \"charging\" no. Fault codes []. Missing info [\"mileage\",\"date\"]. Clues: symptom quote \"low visibility\"; safety quote \"I hit the guard rail going 35 mph on an exit ramp\"; other quote \"safety recall\"; other quote \"bumper is messed up\"? But bumper not component. Maybe component_group quote \"VISIBILITY/WIPER\" from component? The report includes component field but narrative doesn't. Rules quote copied verbatim from report; JSON includes component \"VISIBILITY/WIPER\" so can quote. But \"report\" includes whole JSON. Could include component_group quote \"VISIBILITY/WIPER\". Need quote \"because of the safety recall\" exact. Safety quote exact. Missing_info only facts analysis needs. mileage null. date maybe incident date missing. Conditions? The report has speed/ramp, maybe conditions present enough. Use missing_info [\"mileage\",\"date\"]. Safety true. Need one JSON object no other text.\n\nNeed be careful conditions array: allowed values list. We should only include if report mentions. No. So [].\n\nNeed summary one line: \"VISIBILITY/WIPER low visibility due to safety recall; guard-rail crash at 35 mph on exit ramp.\" That includes component, symptom, conditions? Conditions maybe crash/ramp. Good.\n\nClues:\n- {\"kind\":\"component_group\",\"quote\":\"VISIBILITY/WIPER\"}\n- {\"kind\":\"symptom\",\"quote\":\"low visibility\"}\n- {\"kind\":\"safety\",\"quote\":\"I hit the guard rail going 35 mph on an exit ramp\"}\n- {\"kind\":\"other\",\"quote\":\"safety recall\"}\n- {\"kind\":\"other\",\"quote\":\"my bumper is messed up\"}? Maybe not needed. Could include refusal? Not relevant. Keep concise.\n\nNeed ensure \"I hit the guard rail going 35 mph on an exit ramp\" exact: narrative \"I hit the guard rail going 35 mph on an exit ramp because...\" yes.\n\n\"low visibility\" exact yes.\n\"safety recall\" exact yes.\n\"VISIBILITY/WIPER\" exact from component.\n\nMaybe symptom is \"low visibility\" and safety is crash. Good.\n\nNeed JSON with boolean false? safety true. missing_info array. No markdown? User says answer with one JSON object and no other text. Use final with JSON only. Ensure valid JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793523418,
+      "id": "gw-c1efd3264bbc-2c1d25",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1021,
+        "completion_tokens_details": {
+          "reasoning_tokens": 883
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00038193,
+          "billing_source": "go",
+          "list_cost": 0.00063655,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 152,
+            "output": 1021,
+            "reasoning": 883
+          }
+        },
+        "prompt_tokens": 536,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "total_tokens": 1557
+      }
+    },
+    "text": "{\"summary\":\"VISIBILITY/WIPER low visibility due to safety recall; guard-rail crash at 35 mph on exit ramp.\",\"group\":\"body_controls\",\"symptoms\":[\"low visibility\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"VISIBILITY/WIPER\"},{\"kind\":\"symptom\",\"quote\":\"low visibility\"},{\"kind\":\"safety\",\"quote\":\"I hit the guard rail going 35 mph on an exit ramp\"},{\"kind\":\"other\",\"quote\":\"safety recall\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00038193,
+      "cached_tokens": 384,
+      "cost_usd": 0.00063655,
+      "input_tokens": 536,
+      "list_cost_usd": 0.00063655,
+      "output_tokens": 1021,
+      "reasoning_tokens": 883
+    }
+  }
+}

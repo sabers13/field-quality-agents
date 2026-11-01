@@ -1,0 +1,60 @@
+{
+  "key": "9cad4f0a2b5f8beb0d76120a991a302dae1c401926cb9a5b5535e069f21a4955",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10840,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Test the instrument cluster/screen power and communication because the screen went dark and vehicle information is unavailable; no matching rulebook or recall exists.\",\"rationale\":\"The narrative reports the instrument screen went dark and no vehicle information is visible. Similar cases are grouped under electrical_general, but the rulebook, recalls, and investigations returned no matching entry, so a standard electrical diagnostic is appropriate rather than a targeted load test.\",\"group\":\"electrical_general\",\"symptoms\":[\"instrument screen went dark\",\"cannot see vehicle information\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"targeted\":false,\"test_name\":\"standard electrical system diagnostic test\",\"clues\":[{\"kind\":\"symptom\",\"quote\":\"The Instrument Screen on our Trialhawk went dark.\"},{\"kind\":\"symptom\",\"quote\":\"We cannot see anything in terms of what is going on with the vehicle.\"},{\"kind\":\"other\",\"quote\":\"This is for other Jeeps that a recall has been called, but it's not showing up for ours.\"}]}",
+            "reasoning_content": "We need answer JSON only. Need analyze. No rulebook matches, investigations/recalls empty. Case instrument screen dark, cannot see vehicle info. Similar cases. Need targeted? Rulebook empty, so targeted false. Test standard? Need test_name perhaps \"standard test\" but prompt says propose standard test (\"targeted\": false). Need determine safety_relevant? Narrative no risk to people? Instrument screen dark could impair speedometer etc but narrative says cannot see what's going on; not explicit safety risk. Intake safety false. So false. Group electrical_general. Symptoms, conditions empty, fault codes empty. Clues verbatim from narrative. Need include quotes exactly from narrative. Narrative: \"The Instrument Screen on our Trialhawk went dark.  We cannot see anything in terms of what is going on with the vehicle.  This is for other Jeeps that a recall has been called, but it's not showing up for ours.\" Note double spaces in narrative? Quote must verbatim; likely can quote spans without double spaces? Need exact. Better use exact substrings. For first clue quote \"The Instrument Screen on our Trialhawk went dark.\" yes. Second \"We cannot see anything in terms of what is going on with the vehicle.\" yes. Third \"ELECTRICAL SYSTEM\" is component field not narrative? The rule says quote copied verbatim from case narrative. The narrative doesn't include ELECTRICAL SYSTEM. So don't include component quote from extraction because not verbatim narrative. Could include recall mention quote exact: \"This is for other Jeeps that a recall has been called, but it's not showing up for ours.\" yes. Need kind maybe other. Also maybe quote \"went dark\" as symptom? But can quote full sentence. Summary one line. rationale mention no rulebook match, no recalls/investigations, similar cases show cluster dark. Need not cite case ids? allowed if in tool results; can mention similar cases but maybe no need. Test_name: Since targeted false, standard test. What is standard test name? Not specified. Could use \"standard electrical system diagnostic test\" or \"standard test\". The prompt: \"test_name\": \"the targeted test the rulebook names\". If not targeted, perhaps \"standard test\". Need be concise.\n\nNeed ensure JSON valid. No extra text. Could include clues with quotes. Let's craft.\n\nSummary: \"Test the instrument cluster/screen power and communication because the screen went dark and vehicle information is unavailable; no matching rulebook or recall exists.\"\n\nRationale: \"The narrative reports the instrument screen went dark and no vehicle information is visible. The extraction and similar cases group this under electrical_general, but the rulebook, recalls, and investigations returned no matching entry, so a standard electrical diagnostic is appropriate rather than a targeted load test.\"\n\nGroup electrical_general.\nSymptoms: [\"instrument screen went dark\", \"cannot see vehicle information\"]\nConditions: [] maybe \"none\". Fault codes [].\nSafety false.\nTargeted false.\nTest name \"standard electrical system diagnostic test\" maybe.\n\nClues:\n{\"kind\":\"symptom\",\"quote\":\"The Instrument Screen on our Trialhawk went dark.\"}\n{\"kind\":\"symptom\",\"quote\":\"We cannot see anything in terms of what is going on with the vehicle.\"}\n{\"kind\":\"other\",\"quote\":\"This is for other Jeeps that a recall has been called, but it's not showing up for ours.\"}\n\nNeed maybe quote exact double spaces? The sentence in narrative has double spaces between sentences. The individual spans don't include double spaces except after period? First quote exact. Second exact. Third exact. Good.\n\nCould include \"component_group\" clue? Not from narrative, skip.\n\nNeed output JSON only. Ensure no markdown.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793523550,
+      "id": "gw-c026736306b7-2cd5be",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 986,
+        "completion_tokens_details": {
+          "reasoning_tokens": 764
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00044862,
+          "billing_source": "go",
+          "list_cost": 0.0007477,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 1033,
+            "output": 986,
+            "reasoning": 764
+          }
+        },
+        "prompt_tokens": 1417,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "total_tokens": 2403
+      }
+    },
+    "text": "{\"summary\":\"Test the instrument cluster/screen power and communication because the screen went dark and vehicle information is unavailable; no matching rulebook or recall exists.\",\"rationale\":\"The narrative reports the instrument screen went dark and no vehicle information is visible. Similar cases are grouped under electrical_general, but the rulebook, recalls, and investigations returned no matching entry, so a standard electrical diagnostic is appropriate rather than a targeted load test.\",\"group\":\"electrical_general\",\"symptoms\":[\"instrument screen went dark\",\"cannot see vehicle information\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"targeted\":false,\"test_name\":\"standard electrical system diagnostic test\",\"clues\":[{\"kind\":\"symptom\",\"quote\":\"The Instrument Screen on our Trialhawk went dark.\"},{\"kind\":\"symptom\",\"quote\":\"We cannot see anything in terms of what is going on with the vehicle.\"},{\"kind\":\"other\",\"quote\":\"This is for other Jeeps that a recall has been called, but it's not showing up for ours.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00044862,
+      "cached_tokens": 384,
+      "cost_usd": 0.0007477,
+      "input_tokens": 1417,
+      "list_cost_usd": 0.0007477,
+      "output_tokens": 986,
+      "reasoning_tokens": 764
+    }
+  }
+}

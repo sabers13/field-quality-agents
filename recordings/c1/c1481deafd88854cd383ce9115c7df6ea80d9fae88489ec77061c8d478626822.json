@@ -1,0 +1,60 @@
+{
+  "key": "c1481deafd88854cd383ce9115c7df6ea80d9fae88489ec77061c8d478626822",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 19294,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Exterior lighting: low-beam headlights aim too low, lack manual leveling, and cast a dark harness-plug outline; no conditions given.\",\"group\":\"lighting\",\"symptoms\":[\"low-beam headlights aim too low\",\"reduced visibility of potential road hazards or oncoming cars\",\"no way to manually set headlight level\",\"dark outline of an attachment or harness plug cast on the road\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"conditions\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"EXTERIOR LIGHTING\"},{\"kind\":\"symptom\",\"quote\":\"Low-beam headlights shine way too low on the road\"},{\"kind\":\"safety\",\"quote\":\"unsafely prevent adequate vision of potential road hazards or oncoming cars\"},{\"kind\":\"symptom\",\"quote\":\"without any way to manually set level to raise up the beam to a safe level\"},{\"kind\":\"symptom\",\"quote\":\"Low-beam headlights cast on the road a distracting dark outline of an attachment or harness plug attached to the LED bulb.\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize report. Need inspect narrative. Component exterior lighting group lighting. Symptoms: low-beam headlights shine too low preventing adequate vision; no manual level adjustment (automatic only); dark outline/shadow of attachment/harness plug cast on road. Conditions? none explicitly cold etc. Maybe \"night\"? Not stated. Safety_relevant? Report mentions \"unsafely prevent adequate vision of potential road hazards or oncoming cars\" risk to people? It is safety relevant due inadequate vision potentially. Need set true? Rule: safety_relevant when mentions crash, fire, smoke, injury, loss control, stall at speed or another risk to people. \"unsafely prevent adequate vision of potential road hazards or oncoming cars\" is another risk to people. So true. Fault codes none. Missing_info: mileage null; date maybe received_at exists but incident date missing? They list missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Component present, symptom present, conditions missing (no when/weather). Mileage missing. Date? received_at is 2025-01-30 but not incident date maybe date missing? Need include \"mileage\", \"conditions\", possibly \"date\" if no incident date. The report has received_at but not event date; but analysis maybe date present? Hmm. We need be careful. The provided has mileage null, received_at date. Missing_info likely [\"mileage\",\"conditions\"] maybe date not missing because report has received date? Rule says date fact analysis needs. The report has received_at but not incident date. Could include \"date\". But maybe not overdo. Need quotes verbatim. Need ensure quotes exact substrings. Narrative string includes \"Two issues: 1. Low-beam headlights shine way too low on the road and unsafely prevent adequate vision of potential road hazards or oncoming cars, and my model \\\"Limited\\\" only has \\\"automatic headlight leveling\\\" without any way to manually set level to raise up the beam to a safe level. 2. Low-beam headlights cast on the road a distracting dark outline of an attachment or harness plug attached to the LED bulb.\"\n\nQuotes: \"Low-beam headlights shine way too low on the road\" yes. \"unsafely prevent adequate vision of potential road hazards or oncoming cars\" yes. \"only has \\\"automatic headlight leveling\\\" without any way to manually set level\" includes escaped? In JSON quote must contain actual quotes? Verbatim span includes quotes around automatic headlight leveling. We can quote without inner quotes? Need verbatim character for character from report. If we include \"automatic headlight leveling\" no surrounding quotes? The report has quote chars. A quote span can start after opening quote and end before closing? \"automatic headlight leveling\" is verbatim including words but not quote chars? Actually substring includes quote characters? The narrative JSON has \\\" which represents literal quotes. Verbatim span could be `automatic headlight leveling` (without quote chars) is still substring? In text, characters include quote before automatic and after leveling, but substring \"automatic headlight leveling\" exists between them. Yes okay. \"Low-beam headlights cast on the road a distracting dark outline of an attachment or harness plug attached to the LED bulb.\" yes.\n\nNeed summary one line: component, symptom, conditions. \"Exterior lighting: low-beam headlights aim too low and cast a dark outline of harness plug; no manual leveling.\" Conditions maybe none. Need group \"lighting\". Symptoms array plain words: \"low-beam headlights aim too low\", \"reduced visibility of road hazards and oncoming cars\", \"no manual headlight level adjustment\", \"dark outline of attachment/harness plug cast on road\". Conditions empty. Fault codes empty. safety_relevant true. missing_info maybe [\"mileage\", \"conditions\", \"date\"]? Need decide.\n\nClues include kind symptom/condition/fault_code/component_group/safety/other. For component_group quote must be verbatim from report. The report has component \"EXTERIOR LIGHTING\" but narrative doesn't. User report includes component field. Quote can copy from report? The report as a whole includes JSON fields; quote \"EXTERIOR LIGHTING\" is verbatim. But clue kind component_group quote \"EXTERIOR LIGHTING\" okay. However instructions: quote copied verbatim from report. It is in report JSON. Good. Or \"LED bulb\". Need include safety quote: \"unsafely prevent adequate vision of potential road hazards or oncoming cars\". Symptom quotes. Other maybe \"harness plug attached to the LED bulb\". Need no condition clues if none.\n\nNeed output JSON only no markdown. Ensure valid JSON. Could include quotes with inner quotes escaped if needed. Better avoid inner quote in clue quotes except \"automatic headlight leveling\" maybe. Use simpler.\n\nNeed \"symptoms\": [\"low-beam headlights aim too low\", \"reduced visibility of potential road hazards or oncoming cars\", \"no way to manually set headlight level\", \"dark outline of an attachment or harness plug cast on the road\"]. Plain words.\n\n\"conditions\": [] because no cold/moisture etc. But maybe \"night\" not listed. The allowed conditions list is fixed: cold, moisture, heat, vibration, intermittent, after service, charging. None. So [].\n\n\"safety_relevant\": true.\n\n\"missing_info\": [\"mileage\", \"conditions\", \"date\"]? Hmm if date received exists. The analysis needs incident date to see pattern? They gave received_at. But missing date? The prompt says facts analysis needs: component, symptom, conditions, mileage, date. Since date field absent (only received_at), include date. Mileage null. Conditions absent. Good. But may \"date\" not missing because received_at? It is not date of incident. I'll include date. The desired JSON maybe.\n\nNeed \"summary\": \"Exterior lighting: low-beam headlights aim too low, lack manual leveling, and cast a dark harness-plug outline; no conditions given.\" one line. Fine.\n\nClues:\n- {\"kind\":\"component_group\",\"quote\":\"EXTERIOR LIGHTING\"} (verbatim)\n- {\"kind\":\"symptom\",\"quote\":\"Low-beam headlights shine way too low on the road\"}\n- {\"kind\":\"safety\",\"quote\":\"unsafely prevent adequate vision of potential road hazards or oncoming cars\"}\n- {\"kind\":\"symptom\",\"quote\":\"without any way to manually set level to raise up the beam to a safe level\"}\n- {\"kind\":\"symptom\",\"quote\":\"Low-beam headlights cast on the road a distracting dark outline of an attachment or harness plug attached to the LED bulb.\"}\nMaybe include \"automatic headlight leveling\" as other? Not needed.\n- {\"kind\":\"other\",\"quote\":\"harness plug attached to the LED bulb\"} perhaps redundant but okay.\n\nNeed ensure quote \"unsafely prevent adequate vision...\" exact: Narrative: \"shine way too low on the road and unsafely prevent adequate vision of potential road hazards or oncoming cars\" yes quote starts at unsafely. Good.\n\nNeed output no extra. But before final ensure JSON valid. Use straight quotes. In summary include \"harness-plug\" okay. Quotes include \"LED\" etc. No unescaped apostrophe? none. \"Low-beam\" okay. `\"quote\": \"Low-beam headlights cast on the road a distracting dark outline of an attachment or harness plug attached to the LED bulb.\"` Valid.\n\nPotential issue: safety_relevant field given false in input. We should set true based on narrative. Good.\n\nNeed answer only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793523319,
+      "id": "gw-c1efd3264bbc-2bf6a7",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1840,
+        "completion_tokens_details": {
+          "reasoning_tokens": 1599
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00068082,
+          "billing_source": "go",
+          "list_cost": 0.0011347,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 197,
+            "output": 1840,
+            "reasoning": 1599
+          }
+        },
+        "prompt_tokens": 581,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "total_tokens": 2421
+      }
+    },
+    "text": "{\"summary\":\"Exterior lighting: low-beam headlights aim too low, lack manual leveling, and cast a dark harness-plug outline; no conditions given.\",\"group\":\"lighting\",\"symptoms\":[\"low-beam headlights aim too low\",\"reduced visibility of potential road hazards or oncoming cars\",\"no way to manually set headlight level\",\"dark outline of an attachment or harness plug cast on the road\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"conditions\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"EXTERIOR LIGHTING\"},{\"kind\":\"symptom\",\"quote\":\"Low-beam headlights shine way too low on the road\"},{\"kind\":\"safety\",\"quote\":\"unsafely prevent adequate vision of potential road hazards or oncoming cars\"},{\"kind\":\"symptom\",\"quote\":\"without any way to manually set level to raise up the beam to a safe level\"},{\"kind\":\"symptom\",\"quote\":\"Low-beam headlights cast on the road a distracting dark outline of an attachment or harness plug attached to the LED bulb.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00068082,
+      "cached_tokens": 384,
+      "cost_usd": 0.0011347,
+      "input_tokens": 581,
+      "list_cost_usd": 0.0011347,
+      "output_tokens": 1840,
+      "reasoning_tokens": 1599
+    }
+  }
+}

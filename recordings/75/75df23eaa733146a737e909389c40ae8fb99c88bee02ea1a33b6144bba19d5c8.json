@@ -1,0 +1,60 @@
+{
+  "key": "75df23eaa733146a737e909389c40ae8fb99c88bee02ea1a33b6144bba19d5c8",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 15365,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Hybrid Propulsion System recall; no failure experienced; recall repair parts unavailable\",\"group\":\"ev_propulsion\",\"symptoms\":[],\"conditions\":[],\"fault_codes\":[\"24V538000\"],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"conditions\",\"symptom\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"Hybrid Propulsion System\"},{\"kind\":\"fault_code\",\"quote\":\"NHTSA Campaign Number: 24V538000\"},{\"kind\":\"other\",\"quote\":\"The contact had not experienced a failure.\"},{\"kind\":\"other\",\"quote\":\"the part to do the recall repair was not yet available\"},{\"kind\":\"other\",\"quote\":\"VIN tool confirms parts not available.\"}]}",
+            "reasoning_content": "We need answer JSON only. Need parse. Report is about recall not experienced failure. Component hybrid propulsion system, group ev_propulsion. Symptoms? \"The contact had not experienced a failure.\" No symptom. Conditions? none? Recall campaign. Fault codes: 24V538000? Is that NHTSA campaign number, not fault code. The schema fault_codes code if report names one. Could include campaign? It says fault code if report names one. NHTSA Campaign Number 24V538000 is recall campaign not fault code. But maybe include as fault_code? Hmm rules: fault_codes [\"code if report names one\"]. Could be recall code. But kind fault_code quote. Better maybe include in fault_codes? The analysis may need code. Yet it's not diagnostic fault code. We can include \"24V538000\" because report names a campaign number. But fault_codes specifically code. Hm.\n\nSummary: \"Hybrid propulsion system; recall repair parts unavailable; no failure experienced.\" Conditions: [\"after service\"? no. \"charging\"? hybrid but not charging. none. Safety relevant false because no crash/fire etc. Missing info: symptom? They had not experienced failure, so no symptom applicable. Mileage missing, date? received_at present. Conditions missing? Maybe missing_info [\"mileage\",\"conditions\"]? The analysis needs conditions? Report has no conditions. Component/symptom present? Symptom is no failure; no actual symptom. Could list missing_info [\"mileage\",\"conditions\",\"symptom\"]? But if no failure, symptom is absence. The desk analyzing field-quality report; maybe missing actual failure symptom. But \"had not experienced a failure\" means no symptom. Could mark missing_info [\"mileage\",\"conditions\"] maybe.\n\nNeed clues with verbatim quotes. Need every quote exact. Possible quotes:\n- \"HYBRID PROPULSION SYSTEM\" from component? Is that in report? The user message JSON has component value. The report includes it? \"Read only the report in user message.\" It includes JSON. Quote can be \"HYBRID PROPULSION SYSTEM\" yes appears in component. But narrative says \"(Hybrid Propulsion System)\" capital diff. Use exact from narrative \"Hybrid Propulsion System\" appears in parentheses. Quote exact.\n- \"NHTSA Campaign Number: 24V538000\" appears.\n- \"The contact had not experienced a failure.\" exact.\n- \"the part to do the recall repair was not yet available\" exact? Narrative: \"however, the part to do the recall repair was not yet available.\" quote substring \"the part to do the recall repair was not yet available\" yes.\n- \"VIN tool confirms parts not available.\" exact.\n\nNeed summary one line: component, symptom, conditions. \"Hybrid Propulsion System recall; no failure experienced; repair parts unavailable.\" Conditions? \"recall parts unavailable\" is condition? Not in enum. Conditions field: [\"after service\"? no]. Could be []. But summary mentions conditions? \"no failure experienced; parts unavailable\". Fine.\n\nGroup: given group ev_propulsion. Symptoms: [] because no failure. But maybe symptoms [\"no failure experienced\"] not a symptom. Use [].\nConditions: [] maybe. Fault_codes: [\"24V538000\"]? Hmm maybe yes. Safety false. missing_info: [\"mileage\",\"conditions\",\"symptom\"]? Need decide. If symptom absent because no failure, it's still missing a symptom for analysis. The report states no failure, so symptom is \"none reported\". But missing_info should only facts analysis needs. Since no failure, symptom not missing? Component present. Conditions not present. Mileage null. Date present. I'd use [\"mileage\",\"conditions\",\"symptom\"]? But \"symptom\" the report has no symptom; that's important. Yet it explicitly says no failure. Missing symptom? This is a recall query, not defect. Still desk may need actual symptom. The instructions: List missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. Use empty when nothing important missing. Here symptom is not experienced, but no symptom described. It is important? Maybe yes. Conditions missing. Mileage missing. Date present. I'd include [\"mileage\",\"conditions\",\"symptom\"].\n\nNeed no other text. Ensure JSON valid. Quotes verbatim. Use \"Hybrid Propulsion System\" exact from narrative. \"NHTSA Campaign Number: 24V538000\" exact includes colon. In narrative: \"NHTSA Campaign Number: 24V538000 (Hybrid Propulsion System)\" yes.\n\nPotential clue kind component_group quote \"Hybrid Propulsion System\" from narrative. fault_code quote \"NHTSA Campaign Number: 24V538000\". other quote \"The contact had not experienced a failure.\" condition quote \"the part to do the recall repair was not yet available\" perhaps kind condition? It's not enum condition, but kind \"other\". Maybe condition clue for parts unavailable? Kind condition maybe not a listed condition. Use \"other\". Safety no.\n\nNeed answer only JSON. final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793523272,
+      "id": "gw-c1efd3264bbc-2be39f",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1217,
+        "completion_tokens_details": {
+          "reasoning_tokens": 1058
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00045789,
+          "billing_source": "go",
+          "list_cost": 0.00076315,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 212,
+            "output": 1217,
+            "reasoning": 1058
+          }
+        },
+        "prompt_tokens": 596,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "total_tokens": 1813
+      }
+    },
+    "text": "{\"summary\":\"Hybrid Propulsion System recall; no failure experienced; recall repair parts unavailable\",\"group\":\"ev_propulsion\",\"symptoms\":[],\"conditions\":[],\"fault_codes\":[\"24V538000\"],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"conditions\",\"symptom\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"Hybrid Propulsion System\"},{\"kind\":\"fault_code\",\"quote\":\"NHTSA Campaign Number: 24V538000\"},{\"kind\":\"other\",\"quote\":\"The contact had not experienced a failure.\"},{\"kind\":\"other\",\"quote\":\"the part to do the recall repair was not yet available\"},{\"kind\":\"other\",\"quote\":\"VIN tool confirms parts not available.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00045789,
+      "cached_tokens": 384,
+      "cost_usd": 0.00076315,
+      "input_tokens": 596,
+      "list_cost_usd": 0.00076315,
+      "output_tokens": 1217,
+      "reasoning_tokens": 1058
+    }
+  }
+}

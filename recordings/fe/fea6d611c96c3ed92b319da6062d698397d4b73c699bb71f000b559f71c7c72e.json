@@ -1,0 +1,60 @@
+{
+  "key": "fea6d611c96c3ed92b319da6062d698397d4b73c699bb71f000b559f71c7c72e",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 16325,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Seat belts/restraints: repeated front passenger safety restraint system fault alert; Tesla says airbag sensor recalibration needed, with possible risk to a child if the airbag deploys.\",\"group\":\"restraints\",\"symptoms\":[\"Front Passenger Safety Restraint System Fault alert\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"SEAT BELTS\"},{\"kind\":\"symptom\",\"quote\":\"Front Passenger Safety Restraint System Fault\"},{\"kind\":\"condition\",\"quote\":\"I keep receiving an alert\"},{\"kind\":\"other\",\"quote\":\"airbag sensor needs to be recalibrated\"},{\"kind\":\"safety\",\"quote\":\"may jeopardize a child sitting in the seat if the airbag is deployed\"}]}",
+            "reasoning_content": "We need answer one JSON object no other text. Need parse report. Component SEAT BELTS group restraints. Narrative mentions alert “Front Passenger Safety Restraint System Fault”. Contacted Tesla informed airbag sensor needs recalibrated and may jeopardize a child sitting in seat if airbag deployed. Common problem. Safety relevant? Mentions risk to child if airbag deployed, safety restraint fault. likely true despite input safety_relevant false? We should set true because risk to people. Symptoms: alert \"Front Passenger Safety Restraint System Fault\"; airbag sensor needs recalibration? Symptom is fault alert. Conditions? None explicitly cold etc. Could include? \"after service\"? no. \"intermittent\"? \"keep receiving\" perhaps intermittent? Conditions list limited: cold, moisture, heat, vibration, intermittent, after service, charging. \"keep receiving an alert\" could be intermittent? Hmm maybe not. We can include \"intermittent\" as condition? The alert keeps recurring. But must quote verbatim. Quote \"I keep receiving an alert\" for condition intermittent? It's a clue kind condition with quote. But conditions array can include \"intermittent\". Is that inventing? \"keep receiving\" implies recurring. Fine.\n\nFault codes none. missing_info: mileage null, date? received_at present but report date? The analysis needs date maybe received date present. Mileage missing. Conditions maybe missing? Component present symptom present. missing_info [\"mileage\"]? Maybe date? received_at is 2025-01-20, so not missing. Conditions not specified? We could list conditions missing? The report doesn't state when alert occurs. But missing_info only facts needed: component, symptom, conditions, mileage, date. Conditions maybe missing. Could include \"conditions\" if no conditions. But conditions array empty. Need decide. The prompt says list missing_info only for facts analysis needs. Conditions could be important; report doesn't say under what circumstances. Mileage missing. So [\"mileage\",\"conditions\"] maybe. Date present. Component present. Symptom present. Use empty? I'd include mileage and conditions.\n\nClues: quotes verbatim from narrative. Need exact characters including curly quotes? We can copy substrings. Need JSON escape quotes. Quote for symptom: \"Front Passenger Safety Restraint System Fault\" but narrative has curly quotes around. The substring inside is verbatim? It includes no curly quotes if we quote only phrase. It is present verbatim. Good.\n\nQuote for safety: \"may jeopardize a child sitting in the seat if the airbag is deployed\" exact substring? Narrative: \"may jeopardize a child sitting in the seat if the airbag is deployed.\" yes. Also \"airbag sensor needs to be recalibrated\". component_group quote \"SEAT BELTS\" from component field? Rule read report in user message; component is field. Quote verbatim from report. Could use \"SEAT BELTS\". kind component_group. Also condition quote \"I keep receiving an alert\" for intermittent. Maybe \"common problem\" other? not needed.\n\nSummary one line: \"Seat belts/restraints: repeated front passenger safety restraint system fault alert; Tesla says airbag sensor recalibration needed, possible risk to child if airbag deploys.\" Need one line. JSON.\n\nNeed no markdown? \"Answer with one JSON object and no other text\". Final should be raw JSON. Ensure valid JSON. Strings escaped. Use double quotes. Avoid curly? okay.\n\nNeed safety_relevant true. fault_codes empty. symptoms array maybe [\"Front Passenger Safety Restraint System Fault alert\", \"airbag sensor requires recalibration\"] But symptom plain words. The report names alert. Airbag sensor needs recalibration is diagnosis not symptom. Could include \"Front Passenger Safety Restraint System Fault alert\". Maybe \"repeated safety restraint system fault alert\". Keep.\n\nConditions: [\"intermittent\"]? Hmm conditions array only allowed listed. \"I keep receiving an alert\" implies recurring. But if not explicit, maybe omit. The instructions conditions: [\"cold\", ...]. It's categorical. I can include \"intermittent\" because repeated. Need clue quote. Fine.\n\nMissing_info [\"mileage\",\"conditions\"] maybe. But if conditions include intermittent, conditions not missing? Still specifics (when, cold etc.) missing. The analysis needs conditions. Could include conditions. But if we put conditions array intermittent, missing_info conditions contradictory? Not necessarily but weird. Maybe conditions empty and missing_info [\"mileage\",\"conditions\"]. But clue condition? no. Yet \"keep receiving\" could be symptom recurrence. Hmm.\n\nLet's think likely expected output by eval? They will check quotes verbatim, safety. We need ensure quote exact. Use narrative exactly: \"I keep receiving an alert: \\u201cFront Passenger Safety Restraint System Fault\\u201d. I contacted Tesla and they informed me that my airbag sensor needs to be recalibrated and may jeopardize a child sitting in the seat if the airbag is deployed. I understand that this is a common problem with the Model of Tesla.\"\n\nQuotes:\n- \"Front Passenger Safety Restraint System Fault\" exact.\n- \"airbag sensor needs to be recalibrated\" exact? Narrative: \"my airbag sensor needs to be recalibrated\" substring yes.\n- \"may jeopardize a child sitting in the seat if the airbag is deployed\" exact.\n- \"SEAT BELTS\" from component. It is in user message. Good.\n- \"I keep receiving an alert\" exact.\n\nIf quote includes curly quotes? no.\n\nSafety relevant true. Good.\n\nNeed summary one line no newline. JSON only. Final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793522900,
+      "id": "gw-c2a0aa5c2d63-24af4f",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1344,
+        "completion_tokens_details": {
+          "reasoning_tokens": 1160
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00049983,
+          "billing_source": "go",
+          "list_cost": 0.00083305,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 170,
+            "output": 1344,
+            "reasoning": 1160
+          }
+        },
+        "prompt_tokens": 554,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "total_tokens": 1898
+      }
+    },
+    "text": "{\"summary\":\"Seat belts/restraints: repeated front passenger safety restraint system fault alert; Tesla says airbag sensor recalibration needed, with possible risk to a child if the airbag deploys.\",\"group\":\"restraints\",\"symptoms\":[\"Front Passenger Safety Restraint System Fault alert\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"SEAT BELTS\"},{\"kind\":\"symptom\",\"quote\":\"Front Passenger Safety Restraint System Fault\"},{\"kind\":\"condition\",\"quote\":\"I keep receiving an alert\"},{\"kind\":\"other\",\"quote\":\"airbag sensor needs to be recalibrated\"},{\"kind\":\"safety\",\"quote\":\"may jeopardize a child sitting in the seat if the airbag is deployed\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00049983,
+      "cached_tokens": 384,
+      "cost_usd": 0.00083305,
+      "input_tokens": 554,
+      "list_cost_usd": 0.00083305,
+      "output_tokens": 1344,
+      "reasoning_tokens": 1160
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "key": "a057c878ca4e50e9cfae5485ab2750281be3c24d404d10b9ae4f1f75b520933a",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 14031,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"2018 RAM 2500 ADAS/adaptive cruise control: ABS brake warning lights constantly on, no cruise control, and intermittent inability to shift into gear.\",\n  \"group\": \"adas\",\n  \"symptoms\": [\n    \"ABS brake warning lights on all the time\",\n    \"no cruise control\",\n    \"intermittent inability to shift vehicle into gear\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"missing_info\": [\n    \"mileage\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The ABS brake warning lights are on all the time.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"I have no cruise control.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"There are times when I can't even shift my vehicle into gear.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"There are times when I can't even shift my vehicle into gear.\"\n    },\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"I will be checking to see if I even have 4wd with this light on.\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer only JSON. Need normalize. Report component FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL group adas. Narrative: ABS brake warning lights on all time, no cruise control, times can't shift into gear, will check 4wd with light on, haven't tried since lights on. Need summary one line component symptom conditions. Symptoms plain words: ABS brake warning lights on constantly; no cruise control; intermittent inability to shift into gear; uncertain 4wd due warning light (maybe not symptom? could include). Conditions: \"intermittent\" because times can't shift. Maybe \"all the time\" not listed condition? Conditions allowed cold moisture heat vibration intermittent after service charging. Use intermittent. Fault codes none. safety_relevant? User source says false, but prompt says set when crash fire smoke injury loss control stall at speed risk. Narrative no. false. missing_info: mileage null, date? received_at given but report date? The analysis needs conditions? Conditions maybe present intermittent. Component present, symptom present. Mileage missing, date? received_at 2025-02-08 maybe date present. missing_info [\"mileage\"] perhaps. Also conditions? We have intermittent but not environmental. Could include \"conditions\" missing? The rule: only facts analysis needs component symptom conditions mileage date. We have component, symptom, conditions intermittent, date received_at. Mileage missing. So missing_info [\"mileage\"]. Clues must be verbatim spans. Need include quotes exact. Ensure quote character-for-character from narrative. Quotes: \"The ABS brake warning lights are on all the time.\" exact includes period? narrative: \"The ABS brake warning lights are on all the time.  I have no cruise control.  There are times when I can't even shift my vehicle into gear. I will be checking to see if I even have 4wd with this light on. But, haven't tried it since the lights have been on.\" Need quote maybe \"The ABS brake warning lights are on all the time.\" exact yes. \"I have no cruise control.\" exact yes. \"There are times when I can't even shift my vehicle into gear.\" exact yes. \"I will be checking to see if I even have 4wd with this light on.\" exact yes. For condition intermittent quote \"There are times when I can't even shift my vehicle into gear.\" kind condition? Also symptom. Need clues kinds. Could include component_group quote \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\"? That's from component field not narrative? The report includes component. Yes quote from report. It says read report in user message. quote can be from component. Could use \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\" kind component_group. But group given adas; fine.\n\nNeed JSON only no markdown? They said answer with one JSON object and no other text. We'll output raw JSON.\n\nNeed summary: \"2018 RAM 2500 ADAS: ABS brake warning lights constantly on, no cruise control, intermittent inability to shift into gear.\" Include conditions intermittent. Or \"ADAS (adaptive cruise control) on 2018 RAM 2500: ABS warning lights constantly on, cruise control inoperative, intermittent no-gear-shift; 4WD not yet checked.\" One line.\n\nSymptoms array: \"ABS brake warning lights on all the time\", \"no cruise control\", \"intermittent inability to shift vehicle into gear\", \"4WD operation not yet checked with warning light on\" maybe last is not symptom but uncertainty. Should avoid invent. Include as symptom? It is a symptom? Better not. Could include \"uncertain whether 4WD works with warning light on\" as symptom? It's an observation. The schema symptoms symptom in plain words. Include first three. Conditions [\"intermittent\"]. Fault_codes [].\n\nSafety false.\n\nMissing_info [\"mileage\"].\n\nClues: need kinds. Let's craft:\n[\n {\"kind\":\"symptom\",\"quote\":\"The ABS brake warning lights are on all the time.\"},\n {\"kind\":\"symptom\",\"quote\":\"I have no cruise control.\"},\n {\"kind\":\"symptom\",\"quote\":\"There are times when I can't even shift my vehicle into gear.\"},\n {\"kind\":\"condition\",\"quote\":\"There are times when I can't even shift my vehicle into gear.\"},\n {\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\"},\n {\"kind\":\"other\",\"quote\":\"I will be checking to see if I even have 4wd with this light on.\"}\n]\nNeed every quote exact. Component quote exact? component field: \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\". Yes. The narrative quote has apostrophe in can't. Exact. Good. Could duplicate quote for symptom and condition allowed? It says clues kind. Fine.\n\nNeed \"conditions\" allowed list. Use [\"intermittent\"]. Maybe also \"all the time\" not allowed. No.\n\nNeed summary mention component maybe \"adaptive cruise control/ADAS\". Good.\n\nEnsure JSON valid, no trailing commas. Final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793523649,
+      "id": "gw-c11b106115d1-22d187",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1392,
+        "completion_tokens_details": {
+          "reasoning_tokens": 1073
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00051729,
+          "billing_source": "go",
+          "list_cost": 0.00086215,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 172,
+            "output": 1392,
+            "reasoning": 1073
+          }
+        },
+        "prompt_tokens": 556,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "total_tokens": 1948
+      }
+    },
+    "text": "{\n  \"summary\": \"2018 RAM 2500 ADAS/adaptive cruise control: ABS brake warning lights constantly on, no cruise control, and intermittent inability to shift into gear.\",\n  \"group\": \"adas\",\n  \"symptoms\": [\n    \"ABS brake warning lights on all the time\",\n    \"no cruise control\",\n    \"intermittent inability to shift vehicle into gear\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"missing_info\": [\n    \"mileage\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The ABS brake warning lights are on all the time.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"I have no cruise control.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"There are times when I can't even shift my vehicle into gear.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"There are times when I can't even shift my vehicle into gear.\"\n    },\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"I will be checking to see if I even have 4wd with this light on.\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00051729,
+      "cached_tokens": 384,
+      "cost_usd": 0.00086215,
+      "input_tokens": 556,
+      "list_cost_usd": 0.00086215,
+      "output_tokens": 1392,
+      "reasoning_tokens": 1073
+    }
+  }
+}

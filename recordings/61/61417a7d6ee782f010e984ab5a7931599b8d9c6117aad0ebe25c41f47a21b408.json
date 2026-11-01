@@ -1,0 +1,60 @@
+{
+  "key": "61417a7d6ee782f010e984ab5a7931599b8d9c6117aad0ebe25c41f47a21b408",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 14806,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2024 Chevrolet Silverado 1500 electrical system: display console failures after dealer software update; collision avoidance alerts failed during reverse crash into pole, with back injury.\",\"group\":\"electrical_general\",\"symptoms\":[\"display console failures\",\"safety features inoperable\",\"collision avoidance alert not activated\",\"driver seat vibration alert did not occur\",\"audible alarm did not sound\",\"warning message not displayed\"],\"conditions\":[\"after service\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"condition\",\"quote\":\"after the vehicle was serviced at the local dealer for a manufacturer software update\"},{\"kind\":\"symptom\",\"quote\":\"display console began to experience failures\"},{\"kind\":\"symptom\",\"quote\":\"several safety features to become inoperable\"},{\"kind\":\"symptom\",\"quote\":\"the collision avoidance feature to alert the driver was not activated\"},{\"kind\":\"symptom\",\"quote\":\"the driver's seat did not vibrate\"},{\"kind\":\"symptom\",\"quote\":\"the audible alarm was not active\"},{\"kind\":\"symptom\",\"quote\":\"the warning message was not displayed\"},{\"kind\":\"safety\",\"quote\":\"while driving in reverse the vehicle crashed into the pole\"},{\"kind\":\"safety\",\"quote\":\"experienced an injured back\"}]}",
+            "reasoning_content": "We need answer one JSON object no other text. Need normalize. Need read report. Component ELECTRICAL SYSTEM group electrical_general given. Symptoms: display console failures causing safety features inoperable; collision avoidance alert not activated; seat did not vibrate, audible alarm not active, warning message not displayed; vehicle crashed into pole while reversing; injured back. Conditions: after service, maybe reverse? Conditions list from allowed: cold, moisture, heat, vibration, intermittent, after service, charging. Report says after vehicle serviced at local dealer for manufacturer software update -> after service. Also while driving in reverse not in list? conditions array constrained to list. Could include \"after service\". Maybe \"vibration\" no, seat did not vibrate but that's symptom not condition. \"intermittent\" not stated. Fault codes none. Safety true because crash, injury. Missing_info: maybe date? received_at present but incident date missing. mileage present 10500. component present. symptom present. conditions present? after service yes. Date missing (incident date). Could list \"date\". Maybe no missing? The analysis needs date; report lacks incident date. We can include \"date\". Need clues verbatim quotes. Need ensure quotes exact spans. We need quote text character for character. Let's identify exact substrings:\n\n- \"after the vehicle was serviced at the local dealer for a manufacturer software update\" exact? Narrative: \"The contact stated that after the vehicle was serviced at the local dealer for a manufacturer software update the vehicle's display console began to experience failures causing several safety features to become inoperable.\" So quote \"after the vehicle was serviced at the local dealer for a manufacturer software update\" yes.\n- \"display console began to experience failures\" exact? Narrative has \"the vehicle's display console began to experience failures\" yes substring \"display console began to experience failures\" exact.\n- \"several safety features to become inoperable\" exact.\n- \"while driving in reverse the vehicle crashed into the pole\" exact? Narrative: \"Later, while driving in reverse the vehicle crashed into the pole.\" substring \"while driving in reverse the vehicle crashed into the pole\" exact.\n- \"the collision avoidance feature to alert the driver was not activated\" exact.\n- \"the driver's seat did not vibrate\" exact.\n- \"the audible alarm was not active\" exact.\n- \"the warning message was not displayed\" exact.\n- \"experienced an injured back\" exact? Narrative: \"the contact experienced an injured back that did not require medical attention\" substring \"experienced an injured back\" exact. Safety quote.\n- \"no assistance was offered\" not needed.\n- \"failure mileage was 10,500\" maybe missing? mileage present. Could include quote for mileage? Clues kinds don't include mileage. Not needed.\n\nNeed symptoms array plain words: [\"display console failures\", \"safety features inoperable\", \"collision avoidance alert not activated\", \"seat vibration alert did not occur\", \"audible alarm did not sound\", \"warning message not displayed\"]? Symptom in plain words. Keep concise.\n\nGroup: \"electrical_general\" or \"ELECTRICAL SYSTEM\"? Prompt says \"the electrical/electronic component group, or the given group\". Given group electrical_general. Use \"electrical_general\".\n\nSafety_relevant true.\n\nMissing_info: [\"date\"]? Need only facts analysis needs: component, symptom, conditions, mileage, date. Date of incident missing. Maybe conditions: after service included but not weather/road? Conditions list includes after service; enough? Could include \"date\". Also maybe \"conditions\" missing? It has after service and reverse, not in allowed. But missing_info \"conditions\" perhaps not because conditions listed after service. However incident conditions like road? Not necessary. List date only.\n\nFault_codes [].\n\nClues array. Need include kind appropriate. Quote exact. We can include multiple. Avoid too many? It's okay. Need ensure JSON valid. No extra text. Use double quotes. Apostrophe in \"driver's\" okay inside JSON string. The prompt says answer one JSON object and no other text. final only JSON.\n\nNeed think if \"vibration\" as condition? No, seat did not vibrate is symptom. Conditions allowed list includes \"vibration\" meaning physical vibration environment, not alert. So no.\n\nCould include \"after service\" condition. \"driving in reverse\" not in allowed conditions list, can't include. Could mention in summary.\n\nSummary one line: \"2024 Chevrolet Silverado 1500 electrical system: display console failures after dealer software update; collision avoidance alerts failed during reverse crash into pole, back injury.\" Good.\n\nClues: kind safety for crash/injury. kind condition for after service. kind symptom for display and alerts.\n\nNeed maybe \"component_group\" clue quote \"ELECTRICAL SYSTEM\" from component? The report includes component field \"ELECTRICAL SYSTEM\". Quote verbatim from report. Could include clue kind component_group quote \"ELECTRICAL SYSTEM\". Is that in report? Yes component value. But \"quote copied verbatim from report\" okay. But maybe not narrative; report includes JSON. Fine. But can omit.\n\nNeed include \"safety\" quote \"the vehicle crashed into the pole\" and \"experienced an injured back\". Good.\n\nLet's craft JSON exactly.\n\nNeed ensure no markdown? final should be JSON only. Good.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793522958,
+      "id": "gw-c0c301b7e952-2e3e3a",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1391,
+        "completion_tokens_details": {
+          "reasoning_tokens": 1109
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.000528,
+          "billing_source": "go",
+          "list_cost": 0.00088,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 295,
+            "output": 1391,
+            "reasoning": 1109
+          }
+        },
+        "prompt_tokens": 679,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "total_tokens": 2070
+      }
+    },
+    "text": "{\"summary\":\"2024 Chevrolet Silverado 1500 electrical system: display console failures after dealer software update; collision avoidance alerts failed during reverse crash into pole, with back injury.\",\"group\":\"electrical_general\",\"symptoms\":[\"display console failures\",\"safety features inoperable\",\"collision avoidance alert not activated\",\"driver seat vibration alert did not occur\",\"audible alarm did not sound\",\"warning message not displayed\"],\"conditions\":[\"after service\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"condition\",\"quote\":\"after the vehicle was serviced at the local dealer for a manufacturer software update\"},{\"kind\":\"symptom\",\"quote\":\"display console began to experience failures\"},{\"kind\":\"symptom\",\"quote\":\"several safety features to become inoperable\"},{\"kind\":\"symptom\",\"quote\":\"the collision avoidance feature to alert the driver was not activated\"},{\"kind\":\"symptom\",\"quote\":\"the driver's seat did not vibrate\"},{\"kind\":\"symptom\",\"quote\":\"the audible alarm was not active\"},{\"kind\":\"symptom\",\"quote\":\"the warning message was not displayed\"},{\"kind\":\"safety\",\"quote\":\"while driving in reverse the vehicle crashed into the pole\"},{\"kind\":\"safety\",\"quote\":\"experienced an injured back\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.000528,
+      "cached_tokens": 384,
+      "cost_usd": 0.00088,
+      "input_tokens": 679,
+      "list_cost_usd": 0.00088,
+      "output_tokens": 1391,
+      "reasoning_tokens": 1109
+    }
+  }
+}

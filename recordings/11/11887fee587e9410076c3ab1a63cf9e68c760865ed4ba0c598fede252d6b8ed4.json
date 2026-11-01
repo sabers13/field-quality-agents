@@ -1,0 +1,60 @@
+{
+  "key": "11887fee587e9410076c3ab1a63cf9e68c760865ed4ba0c598fede252d6b8ed4",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12371,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"AIR BAGS did not deploy after the vehicle slid on ice and crashed into trees.\",\"group\":\"restraints\",\"symptoms\":[\"airbags did not deploy\"],\"conditions\":[\"cold\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"Airbags did not deploy\"},{\"kind\":\"condition\",\"quote\":\"slid on ice\"},{\"kind\":\"safety\",\"quote\":\"The driver was put at significant risk\"},{\"kind\":\"other\",\"quote\":\"No warnings\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize report. Need extract summary one line component symptom conditions. Group given restraints. Symptoms: airbags did not deploy. Conditions: cold? ice, crash, sharp curve, slid on ice. \"cold\" maybe ice implies cold? Conditions list allowed: \"cold\",\"moisture\",\"heat\",\"vibration\",\"intermittent\",\"after service\",\"charging\". We should only use listed? Conditions array examples, but can include \"crash\"? Schema says conditions: [\"cold\", \"moisture\", ...]. Probably choose cold? Ice -> cold? But \"ice\" is not necessarily cold condition? It is. Also maybe \"crash\" not in list but safety. We can include \"cold\" for ice. Maybe \"intermittent\" no. \"after service\" no. \"charging\" no. Could include \"crash\" as condition? The allowed examples not strict? It says conditions: [\"cold\", ...] but rules list conditions in missing_info. We should use listed values. Include \"cold\" because slid on ice. Maybe \"moisture\" no. Fault codes none. Safety relevant true. Missing info: mileage, date? Received date exists but incident date missing. \"date\" missing. Mileage missing. Component present symptom present conditions present. Maybe missing_info [\"mileage\",\"date\"]. Clues verbatim spans:\n- component_group quote \"AIR BAGS\" or \"restraints\"? Report has \"AIR BAGS\" in component field. Quote must copied from report; component is part of report? User message includes JSON. Verbatim span \"AIR BAGS\" yes.\n- symptom quote \"Airbags did not deploy\"\n- safety quote \"driver was put at significant risk\" or \"crash into trees\" or \"car being totaled\". Need safety. Quote \"The driver was put at significant risk\" verbatim? Narrative: \"The driver was put at significant risk after the vehicle accidentally slid on ice...\" Yes exact capitalization. Need quote copied character for character. Use \"The driver was put at significant risk\". Also condition quote \"slid on ice\" maybe. Condition \"cold\" quote \"ice\" or \"slid on ice\". Use \"slid on ice\". Fault codes none.\n- other quote maybe \"No warnings\". But no fault code. Could include other quote \"No warnings\". Maybe not necessary.\nNeed summary one line: \"AIR BAGS: airbags did not deploy after vehicle slid on ice and crashed into trees.\" Conditions include cold. Ensure no invented. \"after vehicle slid on ice and crashed into trees\" from narrative. Good.\n\nNeed JSON object only no markdown? User says answer with one JSON object and no other text. Final should just JSON. Ensure valid JSON. \n\nNeed consider \"safety_relevant\": true. Missing info list. \"conditions\": [\"cold\"] maybe only. But \"crash\" not in allowed; could include \"cold\" due ice. Maybe \"conditions\": [\"cold\"] and clues condition quote \"slid on ice\". Fine.\n\nNeed \"summary\": one line: component, symptom, conditions. \"AIR BAGS did not deploy after the vehicle slid on ice and crashed into trees.\" That includes component symptom conditions. Good.\n\nNeed \"symptoms\": [\"airbags did not deploy\"]. Could include \"driver at risk\" but symptom? No.\n\nNeed \"clues\": include kind symptom quote \"Airbags did not deploy\"; condition quote \"slid on ice\"; safety quote \"The driver was put at significant risk\"; component_group quote \"AIR BAGS\"; other quote \"No warnings\" maybe. Quote exact? Narrative has \"-Airbags did not deploy.\" The substring \"Airbags did not deploy\" exact (without hyphen). Good. \"slid on ice\" exact lowercase? Narrative: \"accidentally slid on ice while\" yes. \"The driver was put at significant risk\" exact. \"AIR BAGS\" in component field exact uppercase. \"No warnings\" exact. Include maybe other for \"No warnings\" but not needed. Ensure quotes verbatim from report. The JSON overall includes fields. \"AIR BAGS\" appears as component value. Good.\n\nNeed missing_info: [\"mileage\",\"date\"]. Date? The report has received_at but incident date missing. Use \"date\". Good.\n\nPotential issue \"conditions\": include \"cold\" although report says ice. Is that inventing? It's an inference. The schema conditions allowed includes cold; ice implies cold. Fine.\n\nNeed no action suggestions. Final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793523672,
+      "id": "gw-c068bf5dd6ff-2c3a40",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1063,
+        "completion_tokens_details": {
+          "reasoning_tokens": 924
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00040281,
+          "billing_source": "go",
+          "list_cost": 0.00067135,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 216,
+            "output": 1063,
+            "reasoning": 924
+          }
+        },
+        "prompt_tokens": 600,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "total_tokens": 1663
+      }
+    },
+    "text": "{\"summary\":\"AIR BAGS did not deploy after the vehicle slid on ice and crashed into trees.\",\"group\":\"restraints\",\"symptoms\":[\"airbags did not deploy\"],\"conditions\":[\"cold\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"Airbags did not deploy\"},{\"kind\":\"condition\",\"quote\":\"slid on ice\"},{\"kind\":\"safety\",\"quote\":\"The driver was put at significant risk\"},{\"kind\":\"other\",\"quote\":\"No warnings\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00040281,
+      "cached_tokens": 384,
+      "cost_usd": 0.00067135,
+      "input_tokens": 600,
+      "list_cost_usd": 0.00067135,
+      "output_tokens": 1063,
+      "reasoning_tokens": 924
+    }
+  }
+}

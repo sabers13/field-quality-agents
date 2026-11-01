@@ -1,0 +1,60 @@
+{
+  "key": "cd10846caccfebfbce465e4d98c61f57241c182fd47ef0e36270245498796cfe",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 16538,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Adaptive cruise control/forward collision avoidance: sudden rapid acceleration at low speed while turning gently, leading to a multi-vehicle collision.\",\"group\":\"adas\",\"symptoms\":[\"sudden uncontrolled acceleration\",\"unable to stop the vehicle\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\"},{\"kind\":\"symptom\",\"quote\":\"without warning, the vehicle suddenly accelerated rapidly\"},{\"kind\":\"symptom\",\"quote\":\"The unexpected surge in speed left the driver unable to react in time to stop the vehicle\"},{\"kind\":\"condition\",\"quote\":\"traveling on a cul-de-sac street at low speed\"},{\"kind\":\"condition\",\"quote\":\"residential area with no hazardous driving conditions\"},{\"kind\":\"safety\",\"quote\":\"rammed into the side of a parked Ford truck\"},{\"kind\":\"safety\",\"quote\":\"multi-vehicle collision\"},{\"kind\":\"other\",\"quote\":\"similar to NHTSA Campaign Number: 23V409000\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize report. Need extract summary component symptom conditions. Component given FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL group adas. Narrative: sudden accelerated rapidly without warning, unable stop, rammed parked Ford truck causing collision, no injuries visible, damage. Conditions: low speed, cul-de-sac residential, no hazardous driving conditions, steering gently. Symptoms: sudden uncontrolled acceleration; unable to stop. Fault codes none. Safety relevant true due collision (crash), no injuries visible. Missing info: mileage null, date? Date present Dec 7 2024, received date. conditions present. Component present. Symptom present. Mileage missing. Maybe missing_info [\"mileage\"]. Need clues verbatim quotes. Need quote exact spans. Let's craft.\n\nNeed summary one line: ADAS adaptive cruise control/forward collision avoidance; sudden rapid acceleration at low speed while turning gently; multi-vehicle collision. Conditions include \"cold\"? no. \"intermittent\"? no. \"after service\"? no. \"charging\"? no. Could include low speed? conditions list allowed only specific values? It says conditions array [\"cold\",\"moisture\",\"heat\",\"vibration\",\"intermittent\",\"after service\",\"charging\"]. Hmm instructions list enumerated conditions, but narrative has low speed/residential no hazardous. Should we include only from allowed? It says conditions: [\"cold\", ...]. So likely use allowed values only; none match. But could include \"low speed\" not allowed? To be safe, conditions [] and mention in summary. But clues can include condition \"low speed\". The schema kind condition quote. Maybe conditions array can be [] since no listed conditions. However \"conditions\" in missing_info? Conditions are known but not in allowed categories. Maybe no missing.\n\nNeed every quote copied verbatim. Need exact strings from narrative. Let's select:\n- \"without warning, the vehicle suddenly accelerated rapidly\"\n- \"The unexpected surge in speed left the driver unable to react in time to stop the vehicle\"\n- \"rammed into the side of a parked Ford truck\"\n- \"The impact was strong enough to push the Ford truck forward, causing it to collide with another nearby vehicle\"\n- \"No injuries were immediately visible\"\n- \"traveling on a cul-de-sac street at low speed\"\n- \"residential area with no hazardous driving conditions\"\n- \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\" (component? quote from report? component field in JSON user message yes report includes component. Verbatim. kind component_group)\n- \"NHTSA Campaign Number: 23V409000\" fault_code? It's a campaign number, not fault code. Could include as other? Maybe not fault_codes. It names campaign number similar; not fault code. Fault codes [].\n\nNeed safety_relevant true. Missing_info [\"mileage\"].\n\nNeed quote exact: Check narrative punctuation. It says \"This incident it similar to NHTSA Campaign Number: 23V409000. On December 7, 2024, a 2024 BMW iX was traveling on a cul-de-sac street at low speed, preparing to come to a stop. The driver was turning the steering wheel gently when, without warning, the vehicle suddenly accelerated rapidly. The unexpected surge in speed left the driver unable to react in time to stop the vehicle. As a result, the BMW iX rammed into the side of a parked Ford truck. The impact was strong enough to push the Ford truck forward, causing it to collide with another nearby vehicle. No injuries were immediately visible, but the BMW and both other vehicles sustained noticeable damage. The manufacturer has inspected the car but still have not heard back.   The incident occurred in a residential area with no hazardous driving conditions. The sudden, uncontrolled acceleration was highly unusual and led directly to the multi-vehicle collision.\"\n\nQuotes exact. For \"The unexpected surge in speed left the driver unable to react in time to stop the vehicle\" exact. Good.\n\nNeed output JSON only. Ensure no markdown? It says answer with one JSON object and no other text. We can output raw JSON.\n\nPotential issue \"component group\" kind quote. Use \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\" exact. Good.\n\nSummary: \"Adaptive cruise control/forward collision avoidance: sudden rapid acceleration at low speed while turning gently, leading to multi-vehicle collision.\" Good.\n\nSymptoms: [\"sudden uncontrolled acceleration\", \"unable to stop\"]. Plain words.\n\nConditions: []? Maybe include \"low speed\" not in allowed; but conditions array examples. Could include \"low speed\"? The rules: \"conditions\": [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. It might expect empty if none. However narrative explicitly \"no hazardous driving conditions\" and low speed. But the allowed list doesn't include low speed. We can leave [] and clue condition quote. Missing_info maybe []? Mileage missing. Date present. Component present. Symptom present. Conditions? Known no hazardous. So [\"mileage\"].\n\nNeed maybe \"fault_codes\": [] even though campaign number. Could include campaign? It's not fault code. Leave [].\n\nSafety: true.\n\nClues list maybe 6. Need not too many. Ensure kind allowed. Let's craft.\n\nNeed \"safety\" quote maybe \"multi-vehicle collision\" or \"rammed into the side of a parked Ford truck\". Use quote for safety: \"multi-vehicle collision\" exact? It appears \"led directly to the multi-vehicle collision.\" Yes substring. Or \"No injuries were immediately visible\" but crash. Use \"rammed into the side of a parked Ford truck\" for safety. Good.\n\nNeed quote \"suddenly accelerated rapidly\" exact. Good.\n\nPotential clue for condition \"at low speed\" exact. \"traveling on a cul-de-sac street at low speed\" exact. Good.\n\nPotential clue for conditions no hazardous: \"residential area with no hazardous driving conditions\" exact? It says \"The incident occurred in a residential area with no hazardous driving conditions.\" substring \"residential area with no hazardous driving conditions\" exact yes.\n\nPotential clue other campaign: \"similar to NHTSA Campaign Number: 23V409000\" exact. kind other. Could include fault_code? No.\n\nNeed final JSON. Ensure valid JSON no trailing commas.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793523286,
+      "id": "gw-c11b106115d1-2265c0",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1575,
+        "completion_tokens_details": {
+          "reasoning_tokens": 1331
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00059469,
+          "billing_source": "go",
+          "list_cost": 0.00099115,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 300,
+            "output": 1575,
+            "reasoning": 1331
+          }
+        },
+        "prompt_tokens": 684,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "total_tokens": 2259
+      }
+    },
+    "text": "{\"summary\":\"Adaptive cruise control/forward collision avoidance: sudden rapid acceleration at low speed while turning gently, leading to a multi-vehicle collision.\",\"group\":\"adas\",\"symptoms\":[\"sudden uncontrolled acceleration\",\"unable to stop the vehicle\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\"},{\"kind\":\"symptom\",\"quote\":\"without warning, the vehicle suddenly accelerated rapidly\"},{\"kind\":\"symptom\",\"quote\":\"The unexpected surge in speed left the driver unable to react in time to stop the vehicle\"},{\"kind\":\"condition\",\"quote\":\"traveling on a cul-de-sac street at low speed\"},{\"kind\":\"condition\",\"quote\":\"residential area with no hazardous driving conditions\"},{\"kind\":\"safety\",\"quote\":\"rammed into the side of a parked Ford truck\"},{\"kind\":\"safety\",\"quote\":\"multi-vehicle collision\"},{\"kind\":\"other\",\"quote\":\"similar to NHTSA Campaign Number: 23V409000\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00059469,
+      "cached_tokens": 384,
+      "cost_usd": 0.00099115,
+      "input_tokens": 684,
+      "list_cost_usd": 0.00099115,
+      "output_tokens": 1575,
+      "reasoning_tokens": 1331
+    }
+  }
+}

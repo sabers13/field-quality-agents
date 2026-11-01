@@ -1,0 +1,60 @@
+{
+  "key": "80f6a281070c6e0ebb1a7794b06f3ab34a5f7f810a38ee64550236bffacbe7f0",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 16238,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system DEF failure with CEL/DEF light, codes P204F and 18097; vehicle cannot start or be driven safely.\",\"group\":\"electrical_general\",\"symptoms\":[\"DEF system failed\",\"CEL came on with DEF light indicating miles to no start\",\"unable to start or drive car safely\",\"P204F renders the car unusable\"],\"conditions\":[],\"fault_codes\":[\"P204F\",\"18097\"],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"Def system failed\"},{\"kind\":\"symptom\",\"quote\":\"cel came on w def light stating xxx miles to no start\"},{\"kind\":\"fault_code\",\"quote\":\"codes p204f & 18097\"},{\"kind\":\"symptom\",\"quote\":\"unable to start or drive car safely\"},{\"kind\":\"safety\",\"quote\":\"18097 code may cause abs & steering to shut off while driving\"},{\"kind\":\"symptom\",\"quote\":\"p204f renders the car unusable\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize report. Component ELECTRICAL SYSTEM group electrical_general. Narrative mentions DEF system failed, CEL came on with DEF light stating xxx miles to no start, codes P204F & 18097, unable to start or drive safely, 18097 may cause ABS & steering to shut off while driving, P204F renders car unusable. Safety relevant? Mentions unable to start or drive car safely, ABS & steering shut off while driving -> risk loss of control? Yes safety_relevant true. Need symptoms plain words. Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. None explicitly. Could include none. Fault codes [\"P204F\",\"18097\"]. Missing info: mileage, date? date received exists but report date? missing_info for facts analysis needs: mileage, date maybe conditions, component? Component present symptom present. Date? received_at present but maybe incident date missing. Include mileage and date? The schema examples include mileage, date, conditions, component, symptom. Since mileage null, date of failure not given. Conditions not given. Could list [\"mileage\", \"date\", \"conditions\"]. Note \"component\" given electrical system, symptom present. Maybe missing info include date. Safety true. Clues with verbatim spans. Need exact quotes copied. Need ensure quotes are substrings. Quote \"Def system failed- cel came on w def light stating xxx miles to no start\" exact? Narrative: \"Def system failed- cel came on w def light stating xxx miles to no start, codes p204f & 18097, now unable to start or drive car safely, 18097 code may cause abs & steering to shut off while driving & p204f renders the car unusable.\" We can quote portions exactly. Need quote for symptom: \"unable to start or drive car safely\" exact substring yes. \"18097 code may cause abs & steering to shut off while driving\" exact substring? Narrative lowercase abs yes. \"p204f renders the car unusable\" exact. Fault code quotes \"p204f & 18097\" exact. Component group maybe \"ELECTRICAL SYSTEM\" from component not narrative? quote must copied from report; component field is report? It says read report; component in JSON. Quote \"ELECTRICAL SYSTEM\" is in report object. But clues kind component_group quote copied verbatim from report. Could include component field quote. Safety quote \"unable to start or drive car safely\" also symptom. Condition? none. Maybe \"while driving\" as condition? The allowed conditions are specific; \"while driving\" not in list. But clues kind condition can quote \"while driving\"? The conditions array should be from allowed list; no conditions. Could leave conditions empty. But clue kind condition maybe not needed. Need summary one line: \"Electrical system / DEF system failure with CEL and DEF light, codes P204F and 18097; vehicle cannot start or be driven safely.\" That includes component? Summary one line component, symptom, conditions. Conditions none. Good.\n\nNeed decide group: given \"electrical_general\" or component group? Prompt says \"the electrical/electronic component group, or the given group\". Given group electrical_general. Use \"electrical_general\".\n\nMissing_info: mileage null, no date of incident, conditions absent. Could include \"mileage\", \"date\", \"conditions\". Maybe \"component\" no because ELECTRICAL SYSTEM broad? But report says component electrical system, not specific DEF system. Analysis might need component? It names DEF system. So not missing. Symptom present. Date: received_at exists but incident date not. Include date. Conditions absent. Good.\n\nNeed answer only JSON no markdown? The prompt says one JSON object and no other text. Use raw JSON. Ensure valid. Quotes exact. Need quote for DEF system failed: \"Def system failed\" exact substring? Narrative starts \"Def system failed- cel...\" Yes. Use \"Def system failed\". Quote for CEL/DEF light: \"cel came on w def light stating xxx miles to no start\" exact? Narrative has \"cel came on w def light stating xxx miles to no start\" yes. Codes quote: \"codes p204f & 18097\" exact. Safety quote: \"unable to start or drive car safely\" and \"abs & steering to shut off while driving\". But \"abs\" lowercase exact. Good.\n\nNeed clue kind safety quote. Could use \"unable to start or drive car safely\" as safety; but also symptom. For safety, maybe \"abs & steering to shut off while driving\" clearly risk. Quote exact: \"18097 code may cause abs & steering to shut off while driving\" exact. Good.\n\nClues array can include:\n{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"}\n{\"kind\":\"symptom\",\"quote\":\"Def system failed\"}\n{\"kind\":\"symptom\",\"quote\":\"cel came on w def light stating xxx miles to no start\"}\n{\"kind\":\"fault_code\",\"quote\":\"codes p204f & 18097\"}\n{\"kind\":\"symptom\",\"quote\":\"unable to start or drive car safely\"}\n{\"kind\":\"safety\",\"quote\":\"18097 code may cause abs & steering to shut off while driving\"}\n{\"kind\":\"symptom\",\"quote\":\"p204f renders the car unusable\"}\nMaybe \"other\" quote \"EPA mod was never performed\" not needed. Conditions no. Could include \"other\" for stop sale? Not necessary.\n\nNeed ensure summary no invented P? Codes uppercase okay.\n\nSafety_relevant true. Conditions [] because no allowed condition. Could there be \"after service\" because repeatedly in shop? It says car has been in shop repeatedly, not after service. No. \"intermittent\" no.\n\nMissing info: [\"mileage\",\"date\",\"conditions\"]. Date maybe received_at exists but incident date not. Good.\n\nNeed final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793523303,
+      "id": "gw-c1efd3264bbc-2befd4",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1465,
+        "completion_tokens_details": {
+          "reasoning_tokens": 1219
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00058986,
+          "billing_source": "go",
+          "list_cost": 0.0009831,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 694,
+            "output": 1465,
+            "reasoning": 1219
+          }
+        },
+        "prompt_tokens": 694,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 2159
+      }
+    },
+    "text": "{\"summary\":\"Electrical system DEF failure with CEL/DEF light, codes P204F and 18097; vehicle cannot start or be driven safely.\",\"group\":\"electrical_general\",\"symptoms\":[\"DEF system failed\",\"CEL came on with DEF light indicating miles to no start\",\"unable to start or drive car safely\",\"P204F renders the car unusable\"],\"conditions\":[],\"fault_codes\":[\"P204F\",\"18097\"],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"Def system failed\"},{\"kind\":\"symptom\",\"quote\":\"cel came on w def light stating xxx miles to no start\"},{\"kind\":\"fault_code\",\"quote\":\"codes p204f & 18097\"},{\"kind\":\"symptom\",\"quote\":\"unable to start or drive car safely\"},{\"kind\":\"safety\",\"quote\":\"18097 code may cause abs & steering to shut off while driving\"},{\"kind\":\"symptom\",\"quote\":\"p204f renders the car unusable\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00058986,
+      "cached_tokens": 0,
+      "cost_usd": 0.0009831,
+      "input_tokens": 694,
+      "list_cost_usd": 0.0009831,
+      "output_tokens": 1465,
+      "reasoning_tokens": 1219
+    }
+  }
+}

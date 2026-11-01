@@ -1,0 +1,60 @@
+{
+  "key": "d4e7e6a5a1295b4e2f89d73ab19930b63ae1dd45f68a3c7dd6e6f1d0c3aaf39e",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 13700,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Tesla Model 3 seat heaters caused electrical burns and pain in back/buttocks at temperature level 3 in 2024 and level 2 in 2025.\",\"group\":\"electrical_general\",\"symptoms\":[\"electrical burns\",\"pain\"],\"conditions\":[\"heat\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"electrical burns and pain\"},{\"kind\":\"condition\",\"quote\":\"temperature level 3\"},{\"kind\":\"condition\",\"quote\":\"temperature level 2\"},{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"safety\",\"quote\":\"electrical burns\"},{\"kind\":\"other\",\"quote\":\"twice\"}]}",
+            "reasoning_content": "We need answer only JSON object. Need normalize report. Need extract component electrical system, group given electrical_general. Symptoms: electrical burns and pain from Tesla Seat Heaters (in heated seats) twice? Plain words: \"electrical burns\", \"pain\", maybe \"seat heater overheating\"? But don't invent. Report says \"suffered electrical burns and pain from Tesla Seat Heaters (in heated seats) twice\". We can list symptoms [\"electrical burns\", \"pain\"]. Conditions: temperature level 3, temperature level 2, heated seats? Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. The report mentions temperature level 3 and level 2. Should we include \"heat\"? Since heated seats temperature levels perhaps condition heat. But allowed list. Could include \"heat\" if report mentions heated seats and temperature. Is that inventing? Heated seats imply heat. But condition categories are fixed. We can include \"heat\" quote \"heated seats\" or \"temperature level 3\". Maybe conditions [\"heat\"]? Also \"intermittent\"? It happened twice in 2024 and 2025, not intermittent. \"after service\"? no. So conditions: [\"heat\"] maybe. Fault codes none. Safety_relevant true (burns). Missing_info: mileage? report mileage null. Date? received_at and years in narrative. Analysis needs date? It has 2024/2025 but not exact. Could list mileage. Maybe missing_info [\"mileage\"]. Component present, symptom present, conditions present. Date maybe not exact but has years. So [\"mileage\"]. Clues: need verbatim spans. Summary one line: component, symptom, conditions. E.g. \"Seat heaters in a 2020 Tesla Model 3 caused electrical burns and pain at temperature levels 3 and 2.\" But summary should be from report, no invented. It says Tesla Seat Heaters (in heated seats) twice, 2024 level 3, 2025 level 2, back and buttocks area. Summary: \"Tesla Model 3 seat heaters caused electrical burns and pain in back/buttocks at temperature level 3 (2024) and level 2 (2025).\" Fine.\n\nNeed JSON exactly. Quotes verbatim:\n- \"Back and buttocks area suffered electrical burns and pain from Tesla Seat Heaters (in heated seats) twice\"\n- \"temperature level 3\"\n- \"temperature level 2\"\n- \"ELECTRICAL SYSTEM\" maybe component_group quote? The component field is \"ELECTRICAL SYSTEM\". Can quote.\n- safety: \"electrical burns\" or full.\nNeed clues kind symptom, condition, fault_code, component_group, safety, other. For symptom quote \"electrical burns and pain\" is verbatim? In narrative: \"suffered electrical burns and pain\" yes substring \"electrical burns and pain\" verbatim. Could use. Condition quote \"temperature level 3\" and \"temperature level 2\" verbatim. Component_group quote \"ELECTRICAL SYSTEM\" from component field. Safety quote \"electrical burns\" verbatim. Maybe also other quote \"twice\" indicating recurrence. But not necessary.\n\nNeed ensure JSON valid no markdown? User says answer with one JSON object and no other text. We'll output raw JSON.\n\nNeed decide conditions: allowed values list. \"heat\" is allowed. Use [\"heat\"]. But is \"heat\" a condition? Heated seats. Fine. Could also include \"intermittent\"? It happened twice, not intermittent. No.\n\nSymptom plain words: \"electrical burns\", \"pain\". Maybe \"burns in back and buttocks area\". Plain. Use [\"electrical burns\", \"pain\"]. Good.\n\nGroup: electrical_general given. Use \"electrical_general\".\n\nFault codes empty.\n\nSafety_relevant true.\n\nMissing_info [\"mileage\"].\n\nSummary maybe \"Tesla Model 3 seat heaters caused electrical burns and pain in back/buttocks at temperature levels 3 and 2.\" This includes conditions. Good.\n\nNeed include quotes exactly. Character for character: narrative has \"Back and buttocks area suffered electrical burns and pain from Tesla Seat Heaters (in heated seats) twice 1. Happened in 2024 on temperature level 3 2 Although I turned it down it happened again in 2025 on temperature level 2\". Quote \"temperature level 3\" yes. \"temperature level 2\" yes. \"electrical burns and pain\" yes. \"ELECTRICAL SYSTEM\" from component. \"electrical burns\" yes. \"heated seats\" yes? If condition heat quote \"heated seats\" but our condition is heat. Could quote \"heated seats\" as condition. But \"heated seats\" not exactly condition? It's component/feature. Better condition quote \"temperature level 3\" for heat. But conditions list \"heat\"; quote can be \"temperature level 3\". That's okay. Maybe include both temp levels as clues. Fine.\n\nNeed no extra. Final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793523521,
+      "id": "gw-c1efd3264bbc-2c4470",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1207,
+        "completion_tokens_details": {
+          "reasoning_tokens": 1040
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00044934,
+          "billing_source": "go",
+          "list_cost": 0.0007489,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 157,
+            "output": 1207,
+            "reasoning": 1040
+          }
+        },
+        "prompt_tokens": 541,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "total_tokens": 1748
+      }
+    },
+    "text": "{\"summary\":\"Tesla Model 3 seat heaters caused electrical burns and pain in back/buttocks at temperature level 3 in 2024 and level 2 in 2025.\",\"group\":\"electrical_general\",\"symptoms\":[\"electrical burns\",\"pain\"],\"conditions\":[\"heat\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"electrical burns and pain\"},{\"kind\":\"condition\",\"quote\":\"temperature level 3\"},{\"kind\":\"condition\",\"quote\":\"temperature level 2\"},{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"safety\",\"quote\":\"electrical burns\"},{\"kind\":\"other\",\"quote\":\"twice\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00044934,
+      "cached_tokens": 384,
+      "cost_usd": 0.0007489,
+      "input_tokens": 541,
+      "list_cost_usd": 0.0007489,
+      "output_tokens": 1207,
+      "reasoning_tokens": 1040
+    }
+  }
+}

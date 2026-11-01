@@ -1,0 +1,60 @@
+{
+  "key": "255757102812c7f50645dcb68b6b001139b3082b0bc886a5958150e86abbc064",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11984,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Run a targeted long-run power cycling test because the CarPlay and hands-free faults are intermittent, while also noting reported recurring differential and transmission failures.\",\n  \"rationale\": \"The narrative reports that Apple CarPlay does not work and lags out, and hands-free does not work, matching the intermittent condition. The rulebook maps intermittent faults to the Long-run power cycling test. Recurring rear differential and transmission failures are also reported, but no fault codes, recalls, or investigations are present.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"rear differential keeps going out\",\n    \"transmission keeps failing every 10k miles\",\n    \"apple car play doesn’t work and lags out\",\n    \"hand free doesn’t work\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"targeted\": true,\n  \"test_name\": \"Long-run power cycling test\",\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Rear differential keeps going out\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"transmission keeps failing every 10k miles\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"apple car play doesn’t work and lags out\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"hand free doesn’t work\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"lags out\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer JSON only. Need analyze. Case narrative: rear differential and transmission failures every 10k, CarPlay lags, hands-free doesn't work. Group electrical_general. Rulebook matched intermittent -> targeted test \"Long-run power cycling test\". Conditions include intermittent from \"lags out\". Need clues verbatim quotes from narrative. Need ensure quotes exact spans. Narrative: \"Rear differential keeps going out and transmission keeps failing every 10k miles, apple car play doesn’t work and lags out. So hand free doesn’t work\"\n\nWe can quote \"Rear differential keeps going out\", \"transmission keeps failing every 10k miles\", \"apple car play doesn’t work and lags out\", \"hand free doesn’t work\", \"lags out\". Note extraction had \"Apple CarPlay...\" but narrative is lowercase \"apple car play\". Use verbatim narrative. Also component group? narrative doesn't contain \"ELECTRICAL SYSTEM\" (component field, not narrative). Clues quote must be from case narrative. We can include component_group? quote needs narrative verbatim. No. Could use \"other\" for \"Rear differential...\"? But kind symptom. fault codes none. safety false. targeted true. test_name Long-run power cycling test.\n\nNeed summary one line. rationale condition and evidence. group electrical_general. symptoms list maybe lower. conditions [\"intermittent\"]. fault_codes [].\n\nNeed maybe targeted because intermittent matches rulebook. Could mention similar cases? Rule says do not cite case id not contained? It is contained but maybe no need. Avoid citing IDs. Clues only narrative.\n\nEnsure JSON valid with curly apostrophe? Narrative has \"doesn’t\" curly. We can copy exact. Need escape? JSON UTF-8 okay. Use exact.\n\nSummary: \"Test electrical system with long-run power cycling because CarPlay/hands-free faults are intermittent; also note recurring differential/transmission failures.\" One line.\n\nRationale: \"Narrative reports Apple CarPlay does not work and lags out, with hands-free inoperative, matching intermittent condition; rulebook maps intermittent to Long-run power cycling test. Recurring rear differential and transmission failures are reported but no fault codes/recalls/investigations.\" Good.\n\nNeed clues maybe include \"Rear differential keeps going out\" kind symptom, \"transmission keeps failing every 10k miles\", \"apple car play doesn’t work and lags out\", \"hand free doesn’t work\", \"lags out\" condition. Maybe include \"other\" for? no.\n\nCheck quote \"hand free doesn’t work\" narrative exactly \"So hand free doesn’t work\" yes substring. \"apple car play doesn’t work and lags out\" yes. \"lags out\" substring. Good.\n\nNeed safety false. targeted true.\n\nNo extra text.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793523088,
+      "id": "gw-c2a0aa5c2d63-24ec6b",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 936,
+        "completion_tokens_details": {
+          "reasoning_tokens": 582
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00044802,
+          "billing_source": "go",
+          "list_cost": 0.0007467,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 1234,
+            "output": 936,
+            "reasoning": 582
+          }
+        },
+        "prompt_tokens": 1234,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 2170
+      }
+    },
+    "text": "{\n  \"summary\": \"Run a targeted long-run power cycling test because the CarPlay and hands-free faults are intermittent, while also noting reported recurring differential and transmission failures.\",\n  \"rationale\": \"The narrative reports that Apple CarPlay does not work and lags out, and hands-free does not work, matching the intermittent condition. The rulebook maps intermittent faults to the Long-run power cycling test. Recurring rear differential and transmission failures are also reported, but no fault codes, recalls, or investigations are present.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\n    \"rear differential keeps going out\",\n    \"transmission keeps failing every 10k miles\",\n    \"apple car play doesn’t work and lags out\",\n    \"hand free doesn’t work\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"targeted\": true,\n  \"test_name\": \"Long-run power cycling test\",\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Rear differential keeps going out\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"transmission keeps failing every 10k miles\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"apple car play doesn’t work and lags out\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"hand free doesn’t work\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"lags out\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00044802,
+      "cached_tokens": 0,
+      "cost_usd": 0.0007467,
+      "input_tokens": 1234,
+      "list_cost_usd": 0.0007467,
+      "output_tokens": 936,
+      "reasoning_tokens": 582
+    }
+  }
+}

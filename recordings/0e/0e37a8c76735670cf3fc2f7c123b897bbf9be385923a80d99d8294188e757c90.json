@@ -1,0 +1,60 @@
+{
+  "key": "0e37a8c76735670cf3fc2f7c123b897bbf9be385923a80d99d8294188e757c90",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 15683,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"AIR BAGS/restraints: airbags did not deploy and forward collision sensor did not engage automatic braking in a front-end collision; occupant injury reported.\",\"group\":\"restraints\",\"symptoms\":[\"airbags did not deploy despite significant front-end impact\",\"forward collision sensor failed to detect obstacle and did not engage automatic braking\",\"wife hit in chest by impact force\",\"dog thrown inside vehicle\",\"possible internal injuries or bruising\"],\"conditions\":[\"front-end collision\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"The airbags did not deploy despite a significant front-end impact.\"},{\"kind\":\"symptom\",\"quote\":\"The front collision sensor system failed to detect the obstacle and did not engage automatic braking\"},{\"kind\":\"condition\",\"quote\":\"front-end collision\"},{\"kind\":\"safety\",\"quote\":\"my wife was hit in the chest by the force of the impact\"},{\"kind\":\"safety\",\"quote\":\"our dog was thrown inside the vehicle\"},{\"kind\":\"safety\",\"quote\":\"put our safety at serious risk\"},{\"kind\":\"other\",\"quote\":\"There were no warning lamps or error messages prior to the failure.\"},{\"kind\":\"other\",\"quote\":\"The vehicle was operating normally until the moment of the collision.\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize report. Need follow rules. Need include summary one line component symptom conditions. group restraints given. symptoms plain words: airbags did not deploy despite significant front-end impact; forward collision sensor failed to detect obstacle and did not engage automatic braking; wife hit in chest; dog thrown inside vehicle? Symptoms should be component symptoms maybe include injuries? Safety relevant true. conditions: front-end collision? Conditions list allowed cold moisture heat vibration intermittent after service charging. None? Maybe \"crash\" not in allowed but conditions list examples? It says conditions: [\"cold\"...]. We can include \"front-end collision\"? Hmm schema says conditions array strings, allowed examples. But quote for condition. The report mentions collision, crash. Conditions should be conditions under which symptom occurs. \"front-end collision\" is condition. But allowed list includes specific. Maybe include \"front-end collision\" as condition? The prompt says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. It may expect only those? But report says involved in front-end collision. Could list \"collision\" as condition? To be safe, conditions: [\"front-end collision\"]? But examples not exhaustive? It says conditions: ... likely categories. Need missing_info: mileage null, date present 01 Feb 2025/received. component present symptom present conditions present. Maybe missing mileage only? Analysis needs mileage maybe. missing_info [\"mileage\"]. fault_codes none. clues verbatim spans. Need ensure quotes exact. Quotes from narrative:\n- \"The airbags did not deploy despite a significant front-end impact.\"\n- \"The front collision sensor system failed to detect the obstacle and did not engage automatic braking\"\n- \"front-end collision\"\n- \"my wife was hit in the chest by the force of the impact\"\n- \"our dog was thrown inside the vehicle\"\n- \"put our safety at serious risk\"\n- \"no warning lamps or error messages prior to the failure\"\n- \"The vehicle was operating normally until the moment of the collision.\"\nNeed quote exact character for character. Check narrative: \"On 01 February 2025, my 2024 Ford Maverick XLT was involved in a front-end collision where two critical safety systems failed: 1.Airbag System Failure: The airbags did not deploy despite a significant front-end impact. This component is still available for inspection upon request. 2.Forward Collision Sensor Malfunction: The front collision sensor system failed to detect the obstacle and did not engage automatic braking, which contributed to the severity of the crash. This system is also available for inspection.  Safety Risk: Due to these failures, my wife was hit in the chest by the force of the impact, and our dog was thrown inside the vehicle. My wife may have sustained internal injuries or bruising as a result. The failure of both the airbag system and collision avoidance system put our safety at serious risk.  Problem Confirmation: The issue has not yet been confirmed by a dealer or service center because my insurance company (Progressive) is scheduled to inspect the vehicle on Monday. I will update this report if additional findings are confirmed.  Inspection Status: The vehicle has not yet been inspected by the manufacturer (Ford), but I have reported the issue to them for investigation. The vehicle will be inspected by insurance representatives to assess the damage and possible system malfunctions. No police report was filed at the time of the accident.  Warning Signs Prior to Failure: There were no warning lamps or error messages prior to the failure. The vehicle was operating normally until the moment of the collision.\"\n\nNeed JSON only no markdown? User says answer with one JSON object and no other text. We can output raw JSON. Need no code fence? likely raw.\n\nLet's craft:\nsummary: \"AIR BAGS / restraints: airbags did not deploy and forward collision sensor did not engage automatic braking in a front-end collision; occupant injury reported.\"\ngroup: \"restraints\"\nsymptoms: [\"airbags did not deploy despite significant front-end impact\", \"forward collision sensor failed to detect obstacle and did not engage automatic braking\", \"wife hit in chest by impact force\", \"dog thrown inside vehicle\", \"possible internal injuries or bruising\"]\nconditions: [\"front-end collision\"] maybe \"no warning lamps prior\" is not condition. Could include \"no warning lamps or error messages prior to failure\" but that's symptom? conditions maybe not. We can include \"front-end collision\". Is quote for condition exact? \"front-end collision\" appears. Good.\nfault_codes: []\nsafety_relevant: true\nmissing_info: [\"mileage\"] maybe also \"date\"? date given. component given. symptom given. conditions given. So [\"mileage\"].\nclues:\n- kind symptom quote \"The airbags did not deploy despite a significant front-end impact.\"\n- kind symptom quote \"The front collision sensor system failed to detect the obstacle and did not engage automatic braking\"\n- kind condition quote \"front-end collision\"\n- kind safety quote \"my wife was hit in the chest by the force of the impact\"\n- kind safety quote \"our dog was thrown inside the vehicle\"\n- kind safety quote \"put our safety at serious risk\"\n- kind other quote \"There were no warning lamps or error messages prior to the failure.\"\n- kind other quote \"The vehicle was operating normally until the moment of the collision.\"\nNeed quote exact: \"There were no warning lamps or error messages prior to the failure.\" yes includes period. \"The vehicle was operating normally until the moment of the collision.\" yes.\n\nNeed maybe clue kind component_group quote \"AIR BAGS\"? But component_group quote can be \"AIR BAGS\" though user message field not narrative? Report includes component field. They said read only report. Quote verbatim from report. \"AIR BAGS\" is in component field. Good maybe include. But clues from report can include component. Could include {\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"}. But group given restraints. Fine.\n\nNeed ensure summary not too long one line. Good.\n\nPotential issue: \"conditions\" allowed values maybe should be [\"front-end collision\"] not in allowed but okay. If strict, maybe empty? But condition is collision. I think include.\n\nNeed JSON valid. No trailing commas. Use exact quotes. Final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793523402,
+      "id": "gw-c1efd3264bbc-2c172c",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1594,
+        "completion_tokens_details": {
+          "reasoning_tokens": 1304
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00061107,
+          "billing_source": "go",
+          "list_cost": 0.00101845,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 406,
+            "output": 1594,
+            "reasoning": 1304
+          }
+        },
+        "prompt_tokens": 790,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "total_tokens": 2384
+      }
+    },
+    "text": "{\"summary\":\"AIR BAGS/restraints: airbags did not deploy and forward collision sensor did not engage automatic braking in a front-end collision; occupant injury reported.\",\"group\":\"restraints\",\"symptoms\":[\"airbags did not deploy despite significant front-end impact\",\"forward collision sensor failed to detect obstacle and did not engage automatic braking\",\"wife hit in chest by impact force\",\"dog thrown inside vehicle\",\"possible internal injuries or bruising\"],\"conditions\":[\"front-end collision\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"The airbags did not deploy despite a significant front-end impact.\"},{\"kind\":\"symptom\",\"quote\":\"The front collision sensor system failed to detect the obstacle and did not engage automatic braking\"},{\"kind\":\"condition\",\"quote\":\"front-end collision\"},{\"kind\":\"safety\",\"quote\":\"my wife was hit in the chest by the force of the impact\"},{\"kind\":\"safety\",\"quote\":\"our dog was thrown inside the vehicle\"},{\"kind\":\"safety\",\"quote\":\"put our safety at serious risk\"},{\"kind\":\"other\",\"quote\":\"There were no warning lamps or error messages prior to the failure.\"},{\"kind\":\"other\",\"quote\":\"The vehicle was operating normally until the moment of the collision.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00061107,
+      "cached_tokens": 384,
+      "cost_usd": 0.00101845,
+      "input_tokens": 790,
+      "list_cost_usd": 0.00101845,
+      "output_tokens": 1594,
+      "reasoning_tokens": 1304
+    }
+  }
+}
