@@ -102,8 +102,10 @@ a finish step per case.
    `HTTPS_PROXY`/`HTTP_PROXY` pointed at a closed port; 140 s.
 2. The record-mode directory was moved aside, `results/` was deleted, and
    `make all` ran again under the same no-key/no-network conditions.
-3. `results/MANIFEST.sha256` was byte-identical (644 files: baseline, the
-   replay run and the dashboard data).
+3. `results/MANIFEST.sha256` was byte-identical. The committed manifest hashes
+   628 files (baseline, the replay run and the dashboard data); this session's
+   check counted 644 because the git-ignored `dist/` still held 16 leftover e2e
+   fixture case files, which a clean `make all` does not write.
 4. Every content file of `results/runs/live-2025/` was byte-identical to the
    replayed `results/runs/replay/`. Only `manifest.json` (`mode`, `run_id`)
    and `events.json` (the run id in report events) differ by design.

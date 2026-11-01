@@ -83,4 +83,4 @@ e2e: web-build
 	cd web && NODE_PATH="$$PWD/node_modules" npx playwright test --config ../tests/e2e/playwright.config.ts
 
 release-check: lint typecheck test web-build scan-forbidden scan-secrets facts
-	@echo "release-check: green on the Q0 scaffold"
+	@echo "release-check: green"

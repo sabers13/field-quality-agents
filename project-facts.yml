@@ -1,0 +1,442 @@
+# Canonical project facts.
+#
+# Every number the README quotes, and every number on the dashboard, is copied
+# from here. Each entry names the committed file under `results/` it comes
+# from, and `scripts/check_facts.py` re-derives the value from that file. A
+# `display` string is the exact text the README must contain, so a number
+# cannot drift away from its source without `make facts` failing.
+#
+# `before_source` / `after_source` use the form `path/to/file.json#dotted.path`.
+# `scale` converts a source unit before rounding, and `display` in a headline
+# entry is the number of decimal places used in README and on the dashboard.
+
+schema: 1
+
+project:
+  name: Field Quality Agents
+  version: 0.1.0
+  licence: MIT
+  model: DeepSeek V4.1 Flash
+  tagline: >-
+    The same returns pipeline, run twice: once linear, once with agents doing
+    the legwork and engineers approving.
+  question: >-
+    What happens when a returns pipeline becomes agentic: same process, agents
+    doing the legwork between the steps, engineers approving?
+
+run:
+  id: live-2025
+  replay_id: replay
+  set: replay_2025
+  mode: record
+  model: deepseek-v4.1-flash
+  prompt_version: p1
+  recording_digest: "69350c43bd033816"
+  source: results/runs/live-2025/manifest.json
+  replay_source: results/runs/replay/manifest.json
+
+headline:
+  - id: group_macro_f1
+    label: Component group macro-F1
+    before: 0.7340
+    after: 0.9898
+    display: 4
+    unit: score
+    before_source: results/baseline/metrics.json#group_macro_f1.value
+    after_source: results/runs/replay/metrics.json#after.group_macro_f1.value
+
+  - id: safety_recall
+    label: Safety recall
+    before: 0.8590
+    after: 1.0000
+    display: 4
+    unit: share
+    before_source: results/baseline/metrics.json#safety_recall.value
+    after_source: results/runs/replay/metrics.json#after.safety_recall.value
+
+  - id: safety_precision
+    label: Safety precision
+    before: 0.4482
+    after: 0.3377
+    display: 4
+    unit: share
+    before_source: results/baseline/metrics.json#safety_precision.value
+    after_source: results/runs/replay/metrics.json#after.safety_precision.value
+
+  - id: targeted_test_share
+    label: Targeted load test share
+    before: 0.0000
+    after: 0.4198
+    display: 4
+    unit: share
+    before_source: results/baseline/metrics.json#targeted_test_share.value
+    after_source: results/runs/replay/metrics.json#after.targeted_test_share.value
+
+  - id: targeted_test_with_verified_quote
+    label: Targeted test with a verified quote
+    before: null
+    after: 1.0000
+    display: 4
+    unit: share
+    after_source: results/runs/replay/metrics.json#after.targeted_test_with_quote_share.value
+
+  - id: quote_grounding
+    label: Quote grounding
+    before: null
+    after: 1.0000
+    display: 4
+    unit: share
+    after_source: results/runs/replay/metrics.json#after.quote_grounding_rate.value
+
+  - id: citation_validity
+    label: Citation validity
+    before: null
+    after: 1.0000
+    display: 4
+    unit: share
+    after_source: results/runs/replay/metrics.json#after.citation_validity_rate.value
+
+  - id: issue_precision
+    label: Issue precision
+    before: null
+    after: 0.4000
+    display: 4
+    unit: share
+    after_source: results/runs/replay/metrics.json#after.issue_precision.value
+
+  - id: issue_base_rate
+    label: Issue base rate (random weeks)
+    before: null
+    after: 0.2000
+    display: 4
+    unit: share
+    after_source: results/runs/replay/metrics.json#after.issue_base_rate
+
+  - id: issue_median_lead_days
+    label: Issue median lead time (days)
+    before: null
+    after: 65
+    display: 0
+    unit: days
+    after_source: results/runs/replay/metrics.json#after.issue_median_lead_days
+
+  - id: recall_link_match
+    label: Recall link match
+    before: null
+    after: 0.1667
+    display: 4
+    unit: share
+    after_source: results/runs/replay/metrics.json#after.recall_link_match_rate.value
+
+  - id: human_touches_per_case
+    label: Human touches per case
+    before: 1.00
+    after: 1.00
+    display: 2
+    unit: per case
+    before_source: results/baseline/metrics.json#human_touches_per_case
+    after_source: results/runs/replay/metrics.json#after.human_touches_per_case
+
+  - id: decided_without_edits
+    label: Decided without edits
+    before: null
+    after: 1.0000
+    display: 4
+    unit: share
+    after_source: results/runs/replay/metrics.json#after.decided_without_edits_share
+
+  - id: steps_per_case
+    label: Steps per case
+    before: 4.00
+    after: 4.24
+    display: 2
+    unit: steps
+    before_source: results/baseline/metrics.json#steps_per_case
+    after_source: results/runs/replay/metrics.json#after.steps_per_case
+
+  - id: budget_hits
+    label: Budget hits
+    before: 0
+    after: 0
+    display: 0
+    unit: cases
+    before_source: results/baseline/metrics.json#budget_hits
+    after_source: results/runs/replay/metrics.json#after.budget_hits
+
+  - id: cost_per_1000_cases
+    label: Cost per 1,000 cases (USD)
+    before: 0.00
+    after: 1.33
+    display: 2
+    unit: USD
+    before_source: results/baseline/metrics.json#cost_per_1000_cases_usd
+    after_source: results/runs/replay/metrics.json#after.cost_per_1000_cases_usd
+
+  - id: latency_p50
+    label: Latency p50 (seconds)
+    before: null
+    after: 14.8
+    display: 1
+    scale: 0.001
+    unit: seconds
+    after_source: results/runs/replay/metrics.json#after.latency_p50_ms
+
+  - id: latency_p95
+    label: Latency p95 (seconds)
+    before: null
+    after: 29.5
+    display: 1
+    scale: 0.001
+    unit: seconds
+    after_source: results/runs/replay/metrics.json#after.latency_p95_ms
+
+facts:
+  - id: run_cases
+    label: reports played through both pipelines
+    value: 600
+    display: "600 reports"
+    check: { kind: json, file: results/runs/replay/manifest.json, path: case_count }
+
+  - id: run_decisions
+    label: recorded human decisions
+    value: 600
+    display: "600 decisions"
+    check: { kind: length, file: results/runs/replay/decisions.json }
+
+  - id: run_budget_steps
+    label: budget steps spent by the desk
+    value: 2542
+    display: "2,542"
+    check: { kind: json, file: results/runs/replay/manifest.json, path: steps }
+
+  - id: run_trace_steps
+    label: trace steps across all case traces
+    value: 6669
+    display: "6,669"
+    check: { kind: sum_lengths, file: results/runs/replay/traces.json }
+
+  - id: run_budget_hits
+    label: cases that exhausted their budget
+    value: 0
+    display: "0 budget hits"
+    check: { kind: json, file: results/runs/replay/metrics.json, path: after.budget_hits }
+
+  - id: run_issues
+    label: fleet issues opened
+    value: 5
+    display: "5 fleet issues"
+    check: { kind: length, file: results/runs/replay/issues.json }
+
+  - id: run_weekly_reports
+    label: weekly reports written
+    value: 53
+    display: "53 weekly reports"
+    check: { kind: weekly_reports, file: results/runs/replay/reports.json }
+
+  - id: run_spend_usd
+    label: spend at gateway list cost
+    value: 0.798998
+    display: "USD 0.798998"
+    check: { kind: json, file: results/runs/replay/manifest.json, path: spend_usd }
+
+  - id: safety_flagged
+    label: reports the desk flagged safety-relevant
+    value: 462
+    display: "462"
+    check:
+      kind: count_field
+      file: results/runs/replay/cases.json
+      field: safety_relevant
+      equals: true
+
+  - id: safety_truth
+    label: reports in the NHTSA crash, fire, injury or death fields
+    value: 156
+    display: "156"
+    check:
+      kind: json
+      file: results/runs/replay/metrics.json
+      path: after.safety_recall.n
+
+  - id: analysis_cases
+    label: reports that reached the analysis agent
+    value: 146
+    display: "146"
+    check:
+      kind: count_collections
+      file: results/runs/replay/traces.json
+      field: agent
+      equals: analysis
+
+  - id: info_requests
+    label: proposals that asked for more information
+    value: 13
+    display: "13"
+    check:
+      kind: count_field
+      file: results/runs/replay/proposals.json
+      field: kind
+      equals: request_info
+
+  - id: targeted_tests
+    label: proposals that asked for a targeted load test
+    value: 55
+    display: "55"
+    check:
+      kind: count_field
+      file: results/runs/replay/proposals.json
+      field: kind
+      equals: targeted_load_test
+
+  - id: quotes_checked
+    label: quotes checked against their sources
+    value: 709
+    display: "709"
+    check:
+      kind: json
+      file: results/runs/replay/metrics.json
+      path: after.quote_grounding_rate.n
+
+  - id: citations_checked
+    label: citations checked for a real source
+    value: 751
+    display: "751"
+    check:
+      kind: json
+      file: results/runs/replay/metrics.json
+      path: after.citation_validity_rate.n
+
+  - id: baseline_priority
+    label: linear cases routed to a priority queue
+    value: 299
+    display: "299"
+    check:
+      kind: count_field
+      file: results/baseline/decisions.json
+      field: route
+      equals: priority
+
+  - id: baseline_no_trouble_found
+    label: linear cases closed as no trouble found
+    value: 301
+    display: "301"
+    check:
+      kind: count_field
+      file: results/baseline/decisions.json
+      field: closed_no_trouble_found
+      equals: true
+
+  - id: issue_id
+    label: first fleet issue in the run
+    value: "I-20250217-001"
+    display: "I-20250217-001"
+    check: { kind: json, file: results/runs/replay/issues.json, path: "0.id" }
+
+  - id: issue_opened_at
+    label: date the first fleet issue opened
+    value: "2025-02-17"
+    display: "2025-02-17"
+    check: { kind: json, file: results/runs/replay/issues.json, path: "0.opened_at" }
+
+  - id: issue_observed
+    label: reports in the issue's spike week
+    value: 36
+    display: "36"
+    check: { kind: json, file: results/runs/replay/issues.json, path: "0.observed" }
+
+  - id: issue_threshold
+    label: Poisson threshold for the issue's spike week
+    value: 17
+    display: "17"
+    check: { kind: json, file: results/runs/replay/issues.json, path: "0.threshold" }
+
+  - id: issue_investigation
+    label: NHTSA investigation linked to the first issue
+    value: "PE24013"
+    display: "PE24013"
+    check:
+      kind: json
+      file: results/runs/replay/issues.json
+      path: "0.linked_investigation_ids.0"
+
+  - id: example_issue_case
+    label: case used for the earliest-issue comparison example
+    value: "2065213"
+    display: "2065213"
+    check:
+      kind: json
+      file: results/runs/replay/comparison_examples.json
+      path: "0.case_id"
+
+  - id: example_targeted_case
+    label: case with the longest trace that ended in a targeted test
+    value: "2063828"
+    display: "2063828"
+    check:
+      kind: json
+      file: results/runs/replay/comparison_examples.json
+      path: "1.case_id"
+
+  - id: example_targeted_trace
+    label: trace length of the targeted-test example
+    value: "Targeted test requested after 16 trace steps."
+    display: "16 trace steps"
+    check:
+      kind: json
+      file: results/runs/replay/comparison_examples.json
+      path: "1.after"
+
+  - id: example_missed_case
+    label: case the linear pipeline missed what the agent found
+    value: "2052717"
+    display: "2052717"
+    check:
+      kind: json
+      file: results/runs/replay/comparison_examples.json
+      path: "2.case_id"
+
+  - id: example_agreed_case
+    label: case where both pipelines found no verified evidence
+    value: "2052447"
+    display: "2052447"
+    check:
+      kind: json
+      file: results/runs/replay/comparison_examples.json
+      path: "3.case_id"
+
+screenshots:
+  dir: results/screenshots
+  pages:
+    - command-centre
+    - case-board
+    - case-detail
+    - issue-room
+    - before-after
+    - replay
+    - weekly-report
+  widths: [360, 1280]
+  themes: [light, dark]
+  readme:
+    - command-centre-1280-light.png
+    - command-centre-360-dark.png
+    - case-detail-1280-light.png
+    - before-after-1280-light.png
+
+documents:
+  required:
+    - README.md
+    - METHOD.md
+    - THIRD_PARTY.md
+    - CHANGELOG.md
+    - LICENSE
+    - project-facts.yml
+  readme_commands:
+    - make setup
+    - make all
+    - make serve
+  readme_sections:
+    - "## Quickstart"
+    - "## Headline numbers"
+    - "## Screenshots"
+    - "## Limits"
+    - "## Repository map"
