@@ -13,7 +13,7 @@ from pathlib import Path
 
 from field_quality_agents.agents.state import PROMPT_VERSION
 
-AGENTS = ("supervisor", "intake", "analysis")
+AGENTS = ("supervisor", "intake", "analysis", "issue", "report")
 
 PROMPTS_DIR = Path(__file__).resolve().parents[3] / "prompts"
 

@@ -8,7 +8,9 @@ keeps the whole history in checkpoint order.
 from __future__ import annotations
 
 import operator
-from collections.abc import Callable
+from collections.abc import Callable, Iterator
+from contextlib import contextmanager
+from contextvars import ContextVar
 from dataclasses import dataclass, field
 from datetime import UTC, datetime
 from typing import Annotated, TypedDict
@@ -120,8 +122,26 @@ class StepWriter:
         return update
 
 
+#: Batch runs replace the wall clock with a deterministic simulated clock so
+#: `make all` can rebuild byte-identical results. Tests and live mode keep the
+#: real clock.
+_clock: ContextVar[Callable[[], datetime] | None] = ContextVar("fqa_clock", default=None)
+
+
+@contextmanager
+def use_clock(clock: Callable[[], datetime]) -> Iterator[None]:
+    """Run a block with ``clock`` as the source of ``utcnow()``."""
+
+    token = _clock.set(clock)
+    try:
+        yield
+    finally:
+        _clock.reset(token)
+
+
 def utcnow() -> datetime:
-    return datetime.now(UTC)
+    clock = _clock.get()
+    return clock() if clock is not None else datetime.now(UTC)
 
 
 Node = Callable[[DeskState], dict[str, object]]

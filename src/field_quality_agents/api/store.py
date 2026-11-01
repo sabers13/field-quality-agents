@@ -9,17 +9,19 @@ the writer):
 ```text
 results/runs/<run_id>/
   manifest.json       RunManifest
-  cases.json          list[Case]
+  cases.json          list[Case] (final state)
+  input_cases.json    list[Case] (as received, used to start live threads)
   traces.json         {case_id: list[TraceStep]}
   extractions.json    {case_id: Extraction}
   proposals.json      {case_id: Proposal}
   decisions.json      list[HumanDecision] or {case_id: HumanDecision}
   evidence.json       {case_id: {similar_cases: [], recalls: [], investigations: []}}
+  tool_outputs.json   {case_id: {similar_cases: [], recalls: [], investigations: []}} (full rows)
   issues.json         list[Issue]
   eight_d.json        list[EightD]
   memos.json          list[DecisionMemo]
-  report.json         WeeklyReport
-  reports.json        list[WeeklyReport] (optional, several weeks)
+  report.json         WeeklyReport (latest)
+  reports.json        list[WeeklyReport] (the other weeks)
   metrics.json        {"before": Metrics, "after": Metrics}
   events.json         list[ReplayEvent]
   comparison_examples.json  list[{case_id, before, after, note}]

@@ -1,8 +1,7 @@
 """Command line entry point.
 
-Q0 provides the command surface only. Each command reports the lane that will
-implement it and exits with status 2, so a half-built pipeline can never look
-like a successful run.
+``fqa run`` is the end-to-end replay/record pipeline. ``fqa issues`` and
+``fqa report`` inspect a recorded run; ``fqa export`` writes the dashboard data.
 """
 
 from __future__ import annotations
@@ -13,13 +12,11 @@ from collections.abc import Sequence
 from pathlib import Path
 
 from field_quality_agents import __version__
+from field_quality_agents.contracts import RunMode
 
-_NOT_IMPLEMENTED = {
-    "run": "Q8 (end-to-end run)",
-    "issues": "Q8 (issue agent)",
-    "report": "Q8 (report agent)",
-    "export": "Q10 (static export)",
-}
+_RECORDINGS_DIR = Path("recordings")
+_FIXTURE_RECORDINGS = Path("tests/fixtures/recordings")
+_FIXTURE_SQL = Path("tests/fixtures/e2e/replay_2025.sql")
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -64,19 +61,49 @@ def build_parser() -> argparse.ArgumentParser:
     )
     run.add_argument("--set", dest="set_name", default="replay_2025")
     run.add_argument("--run-id", default=None)
+    run.add_argument(
+        "--recordings-dir",
+        default=None,
+        help="recordings root (default: recordings/ when it has turns, else the fixtures)",
+    )
+    run.add_argument(
+        "--data-dir",
+        default=None,
+        help="derived parquet directory (default: data)",
+    )
+    run.add_argument(
+        "--db",
+        default=None,
+        help="fixture DuckDB to read instead of the committed parquet",
+    )
+    run.add_argument(
+        "--fixture-sql",
+        default=None,
+        help="build a temporary fixture DuckDB from this SQL file",
+    )
+    run.add_argument("--results-dir", default="results/runs")
+    run.add_argument("--baseline-dir", default="results/baseline")
     run.set_defaults(handler="run")
 
-    issues = sub.add_parser("issues", help="run the issue agent over a run (Q8)")
+    issues = sub.add_parser("issues", help="inspect the issues a run opened (Q8)")
     issues.add_argument("--run-id", default=None)
+    issues.add_argument("--results-dir", default="results/runs")
     issues.set_defaults(handler="issues")
 
-    report = sub.add_parser("report", help="generate the weekly report (Q8)")
+    report = sub.add_parser("report", help="inspect the weekly reports a run wrote (Q8)")
     report.add_argument("--run-id", default=None)
+    report.add_argument("--results-dir", default="results/runs")
     report.set_defaults(handler="report")
 
-    serve = sub.add_parser("serve", help="serve the API and dashboard (Q7)")
+    serve = sub.add_parser("serve", help="serve the API and dashboard (Q7/Q8)")
     serve.add_argument("--host", default="127.0.0.1")
     serve.add_argument("--port", type=int, default=8000)
+    serve.add_argument(
+        "--mode",
+        default="replay",
+        choices=("replay", "live"),
+        help="replay a recorded run, or start live decision threads",
+    )
     serve.add_argument(
         "--results-dir",
         default="results/runs",
@@ -88,14 +115,27 @@ def build_parser() -> argparse.ArgumentParser:
         help="serve one recorded run instead of the newest",
     )
     serve.add_argument(
+        "--recordings-dir",
+        default="recordings",
+        help="recordings root for live mode (default: recordings)",
+    )
+    serve.add_argument(
+        "--live-limit",
+        type=int,
+        default=25,
+        help="how many live case threads to start (default: 25)",
+    )
+    serve.add_argument(
         "--static-dir",
         default="web/dist",
         help="built dashboard to serve (default: web/dist)",
     )
     serve.set_defaults(handler="serve")
 
-    export = sub.add_parser("export", help="write the offline dashboard export (Q10)")
+    export = sub.add_parser("export", help="write the offline dashboard data (Q8/Q10)")
     export.add_argument("--out", default="dist/field-quality-agents")
+    export.add_argument("--run-id", default=None)
+    export.add_argument("--results-dir", default="results/runs")
     export.set_defaults(handler="export")
 
     mcp = sub.add_parser("mcp", help="serve the tool functions over MCP stdio (Q2)")
@@ -170,14 +210,144 @@ def _run_baseline(args: argparse.Namespace) -> int:
     return 0
 
 
+def _has_recordings(path: Path) -> bool:
+    return path.is_dir() and any(path.rglob("*.json"))
+
+
+def _resolve_run_inputs(
+    args: argparse.Namespace,
+) -> tuple[Path, str | None, str | None, str | None]:
+    """Return ``(recordings_dir, data_dir, db_path, fixture_sql)``."""
+
+    mode = RunMode(args.mode)
+    explicit_source = (
+        args.db is not None
+        or args.data_dir is not None
+        or args.fixture_sql is not None
+    )
+    if args.recordings_dir is not None:
+        recordings = Path(args.recordings_dir)
+    elif mode is RunMode.RECORD or _has_recordings(_RECORDINGS_DIR):
+        recordings = _RECORDINGS_DIR
+    else:
+        recordings = _FIXTURE_RECORDINGS
+
+    if args.db is not None:
+        return recordings, None, args.db, None
+    if args.fixture_sql is not None:
+        return recordings, None, None, args.fixture_sql
+    if args.data_dir is not None:
+        return recordings, args.data_dir, None, None
+    if (mode is RunMode.RECORD or recordings != _FIXTURE_RECORDINGS) and not explicit_source:
+        return recordings, "data", None, None
+    return recordings, None, None, str(_FIXTURE_SQL)
+
+
+def _run_pipeline(args: argparse.Namespace) -> int:
+    from field_quality_agents.run.data import open_source
+    from field_quality_agents.run.pipeline import DEFAULT_RUN_ID, execute_run
+
+    recordings, data_dir, db_path, fixture_sql = _resolve_run_inputs(args)
+    run_id = args.run_id or DEFAULT_RUN_ID
+    mode = RunMode(args.mode)
+    with open_source(
+        data_dir=data_dir,
+        db_path=db_path,
+        fixture_sql=fixture_sql,
+    ) as source:
+        summary = execute_run(
+            source=source,
+            recordings_dir=recordings,
+            results_dir=Path(args.results_dir),
+            run_id=run_id,
+            set_name=args.set_name,
+            mode=mode,
+            baseline_dir=Path(args.baseline_dir),
+        )
+    print(
+        f"run: {summary.cases} case(s), {summary.issues} issue(s), "
+        f"{summary.reports} weekly report(s)"
+    )
+    print(
+        f"run: {summary.steps} step(s), spend USD {summary.spend_usd:.6f}, "
+        f"{summary.budget_hits} budget hit(s)"
+    )
+    print(f"run: recordings {recordings} digest {summary.record_digest}")
+    print(f"run: wrote {summary.directory}")
+    return 0
+
+
+def _run_issues(args: argparse.Namespace) -> int:
+    from field_quality_agents.api import FileResultStore
+
+    store = FileResultStore(args.results_dir, run_id=args.run_id)
+    if store.active_run_id() is None:
+        print(f"issues: no recorded run under {args.results_dir}", file=sys.stderr)
+        return 1
+    issues = list(store.issues())
+    print(f"issues: {len(issues)} issue(s) in run {store.active_run_id()}")
+    for record in issues:
+        issue = record.issue
+        print(
+            f"issues: {issue.id} {issue.opened_at.isoformat()} "
+            f"{issue.make} {issue.model} {issue.year} {issue.group} "
+            f"observed={issue.observed} threshold={issue.threshold:g}"
+        )
+    return 0
+
+
+def _run_report(args: argparse.Namespace) -> int:
+    from field_quality_agents.api import FileResultStore
+
+    store = FileResultStore(args.results_dir, run_id=args.run_id)
+    if store.active_run_id() is None:
+        print(f"report: no recorded run under {args.results_dir}", file=sys.stderr)
+        return 1
+    reports = sorted(store.weekly_reports(), key=lambda item: item.week_start)
+    if not reports:
+        print(f"report: run {store.active_run_id()} has no weekly report", file=sys.stderr)
+        return 1
+    latest = reports[-1]
+    print(
+        f"report: {latest.week_start.isoformat()}..{latest.week_end.isoformat()} "
+        f"{latest.cases_received} case(s) received, {latest.cases_decided} decided, "
+        f"{latest.open_issues} open issue(s)"
+    )
+    print(latest.narrative)
+    return 0
+
+
 def _run_serve(args: argparse.Namespace) -> int:
     import uvicorn
 
-    from field_quality_agents.api import FileResultStore, create_app
+    if args.mode == "live":
+        from field_quality_agents.run.live import build_live_app
 
-    store = FileResultStore(args.results_dir, run_id=args.run_id)
-    app = create_app(store=store, mode="replay", static_dir=args.static_dir)
+        app = build_live_app(
+            results_dir=args.results_dir,
+            run_id=args.run_id,
+            recordings_dir=args.recordings_dir,
+            static_dir=args.static_dir,
+            live_limit=args.live_limit,
+        )
+    else:
+        from field_quality_agents.api import FileResultStore, create_app
+
+        store = FileResultStore(args.results_dir, run_id=args.run_id)
+        app = create_app(store=store, mode="replay", static_dir=args.static_dir)
     uvicorn.run(app, host=args.host, port=args.port, log_level="info")
+    return 0
+
+
+def _run_export(args: argparse.Namespace) -> int:
+    from field_quality_agents.run.dashboard import export_dashboard
+
+    root = export_dashboard(
+        results_dir=args.results_dir,
+        run_id=args.run_id,
+        out_dir=args.out,
+    )
+    print(f"export: wrote dashboard data under {root / 'data'}")
     return 0
 
 
@@ -188,8 +358,16 @@ def main(argv: Sequence[str] | None = None) -> int:
         return _run_data(args)
     if args.handler == "baseline":
         return _run_baseline(args)
+    if args.handler == "run":
+        return _run_pipeline(args)
+    if args.handler == "issues":
+        return _run_issues(args)
+    if args.handler == "report":
+        return _run_report(args)
     if args.handler == "serve":
         return _run_serve(args)
+    if args.handler == "export":
+        return _run_export(args)
     if args.handler == "mcp":
         from field_quality_agents.mcp_server import serve
 
@@ -198,11 +376,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             db_path=args.db,
             rulebook_path=args.rulebook,
         )
-    lane = _NOT_IMPLEMENTED[args.handler]
-    print(
-        f"fqa {args.command}: not implemented in the Q0 scaffold; this lands in {lane}.",
-        file=sys.stderr,
-    )
+    print(f"fqa {args.command}: unknown command.", file=sys.stderr)
     return 2
 
 

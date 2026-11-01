@@ -52,7 +52,7 @@ def make_intake_node(model: AgentModel, tools: ToolRegistry) -> Node:
         writer = StepWriter(state)
         messages = (
             {"role": "system", "content": prompt},
-            {"role": "user", "content": json.dumps(case.model_dump(mode="json"))},
+            {"role": "user", "content": json.dumps(case.model_dump(mode="json"), sort_keys=True)},
         )
 
         payload: dict[str, object] = {}

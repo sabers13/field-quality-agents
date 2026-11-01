@@ -224,6 +224,20 @@ class LiveDesk:
         snapshot = self._graph.get_state(config)
         overlay = tuple(self._overlay.get(case_id, ()))
         record = _record(_values(snapshot), fallback, overlay)
+        if (
+            _interrupted(snapshot)
+            and record.decision is None
+            and record.case.status is not CaseStatus.NEEDS_ENGINEER
+        ):
+            record = CaseRecord(
+                case=record.case.model_copy(
+                    update={"status": CaseStatus.NEEDS_ENGINEER}
+                ),
+                trace=record.trace,
+                extraction=record.extraction,
+                proposal=record.proposal,
+                decision=record.decision,
+            )
         self._records[case_id] = record
         if _interrupted(snapshot):
             self._awaiting.add(case_id)

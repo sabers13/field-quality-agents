@@ -1,5 +1,5 @@
-.PHONY: setup fetch-data data test lint typecheck web-build scan-forbidden scan-secrets \
-	facts baseline run-replay run-live serve export screenshots all release-check
+.PHONY: setup fetch-data data data-check test lint typecheck web-build scan-forbidden scan-secrets \
+	facts baseline run-replay run-live serve export screenshots all e2e release-check
 
 PYTHON := uv run python
 FQA := uv run fqa
@@ -13,6 +13,9 @@ fetch-data:
 
 data:
 	$(FQA) data
+
+data-check:
+	$(PYTHON) scripts/check_data.py
 
 test:
 	uv run pytest
@@ -39,7 +42,7 @@ baseline:
 	$(FQA) baseline
 
 run-replay:
-	$(FQA) run --mode replay --set replay_2025
+	$(FQA) run --mode replay --set replay_2025 --run-id replay
 
 run-live:
 	@if [ "$${FQA_LIVE_APPROVED:-}" != "1" ]; then \
@@ -58,9 +61,15 @@ screenshots:
 	@echo "Playwright screenshots land with Q6/Q10; no browser suite exists in the Q0 scaffold."
 	@exit 2
 
-all:
-	@echo "make all is wired in Q8 once data, baseline, replay and export exist."
-	@exit 2
+all: data-check baseline run-replay export web-build
+	@echo "all: data checked, baseline, replay run, dashboard data and web build are up to date"
+
+e2e: web-build
+	$(FQA) run --mode replay --set replay_2025 --run-id e2e-fixture \
+		--fixture-sql tests/fixtures/e2e/replay_2025.sql \
+		--recordings-dir tests/fixtures/recordings
+	$(FQA) export --out dist/field-quality-agents --run-id e2e-fixture
+	cd web && NODE_PATH="$$PWD/node_modules" npx playwright test --config ../tests/e2e/playwright.config.ts
 
 release-check: lint typecheck test web-build scan-forbidden scan-secrets facts
 	@echo "release-check: green on the Q0 scaffold"

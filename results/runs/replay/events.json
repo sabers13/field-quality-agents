@@ -1,0 +1,7023 @@
+[
+  {
+    "at": "2025-06-02T07:00:16Z",
+    "case_id": "C-2025-0001",
+    "issue_id": null,
+    "kind": "case",
+    "payload": {
+      "status": "decided"
+    },
+    "seq": 1
+  },
+  {
+    "at": "2025-06-02T07:00:17Z",
+    "case_id": "C-2025-0001",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:intake",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "no extraction yet: normalise the report first (prompt p1)",
+        "started_at": "2025-06-02T07:00:00Z",
+        "step": 1,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 2
+  },
+  {
+    "at": "2025-06-02T07:00:17Z",
+    "case_id": "C-2025-0001",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "extract",
+        "agent": "intake",
+        "cost_usd": 0.000108,
+        "duration_ms": 12,
+        "reason": "VISIBILITY/WIPER concern on FORD F-150",
+        "started_at": "2025-06-02T07:00:01Z",
+        "step": 2,
+        "tokens": 180,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 3
+  },
+  {
+    "at": "2025-06-02T07:00:17Z",
+    "case_id": "C-2025-0001",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "check_duplicates",
+        "agent": "intake",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "3 similar case(s) within the same vehicle",
+        "started_at": "2025-06-02T07:00:02Z",
+        "step": 3,
+        "tokens": 0,
+        "tool": "similar_cases",
+        "tool_input": {
+          "k": 3,
+          "make": "FORD",
+          "model": "F-150",
+          "year": 2021
+        },
+        "tool_output": {
+          "result": [
+            {
+              "excerpt": "The wiper motor stops when the cabin is cold and damp, and starts again after the cabin warms up.",
+              "group": "body_controls",
+              "id": "C-2025-0001",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 11.4172,
+              "year": 2021
+            },
+            {
+              "excerpt": "The wiper motor stops when the cabin is cold and damp.",
+              "group": "body_controls",
+              "id": "C-2025-0006",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.4972,
+              "year": 2021
+            },
+            {
+              "excerpt": "The wiper motor stops when the cabin is cold and damp.",
+              "group": "body_controls",
+              "id": "C-2025-0010",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.4972,
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 4
+  },
+  {
+    "at": "2025-06-02T07:00:17Z",
+    "case_id": "C-2025-0001",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:analysis",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "case normalised and no proposal yet: gather evidence (prompt p1)",
+        "started_at": "2025-06-02T07:00:03Z",
+        "step": 4,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 5
+  },
+  {
+    "at": "2025-06-02T07:00:17Z",
+    "case_id": "C-2025-0001",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "search_similar_cases",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "5 similar case(s) in the knowledge base",
+        "started_at": "2025-06-02T07:00:04Z",
+        "step": 5,
+        "tokens": 0,
+        "tool": "similar_cases",
+        "tool_input": {
+          "k": 5,
+          "text": "The wiper motor stops when the cabin is cold and damp, and starts again after the cabin warms up."
+        },
+        "tool_output": {
+          "result": [
+            {
+              "excerpt": "The wiper motor stops when the cabin is cold and damp, and starts again after the cabin warms up.",
+              "group": "body_controls",
+              "id": "C-2025-0001",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 11.4172,
+              "year": 2021
+            },
+            {
+              "excerpt": "The wiper motor stops when the cabin is cold and damp.",
+              "group": "body_controls",
+              "id": "C-2025-0006",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.4972,
+              "year": 2021
+            },
+            {
+              "excerpt": "The wiper motor stops when the cabin is cold and damp.",
+              "group": "body_controls",
+              "id": "C-2025-0010",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.4972,
+              "year": 2021
+            },
+            {
+              "excerpt": "The wiper motor stops when the cabin is cold and damp.",
+              "group": "body_controls",
+              "id": "C-2025-0015",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.4972,
+              "year": 2021
+            },
+            {
+              "excerpt": "The wiper motor stops when the cabin is cold and damp.",
+              "group": "body_controls",
+              "id": "K-2021-0001",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.4972,
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 6
+  },
+  {
+    "at": "2025-06-02T07:00:17Z",
+    "case_id": "C-2025-0001",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "lookup_recalls",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "1 recall(s) for the same vehicle and group",
+        "started_at": "2025-06-02T07:00:05Z",
+        "step": 6,
+        "tokens": 0,
+        "tool": "recalls_for",
+        "tool_input": {
+          "group": "body_controls",
+          "make": "FORD",
+          "model": "F-150",
+          "year": 2021
+        },
+        "tool_output": {
+          "result": [
+            {
+              "component": "VISIBILITY/WIPER",
+              "group": "body_controls",
+              "id": "R-2025-0001",
+              "make": "FORD",
+              "model": "F-150",
+              "open_date": "2025-07-15",
+              "summary": "Wiper motor may fail and reduce visibility.",
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 7
+  },
+  {
+    "at": "2025-06-02T07:00:17Z",
+    "case_id": "C-2025-0001",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "lookup_investigations",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "1 investigation(s) for the same vehicle and group",
+        "started_at": "2025-06-02T07:00:06Z",
+        "step": 7,
+        "tokens": 0,
+        "tool": "investigations_for",
+        "tool_input": {
+          "group": "body_controls",
+          "make": "FORD",
+          "model": "F-150",
+          "year": 2021
+        },
+        "tool_output": {
+          "result": [
+            {
+              "component": "VISIBILITY/WIPER",
+              "group": "body_controls",
+              "id": "I-2025-0001",
+              "make": "FORD",
+              "model": "F-150",
+              "open_date": "2025-08-20",
+              "summary": "Investigation into wiper motor failures.",
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 8
+  },
+  {
+    "at": "2025-06-02T07:00:17Z",
+    "case_id": "C-2025-0001",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "read_rulebook",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "2 targeted-test rule(s) matched the reported conditions",
+        "started_at": "2025-06-02T07:00:07Z",
+        "step": 8,
+        "tokens": 0,
+        "tool": "rulebook",
+        "tool_input": {
+          "conditions": [
+            "cold",
+            "damp"
+          ]
+        },
+        "tool_output": {
+          "result": [
+            {
+              "id": "moisture",
+              "matched_conditions": [
+                "damp"
+              ],
+              "reason": "Water ingress and condensation are the first suspects when moisture, damp or a leak is reported.",
+              "test": "Humidity and condensation test"
+            },
+            {
+              "id": "cold",
+              "matched_conditions": [
+                "cold"
+              ],
+              "reason": "Cold-soak and cold-start behaviour separates a temperature-dependent fault from a permanent one.",
+              "test": "Low-temperature cycling test"
+            }
+          ]
+        }
+      }
+    },
+    "seq": 9
+  },
+  {
+    "at": "2025-06-02T07:00:17Z",
+    "case_id": "C-2025-0001",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "propose",
+        "agent": "analysis",
+        "cost_usd": 0.000108,
+        "duration_ms": 12,
+        "reason": "The reported conditions match a targeted test rule.",
+        "started_at": "2025-06-02T07:00:08Z",
+        "step": 9,
+        "tokens": 180,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 10
+  },
+  {
+    "at": "2025-06-02T07:00:17Z",
+    "case_id": "C-2025-0001",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "verify_quotes",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "1 verified, 0 dropped",
+        "started_at": "2025-06-02T07:00:09Z",
+        "step": 10,
+        "tokens": 0,
+        "tool": "verify_quotes",
+        "tool_input": {
+          "quotes": [
+            "The wiper motor stops when the cabin is cold and damp"
+          ]
+        },
+        "tool_output": {
+          "checked": 1,
+          "dropped": 0,
+          "verified": 1
+        }
+      }
+    },
+    "seq": 11
+  },
+  {
+    "at": "2025-06-02T07:00:17Z",
+    "case_id": "C-2025-0001",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:human_gate",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "a proposal needs a human decision (prompt p1)",
+        "started_at": "2025-06-02T07:00:11Z",
+        "step": 11,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 12
+  },
+  {
+    "at": "2025-06-02T07:00:17Z",
+    "case_id": "C-2025-0001",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "decision:approve",
+        "agent": "human",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "Quotes verified and no hard rule is broken.",
+        "started_at": "2025-06-02T07:00:13Z",
+        "step": 12,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 13
+  },
+  {
+    "at": "2025-06-02T07:00:17Z",
+    "case_id": "C-2025-0001",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:finish",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "work complete for this case (prompt p1)",
+        "started_at": "2025-06-02T07:00:14Z",
+        "step": 13,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 14
+  },
+  {
+    "at": "2025-06-02T07:00:17Z",
+    "case_id": "C-2025-0001",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "finish:decided",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "a human approved a concrete proposal",
+        "started_at": "2025-06-02T07:00:15Z",
+        "step": 14,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 15
+  },
+  {
+    "at": "2025-06-02T07:00:18Z",
+    "case_id": "C-2025-0001",
+    "issue_id": null,
+    "kind": "decision",
+    "payload": {
+      "action": "approve",
+      "actor": "simulated_engineer",
+      "status": "decided"
+    },
+    "seq": 16
+  },
+  {
+    "at": "2025-06-03T07:00:16Z",
+    "case_id": "C-2025-0002",
+    "issue_id": null,
+    "kind": "case",
+    "payload": {
+      "status": "decided"
+    },
+    "seq": 17
+  },
+  {
+    "at": "2025-06-03T07:00:17Z",
+    "case_id": "C-2025-0002",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:intake",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "no extraction yet: normalise the report first (prompt p1)",
+        "started_at": "2025-06-03T07:00:00Z",
+        "step": 1,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 18
+  },
+  {
+    "at": "2025-06-03T07:00:17Z",
+    "case_id": "C-2025-0002",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "extract",
+        "agent": "intake",
+        "cost_usd": 0.000108,
+        "duration_ms": 12,
+        "reason": "VISIBILITY/WIPER concern on FORD F-150",
+        "started_at": "2025-06-03T07:00:01Z",
+        "step": 2,
+        "tokens": 180,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 19
+  },
+  {
+    "at": "2025-06-03T07:00:17Z",
+    "case_id": "C-2025-0002",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "check_duplicates",
+        "agent": "intake",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "3 similar case(s) within the same vehicle",
+        "started_at": "2025-06-03T07:00:02Z",
+        "step": 3,
+        "tokens": 0,
+        "tool": "similar_cases",
+        "tool_input": {
+          "k": 3,
+          "make": "FORD",
+          "model": "F-150",
+          "year": 2021
+        },
+        "tool_output": {
+          "result": [
+            {
+              "excerpt": "Wiper motor is intermittent in cold weather and then quits.",
+              "group": "body_controls",
+              "id": "C-2025-0002",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.629,
+              "year": 2021
+            },
+            {
+              "excerpt": "Wiper motor is intermittent in cold weather and then quits.",
+              "group": "body_controls",
+              "id": "C-2025-0007",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.629,
+              "year": 2021
+            },
+            {
+              "excerpt": "Wiper motor is intermittent in cold weather and then quits.",
+              "group": "body_controls",
+              "id": "C-2025-0011",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.629,
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 20
+  },
+  {
+    "at": "2025-06-03T07:00:17Z",
+    "case_id": "C-2025-0002",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:analysis",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "case normalised and no proposal yet: gather evidence (prompt p1)",
+        "started_at": "2025-06-03T07:00:03Z",
+        "step": 4,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 21
+  },
+  {
+    "at": "2025-06-03T07:00:17Z",
+    "case_id": "C-2025-0002",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "search_similar_cases",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "5 similar case(s) in the knowledge base",
+        "started_at": "2025-06-03T07:00:04Z",
+        "step": 5,
+        "tokens": 0,
+        "tool": "similar_cases",
+        "tool_input": {
+          "k": 5,
+          "text": "Wiper motor is intermittent in cold weather and then quits."
+        },
+        "tool_output": {
+          "result": [
+            {
+              "excerpt": "Wiper motor is intermittent in cold weather and then quits.",
+              "group": "body_controls",
+              "id": "C-2025-0002",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.629,
+              "year": 2021
+            },
+            {
+              "excerpt": "Wiper motor is intermittent in cold weather and then quits.",
+              "group": "body_controls",
+              "id": "C-2025-0007",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.629,
+              "year": 2021
+            },
+            {
+              "excerpt": "Wiper motor is intermittent in cold weather and then quits.",
+              "group": "body_controls",
+              "id": "C-2025-0011",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.629,
+              "year": 2021
+            },
+            {
+              "excerpt": "Wiper motor is intermittent in cold weather and then quits.",
+              "group": "body_controls",
+              "id": "C-2025-0016",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.629,
+              "year": 2021
+            },
+            {
+              "excerpt": "Wiper motor is intermittent in cold weather and then quits.",
+              "group": "body_controls",
+              "id": "K-2021-0002",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.629,
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 22
+  },
+  {
+    "at": "2025-06-03T07:00:17Z",
+    "case_id": "C-2025-0002",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "lookup_recalls",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "1 recall(s) for the same vehicle and group",
+        "started_at": "2025-06-03T07:00:05Z",
+        "step": 6,
+        "tokens": 0,
+        "tool": "recalls_for",
+        "tool_input": {
+          "group": "body_controls",
+          "make": "FORD",
+          "model": "F-150",
+          "year": 2021
+        },
+        "tool_output": {
+          "result": [
+            {
+              "component": "VISIBILITY/WIPER",
+              "group": "body_controls",
+              "id": "R-2025-0001",
+              "make": "FORD",
+              "model": "F-150",
+              "open_date": "2025-07-15",
+              "summary": "Wiper motor may fail and reduce visibility.",
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 23
+  },
+  {
+    "at": "2025-06-03T07:00:17Z",
+    "case_id": "C-2025-0002",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "lookup_investigations",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "1 investigation(s) for the same vehicle and group",
+        "started_at": "2025-06-03T07:00:06Z",
+        "step": 7,
+        "tokens": 0,
+        "tool": "investigations_for",
+        "tool_input": {
+          "group": "body_controls",
+          "make": "FORD",
+          "model": "F-150",
+          "year": 2021
+        },
+        "tool_output": {
+          "result": [
+            {
+              "component": "VISIBILITY/WIPER",
+              "group": "body_controls",
+              "id": "I-2025-0001",
+              "make": "FORD",
+              "model": "F-150",
+              "open_date": "2025-08-20",
+              "summary": "Investigation into wiper motor failures.",
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 24
+  },
+  {
+    "at": "2025-06-03T07:00:17Z",
+    "case_id": "C-2025-0002",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "read_rulebook",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "2 targeted-test rule(s) matched the reported conditions",
+        "started_at": "2025-06-03T07:00:07Z",
+        "step": 8,
+        "tokens": 0,
+        "tool": "rulebook",
+        "tool_input": {
+          "conditions": [
+            "cold",
+            "damp"
+          ]
+        },
+        "tool_output": {
+          "result": [
+            {
+              "id": "moisture",
+              "matched_conditions": [
+                "damp"
+              ],
+              "reason": "Water ingress and condensation are the first suspects when moisture, damp or a leak is reported.",
+              "test": "Humidity and condensation test"
+            },
+            {
+              "id": "cold",
+              "matched_conditions": [
+                "cold"
+              ],
+              "reason": "Cold-soak and cold-start behaviour separates a temperature-dependent fault from a permanent one.",
+              "test": "Low-temperature cycling test"
+            }
+          ]
+        }
+      }
+    },
+    "seq": 25
+  },
+  {
+    "at": "2025-06-03T07:00:17Z",
+    "case_id": "C-2025-0002",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "propose",
+        "agent": "analysis",
+        "cost_usd": 0.000108,
+        "duration_ms": 12,
+        "reason": "The reported conditions match a targeted test rule.",
+        "started_at": "2025-06-03T07:00:08Z",
+        "step": 9,
+        "tokens": 180,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 26
+  },
+  {
+    "at": "2025-06-03T07:00:17Z",
+    "case_id": "C-2025-0002",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "verify_quotes",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "1 verified, 0 dropped",
+        "started_at": "2025-06-03T07:00:09Z",
+        "step": 10,
+        "tokens": 0,
+        "tool": "verify_quotes",
+        "tool_input": {
+          "quotes": [
+            "Wiper motor is intermittent in cold weather and then quits."
+          ]
+        },
+        "tool_output": {
+          "checked": 1,
+          "dropped": 0,
+          "verified": 1
+        }
+      }
+    },
+    "seq": 27
+  },
+  {
+    "at": "2025-06-03T07:00:17Z",
+    "case_id": "C-2025-0002",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:human_gate",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "a proposal needs a human decision (prompt p1)",
+        "started_at": "2025-06-03T07:00:11Z",
+        "step": 11,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 28
+  },
+  {
+    "at": "2025-06-03T07:00:17Z",
+    "case_id": "C-2025-0002",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "decision:approve",
+        "agent": "human",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "Quotes verified and no hard rule is broken.",
+        "started_at": "2025-06-03T07:00:13Z",
+        "step": 12,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 29
+  },
+  {
+    "at": "2025-06-03T07:00:17Z",
+    "case_id": "C-2025-0002",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:finish",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "work complete for this case (prompt p1)",
+        "started_at": "2025-06-03T07:00:14Z",
+        "step": 13,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 30
+  },
+  {
+    "at": "2025-06-03T07:00:17Z",
+    "case_id": "C-2025-0002",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "finish:decided",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "a human approved a concrete proposal",
+        "started_at": "2025-06-03T07:00:15Z",
+        "step": 14,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 31
+  },
+  {
+    "at": "2025-06-03T07:00:18Z",
+    "case_id": "C-2025-0002",
+    "issue_id": null,
+    "kind": "decision",
+    "payload": {
+      "action": "approve",
+      "actor": "simulated_engineer",
+      "status": "decided"
+    },
+    "seq": 32
+  },
+  {
+    "at": "2025-06-04T07:00:11Z",
+    "case_id": "C-2025-0003",
+    "issue_id": null,
+    "kind": "case",
+    "payload": {
+      "status": "decided"
+    },
+    "seq": 33
+  },
+  {
+    "at": "2025-06-04T07:00:12Z",
+    "case_id": "C-2025-0003",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:intake",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "no extraction yet: normalise the report first (prompt p1)",
+        "started_at": "2025-06-04T07:00:00Z",
+        "step": 1,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 34
+  },
+  {
+    "at": "2025-06-04T07:00:12Z",
+    "case_id": "C-2025-0003",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "extract",
+        "agent": "intake",
+        "cost_usd": 0.000108,
+        "duration_ms": 12,
+        "reason": "ELECTRICAL SYSTEM concern on TESLA MODEL 3",
+        "started_at": "2025-06-04T07:00:01Z",
+        "step": 2,
+        "tokens": 180,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 35
+  },
+  {
+    "at": "2025-06-04T07:00:12Z",
+    "case_id": "C-2025-0003",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "check_duplicates",
+        "agent": "intake",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "3 similar case(s) within the same vehicle",
+        "started_at": "2025-06-04T07:00:02Z",
+        "step": 3,
+        "tokens": 0,
+        "tool": "similar_cases",
+        "tool_input": {
+          "k": 3,
+          "make": "TESLA",
+          "model": "MODEL 3",
+          "year": 2022
+        },
+        "tool_output": {
+          "result": [
+            {
+              "excerpt": "The charging port overheats during fast charging and the car stops charging.",
+              "group": "ev_propulsion",
+              "id": "C-2025-0003",
+              "make": "TESLA",
+              "model": "MODEL 3",
+              "score": 2.2759,
+              "year": 2022
+            },
+            {
+              "excerpt": "The charging port overheats during fast charging and the car stops charging.",
+              "group": "ev_propulsion",
+              "id": "K-2022-0001",
+              "make": "TESLA",
+              "model": "MODEL 3",
+              "score": 2.2759,
+              "year": 2022
+            },
+            {
+              "excerpt": "DC fast charging causes the charge port to overheat.",
+              "group": "ev_propulsion",
+              "id": "K-2022-0002",
+              "make": "TESLA",
+              "model": "MODEL 3",
+              "score": 0.4328,
+              "year": 2022
+            }
+          ]
+        }
+      }
+    },
+    "seq": 36
+  },
+  {
+    "at": "2025-06-04T07:00:12Z",
+    "case_id": "C-2025-0003",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:safety",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "safety-relevant case: build the safety proposal before any test (prompt p1)",
+        "started_at": "2025-06-04T07:00:03Z",
+        "step": 4,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 37
+  },
+  {
+    "at": "2025-06-04T07:00:12Z",
+    "case_id": "C-2025-0003",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "draft_safety_proposal",
+        "agent": "safety",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "case is flagged safety-relevant; a human sees it before any test decision is taken",
+        "started_at": "2025-06-04T07:00:04Z",
+        "step": 5,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 38
+  },
+  {
+    "at": "2025-06-04T07:00:12Z",
+    "case_id": "C-2025-0003",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:human_gate",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "a proposal needs a human decision (prompt p1)",
+        "started_at": "2025-06-04T07:00:06Z",
+        "step": 6,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 39
+  },
+  {
+    "at": "2025-06-04T07:00:12Z",
+    "case_id": "C-2025-0003",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "decision:approve",
+        "agent": "human",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "Safety flag stands; the case keeps priority for a live engineer.",
+        "started_at": "2025-06-04T07:00:08Z",
+        "step": 7,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 40
+  },
+  {
+    "at": "2025-06-04T07:00:12Z",
+    "case_id": "C-2025-0003",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:finish",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "work complete for this case (prompt p1)",
+        "started_at": "2025-06-04T07:00:09Z",
+        "step": 8,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 41
+  },
+  {
+    "at": "2025-06-04T07:00:12Z",
+    "case_id": "C-2025-0003",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "finish:decided",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "a human approved a concrete proposal",
+        "started_at": "2025-06-04T07:00:10Z",
+        "step": 9,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 42
+  },
+  {
+    "at": "2025-06-04T07:00:13Z",
+    "case_id": "C-2025-0003",
+    "issue_id": null,
+    "kind": "decision",
+    "payload": {
+      "action": "approve",
+      "actor": "simulated_engineer",
+      "status": "decided"
+    },
+    "seq": 43
+  },
+  {
+    "at": "2025-06-05T07:00:16Z",
+    "case_id": "C-2025-0004",
+    "issue_id": null,
+    "kind": "case",
+    "payload": {
+      "status": "decided"
+    },
+    "seq": 44
+  },
+  {
+    "at": "2025-06-05T07:00:17Z",
+    "case_id": "C-2025-0004",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:intake",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "no extraction yet: normalise the report first (prompt p1)",
+        "started_at": "2025-06-05T07:00:00Z",
+        "step": 1,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 45
+  },
+  {
+    "at": "2025-06-05T07:00:17Z",
+    "case_id": "C-2025-0004",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "extract",
+        "agent": "intake",
+        "cost_usd": 0.000108,
+        "duration_ms": 12,
+        "reason": "VISIBILITY/WIPER concern on FORD F-150",
+        "started_at": "2025-06-05T07:00:01Z",
+        "step": 2,
+        "tokens": 180,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 46
+  },
+  {
+    "at": "2025-06-05T07:00:17Z",
+    "case_id": "C-2025-0004",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "check_duplicates",
+        "agent": "intake",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "3 similar case(s) within the same vehicle",
+        "started_at": "2025-06-05T07:00:02Z",
+        "step": 3,
+        "tokens": 0,
+        "tool": "similar_cases",
+        "tool_input": {
+          "k": 3,
+          "make": "FORD",
+          "model": "F-150",
+          "year": 2021
+        },
+        "tool_output": {
+          "result": [
+            {
+              "excerpt": "When it is cold the wiper motor stops and the visibility drops.",
+              "group": "body_controls",
+              "id": "C-2025-0004",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 4.9204,
+              "year": 2021
+            },
+            {
+              "excerpt": "When it is cold the wiper motor stops and the visibility drops.",
+              "group": "body_controls",
+              "id": "C-2025-0008",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 4.9204,
+              "year": 2021
+            },
+            {
+              "excerpt": "The wiper motor stops when the cabin is cold and damp.",
+              "group": "body_controls",
+              "id": "C-2025-0006",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 1.2043,
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 47
+  },
+  {
+    "at": "2025-06-05T07:00:17Z",
+    "case_id": "C-2025-0004",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:analysis",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "case normalised and no proposal yet: gather evidence (prompt p1)",
+        "started_at": "2025-06-05T07:00:03Z",
+        "step": 4,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 48
+  },
+  {
+    "at": "2025-06-05T07:00:17Z",
+    "case_id": "C-2025-0004",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "search_similar_cases",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "5 similar case(s) in the knowledge base",
+        "started_at": "2025-06-05T07:00:04Z",
+        "step": 5,
+        "tokens": 0,
+        "tool": "similar_cases",
+        "tool_input": {
+          "k": 5,
+          "text": "When it is cold the wiper motor stops and the visibility drops."
+        },
+        "tool_output": {
+          "result": [
+            {
+              "excerpt": "When it is cold the wiper motor stops and the visibility drops.",
+              "group": "body_controls",
+              "id": "C-2025-0004",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 4.9204,
+              "year": 2021
+            },
+            {
+              "excerpt": "When it is cold the wiper motor stops and the visibility drops.",
+              "group": "body_controls",
+              "id": "C-2025-0008",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 4.9204,
+              "year": 2021
+            },
+            {
+              "excerpt": "The wiper motor stops when the cabin is cold and damp.",
+              "group": "body_controls",
+              "id": "C-2025-0006",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 1.2043,
+              "year": 2021
+            },
+            {
+              "excerpt": "The wiper motor stops when the cabin is cold and damp.",
+              "group": "body_controls",
+              "id": "C-2025-0010",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 1.2043,
+              "year": 2021
+            },
+            {
+              "excerpt": "The wiper motor stops when the cabin is cold and damp.",
+              "group": "body_controls",
+              "id": "C-2025-0015",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 1.2043,
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 49
+  },
+  {
+    "at": "2025-06-05T07:00:17Z",
+    "case_id": "C-2025-0004",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "lookup_recalls",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "1 recall(s) for the same vehicle and group",
+        "started_at": "2025-06-05T07:00:05Z",
+        "step": 6,
+        "tokens": 0,
+        "tool": "recalls_for",
+        "tool_input": {
+          "group": "body_controls",
+          "make": "FORD",
+          "model": "F-150",
+          "year": 2021
+        },
+        "tool_output": {
+          "result": [
+            {
+              "component": "VISIBILITY/WIPER",
+              "group": "body_controls",
+              "id": "R-2025-0001",
+              "make": "FORD",
+              "model": "F-150",
+              "open_date": "2025-07-15",
+              "summary": "Wiper motor may fail and reduce visibility.",
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 50
+  },
+  {
+    "at": "2025-06-05T07:00:17Z",
+    "case_id": "C-2025-0004",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "lookup_investigations",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "1 investigation(s) for the same vehicle and group",
+        "started_at": "2025-06-05T07:00:06Z",
+        "step": 7,
+        "tokens": 0,
+        "tool": "investigations_for",
+        "tool_input": {
+          "group": "body_controls",
+          "make": "FORD",
+          "model": "F-150",
+          "year": 2021
+        },
+        "tool_output": {
+          "result": [
+            {
+              "component": "VISIBILITY/WIPER",
+              "group": "body_controls",
+              "id": "I-2025-0001",
+              "make": "FORD",
+              "model": "F-150",
+              "open_date": "2025-08-20",
+              "summary": "Investigation into wiper motor failures.",
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 51
+  },
+  {
+    "at": "2025-06-05T07:00:17Z",
+    "case_id": "C-2025-0004",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "read_rulebook",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "2 targeted-test rule(s) matched the reported conditions",
+        "started_at": "2025-06-05T07:00:07Z",
+        "step": 8,
+        "tokens": 0,
+        "tool": "rulebook",
+        "tool_input": {
+          "conditions": [
+            "cold",
+            "damp"
+          ]
+        },
+        "tool_output": {
+          "result": [
+            {
+              "id": "moisture",
+              "matched_conditions": [
+                "damp"
+              ],
+              "reason": "Water ingress and condensation are the first suspects when moisture, damp or a leak is reported.",
+              "test": "Humidity and condensation test"
+            },
+            {
+              "id": "cold",
+              "matched_conditions": [
+                "cold"
+              ],
+              "reason": "Cold-soak and cold-start behaviour separates a temperature-dependent fault from a permanent one.",
+              "test": "Low-temperature cycling test"
+            }
+          ]
+        }
+      }
+    },
+    "seq": 52
+  },
+  {
+    "at": "2025-06-05T07:00:17Z",
+    "case_id": "C-2025-0004",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "propose",
+        "agent": "analysis",
+        "cost_usd": 0.000108,
+        "duration_ms": 12,
+        "reason": "The reported conditions match a targeted test rule.",
+        "started_at": "2025-06-05T07:00:08Z",
+        "step": 9,
+        "tokens": 180,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 53
+  },
+  {
+    "at": "2025-06-05T07:00:17Z",
+    "case_id": "C-2025-0004",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "verify_quotes",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "1 verified, 0 dropped",
+        "started_at": "2025-06-05T07:00:09Z",
+        "step": 10,
+        "tokens": 0,
+        "tool": "verify_quotes",
+        "tool_input": {
+          "quotes": [
+            "When it is cold the wiper motor stops and the visibility drops."
+          ]
+        },
+        "tool_output": {
+          "checked": 1,
+          "dropped": 0,
+          "verified": 1
+        }
+      }
+    },
+    "seq": 54
+  },
+  {
+    "at": "2025-06-05T07:00:17Z",
+    "case_id": "C-2025-0004",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:human_gate",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "a proposal needs a human decision (prompt p1)",
+        "started_at": "2025-06-05T07:00:11Z",
+        "step": 11,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 55
+  },
+  {
+    "at": "2025-06-05T07:00:17Z",
+    "case_id": "C-2025-0004",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "decision:approve",
+        "agent": "human",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "Quotes verified and no hard rule is broken.",
+        "started_at": "2025-06-05T07:00:13Z",
+        "step": 12,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 56
+  },
+  {
+    "at": "2025-06-05T07:00:17Z",
+    "case_id": "C-2025-0004",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:finish",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "work complete for this case (prompt p1)",
+        "started_at": "2025-06-05T07:00:14Z",
+        "step": 13,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 57
+  },
+  {
+    "at": "2025-06-05T07:00:17Z",
+    "case_id": "C-2025-0004",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "finish:decided",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "a human approved a concrete proposal",
+        "started_at": "2025-06-05T07:00:15Z",
+        "step": 14,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 58
+  },
+  {
+    "at": "2025-06-05T07:00:18Z",
+    "case_id": "C-2025-0004",
+    "issue_id": null,
+    "kind": "decision",
+    "payload": {
+      "action": "approve",
+      "actor": "simulated_engineer",
+      "status": "decided"
+    },
+    "seq": 59
+  },
+  {
+    "at": "2025-06-06T07:00:16Z",
+    "case_id": "C-2025-0005",
+    "issue_id": null,
+    "kind": "case",
+    "payload": {
+      "status": "decided"
+    },
+    "seq": 60
+  },
+  {
+    "at": "2025-06-06T07:00:17Z",
+    "case_id": "C-2025-0005",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:intake",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "no extraction yet: normalise the report first (prompt p1)",
+        "started_at": "2025-06-06T07:00:00Z",
+        "step": 1,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 61
+  },
+  {
+    "at": "2025-06-06T07:00:17Z",
+    "case_id": "C-2025-0005",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "extract",
+        "agent": "intake",
+        "cost_usd": 0.000108,
+        "duration_ms": 12,
+        "reason": "VISIBILITY/WIPER concern on FORD F-150",
+        "started_at": "2025-06-06T07:00:01Z",
+        "step": 2,
+        "tokens": 180,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 62
+  },
+  {
+    "at": "2025-06-06T07:00:17Z",
+    "case_id": "C-2025-0005",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "check_duplicates",
+        "agent": "intake",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "3 similar case(s) within the same vehicle",
+        "started_at": "2025-06-06T07:00:02Z",
+        "step": 3,
+        "tokens": 0,
+        "tool": "similar_cases",
+        "tool_input": {
+          "k": 3,
+          "make": "FORD",
+          "model": "F-150",
+          "year": 2021
+        },
+        "tool_output": {
+          "result": [
+            {
+              "excerpt": "The wiper motor is intermittent after service and the connector looks loose.",
+              "group": "body_controls",
+              "id": "C-2025-0005",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 8.6906,
+              "year": 2021
+            },
+            {
+              "excerpt": "The wiper motor is intermittent after service and the connector looks loose.",
+              "group": "body_controls",
+              "id": "C-2025-0009",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 8.6906,
+              "year": 2021
+            },
+            {
+              "excerpt": "After service the wiper motor failed again and the connector was loose.",
+              "group": "body_controls",
+              "id": "K-2021-0003",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 6.0093,
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 63
+  },
+  {
+    "at": "2025-06-06T07:00:17Z",
+    "case_id": "C-2025-0005",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:analysis",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "case normalised and no proposal yet: gather evidence (prompt p1)",
+        "started_at": "2025-06-06T07:00:03Z",
+        "step": 4,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 64
+  },
+  {
+    "at": "2025-06-06T07:00:17Z",
+    "case_id": "C-2025-0005",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "search_similar_cases",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "5 similar case(s) in the knowledge base",
+        "started_at": "2025-06-06T07:00:04Z",
+        "step": 5,
+        "tokens": 0,
+        "tool": "similar_cases",
+        "tool_input": {
+          "k": 5,
+          "text": "The wiper motor is intermittent after service and the connector looks loose."
+        },
+        "tool_output": {
+          "result": [
+            {
+              "excerpt": "The wiper motor is intermittent after service and the connector looks loose.",
+              "group": "body_controls",
+              "id": "C-2025-0005",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 8.6906,
+              "year": 2021
+            },
+            {
+              "excerpt": "The wiper motor is intermittent after service and the connector looks loose.",
+              "group": "body_controls",
+              "id": "C-2025-0009",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 8.6906,
+              "year": 2021
+            },
+            {
+              "excerpt": "After service the wiper motor failed again and the connector was loose.",
+              "group": "body_controls",
+              "id": "K-2021-0003",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 6.0093,
+              "year": 2021
+            },
+            {
+              "excerpt": "The wiper motor stops when the cabin is cold and damp, and starts again after the cabin warms up.",
+              "group": "body_controls",
+              "id": "C-2025-0001",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 1.0932,
+              "year": 2021
+            },
+            {
+              "excerpt": "Wiper motor is intermittent in cold weather and then quits.",
+              "group": "body_controls",
+              "id": "C-2025-0002",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 0.9256,
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 65
+  },
+  {
+    "at": "2025-06-06T07:00:17Z",
+    "case_id": "C-2025-0005",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "lookup_recalls",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "1 recall(s) for the same vehicle and group",
+        "started_at": "2025-06-06T07:00:05Z",
+        "step": 6,
+        "tokens": 0,
+        "tool": "recalls_for",
+        "tool_input": {
+          "group": "body_controls",
+          "make": "FORD",
+          "model": "F-150",
+          "year": 2021
+        },
+        "tool_output": {
+          "result": [
+            {
+              "component": "VISIBILITY/WIPER",
+              "group": "body_controls",
+              "id": "R-2025-0001",
+              "make": "FORD",
+              "model": "F-150",
+              "open_date": "2025-07-15",
+              "summary": "Wiper motor may fail and reduce visibility.",
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 66
+  },
+  {
+    "at": "2025-06-06T07:00:17Z",
+    "case_id": "C-2025-0005",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "lookup_investigations",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "1 investigation(s) for the same vehicle and group",
+        "started_at": "2025-06-06T07:00:06Z",
+        "step": 7,
+        "tokens": 0,
+        "tool": "investigations_for",
+        "tool_input": {
+          "group": "body_controls",
+          "make": "FORD",
+          "model": "F-150",
+          "year": 2021
+        },
+        "tool_output": {
+          "result": [
+            {
+              "component": "VISIBILITY/WIPER",
+              "group": "body_controls",
+              "id": "I-2025-0001",
+              "make": "FORD",
+              "model": "F-150",
+              "open_date": "2025-08-20",
+              "summary": "Investigation into wiper motor failures.",
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 67
+  },
+  {
+    "at": "2025-06-06T07:00:17Z",
+    "case_id": "C-2025-0005",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "read_rulebook",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "1 targeted-test rule(s) matched the reported conditions",
+        "started_at": "2025-06-06T07:00:07Z",
+        "step": 8,
+        "tokens": 0,
+        "tool": "rulebook",
+        "tool_input": {
+          "conditions": [
+            "intermittent"
+          ]
+        },
+        "tool_output": {
+          "result": [
+            {
+              "id": "intermittent",
+              "matched_conditions": [
+                "intermittent"
+              ],
+              "reason": "A long power-cycling run reproduces faults that appear only after repeated wake and sleep cycles.",
+              "test": "Long-run power cycling test"
+            }
+          ]
+        }
+      }
+    },
+    "seq": 68
+  },
+  {
+    "at": "2025-06-06T07:00:17Z",
+    "case_id": "C-2025-0005",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "propose",
+        "agent": "analysis",
+        "cost_usd": 0.000108,
+        "duration_ms": 12,
+        "reason": "The reported conditions match a targeted test rule.",
+        "started_at": "2025-06-06T07:00:08Z",
+        "step": 9,
+        "tokens": 180,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 69
+  },
+  {
+    "at": "2025-06-06T07:00:17Z",
+    "case_id": "C-2025-0005",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "verify_quotes",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "1 verified, 0 dropped",
+        "started_at": "2025-06-06T07:00:09Z",
+        "step": 10,
+        "tokens": 0,
+        "tool": "verify_quotes",
+        "tool_input": {
+          "quotes": [
+            "The wiper motor is intermittent after service and the connector looks loose."
+          ]
+        },
+        "tool_output": {
+          "checked": 1,
+          "dropped": 0,
+          "verified": 1
+        }
+      }
+    },
+    "seq": 70
+  },
+  {
+    "at": "2025-06-06T07:00:17Z",
+    "case_id": "C-2025-0005",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:human_gate",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "a proposal needs a human decision (prompt p1)",
+        "started_at": "2025-06-06T07:00:11Z",
+        "step": 11,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 71
+  },
+  {
+    "at": "2025-06-06T07:00:17Z",
+    "case_id": "C-2025-0005",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "decision:approve",
+        "agent": "human",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "Quotes verified and no hard rule is broken.",
+        "started_at": "2025-06-06T07:00:13Z",
+        "step": 12,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 72
+  },
+  {
+    "at": "2025-06-06T07:00:17Z",
+    "case_id": "C-2025-0005",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:finish",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "work complete for this case (prompt p1)",
+        "started_at": "2025-06-06T07:00:14Z",
+        "step": 13,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 73
+  },
+  {
+    "at": "2025-06-06T07:00:17Z",
+    "case_id": "C-2025-0005",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "finish:decided",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "a human approved a concrete proposal",
+        "started_at": "2025-06-06T07:00:15Z",
+        "step": 14,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 74
+  },
+  {
+    "at": "2025-06-06T07:00:18Z",
+    "case_id": "C-2025-0005",
+    "issue_id": null,
+    "kind": "decision",
+    "payload": {
+      "action": "approve",
+      "actor": "simulated_engineer",
+      "status": "decided"
+    },
+    "seq": 75
+  },
+  {
+    "at": "2025-06-08T23:59:00Z",
+    "case_id": null,
+    "issue_id": null,
+    "kind": "report",
+    "payload": {
+      "run_id": "replay",
+      "week_end": "2025-06-08",
+      "week_start": "2025-06-02"
+    },
+    "seq": 76
+  },
+  {
+    "at": "2025-06-09T07:00:16Z",
+    "case_id": "C-2025-0006",
+    "issue_id": null,
+    "kind": "case",
+    "payload": {
+      "status": "decided"
+    },
+    "seq": 77
+  },
+  {
+    "at": "2025-06-09T07:00:17Z",
+    "case_id": "C-2025-0006",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:intake",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "no extraction yet: normalise the report first (prompt p1)",
+        "started_at": "2025-06-09T07:00:00Z",
+        "step": 1,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 78
+  },
+  {
+    "at": "2025-06-09T07:00:17Z",
+    "case_id": "C-2025-0006",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "extract",
+        "agent": "intake",
+        "cost_usd": 0.000108,
+        "duration_ms": 12,
+        "reason": "VISIBILITY/WIPER concern on FORD F-150",
+        "started_at": "2025-06-09T07:00:01Z",
+        "step": 2,
+        "tokens": 180,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 79
+  },
+  {
+    "at": "2025-06-09T07:00:17Z",
+    "case_id": "C-2025-0006",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "check_duplicates",
+        "agent": "intake",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "3 similar case(s) within the same vehicle",
+        "started_at": "2025-06-09T07:00:02Z",
+        "step": 3,
+        "tokens": 0,
+        "tool": "similar_cases",
+        "tool_input": {
+          "k": 3,
+          "make": "FORD",
+          "model": "F-150",
+          "year": 2021
+        },
+        "tool_output": {
+          "result": [
+            {
+              "excerpt": "The wiper motor stops when the cabin is cold and damp.",
+              "group": "body_controls",
+              "id": "C-2025-0006",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.4972,
+              "year": 2021
+            },
+            {
+              "excerpt": "The wiper motor stops when the cabin is cold and damp.",
+              "group": "body_controls",
+              "id": "C-2025-0010",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.4972,
+              "year": 2021
+            },
+            {
+              "excerpt": "The wiper motor stops when the cabin is cold and damp.",
+              "group": "body_controls",
+              "id": "C-2025-0015",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.4972,
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 80
+  },
+  {
+    "at": "2025-06-09T07:00:17Z",
+    "case_id": "C-2025-0006",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:analysis",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "case normalised and no proposal yet: gather evidence (prompt p1)",
+        "started_at": "2025-06-09T07:00:03Z",
+        "step": 4,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 81
+  },
+  {
+    "at": "2025-06-09T07:00:17Z",
+    "case_id": "C-2025-0006",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "search_similar_cases",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "5 similar case(s) in the knowledge base",
+        "started_at": "2025-06-09T07:00:04Z",
+        "step": 5,
+        "tokens": 0,
+        "tool": "similar_cases",
+        "tool_input": {
+          "k": 5,
+          "text": "The wiper motor stops when the cabin is cold and damp."
+        },
+        "tool_output": {
+          "result": [
+            {
+              "excerpt": "The wiper motor stops when the cabin is cold and damp.",
+              "group": "body_controls",
+              "id": "C-2025-0006",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.4972,
+              "year": 2021
+            },
+            {
+              "excerpt": "The wiper motor stops when the cabin is cold and damp.",
+              "group": "body_controls",
+              "id": "C-2025-0010",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.4972,
+              "year": 2021
+            },
+            {
+              "excerpt": "The wiper motor stops when the cabin is cold and damp.",
+              "group": "body_controls",
+              "id": "C-2025-0015",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.4972,
+              "year": 2021
+            },
+            {
+              "excerpt": "The wiper motor stops when the cabin is cold and damp.",
+              "group": "body_controls",
+              "id": "K-2021-0001",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.4972,
+              "year": 2021
+            },
+            {
+              "excerpt": "The wiper motor stops when the cabin is cold and damp, and starts again after the cabin warms up.",
+              "group": "body_controls",
+              "id": "C-2025-0001",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.1297,
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 82
+  },
+  {
+    "at": "2025-06-09T07:00:17Z",
+    "case_id": "C-2025-0006",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "lookup_recalls",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "1 recall(s) for the same vehicle and group",
+        "started_at": "2025-06-09T07:00:05Z",
+        "step": 6,
+        "tokens": 0,
+        "tool": "recalls_for",
+        "tool_input": {
+          "group": "body_controls",
+          "make": "FORD",
+          "model": "F-150",
+          "year": 2021
+        },
+        "tool_output": {
+          "result": [
+            {
+              "component": "VISIBILITY/WIPER",
+              "group": "body_controls",
+              "id": "R-2025-0001",
+              "make": "FORD",
+              "model": "F-150",
+              "open_date": "2025-07-15",
+              "summary": "Wiper motor may fail and reduce visibility.",
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 83
+  },
+  {
+    "at": "2025-06-09T07:00:17Z",
+    "case_id": "C-2025-0006",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "lookup_investigations",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "1 investigation(s) for the same vehicle and group",
+        "started_at": "2025-06-09T07:00:06Z",
+        "step": 7,
+        "tokens": 0,
+        "tool": "investigations_for",
+        "tool_input": {
+          "group": "body_controls",
+          "make": "FORD",
+          "model": "F-150",
+          "year": 2021
+        },
+        "tool_output": {
+          "result": [
+            {
+              "component": "VISIBILITY/WIPER",
+              "group": "body_controls",
+              "id": "I-2025-0001",
+              "make": "FORD",
+              "model": "F-150",
+              "open_date": "2025-08-20",
+              "summary": "Investigation into wiper motor failures.",
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 84
+  },
+  {
+    "at": "2025-06-09T07:00:17Z",
+    "case_id": "C-2025-0006",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "read_rulebook",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "2 targeted-test rule(s) matched the reported conditions",
+        "started_at": "2025-06-09T07:00:07Z",
+        "step": 8,
+        "tokens": 0,
+        "tool": "rulebook",
+        "tool_input": {
+          "conditions": [
+            "cold",
+            "damp"
+          ]
+        },
+        "tool_output": {
+          "result": [
+            {
+              "id": "moisture",
+              "matched_conditions": [
+                "damp"
+              ],
+              "reason": "Water ingress and condensation are the first suspects when moisture, damp or a leak is reported.",
+              "test": "Humidity and condensation test"
+            },
+            {
+              "id": "cold",
+              "matched_conditions": [
+                "cold"
+              ],
+              "reason": "Cold-soak and cold-start behaviour separates a temperature-dependent fault from a permanent one.",
+              "test": "Low-temperature cycling test"
+            }
+          ]
+        }
+      }
+    },
+    "seq": 85
+  },
+  {
+    "at": "2025-06-09T07:00:17Z",
+    "case_id": "C-2025-0006",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "propose",
+        "agent": "analysis",
+        "cost_usd": 0.000108,
+        "duration_ms": 12,
+        "reason": "The reported conditions match a targeted test rule.",
+        "started_at": "2025-06-09T07:00:08Z",
+        "step": 9,
+        "tokens": 180,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 86
+  },
+  {
+    "at": "2025-06-09T07:00:17Z",
+    "case_id": "C-2025-0006",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "verify_quotes",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "1 verified, 0 dropped",
+        "started_at": "2025-06-09T07:00:09Z",
+        "step": 10,
+        "tokens": 0,
+        "tool": "verify_quotes",
+        "tool_input": {
+          "quotes": [
+            "The wiper motor stops when the cabin is cold and damp."
+          ]
+        },
+        "tool_output": {
+          "checked": 1,
+          "dropped": 0,
+          "verified": 1
+        }
+      }
+    },
+    "seq": 87
+  },
+  {
+    "at": "2025-06-09T07:00:17Z",
+    "case_id": "C-2025-0006",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:human_gate",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "a proposal needs a human decision (prompt p1)",
+        "started_at": "2025-06-09T07:00:11Z",
+        "step": 11,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 88
+  },
+  {
+    "at": "2025-06-09T07:00:17Z",
+    "case_id": "C-2025-0006",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "decision:approve",
+        "agent": "human",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "Quotes verified and no hard rule is broken.",
+        "started_at": "2025-06-09T07:00:13Z",
+        "step": 12,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 89
+  },
+  {
+    "at": "2025-06-09T07:00:17Z",
+    "case_id": "C-2025-0006",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:finish",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "work complete for this case (prompt p1)",
+        "started_at": "2025-06-09T07:00:14Z",
+        "step": 13,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 90
+  },
+  {
+    "at": "2025-06-09T07:00:17Z",
+    "case_id": "C-2025-0006",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "finish:decided",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "a human approved a concrete proposal",
+        "started_at": "2025-06-09T07:00:15Z",
+        "step": 14,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 91
+  },
+  {
+    "at": "2025-06-09T07:00:18Z",
+    "case_id": "C-2025-0006",
+    "issue_id": null,
+    "kind": "decision",
+    "payload": {
+      "action": "approve",
+      "actor": "simulated_engineer",
+      "status": "decided"
+    },
+    "seq": 92
+  },
+  {
+    "at": "2025-06-09T18:00:00Z",
+    "case_id": null,
+    "issue_id": "I-20250609-001",
+    "kind": "issue",
+    "payload": {
+      "status": "open",
+      "title": "body_controls reports cluster for FORD F-150 2021"
+    },
+    "seq": 93
+  },
+  {
+    "at": "2025-06-10T07:00:16Z",
+    "case_id": "C-2025-0007",
+    "issue_id": null,
+    "kind": "case",
+    "payload": {
+      "status": "decided"
+    },
+    "seq": 94
+  },
+  {
+    "at": "2025-06-10T07:00:17Z",
+    "case_id": "C-2025-0007",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:intake",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "no extraction yet: normalise the report first (prompt p1)",
+        "started_at": "2025-06-10T07:00:00Z",
+        "step": 1,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 95
+  },
+  {
+    "at": "2025-06-10T07:00:17Z",
+    "case_id": "C-2025-0007",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "extract",
+        "agent": "intake",
+        "cost_usd": 0.000108,
+        "duration_ms": 12,
+        "reason": "VISIBILITY/WIPER concern on FORD F-150",
+        "started_at": "2025-06-10T07:00:01Z",
+        "step": 2,
+        "tokens": 180,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 96
+  },
+  {
+    "at": "2025-06-10T07:00:17Z",
+    "case_id": "C-2025-0007",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "check_duplicates",
+        "agent": "intake",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "3 similar case(s) within the same vehicle",
+        "started_at": "2025-06-10T07:00:02Z",
+        "step": 3,
+        "tokens": 0,
+        "tool": "similar_cases",
+        "tool_input": {
+          "k": 3,
+          "make": "FORD",
+          "model": "F-150",
+          "year": 2021
+        },
+        "tool_output": {
+          "result": [
+            {
+              "excerpt": "Wiper motor is intermittent in cold weather and then quits.",
+              "group": "body_controls",
+              "id": "C-2025-0002",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.629,
+              "year": 2021
+            },
+            {
+              "excerpt": "Wiper motor is intermittent in cold weather and then quits.",
+              "group": "body_controls",
+              "id": "C-2025-0007",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.629,
+              "year": 2021
+            },
+            {
+              "excerpt": "Wiper motor is intermittent in cold weather and then quits.",
+              "group": "body_controls",
+              "id": "C-2025-0011",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.629,
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 97
+  },
+  {
+    "at": "2025-06-10T07:00:17Z",
+    "case_id": "C-2025-0007",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:analysis",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "case normalised and no proposal yet: gather evidence (prompt p1)",
+        "started_at": "2025-06-10T07:00:03Z",
+        "step": 4,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 98
+  },
+  {
+    "at": "2025-06-10T07:00:17Z",
+    "case_id": "C-2025-0007",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "search_similar_cases",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "5 similar case(s) in the knowledge base",
+        "started_at": "2025-06-10T07:00:04Z",
+        "step": 5,
+        "tokens": 0,
+        "tool": "similar_cases",
+        "tool_input": {
+          "k": 5,
+          "text": "Wiper motor is intermittent in cold weather and then quits."
+        },
+        "tool_output": {
+          "result": [
+            {
+              "excerpt": "Wiper motor is intermittent in cold weather and then quits.",
+              "group": "body_controls",
+              "id": "C-2025-0002",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.629,
+              "year": 2021
+            },
+            {
+              "excerpt": "Wiper motor is intermittent in cold weather and then quits.",
+              "group": "body_controls",
+              "id": "C-2025-0007",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.629,
+              "year": 2021
+            },
+            {
+              "excerpt": "Wiper motor is intermittent in cold weather and then quits.",
+              "group": "body_controls",
+              "id": "C-2025-0011",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.629,
+              "year": 2021
+            },
+            {
+              "excerpt": "Wiper motor is intermittent in cold weather and then quits.",
+              "group": "body_controls",
+              "id": "C-2025-0016",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.629,
+              "year": 2021
+            },
+            {
+              "excerpt": "Wiper motor is intermittent in cold weather and then quits.",
+              "group": "body_controls",
+              "id": "K-2021-0002",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.629,
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 99
+  },
+  {
+    "at": "2025-06-10T07:00:17Z",
+    "case_id": "C-2025-0007",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "lookup_recalls",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "1 recall(s) for the same vehicle and group",
+        "started_at": "2025-06-10T07:00:05Z",
+        "step": 6,
+        "tokens": 0,
+        "tool": "recalls_for",
+        "tool_input": {
+          "group": "body_controls",
+          "make": "FORD",
+          "model": "F-150",
+          "year": 2021
+        },
+        "tool_output": {
+          "result": [
+            {
+              "component": "VISIBILITY/WIPER",
+              "group": "body_controls",
+              "id": "R-2025-0001",
+              "make": "FORD",
+              "model": "F-150",
+              "open_date": "2025-07-15",
+              "summary": "Wiper motor may fail and reduce visibility.",
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 100
+  },
+  {
+    "at": "2025-06-10T07:00:17Z",
+    "case_id": "C-2025-0007",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "lookup_investigations",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "1 investigation(s) for the same vehicle and group",
+        "started_at": "2025-06-10T07:00:06Z",
+        "step": 7,
+        "tokens": 0,
+        "tool": "investigations_for",
+        "tool_input": {
+          "group": "body_controls",
+          "make": "FORD",
+          "model": "F-150",
+          "year": 2021
+        },
+        "tool_output": {
+          "result": [
+            {
+              "component": "VISIBILITY/WIPER",
+              "group": "body_controls",
+              "id": "I-2025-0001",
+              "make": "FORD",
+              "model": "F-150",
+              "open_date": "2025-08-20",
+              "summary": "Investigation into wiper motor failures.",
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 101
+  },
+  {
+    "at": "2025-06-10T07:00:17Z",
+    "case_id": "C-2025-0007",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "read_rulebook",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "2 targeted-test rule(s) matched the reported conditions",
+        "started_at": "2025-06-10T07:00:07Z",
+        "step": 8,
+        "tokens": 0,
+        "tool": "rulebook",
+        "tool_input": {
+          "conditions": [
+            "cold",
+            "damp"
+          ]
+        },
+        "tool_output": {
+          "result": [
+            {
+              "id": "moisture",
+              "matched_conditions": [
+                "damp"
+              ],
+              "reason": "Water ingress and condensation are the first suspects when moisture, damp or a leak is reported.",
+              "test": "Humidity and condensation test"
+            },
+            {
+              "id": "cold",
+              "matched_conditions": [
+                "cold"
+              ],
+              "reason": "Cold-soak and cold-start behaviour separates a temperature-dependent fault from a permanent one.",
+              "test": "Low-temperature cycling test"
+            }
+          ]
+        }
+      }
+    },
+    "seq": 102
+  },
+  {
+    "at": "2025-06-10T07:00:17Z",
+    "case_id": "C-2025-0007",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "propose",
+        "agent": "analysis",
+        "cost_usd": 0.000108,
+        "duration_ms": 12,
+        "reason": "The reported conditions match a targeted test rule.",
+        "started_at": "2025-06-10T07:00:08Z",
+        "step": 9,
+        "tokens": 180,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 103
+  },
+  {
+    "at": "2025-06-10T07:00:17Z",
+    "case_id": "C-2025-0007",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "verify_quotes",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "1 verified, 0 dropped",
+        "started_at": "2025-06-10T07:00:09Z",
+        "step": 10,
+        "tokens": 0,
+        "tool": "verify_quotes",
+        "tool_input": {
+          "quotes": [
+            "Wiper motor is intermittent in cold weather and then quits."
+          ]
+        },
+        "tool_output": {
+          "checked": 1,
+          "dropped": 0,
+          "verified": 1
+        }
+      }
+    },
+    "seq": 104
+  },
+  {
+    "at": "2025-06-10T07:00:17Z",
+    "case_id": "C-2025-0007",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:human_gate",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "a proposal needs a human decision (prompt p1)",
+        "started_at": "2025-06-10T07:00:11Z",
+        "step": 11,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 105
+  },
+  {
+    "at": "2025-06-10T07:00:17Z",
+    "case_id": "C-2025-0007",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "decision:approve",
+        "agent": "human",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "Quotes verified and no hard rule is broken.",
+        "started_at": "2025-06-10T07:00:13Z",
+        "step": 12,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 106
+  },
+  {
+    "at": "2025-06-10T07:00:17Z",
+    "case_id": "C-2025-0007",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:finish",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "work complete for this case (prompt p1)",
+        "started_at": "2025-06-10T07:00:14Z",
+        "step": 13,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 107
+  },
+  {
+    "at": "2025-06-10T07:00:17Z",
+    "case_id": "C-2025-0007",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "finish:decided",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "a human approved a concrete proposal",
+        "started_at": "2025-06-10T07:00:15Z",
+        "step": 14,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 108
+  },
+  {
+    "at": "2025-06-10T07:00:18Z",
+    "case_id": "C-2025-0007",
+    "issue_id": null,
+    "kind": "decision",
+    "payload": {
+      "action": "approve",
+      "actor": "simulated_engineer",
+      "status": "decided"
+    },
+    "seq": 109
+  },
+  {
+    "at": "2025-06-11T07:00:16Z",
+    "case_id": "C-2025-0008",
+    "issue_id": null,
+    "kind": "case",
+    "payload": {
+      "status": "decided"
+    },
+    "seq": 110
+  },
+  {
+    "at": "2025-06-11T07:00:17Z",
+    "case_id": "C-2025-0008",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:intake",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "no extraction yet: normalise the report first (prompt p1)",
+        "started_at": "2025-06-11T07:00:00Z",
+        "step": 1,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 111
+  },
+  {
+    "at": "2025-06-11T07:00:17Z",
+    "case_id": "C-2025-0008",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "extract",
+        "agent": "intake",
+        "cost_usd": 0.000108,
+        "duration_ms": 12,
+        "reason": "VISIBILITY/WIPER concern on FORD F-150",
+        "started_at": "2025-06-11T07:00:01Z",
+        "step": 2,
+        "tokens": 180,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 112
+  },
+  {
+    "at": "2025-06-11T07:00:17Z",
+    "case_id": "C-2025-0008",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "check_duplicates",
+        "agent": "intake",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "3 similar case(s) within the same vehicle",
+        "started_at": "2025-06-11T07:00:02Z",
+        "step": 3,
+        "tokens": 0,
+        "tool": "similar_cases",
+        "tool_input": {
+          "k": 3,
+          "make": "FORD",
+          "model": "F-150",
+          "year": 2021
+        },
+        "tool_output": {
+          "result": [
+            {
+              "excerpt": "When it is cold the wiper motor stops and the visibility drops.",
+              "group": "body_controls",
+              "id": "C-2025-0004",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 4.9204,
+              "year": 2021
+            },
+            {
+              "excerpt": "When it is cold the wiper motor stops and the visibility drops.",
+              "group": "body_controls",
+              "id": "C-2025-0008",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 4.9204,
+              "year": 2021
+            },
+            {
+              "excerpt": "The wiper motor stops when the cabin is cold and damp.",
+              "group": "body_controls",
+              "id": "C-2025-0006",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 1.2043,
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 113
+  },
+  {
+    "at": "2025-06-11T07:00:17Z",
+    "case_id": "C-2025-0008",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:analysis",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "case normalised and no proposal yet: gather evidence (prompt p1)",
+        "started_at": "2025-06-11T07:00:03Z",
+        "step": 4,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 114
+  },
+  {
+    "at": "2025-06-11T07:00:17Z",
+    "case_id": "C-2025-0008",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "search_similar_cases",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "5 similar case(s) in the knowledge base",
+        "started_at": "2025-06-11T07:00:04Z",
+        "step": 5,
+        "tokens": 0,
+        "tool": "similar_cases",
+        "tool_input": {
+          "k": 5,
+          "text": "When it is cold the wiper motor stops and the visibility drops."
+        },
+        "tool_output": {
+          "result": [
+            {
+              "excerpt": "When it is cold the wiper motor stops and the visibility drops.",
+              "group": "body_controls",
+              "id": "C-2025-0004",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 4.9204,
+              "year": 2021
+            },
+            {
+              "excerpt": "When it is cold the wiper motor stops and the visibility drops.",
+              "group": "body_controls",
+              "id": "C-2025-0008",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 4.9204,
+              "year": 2021
+            },
+            {
+              "excerpt": "The wiper motor stops when the cabin is cold and damp.",
+              "group": "body_controls",
+              "id": "C-2025-0006",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 1.2043,
+              "year": 2021
+            },
+            {
+              "excerpt": "The wiper motor stops when the cabin is cold and damp.",
+              "group": "body_controls",
+              "id": "C-2025-0010",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 1.2043,
+              "year": 2021
+            },
+            {
+              "excerpt": "The wiper motor stops when the cabin is cold and damp.",
+              "group": "body_controls",
+              "id": "C-2025-0015",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 1.2043,
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 115
+  },
+  {
+    "at": "2025-06-11T07:00:17Z",
+    "case_id": "C-2025-0008",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "lookup_recalls",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "1 recall(s) for the same vehicle and group",
+        "started_at": "2025-06-11T07:00:05Z",
+        "step": 6,
+        "tokens": 0,
+        "tool": "recalls_for",
+        "tool_input": {
+          "group": "body_controls",
+          "make": "FORD",
+          "model": "F-150",
+          "year": 2021
+        },
+        "tool_output": {
+          "result": [
+            {
+              "component": "VISIBILITY/WIPER",
+              "group": "body_controls",
+              "id": "R-2025-0001",
+              "make": "FORD",
+              "model": "F-150",
+              "open_date": "2025-07-15",
+              "summary": "Wiper motor may fail and reduce visibility.",
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 116
+  },
+  {
+    "at": "2025-06-11T07:00:17Z",
+    "case_id": "C-2025-0008",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "lookup_investigations",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "1 investigation(s) for the same vehicle and group",
+        "started_at": "2025-06-11T07:00:06Z",
+        "step": 7,
+        "tokens": 0,
+        "tool": "investigations_for",
+        "tool_input": {
+          "group": "body_controls",
+          "make": "FORD",
+          "model": "F-150",
+          "year": 2021
+        },
+        "tool_output": {
+          "result": [
+            {
+              "component": "VISIBILITY/WIPER",
+              "group": "body_controls",
+              "id": "I-2025-0001",
+              "make": "FORD",
+              "model": "F-150",
+              "open_date": "2025-08-20",
+              "summary": "Investigation into wiper motor failures.",
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 117
+  },
+  {
+    "at": "2025-06-11T07:00:17Z",
+    "case_id": "C-2025-0008",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "read_rulebook",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "2 targeted-test rule(s) matched the reported conditions",
+        "started_at": "2025-06-11T07:00:07Z",
+        "step": 8,
+        "tokens": 0,
+        "tool": "rulebook",
+        "tool_input": {
+          "conditions": [
+            "cold",
+            "damp"
+          ]
+        },
+        "tool_output": {
+          "result": [
+            {
+              "id": "moisture",
+              "matched_conditions": [
+                "damp"
+              ],
+              "reason": "Water ingress and condensation are the first suspects when moisture, damp or a leak is reported.",
+              "test": "Humidity and condensation test"
+            },
+            {
+              "id": "cold",
+              "matched_conditions": [
+                "cold"
+              ],
+              "reason": "Cold-soak and cold-start behaviour separates a temperature-dependent fault from a permanent one.",
+              "test": "Low-temperature cycling test"
+            }
+          ]
+        }
+      }
+    },
+    "seq": 118
+  },
+  {
+    "at": "2025-06-11T07:00:17Z",
+    "case_id": "C-2025-0008",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "propose",
+        "agent": "analysis",
+        "cost_usd": 0.000108,
+        "duration_ms": 12,
+        "reason": "The reported conditions match a targeted test rule.",
+        "started_at": "2025-06-11T07:00:08Z",
+        "step": 9,
+        "tokens": 180,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 119
+  },
+  {
+    "at": "2025-06-11T07:00:17Z",
+    "case_id": "C-2025-0008",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "verify_quotes",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "1 verified, 0 dropped",
+        "started_at": "2025-06-11T07:00:09Z",
+        "step": 10,
+        "tokens": 0,
+        "tool": "verify_quotes",
+        "tool_input": {
+          "quotes": [
+            "When it is cold the wiper motor stops and the visibility drops."
+          ]
+        },
+        "tool_output": {
+          "checked": 1,
+          "dropped": 0,
+          "verified": 1
+        }
+      }
+    },
+    "seq": 120
+  },
+  {
+    "at": "2025-06-11T07:00:17Z",
+    "case_id": "C-2025-0008",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:human_gate",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "a proposal needs a human decision (prompt p1)",
+        "started_at": "2025-06-11T07:00:11Z",
+        "step": 11,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 121
+  },
+  {
+    "at": "2025-06-11T07:00:17Z",
+    "case_id": "C-2025-0008",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "decision:approve",
+        "agent": "human",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "Quotes verified and no hard rule is broken.",
+        "started_at": "2025-06-11T07:00:13Z",
+        "step": 12,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 122
+  },
+  {
+    "at": "2025-06-11T07:00:17Z",
+    "case_id": "C-2025-0008",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:finish",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "work complete for this case (prompt p1)",
+        "started_at": "2025-06-11T07:00:14Z",
+        "step": 13,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 123
+  },
+  {
+    "at": "2025-06-11T07:00:17Z",
+    "case_id": "C-2025-0008",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "finish:decided",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "a human approved a concrete proposal",
+        "started_at": "2025-06-11T07:00:15Z",
+        "step": 14,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 124
+  },
+  {
+    "at": "2025-06-11T07:00:18Z",
+    "case_id": "C-2025-0008",
+    "issue_id": null,
+    "kind": "decision",
+    "payload": {
+      "action": "approve",
+      "actor": "simulated_engineer",
+      "status": "decided"
+    },
+    "seq": 125
+  },
+  {
+    "at": "2025-06-12T07:00:16Z",
+    "case_id": "C-2025-0009",
+    "issue_id": null,
+    "kind": "case",
+    "payload": {
+      "status": "decided"
+    },
+    "seq": 126
+  },
+  {
+    "at": "2025-06-12T07:00:17Z",
+    "case_id": "C-2025-0009",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:intake",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "no extraction yet: normalise the report first (prompt p1)",
+        "started_at": "2025-06-12T07:00:00Z",
+        "step": 1,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 127
+  },
+  {
+    "at": "2025-06-12T07:00:17Z",
+    "case_id": "C-2025-0009",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "extract",
+        "agent": "intake",
+        "cost_usd": 0.000108,
+        "duration_ms": 12,
+        "reason": "VISIBILITY/WIPER concern on FORD F-150",
+        "started_at": "2025-06-12T07:00:01Z",
+        "step": 2,
+        "tokens": 180,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 128
+  },
+  {
+    "at": "2025-06-12T07:00:17Z",
+    "case_id": "C-2025-0009",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "check_duplicates",
+        "agent": "intake",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "3 similar case(s) within the same vehicle",
+        "started_at": "2025-06-12T07:00:02Z",
+        "step": 3,
+        "tokens": 0,
+        "tool": "similar_cases",
+        "tool_input": {
+          "k": 3,
+          "make": "FORD",
+          "model": "F-150",
+          "year": 2021
+        },
+        "tool_output": {
+          "result": [
+            {
+              "excerpt": "The wiper motor is intermittent after service and the connector looks loose.",
+              "group": "body_controls",
+              "id": "C-2025-0005",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 8.6906,
+              "year": 2021
+            },
+            {
+              "excerpt": "The wiper motor is intermittent after service and the connector looks loose.",
+              "group": "body_controls",
+              "id": "C-2025-0009",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 8.6906,
+              "year": 2021
+            },
+            {
+              "excerpt": "After service the wiper motor failed again and the connector was loose.",
+              "group": "body_controls",
+              "id": "K-2021-0003",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 6.0093,
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 129
+  },
+  {
+    "at": "2025-06-12T07:00:17Z",
+    "case_id": "C-2025-0009",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:analysis",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "case normalised and no proposal yet: gather evidence (prompt p1)",
+        "started_at": "2025-06-12T07:00:03Z",
+        "step": 4,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 130
+  },
+  {
+    "at": "2025-06-12T07:00:17Z",
+    "case_id": "C-2025-0009",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "search_similar_cases",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "5 similar case(s) in the knowledge base",
+        "started_at": "2025-06-12T07:00:04Z",
+        "step": 5,
+        "tokens": 0,
+        "tool": "similar_cases",
+        "tool_input": {
+          "k": 5,
+          "text": "The wiper motor is intermittent after service and the connector looks loose."
+        },
+        "tool_output": {
+          "result": [
+            {
+              "excerpt": "The wiper motor is intermittent after service and the connector looks loose.",
+              "group": "body_controls",
+              "id": "C-2025-0005",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 8.6906,
+              "year": 2021
+            },
+            {
+              "excerpt": "The wiper motor is intermittent after service and the connector looks loose.",
+              "group": "body_controls",
+              "id": "C-2025-0009",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 8.6906,
+              "year": 2021
+            },
+            {
+              "excerpt": "After service the wiper motor failed again and the connector was loose.",
+              "group": "body_controls",
+              "id": "K-2021-0003",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 6.0093,
+              "year": 2021
+            },
+            {
+              "excerpt": "The wiper motor stops when the cabin is cold and damp, and starts again after the cabin warms up.",
+              "group": "body_controls",
+              "id": "C-2025-0001",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 1.0932,
+              "year": 2021
+            },
+            {
+              "excerpt": "Wiper motor is intermittent in cold weather and then quits.",
+              "group": "body_controls",
+              "id": "C-2025-0002",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 0.9256,
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 131
+  },
+  {
+    "at": "2025-06-12T07:00:17Z",
+    "case_id": "C-2025-0009",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "lookup_recalls",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "1 recall(s) for the same vehicle and group",
+        "started_at": "2025-06-12T07:00:05Z",
+        "step": 6,
+        "tokens": 0,
+        "tool": "recalls_for",
+        "tool_input": {
+          "group": "body_controls",
+          "make": "FORD",
+          "model": "F-150",
+          "year": 2021
+        },
+        "tool_output": {
+          "result": [
+            {
+              "component": "VISIBILITY/WIPER",
+              "group": "body_controls",
+              "id": "R-2025-0001",
+              "make": "FORD",
+              "model": "F-150",
+              "open_date": "2025-07-15",
+              "summary": "Wiper motor may fail and reduce visibility.",
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 132
+  },
+  {
+    "at": "2025-06-12T07:00:17Z",
+    "case_id": "C-2025-0009",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "lookup_investigations",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "1 investigation(s) for the same vehicle and group",
+        "started_at": "2025-06-12T07:00:06Z",
+        "step": 7,
+        "tokens": 0,
+        "tool": "investigations_for",
+        "tool_input": {
+          "group": "body_controls",
+          "make": "FORD",
+          "model": "F-150",
+          "year": 2021
+        },
+        "tool_output": {
+          "result": [
+            {
+              "component": "VISIBILITY/WIPER",
+              "group": "body_controls",
+              "id": "I-2025-0001",
+              "make": "FORD",
+              "model": "F-150",
+              "open_date": "2025-08-20",
+              "summary": "Investigation into wiper motor failures.",
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 133
+  },
+  {
+    "at": "2025-06-12T07:00:17Z",
+    "case_id": "C-2025-0009",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "read_rulebook",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "1 targeted-test rule(s) matched the reported conditions",
+        "started_at": "2025-06-12T07:00:07Z",
+        "step": 8,
+        "tokens": 0,
+        "tool": "rulebook",
+        "tool_input": {
+          "conditions": [
+            "intermittent"
+          ]
+        },
+        "tool_output": {
+          "result": [
+            {
+              "id": "intermittent",
+              "matched_conditions": [
+                "intermittent"
+              ],
+              "reason": "A long power-cycling run reproduces faults that appear only after repeated wake and sleep cycles.",
+              "test": "Long-run power cycling test"
+            }
+          ]
+        }
+      }
+    },
+    "seq": 134
+  },
+  {
+    "at": "2025-06-12T07:00:17Z",
+    "case_id": "C-2025-0009",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "propose",
+        "agent": "analysis",
+        "cost_usd": 0.000108,
+        "duration_ms": 12,
+        "reason": "The reported conditions match a targeted test rule.",
+        "started_at": "2025-06-12T07:00:08Z",
+        "step": 9,
+        "tokens": 180,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 135
+  },
+  {
+    "at": "2025-06-12T07:00:17Z",
+    "case_id": "C-2025-0009",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "verify_quotes",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "1 verified, 0 dropped",
+        "started_at": "2025-06-12T07:00:09Z",
+        "step": 10,
+        "tokens": 0,
+        "tool": "verify_quotes",
+        "tool_input": {
+          "quotes": [
+            "The wiper motor is intermittent after service and the connector looks loose."
+          ]
+        },
+        "tool_output": {
+          "checked": 1,
+          "dropped": 0,
+          "verified": 1
+        }
+      }
+    },
+    "seq": 136
+  },
+  {
+    "at": "2025-06-12T07:00:17Z",
+    "case_id": "C-2025-0009",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:human_gate",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "a proposal needs a human decision (prompt p1)",
+        "started_at": "2025-06-12T07:00:11Z",
+        "step": 11,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 137
+  },
+  {
+    "at": "2025-06-12T07:00:17Z",
+    "case_id": "C-2025-0009",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "decision:approve",
+        "agent": "human",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "Quotes verified and no hard rule is broken.",
+        "started_at": "2025-06-12T07:00:13Z",
+        "step": 12,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 138
+  },
+  {
+    "at": "2025-06-12T07:00:17Z",
+    "case_id": "C-2025-0009",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:finish",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "work complete for this case (prompt p1)",
+        "started_at": "2025-06-12T07:00:14Z",
+        "step": 13,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 139
+  },
+  {
+    "at": "2025-06-12T07:00:17Z",
+    "case_id": "C-2025-0009",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "finish:decided",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "a human approved a concrete proposal",
+        "started_at": "2025-06-12T07:00:15Z",
+        "step": 14,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 140
+  },
+  {
+    "at": "2025-06-12T07:00:18Z",
+    "case_id": "C-2025-0009",
+    "issue_id": null,
+    "kind": "decision",
+    "payload": {
+      "action": "approve",
+      "actor": "simulated_engineer",
+      "status": "decided"
+    },
+    "seq": 141
+  },
+  {
+    "at": "2025-06-13T07:00:16Z",
+    "case_id": "C-2025-0010",
+    "issue_id": null,
+    "kind": "case",
+    "payload": {
+      "status": "decided"
+    },
+    "seq": 142
+  },
+  {
+    "at": "2025-06-13T07:00:17Z",
+    "case_id": "C-2025-0010",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:intake",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "no extraction yet: normalise the report first (prompt p1)",
+        "started_at": "2025-06-13T07:00:00Z",
+        "step": 1,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 143
+  },
+  {
+    "at": "2025-06-13T07:00:17Z",
+    "case_id": "C-2025-0010",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "extract",
+        "agent": "intake",
+        "cost_usd": 0.000108,
+        "duration_ms": 12,
+        "reason": "VISIBILITY/WIPER concern on FORD F-150",
+        "started_at": "2025-06-13T07:00:01Z",
+        "step": 2,
+        "tokens": 180,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 144
+  },
+  {
+    "at": "2025-06-13T07:00:17Z",
+    "case_id": "C-2025-0010",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "check_duplicates",
+        "agent": "intake",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "3 similar case(s) within the same vehicle",
+        "started_at": "2025-06-13T07:00:02Z",
+        "step": 3,
+        "tokens": 0,
+        "tool": "similar_cases",
+        "tool_input": {
+          "k": 3,
+          "make": "FORD",
+          "model": "F-150",
+          "year": 2021
+        },
+        "tool_output": {
+          "result": [
+            {
+              "excerpt": "The wiper motor stops when the cabin is cold and damp.",
+              "group": "body_controls",
+              "id": "C-2025-0006",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.4972,
+              "year": 2021
+            },
+            {
+              "excerpt": "The wiper motor stops when the cabin is cold and damp.",
+              "group": "body_controls",
+              "id": "C-2025-0010",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.4972,
+              "year": 2021
+            },
+            {
+              "excerpt": "The wiper motor stops when the cabin is cold and damp.",
+              "group": "body_controls",
+              "id": "C-2025-0015",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.4972,
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 145
+  },
+  {
+    "at": "2025-06-13T07:00:17Z",
+    "case_id": "C-2025-0010",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:analysis",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "case normalised and no proposal yet: gather evidence (prompt p1)",
+        "started_at": "2025-06-13T07:00:03Z",
+        "step": 4,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 146
+  },
+  {
+    "at": "2025-06-13T07:00:17Z",
+    "case_id": "C-2025-0010",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "search_similar_cases",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "5 similar case(s) in the knowledge base",
+        "started_at": "2025-06-13T07:00:04Z",
+        "step": 5,
+        "tokens": 0,
+        "tool": "similar_cases",
+        "tool_input": {
+          "k": 5,
+          "text": "The wiper motor stops when the cabin is cold and damp."
+        },
+        "tool_output": {
+          "result": [
+            {
+              "excerpt": "The wiper motor stops when the cabin is cold and damp.",
+              "group": "body_controls",
+              "id": "C-2025-0006",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.4972,
+              "year": 2021
+            },
+            {
+              "excerpt": "The wiper motor stops when the cabin is cold and damp.",
+              "group": "body_controls",
+              "id": "C-2025-0010",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.4972,
+              "year": 2021
+            },
+            {
+              "excerpt": "The wiper motor stops when the cabin is cold and damp.",
+              "group": "body_controls",
+              "id": "C-2025-0015",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.4972,
+              "year": 2021
+            },
+            {
+              "excerpt": "The wiper motor stops when the cabin is cold and damp.",
+              "group": "body_controls",
+              "id": "K-2021-0001",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.4972,
+              "year": 2021
+            },
+            {
+              "excerpt": "The wiper motor stops when the cabin is cold and damp, and starts again after the cabin warms up.",
+              "group": "body_controls",
+              "id": "C-2025-0001",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.1297,
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 147
+  },
+  {
+    "at": "2025-06-13T07:00:17Z",
+    "case_id": "C-2025-0010",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "lookup_recalls",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "1 recall(s) for the same vehicle and group",
+        "started_at": "2025-06-13T07:00:05Z",
+        "step": 6,
+        "tokens": 0,
+        "tool": "recalls_for",
+        "tool_input": {
+          "group": "body_controls",
+          "make": "FORD",
+          "model": "F-150",
+          "year": 2021
+        },
+        "tool_output": {
+          "result": [
+            {
+              "component": "VISIBILITY/WIPER",
+              "group": "body_controls",
+              "id": "R-2025-0001",
+              "make": "FORD",
+              "model": "F-150",
+              "open_date": "2025-07-15",
+              "summary": "Wiper motor may fail and reduce visibility.",
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 148
+  },
+  {
+    "at": "2025-06-13T07:00:17Z",
+    "case_id": "C-2025-0010",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "lookup_investigations",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "1 investigation(s) for the same vehicle and group",
+        "started_at": "2025-06-13T07:00:06Z",
+        "step": 7,
+        "tokens": 0,
+        "tool": "investigations_for",
+        "tool_input": {
+          "group": "body_controls",
+          "make": "FORD",
+          "model": "F-150",
+          "year": 2021
+        },
+        "tool_output": {
+          "result": [
+            {
+              "component": "VISIBILITY/WIPER",
+              "group": "body_controls",
+              "id": "I-2025-0001",
+              "make": "FORD",
+              "model": "F-150",
+              "open_date": "2025-08-20",
+              "summary": "Investigation into wiper motor failures.",
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 149
+  },
+  {
+    "at": "2025-06-13T07:00:17Z",
+    "case_id": "C-2025-0010",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "read_rulebook",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "2 targeted-test rule(s) matched the reported conditions",
+        "started_at": "2025-06-13T07:00:07Z",
+        "step": 8,
+        "tokens": 0,
+        "tool": "rulebook",
+        "tool_input": {
+          "conditions": [
+            "cold",
+            "damp"
+          ]
+        },
+        "tool_output": {
+          "result": [
+            {
+              "id": "moisture",
+              "matched_conditions": [
+                "damp"
+              ],
+              "reason": "Water ingress and condensation are the first suspects when moisture, damp or a leak is reported.",
+              "test": "Humidity and condensation test"
+            },
+            {
+              "id": "cold",
+              "matched_conditions": [
+                "cold"
+              ],
+              "reason": "Cold-soak and cold-start behaviour separates a temperature-dependent fault from a permanent one.",
+              "test": "Low-temperature cycling test"
+            }
+          ]
+        }
+      }
+    },
+    "seq": 150
+  },
+  {
+    "at": "2025-06-13T07:00:17Z",
+    "case_id": "C-2025-0010",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "propose",
+        "agent": "analysis",
+        "cost_usd": 0.000108,
+        "duration_ms": 12,
+        "reason": "The reported conditions match a targeted test rule.",
+        "started_at": "2025-06-13T07:00:08Z",
+        "step": 9,
+        "tokens": 180,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 151
+  },
+  {
+    "at": "2025-06-13T07:00:17Z",
+    "case_id": "C-2025-0010",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "verify_quotes",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "1 verified, 0 dropped",
+        "started_at": "2025-06-13T07:00:09Z",
+        "step": 10,
+        "tokens": 0,
+        "tool": "verify_quotes",
+        "tool_input": {
+          "quotes": [
+            "The wiper motor stops when the cabin is cold and damp."
+          ]
+        },
+        "tool_output": {
+          "checked": 1,
+          "dropped": 0,
+          "verified": 1
+        }
+      }
+    },
+    "seq": 152
+  },
+  {
+    "at": "2025-06-13T07:00:17Z",
+    "case_id": "C-2025-0010",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:human_gate",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "a proposal needs a human decision (prompt p1)",
+        "started_at": "2025-06-13T07:00:11Z",
+        "step": 11,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 153
+  },
+  {
+    "at": "2025-06-13T07:00:17Z",
+    "case_id": "C-2025-0010",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "decision:approve",
+        "agent": "human",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "Quotes verified and no hard rule is broken.",
+        "started_at": "2025-06-13T07:00:13Z",
+        "step": 12,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 154
+  },
+  {
+    "at": "2025-06-13T07:00:17Z",
+    "case_id": "C-2025-0010",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:finish",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "work complete for this case (prompt p1)",
+        "started_at": "2025-06-13T07:00:14Z",
+        "step": 13,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 155
+  },
+  {
+    "at": "2025-06-13T07:00:17Z",
+    "case_id": "C-2025-0010",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "finish:decided",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "a human approved a concrete proposal",
+        "started_at": "2025-06-13T07:00:15Z",
+        "step": 14,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 156
+  },
+  {
+    "at": "2025-06-13T07:00:18Z",
+    "case_id": "C-2025-0010",
+    "issue_id": null,
+    "kind": "decision",
+    "payload": {
+      "action": "approve",
+      "actor": "simulated_engineer",
+      "status": "decided"
+    },
+    "seq": 157
+  },
+  {
+    "at": "2025-06-13T07:00:35Z",
+    "case_id": "C-2025-0012",
+    "issue_id": null,
+    "kind": "case",
+    "payload": {
+      "status": "decided"
+    },
+    "seq": 158
+  },
+  {
+    "at": "2025-06-13T07:00:36Z",
+    "case_id": "C-2025-0012",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:intake",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "no extraction yet: normalise the report first (prompt p1)",
+        "started_at": "2025-06-13T07:00:19Z",
+        "step": 1,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 159
+  },
+  {
+    "at": "2025-06-13T07:00:36Z",
+    "case_id": "C-2025-0012",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "extract",
+        "agent": "intake",
+        "cost_usd": 0.000108,
+        "duration_ms": 12,
+        "reason": "ELECTRICAL SYSTEM concern on FORD F-150",
+        "started_at": "2025-06-13T07:00:20Z",
+        "step": 2,
+        "tokens": 180,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 160
+  },
+  {
+    "at": "2025-06-13T07:00:36Z",
+    "case_id": "C-2025-0012",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "check_duplicates",
+        "agent": "intake",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "2 similar case(s) within the same vehicle",
+        "started_at": "2025-06-13T07:00:21Z",
+        "step": 3,
+        "tokens": 0,
+        "tool": "similar_cases",
+        "tool_input": {
+          "k": 3,
+          "make": "FORD",
+          "model": "F-150",
+          "year": 2021
+        },
+        "tool_output": {
+          "result": [
+            {
+              "excerpt": "The battery dies intermittently in cold weather.",
+              "group": "electrical_general",
+              "id": "C-2025-0012",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 2.5146,
+              "year": 2021
+            },
+            {
+              "excerpt": "The battery dies intermittently in cold weather.",
+              "group": "electrical_general",
+              "id": "K-2021-0005",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 2.5146,
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 161
+  },
+  {
+    "at": "2025-06-13T07:00:36Z",
+    "case_id": "C-2025-0012",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:analysis",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "case normalised and no proposal yet: gather evidence (prompt p1)",
+        "started_at": "2025-06-13T07:00:22Z",
+        "step": 4,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 162
+  },
+  {
+    "at": "2025-06-13T07:00:36Z",
+    "case_id": "C-2025-0012",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "search_similar_cases",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "2 similar case(s) in the knowledge base",
+        "started_at": "2025-06-13T07:00:23Z",
+        "step": 5,
+        "tokens": 0,
+        "tool": "similar_cases",
+        "tool_input": {
+          "k": 5,
+          "text": "The battery dies intermittently in cold weather."
+        },
+        "tool_output": {
+          "result": [
+            {
+              "excerpt": "The battery dies intermittently in cold weather.",
+              "group": "electrical_general",
+              "id": "C-2025-0012",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 2.5146,
+              "year": 2021
+            },
+            {
+              "excerpt": "The battery dies intermittently in cold weather.",
+              "group": "electrical_general",
+              "id": "K-2021-0005",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 2.5146,
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 163
+  },
+  {
+    "at": "2025-06-13T07:00:36Z",
+    "case_id": "C-2025-0012",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "lookup_recalls",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "1 recall(s) for the same vehicle and group",
+        "started_at": "2025-06-13T07:00:24Z",
+        "step": 6,
+        "tokens": 0,
+        "tool": "recalls_for",
+        "tool_input": {
+          "group": "electrical_general",
+          "make": "FORD",
+          "model": "F-150",
+          "year": 2021
+        },
+        "tool_output": {
+          "result": [
+            {
+              "component": "ELECTRICAL SYSTEM",
+              "group": "electrical_general",
+              "id": "R-2025-0003",
+              "make": "FORD",
+              "model": "F-150",
+              "open_date": "2025-08-01",
+              "summary": "Battery cable may chafe.",
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 164
+  },
+  {
+    "at": "2025-06-13T07:00:36Z",
+    "case_id": "C-2025-0012",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "lookup_investigations",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "0 investigation(s) for the same vehicle and group",
+        "started_at": "2025-06-13T07:00:25Z",
+        "step": 7,
+        "tokens": 0,
+        "tool": "investigations_for",
+        "tool_input": {
+          "group": "electrical_general",
+          "make": "FORD",
+          "model": "F-150",
+          "year": 2021
+        },
+        "tool_output": {
+          "result": []
+        }
+      }
+    },
+    "seq": 165
+  },
+  {
+    "at": "2025-06-13T07:00:36Z",
+    "case_id": "C-2025-0012",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "read_rulebook",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "2 targeted-test rule(s) matched the reported conditions",
+        "started_at": "2025-06-13T07:00:26Z",
+        "step": 8,
+        "tokens": 0,
+        "tool": "rulebook",
+        "tool_input": {
+          "conditions": [
+            "cold",
+            "damp"
+          ]
+        },
+        "tool_output": {
+          "result": [
+            {
+              "id": "moisture",
+              "matched_conditions": [
+                "damp"
+              ],
+              "reason": "Water ingress and condensation are the first suspects when moisture, damp or a leak is reported.",
+              "test": "Humidity and condensation test"
+            },
+            {
+              "id": "cold",
+              "matched_conditions": [
+                "cold"
+              ],
+              "reason": "Cold-soak and cold-start behaviour separates a temperature-dependent fault from a permanent one.",
+              "test": "Low-temperature cycling test"
+            }
+          ]
+        }
+      }
+    },
+    "seq": 166
+  },
+  {
+    "at": "2025-06-13T07:00:36Z",
+    "case_id": "C-2025-0012",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "propose",
+        "agent": "analysis",
+        "cost_usd": 0.000108,
+        "duration_ms": 12,
+        "reason": "The reported conditions match a targeted test rule.",
+        "started_at": "2025-06-13T07:00:27Z",
+        "step": 9,
+        "tokens": 180,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 167
+  },
+  {
+    "at": "2025-06-13T07:00:36Z",
+    "case_id": "C-2025-0012",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "verify_quotes",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "1 verified, 0 dropped",
+        "started_at": "2025-06-13T07:00:28Z",
+        "step": 10,
+        "tokens": 0,
+        "tool": "verify_quotes",
+        "tool_input": {
+          "quotes": [
+            "The battery dies intermittently in cold weather."
+          ]
+        },
+        "tool_output": {
+          "checked": 1,
+          "dropped": 0,
+          "verified": 1
+        }
+      }
+    },
+    "seq": 168
+  },
+  {
+    "at": "2025-06-13T07:00:36Z",
+    "case_id": "C-2025-0012",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:human_gate",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "a proposal needs a human decision (prompt p1)",
+        "started_at": "2025-06-13T07:00:30Z",
+        "step": 11,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 169
+  },
+  {
+    "at": "2025-06-13T07:00:36Z",
+    "case_id": "C-2025-0012",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "decision:approve",
+        "agent": "human",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "Quotes verified and no hard rule is broken.",
+        "started_at": "2025-06-13T07:00:32Z",
+        "step": 12,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 170
+  },
+  {
+    "at": "2025-06-13T07:00:36Z",
+    "case_id": "C-2025-0012",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:finish",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "work complete for this case (prompt p1)",
+        "started_at": "2025-06-13T07:00:33Z",
+        "step": 13,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 171
+  },
+  {
+    "at": "2025-06-13T07:00:36Z",
+    "case_id": "C-2025-0012",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "finish:decided",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "a human approved a concrete proposal",
+        "started_at": "2025-06-13T07:00:34Z",
+        "step": 14,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 172
+  },
+  {
+    "at": "2025-06-13T07:00:37Z",
+    "case_id": "C-2025-0012",
+    "issue_id": null,
+    "kind": "decision",
+    "payload": {
+      "action": "approve",
+      "actor": "simulated_engineer",
+      "status": "decided"
+    },
+    "seq": 173
+  },
+  {
+    "at": "2025-06-14T07:00:16Z",
+    "case_id": "C-2025-0011",
+    "issue_id": null,
+    "kind": "case",
+    "payload": {
+      "status": "decided"
+    },
+    "seq": 174
+  },
+  {
+    "at": "2025-06-14T07:00:17Z",
+    "case_id": "C-2025-0011",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:intake",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "no extraction yet: normalise the report first (prompt p1)",
+        "started_at": "2025-06-14T07:00:00Z",
+        "step": 1,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 175
+  },
+  {
+    "at": "2025-06-14T07:00:17Z",
+    "case_id": "C-2025-0011",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "extract",
+        "agent": "intake",
+        "cost_usd": 0.000108,
+        "duration_ms": 12,
+        "reason": "VISIBILITY/WIPER concern on FORD F-150",
+        "started_at": "2025-06-14T07:00:01Z",
+        "step": 2,
+        "tokens": 180,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 176
+  },
+  {
+    "at": "2025-06-14T07:00:17Z",
+    "case_id": "C-2025-0011",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "check_duplicates",
+        "agent": "intake",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "3 similar case(s) within the same vehicle",
+        "started_at": "2025-06-14T07:00:02Z",
+        "step": 3,
+        "tokens": 0,
+        "tool": "similar_cases",
+        "tool_input": {
+          "k": 3,
+          "make": "FORD",
+          "model": "F-150",
+          "year": 2021
+        },
+        "tool_output": {
+          "result": [
+            {
+              "excerpt": "Wiper motor is intermittent in cold weather and then quits.",
+              "group": "body_controls",
+              "id": "C-2025-0002",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.629,
+              "year": 2021
+            },
+            {
+              "excerpt": "Wiper motor is intermittent in cold weather and then quits.",
+              "group": "body_controls",
+              "id": "C-2025-0007",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.629,
+              "year": 2021
+            },
+            {
+              "excerpt": "Wiper motor is intermittent in cold weather and then quits.",
+              "group": "body_controls",
+              "id": "C-2025-0011",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.629,
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 177
+  },
+  {
+    "at": "2025-06-14T07:00:17Z",
+    "case_id": "C-2025-0011",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:analysis",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "case normalised and no proposal yet: gather evidence (prompt p1)",
+        "started_at": "2025-06-14T07:00:03Z",
+        "step": 4,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 178
+  },
+  {
+    "at": "2025-06-14T07:00:17Z",
+    "case_id": "C-2025-0011",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "search_similar_cases",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "5 similar case(s) in the knowledge base",
+        "started_at": "2025-06-14T07:00:04Z",
+        "step": 5,
+        "tokens": 0,
+        "tool": "similar_cases",
+        "tool_input": {
+          "k": 5,
+          "text": "Wiper motor is intermittent in cold weather and then quits."
+        },
+        "tool_output": {
+          "result": [
+            {
+              "excerpt": "Wiper motor is intermittent in cold weather and then quits.",
+              "group": "body_controls",
+              "id": "C-2025-0002",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.629,
+              "year": 2021
+            },
+            {
+              "excerpt": "Wiper motor is intermittent in cold weather and then quits.",
+              "group": "body_controls",
+              "id": "C-2025-0007",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.629,
+              "year": 2021
+            },
+            {
+              "excerpt": "Wiper motor is intermittent in cold weather and then quits.",
+              "group": "body_controls",
+              "id": "C-2025-0011",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.629,
+              "year": 2021
+            },
+            {
+              "excerpt": "Wiper motor is intermittent in cold weather and then quits.",
+              "group": "body_controls",
+              "id": "C-2025-0016",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.629,
+              "year": 2021
+            },
+            {
+              "excerpt": "Wiper motor is intermittent in cold weather and then quits.",
+              "group": "body_controls",
+              "id": "K-2021-0002",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.629,
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 179
+  },
+  {
+    "at": "2025-06-14T07:00:17Z",
+    "case_id": "C-2025-0011",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "lookup_recalls",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "1 recall(s) for the same vehicle and group",
+        "started_at": "2025-06-14T07:00:05Z",
+        "step": 6,
+        "tokens": 0,
+        "tool": "recalls_for",
+        "tool_input": {
+          "group": "body_controls",
+          "make": "FORD",
+          "model": "F-150",
+          "year": 2021
+        },
+        "tool_output": {
+          "result": [
+            {
+              "component": "VISIBILITY/WIPER",
+              "group": "body_controls",
+              "id": "R-2025-0001",
+              "make": "FORD",
+              "model": "F-150",
+              "open_date": "2025-07-15",
+              "summary": "Wiper motor may fail and reduce visibility.",
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 180
+  },
+  {
+    "at": "2025-06-14T07:00:17Z",
+    "case_id": "C-2025-0011",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "lookup_investigations",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "1 investigation(s) for the same vehicle and group",
+        "started_at": "2025-06-14T07:00:06Z",
+        "step": 7,
+        "tokens": 0,
+        "tool": "investigations_for",
+        "tool_input": {
+          "group": "body_controls",
+          "make": "FORD",
+          "model": "F-150",
+          "year": 2021
+        },
+        "tool_output": {
+          "result": [
+            {
+              "component": "VISIBILITY/WIPER",
+              "group": "body_controls",
+              "id": "I-2025-0001",
+              "make": "FORD",
+              "model": "F-150",
+              "open_date": "2025-08-20",
+              "summary": "Investigation into wiper motor failures.",
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 181
+  },
+  {
+    "at": "2025-06-14T07:00:17Z",
+    "case_id": "C-2025-0011",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "read_rulebook",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "2 targeted-test rule(s) matched the reported conditions",
+        "started_at": "2025-06-14T07:00:07Z",
+        "step": 8,
+        "tokens": 0,
+        "tool": "rulebook",
+        "tool_input": {
+          "conditions": [
+            "cold",
+            "damp"
+          ]
+        },
+        "tool_output": {
+          "result": [
+            {
+              "id": "moisture",
+              "matched_conditions": [
+                "damp"
+              ],
+              "reason": "Water ingress and condensation are the first suspects when moisture, damp or a leak is reported.",
+              "test": "Humidity and condensation test"
+            },
+            {
+              "id": "cold",
+              "matched_conditions": [
+                "cold"
+              ],
+              "reason": "Cold-soak and cold-start behaviour separates a temperature-dependent fault from a permanent one.",
+              "test": "Low-temperature cycling test"
+            }
+          ]
+        }
+      }
+    },
+    "seq": 182
+  },
+  {
+    "at": "2025-06-14T07:00:17Z",
+    "case_id": "C-2025-0011",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "propose",
+        "agent": "analysis",
+        "cost_usd": 0.000108,
+        "duration_ms": 12,
+        "reason": "The reported conditions match a targeted test rule.",
+        "started_at": "2025-06-14T07:00:08Z",
+        "step": 9,
+        "tokens": 180,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 183
+  },
+  {
+    "at": "2025-06-14T07:00:17Z",
+    "case_id": "C-2025-0011",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "verify_quotes",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "1 verified, 0 dropped",
+        "started_at": "2025-06-14T07:00:09Z",
+        "step": 10,
+        "tokens": 0,
+        "tool": "verify_quotes",
+        "tool_input": {
+          "quotes": [
+            "Wiper motor is intermittent in cold weather and then quits."
+          ]
+        },
+        "tool_output": {
+          "checked": 1,
+          "dropped": 0,
+          "verified": 1
+        }
+      }
+    },
+    "seq": 184
+  },
+  {
+    "at": "2025-06-14T07:00:17Z",
+    "case_id": "C-2025-0011",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:human_gate",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "a proposal needs a human decision (prompt p1)",
+        "started_at": "2025-06-14T07:00:11Z",
+        "step": 11,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 185
+  },
+  {
+    "at": "2025-06-14T07:00:17Z",
+    "case_id": "C-2025-0011",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "decision:approve",
+        "agent": "human",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "Quotes verified and no hard rule is broken.",
+        "started_at": "2025-06-14T07:00:13Z",
+        "step": 12,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 186
+  },
+  {
+    "at": "2025-06-14T07:00:17Z",
+    "case_id": "C-2025-0011",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:finish",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "work complete for this case (prompt p1)",
+        "started_at": "2025-06-14T07:00:14Z",
+        "step": 13,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 187
+  },
+  {
+    "at": "2025-06-14T07:00:17Z",
+    "case_id": "C-2025-0011",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "finish:decided",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "a human approved a concrete proposal",
+        "started_at": "2025-06-14T07:00:15Z",
+        "step": 14,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 188
+  },
+  {
+    "at": "2025-06-14T07:00:18Z",
+    "case_id": "C-2025-0011",
+    "issue_id": null,
+    "kind": "decision",
+    "payload": {
+      "action": "approve",
+      "actor": "simulated_engineer",
+      "status": "decided"
+    },
+    "seq": 189
+  },
+  {
+    "at": "2025-06-15T23:59:00Z",
+    "case_id": null,
+    "issue_id": null,
+    "kind": "report",
+    "payload": {
+      "run_id": "replay",
+      "week_end": "2025-06-15",
+      "week_start": "2025-06-09"
+    },
+    "seq": 190
+  },
+  {
+    "at": "2025-06-16T07:00:11Z",
+    "case_id": "C-2025-0013",
+    "issue_id": null,
+    "kind": "case",
+    "payload": {
+      "status": "decided"
+    },
+    "seq": 191
+  },
+  {
+    "at": "2025-06-16T07:00:12Z",
+    "case_id": "C-2025-0013",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:intake",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "no extraction yet: normalise the report first (prompt p1)",
+        "started_at": "2025-06-16T07:00:00Z",
+        "step": 1,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 192
+  },
+  {
+    "at": "2025-06-16T07:00:12Z",
+    "case_id": "C-2025-0013",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "extract",
+        "agent": "intake",
+        "cost_usd": 0.000108,
+        "duration_ms": 12,
+        "reason": "ELECTRICAL SYSTEM concern on TESLA MODEL Y",
+        "started_at": "2025-06-16T07:00:01Z",
+        "step": 2,
+        "tokens": 180,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 193
+  },
+  {
+    "at": "2025-06-16T07:00:12Z",
+    "case_id": "C-2025-0013",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "check_duplicates",
+        "agent": "intake",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "2 similar case(s) within the same vehicle",
+        "started_at": "2025-06-16T07:00:02Z",
+        "step": 3,
+        "tokens": 0,
+        "tool": "similar_cases",
+        "tool_input": {
+          "k": 3,
+          "make": "TESLA",
+          "model": "MODEL Y",
+          "year": 2023
+        },
+        "tool_output": {
+          "result": [
+            {
+              "excerpt": "Charging port overheats during fast charging in hot weather.",
+              "group": "ev_propulsion",
+              "id": "C-2025-0013",
+              "make": "TESLA",
+              "model": "MODEL Y",
+              "score": 1.3446,
+              "year": 2023
+            },
+            {
+              "excerpt": "Charging port overheats during fast charging in hot weather.",
+              "group": "ev_propulsion",
+              "id": "K-2022-0003",
+              "make": "TESLA",
+              "model": "MODEL Y",
+              "score": 1.3446,
+              "year": 2023
+            }
+          ]
+        }
+      }
+    },
+    "seq": 194
+  },
+  {
+    "at": "2025-06-16T07:00:12Z",
+    "case_id": "C-2025-0013",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:safety",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "safety-relevant case: build the safety proposal before any test (prompt p1)",
+        "started_at": "2025-06-16T07:00:03Z",
+        "step": 4,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 195
+  },
+  {
+    "at": "2025-06-16T07:00:12Z",
+    "case_id": "C-2025-0013",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "draft_safety_proposal",
+        "agent": "safety",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "case is flagged safety-relevant; a human sees it before any test decision is taken",
+        "started_at": "2025-06-16T07:00:04Z",
+        "step": 5,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 196
+  },
+  {
+    "at": "2025-06-16T07:00:12Z",
+    "case_id": "C-2025-0013",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:human_gate",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "a proposal needs a human decision (prompt p1)",
+        "started_at": "2025-06-16T07:00:06Z",
+        "step": 6,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 197
+  },
+  {
+    "at": "2025-06-16T07:00:12Z",
+    "case_id": "C-2025-0013",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "decision:approve",
+        "agent": "human",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "Safety flag stands; the case keeps priority for a live engineer.",
+        "started_at": "2025-06-16T07:00:08Z",
+        "step": 7,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 198
+  },
+  {
+    "at": "2025-06-16T07:00:12Z",
+    "case_id": "C-2025-0013",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:finish",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "work complete for this case (prompt p1)",
+        "started_at": "2025-06-16T07:00:09Z",
+        "step": 8,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 199
+  },
+  {
+    "at": "2025-06-16T07:00:12Z",
+    "case_id": "C-2025-0013",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "finish:decided",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "a human approved a concrete proposal",
+        "started_at": "2025-06-16T07:00:10Z",
+        "step": 9,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 200
+  },
+  {
+    "at": "2025-06-16T07:00:13Z",
+    "case_id": "C-2025-0013",
+    "issue_id": null,
+    "kind": "decision",
+    "payload": {
+      "action": "approve",
+      "actor": "simulated_engineer",
+      "status": "decided"
+    },
+    "seq": 201
+  },
+  {
+    "at": "2025-06-17T07:00:11Z",
+    "case_id": "C-2025-0014",
+    "issue_id": null,
+    "kind": "case",
+    "payload": {
+      "status": "decided"
+    },
+    "seq": 202
+  },
+  {
+    "at": "2025-06-17T07:00:12Z",
+    "case_id": "C-2025-0014",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:intake",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "no extraction yet: normalise the report first (prompt p1)",
+        "started_at": "2025-06-17T07:00:00Z",
+        "step": 1,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 203
+  },
+  {
+    "at": "2025-06-17T07:00:12Z",
+    "case_id": "C-2025-0014",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "extract",
+        "agent": "intake",
+        "cost_usd": 0.000108,
+        "duration_ms": 12,
+        "reason": "ELECTRICAL SYSTEM concern on HYUNDAI IONIQ 5",
+        "started_at": "2025-06-17T07:00:01Z",
+        "step": 2,
+        "tokens": 180,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 204
+  },
+  {
+    "at": "2025-06-17T07:00:12Z",
+    "case_id": "C-2025-0014",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "check_duplicates",
+        "agent": "intake",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "2 similar case(s) within the same vehicle",
+        "started_at": "2025-06-17T07:00:02Z",
+        "step": 3,
+        "tokens": 0,
+        "tool": "similar_cases",
+        "tool_input": {
+          "k": 3,
+          "make": "HYUNDAI",
+          "model": "IONIQ 5",
+          "year": 2023
+        },
+        "tool_output": {
+          "result": [
+            {
+              "excerpt": "Charging is slow and the charge port overheats.",
+              "group": "ev_propulsion",
+              "id": "C-2025-0014",
+              "make": "HYUNDAI",
+              "model": "IONIQ 5",
+              "score": 0.9116,
+              "year": 2023
+            },
+            {
+              "excerpt": "Charging is slow and the charge port overheats.",
+              "group": "ev_propulsion",
+              "id": "K-2022-0004",
+              "make": "HYUNDAI",
+              "model": "IONIQ 5",
+              "score": 0.9116,
+              "year": 2023
+            }
+          ]
+        }
+      }
+    },
+    "seq": 205
+  },
+  {
+    "at": "2025-06-17T07:00:12Z",
+    "case_id": "C-2025-0014",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:safety",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "safety-relevant case: build the safety proposal before any test (prompt p1)",
+        "started_at": "2025-06-17T07:00:03Z",
+        "step": 4,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 206
+  },
+  {
+    "at": "2025-06-17T07:00:12Z",
+    "case_id": "C-2025-0014",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "draft_safety_proposal",
+        "agent": "safety",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "case is flagged safety-relevant; a human sees it before any test decision is taken",
+        "started_at": "2025-06-17T07:00:04Z",
+        "step": 5,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 207
+  },
+  {
+    "at": "2025-06-17T07:00:12Z",
+    "case_id": "C-2025-0014",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:human_gate",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "a proposal needs a human decision (prompt p1)",
+        "started_at": "2025-06-17T07:00:06Z",
+        "step": 6,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 208
+  },
+  {
+    "at": "2025-06-17T07:00:12Z",
+    "case_id": "C-2025-0014",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "decision:approve",
+        "agent": "human",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "Safety flag stands; the case keeps priority for a live engineer.",
+        "started_at": "2025-06-17T07:00:08Z",
+        "step": 7,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 209
+  },
+  {
+    "at": "2025-06-17T07:00:12Z",
+    "case_id": "C-2025-0014",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:finish",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "work complete for this case (prompt p1)",
+        "started_at": "2025-06-17T07:00:09Z",
+        "step": 8,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 210
+  },
+  {
+    "at": "2025-06-17T07:00:12Z",
+    "case_id": "C-2025-0014",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "finish:decided",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "a human approved a concrete proposal",
+        "started_at": "2025-06-17T07:00:10Z",
+        "step": 9,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 211
+  },
+  {
+    "at": "2025-06-17T07:00:13Z",
+    "case_id": "C-2025-0014",
+    "issue_id": null,
+    "kind": "decision",
+    "payload": {
+      "action": "approve",
+      "actor": "simulated_engineer",
+      "status": "decided"
+    },
+    "seq": 212
+  },
+  {
+    "at": "2025-06-18T07:00:16Z",
+    "case_id": "C-2025-0015",
+    "issue_id": null,
+    "kind": "case",
+    "payload": {
+      "status": "decided"
+    },
+    "seq": 213
+  },
+  {
+    "at": "2025-06-18T07:00:17Z",
+    "case_id": "C-2025-0015",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:intake",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "no extraction yet: normalise the report first (prompt p1)",
+        "started_at": "2025-06-18T07:00:00Z",
+        "step": 1,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 214
+  },
+  {
+    "at": "2025-06-18T07:00:17Z",
+    "case_id": "C-2025-0015",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "extract",
+        "agent": "intake",
+        "cost_usd": 0.000108,
+        "duration_ms": 12,
+        "reason": "VISIBILITY/WIPER concern on FORD F-150",
+        "started_at": "2025-06-18T07:00:01Z",
+        "step": 2,
+        "tokens": 180,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 215
+  },
+  {
+    "at": "2025-06-18T07:00:17Z",
+    "case_id": "C-2025-0015",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "check_duplicates",
+        "agent": "intake",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "3 similar case(s) within the same vehicle",
+        "started_at": "2025-06-18T07:00:02Z",
+        "step": 3,
+        "tokens": 0,
+        "tool": "similar_cases",
+        "tool_input": {
+          "k": 3,
+          "make": "FORD",
+          "model": "F-150",
+          "year": 2021
+        },
+        "tool_output": {
+          "result": [
+            {
+              "excerpt": "The wiper motor stops when the cabin is cold and damp.",
+              "group": "body_controls",
+              "id": "C-2025-0006",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.4972,
+              "year": 2021
+            },
+            {
+              "excerpt": "The wiper motor stops when the cabin is cold and damp.",
+              "group": "body_controls",
+              "id": "C-2025-0010",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.4972,
+              "year": 2021
+            },
+            {
+              "excerpt": "The wiper motor stops when the cabin is cold and damp.",
+              "group": "body_controls",
+              "id": "C-2025-0015",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.4972,
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 216
+  },
+  {
+    "at": "2025-06-18T07:00:17Z",
+    "case_id": "C-2025-0015",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:analysis",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "case normalised and no proposal yet: gather evidence (prompt p1)",
+        "started_at": "2025-06-18T07:00:03Z",
+        "step": 4,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 217
+  },
+  {
+    "at": "2025-06-18T07:00:17Z",
+    "case_id": "C-2025-0015",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "search_similar_cases",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "5 similar case(s) in the knowledge base",
+        "started_at": "2025-06-18T07:00:04Z",
+        "step": 5,
+        "tokens": 0,
+        "tool": "similar_cases",
+        "tool_input": {
+          "k": 5,
+          "text": "The wiper motor stops when the cabin is cold and damp."
+        },
+        "tool_output": {
+          "result": [
+            {
+              "excerpt": "The wiper motor stops when the cabin is cold and damp.",
+              "group": "body_controls",
+              "id": "C-2025-0006",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.4972,
+              "year": 2021
+            },
+            {
+              "excerpt": "The wiper motor stops when the cabin is cold and damp.",
+              "group": "body_controls",
+              "id": "C-2025-0010",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.4972,
+              "year": 2021
+            },
+            {
+              "excerpt": "The wiper motor stops when the cabin is cold and damp.",
+              "group": "body_controls",
+              "id": "C-2025-0015",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.4972,
+              "year": 2021
+            },
+            {
+              "excerpt": "The wiper motor stops when the cabin is cold and damp.",
+              "group": "body_controls",
+              "id": "K-2021-0001",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.4972,
+              "year": 2021
+            },
+            {
+              "excerpt": "The wiper motor stops when the cabin is cold and damp, and starts again after the cabin warms up.",
+              "group": "body_controls",
+              "id": "C-2025-0001",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.1297,
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 218
+  },
+  {
+    "at": "2025-06-18T07:00:17Z",
+    "case_id": "C-2025-0015",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "lookup_recalls",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "1 recall(s) for the same vehicle and group",
+        "started_at": "2025-06-18T07:00:05Z",
+        "step": 6,
+        "tokens": 0,
+        "tool": "recalls_for",
+        "tool_input": {
+          "group": "body_controls",
+          "make": "FORD",
+          "model": "F-150",
+          "year": 2021
+        },
+        "tool_output": {
+          "result": [
+            {
+              "component": "VISIBILITY/WIPER",
+              "group": "body_controls",
+              "id": "R-2025-0001",
+              "make": "FORD",
+              "model": "F-150",
+              "open_date": "2025-07-15",
+              "summary": "Wiper motor may fail and reduce visibility.",
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 219
+  },
+  {
+    "at": "2025-06-18T07:00:17Z",
+    "case_id": "C-2025-0015",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "lookup_investigations",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "1 investigation(s) for the same vehicle and group",
+        "started_at": "2025-06-18T07:00:06Z",
+        "step": 7,
+        "tokens": 0,
+        "tool": "investigations_for",
+        "tool_input": {
+          "group": "body_controls",
+          "make": "FORD",
+          "model": "F-150",
+          "year": 2021
+        },
+        "tool_output": {
+          "result": [
+            {
+              "component": "VISIBILITY/WIPER",
+              "group": "body_controls",
+              "id": "I-2025-0001",
+              "make": "FORD",
+              "model": "F-150",
+              "open_date": "2025-08-20",
+              "summary": "Investigation into wiper motor failures.",
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 220
+  },
+  {
+    "at": "2025-06-18T07:00:17Z",
+    "case_id": "C-2025-0015",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "read_rulebook",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "2 targeted-test rule(s) matched the reported conditions",
+        "started_at": "2025-06-18T07:00:07Z",
+        "step": 8,
+        "tokens": 0,
+        "tool": "rulebook",
+        "tool_input": {
+          "conditions": [
+            "cold",
+            "damp"
+          ]
+        },
+        "tool_output": {
+          "result": [
+            {
+              "id": "moisture",
+              "matched_conditions": [
+                "damp"
+              ],
+              "reason": "Water ingress and condensation are the first suspects when moisture, damp or a leak is reported.",
+              "test": "Humidity and condensation test"
+            },
+            {
+              "id": "cold",
+              "matched_conditions": [
+                "cold"
+              ],
+              "reason": "Cold-soak and cold-start behaviour separates a temperature-dependent fault from a permanent one.",
+              "test": "Low-temperature cycling test"
+            }
+          ]
+        }
+      }
+    },
+    "seq": 221
+  },
+  {
+    "at": "2025-06-18T07:00:17Z",
+    "case_id": "C-2025-0015",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "propose",
+        "agent": "analysis",
+        "cost_usd": 0.000108,
+        "duration_ms": 12,
+        "reason": "The reported conditions match a targeted test rule.",
+        "started_at": "2025-06-18T07:00:08Z",
+        "step": 9,
+        "tokens": 180,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 222
+  },
+  {
+    "at": "2025-06-18T07:00:17Z",
+    "case_id": "C-2025-0015",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "verify_quotes",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "1 verified, 0 dropped",
+        "started_at": "2025-06-18T07:00:09Z",
+        "step": 10,
+        "tokens": 0,
+        "tool": "verify_quotes",
+        "tool_input": {
+          "quotes": [
+            "The wiper motor stops when the cabin is cold and damp."
+          ]
+        },
+        "tool_output": {
+          "checked": 1,
+          "dropped": 0,
+          "verified": 1
+        }
+      }
+    },
+    "seq": 223
+  },
+  {
+    "at": "2025-06-18T07:00:17Z",
+    "case_id": "C-2025-0015",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:human_gate",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "a proposal needs a human decision (prompt p1)",
+        "started_at": "2025-06-18T07:00:11Z",
+        "step": 11,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 224
+  },
+  {
+    "at": "2025-06-18T07:00:17Z",
+    "case_id": "C-2025-0015",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "decision:approve",
+        "agent": "human",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "Quotes verified and no hard rule is broken.",
+        "started_at": "2025-06-18T07:00:13Z",
+        "step": 12,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 225
+  },
+  {
+    "at": "2025-06-18T07:00:17Z",
+    "case_id": "C-2025-0015",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:finish",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "work complete for this case (prompt p1)",
+        "started_at": "2025-06-18T07:00:14Z",
+        "step": 13,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 226
+  },
+  {
+    "at": "2025-06-18T07:00:17Z",
+    "case_id": "C-2025-0015",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "finish:decided",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "a human approved a concrete proposal",
+        "started_at": "2025-06-18T07:00:15Z",
+        "step": 14,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 227
+  },
+  {
+    "at": "2025-06-18T07:00:18Z",
+    "case_id": "C-2025-0015",
+    "issue_id": null,
+    "kind": "decision",
+    "payload": {
+      "action": "approve",
+      "actor": "simulated_engineer",
+      "status": "decided"
+    },
+    "seq": 228
+  },
+  {
+    "at": "2025-06-19T07:00:16Z",
+    "case_id": "C-2025-0016",
+    "issue_id": null,
+    "kind": "case",
+    "payload": {
+      "status": "decided"
+    },
+    "seq": 229
+  },
+  {
+    "at": "2025-06-19T07:00:17Z",
+    "case_id": "C-2025-0016",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:intake",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "no extraction yet: normalise the report first (prompt p1)",
+        "started_at": "2025-06-19T07:00:00Z",
+        "step": 1,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 230
+  },
+  {
+    "at": "2025-06-19T07:00:17Z",
+    "case_id": "C-2025-0016",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "extract",
+        "agent": "intake",
+        "cost_usd": 0.000108,
+        "duration_ms": 12,
+        "reason": "VISIBILITY/WIPER concern on FORD F-150",
+        "started_at": "2025-06-19T07:00:01Z",
+        "step": 2,
+        "tokens": 180,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 231
+  },
+  {
+    "at": "2025-06-19T07:00:17Z",
+    "case_id": "C-2025-0016",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "check_duplicates",
+        "agent": "intake",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "3 similar case(s) within the same vehicle",
+        "started_at": "2025-06-19T07:00:02Z",
+        "step": 3,
+        "tokens": 0,
+        "tool": "similar_cases",
+        "tool_input": {
+          "k": 3,
+          "make": "FORD",
+          "model": "F-150",
+          "year": 2021
+        },
+        "tool_output": {
+          "result": [
+            {
+              "excerpt": "Wiper motor is intermittent in cold weather and then quits.",
+              "group": "body_controls",
+              "id": "C-2025-0002",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.629,
+              "year": 2021
+            },
+            {
+              "excerpt": "Wiper motor is intermittent in cold weather and then quits.",
+              "group": "body_controls",
+              "id": "C-2025-0007",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.629,
+              "year": 2021
+            },
+            {
+              "excerpt": "Wiper motor is intermittent in cold weather and then quits.",
+              "group": "body_controls",
+              "id": "C-2025-0011",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.629,
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 232
+  },
+  {
+    "at": "2025-06-19T07:00:17Z",
+    "case_id": "C-2025-0016",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:analysis",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "case normalised and no proposal yet: gather evidence (prompt p1)",
+        "started_at": "2025-06-19T07:00:03Z",
+        "step": 4,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 233
+  },
+  {
+    "at": "2025-06-19T07:00:17Z",
+    "case_id": "C-2025-0016",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "search_similar_cases",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "5 similar case(s) in the knowledge base",
+        "started_at": "2025-06-19T07:00:04Z",
+        "step": 5,
+        "tokens": 0,
+        "tool": "similar_cases",
+        "tool_input": {
+          "k": 5,
+          "text": "Wiper motor is intermittent in cold weather and then quits."
+        },
+        "tool_output": {
+          "result": [
+            {
+              "excerpt": "Wiper motor is intermittent in cold weather and then quits.",
+              "group": "body_controls",
+              "id": "C-2025-0002",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.629,
+              "year": 2021
+            },
+            {
+              "excerpt": "Wiper motor is intermittent in cold weather and then quits.",
+              "group": "body_controls",
+              "id": "C-2025-0007",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.629,
+              "year": 2021
+            },
+            {
+              "excerpt": "Wiper motor is intermittent in cold weather and then quits.",
+              "group": "body_controls",
+              "id": "C-2025-0011",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.629,
+              "year": 2021
+            },
+            {
+              "excerpt": "Wiper motor is intermittent in cold weather and then quits.",
+              "group": "body_controls",
+              "id": "C-2025-0016",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.629,
+              "year": 2021
+            },
+            {
+              "excerpt": "Wiper motor is intermittent in cold weather and then quits.",
+              "group": "body_controls",
+              "id": "K-2021-0002",
+              "make": "FORD",
+              "model": "F-150",
+              "score": 3.629,
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 234
+  },
+  {
+    "at": "2025-06-19T07:00:17Z",
+    "case_id": "C-2025-0016",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "lookup_recalls",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "1 recall(s) for the same vehicle and group",
+        "started_at": "2025-06-19T07:00:05Z",
+        "step": 6,
+        "tokens": 0,
+        "tool": "recalls_for",
+        "tool_input": {
+          "group": "body_controls",
+          "make": "FORD",
+          "model": "F-150",
+          "year": 2021
+        },
+        "tool_output": {
+          "result": [
+            {
+              "component": "VISIBILITY/WIPER",
+              "group": "body_controls",
+              "id": "R-2025-0001",
+              "make": "FORD",
+              "model": "F-150",
+              "open_date": "2025-07-15",
+              "summary": "Wiper motor may fail and reduce visibility.",
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 235
+  },
+  {
+    "at": "2025-06-19T07:00:17Z",
+    "case_id": "C-2025-0016",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "lookup_investigations",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "1 investigation(s) for the same vehicle and group",
+        "started_at": "2025-06-19T07:00:06Z",
+        "step": 7,
+        "tokens": 0,
+        "tool": "investigations_for",
+        "tool_input": {
+          "group": "body_controls",
+          "make": "FORD",
+          "model": "F-150",
+          "year": 2021
+        },
+        "tool_output": {
+          "result": [
+            {
+              "component": "VISIBILITY/WIPER",
+              "group": "body_controls",
+              "id": "I-2025-0001",
+              "make": "FORD",
+              "model": "F-150",
+              "open_date": "2025-08-20",
+              "summary": "Investigation into wiper motor failures.",
+              "year": 2021
+            }
+          ]
+        }
+      }
+    },
+    "seq": 236
+  },
+  {
+    "at": "2025-06-19T07:00:17Z",
+    "case_id": "C-2025-0016",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "read_rulebook",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "2 targeted-test rule(s) matched the reported conditions",
+        "started_at": "2025-06-19T07:00:07Z",
+        "step": 8,
+        "tokens": 0,
+        "tool": "rulebook",
+        "tool_input": {
+          "conditions": [
+            "cold",
+            "damp"
+          ]
+        },
+        "tool_output": {
+          "result": [
+            {
+              "id": "moisture",
+              "matched_conditions": [
+                "damp"
+              ],
+              "reason": "Water ingress and condensation are the first suspects when moisture, damp or a leak is reported.",
+              "test": "Humidity and condensation test"
+            },
+            {
+              "id": "cold",
+              "matched_conditions": [
+                "cold"
+              ],
+              "reason": "Cold-soak and cold-start behaviour separates a temperature-dependent fault from a permanent one.",
+              "test": "Low-temperature cycling test"
+            }
+          ]
+        }
+      }
+    },
+    "seq": 237
+  },
+  {
+    "at": "2025-06-19T07:00:17Z",
+    "case_id": "C-2025-0016",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "propose",
+        "agent": "analysis",
+        "cost_usd": 0.000108,
+        "duration_ms": 12,
+        "reason": "The reported conditions match a targeted test rule.",
+        "started_at": "2025-06-19T07:00:08Z",
+        "step": 9,
+        "tokens": 180,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 238
+  },
+  {
+    "at": "2025-06-19T07:00:17Z",
+    "case_id": "C-2025-0016",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "verify_quotes",
+        "agent": "analysis",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "1 verified, 0 dropped",
+        "started_at": "2025-06-19T07:00:09Z",
+        "step": 10,
+        "tokens": 0,
+        "tool": "verify_quotes",
+        "tool_input": {
+          "quotes": [
+            "Wiper motor is intermittent in cold weather and then quits."
+          ]
+        },
+        "tool_output": {
+          "checked": 1,
+          "dropped": 0,
+          "verified": 1
+        }
+      }
+    },
+    "seq": 239
+  },
+  {
+    "at": "2025-06-19T07:00:17Z",
+    "case_id": "C-2025-0016",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:human_gate",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "a proposal needs a human decision (prompt p1)",
+        "started_at": "2025-06-19T07:00:11Z",
+        "step": 11,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 240
+  },
+  {
+    "at": "2025-06-19T07:00:17Z",
+    "case_id": "C-2025-0016",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "decision:approve",
+        "agent": "human",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "Quotes verified and no hard rule is broken.",
+        "started_at": "2025-06-19T07:00:13Z",
+        "step": 12,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 241
+  },
+  {
+    "at": "2025-06-19T07:00:17Z",
+    "case_id": "C-2025-0016",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "route:finish",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "work complete for this case (prompt p1)",
+        "started_at": "2025-06-19T07:00:14Z",
+        "step": 13,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 242
+  },
+  {
+    "at": "2025-06-19T07:00:17Z",
+    "case_id": "C-2025-0016",
+    "issue_id": null,
+    "kind": "trace",
+    "payload": {
+      "step": {
+        "action": "finish:decided",
+        "agent": "supervisor",
+        "cost_usd": 0.0,
+        "duration_ms": 0,
+        "reason": "a human approved a concrete proposal",
+        "started_at": "2025-06-19T07:00:15Z",
+        "step": 14,
+        "tokens": 0,
+        "tool": null,
+        "tool_input": null,
+        "tool_output": null
+      }
+    },
+    "seq": 243
+  },
+  {
+    "at": "2025-06-19T07:00:18Z",
+    "case_id": "C-2025-0016",
+    "issue_id": null,
+    "kind": "decision",
+    "payload": {
+      "action": "approve",
+      "actor": "simulated_engineer",
+      "status": "decided"
+    },
+    "seq": 244
+  },
+  {
+    "at": "2025-06-22T23:59:00Z",
+    "case_id": null,
+    "issue_id": null,
+    "kind": "report",
+    "payload": {
+      "run_id": "replay",
+      "week_end": "2025-06-22",
+      "week_start": "2025-06-16"
+    },
+    "seq": 245
+  }
+]

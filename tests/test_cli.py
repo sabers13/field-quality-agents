@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from pathlib import Path
+
 import pytest
 
 from field_quality_agents.cli import build_parser, main
@@ -24,11 +26,39 @@ def test_run_rejects_live_mode() -> None:
         build_parser().parse_args(["run", "--mode", "live"])
 
 
-def test_stub_exits_nonzero_with_lane(capsys: pytest.CaptureFixture[str]) -> None:
-    assert main(["issues"]) == 2
+def test_issues_and_report_explain_a_missing_run(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    assert main(["issues", "--results-dir", str(tmp_path)]) == 1
+    assert main(["report", "--results-dir", str(tmp_path)]) == 1
     captured = capsys.readouterr()
-    assert "Q8" in captured.err
+    assert "no recorded run" in captured.err
     assert captured.out == ""
+
+
+def test_run_parser_accepts_fixture_inputs() -> None:
+    args = build_parser().parse_args(
+        [
+            "run",
+            "--mode",
+            "replay",
+            "--fixture-sql",
+            "fixture.sql",
+            "--recordings-dir",
+            "recordings",
+            "--run-id",
+            "demo",
+        ]
+    )
+    assert args.fixture_sql == "fixture.sql"
+    assert args.recordings_dir == "recordings"
+    assert args.run_id == "demo"
+
+
+def test_serve_accepts_live_mode() -> None:
+    args = build_parser().parse_args(["serve", "--mode", "live", "--live-limit", "3"])
+    assert args.mode == "live"
+    assert args.live_limit == 3
 
 
 def test_baseline_parser_accepts_paths() -> None:

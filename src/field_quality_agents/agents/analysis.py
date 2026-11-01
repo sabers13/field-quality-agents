@@ -161,7 +161,8 @@ def make_analysis_node(model: AgentModel, tools: ToolRegistry) -> Node:
                         "recalls": tool_output(recalls),
                         "investigations": tool_output(investigations),
                         "rulebook": tool_output(rules),
-                    }
+                    },
+                    sort_keys=True,
                 ),
             },
         )
