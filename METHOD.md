@@ -185,7 +185,9 @@ reported with confidence intervals where the metric supports one.
 
 - **Component group.** Macro-F1 against the NHTSA component coding, with
   `unclear` counted as wrong, plus how much of the set got a group at all
-  (coverage). The interval is a bootstrap over cases.
+  (coverage). The interval is a bootstrap over cases. The coding is an
+  evaluation target, so it never enters a model request; a run whose recorded
+  requests did carry it reports no group number instead of a copy.
 - **Safety.** Recall and precision against the NHTSA crash, fire, injury and
   death fields, with Wilson intervals. This is reported as behaviour; the flag
   is not tuned to the replay set.

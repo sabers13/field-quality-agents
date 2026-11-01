@@ -53,8 +53,9 @@ no model grades a model. The metrics files carry the confidence intervals and
 the method behind them.
 
 Before values are from `results/baseline/metrics.json`; after values are from
-`results/runs/replay/metrics.json`. An em dash means the linear pipeline has no
-equivalent measurement.
+`results/runs/replay/metrics.json`. An em dash means the row has no number:
+either the linear pipeline has no equivalent measurement, or the agentic run
+did not produce a valid one (see the note below the table).
 
 | Metric | Before: linear pipeline | After: agentic desk |
 |---|---:|---:|
