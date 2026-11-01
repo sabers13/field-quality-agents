@@ -1,6 +1,6 @@
-/** The recorded run bundled by `fqa export`, or the Q6 fixtures in dev. */
+/** The recorded run bundled by `fqa export`. */
 
-import { fixtureBundle, type StaticBundle } from "./fixtures";
+import type { StaticBundle } from "./fixtures";
 
 declare global {
   interface Window {
@@ -21,7 +21,15 @@ export function bundledManifest(): StaticBundle["manifest"] | null {
   return bundledData()?.manifest ?? null;
 }
 
-/** Static mode reads the exported run when present, else the development fixtures. */
-export function staticBundle(): StaticBundle {
-  return bundledData() ?? fixtureBundle;
+/**
+ * Static mode reads only the exported run.
+ *
+ * There is deliberately no fixture fallback: the development fixtures carry
+ * invented numbers, and PLAN §2.4 requires every dashboard number to come from
+ * `results/`. A build with no bundle shows that the export is missing instead
+ * of quietly presenting fake data. The fixtures stay importable for the unit
+ * tests, which never ship.
+ */
+export function staticBundle(): StaticBundle | null {
+  return bundledData();
 }

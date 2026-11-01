@@ -2,7 +2,10 @@
 
 Status: **complete.** 600 cases were played through the agentic desk in record
 mode as run `live-2025`, and the whole run replays byte-identically from the
-committed recordings with no key and no network.
+committed recordings with no key and no network. Q13 re-derived the replay from
+the same recordings after the review fixes; the fixtures under
+`results/runs/live-2025/` are those refreshed content files, and its
+`manifest.json` and `events.json` stay as the record run wrote them.
 
 ## What the run is
 
@@ -24,9 +27,9 @@ No key is printed, logged or recorded. The key is read only by
 |---|---:|
 | cases | 600 |
 | model turns recorded | 746 (600 intake + 146 analysis) |
-| counted agent steps (budget counter) | 2,542 |
-| trace records | 6,669 |
-| steps per case | 4.24 counted; median trace 10 records, max 16 |
+| counted agent steps (budget counter) | 2,556 |
+| trace records | 6,683 |
+| steps per case | 4.26 counted; median trace 10 records, max 16 |
 | budget hits | 0 |
 | issues opened | 5 |
 | weekly reports | 53 (52 in `reports.json`, the latest in `report.json`) |
@@ -37,6 +40,13 @@ No key is printed, logged or recorded. The key is read only by
 | cost per 1,000 cases | USD 1.3317 |
 | wall clock | 2 h 36 min across two attempts (16 min before the pause, 2 h 20 min after) |
 | model latency | p50 14.8 s, p95 29.5 s |
+
+The step counters are the replay's. The record run counted 2,542 steps and
+6,669 trace records on the same turns; Q13 added a verification step whenever a
+quote is dropped, which accounts for the 14-step difference. `started_at` and
+`completed_at` in `manifest.json` are the **simulated run clock** (the case
+dates, 2025-01-01 to 2025-12-30), not the wall clock; the real run was recorded
+on 2026-11-01.
 
 PLAN §9 expected USD 1–4; the run cost USD 0.80. The figure is the sum of the
 gateway's own list cost in each recorded turn, so it includes the smoke run's
@@ -65,35 +75,13 @@ The smoke traces then looked sane: intake extraction, duplicate search, a
 safety proposal or an evidence-backed analysis proposal, a human decision and
 a finish step per case.
 
-## Deviations found by the live run (and fixed before the main run)
+## Deviations
 
-1. **Output allowance and reasoning effort.** With `max_tokens = 1024` (the
-   PLAN minimum) the model used all 1024 tokens as reasoning and returned an
-   empty answer (`finish_reason: length`). The request now asks for 8192
-   tokens and pins `reasoning_effort = "low"` (both verified against the
-   endpoint on 2026-11-01). PLAN §3 says "at least 1,024", so this stays
-   inside the method. `config/budget.toml` carries the values.
-2. **Intake blocked almost every case on mileage/date.** The model listed
-   `mileage` and/or `date` as missing information for 19 of 20 smoke cases,
-   so those cases stopped at intake and never reached analysis; `date` is
-   always known from the received date. Intake now treats only `component`
-   and `symptom` as blocking and records the rest in the trace as
-   `note_missing_info` (540 cases took that path).
-3. **A 2xx answer with no content crashed the whole run.** Intake and
-   analysis now treat `BadAnswerError` like unreadable output: the case goes
-   to the engineer instead of aborting the batch. In the main run there were
-   no unreadable answers.
-4. **A policy stop exits cleanly.** `fqa run` catches `PolicyStopError`,
-   prints its reason, and exits 3 after the error has written
-   `reports/STOP.md`. No policy stop occurred.
-5. **Reproducibility tooling.** `make all` now exports the `replay` run
-   explicitly and exports only that run, so the bundled dashboard data does
-   not depend on which record-mode runs sit beside it. It ends with
-   `scripts/results_manifest.py write`, which hashes `results/baseline/`,
-   `results/runs/replay/` and `dist/field-quality-agents/` into
-   `results/MANIFEST.sha256`. The record-mode run is outside that manifest
-   because `make all` cannot create it offline; it is checked by replaying the
-   same recordings under run id `replay` and comparing every content file.
+The deviations this run introduced, and the ones Q13 added while fixing the
+review, are listed with their reasons in `reports/DEVIATIONS.md`. The live-run
+ones are the output allowance and reasoning effort, the intake mileage/date
+gate, `BadAnswerError` handling, the policy-stop exit, and the reproducibility
+tooling described under “Replay check” below.
 
 ## Replay check
 
@@ -103,10 +91,12 @@ a finish step per case.
    `HTTPS_PROXY`/`HTTP_PROXY` pointed at a closed port; 140 s.
 2. The record-mode directory was moved aside, `results/` was deleted, and
    `make all` ran again under the same no-key/no-network conditions.
-3. `results/MANIFEST.sha256` was byte-identical. The committed manifest hashes
-   628 files (baseline, the replay run and the dashboard data); this session's
-   check counted 644 because the git-ignored `dist/` still held 16 leftover e2e
-   fixture case files, which a clean `make all` does not write.
+3. `results/MANIFEST.sha256` was byte-identical. The committed manifest now
+   hashes 631 files: `results/baseline/`, the replay run and the dashboard
+   data. An earlier check counted 644 because the git-ignored `dist/` still
+   held 16 leftover e2e fixture case files; `make all` no longer writes into a
+   stale export and `make release-check` now runs
+   `scripts/results_manifest.py check`, so that cannot pass unnoticed again.
 4. Every content file of `results/runs/live-2025/` was byte-identical to the
    replayed `results/runs/replay/`. Only `manifest.json` (`mode`, `run_id`)
    and `events.json` (the run id in report events) differ by design.
@@ -114,29 +104,49 @@ a finish step per case.
 
 ## Headline metrics, same 600 cases
 
-From `results/runs/live-2025/metrics.json`. Intervals are 95%; the component
-metric bootstraps 2,000 resamples with seed 20261031.
+From `results/runs/replay/metrics.json` (identical content to
+`results/runs/live-2025/metrics.json`). Intervals are 95%; the component metric
+bootstraps 2,000 resamples with seed 20261031.
 
 | metric | before (linear) | after (agentic) |
 |---|---:|---:|
-| component group macro-F1 | 0.7340 [0.6870, 0.7691] | **0.9898 [0.9745, 0.9997]** |
-| group coverage | 1.0000 | 1.0000 |
-| safety precision | 0.4482 [0.3928, 0.5048] | 0.3377 [0.2960, 0.3820] |
-| safety recall | 0.8590 [0.7957, 0.9050] | **1.0000 [0.9760, 1.0000]** |
+| component group macro-F1 | 0.7340 [0.6870, 0.7691] | — (withheld) |
+| group coverage | 1.0000 | — (withheld) |
+| safety precision | 0.4482 [0.3928, 0.5048] | — (withheld) |
+| safety recall | 0.8590 [0.7957, 0.9050] | — (withheld) |
 | targeted load test share | not offered | 0.4198 [0.3388, 0.5055] (55 of 131) |
-| targeted test with a verified quote | — | 1.0000 (55 of 55) |
-| quote grounding | — | 1.0000 [0.9946, 1.0000] (709 quotes) |
-| citation validity | — | 1.0000 [0.9949, 1.0000] (751 citations) |
+| targeted test with a verified condition quote | — | 0.5636 [0.4327, 0.6863] (31 of 55) |
+| quote grounding | — | 0.9064 [0.8972, 0.9149] (4,166 proposed, 27 dropped) |
+| citation validity | — | 1.0000 [0.9948, 1.0000] (736 citations) |
 | recall link match | — | 0.1667 [0.0301, 0.5635] (1 of 6) |
 | issue precision | — | 0.40 (2 of 5) |
 | issue base rate | — | 0.20 |
 | issue median lead time | — | 65 days |
 | human touches per case | 1.0 | 1.0 |
 | decided without edits | — | 1.0000 |
-| steps per case | 4 (fixed model) | 4.24 |
+| steps per case | 4 (fixed model) | 4.26 |
 | budget hits | 0 | 0 |
 | cost per 1,000 cases | USD 0.00 | USD 1.33 |
 | latency p50 / p95 | — | 14.8 s / 29.5 s |
+
+**Why four rows are withheld.** The recorded requests carried the component
+group and the NHTSA safety flag, so the model could copy them (review B1 and
+B2). Those two columns are PLAN §7's evaluation targets; the desk now removes
+them from every request and a record run cannot send them
+(`--legacy-recorded-input` is replay-only). The recordings cannot reveal what a
+desk without the labels would have answered, so the group and safety rows are
+left blank instead of publishing a copy of the answer key. The final live run
+on unseen reports measures them. Everything above the evidence rows is computed
+from the run's own records and is unaffected.
+
+**Quote grounding counts what the model proposed, not the survivors.** The
+metric re-checks every clue the desk kept against its narrative and adds the
+quotes a verification step dropped, so a rejected quote stays in the
+denominator (review S1). The stricter span rule — at least two words or an
+identifier, matched on word boundaries — is why the share is no longer 1.0 and
+why a few short citations left the proposals (review S6). The targeted-test
+share now requires the quoted span to share a condition word with the test
+(review S2), which is why it falls from 55 of 55 to 31 of 55.
 
 Proposal mix: 456 safety priority, 76 standard test, 55 targeted load test,
 13 information requests. The 13 information requests were approved as
@@ -154,19 +164,38 @@ The five issues the fleet agent opened:
 
 ## What did not go well
 
-- **Safety over-flagging.** The intake model marked 462 of 600 cases
+- **Safety over-flagging.** The recorded intake model marked 462 of 600 cases
   safety-relevant (77%), against 156 cases in the NHTSA crash/fire/injury
-  fields. Recall is perfect but precision falls from 0.45 to 0.34, and only
-  146 cases reach the analysis agent because safety cases go to a human
-  first. This is reported as behaviour, not tuned after seeing the replay
-  set. A later prompt revision should separate "mentions a crash risk" from
-  "the report is safety-relevant".
+  fields. Part of that is the desk's own judgement and part was the recorded
+  pipeline ORing NHTSA's flag into the prediction; the label is now out of the
+  request and out of the prediction, so the final live run measures the model's
+  own flag. Only 146 cases reached the analysis agent because safety-flagged
+  cases go to a human first. A later prompt revision should separate "mentions
+  a crash risk" from "the report is safety-relevant".
+- **Quote spans were loose.** The analysis agent suggested 709 quotes and every
+  one was accepted; the stricter rule now also checks intake clues, rejects a
+  single ordinary word and requires word boundaries. On the same recorded
+  answers the desk proposes 4,166 quotes and drops 27, so the grounding share
+  is 0.9064 rather than 1.0.
 - **Recall linking is thin.** Only 6 recalls were linked across the five
   issues, and 1 of the 6 matched on make, model, year and group. The knowledge
   base rarely has a recall for the exact vehicle/group pair.
 - **The batch engineer approves everything.** All 600 decisions were
   approvals, so "decided without edits" is 1.0 by construction; it measures
   the simulated engineer's rule, not a person's judgement.
+
+## Q13 fix-up on the same recordings
+
+Q13 fixed the review blockers without a model call. The desk's request payload
+no longer carries PLAN §7's evaluation targets, intake verifies its own quotes,
+and the evidence metrics count dropped quotes. The committed recordings were
+made with the old payload, so `make run-replay` replays them with
+`--legacy-recorded-input`; `manifest.json` records
+`model_input: legacy-evaluation-labels` and `metrics.json` records
+`evaluation_labels_in_model_input: true`. That flag is what withholds the group
+and safety rows. `make all` and `make release-check` are green, and
+`results/MANIFEST.sha256` re-hashes the reproducible results. The item list is
+in `reports/lanes/Q13.md`; the deviations are in `reports/DEVIATIONS.md`.
 
 ## Artifacts
 

@@ -54,9 +54,11 @@ dashboard and the documentation.
   the results manifest was byte-identical, and every content file of the
   recorded run matched its replay. Details in `reports/RUN.md`.
 - Headline metrics, both pipelines, in `results/runs/replay/metrics.json`:
-  component macro-F1 0.7340 before and 0.9898 after; safety recall 0.8590 and
-  1.0000; issue precision 0.4000 against a 0.2000 base rate; 709 verified
-  quotes and 751 valid citations.
+  component macro-F1 0.7340 before; issue precision 0.4000 against a 0.2000
+  base rate; targeted load test share 0.4198; 0.9064 of 4,166 proposed quotes
+  grounded and 736 valid citations. The agentic component and safety rows are
+  withheld: the recorded requests carried those NHTSA labels, so the copy is
+  not a measurement (see "Fixed after the independent review").
 
 ### Changed
 
@@ -74,11 +76,39 @@ Changes made after the first live attempts:
 - `make all` exports one explicit run and writes a results manifest, so the
   reproducible output does not depend on which record-mode runs sit beside it.
 
+### Fixed after the independent review
+
+`reports/REVIEW.md` (Q12) found one copy of the answer key and several smaller
+defects. The fix-up (Q13) changed:
+
+- The component group and the safety flag are PLAN §7 evaluation targets, so
+  they no longer travel in a model request. A record run cannot send them; the
+  frozen Q9 recordings replay with an explicit legacy flag, and the recorded
+  run's group and safety metrics are withheld rather than published.
+  `--legacy-recorded-input` is refused outside replay mode.
+- Intake verifies its own clues before keeping them, so a safety or
+  information-request case can no longer persist an unchecked quote. A failing
+  quote is dropped, as PLAN §4 requires.
+- A quote needs a meaningful span: at least two words, or an identifier with a
+  digit, matched on word boundaries. Quote grounding counts dropped quotes in
+  the denominator.
+- The targeted-test metric requires the verified quote to share a condition
+  word with the test.
+- `make release-check` runs the results-manifest check, so a stale or polluted
+  `results/MANIFEST.sha256` fails the release gate.
+- `reports/DEVIATIONS.md` records every deviation from the frozen method.
+- The PII screen's scope is stated in `data/STATS.md` and the README: names in
+  narratives are not screened (open captain decision, review B4).
+- Static mode shows an error instead of invented fixture numbers when no
+  exported run is bundled.
+
 ### Known limits
 
-- Safety is over-flagged: 462 reports were flagged against 156 in the NHTSA
-  crash, fire, injury or death fields. Recall is 1.0000, precision 0.3377, and
-  only 146 reports reach the analysis agent.
+- Safety was over-flagged in the recorded run: 462 reports were flagged against
+  156 in the NHTSA crash, fire, injury or death fields, and only 146 reports
+  reach the analysis agent. The recorded pipeline ORed NHTSA's flag into the
+  prediction; the label is now out of the request and the prediction, so the
+  final live run measures the model's own flag.
 - Recall linking is thin: 0.1667 of linked recalls match make, model, model
   year and component group.
 - The simulated engineer approved every proposal, so "decided without edits" is
@@ -87,3 +117,5 @@ Changes made after the first live attempts:
 - The vehicle data is public NHTSA data standing in for supplier returns, and
   the rulebook under `config/rulebook.toml` is an example, not a service
   manual.
+- Narrative signatures can contain personal names; the PII screen does not
+  cover them and the captain has not yet decided whether to rebuild the set.

@@ -259,7 +259,7 @@ export function App() {
             <p className="fixture-banner" role="note">
               {bundled
                 ? `Bundled run ${bundled.run_id}: ${bundled.counts.cases} cases, ${bundled.counts.issues} issues, generated ${bundled.generated_at.slice(0, 10)}. Read-only, no network.`
-                : "Bundled fixture data for the Q6 dashboard. Run make all to build the recorded run export."}
+                : "No exported run is bundled. Run make all to build dist/field-quality-agents, or use live mode."}
             </p>
           ) : null}
 

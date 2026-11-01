@@ -63,6 +63,14 @@ def _row(
     )
 
 
+def _note_if_missing(note: str, after: MetricValue) -> str:
+    """Say why a row is blank instead of implying the agentic side scored zero."""
+
+    if after is None:
+        return "withheld: the recorded requests carried this NHTSA label"
+    return note
+
+
 def compare(before: Metrics, after: Metrics) -> Comparison:
     """Build every PLAN §7 comparison row in a fixed order."""
 
@@ -72,28 +80,30 @@ def compare(before: Metrics, after: Metrics) -> Comparison:
             "Component group macro-F1",
             before.group_macro_f1,
             after.group_macro_f1,
-            note="higher is better; unclear counts as wrong",
+            note=_note_if_missing(
+                "higher is better; unclear counts as wrong", after.group_macro_f1
+            ),
         ),
         _row(
             "group_coverage",
             "Component group coverage",
             before.group_coverage,
             after.group_coverage,
-            note="higher is better",
+            note=_note_if_missing("higher is better", after.group_coverage),
         ),
         _row(
             "safety_precision",
             "Safety precision",
             before.safety_precision,
             after.safety_precision,
-            note="higher is better",
+            note=_note_if_missing("higher is better", after.safety_precision),
         ),
         _row(
             "safety_recall",
             "Safety recall",
             before.safety_recall,
             after.safety_recall,
-            note="higher is better",
+            note=_note_if_missing("higher is better", after.safety_recall),
         ),
         _row(
             "quote_grounding_rate",

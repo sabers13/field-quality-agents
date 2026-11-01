@@ -189,13 +189,19 @@ reported with confidence intervals where the metric supports one.
 - **Safety.** Recall and precision against the NHTSA crash, fire, injury and
   death fields, with Wilson intervals. This is reported as behaviour; the flag
   is not tuned to the replay set.
-- **Evidence.** Quote grounding is the share of quotes that are found verbatim
-  in the cited source. Citation validity is the share of cited case, recall and
-  investigation ids that exist and whose quoted span is found. A failing quote
-  is dropped before the proposal is scored.
+- **Evidence.** Quote grounding is the share of the quotes the desk proposed
+  that are found verbatim in the source. The denominator is everything the
+  model proposed: a quote that fails verification is dropped from the proposal
+  and still counted against the share. A span must be at least two words, or an
+  identifier with a digit, and must fall on word boundaries, so a single
+  ordinary word cannot count as evidence. Citation validity is the share of
+  cited case, recall and investigation ids that exist and whose quoted span is
+  found.
 - **Test decision.** The share of cases routed to a targeted load test, and how
-  many of those carry a condition backed by a verified quote. There is no ground
-  truth for "the right test", so this is reported as behaviour.
+  many of those carry a condition backed by a verified quote. The quoted span
+  must share a condition word with the test, so a quote about a different clue
+  does not ground it. There is no ground truth for "the right test", so this is
+  reported as behaviour.
 - **Issue detection.** An opened issue is early when an NHTSA investigation or
   recall with the same make, model, model year and component group follows
   within a year. The project reports precision, median lead time, and the same

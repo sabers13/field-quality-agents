@@ -1,10 +1,16 @@
 import { describe, expect, it } from "vitest";
 
+import { fixtureBundle } from "./fixtures";
 import { StaticDataSource } from "./static";
 import { NotFoundError } from "./source";
 
 describe("static data source", () => {
-  const source = new StaticDataSource();
+  const source = new StaticDataSource(fixtureBundle);
+
+  it("refuses to serve invented numbers when no export is bundled", async () => {
+    const empty = new StaticDataSource(null);
+    await expect(empty.getCommandCentre()).rejects.toThrow("No exported run is bundled");
+  });
 
   it("serves the command centre fixture", async () => {
     const data = await source.getCommandCentre();

@@ -79,6 +79,12 @@ def test_run_writes_every_documented_artifact(tmp_path: Path) -> None:
     assert manifest["status"] == "complete"
     assert manifest["case_count"] == 16
     assert manifest["record_digest"]
+    # A run that keeps PLAN §7's labels out of the request says so, and its
+    # group and safety metrics are real measurements.
+    assert manifest["model_input"] == "clean"
+    metrics = read_json(directory / "metrics.json")
+    assert metrics["after"]["evaluation_labels_in_model_input"] is False
+    assert metrics["after"]["group_macro_f1"] is not None
     for name in (
         "cases.json",
         "traces.json",

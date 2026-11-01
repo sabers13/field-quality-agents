@@ -89,6 +89,14 @@ def build_parser() -> argparse.ArgumentParser:
         default=None,
         help="run only the first N cases in received-date order (Q9 smoke run)",
     )
+    run.add_argument(
+        "--legacy-recorded-input",
+        action="store_true",
+        help=(
+            "replay the frozen Q9 recordings with their historical request payload "
+            "(evaluation labels included); replay mode only"
+        ),
+    )
     run.set_defaults(handler="run")
 
     issues = sub.add_parser("issues", help="inspect the issues a run opened (Q8)")
@@ -262,6 +270,13 @@ def _run_pipeline(args: argparse.Namespace) -> int:
     recordings, data_dir, db_path, fixture_sql = _resolve_run_inputs(args)
     run_id = args.run_id or DEFAULT_RUN_ID
     mode = RunMode(args.mode)
+    if args.legacy_recorded_input and mode is not RunMode.REPLAY:
+        print(
+            "run: --legacy-recorded-input only replays the frozen Q9 recordings; "
+            "a record run must keep the evaluation labels out of the request",
+            file=sys.stderr,
+        )
+        return 2
     try:
         with open_source(
             data_dir=data_dir,
@@ -277,6 +292,7 @@ def _run_pipeline(args: argparse.Namespace) -> int:
                 mode=mode,
                 baseline_dir=Path(args.baseline_dir),
                 limit=args.limit,
+                include_evaluation_labels=bool(args.legacy_recorded_input),
             )
     except PolicyStopError as exc:
         # PLAN §10 rule 3: the error has already written reports/STOP.md.

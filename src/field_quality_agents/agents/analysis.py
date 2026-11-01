@@ -13,6 +13,7 @@ from field_quality_agents.agents.model import (
     as_text_list,
     parse_json_object,
 )
+from field_quality_agents.agents.payload import model_case_payload
 from field_quality_agents.agents.prompts import load_prompt
 from field_quality_agents.agents.state import (
     PROMPT_VERSION,
@@ -79,8 +80,18 @@ def _info_request(case: Case, reason: str) -> Proposal:
     )
 
 
-def make_analysis_node(model: AgentModel, tools: ToolRegistry) -> Node:
-    """Build the analysis node around a model and the tool seam."""
+def make_analysis_node(
+    model: AgentModel,
+    tools: ToolRegistry,
+    *,
+    include_evaluation_labels: bool = False,
+) -> Node:
+    """Build the analysis node around a model and the tool seam.
+
+    ``include_evaluation_labels`` reproduces the frozen Q9 requests during a
+    replay of those recordings; every other run keeps the PLAN §7 targets out
+    of the model's context.
+    """
 
     prompt = load_prompt("analysis")
 
@@ -156,7 +167,10 @@ def make_analysis_node(model: AgentModel, tools: ToolRegistry) -> Node:
                 "role": "user",
                 "content": json.dumps(
                     {
-                        "case": case.model_dump(mode="json"),
+                        "case": model_case_payload(
+                            case,
+                            include_evaluation_labels=include_evaluation_labels,
+                        ),
                         "extraction": extraction.model_dump(mode="json"),
                         "similar_cases": tool_output(similar),
                         "recalls": tool_output(recalls),

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 from datetime import UTC, datetime
 
 import pytest
@@ -120,3 +121,59 @@ def test_unverified_quotes_are_never_evidence() -> None:
     assert all(
         citation.quote != "invented evidence" for citation in run.proposal.evidence
     )
+
+
+def test_intake_drops_an_invented_quote_before_persisting_it() -> None:
+    """A safety case never reaches analysis, so intake must verify its clues."""
+
+    run, _model, _tools = run_desk(
+        make_case(safety_relevant=True),
+        intake=intake_payload(
+            safety=True,
+            quotes=("goes blank when the cabin is cold", "invented intake clue"),
+        ),
+    )
+    assert run.extraction is not None
+    kept = [clue.quote for clue in run.extraction.clues]
+    assert kept == ["goes blank when the cabin is cold"]
+    assert any(
+        step.agent == "intake" and step.tool == "verify_quotes" for step in run.trace
+    )
+    assert any(step.action == "drop_unverified_quotes" for step in run.trace)
+
+
+def test_the_model_never_sees_the_evaluation_labels() -> None:
+    """PLAN §7 scores group and safety; both must stay out of the request."""
+
+    run, model, _tools = run_desk(
+        make_case(),
+        intake=intake_payload(),
+        analysis=analysis_payload(),
+    )
+    assert run.proposal is not None
+
+    intake_call = next(call for call in model.calls if call["agent"] == "intake")
+    intake_message = intake_call["messages"][1]
+    assert isinstance(intake_message, dict)
+    intake_payload_json = json.loads(str(intake_message["content"]))
+    assert "group" not in intake_payload_json
+    assert "safety_relevant" not in intake_payload_json
+
+    analysis_call = next(call for call in model.calls if call["agent"] == "analysis")
+    analysis_message = analysis_call["messages"][1]
+    assert isinstance(analysis_message, dict)
+    analysis_payload_json = json.loads(str(analysis_message["content"]))
+    assert "group" not in analysis_payload_json["case"]
+    assert "safety_relevant" not in analysis_payload_json["case"]
+
+
+def test_the_truth_safety_flag_is_not_copied_into_the_prediction() -> None:
+    """Scoring 'truth OR model' would report recall that the desk never earned."""
+
+    run, _model, _tools = run_desk(
+        make_case(safety_relevant=True),
+        intake=intake_payload(safety=False, missing=("symptom",)),
+    )
+    assert run.extraction is not None
+    assert run.extraction.safety_relevant is False
+    assert run.case.safety_relevant is False

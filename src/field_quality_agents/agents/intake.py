@@ -13,6 +13,7 @@ from field_quality_agents.agents.model import (
     as_text_list,
     parse_json_object,
 )
+from field_quality_agents.agents.payload import model_case_payload
 from field_quality_agents.agents.prompts import load_prompt
 from field_quality_agents.agents.state import (
     PROMPT_VERSION,
@@ -25,6 +26,7 @@ from field_quality_agents.agents.tools import CaseFilters, ToolRegistry, tool_ou
 from field_quality_agents.contracts import (
     Case,
     CaseStatus,
+    Clue,
     Extraction,
     Proposal,
     ProposalKind,
@@ -49,8 +51,67 @@ def _info_request(case: Case, missing: tuple[str, ...]) -> Proposal:
     )
 
 
-def make_intake_node(model: AgentModel, tools: ToolRegistry) -> Node:
-    """Build the intake node around a model and the tool seam."""
+def _intake_clues(
+    *,
+    case: Case,
+    tools: ToolRegistry,
+    writer: StepWriter,
+    payload: dict[str, object],
+    verify: bool,
+) -> tuple[Clue, ...]:
+    """Return the clues intake may keep.
+
+    PLAN §4 makes dropping an unverified quote a hard rule in code. Intake
+    extracts clues too, and a safety or information-request case never reaches
+    analysis, so the check has to happen here as well or the clue is never
+    checked at all. The frozen Q9 replay keeps the recorded output unchanged.
+    """
+
+    clues = as_clues(payload)
+    if not verify:
+        return clues
+
+    checks = tools.verify_quotes(case.narrative, clues)
+    verified = [
+        clue
+        for index, clue in enumerate(clues)
+        if index < len(checks) and checks[index].verified
+    ]
+    dropped = len(clues) - len(verified)
+    writer.add(
+        agent="intake",
+        action="verify_quotes",
+        reason=f"{len(verified)} verified, {dropped} dropped",
+        tool="verify_quotes",
+        tool_input={"quotes": [clue.quote for clue in clues]},
+        tool_output={
+            "checked": len(clues),
+            "verified": len(verified),
+            "dropped": dropped,
+        },
+    )
+    if dropped:
+        writer.add(
+            agent="intake",
+            action="drop_unverified_quotes",
+            reason=f"{dropped} clue(s) failed quote verification and are not kept",
+            counts=False,
+        )
+    return tuple(verified)
+
+
+def make_intake_node(
+    model: AgentModel,
+    tools: ToolRegistry,
+    *,
+    include_evaluation_labels: bool = False,
+) -> Node:
+    """Build the intake node around a model and the tool seam.
+
+    ``include_evaluation_labels`` reproduces the frozen Q9 requests during a
+    replay of those recordings. A live or record run never sets it: the model
+    must not see PLAN §7's targets.
+    """
 
     prompt = load_prompt("intake")
 
@@ -59,7 +120,16 @@ def make_intake_node(model: AgentModel, tools: ToolRegistry) -> Node:
         writer = StepWriter(state)
         messages = (
             {"role": "system", "content": prompt},
-            {"role": "user", "content": json.dumps(case.model_dump(mode="json"), sort_keys=True)},
+            {
+                "role": "user",
+                "content": json.dumps(
+                    model_case_payload(
+                        case,
+                        include_evaluation_labels=include_evaluation_labels,
+                    ),
+                    sort_keys=True,
+                ),
+            },
         )
 
         payload: dict[str, object] = {}
@@ -90,16 +160,33 @@ def make_intake_node(model: AgentModel, tools: ToolRegistry) -> Node:
                 reason="model answer was unreadable; asking the engineer",
             )
 
+        extraction_group: str | None = as_text(payload, "group")
+        if not extraction_group and include_evaluation_labels:
+            # The recorded pipeline fell back to the case's own group; keep that
+            # only for the frozen replay, never for a new run.
+            extraction_group = case.group
         extraction = Extraction(
             case_id=case.id,
-            group=as_text(payload, "group") or case.group or "unclear",
+            group=extraction_group or "unclear",
             summary=as_text(payload, "summary"),
             symptoms=as_text_list(payload, "symptoms"),
             conditions=as_text_list(payload, "conditions"),
             fault_codes=as_text_list(payload, "fault_codes"),
-            clues=as_clues(payload),
+            clues=_intake_clues(
+                case=case,
+                tools=tools,
+                writer=writer,
+                payload=payload,
+                verify=not include_evaluation_labels,
+            ),
             safety_relevant=as_bool(payload, "safety_relevant"),
         )
+
+        predicted_safety = extraction.safety_relevant
+        if include_evaluation_labels:
+            # The recorded pipeline ORed NHTSA's flag into the prediction. A new
+            # run scores the desk's own flag, so the truth stays out of it.
+            predicted_safety = case.safety_relevant or extraction.safety_relevant
 
         duplicates = tools.similar_cases(
             case.narrative,
@@ -145,14 +232,14 @@ def make_intake_node(model: AgentModel, tools: ToolRegistry) -> Node:
         updated = case.model_copy(
             update={
                 "status": CaseStatus.INTAKE,
-                "safety_relevant": case.safety_relevant or extraction.safety_relevant,
+                "safety_relevant": predicted_safety,
             }
         )
         return writer.updates(
             case=updated,
             extraction=extraction,
             proposal=proposal,
-            safety_relevant=case.safety_relevant or extraction.safety_relevant,
+            safety_relevant=predicted_safety,
             tokens=state.get("tokens", 0) + tokens,
         )
 

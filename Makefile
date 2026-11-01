@@ -1,6 +1,6 @@
 .PHONY: setup fetch-data data data-check test lint typecheck web-build scan-forbidden scan-secrets \
 	facts baseline run-replay run-live run-live-smoke serve export screenshots all e2e release-check \
-	results-manifest
+	results-manifest results-manifest-check
 
 PYTHON := uv run python
 FQA := uv run fqa
@@ -43,7 +43,10 @@ baseline:
 	$(FQA) baseline
 
 run-replay:
-	$(FQA) run --mode replay --set replay_2025 --run-id replay
+	# --legacy-recorded-input replays the frozen Q9 requests, which still carry
+	# the PLAN §7 evaluation labels. The run manifest records that policy and the
+	# label-dependent metrics are withheld. New runs must not use the flag.
+	$(FQA) run --mode replay --set replay_2025 --run-id replay --legacy-recorded-input
 
 run-live:
 	@if [ "$${FQA_LIVE_APPROVED:-}" != "1" ]; then \
@@ -77,6 +80,9 @@ screenshots:
 results-manifest:
 	$(PYTHON) scripts/results_manifest.py write
 
+results-manifest-check: web-build export
+	$(PYTHON) scripts/results_manifest.py check
+
 all: data-check baseline run-replay web-build export results-manifest
 	@echo "all: data checked, baseline, replay run, dashboard data and web build are up to date"
 
@@ -87,5 +93,5 @@ e2e: web-build
 	$(FQA) export --out dist/field-quality-agents --run-id e2e-fixture
 	cd web && NODE_PATH="$$PWD/node_modules" npx playwright test --config ../tests/e2e/playwright.config.ts
 
-release-check: lint typecheck test web-build scan-forbidden scan-secrets facts
+release-check: lint typecheck test web-build scan-forbidden scan-secrets facts results-manifest-check
 	@echo "release-check: green"

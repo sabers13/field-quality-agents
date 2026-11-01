@@ -54,10 +54,20 @@ interface CaseDetailSummary {
 
 /** Static mode: bundled JSON, no network, read-only decisions. */
 export class StaticDataSource implements DashboardDataSource {
-  private readonly bundle: StaticBundle;
+  private readonly loaded: StaticBundle | null;
 
-  constructor(bundle: StaticBundle = staticBundle()) {
-    this.bundle = bundle;
+  constructor(bundle: StaticBundle | null = staticBundle()) {
+    this.loaded = bundle;
+  }
+
+  /** Fail loudly rather than showing invented fixtures when no export is bundled. */
+  private get bundle(): StaticBundle {
+    if (this.loaded === null) {
+      throw new Error(
+        "No exported run is bundled: run `make all` to build dist/field-quality-agents, or use live mode.",
+      );
+    }
+    return this.loaded;
   }
 
   async getCommandCentre(): Promise<CommandCentreData> {

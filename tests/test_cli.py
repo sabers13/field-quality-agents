@@ -26,6 +26,19 @@ def test_run_rejects_live_mode() -> None:
         build_parser().parse_args(["run", "--mode", "live"])
 
 
+def test_the_legacy_payload_flag_is_refused_outside_replay(
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    """A record run must never ask the model with the evaluation labels in view."""
+
+    assert (
+        main(["run", "--mode", "record", "--legacy-recorded-input", "--run-id", "x"])
+        == 2
+    )
+    captured = capsys.readouterr()
+    assert "only replays the frozen Q9 recordings" in captured.err
+
+
 def test_issues_and_report_explain_a_missing_run(
     tmp_path: Path, capsys: pytest.CaptureFixture[str]
 ) -> None:

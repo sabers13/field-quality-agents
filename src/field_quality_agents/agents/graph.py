@@ -53,11 +53,15 @@ def build_desk_graph(
     tools: ToolRegistry,
     model: AgentModel,
     checkpointer: BaseCheckpointSaver[Any] | None = None,
+    include_evaluation_labels: bool = False,
 ) -> DeskGraph:
     """Compile the case desk graph.
 
     ``tools`` is Q2's typed function set (a fake in tests) and ``model`` is Q4's
     chat model behind the small ``AgentModel`` protocol.
+    ``include_evaluation_labels`` exists only to replay the frozen Q9
+    recordings; a live or record run leaves it false so the model never sees
+    PLAN §7's targets.
     """
 
     for agent in AGENTS:
@@ -65,9 +69,29 @@ def build_desk_graph(
 
     builder = StateGraph(DeskState)
     builder.add_node("supervisor", supervisor)
-    builder.add_node("intake", cast(StateNode[DeskState, None], make_intake_node(model, tools)))
+    builder.add_node(
+        "intake",
+        cast(
+            StateNode[DeskState, None],
+            make_intake_node(
+                model,
+                tools,
+                include_evaluation_labels=include_evaluation_labels,
+            ),
+        ),
+    )
     builder.add_node("safety", safety)
-    builder.add_node("analysis", cast(StateNode[DeskState, None], make_analysis_node(model, tools)))
+    builder.add_node(
+        "analysis",
+        cast(
+            StateNode[DeskState, None],
+            make_analysis_node(
+                model,
+                tools,
+                include_evaluation_labels=include_evaluation_labels,
+            ),
+        ),
+    )
     builder.add_node("budget", budget)
     builder.add_node("human_gate", human_gate)
     builder.add_node("finish", finish)

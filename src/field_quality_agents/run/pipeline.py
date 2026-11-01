@@ -20,6 +20,7 @@ from field_quality_agents import __version__
 from field_quality_agents.agents.graph import build_desk_graph, run_case
 from field_quality_agents.agents.issue import review_day
 from field_quality_agents.agents.model import AgentModel
+from field_quality_agents.agents.payload import MODEL_INPUT_CLEAN, MODEL_INPUT_LEGACY
 from field_quality_agents.agents.report import build_weekly_report, week_bounds
 from field_quality_agents.agents.state import (
     PROMPT_VERSION,
@@ -342,12 +343,16 @@ def execute_run(
     seed: int = DEFAULT_SEED,
     baseline_dir: Path = Path("results/baseline"),
     limit: int | None = None,
+    include_evaluation_labels: bool = False,
 ) -> RunSummary:
     """Play one set through the desk and write the run directory.
 
     ``limit`` keeps the first N cases in received-date order. Q9's smoke run
     uses it to check the live traces before paying for the full set; the
     recordings it leaves behind replay in the full run.
+
+    ``include_evaluation_labels`` replays the frozen pre-fix Q9 recordings; the
+    CLI allows it only in replay mode.
     """
 
     cases = source.cases()
@@ -365,7 +370,11 @@ def execute_run(
         mode=mode, recordings_dir=recordings
     )
     recording_tools = RecordingTools(source.toolbox)
-    graph = build_desk_graph(tools=recording_tools, model=agent_model)
+    graph = build_desk_graph(
+        tools=recording_tools,
+        model=agent_model,
+        include_evaluation_labels=include_evaluation_labels,
+    )
     issue_tools = ToolboxIssueTools(source.toolbox)
     event_truth = source.events()
     recall_text, investigation_text = source.event_texts()
@@ -452,6 +461,7 @@ def execute_run(
             sources=_source_index(cases, recall_text, investigation_text),
             events=event_truth,
             seed=seed,
+            include_evaluation_labels=include_evaluation_labels,
         )
         reports.append(report)
         seq += 1
@@ -478,6 +488,7 @@ def execute_run(
         sources=final_sources,
         events=event_truth,
         seed=seed,
+        evaluation_labels_in_model_input=include_evaluation_labels,
     )
     metrics_before = _load_baseline_metrics(baseline_dir / "metrics.json")
     baseline_decisions = _load_baseline_decisions(baseline_dir / "decisions.json")
@@ -506,6 +517,9 @@ def execute_run(
         spend_usd=round(spend, 6),
         steps=steps,
         budget_hits=budget_hits,
+        model_input=(
+            MODEL_INPUT_LEGACY if include_evaluation_labels else MODEL_INPUT_CLEAN
+        ),
         record_digest=recordings_digest(recordings),
         code_version=__version__,
     )
@@ -555,6 +569,7 @@ def _report_for_week(
     sources: SourceIndex,
     events: Sequence[Event],
     seed: int,
+    include_evaluation_labels: bool,
 ) -> WeeklyReport:
     week_cases = [
         case for case in cases if week_start <= case.received_at <= week_end
@@ -581,6 +596,7 @@ def _report_for_week(
         sources=sources,
         events=events,
         seed=seed,
+        evaluation_labels_in_model_input=include_evaluation_labels,
     )
     return build_weekly_report(
         week_start=week_start,

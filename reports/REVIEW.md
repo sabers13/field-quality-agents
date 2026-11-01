@@ -444,3 +444,42 @@ it (after `make all` in the release sequence).
 3. **Static export (B6):** Q10 is expected to wire it; confirm the release check
    must include a built `dist/field-quality-agents/index.html` that reads
    `results/`, not the fixture bundle.
+
+## Q13 fix-up status
+
+Q13 fixed or answered every item below in the local branch `fm/fqa-q13`, with no
+model call (`make all` and `make release-check` are green). “Fixed” means the
+code, a regression test and the documentation changed. Where the frozen Q9
+recordings made a number impossible to re-derive offline, the metric is
+withheld instead of republished; `reports/DEVIATIONS.md` records why.
+
+| item | status | evidence |
+|---|---|---|
+| B1 group label in the model input | **Fixed** | `agents/payload.py` removes `group` and `safety_relevant` from every request; intake/analysis use it; `tests/agents/test_hard_rules.py::test_the_model_never_sees_the_evaluation_labels`. The recorded run's group metric is withheld (it measured a copy) and is measured at Q14. |
+| B2 safety truth ORed into the prediction | **Fixed** | the prediction is the desk's own flag (`intake.py`); same payload scrub; `test_the_truth_safety_flag_is_not_copied_into_the_prediction`; safety rows withheld for the recorded run. |
+| B3 intake quotes persisted unchecked | **Fixed** | `intake.py::_intake_clues` verifies and drops, with a trace step; `test_intake_drops_an_invented_quote_before_persisting_it`. The frozen recorded run keeps its pre-fix `extractions.json`; the quote metric now re-checks every kept clue and counts the failures (`0.9064` of `4,166`, `27` dropped). |
+| B4 personal names in narratives | **Open — captain decision** | `data/STATS.md` and `README.md` now state the screen's scope and the finding; no committed set was rebuilt, because that changes the 600-case set and needs a new live run. Options and the PLAN §10.2 question are in `reports/DEVIATIONS.md`. |
+| B5 manifest polluted by `dist/` leftovers | **Fixed** | the committed manifest has 631 hashes, none under `dist/…/cases`; `scripts/results_manifest.py check` passes and is now part of `release-check` (`Makefile`). |
+| B6 Q10/Q11 artefacts absent | **Fixed** | README, METHOD, CHANGELOG, `project-facts.yml` and the static export are present; `make facts` fails when `project-facts.yml` is missing (checked); the export loads the committed run and fixture numbers are no longer shipped (`web/src/data/bundled.ts`, `static.ts`). |
+| S1 quote grounding measured survivors | **Fixed** | `run/metrics.py` re-checks every kept clue against its narrative and adds trace-dropped quotes to the denominator; `tests/metrics/test_run_metrics.py`. |
+| S2 quote not tied to the condition | **Fixed** | `metrics/evidence.py::targeted_test_with_quote_share` requires a shared condition word; `test_targeted_test_quote_must_support_the_condition`. |
+| S3 issue base-rate sentence | **Fixed (Q10)** | `web/src/pages/Comparison.tsx` now reads “a random week of the same series hits the same early-issue rule … of the time”. |
+| S4 budget steps labelled “trace steps” | **Fixed (Q10)** | `reports/RUN.md` separates “counted agent steps (budget counter)” from “trace records”. |
+| S5 no `DEVIATIONS.md` | **Fixed** | `reports/DEVIATIONS.md` carries the run deviations and the fix-up's own. |
+| S6 one-word quote is “verified” | **Fixed** | `tools/quotes.py` needs two words or an identifier with a digit, matched on word boundaries; `tests/tools/test_quotes.py` adds the one-word and boundary cases. |
+| S7 no intake quote-drop test | **Fixed** | `test_intake_drops_an_invented_quote_before_persisting_it`. |
+| S8 manifest check outside `release-check` | **Fixed** | `results-manifest-check` is a `release-check` dependency. |
+| N1 stale scaffold messages | **Fixed** | `Makefile` prints “release-check: green”; the screenshot target names the static export. |
+| N2 software licences missing | **Fixed (Q11)** | `THIRD_PARTY.md` lists the Python, dev-tool and npm direct dependencies with versions and licences. |
+| N3 simulated timestamps in the manifest | **Fixed** | `reports/RUN.md` labels `started_at`/`completed_at` as the simulated run clock and gives the real date; no wall-clock field was added, because that would break byte-identical replay. |
+| N4 PII screen scope unstated | **Fixed** | `data/STATS.md` states that only VIN, e-mail, phone and street address are screened. |
+| N5 fixture numbers in the production bundle | **Fixed** | `bundled.ts` has no fixture fallback and `StaticDataSource` refuses to serve without an export; the fixtures now load only in the unit tests; `web/src/data/static.test.ts` covers the missing-bundle error. |
+| N6 thin recall-linking sample | **Fixed** | README and `RUN.md` say “1 of 6” beside the share. |
+
+Two items deserve emphasis. **B1/B2 are fixed in the code, not in the recorded
+numbers**: the Q9 recordings were made with the labels visible, and Q13 may not
+call the model (PLAN §2.6), so the recorded run's group and safety rows are
+blank rather than replaced with made-up values; Q14 measures them. **B4 is a
+stop-condition question under PLAN §10.2** and belongs to the captain, not to a
+fix-up worker; Q13 has recorded the finding and the options without editing the
+committed data or the review's evidence.

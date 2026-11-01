@@ -46,3 +46,18 @@ def test_every_quote_gets_a_result_in_order() -> None:
         "cabin is cold",
         "not in the text",
     ]
+
+
+def test_a_single_ordinary_word_is_not_evidence() -> None:
+    checks = verify_quotes(TEXT, [clue("the"), clue("cold")])
+    assert [check.verified for check in checks] == [False, False]
+
+
+def test_a_code_alone_can_be_evidence() -> None:
+    checks = verify_quotes("DTC P0302 stored after the stall.", [clue("P0302")])
+    assert checks[0].verified is True
+
+
+def test_a_match_must_fall_on_a_word_boundary() -> None:
+    checks = verify_quotes("The display blanks in this cold snap.", [clue("is cold")])
+    assert checks[0].verified is False

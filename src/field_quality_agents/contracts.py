@@ -269,6 +269,7 @@ class Metrics(FrozenModel):
     safety_precision: MetricEstimate | None = None
     safety_recall: MetricEstimate | None = None
     quote_grounding_rate: MetricEstimate | None = None
+    quotes_dropped: int | None = Field(default=None, ge=0)
     citation_validity_rate: MetricEstimate | None = None
     targeted_test_share: MetricEstimate | None = None
     targeted_test_with_quote_share: MetricEstimate | None = None
@@ -283,6 +284,9 @@ class Metrics(FrozenModel):
     latency_p50_ms: float | None = None
     latency_p95_ms: float | None = None
     budget_hits: int = Field(default=0, ge=0)
+    #: True when the desk saw PLAN §7's evaluation labels, so the metrics that
+    #: depend on them are withheld rather than presented as measurements.
+    evaluation_labels_in_model_input: bool = False
 
 
 class WeeklyReport(FrozenModel):
@@ -312,6 +316,9 @@ class RunManifest(FrozenModel):
     spend_usd: float = Field(default=0.0, ge=0.0)
     steps: int = Field(default=0, ge=0)
     budget_hits: int = Field(default=0, ge=0)
+    #: What the desk was allowed to see: "clean", or a legacy policy name that
+    #: explains why the evaluation labels were in the recorded requests.
+    model_input: str = ""
     record_digest: str = ""
     code_version: str = ""
     files: tuple[str, ...] = ()

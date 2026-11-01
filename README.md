@@ -58,12 +58,12 @@ equivalent measurement.
 
 | Metric | Before: linear pipeline | After: agentic desk |
 |---|---:|---:|
-| Component group macro-F1 | 0.7340 | **0.9898** |
-| Safety recall | 0.8590 | **1.0000** |
-| Safety precision | **0.4482** | 0.3377 |
+| Component group macro-F1 | 0.7340 | — |
+| Safety recall | 0.8590 | — |
+| Safety precision | 0.4482 | — |
 | Targeted load test share | 0.0000 | **0.4198** |
-| Targeted test with a verified quote | — | **1.0000** |
-| Quote grounding | — | **1.0000** |
+| Targeted test with a verified quote | — | **0.5636** |
+| Quote grounding | — | **0.9064** |
 | Citation validity | — | **1.0000** |
 | Issue precision | — | 0.4000 |
 | Issue base rate (random weeks) | — | 0.2000 |
@@ -71,21 +71,26 @@ equivalent measurement.
 | Recall link match | — | 0.1667 |
 | Human touches per case | 1.00 | 1.00 |
 | Decided without edits | — | 1.0000 |
-| Steps per case | 4.00 | 4.24 |
+| Steps per case | 4.00 | 4.26 |
 | Budget hits | 0 | 0 |
 | Cost per 1,000 cases (USD) | 0.00 | 1.33 |
 | Latency p50 (seconds) | — | 14.8 |
 | Latency p95 (seconds) | — | 29.5 |
 
-Read the table as behaviour, not as a scoreboard. The independent review found
-that two NHTSA truth fields — the component group and the safety flag — were
-visible to the model, so the group, safety, routing and fleet rows describe the
-committed run rather than an independent measurement until that is fixed
-(`reports/REVIEW.md` B1 and B2). The evidence, workload and cost rows do not
-depend on those fields. As run, the desk flagged **462** reports against **156**
-in the NHTSA fields, and only **146** reports reached the analysis agent. Issue
-detection reports 0.4000 precision against a 0.2000 base rate for random weeks,
-with a median lead time of 65 days, and recall linking is thin at 0.1667.
+Read the table as behaviour, not as a scoreboard. An em dash on the agentic
+side means the run did not produce a valid measurement. The independent review
+found that two NHTSA truth fields — the component group and the safety flag —
+were visible to the model in the recorded run, so its group and safety numbers
+measured a copy of the answer key rather than the desk (`reports/REVIEW.md` B1
+and B2). The desk no longer sends either field to the model, and the two rows
+stay blank until the final live run measures them on unseen reports; the
+recorded run's other rows — evidence, workload, issue detection and cost — do
+not depend on those fields. As recorded, the desk flagged **462** reports
+against **156** in the NHTSA fields, and only **146** reports reached the
+analysis agent. Issue detection reports 0.4000 precision against a 0.2000 base
+rate for random weeks, with a median lead time of 65 days, and recall linking
+is thin at 0.1667 (1 of 6 linked recalls matching on make, model, year and
+group).
 
 ## The run at a glance
 
@@ -93,7 +98,7 @@ The recorded run `live-2025` played **600 reports** through the agentic desk;
 `make all` replays the same turns offline.
 
 - **Work:** **600 decisions**, all by the simulated engineer, and **0 budget hits**.
-  Traces hold **6,669** steps; the desk spent **2,542** budget steps, 4.24 per
+  Traces hold **6,683** steps; the desk spent **2,556** budget steps, 4.26 per
   case.
 - **Fleet view:** **5 fleet issues** and **53 weekly reports**.
 - **Spend:** **USD 0.798998** at gateway list cost, about **1.33** per 1,000
@@ -105,8 +110,9 @@ The recorded run `live-2025` played **600 reports** through the agentic desk;
 - **Before:** the linear pipeline sent **299** reports to a priority queue and
   closed **301** as no trouble found, because its simulated standard test always
   passes.
-- **Evidence:** **709** quotes were checked and every one grounds in its source;
-  **751** citations name a case, recall or investigation that exists.
+- **Evidence:** the desk proposed **4,166** quotes, kept them only when they
+  were verbatim, and dropped **27**; **90.64%** of the proposed quotes are
+  grounded. **736** citations name a case, recall or investigation that exists.
 
 Sources: `results/runs/replay/manifest.json`, `results/runs/replay/metrics.json`,
 `results/runs/replay/decisions.json`, `results/runs/replay/proposals.json`,
@@ -129,7 +135,7 @@ The fixed comparison examples are in
 | Case | Linear pipeline | Agentic desk |
 |---|---|---|
 | `2065213` | No fleet-level issue step exists. | The issue agent opened `I-20250217-001`. |
-| `2063828` | Standard test; the simulation always passes. | Targeted test requested after 16 trace steps. |
+| `2156317` | Standard test; the simulation always passes. | Targeted test requested after 16 trace steps. |
 | `2052717` | Closed as no trouble found. | Verified evidence found; a targeted test was proposed. |
 | `2052447` | Closed as no trouble found. | The agent also found no verified evidence. |
 
@@ -183,13 +189,18 @@ Be clear about what this is:
 3. **The rulebook is an example.** `config/rulebook.toml` maps a handful of
    reported conditions to targeted tests. It is readable and editable, not a
    service manual, and it is not tuned per vehicle.
-4. **Two quality metrics are provisional.** The independent review found the
-   component-group label and the NHTSA safety flag in the model input
-   (`reports/REVIEW.md` B1 and B2), so the after values for macro-F1 and safety
-   are not independent measurements. As run, 462 reports were flagged against
-   156 in the NHTSA fields, and only 146 reports reach the analysis agent
-   because safety cases go to a person first. Nothing was tuned after seeing the
-   replay set.
+4. **The group and safety measurements are open.** The independent review found
+   the component-group label and the NHTSA safety flag in the model input of the
+   recorded run (`reports/REVIEW.md` B1 and B2). The desk no longer sends either
+   field to the model, and the two rows that depend on them are blank rather
+   than published from a contaminated run; the final live run measures them on
+   unseen reports. As recorded, 462 reports were flagged against 156 in the
+   NHTSA fields, and only 146 reports reach the analysis agent. Nothing was
+   tuned after seeing the replay set.
+5. **Names are not screened.** The PII screen covers VINs, e-mail addresses,
+   phone numbers and street addresses, not personal names in a narrative
+   signature; the review records what it found and the captain decides whether
+   to rebuild the set (`reports/REVIEW.md` B4).
 5. **One model and one prompt version.** The run used a single model and prompt
    version. Costs are gateway list prices, not a negotiated rate.
 6. **The comparison is a simulation.** "Time to decision" and the linear

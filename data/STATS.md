@@ -49,6 +49,16 @@ because one narrative can match more than one pattern.
 | any | 4,831 |
 | screened | 183,151 |
 
+**These four pattern families are the whole screen.** It does not detect a
+personal name written into a narrative, including a closing signature such as
+a first name and last initial. The independent review found signature-style
+names in 17 of the 40,750 committed narratives (`reports/REVIEW.md` B4); the
+committed files have not been rebuilt, because dropping those rows changes the
+600-case replay set and every downstream result needs a new live run. The
+captain decides between extending the screen with a rebuild and recording an
+exception in `reports/DEVIATIONS.md`; until then the screen's scope is VINs,
+e-mail addresses, phone numbers and street addresses, and no more.
+
 ## Complaints per group
 
 | group | description | mapped | safety | rate | KB | replay | final | fleet |

@@ -32,6 +32,7 @@ from field_quality_agents.metrics import (
     workload,
 )
 from field_quality_agents.tools.models import QuoteVerification
+from field_quality_agents.tools.quotes import quote_is_grounded
 
 __all__ = ["compute_metrics"]
 
@@ -54,16 +55,36 @@ def _all_citations(
     return citations
 
 
-def _quote_checks(proposals: Sequence[Proposal]) -> list[QuoteVerification]:
+def _quote_checks(
+    runs: Sequence[CaseRun],
+    sources: SourceIndex,
+) -> tuple[list[QuoteVerification], int]:
+    """Re-check every clue the desk kept and count the ones it dropped.
+
+    The clue text is checked against the case narrative here, not trusted from
+    a ``verified`` flag. Quotes the desk dropped are counted from the
+    verification steps in the trace, so the share covers everything the model
+    proposed rather than only the survivors.
+    """
+
     checks: list[QuoteVerification] = []
-    for proposal in proposals:
-        for citation in proposal.evidence:
-            if citation.quote is None:
+    dropped = 0
+    for run in runs:
+        narrative = sources.cases.get(run.case.id)
+        extraction = run.extraction
+        if extraction is not None and narrative is not None:
+            for clue in extraction.clues:
+                checks.append(
+                    QuoteVerification(
+                        quote=clue.quote,
+                        verified=quote_is_grounded(clue.quote, narrative),
+                    )
+                )
+        for step in run.trace:
+            if step.tool != "verify_quotes" or not isinstance(step.tool_output, dict):
                 continue
-            checks.append(
-                QuoteVerification(quote=citation.quote, verified=citation.verified)
-            )
-    return checks
+            dropped += int(step.tool_output.get("dropped", 0) or 0)
+    return checks, dropped
 
 
 def _recall_links(
@@ -107,8 +128,15 @@ def compute_metrics(
     sources: SourceIndex,
     events: Sequence[Event],
     seed: int = DEFAULT_SEED,
+    evaluation_labels_in_model_input: bool = False,
 ) -> Metrics:
-    """Return the PLAN §7 numbers for the agentic pipeline."""
+    """Return the PLAN §7 numbers for the agentic pipeline.
+
+    ``evaluation_labels_in_model_input`` is honest provenance, not a toggle: it
+    reports whether the recorded requests carried PLAN §7's targets. When they
+    did, the group and safety numbers measure a copy of the answer key, so they
+    are withheld instead of published. Every other metric is unaffected.
+    """
 
     truth_by_id = {case.id: case for case in truth_cases}
     truth_groups = [case.group or "unclear" for case in truth_cases]
@@ -133,17 +161,27 @@ def compute_metrics(
         rng=random.Random(seed),
     )
     workload_stats = workload(runs)
+    checks, dropped = _quote_checks(runs, sources)
     return Metrics(
         cases=len(runs),
-        group_macro_f1=macro_f1(
-            truth_groups,
-            predicted_groups,
-            rng=random.Random(seed),
+        group_macro_f1=(
+            None
+            if evaluation_labels_in_model_input
+            else macro_f1(
+                truth_groups,
+                predicted_groups,
+                rng=random.Random(seed),
+            )
         ),
-        group_coverage=group_coverage(predicted_groups, unclear="unclear"),
-        safety_precision=safety_precision,
-        safety_recall=safety_recall,
-        quote_grounding_rate=quote_grounding(_quote_checks(proposals)),
+        group_coverage=(
+            None
+            if evaluation_labels_in_model_input
+            else group_coverage(predicted_groups, unclear="unclear")
+        ),
+        safety_precision=None if evaluation_labels_in_model_input else safety_precision,
+        safety_recall=None if evaluation_labels_in_model_input else safety_recall,
+        quote_grounding_rate=quote_grounding(checks, dropped=dropped),
+        quotes_dropped=dropped,
         citation_validity_rate=citation_validity(
             _all_citations(proposals, eight_d, memos),
             sources,
@@ -169,4 +207,5 @@ def compute_metrics(
         latency_p50_ms=workload_stats["latency_p50_ms"],
         latency_p95_ms=workload_stats["latency_p95_ms"],
         budget_hits=int(workload_stats["budget_hits"]),
+        evaluation_labels_in_model_input=evaluation_labels_in_model_input,
     )

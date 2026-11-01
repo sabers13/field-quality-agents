@@ -130,6 +130,38 @@ def test_targeted_test_with_quote_share_needs_conditions_and_a_quote() -> None:
     assert result.n == 2
 
 
+def test_targeted_test_quote_must_support_the_condition() -> None:
+    """A verified quote about something else does not ground the condition."""
+
+    unrelated = Citation(
+        source_type=SourceType.CASE,
+        source_id="C1",
+        quote="the radio screen flickers",
+        verified=True,
+    )
+    related = Citation(
+        source_type=SourceType.CASE,
+        source_id="C1",
+        quote="the mirror vibrates above 60 mph",
+        verified=True,
+    )
+    proposals = [
+        _proposal(
+            ProposalKind.TARGETED_LOAD_TEST,
+            conditions=("vibration",),
+            evidence=(unrelated,),
+        ),
+        _proposal(
+            ProposalKind.TARGETED_LOAD_TEST,
+            conditions=("vibration",),
+            evidence=(related,),
+        ),
+    ]
+    result = targeted_test_with_quote_share(proposals)
+    assert result.value == 0.5
+    assert result.n == 2
+
+
 def test_no_test_proposals_report_zero_with_no_observations() -> None:
     result = targeted_test_share([_proposal(ProposalKind.EVIDENCE_PACK)])
     assert result.value == 0.0

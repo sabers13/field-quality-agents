@@ -39,29 +39,26 @@ headline:
   - id: group_macro_f1
     label: Component group macro-F1
     before: 0.7340
-    after: 0.9898
+    after: null
     display: 4
     unit: score
     before_source: results/baseline/metrics.json#group_macro_f1.value
-    after_source: results/runs/replay/metrics.json#after.group_macro_f1.value
 
   - id: safety_recall
     label: Safety recall
     before: 0.8590
-    after: 1.0000
+    after: null
     display: 4
     unit: share
     before_source: results/baseline/metrics.json#safety_recall.value
-    after_source: results/runs/replay/metrics.json#after.safety_recall.value
 
   - id: safety_precision
     label: Safety precision
     before: 0.4482
-    after: 0.3377
+    after: null
     display: 4
     unit: share
     before_source: results/baseline/metrics.json#safety_precision.value
-    after_source: results/runs/replay/metrics.json#after.safety_precision.value
 
   - id: targeted_test_share
     label: Targeted load test share
@@ -75,7 +72,7 @@ headline:
   - id: targeted_test_with_verified_quote
     label: Targeted test with a verified quote
     before: null
-    after: 1.0000
+    after: 0.5636
     display: 4
     unit: share
     after_source: results/runs/replay/metrics.json#after.targeted_test_with_quote_share.value
@@ -83,7 +80,7 @@ headline:
   - id: quote_grounding
     label: Quote grounding
     before: null
-    after: 1.0000
+    after: 0.9064
     display: 4
     unit: share
     after_source: results/runs/replay/metrics.json#after.quote_grounding_rate.value
@@ -148,7 +145,7 @@ headline:
   - id: steps_per_case
     label: Steps per case
     before: 4.00
-    after: 4.24
+    after: 4.26
     display: 2
     unit: steps
     before_source: results/baseline/metrics.json#steps_per_case
@@ -205,14 +202,14 @@ facts:
 
   - id: run_budget_steps
     label: budget steps spent by the desk
-    value: 2542
-    display: "2,542"
+    value: 2556
+    display: "2,556"
     check: { kind: json, file: results/runs/replay/manifest.json, path: steps }
 
   - id: run_trace_steps
     label: trace steps across all case traces
-    value: 6669
-    display: "6,669"
+    value: 6683
+    display: "6,683"
     check: { kind: sum_lengths, file: results/runs/replay/traces.json }
 
   - id: run_budget_hits
@@ -254,9 +251,10 @@ facts:
     value: 156
     display: "156"
     check:
-      kind: json
-      file: results/runs/replay/metrics.json
-      path: after.safety_recall.n
+      kind: count_field
+      file: results/runs/replay/input_cases.json
+      field: safety_relevant
+      equals: true
 
   - id: analysis_cases
     label: reports that reached the analysis agent
@@ -289,18 +287,27 @@ facts:
       equals: targeted_load_test
 
   - id: quotes_checked
-    label: quotes checked against their sources
-    value: 709
-    display: "709"
+    label: quotes the desk proposed and checked against their source
+    value: 4166
+    display: "4,166"
     check:
       kind: json
       file: results/runs/replay/metrics.json
       path: after.quote_grounding_rate.n
 
+  - id: quotes_dropped
+    label: quotes the desk dropped for failing verification
+    value: 27
+    display: "27"
+    check:
+      kind: json
+      file: results/runs/replay/metrics.json
+      path: after.quotes_dropped
+
   - id: citations_checked
     label: citations checked for a real source
-    value: 751
-    display: "751"
+    value: 736
+    display: "736"
     check:
       kind: json
       file: results/runs/replay/metrics.json
@@ -370,8 +377,8 @@ facts:
 
   - id: example_targeted_case
     label: case with the longest trace that ended in a targeted test
-    value: "2063828"
-    display: "2063828"
+    value: "2156317"
+    display: "2156317"
     check:
       kind: json
       file: results/runs/replay/comparison_examples.json

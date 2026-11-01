@@ -6,6 +6,7 @@ opens a file, calls a tool or grades with a model; PLAN §2.5 requires that.
 
 from __future__ import annotations
 
+import re
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass, field
 
@@ -18,6 +19,7 @@ from field_quality_agents.contracts import (
 )
 from field_quality_agents.metrics.estimates import estimate, wilson_interval
 from field_quality_agents.tools.models import QuoteVerification
+from field_quality_agents.tools.quotes import quote_is_grounded
 
 __all__ = [
     "RecallLink",
@@ -51,14 +53,14 @@ class SourceIndex:
         return self.investigations.get(source_id)
 
 
-def _normalise(text: str) -> str:
-    return " ".join(text.split())
+def quote_grounding(checks: Sequence[QuoteVerification], *, dropped: int = 0) -> MetricEstimate:
+    """Share of the quotes the model proposed that were found verbatim.
 
+    ``dropped`` counts quotes the desk rejected, which never reach ``checks``:
+    they stay in the denominator, or the share would measure the survivors.
+    """
 
-def quote_grounding(checks: Sequence[QuoteVerification]) -> MetricEstimate:
-    """Share of checked quotes that were found verbatim in their source."""
-
-    n = len(checks)
+    n = len(checks) + dropped
     successes = sum(1 for check in checks if check.verified)
     low, high = wilson_interval(successes, n)
     return estimate(successes / n if n else 0.0, ci_low=low, ci_high=high, n=n)
@@ -80,13 +82,28 @@ def citation_validity(citations: Sequence[Citation], sources: SourceIndex) -> Me
         if citation.quote is None:
             valid += 1
             continue
-        if _normalise(citation.quote) in _normalise(text):
+        if quote_is_grounded(citation.quote, text):
             valid += 1
     low, high = wilson_interval(valid, n)
     return estimate(valid / n if n else 0.0, ci_low=low, ci_high=high, n=n)
 
 
 _TEST_KINDS = frozenset({ProposalKind.STANDARD_TEST, ProposalKind.TARGETED_LOAD_TEST})
+
+#: A condition word is a token long enough to mean something: "cold", "moisture".
+_CONDITION_TOKEN = re.compile(r"[0-9A-Za-z]{4,}")
+
+
+def _tokens(text: str) -> set[str]:
+    return {token.lower() for token in _CONDITION_TOKEN.findall(text)}
+
+
+def _same_word(left: str, right: str) -> bool:
+    """A condition word matches its own inflection ("vibration"/"vibrates")."""
+
+    if left == right:
+        return True
+    return min(len(left), len(right)) >= 5 and left[:5] == right[:5]
 
 
 def targeted_test_share(proposals: Sequence[Proposal]) -> MetricEstimate:
@@ -106,7 +123,13 @@ def targeted_test_share(proposals: Sequence[Proposal]) -> MetricEstimate:
 
 
 def targeted_test_with_quote_share(proposals: Sequence[Proposal]) -> MetricEstimate:
-    """Share of targeted tests that carry a condition with a verified quote."""
+    """Share of targeted tests whose condition is supported by a verified quote.
+
+    PLAN §7 asks for a test that "carries a condition with a verified quote".
+    A quote anywhere in the proposal is not enough: the quoted span must share
+    a condition word with the test, or the test and its evidence could be about
+    different things.
+    """
 
     targeted = [
         proposal for proposal in proposals if proposal.kind is ProposalKind.TARGETED_LOAD_TEST
@@ -116,11 +139,21 @@ def targeted_test_with_quote_share(proposals: Sequence[Proposal]) -> MetricEstim
     for proposal in targeted:
         test = proposal.targeted_test
         conditions = test.conditions if test is not None else ()
-        has_quote = any(
-            citation.verified and citation.quote is not None and citation.quote.strip()
+        condition_tokens: set[str] = set()
+        for condition in conditions:
+            condition_tokens |= _tokens(condition)
+        if not condition_tokens:
+            continue
+        if any(
+            citation.verified
+            and citation.quote is not None
+            and any(
+                _same_word(quoted, condition)
+                for quoted in _tokens(citation.quote)
+                for condition in condition_tokens
+            )
             for citation in proposal.evidence
-        )
-        if conditions and has_quote:
+        ):
             grounded += 1
     low, high = wilson_interval(grounded, n)
     return estimate(grounded / n if n else 0.0, ci_low=low, ci_high=high, n=n)

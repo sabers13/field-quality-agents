@@ -241,13 +241,15 @@ class Checker:
                 if declared != str(actual):
                     self.fail(f"run.{field} is {declared!r}, {source} says {actual!r}")
         # The replayed run is the same run from the same recordings, so the
-        # reproducible manifest must agree with the record-mode one.
+        # reproducible manifest must agree with the record-mode one. Step counts
+        # are recomputed by the current pipeline (Q13 added quote verification
+        # steps), so they are compared by the facts below, not here.
         try:
             record = _read_json(str(run.get("source")))
             replay = _read_json(str(run.get("replay_source")))
         except FactsError:
             return
-        for field in ("case_count", "steps", "spend_usd", "record_digest", "set_name", "model"):
+        for field in ("case_count", "spend_usd", "record_digest", "set_name", "model"):
             if record.get(field) != replay.get(field):
                 self.fail(
                     f"record and replay manifests disagree on {field}: "
