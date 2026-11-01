@@ -40,9 +40,12 @@ warranty of accuracy or fitness (the Terms of Use disclaim such warranties).
 - Raw downloads stay under the git-ignored `data/raw/` directory.
 - `data/SNAPSHOT.json` records each download's URL, sha256, size,
   `Last-Modified` header and download time.
-- The committed files under `data/` are derived, de-identified selections:
-  location and identity columns are dropped, and complaint narratives that
-  match the PII screen are removed. `data/STATS.md` records the counts.
+- The committed files under `data/` are derived selections: location and
+  identity columns are dropped, and complaint narratives that match the
+  committed PII screen (VIN, e-mail, phone, street address) are removed.
+  `data/STATS.md` records the counts. The independent review found
+  signature-style personal names that this screen does not cover; see
+  `reports/REVIEW.md` B4.
 - The recordings under `recordings/` contain model responses and the prompt
   context that produced them. The complaint text in that context is the same
   public, screened text.

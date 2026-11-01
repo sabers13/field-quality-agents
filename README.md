@@ -77,14 +77,15 @@ equivalent measurement.
 | Latency p50 (seconds) | — | 14.8 |
 | Latency p95 (seconds) | — | 29.5 |
 
-Read the table as behaviour, not as a scoreboard. The agentic desk classifies
-component groups far more accurately and missed none of the safety-relevant
-reports in this set, but it over-flags safety (recall 1.0000, precision 0.3377)
-and that sends many cases to a human earlier than necessary. Issue detection
-finds 0.4000 precision against a 0.2000 base rate for random weeks, with a
-median lead time of 65 days before a matching NHTSA investigation or recall.
-Recall linking is thin: 0.1667 of the linked recalls matched make, model, model
-year and component group.
+Read the table as behaviour, not as a scoreboard. The independent review found
+that two NHTSA truth fields — the component group and the safety flag — were
+visible to the model, so the group, safety, routing and fleet rows describe the
+committed run rather than an independent measurement until that is fixed
+(`reports/REVIEW.md` B1 and B2). The evidence, workload and cost rows do not
+depend on those fields. As run, the desk flagged **462** reports against **156**
+in the NHTSA fields, and only **146** reports reached the analysis agent. Issue
+detection reports 0.4000 precision against a 0.2000 base rate for random weeks,
+with a median lead time of 65 days, and recall linking is thin at 0.1667.
 
 ## The run at a glance
 
@@ -182,11 +183,13 @@ Be clear about what this is:
 3. **The rulebook is an example.** `config/rulebook.toml` maps a handful of
    reported conditions to targeted tests. It is readable and editable, not a
    service manual, and it is not tuned per vehicle.
-4. **Safety is over-flagged.** 462 reports were flagged against 156 in the
-   NHTSA fields. Recall is perfect and precision is low, and only 146 reports
-   reach the analysis agent because safety cases go to a person first. The
-   numbers are reported as behaviour; nothing was tuned after seeing the replay
-   set.
+4. **Two quality metrics are provisional.** The independent review found the
+   component-group label and the NHTSA safety flag in the model input
+   (`reports/REVIEW.md` B1 and B2), so the after values for macro-F1 and safety
+   are not independent measurements. As run, 462 reports were flagged against
+   156 in the NHTSA fields, and only 146 reports reach the analysis agent
+   because safety cases go to a person first. Nothing was tuned after seeing the
+   replay set.
 5. **One model and one prompt version.** The run used a single model and prompt
    version. Costs are gateway list prices, not a negotiated rate.
 6. **The comparison is a simulation.** "Time to decision" and the linear

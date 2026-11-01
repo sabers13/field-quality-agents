@@ -24,8 +24,9 @@ No key is printed, logged or recorded. The key is read only by
 |---|---:|
 | cases | 600 |
 | model turns recorded | 746 (600 intake + 146 analysis) |
-| trace steps | 2,542 |
-| steps per case | 4.24 (median trace 10 steps, max 16) |
+| counted agent steps (budget counter) | 2,542 |
+| trace records | 6,669 |
+| steps per case | 4.24 counted; median trace 10 records, max 16 |
 | budget hits | 0 |
 | issues opened | 5 |
 | weekly reports | 53 (52 in `reports.json`, the latest in `report.json`) |
@@ -49,7 +50,7 @@ The smoke run used the same command with `--limit 20`, run id
 | item | value |
 |---|---:|
 | cases | 20 |
-| trace steps | 82 |
+| counted agent steps (budget counter) | 82 |
 | model calls recorded | 24 |
 | spend (gateway list cost) | USD 0.029799 |
 | budget hits | 0 |
