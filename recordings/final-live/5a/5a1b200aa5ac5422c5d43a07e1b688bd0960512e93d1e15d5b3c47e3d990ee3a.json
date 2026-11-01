@@ -1,0 +1,66 @@
+{
+  "key": "5a1b200aa5ac5422c5d43a07e1b688bd0960512e93d1e15d5b3c47e3d990ee3a",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 13102,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2026 Hyundai Ioniq 5 electrical system lost motive power at 65 MPH with battery warning and stop message, failed restart, DTC P0A1F8C.\",\"group\":\"ELECTRICAL SYSTEM\",\"symptoms\":[\"lost motive power\",\"battery warning light illuminated\",\"Vehicle Will Come to a Stop warning message illuminated\",\"failed to restart\",\"internal failure of Vehicle Control Management System (VCMS)\"],\"conditions\":[\"while driving\",\"at 65 MPH\"],\"fault_codes\":[\"P0A1F8C\"],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"lost motive power\"},{\"kind\":\"condition\",\"quote\":\"while driving at 65 MPH\"},{\"kind\":\"symptom\",\"quote\":\"battery warning light and a \\\"Vehicle Will Come to a Stop\\\" warning message illuminated\"},{\"kind\":\"symptom\",\"quote\":\"failed to restart\"},{\"kind\":\"fault_code\",\"quote\":\"DTC P0A1F8C\"},{\"kind\":\"symptom\",\"quote\":\"Vehicle Control Management System (VCMS) experienced an internal failure\"},{\"kind\":\"safety\",\"quote\":\"while driving at 65 MPH, the vehicle lost motive power\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize report. Need extract fields. Component given ELECTRICAL SYSTEM. Summary one line component, symptom, conditions. Group electrical/electronic component group or given group. We can use \"ELECTRICAL SYSTEM\" maybe group. Symptoms: lost motive power, battery warning light illuminated, warning message \"Vehicle Will Come to a Stop\" illuminated, failed to restart, DTC P0A1F8C? fault code separate. Internal VCMS failure? That's diagnosis maybe symptom? Conditions: while driving at 65 MPH. safety_relevant true: loss of motive power at speed, \"Vehicle Will Come to a Stop\" risk, stall at speed. Need clues verbatim. Missing_info? We have component, symptom, conditions, mileage, date? mileage 850, date received_at but incident date not given. missing_info maybe date (failure date) only? Conditions present. Component present. Symptom present. Mileage present. Date? received_at present but not failure date. The list includes date. Could include \"date\" because failure date not in report. Is that important? Yes for analysis. Maybe no missing_info? Need only facts analysis needs; date of failure missing. But report has received_at 2026-10-19 not failure date. I'd include [\"date\"] maybe. Need ensure quote exact. Quotes:\n- \"while driving at 65 MPH\"\n- \"lost motive power\"\n- \"battery warning light\"\n- \"\\\"Vehicle Will Come to a Stop\\\" warning message illuminated\" exact from narrative includes quotes. Need JSON escape.\n- \"failed to restart\"\n- \"DTC P0A1F8C\"\n- \"Vehicle Control Management System (VCMS) experienced an internal failure\"\n- \"towed\" maybe safety? no.\n- \"The vehicle was repaired.\" not clue.\nNeed group: \"ELECTRICAL SYSTEM\" given. Maybe \"electrical/electronic\" group? The instruction says \"the electrical/electronic component group, or the given group\" so group can be \"ELECTRICAL SYSTEM\".\nSummary: \"2026 Hyundai Ioniq 5 electrical system: lost motive power at 65 MPH with battery warning and stop message; failed restart; DTC P0A1F8C.\" One line.\nSymptoms: [\"lost motive power\", \"battery warning light illuminated\", \"Vehicle Will Come to a Stop warning message illuminated\", \"failed to restart\", \"VCMS internal failure\"]? Is VCMS internal failure a symptom? It is diagnosis. Could include as symptom? Symptoms plain words. Better include \"internal failure of Vehicle Control Management System (VCMS)\" as symptom? Actually root cause. But field is symptoms, maybe include \"no restart\". Fault code separate.\nConditions: [\"while driving\", \"at 65 MPH\"] but conditions enum includes cold moisture heat vibration intermittent after service charging. The provided list says conditions [\"cold\", ...]. Hmm It says conditions array of those tokens? It lists allowed? The prompt: `\"conditions\": [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"],` It seems examples/enum. But report condition is driving at 65 MPH, not in list. Should conditions include \"at 65 MPH\"? The rules say conditions facts. The template suggests tokens. Need maybe include \"at 65 MPH\" even though not in list? But field conditions likely expected list from set. However user asks normalise; conditions can include \"while driving at 65 MPH\". But schema examples are specific. To be safe, include \"at 65 MPH\" as condition? It may violate expected enum. But prompt says conditions: [\"cold\", ...] as possible. Hm.\n\nNeed answer only JSON. No markdown. Need avoid suggesting actions. Fine.\n\nNeed maybe include \"safety_relevant\": true. Clues with kind. Need quote exact character. Ensure no typo: narrative has `\"Vehicle Will Come to a Stop\"` with escaped quotes. In JSON quote value can contain quotes escaped. Verbatim span can include the quote characters? If we include `\"Vehicle Will Come to a Stop\" warning message illuminated` as value, the inner quotes are part of report. In JSON must escape as `\\\"Vehicle Will Come to a Stop\\\" warning message illuminated`. That's okay. The quote string includes quote chars. Good.\n\nNeed component group quote? \"ELECTRICAL SYSTEM\" is not in narrative but in component field. The rule \"quote copied verbatim from report\" report includes JSON component field. Could quote \"ELECTRICAL SYSTEM\" from component. But maybe report narrative only? It says read only report in user message. The whole JSON is report. Quote can be \"ELECTRICAL SYSTEM\" exact. But kind component_group. Good.\n\nNeed safety quote: \"lost motive power\" maybe safety; or \"Vehicle Will Come to a Stop\" warning. Use \"lost motive power\" maybe not always safety, but at 65 MPH yes. Could include quote \"while driving at 65 MPH, the vehicle lost motive power\" exact? Narrative: \"while driving at 65 MPH, the vehicle lost motive power\" yes. That's a good safety quote. But quote must be verbatim span. It includes comma. Good.\n\nNeed symptom quotes. \"battery warning light and a \\\"Vehicle Will Come to a Stop\\\" warning message illuminated\" exact. Could use one quote for both. But clues can multiple. Keep concise.\n\nNeed summary one line: \"2026 Hyundai Ioniq 5 electrical system lost motive power at 65 MPH with battery warning and stop message, failed restart, DTC P0A1F8C.\" Good.\n\nNeed missing_info: maybe [\"date\"] only. Is failure date missing? Yes. Mileage present. Component present. Symptom present. Conditions present. Include date. But the report has received_at; not failure date. Good.\n\nNeed conditions: Maybe [\"at 65 MPH\"]? The conditions field in schema examples includes specific environmental/operational conditions. \"at 65 MPH\" is a condition. Include \"while driving\" also? To avoid over. Use [\"at 65 MPH\"] maybe. But \"while driving\" is condition too. The prompt says conditions array examples include \"intermittent\", etc. I can include \"at 65 MPH\" and \"while driving\". But \"while driving\" is in narrative. Are these allowed? It doesn't say restrict. I'd include \"while driving\", \"at 65 MPH\". But if evaluator expects exact enum, extra may be okay? Hm.\n\nNeed group: \"ELECTRICAL SYSTEM\". Good.\n\nNeed fault_codes: [\"P0A1F8C\"]. Good.\n\nNeed clues list:\n- {\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"}\n- {\"kind\":\"symptom\",\"quote\":\"lost motive power\"}\n- {\"kind\":\"condition\",\"quote\":\"while driving at 65 MPH\"}\n- {\"kind\":\"symptom\",\"quote\":\"battery warning light and a \\\"Vehicle Will Come to a Stop\\\" warning message illuminated\"}\n- {\"kind\":\"symptom\",\"quote\":\"failed to restart\"}\n- {\"kind\":\"fault_code\",\"quote\":\"DTC P0A1F8C\"}\n- {\"kind\":\"symptom\",\"quote\":\"Vehicle Control Management System (VCMS) experienced an internal failure\"}\n- {\"kind\":\"safety\",\"quote\":\"while driving at 65 MPH, the vehicle lost motive power\"}\nMaybe duplicate condition. Fine. Need quote \"Vehicle Control Management System (VCMS) experienced an internal failure\" exact? Narrative: \"the Vehicle Control Management System (VCMS) experienced an internal failure and required replacement.\" Yes substring exact without \"the\"? The narrative includes \"that the Vehicle Control...\" Actually \"The contact was informed that the Vehicle Control Management System (VCMS) experienced an internal failure...\" So substring \"Vehicle Control Management System (VCMS) experienced an internal failure\" exact. Good.\n\nNeed ensure no other text. Final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793541176,
+      "id": "b3f92a93564b0c2f293abfc3b7078689",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1931,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1654,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00071628,
+          "billing_source": "go",
+          "list_cost": 0.0011938,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 227,
+            "output": 1931,
+            "reasoning": 1654
+          }
+        },
+        "prompt_tokens": 611,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2542
+      }
+    },
+    "text": "{\"summary\":\"2026 Hyundai Ioniq 5 electrical system lost motive power at 65 MPH with battery warning and stop message, failed restart, DTC P0A1F8C.\",\"group\":\"ELECTRICAL SYSTEM\",\"symptoms\":[\"lost motive power\",\"battery warning light illuminated\",\"Vehicle Will Come to a Stop warning message illuminated\",\"failed to restart\",\"internal failure of Vehicle Control Management System (VCMS)\"],\"conditions\":[\"while driving\",\"at 65 MPH\"],\"fault_codes\":[\"P0A1F8C\"],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"lost motive power\"},{\"kind\":\"condition\",\"quote\":\"while driving at 65 MPH\"},{\"kind\":\"symptom\",\"quote\":\"battery warning light and a \\\"Vehicle Will Come to a Stop\\\" warning message illuminated\"},{\"kind\":\"symptom\",\"quote\":\"failed to restart\"},{\"kind\":\"fault_code\",\"quote\":\"DTC P0A1F8C\"},{\"kind\":\"symptom\",\"quote\":\"Vehicle Control Management System (VCMS) experienced an internal failure\"},{\"kind\":\"safety\",\"quote\":\"while driving at 65 MPH, the vehicle lost motive power\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00071628,
+      "cached_tokens": 384,
+      "cost_usd": 0.0011938,
+      "input_tokens": 611,
+      "list_cost_usd": 0.0011938,
+      "output_tokens": 1931,
+      "reasoning_tokens": 1654
+    }
+  }
+}

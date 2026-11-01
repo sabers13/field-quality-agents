@@ -1,0 +1,66 @@
+{
+  "key": "3f5e7a02e4e19dcaba183a703324d9681b16428b2b66e798564c05c49380ca25",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12219,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system: repeated issues after replacement, including O2 sensor, radio and turbo failures; stalls and cuts off at a light or while driving.\",\"group\":\"ELECTRICAL SYSTEM\",\"symptoms\":[\"repeated issues after replacement\",\"O2 sensor replaced\",\"radio failure\",\"turbo failure\",\"stalls\",\"cuts off at a light or while driving\"],\"conditions\":[\"after service\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"same issues even after you get it replaced\"},{\"kind\":\"condition\",\"quote\":\"even after you get it replaced\"},{\"kind\":\"symptom\",\"quote\":\"the radio, and the turbo keeps going out\"},{\"kind\":\"other\",\"quote\":\"replacing the oz sensor\"},{\"kind\":\"symptom\",\"quote\":\"the car always stall and cut off at a light or when you drive\"},{\"kind\":\"safety\",\"quote\":\"this is not safe to drive\"}]}",
+            "reasoning_content": "We need answer only JSON. Need parse report. Component given ELECTRICAL SYSTEM. Narrative: same issues after replaced, not good car, spent money replacing oz sensor (O2 sensor?), radio, turbo keeps going out. recalls. should replace turbo charge. car always stall and cut off at a light or when you drive this is not safe to drive. Safety relevant: stall at speed? \"always stall and cut off at a light or when you drive this is not safe to drive\" risk to people yes. Symptoms: repeated issues after replacement; O2 sensor replaced; radio going out; turbo going out; stalls and cuts off at a light or when driving. Conditions: intermittent? \"always\" not intermittent. At a light, when driving. Could list \"when driving\", \"at a light\". Only allowed conditions list: cold, moisture, heat, vibration, intermittent, after service, charging. Hmm conditions field constrained to those? Rules say conditions array [\"cold\"...]. We can include \"after service\" because replaced? \"even after you get it replaced\" and spent replacing. \"intermittent\" maybe issues keep going out? But always stall. Need not include unsupported. Maybe \"after service\" since replacement. Could include \"intermittent\" because \"keeps going out\" implies recurring, but not necessarily intermittent. Better safe include \"after service\" for after replacement. Group \"ELECTRICAL SYSTEM\" given, but turbo is engine/air? Since given group electrical. Output group given group. Fault codes none. missing_info: mileage (null), date? received_at given but not incident date. component? Given. symptom present. conditions present somewhat. Missing mileage and date maybe. The instruction list facts analysis needs: component, symptom, conditions, mileage, date. Mileage missing; date missing (received date not event date). Conditions maybe limited? There are conditions. missing_info [\"mileage\",\"date\"]. Could include \"conditions\"? No.\n\nClues verbatim quotes. Need exact spans copied character for character. Use narrative exact. Need provide quote spans. We can quote:\n- \"the radio, and the turbo keeps going out\" symptom. Exact includes comma? Narrative: \"the radio, and the turbo keeps going out .\" yes quote without trailing maybe exact substring \"the radio, and the turbo keeps going out\" is verbatim? It appears yes but has \" .\" after. Substring okay.\n- \"the car always stall and cut off at a light or when you drive\" exact? Narrative: \"the car always stall and cut off at a light or when you drive this is not safe to drive .\" yes.\n- \"this is not safe to drive\" safety quote.\n- \"even after you get it replaced\" condition after service? Exact narrative: \"This car has the same issues even after you get it replaced .\" Quote \"even after you get it replaced\" yes.\n- \"I have spent so much money replacing the oz sensor\" component? It's symptom? Maybe other? It mentions O2 sensor. Could quote as symptom? \"replacing the oz sensor\" is service not symptom. But symptom \"same issues even after replaced\" maybe. Clues kind symptom quote \"This car has the same issues even after you get it replaced\" exact? Narrative starts \"This car has the same issues even after you get it replaced .\" yes quote includes capital. Use.\n\nNeed summary one line: component, symptom, conditions. \"Electrical system: repeated O2 sensor/radio/turbo failures after replacement; stalls and cuts off at lights or while driving.\" Keep. Group \"ELECTRICAL SYSTEM\". Symptoms plain words: [\"repeated issues after replacement\", \"O2 sensor replacement\", \"radio failure\", \"turbo failure\", \"stalls\", \"cuts off at a light or while driving\"]. Is O2 sensor replacement a symptom? Maybe \"O2 sensor problems requiring replacement\". Plain. Use \"O2 sensor replaced\" maybe.\n\nConditions: allowed values. \"after service\" because replaced. Maybe \"intermittent\" because \"keeps going out\" and \"always stall\" contradictory. \"when driving\" not allowed. The conditions field schema lists only those. Could include \"after service\". If strict, conditions should only those values. We can include [\"after service\"]. But \"at a light or when you drive\" is condition but not in list. The prompt says conditions [\"cold\",...] maybe enumerated. Use only allowed. Could also include \"intermittent\" due to \"keeps going out\" but it's repeated failures, not necessarily intermittent. Avoid.\n\nFault codes [].\nsafety_relevant true.\nmissing_info [\"mileage\",\"date\"]. Could include \"conditions\"? No.\nclues include at least safety and symptom and condition. Need every quote verbatim. Ensure exact punctuation. Let's craft.\n\nNeed answer only JSON object no other text. Ensure valid JSON. Quotes no trailing periods? Verbatim substring can omit punctuation. Use exact capitalization. Let's double-check narrative:\n\"This car has the same issues even after you get it replaced . this car is not a good car I have spent so much money replacing the oz sensor .the radio, and the turbo keeps going out . this car has a lot of recall that should be handle to make sure that this car is running good . they should replace this turbo charge . the car always stall and cut off at a light or when you drive this is not safe to drive .\"\n\nQuotes:\n\"same issues even after you get it replaced\" exact substring? Yes within \"This car has the same issues even after you get it replaced .\" It includes no capital maybe exact. Good.\n\"the radio, and the turbo keeps going out\" exact substring includes comma after radio, yes.\n\"the car always stall and cut off at a light or when you drive\" exact substring yes.\n\"this is not safe to drive\" exact substring yes.\n\"replacing the oz sensor\" exact substring yes.\n\nClue kinds: condition quote \"even after you get it replaced\" kind condition. Symptom quote \"same issues even after you get it replaced\" maybe duplicate. Could use \"the radio, and the turbo keeps going out\" symptom, \"the car always stall and cut off at a light or when you drive\" symptom, \"this is not safe to drive\" safety, \"replacing the oz sensor\" other? Hmm \"other\" for mentioned part replacement. But clues kind allowed symptom|condition|fault_code|component_group|safety|other. Use \"other\" for O2 sensor replacement? Maybe symptom. It says component group? No.\n\nMaybe include component_group quote \"ELECTRICAL SYSTEM\" not in report? It's given component field, not narrative. The report includes component field. Verbatim from report? The report JSON includes \"component\": \"ELECTRICAL SYSTEM\", but quote should be copied from report. Could quote \"ELECTRICAL SYSTEM\" from component field. But instruction says read report in user message. The report includes field. Could include clue kind component_group quote \"ELECTRICAL SYSTEM\". But maybe not necessary. We have group given. Need evidence? Not mandatory but clues list. Include component_group clue with quote \"ELECTRICAL SYSTEM\" exact. Is that verbatim? yes value.\n\nNeed perhaps quote \"turbo keeps going out\" exact substring. Use.\n\nFinal JSON. Ensure no markdown. Use boolean true.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793540578,
+      "id": "ad4635987b300b8cc2c521d85ce90390",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1751,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1523,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00064707,
+          "billing_source": "go",
+          "list_cost": 0.00107845,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 178,
+            "output": 1751,
+            "reasoning": 1523
+          }
+        },
+        "prompt_tokens": 562,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2313
+      }
+    },
+    "text": "{\"summary\":\"Electrical system: repeated issues after replacement, including O2 sensor, radio and turbo failures; stalls and cuts off at a light or while driving.\",\"group\":\"ELECTRICAL SYSTEM\",\"symptoms\":[\"repeated issues after replacement\",\"O2 sensor replaced\",\"radio failure\",\"turbo failure\",\"stalls\",\"cuts off at a light or while driving\"],\"conditions\":[\"after service\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"same issues even after you get it replaced\"},{\"kind\":\"condition\",\"quote\":\"even after you get it replaced\"},{\"kind\":\"symptom\",\"quote\":\"the radio, and the turbo keeps going out\"},{\"kind\":\"other\",\"quote\":\"replacing the oz sensor\"},{\"kind\":\"symptom\",\"quote\":\"the car always stall and cut off at a light or when you drive\"},{\"kind\":\"safety\",\"quote\":\"this is not safe to drive\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00064707,
+      "cached_tokens": 384,
+      "cost_usd": 0.00107845,
+      "input_tokens": 562,
+      "list_cost_usd": 0.00107845,
+      "output_tokens": 1751,
+      "reasoning_tokens": 1523
+    }
+  }
+}

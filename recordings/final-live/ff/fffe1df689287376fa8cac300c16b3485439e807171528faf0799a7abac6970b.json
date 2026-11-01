@@ -1,0 +1,66 @@
+{
+  "key": "fffe1df689287376fa8cac300c16b3485439e807171528faf0799a7abac6970b",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 7354,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Instrument panel speedometer/odometer: odometer fraud with mileage discrepancy; purchased at 133,000, later scan-tool reading 535,000.\",\n  \"group\": \"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\",\n  \"symptoms\": [\n    \"odometer fraud\",\n    \"mileage discrepancy\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"missing_info\": [],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Odometer Fraud.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"mileage discrepancy\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"dealer sale\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"mileage was 535,000\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"scan tool\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer JSON only. Need normalize report. Component given electrical system instrument panel speedometer/odometer. Summary one line component symptom conditions. Symptom: mileage discrepancy / odometer fraud. Conditions? At purchase? Dealer sale? Mechanic scan tool. Need conditions list from allowed: cold, moisture, heat, vibration, intermittent, after service, charging. None apply likely empty. Fault codes none. Safety_relevant? Odometer fraud no crash/fire etc. false. Missing_info? Component given, symptom given, conditions maybe not applicable, mileage given 535000 (also purchase 133000), date received. Missing? Maybe date of discovery? But allowed facts: component symptom conditions mileage date. We have date received, year, mileage. No missing important. Could say none. Clues quotes verbatim from narrative. Need quote exact spans. Use \"Odometer Fraud.\" quote. \"mileage discrepancy\". \"mileage was 535,000\". Maybe \"dealer sale\". \"scan tool\". Conditions? dealer sale not in allowed conditions. condition clue maybe \"dealer sale\" but kind condition? It is context not environmental. Could include other quote. Need group: given group \"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\" perhaps \"electrical/electronic\" or exact component group. Rules \"the electrical/electronic component group, or the given group\". Use \"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\". Symptoms [\"mileage discrepancy\", \"odometer fraud\"]. conditions [].\n\nNeed ensure quote character for character. Narrative: \"Odometer Fraud. The contact purchased a 2012 Freightliner Coronado. It was discovered that there was a mileage discrepancy. The vehicle was a dealer sale. The dealer was no longer communicating with the contact. At the time of the purchase, the mileage was 133,000. The contact later discovered that the mileage was 535,000 by a mechanic using a scan tool. The contact reported the issue to the Attorney General and the BBB.\"\n\nQuotes: \"Odometer Fraud.\" exact. \"mileage discrepancy\" exact substring. \"mileage was 535,000\" exact? In text \"the mileage was 535,000 by a mechanic\" yes substring. \"scan tool\" exact. \"dealer sale\" exact. Good.\n\nNeed output no markdown? They requested JSON object and no other text. We can output raw JSON. Ensure valid. summary \"Instrument panel speedometer/odometer; odometer fraud/mileage discrepancy discovered after dealer sale via scan tool.\" Conditions empty. missing_info maybe [] since all needed. safety_relevant false. clues include kinds. Could include component_group quote? Given component field not narrative? Report includes component in JSON. quote must copied from report; can quote component string exact. But clues quote from report. Use component_group quote \"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\". Is that verbatim in report? Yes component value. Good. But \"report\" includes full JSON. Fine.\n\nNeed maybe include \"Odometer Fraud\" as symptom and \"mileage discrepancy\" as symptom. Maybe \"mileage was 535,000\" as other. Fault codes empty. Missing_info [] or maybe [\"conditions\"]? Conditions not relevant? The analysis might need date of purchase/discovery but not allowed. Since mileage given. I'd use [].\n\nNeed summary one line: \"Speedometer/odometer (instrument panel): odometer fraud with mileage discrepancy; purchased at 133,000, later scan-tool reading 535,000.\" That's one line. Conditions none. Good.\n\nNeed final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793539749,
+      "id": "3d15870385490482c21fe99747a2f49d",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1043,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 775,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00039399,
+          "billing_source": "go",
+          "list_cost": 0.00065665,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 198,
+            "output": 1043,
+            "reasoning": 775
+          }
+        },
+        "prompt_tokens": 582,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1625
+      }
+    },
+    "text": "{\n  \"summary\": \"Instrument panel speedometer/odometer: odometer fraud with mileage discrepancy; purchased at 133,000, later scan-tool reading 535,000.\",\n  \"group\": \"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\",\n  \"symptoms\": [\n    \"odometer fraud\",\n    \"mileage discrepancy\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"missing_info\": [],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Odometer Fraud.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"mileage discrepancy\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"dealer sale\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"mileage was 535,000\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"scan tool\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00039399,
+      "cached_tokens": 384,
+      "cost_usd": 0.00065665,
+      "input_tokens": 582,
+      "list_cost_usd": 0.00065665,
+      "output_tokens": 1043,
+      "reasoning_tokens": 775
+    }
+  }
+}

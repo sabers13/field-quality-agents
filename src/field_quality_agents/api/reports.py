@@ -7,7 +7,7 @@ from typing import Annotated
 
 from fastapi import APIRouter, HTTPException, Query, Request
 
-from field_quality_agents.api.deps import bus_of, store_of
+from field_quality_agents.api.deps import bus_of, final_live_of, store_of
 from field_quality_agents.api.events import combined_feed
 from field_quality_agents.api.kpis import WindowError, build_command_centre, build_comparison
 from field_quality_agents.api.models import CommandCentreData, ComparisonData
@@ -29,6 +29,7 @@ def get_kpis(
             store=store,
             window=window,
             feed=combined_feed(store, bus_of(request)),
+            final_live=final_live_of(request),
         )
     except WindowError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc

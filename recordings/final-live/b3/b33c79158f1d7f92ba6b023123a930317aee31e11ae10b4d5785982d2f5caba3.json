@@ -1,0 +1,66 @@
+{
+  "key": "b33c79158f1d7f92ba6b023123a930317aee31e11ae10b4d5785982d2f5caba3",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10467,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\": \"Hybrid propulsion system: total loss of automotive power at 50 MPH with Check Hybrid System - Stop Immediately warning and DTC P1BB2.\", \"group\": \"hybrid propulsion system\", \"symptoms\": [\"total loss of automotive power while driving\", \"Check Hybrid System - Stop Immediately warning displayed\"], \"conditions\": [], \"fault_codes\": [\"P1BB2\"], \"safety_relevant\": true, \"missing_info\": [\"date\"], \"clues\": [{\"kind\": \"component_group\", \"quote\": \"HYBRID PROPULSION SYSTEM\"}, {\"kind\": \"symptom\", \"quote\": \"experienced a total loss of automotive power\"}, {\"kind\": \"symptom\", \"quote\": \"The message \\\"Check Hybrid System - Stop Immediately\\\" was displayed.\"}, {\"kind\": \"condition\", \"quote\": \"while driving 50 MPH\"}, {\"kind\": \"fault_code\", \"quote\": \"DTC: P1BB2\"}, {\"kind\": \"safety\", \"quote\": \"total loss of automotive power\"}, {\"kind\": \"other\", \"quote\": \"Voluntary Emissions Service Campaign: SC338\"}]}",
+            "reasoning_content": "We need answer only JSON. Need parse. Component HYBRID PROPULSION SYSTEM. Narrative: 2024 Kia Sportage, while driving 50 MPH total loss automotive power, message \"Check Hybrid System - Stop Immediately\", towed dealer, DTC P1BB2 retrieved, software update performed, repaired. Manufacturer notified. Referenced Voluntary Emissions Service Campaign SC338 possible cause. Failure mileage 35,000.\n\nNeed summary one line component symptom conditions. Group electrical/electronic component group or given group. Given component hybrid propulsion system. Group maybe \"hybrid propulsion system\" as given? It's not purely electrical/electronic but includes. We can set group \"hybrid propulsion system\". Symptoms plain words: \"total loss of automotive power while driving\" maybe \"Check Hybrid System - Stop Immediately warning\". Conditions include? \"driving 50 MPH\" is condition but allowed conditions list only cold moisture heat vibration intermittent after service charging. We must choose from list? Schema conditions array examples. Rules say conditions [\"cold\",\"moisture\",\"heat\",\"vibration\",\"intermittent\",\"after service\",\"charging\"]. It likely expects only these normalized tags. Driving at speed not in list. Could include \"intermittent\"? No. \"after service\" because software update performed? That was after repair not condition. Avoid invent. Conditions empty? But summary can mention 50 MPH. Missing info: date? received_at exists but failure date not. Mileage present. Conditions? We have speed but not weather. Component present symptom present. Maybe missing_info [\"date\"] only. Could include \"conditions\" maybe because no environmental conditions. But analysis needs conditions? The report has driving condition 50 MPH but not cold etc. I might list missing_info [\"date\"] because failure date absent. Need fault_codes [\"P1BB2\"]. safety_relevant true? Total loss of power while driving 50 MPH = loss of control/stall at speed risk. Yes true. Clues with verbatim quotes: symptom quote \"experienced a total loss of automotive power\" or \"while driving 50 MPH, the vehicle experienced a total loss of automotive power\". condition quote \"while driving 50 MPH\" kind condition. fault_code quote \"DTC: P1BB2\". component_group quote \"HYBRID PROPULSION SYSTEM\" (from component field? It's in report JSON, yes user message includes component). safety quote \"total loss of automotive power\" maybe same as symptom; safety kind quote \"The message \\\"Check Hybrid System - Stop Immediately\\\" was displayed.\"? Safety relevance from loss power. Could quote \"experienced a total loss of automotive power\" for safety too. Other quote for campaign \"Voluntary Emissions Service Campaign: SC338\". But clues kind other.\n\nNeed ensure quote verbatim from report. The narrative has \"The contact stated that while driving 50 MPH, the vehicle experienced a total loss of automotive power.\" Quote exact spans. \"DTC: P1BB2\" exact. \"Check Hybrid System - Stop Immediately\" exact inside quotes. Component field \"HYBRID PROPULSION SYSTEM\" exact.\n\nNeed no other text. JSON valid.\n\nSummary: \"Hybrid propulsion system: total power loss at 50 MPH with Check Hybrid System Stop Immediately warning and DTC P1BB2.\" This includes component symptom conditions. Good.\n\nsymptoms: [\"total loss of automotive power while driving\", \"Check Hybrid System - Stop Immediately warning displayed\"]. Plain words. Conditions: maybe [\"intermittent\"]? No. Could put [] because no normalized conditions. But maybe \"while driving 50 MPH\" is condition but not in list. Schema conditions allowed list? The prompt says conditions: [\"cold\",...]. I should only include normalized tags. Empty list acceptable. But summary has conditions. Missing_info maybe [\"date\"] because no failure date. But received_at is date of report not failure. Could include \"conditions\" because no weather/road? Hmm \"conditions\" in missing_info means facts analysis needs. The report gives speed but not ambient. I think include [\"date\"] only; maybe also \"conditions\" because environmental conditions missing, but not critical. User asked missing_info list only important. Date is important for analysis/trend. Mileage present. Component/symptom present. Conditions maybe not. Use [\"date\"]. If we include conditions, then conditions array empty; but not necessarily missing because not all cases need. I'd use [\"date\"].\n\nsafety_relevant true because loss of power at 50 mph and stop immediately. Good.\n\nNeed maybe \"group\": \"hybrid propulsion system\". Fine.\n\nLet's craft JSON. Ensure quotes exactly copied. The narrative includes curly? It's plain. Quote \"while driving 50 MPH, the vehicle experienced a total loss of automotive power\" exact substring. Yes.\n\nClues:\n- component_group quote \"HYBRID PROPULSION SYSTEM\"\n- symptom quote \"experienced a total loss of automotive power\"\n- symptom quote \"The message \\\"Check Hybrid System - Stop Immediately\\\" was displayed.\" Need inside JSON escape quotes. Verbatim includes backslash? In final JSON string: \"\\\"Check...\" etc. The quote text includes actual quote characters around message. Fine.\n- condition quote \"while driving 50 MPH\"\n- fault_code quote \"DTC: P1BB2\"\n- safety quote \"total loss of automotive power\" (overlaps) or \"Stop Immediately\". Use \"total loss of automotive power\".\n- other quote \"Voluntary Emissions Service Campaign: SC338\"\n\nNeed not overdo. final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793541364,
+      "id": "40f767fecf1cb4023cc9e8e069e8d064",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1379,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1136,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00051576,
+          "billing_source": "go",
+          "list_cost": 0.0008596,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 207,
+            "output": 1379,
+            "reasoning": 1136
+          }
+        },
+        "prompt_tokens": 591,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1970
+      }
+    },
+    "text": "{\"summary\": \"Hybrid propulsion system: total loss of automotive power at 50 MPH with Check Hybrid System - Stop Immediately warning and DTC P1BB2.\", \"group\": \"hybrid propulsion system\", \"symptoms\": [\"total loss of automotive power while driving\", \"Check Hybrid System - Stop Immediately warning displayed\"], \"conditions\": [], \"fault_codes\": [\"P1BB2\"], \"safety_relevant\": true, \"missing_info\": [\"date\"], \"clues\": [{\"kind\": \"component_group\", \"quote\": \"HYBRID PROPULSION SYSTEM\"}, {\"kind\": \"symptom\", \"quote\": \"experienced a total loss of automotive power\"}, {\"kind\": \"symptom\", \"quote\": \"The message \\\"Check Hybrid System - Stop Immediately\\\" was displayed.\"}, {\"kind\": \"condition\", \"quote\": \"while driving 50 MPH\"}, {\"kind\": \"fault_code\", \"quote\": \"DTC: P1BB2\"}, {\"kind\": \"safety\", \"quote\": \"total loss of automotive power\"}, {\"kind\": \"other\", \"quote\": \"Voluntary Emissions Service Campaign: SC338\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00051576,
+      "cached_tokens": 384,
+      "cost_usd": 0.0008596,
+      "input_tokens": 591,
+      "list_cost_usd": 0.0008596,
+      "output_tokens": 1379,
+      "reasoning_tokens": 1136
+    }
+  }
+}

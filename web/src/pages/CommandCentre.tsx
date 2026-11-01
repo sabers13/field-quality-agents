@@ -1,4 +1,5 @@
 import { useApp } from "../app/AppContext";
+import { FinalLivePanel } from "../components/FinalLivePanel";
 import { KpiTile } from "../components/KpiTile";
 import { Panel, EmptyState, ErrorState, LoadingState } from "../components/States";
 import { ToneBadge } from "../components/StatusBadge";
@@ -122,6 +123,8 @@ export function CommandCentrePage() {
           <KpiTile kpi={kpi} key={kpi.id} />
         ))}
       </div>
+
+      {data.final_live ? <FinalLivePanel data={data.final_live} /> : null}
 
       <div className="split-grid">
         <Panel

@@ -1,0 +1,66 @@
+{
+  "key": "8661cbd9b70f207dc11f4249f2be0de2099d38d1fa1de37e8f6e79b7ec641437",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9983,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system: repeated high-voltage electrical system malfunction (third occurrence), towed to dealership; conditions not stated.\",\"group\":\"ELECTRICAL SYSTEM\",\"symptoms\":[\"high-voltage electrical system malfunction\",\"repeated malfunction, third occurrence\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"high-voltage electrical system malfunction\"},{\"kind\":\"other\",\"quote\":\"This is the 3rd time\"},{\"kind\":\"other\",\"quote\":\"It was just towed to the dealership.\"}]}",
+            "reasoning_content": "We need produce JSON only. Need parse report. Component ELECTRICAL SYSTEM. Narrative: \"This is the 3rd time I have had a \\\"high-voltage electrical system malfunction.\\\" It was just towed to the dealership.\" Symptoms: high-voltage electrical system malfunction, repeated third time, towed to dealership. Conditions? intermittent? Repeated recurring? \"3rd time\" suggests recurring/intermittent maybe condition? We need conditions list from allowed: cold, moisture, heat, vibration, intermittent, after service, charging. Report doesn't mention those explicitly, except repeated 3rd time could be intermittent? Better not invent. Conditions empty. Fault codes none. Safety relevant? High-voltage electrical system malfunction could risk? Report does not mention crash/fire/smoke/injury/loss control/stall at speed. Towed. Not necessarily safety. Set false unless risk to people. missing_info: mileage is null, date? received_at exists but occurrence date missing? Rules missing_info for facts analysis needs: component, symptom, conditions, mileage, date. Component present, symptom present, conditions not specified, mileage missing, date? Report has received_at but no incident date. Should include \"mileage\", \"date\", \"conditions\" maybe. Conditions absent is a missing fact. Summary one line: component, symptom, conditions. \"Electrical system: repeated high-voltage electrical system malfunction (third occurrence), vehicle towed to dealership; conditions not stated.\" Need JSON.\n\nClues with quotes verbatim. Need quote exact span. Narrative includes escaped quotes but actual string: This is the 3rd time I have had a \"high-voltage electrical system malfunction.\" It was just towed to the dealership.\n\nQuotes: \"high-voltage electrical system malfunction\" (without quotes? The quote span can include the phrase exactly; within JSON escape quotes. Verbatim span from report: high-voltage electrical system malfunction. Also \"This is the 3rd time I have had a \\\"high-voltage electrical system malfunction.\\\"\" include quotes? We can quote exact including quote characters? The report narrative has quote characters around phrase. A verbatim span could be `\"high-voltage electrical system malfunction.\"` including quotes? Need copy character for character. In JSON need escape. Safer use `high-voltage electrical system malfunction` (substring) and `It was just towed to the dealership.` and `This is the 3rd time`. For component group quote \"ELECTRICAL SYSTEM\" from component field? Is that in report? The report is whole JSON user message, so yes. But rules say read report. Could quote component value. Need component_group clue. Quote \"ELECTRICAL SYSTEM\". Symptom clue for malfunction. Condition? maybe \"3rd time\" as intermittent? Not condition allowed. Could clue kind condition quote \"3rd time\" maybe indicates recurrence. But conditions list empty. Clue kind condition quote \"3rd time\" is okay? It is a condition-ish recurrence. But kind condition quote can be used. However conditions array should include intermittent if clue? Hmm.\n\nSafety false.\n\nMissing info: mileage, date, conditions. Date: received_at is date report received, not incident date. Include date. Symptom? present. Component present.\n\nNeed exact JSON only. Ensure no other text. Use valid JSON. Summary maybe \"Electrical system: repeated high-voltage electrical system malfunction (third occurrence), towed to dealership; conditions not stated.\" That's one line.\n\nClues:\n{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"}\n{\"kind\":\"symptom\",\"quote\":\"high-voltage electrical system malfunction\"}\n{\"kind\":\"condition\",\"quote\":\"3rd time\"}? But condition not in allowed conditions. Kind condition can be any condition? It says kind symptom|condition|fault_code|component_group|safety|other. Quote \"3rd time\" supports recurrence. But conditions array empty. Is that inconsistent? Maybe okay. Alternatively clue kind other quote \"This is the 3rd time\". But condition kind would imply condition. Let's use other for recurrence? But clues kind \"other\" quote \"This is the 3rd time\". The symptom clue captures malfunction. Also quote \"It was just towed to the dealership.\" kind other. Does not add much. Need evidence. Safety false no safety clue.\n\nMissing_info includes conditions because no environmental conditions. Could include mileage and date. Mileage null explicit. Date missing occurrence date. Conditions missing. Good.\n\nNeed JSON with escaped quotes? We can avoid quotes in quote values except phrase no quotes. For \"This is the 3rd time\" no quotes. Good.\n\nFinal.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793540791,
+      "id": "e048e6a8bad57b1be342cee01fd4ed92",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1090,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 944,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00040371,
+          "billing_source": "go",
+          "list_cost": 0.00067285,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 118,
+            "output": 1090,
+            "reasoning": 944
+          }
+        },
+        "prompt_tokens": 502,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1592
+      }
+    },
+    "text": "{\"summary\":\"Electrical system: repeated high-voltage electrical system malfunction (third occurrence), towed to dealership; conditions not stated.\",\"group\":\"ELECTRICAL SYSTEM\",\"symptoms\":[\"high-voltage electrical system malfunction\",\"repeated malfunction, third occurrence\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"high-voltage electrical system malfunction\"},{\"kind\":\"other\",\"quote\":\"This is the 3rd time\"},{\"kind\":\"other\",\"quote\":\"It was just towed to the dealership.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00040371,
+      "cached_tokens": 384,
+      "cost_usd": 0.00067285,
+      "input_tokens": 502,
+      "list_cost_usd": 0.00067285,
+      "output_tokens": 1090,
+      "reasoning_tokens": 944
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "6907d5cf748e2554d92e31a5ba94f3a992cd6aaf5ba2841dc35167633e5e7222",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11529,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"2023 Chevrolet Equinox electrical system: sudden loss of power and engine stall while driving, plus electronic failures and battery replacement after an OnStar remote update.\",\n  \"group\": \"ELECTRICAL SYSTEM\",\n  \"symptoms\": [\n    \"sudden loss of power and stopped functioning\",\n    \"engine stalling\",\n    \"electronic components failing\",\n    \"battery had to be replaced\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\",\n    \"conditions\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"ELECTRICAL SYSTEM\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"it suddenly lost power and stopped functioning without advance warning\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"engine stalling and loss of power\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"everything electronic since then have going downhill\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"creating a dangerous situation for myself and other motorists\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"fuel pump control module recall campaign N262558690 and technical service bulletin 24-NA-139\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"Since OnStar equipment in radio and car did a remote update this summer this failed other components and softwares believe it killed my battery i had to replace\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer only JSON. Need parse. Report component electrical system, Chevy Equinox 2023, symptom sudden loss power stopped, engine stalling loss of power, battery replaced, electronic failures after remote update, safety relevant yes (loss of power on roadway, stall at speed? It says suddenly lost power and stopped functioning while operating on public roadway, dangerous situation). Conditions: maybe after service? remote update this summer, intermittent? \"waiting for another electronic to fail\" not exactly intermittent. Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. Remote update could be \"after service\" maybe not service. We shouldn't invent. Could include \"after service\" if remote update? It's a software update, not service. Better none? conditions empty. Fault codes none. Missing_info: mileage null, date? received_at date but incident date missing. Component given. symptom present. Conditions maybe missing? Need only facts analysis needs. missing_info [\"mileage\",\"date\",\"conditions\"] maybe conditions not specified. The report mentions no mileage. Date of incident absent. Conditions? It does mention roadway, summer update but not environmental conditions. So yes.\n\nNeed summary one line: Electrical system; sudden loss of power/engine stall while driving; 2023 Equinox, possible fuel pump/control module and post-OnStar update electronic failures. Must not invent. Quote verbatim spans. Need exact character for character. Narrative has escaped? We copy from decoded string? Need verbatim from report. The report is JSON with unicode escapes, but narrative content includes actual characters? We can quote phrases as in narrative. Ensure exact punctuation. Quotes: \"it suddenly lost power and stopped functioning without advance warning\" yes. \"engine stalling and loss of power\" yes. \"Since OnStar equipment in radio and car did a remote update this summer this failed other components and softwares believe it killed my battery i had to replace\" exact? There is \"Also too. Since OnStar...\" We can quote substring. Need exact. \"created a dangerous situation for myself and other motorists\" yes. \"fuel pump control module recall campaign N262558690 and technical service bulletin 24-NA-139\" exact. Fault codes? Campaign N262558690 and TSB 24-NA-139 are not fault codes. Should fault_codes empty. Could include? The schema says code if report names one; fault code likely diagnostic trouble code, not recall/TSB. Leave empty.\n\nGroup: electrical/electronic component group. Given group? component \"ELECTRICAL SYSTEM\". Use \"ELECTRICAL SYSTEM\" or \"electrical/electronic\". Prompt: \"the electrical/electronic component group, or the given group\" The report gives component ELECTRICAL SYSTEM. group \"ELECTRICAL SYSTEM\". Symptoms: [\"sudden loss of power and stopped functioning\", \"engine stalling\", \"electronic components failing\", \"battery replaced\"]? Battery replacement is repair not symptom. \"everything electronic since then have going downhill\" symptom. Keep plain.\n\nConditions: Could include \"after service\"? Remote update isn't service. Maybe \"after service\" no. Could include \"intermittent\"? no. Conditions [] maybe. Safety true. Clues list with kind symptom, condition? safety quote, other for recall? component_group quote \"ELECTRICAL SYSTEM\"? It is from input component not narrative? The report? User message includes component field. Quote verbatim from report maybe can quote \"ELECTRICAL SYSTEM\" from component field. Clues need evidence. For component_group quote \"ELECTRICAL SYSTEM\". Symptom quote. Safety quote. Other for recall campaign/TSB? kind other. Condition maybe \"on a public roadway\" is condition? Allowed conditions list not include roadway. Kind condition \"while operating my vehicle on a public roadway\" maybe condition. But conditions array only allowed enumerated. We can still clue condition quote? Maybe not. Condition \"this summer\" not allowed. Keep clues focused.\n\nNeed valid JSON no markdown? They asked one JSON object and no other text. final should be raw JSON only. Ensure quotes exact. Let's verify exact substrings from narrative:\n\"it suddenly lost power and stopped functioning without advance warning\" yes lowercase after comma? Narrative: \"While operating my vehicle on a public roadway, it suddenly lost power and stopped functioning without advance warning, creating...\" Yes.\n\"creating a dangerous situation for myself and other motorists\" yes.\n\"The service bulletin specifically describes engine stalling and loss of power.\" Quote \"engine stalling and loss of power\" yes.\n\"Since OnStar equipment in radio and car did a remote update this summer this failed other components and softwares believe it killed my battery i had to replace\" Check exact: \"Also too. Since OnStar equipment in radio and car did a remote update this summer this failed other components and softwares believe it killed my battery i had to replace, everything electronic since then have going downhill.\" Yes substring.\n\"everything electronic since then have going downhill\" exact yes.\n\"fuel pump control module recall campaign N262558690 and technical service bulletin 24-NA-139\" exact? Narrative: \"General Motors has published fuel pump control module recall campaign N262558690 and technical service bulletin 24-NA-139, both...\" yes.\n\"loss of power\" maybe duplicate.\n\nMissing_info: component not missing, symptom not missing, conditions? The report lacks specific conditions, mileage null, date incident. Include [\"mileage\",\"date\",\"conditions\"]. Could \"date\" because received_at but incident date missing. Good.\n\nSummary one line. Need no newline? fine.\n\nLet's formulate. Ensure JSON escapes? Quotes fine. Use false etc.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793540976,
+      "id": "d3e7486812c86fc23f2f3388841721b6",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1522,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1167,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00059145,
+          "billing_source": "go",
+          "list_cost": 0.00098575,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 476,
+            "output": 1522,
+            "reasoning": 1167
+          }
+        },
+        "prompt_tokens": 860,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2382
+      }
+    },
+    "text": "{\n  \"summary\": \"2023 Chevrolet Equinox electrical system: sudden loss of power and engine stall while driving, plus electronic failures and battery replacement after an OnStar remote update.\",\n  \"group\": \"ELECTRICAL SYSTEM\",\n  \"symptoms\": [\n    \"sudden loss of power and stopped functioning\",\n    \"engine stalling\",\n    \"electronic components failing\",\n    \"battery had to be replaced\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\",\n    \"conditions\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"ELECTRICAL SYSTEM\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"it suddenly lost power and stopped functioning without advance warning\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"engine stalling and loss of power\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"everything electronic since then have going downhill\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"creating a dangerous situation for myself and other motorists\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"fuel pump control module recall campaign N262558690 and technical service bulletin 24-NA-139\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"Since OnStar equipment in radio and car did a remote update this summer this failed other components and softwares believe it killed my battery i had to replace\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00059145,
+      "cached_tokens": 384,
+      "cost_usd": 0.00098575,
+      "input_tokens": 860,
+      "list_cost_usd": 0.00098575,
+      "output_tokens": 1522,
+      "reasoning_tokens": 1167
+    }
+  }
+}

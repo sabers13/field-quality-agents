@@ -8,6 +8,7 @@ from fastapi import Request
 
 from field_quality_agents.api.events import EventBus
 from field_quality_agents.api.live import LiveDesk
+from field_quality_agents.api.models import FinalLiveData
 from field_quality_agents.api.store import CaseRecord, ResultStore
 
 __all__ = [
@@ -15,6 +16,7 @@ __all__ = [
     "bus_of",
     "case_records",
     "desk_of",
+    "final_live_of",
     "find_case",
     "mode_of",
     "store_of",
@@ -38,6 +40,12 @@ def bus_of(request: Request) -> EventBus:
 def desk_of(request: Request) -> LiveDesk | None:
     desk = getattr(request.app.state, "desk", None)
     return cast(LiveDesk | None, desk)
+
+
+def final_live_of(request: Request) -> FinalLiveData | None:
+    """Q14's panel data, loaded once at start-up; ``None`` before Q14 ran."""
+
+    return cast(FinalLiveData | None, getattr(request.app.state, "final_live", None))
 
 
 def case_records(request: Request) -> list[CaseRecord]:

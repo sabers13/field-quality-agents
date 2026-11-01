@@ -1,0 +1,66 @@
+{
+  "key": "3f97c78ab37cb301cf9517ee2014c236ccf10129c4cd7cfa2e15f0e4eecf8997",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 7767,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"2017 Acura MDX adaptive cruise control/forward collision avoidance: erratic brake, cruise and lane-keeping malfunctions with one brake set dragging, plus a repeating electrical wake cycle that drains the battery\",\n  \"group\": \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\",\n  \"symptoms\": [\n    \"brake system, cruise control and lane keeping malfunction erratically\",\n    \"one of the two sets of brakes never wears off (brake drag, one set of pads still has life)\",\n    \"electronic system gone very bad recently\",\n    \"dashboard automatically restarts and headlight turns on\",\n    \"system tries to engage something then turns off and starts a new cycle\",\n    \"cycle restarts even after being turned off until the battery is drained dead\",\n    \"battery replaced after less than 1.5 years of use\",\n    \"with the car locked the cycle repeats and the horn honks repeatedly\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [],\n  \"clues\": [\n    {\"kind\": \"component_group\", \"quote\": \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\"},\n    {\"kind\": \"symptom\", \"quote\": \"Brake system, Cruise control, lane keeping system get malfunction erratically\"},\n    {\"kind\": \"condition\", \"quote\": \"erratically\"},\n    {\"kind\": \"symptom\", \"quote\": \"one of the two sets of brakes never wears off\"},\n    {\"kind\": \"symptom\", \"quote\": \"the electronic system has gone very bad\"},\n    {\"kind\": \"symptom\", \"quote\": \"the dashboard automatically restarts, headlight turns on\"},\n    {\"kind\": \"symptom\", \"quote\": \"the cycle will restart until battery is drained and dead\"},\n    {\"kind\": \"safety\", \"quote\": \"until the surrounding people had to remove the car\"}\n  ]\n}",
+            "reasoning_content": "Let me extract carefully.\n\nComponent: FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL. Group: forward collision avoidance / driver assistance electronics.\n\nSymptoms: brake system, cruise control, lane keeping malfunction erratically; one set of brakes never wears off (brake drag); electronic system gone very bad — dashboard restarts, headlight turns on, tries to engage something then turns off, cycle repeats draining battery; honking when locked.\n\nConditions: intermittent (erratically), after service? No. Battery drain — that's a symptom. \"ever since 2022\" — chronic.\n\nSafety relevant: battery drains dead, car honks until people remove car — hazard? Loss of braking? One set of brakes never wears off — brake drag could be fire risk / brake failure. I'd say safety_relevant true — brake drag, unintended electrical activation, battery drain. Hmm, \"loss of control\" not mentioned. But brake drag and unintended headlight/horn activation. I'd set true given brake anomaly. Actually be conservative: the report mentions brakes never wearing off — dragging brakes — that's a safety risk. I'll set true.\n\nMissing info: mileage is given in narrative (\"More than 100 K mileage now\") though field is null — so not missing. Date of incident: received 2026-10-10, mentions August 2026 and 2022. Conditions — partially. Component given, symptom given. So missing_info: [] maybe. Hmm, but arguably specific conditions/dates. I'll leave empty? The rules say list only facts analysis needs. Component, symptom present, conditions present-ish, mileage present in narrative. I'll give [].\n\nHmm, maybe \"date\" of onset is present (2022). Fine, empty list.\n\nClues with verbatim quotes:\n- \"Brake system, Cruise control, lane keeping system get malfunction erratically\"\n- \"one of the two sets of brakes never wears off\"\n- \"the electronic system has gone very bad\"\n- \"the dashboard automatically restarts, headlight turns on\"\n- \"until battery is drained and dead\"\n- \"the cycle will restart\"\n\nFault codes: none.\n\nConditions: \"intermittent\" — from \"erratically\". Quote needs verbatim, so use \"erratically\" as condition quote.\n\nSafety clue: \"until battery is drained and dead\" kind safety? Better: brake drag \"one of the two sets of brakes never wears off\" as symptom. Safety clue quote: \"until the surrounding people had to remove the car\".\n\nOutput JSON only.\n\nNote the narrative has typos; copy exactly: \"does not seem to require replacement.   Additiionally\" — I'll just quote accurate spans.\n\nCheck quote \"the electronic system has gone very bad\" — narrative: \"recently (August 2026) the electronic system has gone very bad\" ✓.\n\n\"the dashboard automatically restarts, headlight turns on\" ✓.\n\n\"until battery is drained and dead\" ✓.\n\n\"one of the two sets of brakes never wears off\" ✓.\n\n\"erratically\" ✓.\n\n\"the cycle will restart until battery is drained and dead\" — careful: narrative \"the cycle will restart until battery is drained and dead, if I do not lock the car\". ✓\n\nSummary line.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793540510,
+      "id": "9310351042bbb241cd89c372b24598dd",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1122,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 684,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00043125,
+          "billing_source": "go",
+          "list_cost": 0.00071875,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 296,
+            "output": 1122,
+            "reasoning": 684
+          }
+        },
+        "prompt_tokens": 680,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1802
+      }
+    },
+    "text": "{\n  \"summary\": \"2017 Acura MDX adaptive cruise control/forward collision avoidance: erratic brake, cruise and lane-keeping malfunctions with one brake set dragging, plus a repeating electrical wake cycle that drains the battery\",\n  \"group\": \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\",\n  \"symptoms\": [\n    \"brake system, cruise control and lane keeping malfunction erratically\",\n    \"one of the two sets of brakes never wears off (brake drag, one set of pads still has life)\",\n    \"electronic system gone very bad recently\",\n    \"dashboard automatically restarts and headlight turns on\",\n    \"system tries to engage something then turns off and starts a new cycle\",\n    \"cycle restarts even after being turned off until the battery is drained dead\",\n    \"battery replaced after less than 1.5 years of use\",\n    \"with the car locked the cycle repeats and the horn honks repeatedly\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [],\n  \"clues\": [\n    {\"kind\": \"component_group\", \"quote\": \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\"},\n    {\"kind\": \"symptom\", \"quote\": \"Brake system, Cruise control, lane keeping system get malfunction erratically\"},\n    {\"kind\": \"condition\", \"quote\": \"erratically\"},\n    {\"kind\": \"symptom\", \"quote\": \"one of the two sets of brakes never wears off\"},\n    {\"kind\": \"symptom\", \"quote\": \"the electronic system has gone very bad\"},\n    {\"kind\": \"symptom\", \"quote\": \"the dashboard automatically restarts, headlight turns on\"},\n    {\"kind\": \"symptom\", \"quote\": \"the cycle will restart until battery is drained and dead\"},\n    {\"kind\": \"safety\", \"quote\": \"until the surrounding people had to remove the car\"}\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00043125,
+      "cached_tokens": 384,
+      "cost_usd": 0.00071875,
+      "input_tokens": 680,
+      "list_cost_usd": 0.00071875,
+      "output_tokens": 1122,
+      "reasoning_tokens": 684
+    }
+  }
+}

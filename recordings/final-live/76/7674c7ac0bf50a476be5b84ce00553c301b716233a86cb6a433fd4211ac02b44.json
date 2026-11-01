@@ -1,0 +1,66 @@
+{
+  "key": "7674c7ac0bf50a476be5b84ce00553c301b716233a86cb6a433fd4211ac02b44",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 14055,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system: complete loss of propulsion with unresponsive accelerator and engine malfunction/stop safely warnings while driving through a busy intersection; failed 48-volt mild-hybrid battery diagnosed.\",\"group\":\"ELECTRICAL SYSTEM\",\"symptoms\":[\"complete loss of propulsion\",\"accelerator pedal produced no response\",\"unable to accelerate or maintain speed\",\"Engine malfunction warning\",\"Stop safely and shift to Park warning\",\"failed 48-volt mild-hybrid battery\",\"leaking radiator\",\"electrical malfunctions\",\"abnormal i-Stop operation\",\"software-related issues\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"complete loss of propulsion\"},{\"kind\":\"symptom\",\"quote\":\"Pressing the accelerator pedal produced no response\"},{\"kind\":\"symptom\",\"quote\":\"unable to accelerate or maintain speed\"},{\"kind\":\"symptom\",\"quote\":\"Engine malfunction\"},{\"kind\":\"symptom\",\"quote\":\"Stop safely and shift to Park.\"},{\"kind\":\"symptom\",\"quote\":\"failed 48-volt mild-hybrid battery\"},{\"kind\":\"symptom\",\"quote\":\"leaking radiator\"},{\"kind\":\"condition\",\"quote\":\"While driving through a busy intersection with my family inside the vehicle\"},{\"kind\":\"condition\",\"quote\":\"while operating in active traffic\"},{\"kind\":\"safety\",\"quote\":\"extremely dangerous situation and placed my family at serious risk of a collision with surrounding traffic\"},{\"kind\":\"component_group\",\"quote\":\"48-volt mild-hybrid battery\"},{\"kind\":\"other\",\"quote\":\"electrical malfunctions, abnormal i-Stop operation, software-related issues\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize report. Need include summary, group, symptoms, conditions, fault_codes, safety_relevant, missing_info, clues verbatim. Need be careful quotes exact from narrative. Component given \"ELECTRICAL SYSTEM\". Need group electrical/electronic component group or given group. Could put \"ELECTRICAL SYSTEM\". Symptoms plain words: complete loss of propulsion, accelerator unresponsive, unable to accelerate or maintain speed, warning messages engine malfunction and stop safely shift to Park, failed 48-volt mild-hybrid battery, leaking radiator? Symptom maybe electrical malfunctions, abnormal i-Stop operation, software-related issues. Conditions: driving through busy intersection, with family inside, active traffic? \"while driving\" maybe conditions array allowed values: cold, moisture, heat, vibration, intermittent, after service, charging. The prompt says conditions: [\"cold\", ...] likely select from these. Report doesn't mention those specific condition categories. Could leave empty. But \"while driving\" not in enum? The schema says conditions array with those examples maybe. We should not invent. Maybe include \"intermittent\"? No, sudden complete loss. Don't include. Conditions empty. Fault codes: none named. Warning messages are not codes. Maybe \"Engine malfunction\" is message not code. Fault_codes [].\n\nSafety relevant true: mentions dangerous situation, serious risk collision, loss of propulsion in traffic. Quotes: \"complete loss of propulsion\", \"Pressing the accelerator pedal produced no response\", \"unable to accelerate or maintain speed\", \"Engine malfunction\", \"Stop safely and shift to Park\", \"failed 48-volt mild-hybrid battery\", \"leaking radiator\", \"extremely dangerous situation and placed my family at serious risk of a collision with surrounding traffic\", \"vehicle completely lost propulsion while operating in active traffic\". Need quote exact spans. Need summary one line: component, symptom, conditions: \"Electrical system: complete loss of propulsion with unresponsive accelerator and engine malfunction/stop safely warnings while driving through busy intersection; 48-volt mild-hybrid battery failure diagnosed.\" Good.\n\nMissing_info: mileage null, date? received_at exists but incident date missing. Prompt missing_info fields: mileage, date, conditions, component, symptom. Component given, symptom present, conditions maybe present (while driving busy intersection) but specific environmental conditions missing? Need list only facts analysis needs. Mileage missing. Date missing? Report no incident date, only received_at. Conditions? We have \"while driving through busy intersection with family\" but not weather/temp etc. Maybe list \"mileage\", \"date\". Could include \"conditions\" because no cold/moisture/heat etc. But conditions are present enough? The analysis needs mileage/date. We can include [\"mileage\",\"date\"]. Do we include conditions? Hmm \"conditions\" means circumstances? Report has conditions. I'd not include.\n\nClues need kind values. Include symptom, condition, fault_code? No fault code. component_group quote? Need quote verbatim from report. Report narrative doesn't say \"ELECTRICAL SYSTEM\"; component field is outside narrative. The quote must be copied from report. Could quote \"electrical malfunctions\" for component_group? kind component_group quote \"electrical malfunctions\" exact. But component group given. Or \"48-volt mild-hybrid battery\" component? It is in narrative. For component_group quote \"48-volt mild-hybrid battery\" maybe. Need every quote verbatim. Include safety quote. Include condition quote \"While driving through a busy intersection with my family inside the vehicle\" exact? Narrative: \"While driving through a busy intersection with my family inside the vehicle, my 2024 Mazda CX-90 suddenly experienced a complete loss of propulsion.\" Yes quote. \"active traffic\" quote? \"while operating in active traffic\" exact. Conditions kind condition. Symptoms quotes exact. For warning messages: quote “Engine malfunction” and “Stop safely and shift to Park.” Need quote include curly quotes? Verbatim spans can include text without quotes? Need character for character. The report has \\u201cEngine malfunction\\u201d and \\u201cStop safely and shift to Park.\\u201d If quote \"Engine malfunction\" no curly quotes, it's substring exact? Yes characters inside. \"Stop safely and shift to Park.\" includes period? In narrative: “Stop safely and shift to Park.” The period inside? Actually text: \\u201cStop safely and shift to Park.\\u201d So quote \"Stop safely and shift to Park.\" is exact substring including period. Good. Could include quote \"Engine malfunction\". For symptom \"complete loss of propulsion\" exact appears. \"Pressing the accelerator pedal produced no response\" exact. \"unable to accelerate or maintain speed\" exact. \"failed 48-volt mild-hybrid battery\" exact substring? Narrative: \"technicians diagnosed a failed 48-volt mild-hybrid battery and ordered...\" yes.\n\nNeed output JSON only. Ensure no markdown? User says answer one JSON object and no other text. We'll output raw JSON. Need maybe no code fence.\n\nNeed decide group. \"ELECTRICAL SYSTEM\" is given. Could group \"electrical/electronic\". The schema: \"the electrical/electronic component group, or the given group\". Given group \"ELECTRICAL SYSTEM\" so use that.\n\nSummary one line. Include conditions.\n\nNeed safety_relevant true. Missing_info [\"mileage\",\"date\"] maybe. Does report mention date? received_at 2026-10-19 not incident date. Yes missing date. Mileage null. Good.\n\nPotential issue: \"fault_codes\": [] because no codes. Warning messages aren't fault codes. Good.\n\nClues list should include enough. Need \"kind\": \"safety\" for risk. \"other\" for diagnosed battery? Could kind \"component_group\" quote \"48-volt mild-hybrid battery\". Need \"symptom\" for warning messages? Warning messages are symptom? Kind symptom okay. \"other\" for radiator leak? Is leaking radiator a symptom? It is a discovered issue, not primary. Could include symptom \"leaking radiator\". But summary maybe not include. The intake normalizes incoming field-quality report for electrical system; leaking radiator maybe not electrical. But report includes it. Should we include symptom? Hmm \"symptoms\" should capture component symptoms. Radiator leak is not electrical symptom. Could omit to avoid noise. But clues can include other. Not necessary. Need maybe mention \"failed 48-volt mild-hybrid battery\" as symptom/component. Symptoms array include \"failed 48-volt mild-hybrid battery\". It's a diagnosis not symptom. But report says technicians diagnosed. Fine.\n\nNeed ensure \"conditions\" array not include \"driving through busy intersection\" because allowed categories? Schema says conditions: [\"cold\", \"moisture\", ...] It likely expects tagged condition categories. Since none of those explicit, empty. But clue kind condition can quote \"While driving through a busy intersection with my family inside the vehicle\". That's a condition in plain sense. But conditions array empty? Hmm maybe conditions should include \"driving\" but not enum. The prompt says conditions list with examples not strict? It says `conditions`: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. Likely controlled vocab. Do not include \"driving through busy intersection\" in conditions array. But clue kind condition can capture. Good.\n\nNeed avoid suggesting action. JSON only.\n\nFinal.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793541119,
+      "id": "a9c22bd4d1262b7c1f1722f03ade902d",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1922,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1564,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00072717,
+          "billing_source": "go",
+          "list_cost": 0.00121195,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 384,
+            "output": 1922,
+            "reasoning": 1564
+          }
+        },
+        "prompt_tokens": 768,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2690
+      }
+    },
+    "text": "{\"summary\":\"Electrical system: complete loss of propulsion with unresponsive accelerator and engine malfunction/stop safely warnings while driving through a busy intersection; failed 48-volt mild-hybrid battery diagnosed.\",\"group\":\"ELECTRICAL SYSTEM\",\"symptoms\":[\"complete loss of propulsion\",\"accelerator pedal produced no response\",\"unable to accelerate or maintain speed\",\"Engine malfunction warning\",\"Stop safely and shift to Park warning\",\"failed 48-volt mild-hybrid battery\",\"leaking radiator\",\"electrical malfunctions\",\"abnormal i-Stop operation\",\"software-related issues\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"complete loss of propulsion\"},{\"kind\":\"symptom\",\"quote\":\"Pressing the accelerator pedal produced no response\"},{\"kind\":\"symptom\",\"quote\":\"unable to accelerate or maintain speed\"},{\"kind\":\"symptom\",\"quote\":\"Engine malfunction\"},{\"kind\":\"symptom\",\"quote\":\"Stop safely and shift to Park.\"},{\"kind\":\"symptom\",\"quote\":\"failed 48-volt mild-hybrid battery\"},{\"kind\":\"symptom\",\"quote\":\"leaking radiator\"},{\"kind\":\"condition\",\"quote\":\"While driving through a busy intersection with my family inside the vehicle\"},{\"kind\":\"condition\",\"quote\":\"while operating in active traffic\"},{\"kind\":\"safety\",\"quote\":\"extremely dangerous situation and placed my family at serious risk of a collision with surrounding traffic\"},{\"kind\":\"component_group\",\"quote\":\"48-volt mild-hybrid battery\"},{\"kind\":\"other\",\"quote\":\"electrical malfunctions, abnormal i-Stop operation, software-related issues\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00072717,
+      "cached_tokens": 384,
+      "cost_usd": 0.00121195,
+      "input_tokens": 768,
+      "list_cost_usd": 0.00121195,
+      "output_tokens": 1922,
+      "reasoning_tokens": 1564
+    }
+  }
+}

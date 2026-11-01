@@ -1,0 +1,66 @@
+{
+  "key": "45b514ad331fd2052d7af51280efa6cba8aaf4c0d0c12dcb01e52944d168ed90",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12632,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2002 Toyota 4Runner traction control/VSC: loss of power under acceleration with VSC message, beeping and flashing red warning light, mostly when steering left or right.\",\"group\":\"TRACTION CONTROL SYSTEM\",\"symptoms\":[\"loss of power while depressing accelerator pedal\",\"VSC message displayed\",\"audible beeping\",\"red warning light flashing\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"TRACTION CONTROL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"the vehicle lost power while depressing the accelerator pedal\"},{\"kind\":\"symptom\",\"quote\":\"the VSC (Vehicle Stability Control) message was displayed\"},{\"kind\":\"symptom\",\"quote\":\"audible beeping sound\"},{\"kind\":\"symptom\",\"quote\":\"red warning light flashing on the instrument panel\"},{\"kind\":\"condition\",\"quote\":\"mostly while turning the steering wheel to the left or the right\"},{\"kind\":\"safety\",\"quote\":\"lost power while depressing the accelerator pedal\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize report. Need extract summary component, symptom, conditions. Group given component \"TRACTION CONTROL SYSTEM\" electrical/electronic component group. Symptoms: lost power while depressing accelerator pedal; VSC message displayed; audible beeping; red warning light flashing; failure mostly while turning steering wheel left/right. Conditions: intermittent? \"initially occurred without warning\"; \"mostly while turning steering wheel\" could be condition. Conditions list allowed [\"cold\",\"moisture\",\"heat\",\"vibration\",\"intermittent\",\"after service\",\"charging\"]. Need map: intermittent? failure occurred mostly while turning, loss power. Is \"intermittent\" supported? It occurred mostly while turning, not necessarily intermittent. Could include \"intermittent\"? Better not invent. Conditions: maybe none? \"while driving\" not in list. \"while turning steering wheel\" not allowed condition? We can put in clues kind condition quote. But conditions array should use allowed labels. Maybe \"intermittent\" due failure occurred mostly while turning? Hmm not exact. Let's think.\n\nSafety_relevant: loss of power while driving (stall at speed? losing power while depressing accelerator). That's risk; yes safety_relevant true. Fault codes none. Missing_info: date? received_at but no incident date. mileage given 200000. Component given. Symptom given. Conditions maybe missing? \"conditions\" maybe not enough? Need list only facts analysis needs: component symptom conditions mileage date. Mileage present, component present, symptom present. Date missing (incident date). Conditions? It gives when turning, driving. Could list \"date\" only? Maybe also \"conditions\" because no environmental/operating conditions beyond turning. But prompt: missing_info only for facts analysis needs. It has conditions somewhat. Could include date. Maybe missing_info [\"date\"]. But maybe \"conditions\" missing because no cold/moisture etc. Hmm.\n\nNeed quotes verbatim from narrative. Need exact spans. Let's identify:\n- \"TRACTION CONTROL SYSTEM\" is component field not narrative? It says report in user message includes JSON, quote can be from report. We can quote \"TRACTION CONTROL SYSTEM\" from component. Kind component_group. Verbatim yes.\n- Symptom quote \"the vehicle lost power while depressing the accelerator pedal\" exact? Narrative: \"while driving, the vehicle lost power while depressing the accelerator pedal.\" Yes substring.\n- \"the VSC (Vehicle Stability Control) message was displayed\" exact? Narrative: \"however, the VSC (Vehicle Stability Control) message was displayed with an audible beeping sound coming from the vehicle.\" yes.\n- \"audible beeping sound\" exact? Narrative has \"audible beeping sound\". Good.\n- \"red warning light flashing on the instrument panel\" exact? Narrative: \"there was a red warning light flashing on the instrument panel after the failure.\" substring yes.\n- Condition quote \"mostly while turning the steering wheel to the left or the right\" exact? Narrative: \"The contact stated that the failure occurred mostly while turning the steering wheel to the left or the right.\" substring yes.\n- Safety quote \"lost power while depressing the accelerator pedal\" maybe same. Or \"vehicle lost power\". Kind safety. Need quote.\n- \"initially occurred without warning\" maybe condition? quote.\n\nNeed summary one line: \"2002 Toyota 4Runner traction control/VSC: loss of power under acceleration with VSC message, beeping and flashing red warning light, mostly on left/right steering.\" Good.\n\nGroup: \"TRACTION CONTROL SYSTEM\" or maybe \"electrical/electronic\" group? Prompt says \"the electrical/electronic component group, or the given group\". Given component is TRACTION CONTROL SYSTEM. Use that.\n\nSymptoms array plain words:\n\"loss of power while depressing accelerator pedal\"\n\"VSC message displayed\"\n\"audible beeping\"\n\"red warning light flashing\"\n\"failure mostly when turning steering wheel left or right\" maybe symptom/condition. Could include as symptom? It's trigger condition. Maybe conditions array cannot use \"turning\". Could still include in symptoms? Better: symptoms include loss of power, VSC message, beeping, flashing warning light. Conditions array maybe [] because allowed labels not present. But \"intermittent\" maybe no. Could include \"intermittent\" if failure \"initially occurred without warning\" not intermittent. Avoid.\n\nFault_codes [].\n\nSafety_relevant true.\n\nMissing_info [\"date\"] maybe. But \"date\" missing? received_at present. Incident date not. Yes.\n\nClues include:\n{\"kind\":\"component_group\",\"quote\":\"TRACTION CONTROL SYSTEM\"}\n{\"kind\":\"symptom\",\"quote\":\"the vehicle lost power while depressing the accelerator pedal\"}\n{\"kind\":\"symptom\",\"quote\":\"the VSC (Vehicle Stability Control) message was displayed\"}\n{\"kind\":\"symptom\",\"quote\":\"audible beeping sound\"}\n{\"kind\":\"symptom\",\"quote\":\"red warning light flashing on the instrument panel\"}\n{\"kind\":\"condition\",\"quote\":\"mostly while turning the steering wheel to the left or the right\"}\n{\"kind\":\"safety\",\"quote\":\"lost power while depressing the accelerator pedal\"}\n\nNeed ensure quote exact. \"the vehicle lost power while depressing the accelerator pedal\" - narrative: \"The contact stated that while driving, the vehicle lost power while depressing the accelerator pedal.\" lower case t? In quote we can start at \"the vehicle\" lower-case? The narrative has \"the vehicle\" after comma lower-case yes exact substring: \"the vehicle lost power while depressing the accelerator pedal\". Good.\n\n\"the VSC (Vehicle Stability Control) message was displayed\" exact? Narrative: \"however, the VSC (Vehicle Stability Control) message was displayed with...\" yes.\n\n\"audible beeping sound\" exact.\n\n\"red warning light flashing on the instrument panel\" exact.\n\n\"mostly while turning the steering wheel to the left or the right\" exact? Narrative: \"occurred mostly while turning the steering wheel to the left or the right.\" yes.\n\nSafety quote \"lost power while depressing the accelerator pedal\" exact substring within symptom. Good.\n\nNeed maybe quote for \"without warning\" if condition? Could add kind condition quote \"initially occurred without warning\". But not in allowed conditions. It is clue. Could include. But not necessary.\n\nNeed no other text. Ensure JSON valid. No markdown? User says answer with one JSON object and no other text. Final should be raw JSON.\n\nNeed think about safety: \"loss of power while depressing accelerator\" could be stall at speed? It says while driving, lost power; safety relevant true. Good.\n\nPotential issue: \"group\": \"TRACTION CONTROL SYSTEM\" maybe not electrical/electronic? Traction control system is electronic. Fine.\n\nMissing_info: Should include \"date\" because incident date absent. Maybe also \"conditions\" because only \"while turning\" and no weather etc. But the analysis needs conditions; there is some condition while turning. The prompt says conditions in missing_info among allowed. Do we list conditions? It has \"mostly while turning steering wheel\" which is an operating condition. It doesn't say cold/moisture/heat/vibration. I'd not list conditions missing. Date is clearly missing. Mileage present. Component present. Symptom present. So [\"date\"].\n\nNeed maybe \"fault_codes\": [] despite VSC message not code.\n\nNeed \"summary\": \"2002 Toyota 4Runner traction control/VSC: loss of power under acceleration with VSC message, beeping and flashing red warning light, mostly when steering left or right.\" Good.\n\nNeed \"symptoms\": list plain words can include \"loss of power while accelerating\", \"VSC message displayed\", \"audible beeping\", \"red warning light flashing\". Maybe \"failure mostly when turning steering wheel left or right\" is condition not symptom. But plain words maybe include. Use four.\n\nNeed conditions array: []. Is empty okay? It says conditions: [\"cold\", ...]. yes.\n\nNeed clues kind \"condition\" for turning quote, okay.\n\nNeed quote component from component field: \"TRACTION CONTROL SYSTEM\" exact. Good.\n\nNeed ensure no line breaks? Fine.\n\nLet's craft final JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793540323,
+      "id": "3a5914bf2d1cd2610fe7f37bd780c1cc",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1909,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1681,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00070764,
+          "billing_source": "go",
+          "list_cost": 0.0011794,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 219,
+            "output": 1909,
+            "reasoning": 1681
+          }
+        },
+        "prompt_tokens": 603,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2512
+      }
+    },
+    "text": "{\"summary\":\"2002 Toyota 4Runner traction control/VSC: loss of power under acceleration with VSC message, beeping and flashing red warning light, mostly when steering left or right.\",\"group\":\"TRACTION CONTROL SYSTEM\",\"symptoms\":[\"loss of power while depressing accelerator pedal\",\"VSC message displayed\",\"audible beeping\",\"red warning light flashing\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"TRACTION CONTROL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"the vehicle lost power while depressing the accelerator pedal\"},{\"kind\":\"symptom\",\"quote\":\"the VSC (Vehicle Stability Control) message was displayed\"},{\"kind\":\"symptom\",\"quote\":\"audible beeping sound\"},{\"kind\":\"symptom\",\"quote\":\"red warning light flashing on the instrument panel\"},{\"kind\":\"condition\",\"quote\":\"mostly while turning the steering wheel to the left or the right\"},{\"kind\":\"safety\",\"quote\":\"lost power while depressing the accelerator pedal\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00070764,
+      "cached_tokens": 384,
+      "cost_usd": 0.0011794,
+      "input_tokens": 603,
+      "list_cost_usd": 0.0011794,
+      "output_tokens": 1909,
+      "reasoning_tokens": 1681
+    }
+  }
+}

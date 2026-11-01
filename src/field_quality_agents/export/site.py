@@ -15,6 +15,7 @@ import shutil
 from pathlib import Path
 from typing import Any
 
+from field_quality_agents.export.final_live import load_final_live
 from field_quality_agents.export.showcase import choose_examples
 from field_quality_agents.run.dashboard import export_dashboard
 
@@ -115,8 +116,14 @@ def build_static_export(
     out_dir: str | Path = "dist/field-quality-agents",
     web_dir: str | Path = "web/dist",
     baseline_dir: str | Path = "results/baseline",
+    final_live_dir: str | Path = "results/final-live",
 ) -> Path:
-    """Write the full offline export and return its root."""
+    """Write the full offline export and return its root.
+
+    ``final_live_dir`` is Q14's run. The panel compares it with the exported
+    run's own metrics (``replay`` by default); a missing directory simply omits
+    the panel.
+    """
 
     web = Path(web_dir)
     if not (web / "index.html").is_file():
@@ -132,11 +139,16 @@ def build_static_export(
     store = FileResultStore(results_dir, run_id=run_id)
     active = store.active_run_id()
     examples = choose_examples(Path(results_dir) / active, baseline_dir) if active else []
+    final_live = load_final_live(
+        final_dir=final_live_dir,
+        q9_metrics=Path(results_dir) / (active or "replay") / "metrics.json",
+    )
     export_dashboard(
         results_dir=results_dir,
         run_id=run_id,
         out_dir=root,
         examples=examples,
+        final_live=final_live,
     )
     write_bundle(root / "data")
     return assemble_site(web_dir, root)

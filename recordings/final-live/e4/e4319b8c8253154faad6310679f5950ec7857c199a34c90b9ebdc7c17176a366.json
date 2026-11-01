@@ -1,0 +1,66 @@
+{
+  "key": "e4319b8c8253154faad6310679f5950ec7857c199a34c90b9ebdc7c17176a366",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12656,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"2010 Dodge Grand Caravan electrical system: WIN module internal springs worn, vehicle turns off or stalls from road bumps or key jiggle, with loss of power steering while driving.\",\n  \"group\": \"ELECTRICAL SYSTEM\",\n  \"symptoms\": [\n    \"vehicle turns off from road bumps or key weight\",\n    \"van stalls when the key jiggles\",\n    \"loss of electrical power and power steering while driving\",\n    \"key falls into accessory mode from a bump or road vibration\"\n  ],\n  \"conditions\": [\n    \"vibration\",\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"ELECTRICAL SYSTEM\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The internal springs in my Wireless Ignition Node (WIN) module have worn down, causing the vehicle to turn off from road bumps or key weight.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"road bumps or key weight\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The van stalls when the key jiggles.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Driving down the road and I lose everything, power steering etc.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"bump or road vibration\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"key fall into accessory mode from a bump or road vibration\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"Super dangerous to myself and others on the roadway.\"\n    }\n  ]\n}",
+            "reasoning_content": "We need produce JSON only. Need parse report. Component electrical system, Dodge Grand Caravan 2010. Symptom: vehicle turns off from road bumps or key weight, stalls when key jiggles, lose power steering etc, key falls into accessory mode from bump/vibration. Conditions: vibration, intermittent? road bumps. Fault codes none. Safety relevant: yes, stall at speed? \"Driving down the road and I lose everything, power steering etc. Super dangerous to myself and others\" Mentions dangerous, loss of control? It says super dangerous. Stall at speed perhaps driving down road stalls. Safety true.\n\nGroup: electrical/electronic component group. They gave electrical system. Could use \"ELECTRICAL SYSTEM\" but schema says electrical/electronic component group, or given group. Use \"ELECTRICAL SYSTEM\" verbatim? Group likely \"ELECTRICAL SYSTEM\". Symptoms plain words. Conditions include vibration, intermittent maybe. \"cold moisture heat after service charging\" no. Use [\"vibration\",\"intermittent\"]? Intermittent from repeated. Report says repeatedly. Could include \"road bumps\" as condition? Conditions allowed examples but can include \"road bumps\"? The schema says conditions array; rule list examples. Better [\"vibration\",\"intermittent\"]. Maybe \"key weight\" condition? No.\n\nFault codes empty.\n\nMissing_info: mileage null. Date? received date exists but report date? missing mileage. Maybe component/symptom/conditions present. Missing \"mileage\". Could also missing \"date\" because no incident date, only received_at. But analysis needs date? They say missing date. Report has received_at but not incident date. Hmm missing_info list only facts analysis needs. Mileage is missing. Date maybe incident date missing. I'd include mileage and date? But there is received_at 2026-10-20, not necessarily incident date. The prompt says \"missing_info\": [\"mileage\", \"date\", \"conditions\", \"component\", \"symptom\"]. Given report has component symptom conditions. Mileage null. Date not explicit except received_at. I think include \"mileage\" only maybe \"date\" as incident date. Need not overdo. Could include [\"mileage\",\"date\"]. But date from received_at maybe enough for intake? It says read only report; received_at is date report received. Analysis might need incident date. I'd include \"mileage\" and \"date\" if no occurrence date. But maybe date missing means report date; it has received_at. Hmm.\n\nClues verbatim spans. Need exact quotes. From narrative:\n- \"The internal springs in my Wireless Ignition Node (WIN) module have worn down, causing the vehicle to turn off from road bumps or key weight.\" \n- \"The van stalls when the key jiggles.\"\n- \"Driving down the road and I lose everything, power steering etc.\"\n- \"when you watch the key fall into accessory mode from a bump or road vibration.\"\n- \"Super dangerous to myself and others on the roadway.\"\n- component group quote: \"ELECTRICAL SYSTEM\" from component field? The report includes component? The user message includes JSON with component. Quote can be from report. Yes \"ELECTRICAL SYSTEM\".\n- condition quote \"road bumps or key weight\" and \"bump or road vibration\". \n- symptom quote \"vehicle to turn off\" etc.\nNeed kind. Include several. Ensure quotes exact character for character. Check narrative has double spaces? Let's copy exactly:\n\"It's identical to the Ro3 Dodge Grand Caravan recall. My year, make, and model were recalled for this issue, but Dodge says my vin falls out the production window.  However, parts from the exact same vendor (Continental) that suffer from the same weak internal detents were often installed in vehicles outside the official recall parameters. The internal springs in my Wireless Ignition Node (WIN) module have worn down, causing the vehicle to turn off from road bumps or key weight.  The van stalls when the key jiggles. Driving down the road and I lose everything, power steering etc.  Super dangerous to myself and others on the roadway. It's obviously the issue, when you watch the key fall into accessory mode from a bump or road vibration.    This has happened repeatedly and the recall should be expanded to include more VIN numbers experiencing the same issue.\"\n\nNeed quotes avoid leading/trailing spaces? Verbatim span can start mid sentence. Use exact substrings:\n\"The internal springs in my Wireless Ignition Node (WIN) module have worn down, causing the vehicle to turn off from road bumps or key weight.\"\n\"The van stalls when the key jiggles.\"\n\"Driving down the road and I lose everything, power steering etc.\"\n\"Super dangerous to myself and others on the roadway.\"\n\"key fall into accessory mode from a bump or road vibration\"\n\"shadow\"? No.\n\nClue for conditions: \"road bumps or key weight\" quote. Kind condition.\nSymptom \"turn off from road bumps or key weight\" maybe. Could use same quote in symptom and condition? Better separate.\n\nGroup clue: quote \"ELECTRICAL SYSTEM\" from component. Kind component_group.\nSafety clue: quote \"Super dangerous to myself and others on the roadway.\" Kind safety.\nFault_code none.\n\nSummary one line: \"2010 Dodge Grand Caravan electrical system: WIN module internal springs worn, vehicle turns off/stalls from road bumps or key jiggle; loss of power steering.\" Good.\n\nNeed output valid JSON only. Ensure no markdown? They request one JSON object no other text. We can output raw JSON. Need exact enum values. safety_relevant true boolean.\n\nMissing_info maybe [\"mileage\",\"date\"]. Let's decide. Mileage null. Date received_at but not incident date. Report lacks when. Include both. But rule \"missing_info only for facts analysis needs: component, symptom, conditions, mileage, date.\" Date is a fact analysis needs. So include date. Conditions present. Component present. Symptom present.\n\nLet's craft.\n\nNeed quotes exact. Check \"key fall into accessory mode from a bump or road vibration\" is substring. Yes.\n\nPotential issue \"causing the vehicle to turn off\" quote exact. Good.\n\nMaybe include \"stalls when the key jiggles\" as symptom. Good.\n\nConditions: \"vibration\", \"intermittent\". Is \"intermittent\" quote? No, but not in clues? Clues only quote. Conditions array can infer plain words. Fine.\n\nMaybe conditions include \"road bumps\" and \"key weight\"? The allowed examples not exhaustive. But condition array should include \"vibration\" and \"intermittent\". Since road bumps are vibration. Key weight not condition maybe.\n\nSymptom plain: \"vehicle turns off over road bumps or key weight\", \"stalls when key jiggles\", \"loss of power steering and electrical power while driving\", \"key falls into accessory mode from bump/vibration\". Good.\n\nGroup: \"ELECTRICAL SYSTEM\". The prompt says \"the electrical/electronic component group, or the given group\". Use \"ELECTRICAL SYSTEM\" because given.\n\nFault codes: no code.\n\nNeed no suggestions. Fine.\n\nLet's final JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793541272,
+      "id": "eeb9a789888e2bfc8acadbaab61e710e",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1885,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1482,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00070323,
+          "billing_source": "go",
+          "list_cost": 0.00117205,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 266,
+            "output": 1885,
+            "reasoning": 1482
+          }
+        },
+        "prompt_tokens": 650,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2535
+      }
+    },
+    "text": "{\n  \"summary\": \"2010 Dodge Grand Caravan electrical system: WIN module internal springs worn, vehicle turns off or stalls from road bumps or key jiggle, with loss of power steering while driving.\",\n  \"group\": \"ELECTRICAL SYSTEM\",\n  \"symptoms\": [\n    \"vehicle turns off from road bumps or key weight\",\n    \"van stalls when the key jiggles\",\n    \"loss of electrical power and power steering while driving\",\n    \"key falls into accessory mode from a bump or road vibration\"\n  ],\n  \"conditions\": [\n    \"vibration\",\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"ELECTRICAL SYSTEM\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The internal springs in my Wireless Ignition Node (WIN) module have worn down, causing the vehicle to turn off from road bumps or key weight.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"road bumps or key weight\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The van stalls when the key jiggles.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Driving down the road and I lose everything, power steering etc.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"bump or road vibration\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"key fall into accessory mode from a bump or road vibration\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"Super dangerous to myself and others on the roadway.\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00070323,
+      "cached_tokens": 384,
+      "cost_usd": 0.00117205,
+      "input_tokens": 650,
+      "list_cost_usd": 0.00117205,
+      "output_tokens": 1885,
+      "reasoning_tokens": 1482
+    }
+  }
+}

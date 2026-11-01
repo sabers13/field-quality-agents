@@ -1,0 +1,66 @@
+{
+  "key": "4c8e22ebe8bd70544d128ea35afad275ecbb21b88226588dffe735ef0c22bebc",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10884,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system: sudden loss of propulsion and unresponsive accelerator while driving, recurring during a right turn with hybrid shutdown suspected.\",\"group\":\"ELECTRICAL SYSTEM\",\"symptoms\":[\"sudden loss of propulsion\",\"accelerator unresponsive\",\"vehicle lost power while moving\",\"hybrid system shuts down unexpectedly\",\"requires Park-Brake-Start restart to move\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"suddenly lost propulsion\"},{\"kind\":\"symptom\",\"quote\":\"would not respond to the accelerator\"},{\"kind\":\"symptom\",\"quote\":\"pressing the gas pedal did nothing\"},{\"kind\":\"symptom\",\"quote\":\"lost power again while still moving\"},{\"kind\":\"symptom\",\"quote\":\"hybrid system appears to shut down unexpectedly\"},{\"kind\":\"condition\",\"quote\":\"while making a right turn\"},{\"kind\":\"condition\",\"quote\":\"require a restart while driving\"},{\"kind\":\"safety\",\"quote\":\"serious safety issue\"},{\"kind\":\"safety\",\"quote\":\"loss of propulsion in traffic\"}]}",
+            "reasoning_content": "We need answer only JSON. Normalize. Need read report. Component electrical system. Summary one line: component, symptom, conditions. Group: electrical/electronic component group or given group. Given component ELECTRICAL SYSTEM, maybe group \"electrical system\". Symptoms: sudden loss of propulsion, accelerator unresponsive, vehicle lost power while moving, hybrid system shutdown unexpectedly, requires Park-Brake-Start restart. Conditions: while driving, right turn, still moving, intermittent? It happened twice, \"suddenly\", \"unexpectedly\" = intermittent. Could include \"while driving\", \"right turn\", \"in traffic\". Conditions allowed list values: cold, moisture, heat, vibration, intermittent, after service, charging. Hmm schema says conditions array examples only; likely use from list? It says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. We should choose \"intermittent\" maybe. But \"while driving\" and \"right turn\" aren't in allowed? It says \"conditions\": [\"cold\"...] perhaps enumerated. Need only allowed conditions. Safety_relevant true (loss of propulsion in traffic, serious safety issue, risk). Fault_codes none. Missing_info: mileage (null), date? received_at exists but no incident date. Maybe missing \"mileage\", \"date\". Component and symptom present. Conditions present. Could list mileage, date. Clues verbatim quotes. Need exact spans. Use quotes from narrative. Must copy character for character. Need be careful with curly quotes? Narrative has \\u201cgood,\\u201d etc. We can quote simpler spans.\n\nQuotes:\n- \"suddenly lost propulsion\" verbatim yes. Actually \"the vehicle suddenly lost propulsion and would not respond to the accelerator.\" quote \"suddenly lost propulsion\"\n- \"would not respond to the accelerator\" verbatim.\n- \"pressing the gas pedal did nothing\" verbatim.\n- \"lost power again while still moving\" verbatim.\n- \"hybrid system appears to shut down unexpectedly\" verbatim.\n- \"loss of propulsion in traffic\" verbatim.\n- \"serious safety issue\" verbatim.\n- \"while making a right turn\" verbatim.\n- \"The vehicle was towed to the dealer\" maybe other, but no need.\nNeed clue kinds. For condition \"while making a right turn\" kind condition? Quote exact. For intermittent use \"lost power again\" or \"again\". Need quote verbatim. Condition clue quote \"lost power again while still moving\" maybe condition. But kind condition.\nSafety clue \"serious safety issue\" and \"loss of propulsion in traffic\". Good.\n\nSummary: \"Electrical system: sudden loss of propulsion and unresponsive accelerator while driving, recurring during a right turn; hybrid shutdown suspected.\" Must not invent suspected? Report says appears to shut down unexpectedly. Fine.\n\nGroup: \"electrical system\" or \"electrical/electronic\". The given group is ELECTRICAL SYSTEM. Use \"ELECTRICAL SYSTEM\" maybe exactly. But schema \"the electrical/electronic component group, or the given group\". Use \"ELECTRICAL SYSTEM\".\n\nSymptoms plain words:\n- \"sudden loss of propulsion\"\n- \"accelerator unresponsive\"\n- \"vehicle lost power while moving\"\n- \"hybrid system shuts down unexpectedly\"\n- \"requires Park-Brake-Start restart to move\"\nCould \"no cause identified\" not symptom.\n\nConditions array only allowed values: [\"intermittent\"] maybe. It happened suddenly and again. Could include \"vibration\"? No. \"while driving\" not allowed. If conditions should include report-specific conditions? Prompt says conditions: [\"cold\", \"moisture\", ...]. So use \"intermittent\". But summary can mention while driving/right turn. Clues can have condition quote.\n\nmissing_info: mileage and date. Date? received_at is 2026-10-23, but incident date absent. Use \"mileage\", \"date\". Could also \"conditions\"? No, has conditions. Component present. Symptom present.\n\nSafety true.\n\nNeed JSON only. Ensure valid JSON with no markdown? User said answer with one JSON object and no other text. We can output raw JSON. Need no code fences? likely raw. We'll produce JSON.\n\nNeed exact quotes. Let's verify quotes from narrative:\n\"While driving my 2026 Lexus RX350h, the vehicle suddenly lost propulsion and would not respond to the accelerator.\" So \"suddenly lost propulsion\" exact. \"would not respond to the accelerator\" exact.\n\"After coming to a stop, pressing the gas pedal did nothing.\" exact.\n\"while making a right turn, the vehicle lost power again while still moving\" exact? Text: \"A short time later, while making a right turn, the vehicle lost power again while still moving, forcing me to repeat the Park–Brake–Start sequence in the middle of the turn.\" Quote \"lost power again while still moving\" exact.\n\"hybrid system appears to shut down unexpectedly\" exact.\n\"loss of propulsion in traffic\" exact.\n\"serious safety issue\" exact.\n\"while making a right turn\" exact.\n\"require a restart while driving\" exact? Text: \"This needs investigation because the vehicle can unexpectedly lose power and require a restart while driving.\" Quote \"require a restart while driving\" exact. Could use as condition.\nNeed clue kind for fault_code? none.\n\nMaybe include component_group clue quote \"ELECTRICAL SYSTEM\"? But quote must from report. The component field is \"ELECTRICAL SYSTEM\" in report. It is a verbatim span from report? The report includes component field value. Yes quote \"ELECTRICAL SYSTEM\". Kind component_group. Could include. But clues are evidence from report; okay.\n\nBut \"quote\" copied verbatim from report, component field is part. Good.\n\nCould include \"id\" no.\n\nNeed ensure no trailing commas. Final answer raw JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793541464,
+      "id": "10d30ef847da2c75a8b905b744acb9e4",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1481,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1221,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00055707,
+          "billing_source": "go",
+          "list_cost": 0.00092845,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 258,
+            "output": 1481,
+            "reasoning": 1221
+          }
+        },
+        "prompt_tokens": 642,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2123
+      }
+    },
+    "text": "{\"summary\":\"Electrical system: sudden loss of propulsion and unresponsive accelerator while driving, recurring during a right turn with hybrid shutdown suspected.\",\"group\":\"ELECTRICAL SYSTEM\",\"symptoms\":[\"sudden loss of propulsion\",\"accelerator unresponsive\",\"vehicle lost power while moving\",\"hybrid system shuts down unexpectedly\",\"requires Park-Brake-Start restart to move\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"suddenly lost propulsion\"},{\"kind\":\"symptom\",\"quote\":\"would not respond to the accelerator\"},{\"kind\":\"symptom\",\"quote\":\"pressing the gas pedal did nothing\"},{\"kind\":\"symptom\",\"quote\":\"lost power again while still moving\"},{\"kind\":\"symptom\",\"quote\":\"hybrid system appears to shut down unexpectedly\"},{\"kind\":\"condition\",\"quote\":\"while making a right turn\"},{\"kind\":\"condition\",\"quote\":\"require a restart while driving\"},{\"kind\":\"safety\",\"quote\":\"serious safety issue\"},{\"kind\":\"safety\",\"quote\":\"loss of propulsion in traffic\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00055707,
+      "cached_tokens": 384,
+      "cost_usd": 0.00092845,
+      "input_tokens": 642,
+      "list_cost_usd": 0.00092845,
+      "output_tokens": 1481,
+      "reasoning_tokens": 1221
+    }
+  }
+}

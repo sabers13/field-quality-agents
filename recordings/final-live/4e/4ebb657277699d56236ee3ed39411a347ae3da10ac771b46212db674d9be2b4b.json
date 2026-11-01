@@ -1,0 +1,66 @@
+{
+  "key": "4ebb657277699d56236ee3ed39411a347ae3da10ac771b46212db674d9be2b4b",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 4779,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "```json\n{\n  \"summary\": \"Electrical system on 2026 Honda Odyssey shuts the van completely off at a complete stop, with no warning, requiring a full restart\",\n  \"group\": \"ELECTRICAL SYSTEM\",\n  \"symptoms\": [\n    \"engine/vehicle shuts off completely without warning while at a stop\",\n    \"vehicle must be restarted by the driver\",\n    \"shutdown occurs while on active roadways during merging\"\n  ],\n  \"conditions\": [\"intermittent\"],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\"mileage\"],\n  \"clues\": [\n    {\"kind\": \"component_group\", \"quote\": \"ELECTRICAL SYSTEM\"},\n    {\"kind\": \"symptom\", \"quote\": \"the van turns completely off very often when at a complete stop\"},\n    {\"kind\": \"symptom\", \"quote\": \"requiring me to turn the car on completely\"},\n    {\"kind\": \"condition\", \"quote\": \"very often\"},\n    {\"kind\": \"symptom\", \"quote\": \"there is no warning, just turns off completely\"},\n    {\"kind\": \"safety\", \"quote\": \"this has created very dangerous situations as im often traveling trying to merge into traffic etc and the vehicle is off on active roadways\"}\n  ]\n}\n```",
+            "reasoning_content": "Let me produce the JSON.\n\nComponent: electrical system, symptom: van turns completely off at complete stop, requires restart, dangerous situations merging into traffic. Safety relevant? Yes — stall at speed / risk to people; \"very dangerous situations\" and vehicle off on active roadways. Loss of control risk.\n\nConditions: intermittent (\"very often\"), at complete stop. Not cold/moisture/heat/vibration/after service/charging. Hmm, conditions list limited words. Maybe \"intermittent\" fits since it happens \"very often\" without warning. But at a complete stop — not in list. I'll include \"intermittent\" only if supported... \"very often\" and \"no warning\" — intermittent is arguably supported. But rules say quote must be verbatim; clues quotes must be verbatim. I'll include \"intermittent\" with quote \"very often\". Hmm, \"very often\" isn't exactly intermittent, but no warning/random. Safer: conditions empty list? But it'd be reasonable to mark intermittent. I'll include intermittent with clue quote \"very often\".\n\nMissing info: mileage, date? received_at is 2026-10-22, so date present. Mileage null → missing. Component present, symptom present, conditions present (at complete stop). So missing_info: [\"mileage\"].\n\nFault codes: none.\n\nSummary: one line.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793541376,
+      "id": "0ad144539936c2219a8abaf7a08f1492",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 568,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 286,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0002211,
+          "billing_source": "go",
+          "list_cost": 0.0003685,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 177,
+            "output": 568,
+            "reasoning": 286
+          }
+        },
+        "prompt_tokens": 561,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1129
+      }
+    },
+    "text": "```json\n{\n  \"summary\": \"Electrical system on 2026 Honda Odyssey shuts the van completely off at a complete stop, with no warning, requiring a full restart\",\n  \"group\": \"ELECTRICAL SYSTEM\",\n  \"symptoms\": [\n    \"engine/vehicle shuts off completely without warning while at a stop\",\n    \"vehicle must be restarted by the driver\",\n    \"shutdown occurs while on active roadways during merging\"\n  ],\n  \"conditions\": [\"intermittent\"],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\"mileage\"],\n  \"clues\": [\n    {\"kind\": \"component_group\", \"quote\": \"ELECTRICAL SYSTEM\"},\n    {\"kind\": \"symptom\", \"quote\": \"the van turns completely off very often when at a complete stop\"},\n    {\"kind\": \"symptom\", \"quote\": \"requiring me to turn the car on completely\"},\n    {\"kind\": \"condition\", \"quote\": \"very often\"},\n    {\"kind\": \"symptom\", \"quote\": \"there is no warning, just turns off completely\"},\n    {\"kind\": \"safety\", \"quote\": \"this has created very dangerous situations as im often traveling trying to merge into traffic etc and the vehicle is off on active roadways\"}\n  ]\n}\n```",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0002211,
+      "cached_tokens": 384,
+      "cost_usd": 0.0003685,
+      "input_tokens": 561,
+      "list_cost_usd": 0.0003685,
+      "output_tokens": 568,
+      "reasoning_tokens": 286
+    }
+  }
+}

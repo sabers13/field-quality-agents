@@ -1,0 +1,66 @@
+{
+  "key": "bb88dee98b492f283d604f9bf3cdabc9619bf1ef566133a5c3a7d8ca08306e82",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 3986,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"2021 Chevrolet Trax instrument cluster/panel glitches and goes blank while starting and while driving at various speeds\",\n  \"group\": \"ELECTRICAL SYSTEM\",\n  \"symptoms\": [\"instrument panel glitches\", \"instrument panel screen goes blank\"],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"missing_info\": [],\n  \"clues\": [\n    {\"kind\": \"component_group\", \"quote\": \"ELECTRICAL SYSTEM: INSTRUMENT CLUSTER/PANEL\"},\n    {\"kind\": \"symptom\", \"quote\": \"the instrument panel glitched and then displayed a blank screen\"},\n    {\"kind\": \"condition\", \"quote\": \"while attempting to start the vehicle and while driving at various speeds\"}\n  ]\n}",
+            "reasoning_content": "Let me parse the report.\n\nComponent: instrument cluster/panel. Symptoms: instrument panel glitched, displayed blank screen. Conditions: while attempting to start, while driving at various speeds. Note \"while driving\" — is that loss of control? No. Blank screen is not safety_relevant per strict definition. Though blank instrument cluster while driving could hide speed... but rules say crash, fire, smoke, injury, loss of control, stall at speed. Not present. So false.\n\nMissing info: none important — component, symptom, conditions, mileage, date all present.\n\nClues: quotes verbatim.\n\nQuotes from narrative: \"the instrument panel glitched and then displayed a blank screen\" — verbatim. \"while attempting to start the vehicle and while driving at various speeds\" — verbatim. Component group: \"ELECTRICAL SYSTEM: INSTRUMENT CLUSTER/PANEL\" verbatim.\n\nGroup: \"electrical/electronic\" — maybe use \"ELECTRICAL SYSTEM\" ... The rule says \"the electrical/electronic component group, or the given group\". I'll use \"ELECTRICAL SYSTEM\".\n\nConditions list allowed values: cold, moisture, heat, vibration, intermittent, after service, charging. \"while driving at various speeds\" — not in list. Intermittent? The glitch is intermittent arguably — but don't invent. I could leave conditions empty. Hmm, \"glitched\" — repeated at various speeds suggests intermittent. I'll include \"intermittent\" with a clue quote? The clue would need to support. Risky. I'll leave conditions empty.\n\nActually the allowed set is fixed; nothing matches → empty list.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793540301,
+      "id": "dbd38b4d33278bc9873e7e1585fc8c82",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 509,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 338,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00019725,
+          "billing_source": "go",
+          "list_cost": 0.00032875,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 148,
+            "output": 509,
+            "reasoning": 338
+          }
+        },
+        "prompt_tokens": 532,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1041
+      }
+    },
+    "text": "{\n  \"summary\": \"2021 Chevrolet Trax instrument cluster/panel glitches and goes blank while starting and while driving at various speeds\",\n  \"group\": \"ELECTRICAL SYSTEM\",\n  \"symptoms\": [\"instrument panel glitches\", \"instrument panel screen goes blank\"],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"missing_info\": [],\n  \"clues\": [\n    {\"kind\": \"component_group\", \"quote\": \"ELECTRICAL SYSTEM: INSTRUMENT CLUSTER/PANEL\"},\n    {\"kind\": \"symptom\", \"quote\": \"the instrument panel glitched and then displayed a blank screen\"},\n    {\"kind\": \"condition\", \"quote\": \"while attempting to start the vehicle and while driving at various speeds\"}\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00019725,
+      "cached_tokens": 384,
+      "cost_usd": 0.00032875,
+      "input_tokens": 532,
+      "list_cost_usd": 0.00032875,
+      "output_tokens": 509,
+      "reasoning_tokens": 338
+    }
+  }
+}

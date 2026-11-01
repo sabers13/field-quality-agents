@@ -1,0 +1,66 @@
+{
+  "key": "35992ccf8d44716ef9b9aa31cabf82d2a09b5335c9e95707cb449b419e04ee3e",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12447,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2024 Mazda CX-50 forward collision avoidance/AEB: repeated false collision warnings and unintended emergency braking, including at ~75 mph, with a braking system malfunction warning, intermittent/daily.\",\"group\":\"Forward Collision Avoidance: Automatic Emergency Braking\",\"symptoms\":[\"false collision warnings\",\"false braking warnings\",\"unintended automatic emergency braking\",\"red braking warning\",\"Braking System Malfunction. Stop the Vehicle in a Safe Location.\",\"extreme-force automatic braking/deceleration\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"},{\"kind\":\"symptom\",\"quote\":\"Repeated Unintended Emergency Braking, False Collision Warnings, and Persistent Braking-System Malfunction\"},{\"kind\":\"symptom\",\"quote\":\"false collision and braking warnings\"},{\"kind\":\"symptom\",\"quote\":\"activated its automatic emergency braking system without justification\"},{\"kind\":\"condition\",\"quote\":\"on an almost daily basis\"},{\"kind\":\"symptom\",\"quote\":\"traveling approximately 75 mph on the freeway\"},{\"kind\":\"symptom\",\"quote\":\"suddenly displayed a red braking warning and the vehicle automatically applied its brakes with extreme force\"},{\"kind\":\"safety\",\"quote\":\"nearly resulted in a serious collision\"},{\"kind\":\"symptom\",\"quote\":\"Braking System Malfunction. Stop the Vehicle in a Safe Location.\"}]}",
+            "reasoning_content": "We need answer only JSON object. Need normalize report. Need extract component group electrical/electronic? Given component FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING. Group likely \"Forward Collision Avoidance: Automatic Emergency Braking\" or electrical/electronic component group? The prompt says group: \"the electrical/electronic component group, or the given group\". For ADAS braking, group can be given component. We need symptoms, conditions, fault_codes, safety_relevant true, missing_info maybe mileage (null), date? report has no incident date, mileage missing. Conditions: cold? \"morning operation\" perhaps cold not necessarily; moisture no, heat no, vibration no, intermittent yes repeated/daily, after service no, charging no. Need conditions array only allowed values: cold, moisture, heat, vibration, intermittent, after service, charging. \"morning operation\" doesn't map exactly cold unless infer? Don't invent. \"almost daily\", \"repeatedly\", \"not isolated\" => intermittent. Could include \"cold\"? no. Conditions: [\"intermittent\"]. Maybe \"morning operation\" not in allowed list. Symptoms: false collision warnings, unintended automatic emergency braking, red braking warning, \"Braking System Malfunction. Stop the Vehicle in a Safe Location.\" message, forceful unexpected deceleration. Fault codes: none. Safety relevant true due nearly collision at 75 mph. Missing_info: mileage, date (incident date? report received date present, but no incident date). Component and symptom present, conditions? has intermittent. Need list only important facts analysis needs: mileage, date. Maybe \"date\" because no incident date. Could list mileage and date. But if date means report date? received_at is present. Still incident date missing. Fine.\n\nClues: need quotes verbatim. Must copy from narrative exactly. Need include symptom quotes, condition quote, component_group, safety. Need quotes exact character-for-character. We can use substrings from narrative. Need be careful with curly quotes? Narrative has \\u201c etc. We can quote plain text excluding curly quotes perhaps. Must be verbatim span. E.g. \"Repeated Unintended Emergency Braking, False Collision Warnings, and Persistent Braking-System Malfunction\" appears in Subject after colon. That's verbatim. \"false collision and braking warnings\" appears. \"vehicle activated its automatic emergency braking system without justification\" appears. \"traveling approximately 75 mph on the freeway\" appears. \"suddenly displayed a red braking warning and the vehicle automatically applied its brakes with extreme force\" appears. \"nearly resulted in a serious collision\" appears. \"almost daily basis\" appears. \"Braking System Malfunction. Stop the Vehicle in a Safe Location.\" appears inside curly quotes but text exact. Need include component_group quote \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\" from component field? Is component field part report? User message includes JSON with component; but rules quote from report. The report in user message includes component field. Could quote \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\" verbatim. Or narrative. That's component_group clue. Safety quote \"nearly resulted in a serious collision\". Condition \"almost daily basis\" maybe not exact full? It appears \"on an almost daily basis\" yes. Use quote \"on an almost daily basis\" exact? Narrative: \"continues to experience false collision alerts or unintended braking on an almost daily basis\" yes.\n\nNeed summary one line: component, symptom, conditions. E.g. \"2024 Mazda CX-50 forward collision avoidance/AEB: repeated false collision warnings and unintended emergency braking, including at ~75 mph, with braking system malfunction warning, intermittent/daily.\" That's one line. No extra.\n\nNeed ensure JSON valid no markdown? User says answer with one JSON object and no other text. So final just JSON. Need no code fences? Probably just object. Use double quotes. Could include exact quotes with no curly? If quote includes curly, need escape? JSON can contain curly unicode fine. Simpler use plain spans. Need all quote strings valid. Let's craft.\n\nPotential issue group: \"Forward Collision Avoidance: Automatic Emergency Braking\" okay.\n\nSymptoms array plain words: \"false collision warnings\", \"false braking warnings\", \"unintended automatic emergency braking\", \"red braking warning\", \"Braking System Malfunction. Stop the Vehicle in a Safe Location.\", \"extreme-force automatic braking/deceleration\". Maybe \"persistent braking-system malfunction\". Good.\n\nConditions: [\"intermittent\"] only. But \"morning operation\" could be condition but not allowed list. Missing info includes conditions? It has intermittent, but not weather/temp. Not needed. Missing mileage/date.\n\nFault codes empty. safety true.\n\nClues: Need ensure quote exact. Let's verify all:\n- \"Repeated Unintended Emergency Braking, False Collision Warnings, and Persistent Braking-System Malfunction\" appears exactly after Subject: Repeated Unintended Emergency Braking, False Collision Warnings, and Persistent Braking-System Malfunction. Yes. Kind symptom? Good. Could use as symptom.\n- \"false collision and braking warnings\" appears: \"began displaying false collision and braking warnings\" yes.\n- \"activated its automatic emergency braking system without justification\" appears: \"vehicle activated its automatic emergency braking system without justification\" yes.\n- \"traveling approximately 75 mph on the freeway\" exact.\n- \"suddenly displayed a red braking warning and the vehicle automatically applied its brakes with extreme force\" exact.\n- \"nearly resulted in a serious collision\" exact.\n- \"on an almost daily basis\" exact.\n- \"Braking System Malfunction. Stop the Vehicle in a Safe Location.\" exact (without curly quotes). It appears with curly quotes around; inside text exact. Good.\n- \"morning operation\" exact? Narrative: \"typically appears during morning operation\" yes. But condition mapping? Could clue kind condition quote \"morning operation\" but conditions array doesn't include cold. Maybe not include to avoid unsupported. Could include as other? Hmm.\n\nNeed include component_group quote: \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\" from component field. It's verbatim in JSON. Fine.\n- safety clue quote \"nearly resulted in a serious collision\".\n\nNeed maybe clue kind fault_code for \"SA-007/24\"? It's a service alert not fault code. Could include other? Not necessary.\n\nNeed maybe quote \"Service Alert SA-007/24\" as other? Not required. Could include but no.\n\nNeed missing_info maybe [\"mileage\", \"date\"]. Does report mention date? Received_at only. No incident date. Good.\n\nNeed summary mention \"2024 Mazda CX-50\". Good.\n\nLet's produce JSON only. Ensure no trailing commas.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793540623,
+      "id": "4c949b77823a1491e812f4a00e78224f",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1782,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1446,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00068325,
+          "billing_source": "go",
+          "list_cost": 0.00113875,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 456,
+            "output": 1782,
+            "reasoning": 1446
+          }
+        },
+        "prompt_tokens": 840,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2622
+      }
+    },
+    "text": "{\"summary\":\"2024 Mazda CX-50 forward collision avoidance/AEB: repeated false collision warnings and unintended emergency braking, including at ~75 mph, with a braking system malfunction warning, intermittent/daily.\",\"group\":\"Forward Collision Avoidance: Automatic Emergency Braking\",\"symptoms\":[\"false collision warnings\",\"false braking warnings\",\"unintended automatic emergency braking\",\"red braking warning\",\"Braking System Malfunction. Stop the Vehicle in a Safe Location.\",\"extreme-force automatic braking/deceleration\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"},{\"kind\":\"symptom\",\"quote\":\"Repeated Unintended Emergency Braking, False Collision Warnings, and Persistent Braking-System Malfunction\"},{\"kind\":\"symptom\",\"quote\":\"false collision and braking warnings\"},{\"kind\":\"symptom\",\"quote\":\"activated its automatic emergency braking system without justification\"},{\"kind\":\"condition\",\"quote\":\"on an almost daily basis\"},{\"kind\":\"symptom\",\"quote\":\"traveling approximately 75 mph on the freeway\"},{\"kind\":\"symptom\",\"quote\":\"suddenly displayed a red braking warning and the vehicle automatically applied its brakes with extreme force\"},{\"kind\":\"safety\",\"quote\":\"nearly resulted in a serious collision\"},{\"kind\":\"symptom\",\"quote\":\"Braking System Malfunction. Stop the Vehicle in a Safe Location.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00068325,
+      "cached_tokens": 384,
+      "cost_usd": 0.00113875,
+      "input_tokens": 840,
+      "list_cost_usd": 0.00113875,
+      "output_tokens": 1782,
+      "reasoning_tokens": 1446
+    }
+  }
+}

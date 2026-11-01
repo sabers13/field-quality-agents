@@ -1,0 +1,66 @@
+{
+  "key": "936aba384410c9390da194d862627beb7ae2d4f2ae4699dc6d8af82ff06f43f2",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10624,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"SEAT BELTS: no airbag or seatbelt tensioning in a driver-side t-bone crash; B1413 airbag alerts and intermittent airbag-off indicator.\",\n  \"group\": \"SEAT BELTS\",\n  \"symptoms\": [\n    \"no airbag deployment or seatbelt tensioning during a driver-side t-bone collision\",\n    \"airbag DTC B1413 alerts since purchase\",\n    \"red airbag indicator in cabin\",\n    \"airbag off indicator goes on and off on its own\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [\n    \"B1413\"\n  ],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"SEAT BELTS\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"Safety of anyone, including a service dog in the car, is at risk from accident.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"NO airbag or seatbelt tensioning\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"INJURIES-spinal, left leg (required a leg brash to stabilize), head injury\"\n    },\n    {\n      \"kind\": \"fault_code\",\n      \"quote\": \"B1413\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"red airbag indicator in the cabin\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Above that says airbag off\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"goes on and off on its own\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize report. Let's parse.\n\nComponent SEAT BELTS. Make Hyundai Tucson Hybrid 2026. Narrative: safety at risk from accident. Date 10-01-2026 5:30 am accident. Struck driver's side t-bone both driver side doors, NO airbag or seatbelt tensioning. Whole body slammed against driver's door, injuries spinal, left leg required leg brace, head injury. Car executing dtc B1413 safety airbag alerts since day purchased (pages), had to fight lane keeping steering over lane markings shut off steering wheel blue link helped shut down completely. Settings manufacturer not inspected. Tried two escalated complaints. Red airbag indicator cabin. Above says airbag off, goes on and off on own. Filed complaints manufacturer last complaint. Prior to accident complaint number 43328081.\n\nNeed summary one line: component, symptom, conditions. Group electrical/electronic component group or given group. Seat belts given. Could group \"SEAT BELTS\" or maybe \"electrical/electronic\"? Prompt says group: \"the electrical/electronic component group, or the given group\". Given component SEAT BELTS, group \"SEAT BELTS\" likely. Symptoms: no airbag or seatbelt tensioning during t-bone collision; airbag DTC B1413 alerts since purchase; airbag off indicator toggling on/off; lane keeping steering over lane markings? But component seat belts, still report includes. Symptoms plain words. Conditions: after service? no. cold? no. moisture? no. heat? no. vibration? no. intermittent? yes airbag indicator goes on and off on its own, DTC alerts pages. charging? no. Could include \"intermittent\". Conditions list only allowed values. Include intermittent.\n\nFault_codes: [\"B1413\"].\n\nSafety_relevant: true (crash, injuries, no airbag/tensioning, loss? risk). True.\n\nMissing_info: mileage null. Date present (accident date and received). conditions? There are conditions? Accident time, maybe not weather. Component present symptom present. Mileage missing. So [\"mileage\"]. Maybe \"date\" is present. Conditions? The report gives accident date/time but not environmental conditions; do we list \"conditions\"? The analysis needs conditions; cold/moisture etc not relevant? But conditions missing? We can list mileage only. The rules: list missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Component/symptom/date given; conditions maybe not given (accident conditions not explicit). But conditions list allowed includes cold moisture heat vibration intermittent after service charging. We have intermittent. So conditions present. Mileage missing. Use [\"mileage\"].\n\nClues with verbatim quotes. Need ensure exact substrings. Need quote char-for-char. Choose quotes exact.\n\nPossible clues:\n- symptom: \"NO airbag or seatbelt tensioning\" exact? Narrative has \"-NO airbag or seatbelt tensioning.\" yes substring \"NO airbag or seatbelt tensioning\" exact.\n- condition: \"goes on and off on its own\" exact? Narrative: \"it goes on and off on its own.\" substring \"goes on and off on its own\" yes.\n- fault_code: \"B1413\" exact.\n- safety: \"Safety of anyone, including a service dog in the car, is at risk from accident.\" exact? Narrative starts \"Safety of anyone, including a service dog in the car, is at risk from accident. 10-01-2026...\" yes.\n- other/component_group: \"SEAT BELTS\"? component field not in narrative? Report includes component \"SEAT BELTS\" in JSON; quote can be from report including field? It says quote copied verbatim from the report. Since JSON has \"component\": \"SEAT BELTS\", quote \"SEAT BELTS\" is in report. kind component_group. Could include.\n- symptom: \"red airbag indicator in the cabin\" exact? Narrative \"there's a red airbag indicator in the cabin.\" substring \"red airbag indicator in the cabin\" yes.\n- symptom: \"Above that says airbag off\" exact? yes.\n- symptom: \"dtc B1413 safty airbag alerts since day purchased\" exact? Narrative \"Car executing dtc B1413 safty airbag alerts since day purchased\" yes. But note \"safty\" typo. Could quote.\n- condition intermittent: \"it goes on and off on its own\" exact.\n- safety: \"INJURIES-spinal, left leg (required a leg brash to stabilize), head injury\" exact? Narrative has \"- Whole body slammed up against driver's door, INJURIES-spinal, left leg (required a leg brash to stabilize), head injury  - Car...\" substring yes.\n- symptom: \"NO airbag or seatbelt tensioning\" exact.\n- symptom: \"Struck on drivers side (t-bone)\" exact? \"I was Struck on drivers side (t-bone) both driverside doors\" quote maybe \"Struck on drivers side (t-bone)\" exact? It has \"I was Struck...\" substring \"Struck on drivers side (t-bone)\" yes.\nNeed not overdo. JSON only.\n\nNeed summary. \"SEAT BELTS: no airbag/seatbelt tensioning in t-bone crash; B1413 airbag alerts and intermittent airbag-off indicator.\" one line. Conditions include crash? Conditions list only allowed values; summary can mention t-bone. Good.\n\nNeed group maybe \"SEAT BELTS\". The instructions say group \"the electrical/electronic component group, or the given group\". Since component given as SEAT BELTS, group = \"SEAT BELTS\". Could also group \"restraint system\" but no. Use given.\n\nNeed ensure JSON valid no extra text. Use double quotes. \"safety_relevant\": true.\n\nLet's craft.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793540412,
+      "id": "b43874058b8bd7cd45cdbd390f1cb736",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1641,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1245,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00061728,
+          "billing_source": "go",
+          "list_cost": 0.0010288,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 287,
+            "output": 1641,
+            "reasoning": 1245
+          }
+        },
+        "prompt_tokens": 671,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2312
+      }
+    },
+    "text": "{\n  \"summary\": \"SEAT BELTS: no airbag or seatbelt tensioning in a driver-side t-bone crash; B1413 airbag alerts and intermittent airbag-off indicator.\",\n  \"group\": \"SEAT BELTS\",\n  \"symptoms\": [\n    \"no airbag deployment or seatbelt tensioning during a driver-side t-bone collision\",\n    \"airbag DTC B1413 alerts since purchase\",\n    \"red airbag indicator in cabin\",\n    \"airbag off indicator goes on and off on its own\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [\n    \"B1413\"\n  ],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"SEAT BELTS\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"Safety of anyone, including a service dog in the car, is at risk from accident.\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"NO airbag or seatbelt tensioning\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"INJURIES-spinal, left leg (required a leg brash to stabilize), head injury\"\n    },\n    {\n      \"kind\": \"fault_code\",\n      \"quote\": \"B1413\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"red airbag indicator in the cabin\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Above that says airbag off\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"goes on and off on its own\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00061728,
+      "cached_tokens": 384,
+      "cost_usd": 0.0010288,
+      "input_tokens": 671,
+      "list_cost_usd": 0.0010288,
+      "output_tokens": 1641,
+      "reasoning_tokens": 1245
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "aa6cb80738c0e713a5c6216583e888a341596a88d471f02e94f12e87690f7edd",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 16876,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Backup cameras and proximity sensors stopped working after Rivian software update 2026.31.0; resets did not resolve.\",\"group\":\"electrical/electronic\",\"symptoms\":[\"backup cameras stopped working\",\"camera does not load\",\"proximity sensors stopped working\"],\"conditions\":[\"after service\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"The backup cameras and sensors stopped working\"},{\"kind\":\"condition\",\"quote\":\"after update 2026.31.0 pushed by Rivian\"},{\"kind\":\"symptom\",\"quote\":\"The camera just doesn't load anymore, and proximity sensors stopped working.\"},{\"kind\":\"other\",\"quote\":\"Multiple soft and hard resets did not resolve.\"},{\"kind\":\"component_group\",\"quote\":\"backup cameras and sensors\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize. Component given VISIBILITY/WIPER but report about backup cameras/sensors after software update. Need group maybe electrical/electronic component group or given group. Since given \"VISIBILITY/WIPER\" but narrative is cameras/sensors. Need summary one line component symptom conditions. Symptoms: backup cameras stopped working, camera doesn't load, proximity sensors stopped working. Conditions: after service? Update pushed = after service? Condition categories include \"after service\", maybe \"after update\" not exactly service. But conditions list from allowed: cold, moisture, heat, vibration, intermittent, after service, charging. We should only include if report mentions. It says after update, multiple resets. Could map \"after service\" perhaps software update is service? But not explicit. We might include \"after service\" only if report says? Hmm rules: conditions array from options. The report says after update 2026.31.0 pushed. That's not \"after service\" exactly but could be software update. Better maybe empty conditions? But \"after service\" could be relevant if update is service action. However quote \"after update 2026.31.0 pushed by Rivian\" supports condition \"after service\"? The condition labels are fixed; \"after service\" is closest. But do not invent. Could include conditions [\"after service\"]? The analysis needs conditions; update is a condition. I'd include \"after service\" maybe too broad. Alternatively have \"conditions\": [] and clue condition quote. But schema expects conditions list values. Could include \"after service\" as condition? Hmm.\n\nFault codes none. Safety_relevant false? Backup cameras/sensors failure could affect visibility/safety but no crash/fire etc. Rule says set true when mentions crash/fire/smoke/injury/loss of control/stall at speed or another risk to people. Backup camera failure is risk but not explicitly \"risk to people\". \"another risk to people\" maybe safety-relevant? But strict: no crash etc. I'd set false. However component is visibility/wiper, backup cameras are safety systems; but not explicit risk. Need not overflag.\n\nMissing_info: mileage is null -> missing. Date? received_at given but not incident date. Conditions? We have update. Component? Given component but narrative component mismatch? The report component says wiper but symptom cameras. Missing info maybe \"mileage\", \"date\". Component? It does name camera/sensors but given component inaccurate. Maybe missing component? Hmm for analysis, component is known: backup camera/proximity sensors. But given group is VISIBILITY/WIPER inconsistent; we can state group? The output \"group\": \"the electrical/electronic component group, or the given group\". Given group VISIBILITY/WIPER. But component group electrical/electronic? Backup cameras and sensors are electrical/electronic. Need decide. \"group\": maybe \"VISIBILITY/WIPER\" given. The instruction: \"the electrical/electronic component group, or the given group\" Means if report has electrical component group use that; otherwise given. Here given group VISIBILITY/WIPER. But actual components cameras/sensors are electrical/electronic. Could output \"electrical/electronic\" or \"VISIBILITY/WIPER\"? Since given field says VISIBILITY/WIPER, but narrative mismatch. The summary says component cameras/sensors. I think group should be \"electrical/electronic\" because it's an electrical/electronic component group. But maybe they expect given group. Hmm.\n\nNeed clues with verbatim quotes. Use quotes:\n- \"The backup cameras and sensors stopped working after update 2026.31.0 pushed by Rivian.\"\n- \"The camera just doesn't load anymore, and proximity sensors stopped working.\"\n- \"Multiple soft and hard resets did not resolve.\"\nKinds: symptom, condition, other. Need exact quote includes apostrophe? \"doesn't\" in report. Copy exactly. Use JSON escaping.\n\nSummary one line: \"Backup cameras and proximity sensors stopped working after Rivian software update 2026.31.0; resets did not resolve.\" This is okay.\n\nSymptoms array: [\"backup cameras stopped working\", \"camera does not load\", \"proximity sensors stopped working\"].\n\nConditions: Maybe [\"after service\"]? Since update. But condition labels include \"after service\", not update. Could include \"after service\" with clue quote \"after update 2026.31.0 pushed by Rivian\". But is software update service? It is a service action. I think yes. But if quote doesn't contain \"service\", still condition inferred? Evidence quote can support. However rule says do not invent facts. \"after service\" is an interpretation; maybe okay. Alternatively conditions [\"after service\"] and clue kind condition quote \"after update 2026.31.0 pushed by Rivian\". Good.\n\nFault_codes: [] because update version not fault code. Could include \"2026.31.0\"? Not fault code. No.\n\nSafety_relevant: false.\n\nMissing_info: [\"mileage\", \"date\"]. Should we include \"conditions\"? We have condition after update. \"component\" is there, symptom there. Date incident missing (received_at not incident date). Mileage null. Maybe \"date\" missing. Good.\n\nClues: include symptom, condition, other. Need \"component_group\"? Could include quote \"backup cameras and sensors\" kind component_group? But kind component_group maybe group label. We can include kind \"component_group\" quote \"backup cameras and sensors\" or \"proximity sensors\". But quote must be verbatim. Use \"backup cameras and sensors\" is verbatim substring. Good.\n\nNeed no other text. JSON valid.\n\nPotential issue \"group\": If set \"electrical/electronic\" not verbatim. But field not quote. Good.\n\nLet's craft.\n\nNeed ensure quote \"The camera just doesn't load anymore, and proximity sensors stopped working.\" exact from narrative: \"The camera just doesn't load anymore, and proximity sensors stopped working.\" Yes.\n\n\"Multiple soft and hard resets did not resolve.\" exact.\n\n\"after update 2026.31.0 pushed by Rivian\" exact substring. Good.\n\nCould include quote \"The backup cameras and sensors stopped working\" exact.\n\nLet's output.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793541425,
+      "id": "5b9266f6da3413485fdbe23391081bea",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1499,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1308,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00055221,
+          "billing_source": "go",
+          "list_cost": 0.00092035,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 132,
+            "output": 1499,
+            "reasoning": 1308
+          }
+        },
+        "prompt_tokens": 516,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2015
+      }
+    },
+    "text": "{\"summary\":\"Backup cameras and proximity sensors stopped working after Rivian software update 2026.31.0; resets did not resolve.\",\"group\":\"electrical/electronic\",\"symptoms\":[\"backup cameras stopped working\",\"camera does not load\",\"proximity sensors stopped working\"],\"conditions\":[\"after service\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"The backup cameras and sensors stopped working\"},{\"kind\":\"condition\",\"quote\":\"after update 2026.31.0 pushed by Rivian\"},{\"kind\":\"symptom\",\"quote\":\"The camera just doesn't load anymore, and proximity sensors stopped working.\"},{\"kind\":\"other\",\"quote\":\"Multiple soft and hard resets did not resolve.\"},{\"kind\":\"component_group\",\"quote\":\"backup cameras and sensors\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00055221,
+      "cached_tokens": 384,
+      "cost_usd": 0.00092035,
+      "input_tokens": 516,
+      "list_cost_usd": 0.00092035,
+      "output_tokens": 1499,
+      "reasoning_tokens": 1308
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "d229e017266869c776fec25f97bba403c93bf9ca41a0324a72c6b68765fe70e4",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 4072,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "```json\n{\n  \"summary\": \"2021 Ford F-150 electrical system fault while driving: multiple systems unresponsive, no restart, random horn, later traced to water intrusion into the BCM\",\n  \"group\": \"ELECTRICAL SYSTEM\",\n  \"symptoms\": [\n    \"electrical fault causing the vehicle to become undrivable\",\n    \"multiple systems not responding\",\n    \"engine would not attempt to start after power cycle (accessory position only)\",\n    \"horn sounding randomly\",\n    \"water found in the body control module\"\n  ],\n  \"conditions\": [\n    \"while driving\",\n    \"moisture\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\"\n  ],\n  \"clues\": [\n    {\"kind\": \"condition\", \"quote\": \"While driving truck\"},\n    {\"kind\": \"symptom\", \"quote\": \"it had an electrical fritz that caused the car to become undrivable\"},\n    {\"kind\": \"symptom\", \"quote\": \"systems not responding\"},\n    {\"kind\": \"symptom\", \"quote\": \"the car would accessory on but not attempt to start\"},\n    {\"kind\": \"symptom\", \"quote\": \"the horn would go off randomly\"},\n    {\"kind\": \"condition\", \"quote\": \"push into a safe spot\"},\n    {\"kind\": \"component_group\", \"quote\": \"water had intruded into the BCM\"}\n  ]\n}\n```",
+            "reasoning_content": "Let me produce JSON.\n\nComponent: electrical system, BCM water intrusion.\n\nSymptoms: electrical fritz causing car undrivable, systems not responding, no start after power cycle, horn goes off randomly, water intrusion into BCM.\n\nConditions: while driving, moisture (water intrusion).\n\nSafety: vehicle became undrivable while driving — is that a risk to people? \"caused the car to become undrivable\" while driving — that's arguably loss of control risk. I'd say safety_relevant true: undrivable while driving, had to push to safe spot. Yes set true.\n\nMissing info: mileage (null), date of incident — received_at given, mileage missing. Component given, symptom given, conditions given. So missing_info: [\"mileage\"].\n\nFault codes: none.\n\nClues: verbatim quotes.\n\nQuotes must be verbatim spans:\n- \"it had an electrical fritz that caused the car to become undrivable\"\n- \"systems not responding\"\n- \"the car would accessory on but not attempt to start\"\n- \"the horn would go off randomly\"\n- \"water had intruded into the BCM\"\n- \"While driving truck\"\n- \"required towing to dealership\"\n\nCheck exact characters: narrative: \"While driving truck, it had an electrical fritz that caused the car to become undrivable, with systems not responding. when stopped to power cycle, the car would accessory on but not attempt to start. the horn would go off randomly. was able to manually put the truck into neutral and push into a safe spot, at what point a battery clear was attempted with no results, and required towing to dealership where water had intruded into the BCM\"\n\nGood.\n\nGroup: \"ELECTRICAL SYSTEM\" given.\n\nSummary one line.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793540297,
+      "id": "33ea80e8ce67ccfaab5451df03e89288",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 681,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 365,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00026178,
+          "billing_source": "go",
+          "list_cost": 0.0004363,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 177,
+            "output": 681,
+            "reasoning": 365
+          }
+        },
+        "prompt_tokens": 561,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1242
+      }
+    },
+    "text": "```json\n{\n  \"summary\": \"2021 Ford F-150 electrical system fault while driving: multiple systems unresponsive, no restart, random horn, later traced to water intrusion into the BCM\",\n  \"group\": \"ELECTRICAL SYSTEM\",\n  \"symptoms\": [\n    \"electrical fault causing the vehicle to become undrivable\",\n    \"multiple systems not responding\",\n    \"engine would not attempt to start after power cycle (accessory position only)\",\n    \"horn sounding randomly\",\n    \"water found in the body control module\"\n  ],\n  \"conditions\": [\n    \"while driving\",\n    \"moisture\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\"\n  ],\n  \"clues\": [\n    {\"kind\": \"condition\", \"quote\": \"While driving truck\"},\n    {\"kind\": \"symptom\", \"quote\": \"it had an electrical fritz that caused the car to become undrivable\"},\n    {\"kind\": \"symptom\", \"quote\": \"systems not responding\"},\n    {\"kind\": \"symptom\", \"quote\": \"the car would accessory on but not attempt to start\"},\n    {\"kind\": \"symptom\", \"quote\": \"the horn would go off randomly\"},\n    {\"kind\": \"condition\", \"quote\": \"push into a safe spot\"},\n    {\"kind\": \"component_group\", \"quote\": \"water had intruded into the BCM\"}\n  ]\n}\n```",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00026178,
+      "cached_tokens": 384,
+      "cost_usd": 0.0004363,
+      "input_tokens": 561,
+      "list_cost_usd": 0.0004363,
+      "output_tokens": 681,
+      "reasoning_tokens": 365
+    }
+  }
+}

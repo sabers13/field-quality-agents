@@ -1,0 +1,66 @@
+{
+  "key": "f9ff3fabb34998a9d458221a51282a4d3eaf67b5633da2ec50f42692bf3d362b",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12162,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Back over prevention rear-view camera froze and occasionally glitched while in reverse; recurring failure.\",\"group\":\"electrical/electronic\",\"symptoms\":[\"rear-view camera froze\",\"rear-view camera occasionally glitched\",\"recurring failure\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[\"PIT6369B\"],\"safety_relevant\":false,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"BACK OVER PREVENTION\"},{\"kind\":\"symptom\",\"quote\":\"the rear-view camera froze and occasionally glitched\"},{\"kind\":\"condition\",\"quote\":\"while the vehicle was in reverse(R)\"},{\"kind\":\"symptom\",\"quote\":\"The failure was a recurring failure\"},{\"kind\":\"fault_code\",\"quote\":\"Technical Service Bulletin: PIT6369B\"}]}",
+            "reasoning_content": "We need answer one JSON object no other text. Need normalize report. Need read only report. Need extract. Component: BACK OVER PREVENTION. Group: electrical/electronic component group? Given component \"BACK OVER PREVENTION\" likely group? Prompt says group \"the electrical/electronic component group, or the given group\". We should infer component group? Back over prevention is driver assistance/electrical? Need output group maybe \"driver assistance\" or \"electrical/electronic\"? Need be careful. It asks group electrical/electronic component group, or given group. The report component is \"BACK OVER PREVENTION\". We can set group \"back over prevention\" as given? Hmm.\n\nNeed symptoms: rear-view camera froze, occasionally glitched. Recurring failure. Conditions: while vehicle in reverse(R). Maybe \"intermittent\" for occasionally glitched, recurring? Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. Include intermittent because occasionally glitched. Could include? \"while in reverse\" not in allowed list. Conditions only allowed enumerated? It says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. So include \"intermittent\". Maybe no other.\n\nFault codes: TSB PIT6369B? It says fault_codes code if report names one. TSB is not fault code, but code named. Could include PIT6369B? The field says fault_codes [\"code if report names one\"]. It names Technical Service Bulletin: PIT6369B. Is that a fault code? It's a TSB number, not diagnostic trouble code. But \"code\" maybe include? Hmm. It explicitly names TSB. Could include in fault_codes? Might be misleading. But clues can include fault_code? The kind includes fault_code. We can include clue kind fault_code quote \"Technical Service Bulletin: PIT6369B\" maybe. For fault_codes maybe include \"PIT6369B\" because report names code. Need not invent. I'll include? The schema says fault_codes [\"code if the report names one\"]. It names PIT6369B. So yes.\n\nSafety_relevant: Does it mention crash fire smoke injury loss control stall speed? No. Camera freeze in reverse could risk backover but not explicit. Don't set true unless mentions. false.\n\nMissing_info: component present, symptom present, conditions? Conditions present (reverse, intermittent). Mileage present. Date? received_at 2026-10-21 but date of failure? Not explicit. The report has received date, failure mileage. Missing date of incident? The missing_info list includes date. Is it important? We have received_at but not failure date. The report says failure mileage approx 60k; no date. Should list \"date\"? It says only facts analysis needs: component, symptom, conditions, mileage, date. Component present, symptom present, conditions present, mileage present, date missing (failure date). But received_at is date. Hmm date could be received date, but not incident date. Need decide. The prompt wants normalise incoming report. Missing info: date maybe because no date of occurrence. I'd include \"date\" unless received_at serves. But \"date\" likely means date of report? It has received_at. However report narrative doesn't mention date. The input includes received_at. Missing_info for analysis? I think include \"date\" because failure date not given. But could be considered present as received_at. Hmm.\n\nNeed clues with verbatim quotes. Need quotes exactly from narrative. We can include:\n- symptom: \"the rear-view camera froze and occasionally glitched\"\n- condition: \"while the vehicle was in reverse(R)\"\n- fault_code: \"Technical Service Bulletin: PIT6369B\"\n- component_group: \"BACK OVER PREVENTION\"? But quote must be verbatim from report. \"BACK OVER PREVENTION\" appears in component field, is that report? The user message is JSON with component. \"Read only the report in user message.\" The report includes component field. Verbatim span can be from report. Could quote \"BACK OVER PREVENTION\" from component field. But clues kind component_group. Maybe quote \"BACK OVER PREVENTION\" yes.\n- other: \"recurring failure\" maybe.\n- safety? no.\nNeed summary one line: component, symptom, conditions. E.g. \"Back over prevention rear-view camera froze and occasionally glitched while in reverse; recurring.\" Good.\n\nNeed group: \"back over prevention\" maybe. But prompt \"electrical/electronic component group, or the given group\" Could set \"back over prevention\" because given component. But \"group\" likely should categorize. Back over prevention is electrical/electronic system. The group can be \"electrical/electronic\" maybe. Hmm. The examples? Not provided. Need decide. The component is \"BACK OVER PREVENTION\"; group might be \"driver assistance/electrical\". The instruction says \"the electrical/electronic component group, or the given group\". That suggests if component is an electrical/electronic component, name its group; or use given group. \"BACK OVER PREVENTION\" is a system, not a component group. Could use \"driver assistance\" or \"electrical/electronic\". Since camera is electrical/electronic. To be safe, set group \"electrical/electronic\". But if the report's component is already a group, \"BACK OVER PREVENTION\" may be the given group. The schema says group \"the electrical/electronic component group, or the given group\". I think use \"back over prevention\" exactly? Hmm.\n\nNeed no other text. JSON valid.\n\nLet's ensure quotes verbatim:\nNarrative: \"The contact owns a 2023 GMC Sierra 1500. The contact stated that while the vehicle was in reverse(R), the rear-view camera froze and occasionally glitched. The failure was a recurring failure. The contact associated the failure with Technical Service Bulletin: PIT6369B. The dealer was contacted. The manufacturer was contacted and made aware of the failure. The failure mileage was approximately 60,000.\"\n\nQuote \"while the vehicle was in reverse(R)\" exact? In narrative: \"while the vehicle was in reverse(R),\" yes substring. Good.\nQuote \"the rear-view camera froze and occasionally glitched\" exact yes.\nQuote \"The failure was a recurring failure\" exact.\nQuote \"Technical Service Bulletin: PIT6369B\" exact.\nQuote \"BACK OVER PREVENTION\" exact from component.\nQuote \"60,000\" maybe mileage clue? Not needed.\n\nMissing_info: Should include \"date\"? Maybe. Also \"conditions\" present? Yes. \"component\" present. \"symptom\" present. \"mileage\" present. Date? There is received_at but no failure date. I'll include [\"date\"]. Might be okay. If they expect empty? Hmm.\n\nNeed conditions list only \"intermittent\" because occasionally. Could include \"intermittent\" and maybe no \"reverse\" since not allowed. Fine.\n\nFault_codes: include \"PIT6369B\". It is TSB, not fault code. Could be in clues kind fault_code. The schema kind includes fault_code; if I include, okay.\n\nSafety_relevant false. Need not mention potential risk.\n\nFinal JSON only.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793541323,
+      "id": "49a100fb720d06107a03169a708908f4",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1694,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1520,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00062619,
+          "billing_source": "go",
+          "list_cost": 0.00104365,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 174,
+            "output": 1694,
+            "reasoning": 1520
+          }
+        },
+        "prompt_tokens": 558,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2252
+      }
+    },
+    "text": "{\"summary\":\"Back over prevention rear-view camera froze and occasionally glitched while in reverse; recurring failure.\",\"group\":\"electrical/electronic\",\"symptoms\":[\"rear-view camera froze\",\"rear-view camera occasionally glitched\",\"recurring failure\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[\"PIT6369B\"],\"safety_relevant\":false,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"BACK OVER PREVENTION\"},{\"kind\":\"symptom\",\"quote\":\"the rear-view camera froze and occasionally glitched\"},{\"kind\":\"condition\",\"quote\":\"while the vehicle was in reverse(R)\"},{\"kind\":\"symptom\",\"quote\":\"The failure was a recurring failure\"},{\"kind\":\"fault_code\",\"quote\":\"Technical Service Bulletin: PIT6369B\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00062619,
+      "cached_tokens": 384,
+      "cost_usd": 0.00104365,
+      "input_tokens": 558,
+      "list_cost_usd": 0.00104365,
+      "output_tokens": 1694,
+      "reasoning_tokens": 1520
+    }
+  }
+}

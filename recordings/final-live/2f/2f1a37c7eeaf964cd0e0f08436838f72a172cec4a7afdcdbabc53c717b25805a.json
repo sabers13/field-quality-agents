@@ -1,0 +1,66 @@
+{
+  "key": "2f1a37c7eeaf964cd0e0f08436838f72a172cec4a7afdcdbabc53c717b25805a",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 13322,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Hybrid propulsion system; low battery warning light and inoperable rear seat air vents; recall part unavailable and dealer found normal operation\",\"group\":\"HYBRID PROPULSION SYSTEM\",\"symptoms\":[\"low battery warning light illuminated on instrument panel\",\"rear seat air vents inoperable\"],\"conditions\":[],\"fault_codes\":[\"25V869000\"],\"safety_relevant\":false,\"missing_info\":[\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"HYBRID PROPULSION SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"warning light was illuminated on the instrument panel\"},{\"kind\":\"symptom\",\"quote\":\"the rear seat air vents were inoperable\"},{\"kind\":\"fault_code\",\"quote\":\"NHTSA Campaign Number: 25V869000\"},{\"kind\":\"other\",\"quote\":\"the vehicle was operating normally\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize. Need extract. Component hybrid propulsion system. Symptoms: warning light \"Low Battery - Turn Power Off\" illuminated, rear seat air vents inoperable. Conditions? Maybe none explicit except dealer operating normally. Recall part unavailable. Recall campaign number 25V869000. Safety relevant? Hmm warning low battery turn power off could risk stall? Report doesn't mention crash/fire/smoke/injury/loss control/stall at speed. No. Missing_info: conditions? We have component symptom mileage date? date received but not failure date. missing_info maybe \"conditions\" because no driving conditions. But rules list missing only facts analysis needs: component, symptom, conditions, mileage, date. Component present, symptom present, mileage present, date? received_at present but maybe failure date missing. Conditions missing. We need decide. They said use empty when nothing important missing. Here conditions not described, date of failure not given. But report has received_at. \"date\" likely incident date missing. Include [\"conditions\",\"date\"]? Could include. Need clues with verbatim spans. Need ensure exact quotes. Narrative has \"The contact stated that the \\\"Low Battery - Turn Power Off\\\" warning light was illuminated on the instrument panel, and the rear seat air vents were inoperable.\" We can quote substrings exactly including quotation marks? JSON string escaping. Quote verbatim: \"Low Battery - Turn Power Off\" maybe includes quotes? The report has escaped quotes in JSON string. Verbatim span can be `\"Low Battery - Turn Power Off\" warning light was illuminated`? Need in JSON quote include escaped quotes. Or simpler quote \"warning light was illuminated on the instrument panel\". But kind symptom. Need quote for rear vents: \"the rear seat air vents were inoperable\". Fault code: \"NHTSA Campaign Number: 25V869000\". Component group: \"HYBRID PROPULSION SYSTEM\" but that's in component field not narrative? User says read only report in user message includes component field. Quote verbatim from report; the field value is in report. We can quote \"HYBRID PROPULSION SYSTEM\". Also narrative has \"(Hybrid Propulsion System)\". Verbatim. Safety? no. Conditions? maybe \"vehicle was operating normally\" not a condition. Could clue other.\n\nNeed summary one line: \"Hybrid propulsion system; low battery warning light and inoperable rear seat air vents; recall part unavailable, dealer found normal operation.\" Conditions? none.\n\nNeed group: \"HYBRID PROPULSION SYSTEM\" or electrical/electronic component group? Given group is component. Group should be electrical/electronic component group, or given group. Use \"HYBRID PROPULSION SYSTEM\".\n\nSymptoms array: [\"Low Battery - Turn Power Off warning light illuminated\", \"rear seat air vents inoperable\"]. Plain words. Conditions array: []? Conditions recognized: cold moisture heat vibration intermittent after service charging. None. Maybe \"after service\"? no. \"charging\" related low battery? no. So [].\n\nFault codes: [\"25V869000\"]? It's recall campaign number not fault code. Rule \"code if report names one\"; fault_codes includes code if names one. Could include recall number as code? It's not a fault code but a campaign. Hmm maybe put in fault_codes? The schema says fault_codes [\"code if report names one\"]. A recall campaign number is a code named. But \"fault_codes\" maybe diagnostic trouble code. But could include \"25V869000\" as recall code. I'll include because named code. Clue kind fault_code quote \"NHTSA Campaign Number: 25V869000\". Good.\n\nMissing info: mileage present 16800. date? received_at is 2026-10-05; failure mileage given. No failure date. Conditions missing. Component and symptom present. Include [\"conditions\",\"date\"]? The analysis needs conditions. Date maybe not critical? They list date. Since received_at not incident date, include date. But maybe \"date\" means report date, present. Hmm report includes received_at. It has date. If missing_info only for facts analysis needs and date is present via received_at, don't include date. Conditions missing. But conditions list recognized specific conditions; none stated. Could include \"conditions\". Let's include [\"conditions\"].\n\nNeed clues:\n- component_group quote \"HYBRID PROPULSION SYSTEM\"\n- symptom quote \"warning light was illuminated on the instrument panel\"\n- symptom quote \"the rear seat air vents were inoperable\"\n- fault_code quote \"NHTSA Campaign Number: 25V869000\"\n- other quote \"the vehicle was operating normally\" maybe not needed.\n- condition? no.\n\nNeed ensure quotes exact. Full narrative: \"The contact owns a 2026 Toyota Camry Hybrid. The contact received notification of NHTSA Campaign Number: 25V869000 (Hybrid Propulsion System); however, the part to do the recall repair was not yet available. The contact stated that the manufacturer had exceeded a reasonable amount of time for the recall repair. The vehicle was taken to the dealer, and it was determined that the vehicle was operating normally. The contact stated that the \\\"Low Battery - Turn Power Off\\\" warning light was illuminated on the instrument panel, and the rear seat air vents were inoperable. The vehicle was scheduled to be returned to the dealer. The failure mileage was 16,800.\"\n\nQuote \"warning light was illuminated on the instrument panel\" exact yes (lowercase w after quote? The string has `\\\"Low Battery - Turn Power Off\\\" warning light was illuminated on the instrument panel` so substring \"warning light was illuminated on the instrument panel\" yes exact). \"the rear seat air vents were inoperable\" exact yes. \"NHTSA Campaign Number: 25V869000\" exact yes. \"HYBRID PROPULSION SYSTEM\" exact in component field. \"Hybrid Propulsion System\" exact in narrative. Use uppercase maybe.\n\nNeed JSON no other text.\n\nShould safety_relevant false. No safety risk. Although \"Low Battery - Turn Power Off\" could imply power loss? But not explicitly. Set false.\n\nNeed maybe symptoms plain words: \"low battery warning light on instrument panel\", \"rear seat air vents not working\". Good.\n\nSummary one line no newline? Fine.\n\nFinal JSON only.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793540125,
+      "id": "ca0259c3e51402868cebd1eef93c8d15",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1511,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1324,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00056553,
+          "billing_source": "go",
+          "list_cost": 0.00094255,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 232,
+            "output": 1511,
+            "reasoning": 1324
+          }
+        },
+        "prompt_tokens": 616,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2127
+      }
+    },
+    "text": "{\"summary\":\"Hybrid propulsion system; low battery warning light and inoperable rear seat air vents; recall part unavailable and dealer found normal operation\",\"group\":\"HYBRID PROPULSION SYSTEM\",\"symptoms\":[\"low battery warning light illuminated on instrument panel\",\"rear seat air vents inoperable\"],\"conditions\":[],\"fault_codes\":[\"25V869000\"],\"safety_relevant\":false,\"missing_info\":[\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"HYBRID PROPULSION SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"warning light was illuminated on the instrument panel\"},{\"kind\":\"symptom\",\"quote\":\"the rear seat air vents were inoperable\"},{\"kind\":\"fault_code\",\"quote\":\"NHTSA Campaign Number: 25V869000\"},{\"kind\":\"other\",\"quote\":\"the vehicle was operating normally\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00056553,
+      "cached_tokens": 384,
+      "cost_usd": 0.00094255,
+      "input_tokens": 616,
+      "list_cost_usd": 0.00094255,
+      "output_tokens": 1511,
+      "reasoning_tokens": 1324
+    }
+  }
+}

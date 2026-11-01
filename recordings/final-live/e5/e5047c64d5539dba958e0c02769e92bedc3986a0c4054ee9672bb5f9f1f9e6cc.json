@@ -1,0 +1,66 @@
+{
+  "key": "e5047c64d5539dba958e0c02769e92bedc3986a0c4054ee9672bb5f9f1f9e6cc",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 15513,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Back over prevention warnings on a 2023 Tesla Model X: during FSD reverse out of a garage, the driver-side mirror struck the wall; no alerts or path correction.\",\"group\":\"BACK OVER PREVENTION: WARNINGS\",\"symptoms\":[\"driver-side mirror struck garage wall during FSD reverse maneuver\",\"vehicle did not stop or correct its path before or after contact\",\"no alerts or takeover warnings displayed\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"BACK OVER PREVENTION: WARNINGS\"},{\"kind\":\"condition\",\"quote\":\"while the vehicle was parked in our residential garage\"},{\"kind\":\"condition\",\"quote\":\"under FSD\"},{\"kind\":\"symptom\",\"quote\":\"the driver’s-side mirror struck the garage wall\"},{\"kind\":\"safety\",\"quote\":\"damaging the mirror and causing minor damage to the wall\"},{\"kind\":\"symptom\",\"quote\":\"The vehicle did not stop or correct its path before or after contact.\"},{\"kind\":\"symptom\",\"quote\":\"The vehicle displayed no alerts or takeover warnings at any point.\"},{\"kind\":\"safety\",\"quote\":\"No one was injured.\"},{\"kind\":\"other\",\"quote\":\"low-speed garage maneuvers\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize. Read report. Component back over prevention warnings, Tesla Model X, narrative crash into garage wall mirror, FSD backing out, no alerts, no injury. Safety relevant? Mentions crash/contact damaging mirror and wall, no injury. \"struck garage wall\" risk? safety_relevant true because crash/contact? Rule mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. Collision with wall while reversing, damage, no injury. It is a crash/contact, likely safety relevant true. Need summary one line component, symptom, conditions. group electrical/electronic component group or given group. Given component \"BACK OVER PREVENTION: WARNINGS\" likely group? Need \"the electrical/electronic component group, or the given group\". Could set group \"BACK OVER PREVENTION: WARNINGS\" or \"ADAS / driver assistance\". Since given group? The component is already group-ish. We can use \"BACK OVER PREVENTION: WARNINGS\". Symptoms: \"driver-side mirror struck garage wall during FSD reverse maneuver\", \"vehicle did not stop or correct path before or after contact\", \"no alerts or takeover warnings displayed\". Conditions: cold? moisture? no. \"after service\"? no. \"charging\"? no. Conditions include maybe \"parked in residential garage\", \"backing out onto driveway\", \"low-speed garage maneuver\", \"FSD engaged\". The allowed conditions list is [\"cold\",\"moisture\",\"heat\",\"vibration\",\"intermittent\",\"after service\",\"charging\"]. Hmm output conditions should use those? It says conditions array with those examples? It lists exact options in template. But narrative conditions like garage maneuver not in list. The schema says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. It might expect only those condition tags. There are none. Could include \"intermittent\"? no. So conditions empty. But summary can mention conditions. Clues can include condition quotes like \"while the vehicle was parked in our residential garage\" kind condition. That's okay.\n\nFault codes empty. missing_info: mileage null; date present received_at, event date 10/22/26. Component present symptom present conditions? Some conditions present. Missing mileage only. Maybe date? Event date present. So [\"mileage\"]. Safety relevant true.\n\nClues need verbatim quotes. Need ensure quotes exact from narrative. Use character-for-character. Need be careful apostrophes are \\u2019 in JSON; when output, can use actual curly apostrophe or escape. Verbatim quote \"driver\\u2019s-side mirror struck the garage wall\" in report: \"the driver\\u2019s-side mirror struck the garage wall\". We can quote exact substring. Need include \"The vehicle did not stop or correct its path before or after contact.\" exact. \"The vehicle displayed no alerts or takeover warnings at any point.\" exact. \"No one was injured.\" exact. \"while the vehicle was parked in our residential garage\" exact? Narrative: \"while the vehicle was parked in our residential garage, to back out onto the driveway.\" The substring \"while the vehicle was parked in our residential garage\" yes. \"under FSD\" yes. \"low-speed garage maneuvers\" exact? \"FSD incidents during low-speed garage maneuvers.\" yes.\n\nNeed summary one line: \"Back over prevention warnings: Tesla Model X under FSD reversing from garage struck driver-side mirror on wall; no alerts or path correction.\" Good.\n\nNeed group: Could set \"BACK OVER PREVENTION: WARNINGS\" as given. Maybe better \"ADAS / driver assistance\" but rule \"or the given group\". The field is component. It says group \"the electrical/electronic component group, or the given group\". Since no explicit group, use component. Maybe \"BACK OVER PREVENTION: WARNINGS\" is component group. Fine.\n\nNeed symptoms array plain words. Could include \"driver-side mirror struck garage wall\", \"vehicle did not stop or correct path\", \"no alerts or takeover warnings\". Good.\n\nConditions array: none of enumerated tags apply. But the template includes conditions list. Maybe include no conditions? It says conditions [\"cold\"...] maybe as allowed values. But can include other? Hmm. To be safe, use [] because none. But \"conditions\" in summary and clues capture garage/low-speed. However missing_info includes conditions? No, because conditions present? The enumerated condition tags absent. But analysis might need conditions. It has event conditions. Not missing.\n\nNeed \"safety_relevant\": true. Is mirror striking wall a crash? Yes contact. No injury but risk. Could set true. Good.\n\nNeed missing_info only [\"mileage\"]. Maybe also \"date\"? event date present. Component present. Symptom present. Conditions present. So [\"mileage\"].\n\nNeed clues kind values. Include:\n- component_group quote \"BACK OVER PREVENTION: WARNINGS\"? Is that in report? The JSON report includes component field. The narrative doesn't. Rules every quote copied verbatim from report. \"report\" includes component field? Probably entire user message includes component. So quote can be \"BACK OVER PREVENTION: WARNINGS\" yes.\n- symptom quote \"the driver’s-side mirror struck the garage wall\" exact. Need curly apostrophe. Use actual.\n- symptom quote \"The vehicle did not stop or correct its path before or after contact.\" exact.\n- symptom quote \"The vehicle displayed no alerts or takeover warnings at any point.\" exact.\n- condition quote \"while the vehicle was parked in our residential garage\" exact.\n- condition quote \"under FSD\" exact.\n- safety quote \"No one was injured.\" Hmm that indicates safety but no injury. Also \"struck the garage wall\" indicates collision. kind safety maybe quote \"the driver’s-side mirror struck the garage wall\" duplicates. Could include \"No one was injured.\" as safety. But safety_relevant true due crash. Quote \"struck the garage wall\" exact. We'll include kind safety quote \"the driver’s-side mirror struck the garage wall\" maybe duplicate okay. Better not duplicate? It's okay. Maybe quote \"damaging the mirror and causing minor damage to the wall\" exact. That's safety. Use that.\n- other quote \"Tesla estimated the repair cost at approximately $1,200.\" maybe not needed.\n\nNeed JSON no markdown? User says answer with one JSON object and no other text. We should output raw JSON only. Ensure valid JSON. Curly apostrophe can appear raw in JSON strings, valid. Need escape? Fine.\n\nLet's craft final JSON. Must no code fences. Need ensure quotes exact. Let's verify narrative exact strings:\n\"On 10/22/26, the driver engaged Full Self-Driving (Supervised) while the vehicle was parked in our residential garage, to back out onto the driveway. As the vehicle reversed out of the garage under FSD, the driver\\u2019s-side mirror struck the garage wall, damaging the mirror and causing minor damage to the wall. The vehicle did not stop or correct its path before or after contact. The vehicle displayed no alerts or takeover warnings at any point. The driver was watching the vehicle\\u2019s rearward path but was not monitoring the clearance at the driver\\u2019s-side mirror, did not intervene, and did not alter the wheel direction. No one was injured. Tesla estimated the repair cost at approximately $1,200. Dashcam footage was not saved, and I am still trying to recover it. I can provide photos of the damage and the repair estimate on request. I am reporting this to add to NHTSA\\u2019s record of FSD incidents during low-speed garage maneuvers.\"\nSubstrings:\n- \"while the vehicle was parked in our residential garage\" yes exact lower.\n- \"As the vehicle reversed out of the garage under FSD\" exact includes capital As.\n- \"the driver’s-side mirror struck the garage wall\" exact.\n- \"damaging the mirror and causing minor damage to the wall\" exact.\n- \"The vehicle did not stop or correct its path before or after contact.\" exact.\n- \"The vehicle displayed no alerts or takeover warnings at any point.\" exact.\n- \"No one was injured.\" exact.\n- \"low-speed garage maneuvers\" exact.\n- \"BACK OVER PREVENTION: WARNINGS\" exact in component.\n\nNeed summary mention \"Tesla Model X\". Good.\n\nPotential issue conditions array: Use [] but template shows sample values. Fine.\n\nNeed \"group\": maybe \"BACK OVER PREVENTION: WARNINGS\". If they expect electrical/electronic group, \"ADAS\" maybe. But \"or the given group\" means if given group not component? Hmm. The field component is \"BACK OVER PREVENTION: WARNINGS\" which is NHTSA component group. Use it.\n\nNeed \"symptoms\": plain words. Maybe include no alerts. Good.\n\nNeed safety_relevant true.\n\nLet's output compact.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793541479,
+      "id": "2fba0c2e188384380394f8af2001a2a7",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2139,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1865,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00079764,
+          "billing_source": "go",
+          "list_cost": 0.0013294,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 299,
+            "output": 2139,
+            "reasoning": 1865
+          }
+        },
+        "prompt_tokens": 683,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2822
+      }
+    },
+    "text": "{\"summary\":\"Back over prevention warnings on a 2023 Tesla Model X: during FSD reverse out of a garage, the driver-side mirror struck the wall; no alerts or path correction.\",\"group\":\"BACK OVER PREVENTION: WARNINGS\",\"symptoms\":[\"driver-side mirror struck garage wall during FSD reverse maneuver\",\"vehicle did not stop or correct its path before or after contact\",\"no alerts or takeover warnings displayed\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"BACK OVER PREVENTION: WARNINGS\"},{\"kind\":\"condition\",\"quote\":\"while the vehicle was parked in our residential garage\"},{\"kind\":\"condition\",\"quote\":\"under FSD\"},{\"kind\":\"symptom\",\"quote\":\"the driver’s-side mirror struck the garage wall\"},{\"kind\":\"safety\",\"quote\":\"damaging the mirror and causing minor damage to the wall\"},{\"kind\":\"symptom\",\"quote\":\"The vehicle did not stop or correct its path before or after contact.\"},{\"kind\":\"symptom\",\"quote\":\"The vehicle displayed no alerts or takeover warnings at any point.\"},{\"kind\":\"safety\",\"quote\":\"No one was injured.\"},{\"kind\":\"other\",\"quote\":\"low-speed garage maneuvers\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00079764,
+      "cached_tokens": 384,
+      "cost_usd": 0.0013294,
+      "input_tokens": 683,
+      "list_cost_usd": 0.0013294,
+      "output_tokens": 2139,
+      "reasoning_tokens": 1865
+    }
+  }
+}

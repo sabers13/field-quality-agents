@@ -366,6 +366,17 @@ interface CommandCentreData {
   kpis: Kpi[];                 // id, label, value, unit, context, delta?, tone?, series?
   live_feed: StreamEvent[];    // most recent first, capped at 50
   comparison: ComparisonSummary;
+  final_live?: FinalLiveData | null;  // Q14 panel; absent until results/final-live/
+}
+
+// Additive at Q14: the final live test beside the Q9 replay run.
+interface FinalLiveData {
+  run_id: string; set_name: string;
+  window_start: string; window_end: string;
+  spend_usd: number; steps: number; budget_hits: number;
+  final: { cases: number; before: Metrics; after: Metrics };
+  q9: { cases: number; before: Metrics; after: Metrics };
+  q9_run_id: string;
 }
 
 interface Kpi {

@@ -1,0 +1,66 @@
+{
+  "key": "c75302f67615119947901a7823359559aa0924eb88083d846b96a9587cb9bd31",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 13073,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2026 Chevrolet Silverado EV navigation system inoperable while driving 26-40 MPH; distraction led to red-light crash, FCW warning illuminated, AEB and air bags failed, with soreness and headache.\",\"group\":\"ELECTRICAL\",\"symptoms\":[\"navigation system inoperable\",\"forward collision avoidance warning light illuminated\",\"automatic emergency braking failed to activate\",\"air bags did not deploy\",\"soreness in hands and neck\",\"headache\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"EQUIPMENT:ELECTRICAL:NAVIGATIONAL SYSTEM(GLOBAL POSITIONING SYSTEM)\"},{\"kind\":\"symptom\",\"quote\":\"inoperable navigation system\"},{\"kind\":\"condition\",\"quote\":\"While driving approximately 26-40 MPH\"},{\"kind\":\"safety\",\"quote\":\"ran a red light and crashed into front driver’s side of another vehicle\"},{\"kind\":\"symptom\",\"quote\":\"The Forward Collision Avoidance warning light illuminated\"},{\"kind\":\"symptom\",\"quote\":\"air bags did not deploy\"},{\"kind\":\"symptom\",\"quote\":\"Forward Collision Avoidance Automatic Emergency Braking feature failed to activate as designed\"},{\"kind\":\"safety\",\"quote\":\"soreness in the hands, neck and a headache pain\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize. Need extract summary, group electrical/electronic component group? Component given EQUIPMENT:ELECTRICAL:NAVIGATIONAL SYSTEM(GLOBAL POSITIONING SYSTEM). Group likely \"ELECTRICAL\" or \"EQUIPMENT:ELECTRICAL\". Need symptoms plain words: inoperable navigation system, forward collision avoidance warning light illuminated, air bags did not deploy, automatic emergency braking failed to activate, soreness hands neck headache. But symptoms should be component symptoms? Report field-quality. Need conditions: while driving approximately 26-40 MPH, crash, red light? Conditions allowed list: cold, moisture, heat, vibration, intermittent, after service, charging. None match. Could include \"driving\"? Rule says conditions array with list, maybe only given set. We shouldn't invent. Conditions maybe empty. Fault codes none. safety_relevant true (crash, injury symptoms, airbags no deploy, AEB failed). missing_info? component given, symptom given, conditions given (driving speed), mileage given, date received maybe not incident date? Missing date? The report has received_at but not incident date. Should list \"date\" maybe. It says missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Component present, symptom present, conditions present? Mileage present. Date? Incident date absent. Maybe missing_info [\"date\"]. But received_at is date report received, not incident date. Yes.\n\nNeed clues with verbatim quotes from narrative. Need exact quote spans. Use quotes: \"inoperable navigation system\" exact. \"ran a red light and crashed into front driver’s side of another vehicle\" exact? Narrative has curly apostrophe in driver’s. Need copy character for character. JSON can include unicode. \"The Forward Collision Avoidance warning light illuminated\" exact. \"air bags did not deploy\" exact. \"Forward Collision Avoidance Automatic Emergency Braking feature failed to activate as designed\" exact. \"soreness in the hands, neck and a headache pain\" exact. \"while driving approximately 26-40 MPH\" exact? Narrative: \"While driving approximately 26-40 MPH, the contact was distracted...\" Capital W. Use \"While driving approximately 26-40 MPH\". For safety quote crash. Need clue kind safety. Could quote \"crashed into front driver’s side of another vehicle\" exact. Need include component_group quote maybe \"EQUIPMENT:ELECTRICAL:NAVIGATIONAL SYSTEM(GLOBAL POSITIONING SYSTEM)\"? That's from component field, not narrative? User says report includes component. \"Read only report in user message\" includes component. Quote verbatim from report. Could quote component string. But kind component_group. Maybe group set \"ELECTRICAL\". Clue component_group quote exact component. Good.\n\nNeed summary one line: \"2026 Chevrolet Silverado EV navigation system inoperable while driving 26-40 MPH, distraction led to red-light crash; FCW warning on, AEB and airbags failed; minor soreness/headache.\" Need concise.\n\nNeed group: \"ELECTRICAL\" maybe. The component group is \"EQUIPMENT:ELECTRICAL\". The schema says \"the electrical/electronic component group, or the given group\". Given component starts EQUIPMENT:ELECTRICAL:NAVIGATIONAL SYSTEM(GPS). I'd use \"ELECTRICAL\". But maybe group should be \"ELECTRICAL:NAVIGATIONAL SYSTEM(GPS)\"? Hmm. \"group\": \"the electrical/electronic component group, or the given group\". We can set \"ELECTRICAL\". Good.\n\nSymptoms array: \"navigation system inoperable\", \"forward collision avoidance warning light illuminated\", \"automatic emergency braking failed to activate\", \"air bags did not deploy\", \"soreness in hands and neck\", \"headache\". Is airbag not deploy a symptom? It's safety system failure. Include. Plain words.\n\nConditions array allowed values only; none. Could include \"driving\" not in allowed. The instruction: conditions: [\"cold\", ...]. Use empty list. But there is condition \"while driving approx 26-40 MPH\" which is not in enumerated. Is that a condition? The field expects conditions from list; but summary can mention. Clues condition quote speed. Should we put \"conditions\": [] and clue kind condition quote \"While driving approximately 26-40 MPH\". That captures. Good.\n\nFault_codes [].\n\nmissing_info [\"date\"]? Also maybe \"conditions\" because no weather/road? But conditions includes driving speed and crash. The list says \"conditions\" can be missing; but if no cold/moisture etc? Hmm missing_info should facts analysis needs. The report lacks incident date. It has received_at. Could include \"date\". Maybe no need? It asks \"date\" in missing_info. Since received_at not incident date. Include [\"date\"]. But if they consider received_at date, then no missing? It says \"missing_info\": [\"mileage\", \"date\", \"conditions\", \"component\", \"symptom\"]. Date likely incident date. Use [\"date\"]. Not include conditions because present. Good.\n\nNeed ensure JSON valid no other text. Use exact quote with curly apostrophe for driver’s. Need ensure quote \"crashed into front driver’s side of another vehicle\" appears? Narrative: \"ran a red light and crashed into front driver’s side of another vehicle.\" Yes substring. Good.\n\nNeed maybe safety quote \"The contact had soreness in the hands, neck and a headache pain.\" Exact includes \"The contact had soreness in the hands, neck and a headache pain.\" Yes.\n\nClues:\n- component_group quote full component string\n- symptom quote \"inoperable navigation system\"\n- symptom quote \"The Forward Collision Avoidance warning light illuminated\"\n- symptom quote \"air bags did not deploy\"\n- symptom quote \"Forward Collision Avoidance Automatic Emergency Braking feature failed to activate as designed\"\n- safety quote \"ran a red light and crashed into front driver’s side of another vehicle\"\n- safety quote \"soreness in the hands, neck and a headache pain\"\n- condition quote \"While driving approximately 26-40 MPH\"\nCould include other quote \"Medical attention was not sought\" safety? Not necessary. Need not too many.\n\nNeed maybe \"fault_code\" none. \"other\" quote \"The failure mileage was approximately 10,600.\"? Not necessary.\n\nNeed summary one line. Include component, symptom, conditions. \"2026 Chevrolet Silverado EV GLOBAL POSITIONING SYSTEM navigation inoperable while driving 26-40 MPH; distraction led to red-light crash; FCW warning on, AEB and airbags failed; soreness/headache.\" Good.\n\nNeed group maybe \"ELECTRICAL\". Final only JSON. Ensure no markdown? The prompt says answer with one JSON object and no other text. We can output raw JSON. Good.\n\nNeed decide missing_info includes \"date\". If no incident date. Yes.\n\nNeed safety_relevant true. Good.\n\nNeed conditions [] maybe. But clues kind condition. Fine.\n\nLet's craft final JSON. Ensure quotes exactly:\n- \"inoperable navigation system\" present.\n- \"The Forward Collision Avoidance warning light illuminated\" present.\n- \"air bags did not deploy\" present.\n- \"Forward Collision Avoidance Automatic Emergency Braking feature failed to activate as designed\" present exactly? Narrative: \"the Forward Collision Avoidance Automatic Emergency Braking feature failed to activate as designed.\" If quote starts \"Forward...\" yes substring after \"the \". Good.\n- \"soreness in the hands, neck and a headache pain\" present.\n- \"ran a red light and crashed into front driver’s side of another vehicle\" present? Narrative: \"ran a red light and crashed into front driver’s side of another vehicle.\" Yes.\n- \"While driving approximately 26-40 MPH\" present.\n- component full exact: \"EQUIPMENT:ELECTRICAL:NAVIGATIONAL SYSTEM(GLOBAL POSITIONING SYSTEM)\" present in component. Good.\n\nNeed \"group\": \"ELECTRICAL\". Good.\n\nPotential issue: The schema says group \"the electrical/electronic component group, or the given group\". Could set \"ELECTRICAL:NAVIGATIONAL SYSTEM(GLOBAL POSITIONING SYSTEM)\"? Hmm. Given group might be \"EQUIPMENT:ELECTRICAL\". I'll use \"ELECTRICAL\". Fine.\n\nNeed symptoms plain words no quotes? Good.\n\nFinal.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793540041,
+      "id": "04df8cb2e02f96c9e7f00ebe7dc4a11e",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2058,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1767,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00076506,
+          "billing_source": "go",
+          "list_cost": 0.0012751,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 261,
+            "output": 2058,
+            "reasoning": 1767
+          }
+        },
+        "prompt_tokens": 645,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2703
+      }
+    },
+    "text": "{\"summary\":\"2026 Chevrolet Silverado EV navigation system inoperable while driving 26-40 MPH; distraction led to red-light crash, FCW warning illuminated, AEB and air bags failed, with soreness and headache.\",\"group\":\"ELECTRICAL\",\"symptoms\":[\"navigation system inoperable\",\"forward collision avoidance warning light illuminated\",\"automatic emergency braking failed to activate\",\"air bags did not deploy\",\"soreness in hands and neck\",\"headache\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"EQUIPMENT:ELECTRICAL:NAVIGATIONAL SYSTEM(GLOBAL POSITIONING SYSTEM)\"},{\"kind\":\"symptom\",\"quote\":\"inoperable navigation system\"},{\"kind\":\"condition\",\"quote\":\"While driving approximately 26-40 MPH\"},{\"kind\":\"safety\",\"quote\":\"ran a red light and crashed into front driver’s side of another vehicle\"},{\"kind\":\"symptom\",\"quote\":\"The Forward Collision Avoidance warning light illuminated\"},{\"kind\":\"symptom\",\"quote\":\"air bags did not deploy\"},{\"kind\":\"symptom\",\"quote\":\"Forward Collision Avoidance Automatic Emergency Braking feature failed to activate as designed\"},{\"kind\":\"safety\",\"quote\":\"soreness in the hands, neck and a headache pain\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00076506,
+      "cached_tokens": 384,
+      "cost_usd": 0.0012751,
+      "input_tokens": 645,
+      "list_cost_usd": 0.0012751,
+      "output_tokens": 2058,
+      "reasoning_tokens": 1767
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "f119743c8692a9e357aa756976ee570ac34a8022457031ceff5c73cef5cf2e87",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 6151,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"2022 Kia Telluride exterior lighting; passenger low beam then both low and high beams turn on and off randomly, intermittent, sometimes with dash light.\",\n  \"group\": \"EXTERIOR LIGHTING\",\n  \"symptoms\": [\n    \"passenger side low beam turns on and off randomly\",\n    \"both low and high beams turn on and off\",\n    \"dash light sometimes present with the issue\",\n    \"headlight out all day some days and works all day other days\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"EXTERIOR LIGHTING\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"low beam passenger side headlight started turning on and off randomly\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"both low and high beams\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Some days there is a dash light with it\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"turns off while driving\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"turns on and off sparatically\"\n    }\n  ]\n}",
+            "reasoning_content": "We need output JSON only. Need normalize. Component exterior lighting, symptom intermittent headlight on/off both low/high, dash light sometimes, conditions intermittent. Fault codes none. Safety relevant? Headlight intermittent could be risk but report doesn't mention crash/fire etc. Rule set safety_relevant when mentions crash fire smoke injury loss control stall at speed or another risk to people. Intermittent headlights is a risk to people arguably? But \"another risk to people\" could include lighting failure at night. However cautious: report doesn't explicitly mention risk. Could set false. Need missing_info: mileage null, date? received_at is date but not incident date. Conditions? It mentions some days, driving, start vehicle. Missing mileage, date (of occurrence? received_at given). Component and symptom present. Conditions present intermittent. So missing_info [\"mileage\",\"date\"]. Maybe date is received_at? Report has received_at but not incident date. The schema says date missing. Use mileage, date.\n\nNeed quotes verbatim. Ensure exact copied spans including curly apostrophe? We can quote \"started turning on and off randomly\" exact. \"both low and high beams\" exact? Narrative: \"Now it’s both low and high beams.\" quote \"both low and high beams\". \"turns off while driving\" exact. \"turns on and off sparatically\" exact typo. \"Some days there is a dash light with it\" exact.\n\nGroup: \"EXTERIOR LIGHTING\" given group. Could use component group \"exterior lighting\". JSON. Summary one line: \"2022 Kia Telluride exterior lighting; passenger low beam then both low/high beams turn on and off randomly, intermittent, sometimes dash light.\" Conditions include \"intermittent\" and maybe \"while driving\". Allowed conditions list: cold, moisture, heat, vibration, intermittent, after service, charging. Only \"intermittent\". Could condition \"while driving\" not in list. Use [\"intermittent\"]. Symptoms: [\"passenger side low beam turns on and off randomly\", \"both low and high beams turn on and off\", \"dash light sometimes present\", \"headlight out all day some days and works all day other days\"]. Need plain words.\n\nFault codes [].\n\nSafety false.\n\nClues include kind symptom/condition/component_group/other. Quotes verbatim. For condition intermittent quote \"sparatically\" maybe not enough. Quote \"turns on and off sparatically\" supports intermittent. Also \"Some days it is on when I start the vehicle and then turns off while driving and vise versa.\" Exact. Need quotes exact including \"vise\". Good.\n\nNeed no other text. Ensure JSON valid.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793540363,
+      "id": "9330adf24e6c227f897b5b2530cb959b",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 876,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 556,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00033315,
+          "billing_source": "go",
+          "list_cost": 0.00055525,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 190,
+            "output": 876,
+            "reasoning": 556
+          }
+        },
+        "prompt_tokens": 574,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1450
+      }
+    },
+    "text": "{\n  \"summary\": \"2022 Kia Telluride exterior lighting; passenger low beam then both low and high beams turn on and off randomly, intermittent, sometimes with dash light.\",\n  \"group\": \"EXTERIOR LIGHTING\",\n  \"symptoms\": [\n    \"passenger side low beam turns on and off randomly\",\n    \"both low and high beams turn on and off\",\n    \"dash light sometimes present with the issue\",\n    \"headlight out all day some days and works all day other days\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"EXTERIOR LIGHTING\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"low beam passenger side headlight started turning on and off randomly\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"both low and high beams\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Some days there is a dash light with it\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"turns off while driving\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"turns on and off sparatically\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00033315,
+      "cached_tokens": 384,
+      "cost_usd": 0.00055525,
+      "input_tokens": 574,
+      "list_cost_usd": 0.00055525,
+      "output_tokens": 876,
+      "reasoning_tokens": 556
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "5ca5e9aaf0cfe7105727f1e99b2cfd6cf900134656e4d516900e2cb5e7be7b76",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 7637,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "```json\n{\n  \"summary\": \"2022 Tesla Model Y (manually driven, no Autopilot/FSD) — no Forward Collision Warning and no observed AEB activation before colliding with another vehicle's passenger-side door during a right turn at a red light; no injuries.\",\n  \"group\": \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\",\n  \"symptoms\": [\n    \"no audible or visual forward collision warning before impact\",\n    \"automatic emergency braking did not appear to activate or slow the vehicle before impact\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"Forward Collision Warning and Automatic Emergency Braking systems\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Before the collision, I did not receive any audible or visual Forward Collision Warning (FCW)\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"I also did not observe the Automatic Emergency Braking (AEB) system activating or attempting to slow the vehicle before impact\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"My Tesla collided with the passenger-side door of the other vehicle\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"No injuries occurred\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"I was making a right turn at a red traffic signal\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"Neither Full Self-Driving (FSD) nor Autopilot was engaged\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"My approximate speed at the time of the collision is unknown\"\n    }\n  ]\n}\n```",
+            "reasoning_content": "Let me build the JSON. Component group: forward collision avoidance / ADAS. Symptoms: no forward collision warning, AEB did not activate, collision. Conditions: none of the listed ones clearly — turning maneuver (right turn at red light) isn't in the list \"cold, moisture, heat, vibration, intermittent, after service, charging\". So conditions could be empty. Hmm, the list is fixed but maybe I can only use those. \"intermittent\" not stated. I'll leave conditions empty since none apply, or maybe include none. The rule says conditions: [\"cold\", \"moisture\", ...] — enumerated options. Turning maneuver isn't in the list, so empty list.\n\nSafety relevant: yes — collision occurred, crash. Mentions collision, no injuries.\n\nFault codes: none.\n\nMissing info: mileage (null), date (redacted \"On XXX\"). Speed unknown — not in list. Component present, symptom present. So [\"mileage\", \"date\"].\n\nSummary: \"2022 Tesla Model Y automatic emergency braking / forward collision warning — no FCW alert or AEB activation before a right-turn collision at a red light; manually driven, no injuries.\"\n\nClues with verbatim quotes:\n- \"I did not receive any audible or visual Forward Collision Warning (FCW)\" — symptom\n- \"I also did not observe the Automatic Emergency Braking (AEB) system activating or attempting to slow the vehicle before impact\" — symptom\n- \"My Tesla collided with the passenger-side door of the other vehicle\" — safety (collision)\n- \"Forward Collision Warning and Automatic Emergency Braking systems\" — component_group\n- \"while manually driving my 2022 Tesla Model Y\" — other/condition? It's context. kind \"other\".\n- \"I was making a right turn at a red traffic signal\" — condition? Not in enumerated list; but clue kind could be \"condition\" with quote. The conditions array is limited to enumerated values; but clues could include a condition quote. Hmm, might be inconsistent. I could include clue kind \"condition\" for the turning maneuver while leaving conditions list empty — slightly inconsistent. Better to include the turn as \"other\"? Or treat turning maneuver as condition. I'll mark it \"condition\" and note in the conditions array... the enumerated list doesn't include it. I think keeping clues accurate is more important; I'll use kind \"other\" for maneuver context? Hmm, \"condition\" fits better semantically. I'll use \"condition\" — the schema for clues allows it. Actually inconsistency risk: reviewer sees condition clue but empty conditions array. I'll keep conditions empty and mark the turning maneuver clue as \"other\" with the quote. Hmm, but plain reading: it is a condition of the event. Let me just include it as \"condition\" and accept the conditions array being empty because the enum doesn't cover it... no, better: avoid confusion, use \"other\".\n\nAlso \"No injuries occurred.\" — safety relevant but says no injuries. Include as other quote maybe.\n\nLet me finalize.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793540646,
+      "id": "525551bfd89e5f11cc6c585d58df8e09",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1054,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 633,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00041262,
+          "billing_source": "go",
+          "list_cost": 0.0006877,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 361,
+            "output": 1054,
+            "reasoning": 633
+          }
+        },
+        "prompt_tokens": 745,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1799
+      }
+    },
+    "text": "```json\n{\n  \"summary\": \"2022 Tesla Model Y (manually driven, no Autopilot/FSD) — no Forward Collision Warning and no observed AEB activation before colliding with another vehicle's passenger-side door during a right turn at a red light; no injuries.\",\n  \"group\": \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\",\n  \"symptoms\": [\n    \"no audible or visual forward collision warning before impact\",\n    \"automatic emergency braking did not appear to activate or slow the vehicle before impact\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"Forward Collision Warning and Automatic Emergency Braking systems\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Before the collision, I did not receive any audible or visual Forward Collision Warning (FCW)\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"I also did not observe the Automatic Emergency Braking (AEB) system activating or attempting to slow the vehicle before impact\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"My Tesla collided with the passenger-side door of the other vehicle\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"No injuries occurred\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"I was making a right turn at a red traffic signal\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"Neither Full Self-Driving (FSD) nor Autopilot was engaged\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"My approximate speed at the time of the collision is unknown\"\n    }\n  ]\n}\n```",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00041262,
+      "cached_tokens": 384,
+      "cost_usd": 0.0006877,
+      "input_tokens": 745,
+      "list_cost_usd": 0.0006877,
+      "output_tokens": 1054,
+      "reasoning_tokens": 633
+    }
+  }
+}

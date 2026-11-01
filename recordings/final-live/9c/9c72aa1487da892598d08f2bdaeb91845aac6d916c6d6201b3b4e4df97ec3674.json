@@ -1,0 +1,66 @@
+{
+  "key": "9c72aa1487da892598d08f2bdaeb91845aac6d916c6d6201b3b4e4df97ec3674",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 13612,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"SEAT BELTS: rear seat belt would not unbuckle and tightened extremely on a child, requiring cutting; no conditions noted.\",\"group\":\"SEAT BELTS\",\"symptoms\":[\"rear seat belt would not unbuckle\",\"seat belt tightened extremely on child\",\"seat belt could not be unlocked after several attempts\",\"seat belt had to be cut to free the child\",\"red markings on child's waist\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"SEAT BELTS\"},{\"kind\":\"symptom\",\"quote\":\"Went to unbuckle and it wasn't working.\"},{\"kind\":\"symptom\",\"quote\":\"it got extremely tight on child\"},{\"kind\":\"symptom\",\"quote\":\"after several attempts to unlock it wouldn't\"},{\"kind\":\"symptom\",\"quote\":\"The seatbelt needed to be cut.\"},{\"kind\":\"safety\",\"quote\":\"It turned into a emergency fast with a child hurt.\"},{\"kind\":\"safety\",\"quote\":\"The child's got red markings over his waist now\"},{\"kind\":\"safety\",\"quote\":\"could have made things worse if not cut\"},{\"kind\":\"other\",\"quote\":\"The police were called to cut the seatbelt.\"}]}",
+            "reasoning_content": "We need to output one JSON object only. Need normalize report. Component SEAT BELTS, group maybe \"seat belts\" or electrical/electronic? The prompt says group: \"the electrical/electronic component group, or the given group\". Given component SEAT BELTS, so group \"SEAT BELTS\" perhaps. Symptoms: seatbelt unbuckle not working, got extremely tight on child, couldn't unlock, needed to be cut. Conditions: maybe \"after service\"? No. \"intermittent\"? no. Could include? Conditions list options: cold, moisture, heat, vibration, intermittent, after service, charging. None apply. So empty.\n\nFault codes: none. safety_relevant true: child hurt, red markings, emergency, could have made worse. Mentions injury? \"child hurt\" and red markings. Safety relevant yes.\n\nMissing_info: mileage null, date? received_at is date but report date? The missing_info options include mileage, date, conditions, component, symptom. Component and symptom present. Mileage missing. Date? received_at present 2026-10-07; maybe date of incident missing. But the rule says missing_info only facts analysis needs. Mileage is missing. Date? The report has received_at but not incident date; maybe \"date\" missing. Conditions missing? We can list conditions maybe because no conditions specified. But conditions not really needed? Hmm. Need be careful. We can include [\"mileage\", \"date\", \"conditions\"]? The report has no mileage, no incident date, no conditions. But conditions list is not applicable. The missing_info list should only for facts analysis needs. For a seatbelt failure, mileage and date might be useful. Conditions maybe not. I'll include mileage and date. But \"date\" maybe received_at is date; though not incident date. The report says received_at, not event date. Could list \"date\" as missing. Hmm.\n\nClues: need verbatim quotes. Must copy exactly. We can quote:\n- \"Went to unbuckle and it wasn't working.\" symptom\n- \"it got extremely tight on child\" symptom (exact substring? Narrative: \"Trying to adjust and wiggle it it got extremely tight on child\" so quote \"it got extremely tight on child\" is verbatim substring.)\n- \"after several attempts to unlock it wouldn't\" symptom\n- \"The seatbelt needed to be cut.\" symptom/other\n- \"It turned into a emergency fast with a child hurt.\" safety\n- \"The child's got red markings over his waist now\" safety\n- \"could have made things worse if not cut\" safety? exact substring yes.\n- \"The police were called to cut the seatbelt.\" other/safety.\n- \"SEAT BELTS\" component_group? The report component field is \"SEAT BELTS\". But narrative doesn't contain? The whole report includes component field. Quote \"SEAT BELTS\" verbatim from report's component field. Allowed? The report in user message is JSON with \"component\": \"SEAT BELTS\". Yes quote from report. But kind component_group. Could include.\n\nNeed summary one line: component, symptom, conditions. \"SEAT BELTS: rear seat belt would not unbuckle and tightened on a child, requiring cutting; no conditions noted.\" Ensure no invented. Conditions none.\n\nNeed output valid JSON only. No markdown? The user says answer with one JSON object and no other text. So just JSON.\n\nNeed decide group. \"SEAT BELTS\" or \"seat belts\"? Given group exact? Probably \"SEAT BELTS\". The schema example says group string. Use \"SEAT BELTS\".\n\nSymptoms array: \"rear seat belt would not unbuckle\", \"seat belt tightened extremely on child\", \"seat belt could not be unlocked\", \"seat belt had to be cut\". But plain words. Could include \"child injured with red markings\". That's symptom? Maybe safety. Symptoms should be symptom in plain words. Include \"red markings on child's waist\" maybe symptom. But the component symptom is seatbelt. Hmm.\n\nLet's craft:\n\n{\n  \"summary\": \"SEAT BELTS: rear seat belt would not unbuckle and tightened extremely on a child, requiring cutting; no conditions noted.\",\n  \"group\": \"SEAT BELTS\",\n  \"symptoms\": [\n    \"rear seat belt would not unbuckle\",\n    \"seat belt tightened extremely on child\",\n    \"seat belt could not be unlocked after several attempts\",\n    \"seat belt had to be cut to free the child\",\n    \"red markings on child's waist\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\"mileage\", \"date\"],\n  \"clues\": [\n    {\"kind\": \"component_group\", \"quote\": \"SEAT BELTS\"},\n    {\"kind\": \"symptom\", \"quote\": \"Went to unbuckle and it wasn't working.\"},\n    {\"kind\": \"symptom\", \"quote\": \"it got extremely tight on child\"},\n    {\"kind\": \"symptom\", \"quote\": \"after several attempts to unlock it wouldn't\"},\n    {\"kind\": \"symptom\", \"quote\": \"The seatbelt needed to be cut.\"},\n    {\"kind\": \"safety\", \"quote\": \"It turned into a emergency fast with a child hurt.\"},\n    {\"kind\": \"safety\", \"quote\": \"The child's got red markings over his waist now\"},\n    {\"kind\": \"safety\", \"quote\": \"could have made things worse if not cut\"},\n    {\"kind\": \"other\", \"quote\": \"The police were called to cut the seatbelt.\"}\n  ]\n}\n\nNeed verify quotes exactly:\nNarrative: \"5-year-old child buckled in back seat with his booster. Vehicle put in park and went to try and get out of the vehicle. Went to unbuckle and it wasn't working. Trying to adjust and wiggle it it got extremely tight on child and after several attempts to unlock it wouldn't. The seatbelt needed to be cut. It turned into a emergency fast with a child hurt. Several people tried to get him out and unbuckle the seat and it wouldn't. The child's got red markings over his waist now and could have made things worse if not cut. The seat belt in the back seats need to be checked for this issue. The police were called to cut the seatbelt. Bringing the vehicle to the dealership to replace parts.\"\n\nQuotes:\n\"Went to unbuckle and it wasn't working.\" yes includes period.\n\"it got extremely tight on child\" yes.\n\"after several attempts to unlock it wouldn't\" yes but in original \"and after several attempts to unlock it wouldn't.\" substring \"after several attempts to unlock it wouldn't\" yes.\n\"The seatbelt needed to be cut.\" yes.\n\"It turned into a emergency fast with a child hurt.\" yes exact (a emergency).\n\"The child's got red markings over his waist now\" yes substring (original \"The child's got red markings over his waist now and could...\").\n\"could have made things worse if not cut\" yes.\n\"The police were called to cut the seatbelt.\" yes.\n\nCould include \"child hurt\" safety. Fine.\n\nNeed missing_info: maybe also \"conditions\" because no conditions specified. But the conditions list has no applicable conditions; not necessarily missing. The report says vehicle put in park, etc. Could list conditions missing? The analysis maybe doesn't need ambient conditions for seatbelt. Not include.\n\nDate: received_at exists. Is date missing? It has received_at date. But incident date not. Hmm. The missing_info options include \"date\". Since received_at is date of report, not event. But \"date\" could be considered present because received_at. However schema's received_at is report received date; the report's event date is not given. The model may list date missing. But the instructions: \"List missing_info only for facts the analysis needs: component, symptom, conditions, mileage, date.\" The report has received_at, so maybe date not missing? But it's not the incident date. In many intake tasks, date refers to incident date. But to avoid over-listing, maybe only mileage. Let's think.\n\nThe report JSON includes \"mileage\": null explicitly, so mileage missing. \"received_at\": \"2026-10-07\" present. \"year\": 2026. Date of receipt present. I'd not list date missing because a date is present. But if incident date needed, not. The instruction says \"missing_info\": [\"mileage\", \"date\", \"conditions\", \"component\", \"symptom\"]. It doesn't say incident date. The report has received_at. So date present. I'll list only [\"mileage\"]. Conditions not needed. So missing_info: [\"mileage\"].\n\nHowever, maybe date missing because received_at is not \"date\" of failure. Hmm. The report says \"now\" red markings; event likely recent. Received date enough? Probably.\n\nNeed not suggest action. We don't.\n\nNeed maybe group \"SEAT BELTS\" is not electrical/electronic, given group. Use given.\n\nNeed no extra text. Final JSON.\n\nDouble-check JSON valid. Strings. Good.\n\nNeed maybe \"conditions\": [] because none. Yes.\n\nPotential issue: \"safety_relevant\": true because child hurt. Yes.\n\nPotential issue: \"clues\" kind \"safety\" quote \"could have made things worse if not cut\" is risk. Good.\n\nPotential issue: \"summary\" includes \"no conditions noted\" — okay. But summary should be one line: component, symptom, conditions. It says \"conditions\" maybe list none. Fine.\n\nNeed answer only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793540230,
+      "id": "636fd0dd0d3493c00b13da772dd2fad1",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2300,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 2027,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0008502,
+          "billing_source": "go",
+          "list_cost": 0.001417,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 239,
+            "output": 2300,
+            "reasoning": 2027
+          }
+        },
+        "prompt_tokens": 623,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2923
+      }
+    },
+    "text": "{\"summary\":\"SEAT BELTS: rear seat belt would not unbuckle and tightened extremely on a child, requiring cutting; no conditions noted.\",\"group\":\"SEAT BELTS\",\"symptoms\":[\"rear seat belt would not unbuckle\",\"seat belt tightened extremely on child\",\"seat belt could not be unlocked after several attempts\",\"seat belt had to be cut to free the child\",\"red markings on child's waist\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"SEAT BELTS\"},{\"kind\":\"symptom\",\"quote\":\"Went to unbuckle and it wasn't working.\"},{\"kind\":\"symptom\",\"quote\":\"it got extremely tight on child\"},{\"kind\":\"symptom\",\"quote\":\"after several attempts to unlock it wouldn't\"},{\"kind\":\"symptom\",\"quote\":\"The seatbelt needed to be cut.\"},{\"kind\":\"safety\",\"quote\":\"It turned into a emergency fast with a child hurt.\"},{\"kind\":\"safety\",\"quote\":\"The child's got red markings over his waist now\"},{\"kind\":\"safety\",\"quote\":\"could have made things worse if not cut\"},{\"kind\":\"other\",\"quote\":\"The police were called to cut the seatbelt.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0008502,
+      "cached_tokens": 384,
+      "cost_usd": 0.001417,
+      "input_tokens": 623,
+      "list_cost_usd": 0.001417,
+      "output_tokens": 2300,
+      "reasoning_tokens": 2027
+    }
+  }
+}

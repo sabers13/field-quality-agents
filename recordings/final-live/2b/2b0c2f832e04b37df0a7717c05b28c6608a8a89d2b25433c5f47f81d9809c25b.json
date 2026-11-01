@@ -1,0 +1,66 @@
+{
+  "key": "2b0c2f832e04b37df0a7717c05b28c6608a8a89d2b25433c5f47f81d9809c25b",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12930,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2016 Chevrolet Equinox seat belt fails to retract and blocks the driver's door; transmission slips out of gear and slams back in while accelerating/decelerating in traffic.\",\"group\":\"SEAT BELTS\",\"symptoms\":[\"driver's side front seatbelt will not retract into the B-pillar after removal\",\"seatbelt gets caught in the door and prevents the driver's door from closing\",\"transmission slips out of gear during deceleration and acceleration in traffic\",\"transmission slams back into gear\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"SEAT BELTS\"},{\"kind\":\"symptom\",\"quote\":\"The drivers' side front seatbelt will not retract back into the b pillar when taken off.\"},{\"kind\":\"symptom\",\"quote\":\"It will get caught in the door when closing it and prevent the driver's door from closing.\"},{\"kind\":\"symptom\",\"quote\":\"The transmission slips out of gear when decelerating and accelerating in traffic.\"},{\"kind\":\"symptom\",\"quote\":\"This causes the transmission to slam back into gear.\"},{\"kind\":\"safety\",\"quote\":\"The transmission slips out of gear when decelerating and accelerating in traffic.\"}]}",
+            "reasoning_content": "We need answer only JSON. Need parse report. Component given SEAT BELTS. Group electrical/electronic component group, or given group. Seat belts is not electrical? We can use given group \"SEAT BELTS\". Summary one line component symptom conditions. Symptoms: driver's side front seatbelt will not retract into B pillar when taken off; gets caught in door and prevents door closing; transmission slips out of gear when decelerating and accelerating in traffic; causes transmission to slam back into gear. Conditions: decelerating/accelerating in traffic maybe \"intermittent\"? The conditions list allowed: cold moisture heat vibration intermittent after service charging. Report doesn't mention those exactly? \"when decelerating and accelerating in traffic\" not in allowed list. We can include conditions [] or maybe \"intermittent\"? Better not invent. Safety_relevant? Seatbelt not retracting, door cannot close; transmission slips out of gear at speed? It says in traffic decelerating and accelerating; loss of control? Transmission slips out of gear could be risk. It mentions \"slam back into gear\" maybe safety relevant. Set true? Safety relevant when report mentions crash fire smoke injury loss of control stall at speed or another risk to people. Transmission slipping out of gear while driving is risk. Seatbelt malfunction is safety system. So true. Fault codes none. Missing info: mileage? mileage null yes missing. date? received_at present but incident date missing? The missing_info list includes date. Report has received_at not incident date. Should list mileage maybe date? It says facts analysis needs component symptom conditions mileage date. Component and symptom present. Conditions? not really described except traffic. Mileage missing. Date? There is received_at but not incident date; maybe list date. Could include mileage, date. \"conditions\" maybe conditions present? We can say missing date? Hmm.\n\nClues: verbatim quotes. Need character for character from narrative. Quotes:\n- \"The drivers' side front seatbelt will not retract back into the b pillar when taken off.\" Note narrative has \"The drivers' side front seatbelt will not retract back into the b pillar when taken off.  It will get caught...\" Exact: \"The drivers' side front seatbelt will not retract back into the b pillar when taken off.\" yes.\n- \"It will get caught in the door when closing it and prevent the driver's door from closing.\" exact.\n- \"The transmission slips out of gear when decelerating and accelerating in traffic.\" exact.\n- \"This causes the transmission to slam back into gear.\" exact.\nCould include component_group quote \"SEAT BELTS\"? But quote must be copied from report. Component field is \"SEAT BELTS\" in JSON report. Is that \"report\"? The user message includes entire JSON. We can quote \"SEAT BELTS\". But kind component_group. But quote should be verbatim span copied from report. It's in report. Good maybe include. Safety quote? \"The transmission slips out of gear when decelerating and accelerating in traffic.\" Could be safety. But kind safety quote same as symptom? Could include as safety quote. Need avoid duplicates? Fine.\n\nNeed JSON only. Ensure valid. Summary: \"2016 Chevrolet Equinox seat belt fails to retract and blocks door; transmission slips out of gear while accelerating/decelerating in traffic.\" One line. Conditions array allowed list; none. Could include \"intermittent\"? No. \"traffic\" not allowed. Use [].\n\nMissing_info: [\"mileage\",\"date\"]? Does missing_info include \"conditions\" since no cold etc? The report describes driving conditions but not environmental conditions. Hmm. The analysis needs conditions. But the prompt says list missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. We can include \"conditions\" if not specified? But it has \"when decelerating and accelerating in traffic\", that's a condition. So no. Date? received_at given. Could be date of report, not incident. Does analysis need incident date? It says date. The report has received_at, so not missing? It is a date. I'd include mileage only. But mileage null. Maybe date not missing because received_at. Use [\"mileage\"]. The output can include missing_info only mileage. Is that sufficient? We should not overdo.\n\nSafety_relevant true. Need clue for safety maybe quote \"The transmission slips out of gear when decelerating and accelerating in traffic.\" kind safety. But same quote as symptom. Fine.\n\nNeed group \"SEAT BELTS\". Symptoms plain words array. Use \"driver's side front seatbelt will not retract into B-pillar after removal\", \"seatbelt gets caught in door and prevents driver's door from closing\", \"transmission slips out of gear during deceleration and acceleration in traffic\", \"transmission slams back into gear\". Conditions [].\n\nFault_codes [].\n\nClues:\n{\"kind\":\"component_group\",\"quote\":\"SEAT BELTS\"}\n{\"kind\":\"symptom\",\"quote\":\"The drivers' side front seatbelt will not retract back into the b pillar when taken off.\"}\n{\"kind\":\"symptom\",\"quote\":\"It will get caught in the door when closing it and prevent the driver's door from closing.\"}\n{\"kind\":\"symptom\",\"quote\":\"The transmission slips out of gear when decelerating and accelerating in traffic.\"}\n{\"kind\":\"symptom\",\"quote\":\"This causes the transmission to slam back into gear.\"}\n{\"kind\":\"safety\",\"quote\":\"The transmission slips out of gear when decelerating and accelerating in traffic.\"}\nNeed exact quote has two spaces? In narrative: \"taken off.  It will\" two spaces. We quote sentence only ends at off. Good. \"driver's\" has apostrophe. Good. \"b pillar\" lower b. Exact.\n\nCould include safety quote \"will not retract...\"? Better transmission. Also seatbelt safety. But okay.\n\nNeed no other text. Ensure JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793541063,
+      "id": "848fe1c0dd99e1f4f1bd335cfb277999",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1516,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1239,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00056022,
+          "billing_source": "go",
+          "list_cost": 0.0009337,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 153,
+            "output": 1516,
+            "reasoning": 1239
+          }
+        },
+        "prompt_tokens": 537,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2053
+      }
+    },
+    "text": "{\"summary\":\"2016 Chevrolet Equinox seat belt fails to retract and blocks the driver's door; transmission slips out of gear and slams back in while accelerating/decelerating in traffic.\",\"group\":\"SEAT BELTS\",\"symptoms\":[\"driver's side front seatbelt will not retract into the B-pillar after removal\",\"seatbelt gets caught in the door and prevents the driver's door from closing\",\"transmission slips out of gear during deceleration and acceleration in traffic\",\"transmission slams back into gear\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"SEAT BELTS\"},{\"kind\":\"symptom\",\"quote\":\"The drivers' side front seatbelt will not retract back into the b pillar when taken off.\"},{\"kind\":\"symptom\",\"quote\":\"It will get caught in the door when closing it and prevent the driver's door from closing.\"},{\"kind\":\"symptom\",\"quote\":\"The transmission slips out of gear when decelerating and accelerating in traffic.\"},{\"kind\":\"symptom\",\"quote\":\"This causes the transmission to slam back into gear.\"},{\"kind\":\"safety\",\"quote\":\"The transmission slips out of gear when decelerating and accelerating in traffic.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00056022,
+      "cached_tokens": 384,
+      "cost_usd": 0.0009337,
+      "input_tokens": 537,
+      "list_cost_usd": 0.0009337,
+      "output_tokens": 1516,
+      "reasoning_tokens": 1239
+    }
+  }
+}

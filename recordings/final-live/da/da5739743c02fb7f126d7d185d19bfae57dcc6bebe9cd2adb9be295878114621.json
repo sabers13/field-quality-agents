@@ -1,0 +1,66 @@
+{
+  "key": "da5739743c02fb7f126d7d185d19bfae57dcc6bebe9cd2adb9be295878114621",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 14056,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2026 Toyota Camry Hybrid hybrid propulsion system; no physical symptom reported; dealer allegedly sold vehicle without disclosing recall 25V869000, then later informed owner and performed repair.\",\"group\":\"Hybrid Propulsion System\",\"symptoms\":[],\"conditions\":[],\"fault_codes\":[\"25V869000\"],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"symptom\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"HYBRID PROPULSION SYSTEM\"},{\"kind\":\"other\",\"quote\":\"without disclosing that the VIN was included in NHTSA Campaign Number: 25V869000\"},{\"kind\":\"fault_code\",\"quote\":\"NHTSA Campaign Number: 25V869000\"},{\"kind\":\"safety\",\"quote\":\"jeopardized the family's safety\"},{\"kind\":\"other\",\"quote\":\"dealer informed the contact of the recall and performed the repair\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize report. Need infer component group: Hybrid Propulsion System. Symptoms? Report is about dealer sold without disclosing recall; later dealer informed and performed repair. No actual failure symptom. Need be careful not invent. Summary one line: component, symptom, conditions. Symptom could be \"recall not disclosed prior to purchase\" but that's not component symptom. The report names NHTSA Campaign Number: 25V869000. Fault_codes? It's recall campaign number, not fault code. Prompt says fault_codes [\"code if report names one\"]. Could include recall campaign? It says fault codes, code if report names one. \"25V869000\" is campaign number, not diagnostic fault code. But schema includes fault_codes; maybe include? Need decide. The report explicitly names \"NHTSA Campaign Number: 25V869000\". Could include in fault_codes as code named. But kind fault_code quote. Hmm.\n\nNeed conditions: none mentioned? \"March 2026\", routine maintenance. Conditions list cold moisture heat vibration intermittent after service charging. None apply. Could include \"after service\"? The dealer performed repair after informing; but condition \"after service\" could mean issue occurred after service. Here no symptom after service. So empty.\n\nSafety_relevant: The contact felt dealer jeopardized family's safety; but rule: set safety_relevant when mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. It mentions \"jeopardized the family's safety\" — that's a risk to people? It is an allegation of safety risk due to nondisclosure of recall. Could set true because \"jeopardized the family's safety\". Also recall hybrid propulsion system could be safety. But safety_relevant should be from report. Quote \"jeopardized the family's safety\" supports true. However no crash/fire etc. Rule says \"or another risk to people\" — yes safety risk. Set true.\n\nMissing_info: mileage null. Date? received_at present but incident date? \"March 2026\" purchase, routine maintenance no date. Component present, symptom? There is no component symptom; the \"symptom\" is administrative nondisclosure, not a vehicle symptom. Analysis needs symptom? Could list \"symptom\" missing because no actual failure symptom. Also mileage missing. Conditions missing? The report lacks conditions under which a symptom occurs, but no symptom. Need missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Component present. Symptom arguably missing (no vehicle symptom). Mileage missing. Date? It has March 2026 and received_at, but no exact date; maybe not important. Conditions missing? Since no symptom, conditions not needed. I'd list [\"mileage\", \"symptom\"] maybe. But the report does have a \"symptom\" in sense of complaint: recall not disclosed. But for field-quality analysis, symptom = observed behavior. Hmm.\n\nNeed clues with verbatim quotes. Must copy exactly. We can include:\n- component_group quote \"HYBRID PROPULSION SYSTEM\" (from component field? It is in report JSON, yes \"component\": \"HYBRID PROPULSION SYSTEM\"). Verbatim.\n- condition? \"without disclosing that the VIN was included in NHTSA Campaign Number: 25V869000 (Hybrid Propulsion System)\" maybe symptom/other. Kind symptom? It's complaint about nondisclosure, not symptom. Use \"other\".\n- fault_code quote \"NHTSA Campaign Number: 25V869000\" or \"25V869000\". The report has \"NHTSA Campaign Number: 25V869000 (Hybrid Propulsion System)\" and later same. Quote \"25V869000\" is verbatim span. kind fault_code.\n- safety quote \"jeopardized the family's safety\"\n- other quote \"dealer informed the contact of the recall and performed the repair\" perhaps.\nNeed summary: \"2026 Toyota Camry Hybrid hybrid propulsion system; dealer allegedly sold vehicle without disclosing NHTSA recall 25V869000; dealer later informed and repaired.\" Conditions: none. That's one line.\n\nNeed JSON no other text. Ensure valid. Could include safety_relevant true.\n\nNeed perhaps group: \"Hybrid Propulsion System\" or \"electrical/electronic component group\"? Given component \"HYBRID PROPULSION SYSTEM\". Group can be given group. Use \"Hybrid Propulsion System\".\n\nSymptoms: Need list. What symptom? Maybe \"recall not disclosed prior to purchase\" as symptom? But symptoms should plain words of component symptom. There is no physical symptom. Could set []? The schema says symptoms array. If no symptom, empty. But summary says symptom? Hmm. The report has no vehicle malfunction symptom; only administrative issue. Better symptoms: [] to avoid inventing. But then summary \"no physical symptom reported; recall disclosure issue\". The schema summary one line component, symptom, conditions. Could say \"Hybrid propulsion system; no physical symptom reported; vehicle sold without disclosed recall 25V869000, later repaired.\" Good.\n\nMissing_info include \"symptom\" because no physical symptom. Mileage null. Maybe date? received_at and March 2026. Conditions? no. I'd list [\"mileage\", \"symptom\"]. Is \"date\" missing? It says sold in March 2026, later routine maintenance no date. For analysis maybe date of repair not needed. Use only mileage and symptom.\n\nClues: Need every quote verbatim. Check exact text:\n\"The contact owns a 2026 Toyota Camry Hybrid.\"\n\"The contact stated that the dealer had sold the vehicle in March 2026 without disclosing that the VIN was included in NHTSA Campaign Number: 25V869000 (Hybrid Propulsion System).\"\n\"The contact felt that the dealer jeopardized the family's safety by failing to disclose the recall prior to purchase.\"\n\"When the vehicle was later taken to the dealer for routine maintenance, the dealer informed the contact of the recall and performed the repair.\"\n\"The contact checked the Toyota application and verified the notification for NHTSA Campaign Number: 25V869000 (Hybrid Propulsion System).\"\nUse exact substrings.\n\nNeed quote for symptom? If symptoms empty no symptom clue. But could clue kind \"other\" for nondisclosure. Kind \"condition\"? no.\n\nNeed fault_code clue quote \"25V869000\" — exact substring yes.\n\nNeed safety clue quote \"jeopardized the family's safety\" exact substring yes (apostrophe in family's). Good.\n\nNeed component_group quote \"HYBRID PROPULSION SYSTEM\" exact from component field. Good.\n\nNeed other quote \"dealer informed the contact of the recall and performed the repair\" exact substring? Text: \"the dealer informed the contact of the recall and performed the repair.\" Yes includes \"the dealer\". Quote without leading \"the\" is substring? \"dealer informed the contact of the recall and performed the repair\" yes appears after \"the \". Good.\n\nNeed no action suggestions. Good.\n\nCould safety_relevant true due \"jeopardized the family's safety\". Fine.\n\nNeed final only JSON. Ensure no markdown? User says one JSON object and no other text. We can output raw JSON. Use proper double quotes. Need valid JSON.\n\nLet's craft:\n{\n \"summary\": \"2026 Toyota Camry Hybrid hybrid propulsion system; no physical symptom reported; dealer allegedly sold vehicle without disclosing recall 25V869000, then later informed owner and performed repair.\",\n \"group\": \"Hybrid Propulsion System\",\n \"symptoms\": [],\n \"conditions\": [],\n \"fault_codes\": [\"25V869000\"],\n \"safety_relevant\": true,\n \"missing_info\": [\"mileage\", \"symptom\"],\n \"clues\": [...]\n}\nNeed \"fault_codes\" maybe recall campaign code. Good.\n\nPotential issue: \"no physical symptom reported\" in summary is a fact derived from absence, okay not invent. But summary required symptom. Good.\n\nNeed \"conditions\": [] because no conditions. Good.\n\nNeed missing_info \"symptom\" despite summary says no physical symptom; okay.\n\nCould include clue kind \"fault_code\" quote \"NHTSA Campaign Number: 25V869000\" maybe better than just code. But fault_codes array has 25V869000. Quote can be \"NHTSA Campaign Number: 25V869000\". The code itself appears. Use quote \"NHTSA Campaign Number: 25V869000\" exact? Text has \"NHTSA Campaign Number: 25V869000 (Hybrid Propulsion System)\" yes substring. Good.\n\nNeed clue kind \"safety\" quote \"jeopardized the family's safety\" exact. Good.\n\nNeed clue kind \"other\" quote \"without disclosing that the VIN was included in NHTSA Campaign Number: 25V869000\" exact? Text: \"without disclosing that the VIN was included in NHTSA Campaign Number: 25V869000 (Hybrid...\" yes. Good.\n\nNeed component_group quote \"HYBRID PROPULSION SYSTEM\" exactly uppercase. Good.\n\nNeed maybe \"conditions\" clue none.\n\nFinal.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793540950,
+      "id": "e74bf858399b9e9eb05aa548366312ee",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2124,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1926,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0007863,
+          "billing_source": "go",
+          "list_cost": 0.0013105,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 233,
+            "output": 2124,
+            "reasoning": 1926
+          }
+        },
+        "prompt_tokens": 617,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2741
+      }
+    },
+    "text": "{\"summary\":\"2026 Toyota Camry Hybrid hybrid propulsion system; no physical symptom reported; dealer allegedly sold vehicle without disclosing recall 25V869000, then later informed owner and performed repair.\",\"group\":\"Hybrid Propulsion System\",\"symptoms\":[],\"conditions\":[],\"fault_codes\":[\"25V869000\"],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"symptom\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"HYBRID PROPULSION SYSTEM\"},{\"kind\":\"other\",\"quote\":\"without disclosing that the VIN was included in NHTSA Campaign Number: 25V869000\"},{\"kind\":\"fault_code\",\"quote\":\"NHTSA Campaign Number: 25V869000\"},{\"kind\":\"safety\",\"quote\":\"jeopardized the family's safety\"},{\"kind\":\"other\",\"quote\":\"dealer informed the contact of the recall and performed the repair\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0007863,
+      "cached_tokens": 384,
+      "cost_usd": 0.0013105,
+      "input_tokens": 617,
+      "list_cost_usd": 0.0013105,
+      "output_tokens": 2124,
+      "reasoning_tokens": 1926
+    }
+  }
+}

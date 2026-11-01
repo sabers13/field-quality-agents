@@ -1,0 +1,66 @@
+{
+  "key": "bdfc47c000f2aa7c542eecf65b5fe0beb12b45390e2ffb784abf4ae503f1f2f7",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9927,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2025 Ram 1500 exterior lighting/electrical recall; repair parts unavailable; no failure experienced\",\"group\":\"EXTERIOR LIGHTING\",\"symptoms\":[],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"symptom\",\"conditions\",\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"Exterior Lighting, Electrical System\"},{\"kind\":\"other\",\"quote\":\"NHTSA Campaign Number: 26V059000\"},{\"kind\":\"symptom\",\"quote\":\"The contact had not experienced a failure.\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize report. Component exterior lighting. Report is recall notification, no failure experienced. Need summary one line: 2025 Ram 1500 exterior lighting/electrical recall, repair parts unavailable, no failure experienced. Group electrical/electronic component group? \"EXTERIOR LIGHTING\" given group. Need symptoms: maybe none? Report says contact had not experienced a failure. Symptoms list could be [] or [\"no failure experienced\"]? The schema says symptoms array of symptom in plain words. Since no symptom, empty list likely. Conditions: none? Maybe \"after service\"? no. fault_codes: campaign number 26V059000? Is that a fault code? It's NHTSA Campaign Number, not fault code. The rule fault_codes [\"code if report names one\"]; campaign number is not fault code, but maybe include? It says fault_codes code if report names one. NHTSA campaign number is a code? Hmm probably not a fault code. But can include? Need clues with quote. safety_relevant false? Recall exterior lighting/electrical could be safety? But report mentions no crash/fire etc. It mentions recall. The rule set safety_relevant when report mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. Recall about exterior lighting could risk? But no explicit risk. It says campaign number exterior lighting electrical system. Does exterior lighting failure risk people? Not explicit. Should be false. missing_info: mileage is 0? Given mileage 0. It may mean missing? The report has mileage 0. The instruction list missing_info only facts analysis needs: component, symptom, conditions, mileage, date. We have component, date received but not incident date, mileage 0 maybe not reliable? Report doesn't mention mileage. Data field mileage 0. We can include \"mileage\" because 0 likely missing/unknown. Also \"symptom\" missing because no failure. Conditions missing. Date? received_at exists, but date of incident? Not. Need decide. The report states no failure. Missing info: symptom, conditions, mileage. Maybe component is known. Date? received_at is date, but not event date. Could include \"date\" if event date missing. But list only important. Hmm.\n\nNeed clues: kind symptom? quote \"The contact had not experienced a failure.\" This is not symptom but could be clue kind symptom with quote. condition? quote \"the part to do the recall repair was not yet available\" maybe condition \"after service\"? No. kind other quote campaign number. component_group quote \"Exterior Lighting, Electrical System\" exactly? In narrative: \"NHTSA Campaign Number: 26V059000 (Exterior Lighting, Electrical System)\" so quote \"Exterior Lighting, Electrical System\". kind other or component_group. fault_code quote \"26V059000\" maybe kind fault_code? But if fault_codes empty, clue kind fault_code may conflict? Could include as other. Need ensure quotes verbatim. Summary. JSON only.\n\nNeed include group: \"EXTERIOR LIGHTING\" or \"Exterior Lighting, Electrical System\"? Given group field component \"EXTERIOR LIGHTING\"; group likely \"EXTERIOR LIGHTING\". We can set \"EXTERIOR LIGHTING\". Symptoms []? Conditions []? fault_codes []? safety false. missing_info [\"symptom\",\"conditions\",\"mileage\",\"date\"]? Let's evaluate.\n\nThe report received_at 2026-09-29, year 2025, mileage 0. It says contact owns 2025 Ram 1500. No failure. For analysis of field-quality report, missing symptom? Actually symptom is \"no failure experienced\"; but that is a finding, not missing. The question: normalise incoming field-quality report so desk can analyse. Missing_info only facts analysis needs. If no failure experienced, symptom is absent: missing symptom. Conditions absent: missing conditions. Mileage field is 0, likely missing: include mileage. Date? received_at present, but not incident date. Since no incident, date not needed. Maybe include date? The report date is received_at. Missing_info could be [\"symptom\", \"conditions\", \"mileage\"]. I think.\n\nNeed clues:\n- {\"kind\":\"component_group\",\"quote\":\"Exterior Lighting, Electrical System\"}\n- {\"kind\":\"other\",\"quote\":\"NHTSA Campaign Number: 26V059000\"}\n- {\"kind\":\"condition\",\"quote\":\"the part to do the recall repair was not yet available\"}? Condition? It's a condition of recall repair, not environmental. Could kind other. Maybe not.\n- {\"kind\":\"symptom\",\"quote\":\"The contact had not experienced a failure.\"} Since symptom clue can state absence.\n- {\"kind\":\"other\",\"quote\":\"there was a waiting list for parts availability\"} maybe not.\nNeed not overdo. Every quote verbatim. Let's ensure exact: narrative: \"The contact received notification of NHTSA Campaign Number: 26V059000 (Exterior Lighting, Electrical System); however, the part to do the recall repair was not yet available.\" So quote \"NHTSA Campaign Number: 26V059000\" exact. \"Exterior Lighting, Electrical System\" exact. \"The contact had not experienced a failure.\" exact. Good.\n\nShould fault_codes include \"26V059000\"? Hmm \"fault_codes\": [\"code if the report names one\"]. It names NHTSA Campaign Number, not fault code. But the desk may want campaign number. However key is fault_codes; including campaign number might be okay as code named. But it's not a fault code. I'd leave [] and clue kind other. If include, could be misleading. But \"code if report names one\" could mean any code. NHTSA Campaign Number is a code. Yet fault code is diagnostic trouble code. Hmm.\n\nNeed summary one line: \"2025 Ram 1500 exterior lighting/electrical recall; repair parts unavailable; no failure experienced.\" Good.\n\nNeed no other text. Final JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793539671,
+      "id": "137cf1836c493c61d757c948694ce535",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1392,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1265,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0005208,
+          "billing_source": "go",
+          "list_cost": 0.000868,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 211,
+            "output": 1392,
+            "reasoning": 1265
+          }
+        },
+        "prompt_tokens": 595,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1987
+      }
+    },
+    "text": "{\"summary\":\"2025 Ram 1500 exterior lighting/electrical recall; repair parts unavailable; no failure experienced\",\"group\":\"EXTERIOR LIGHTING\",\"symptoms\":[],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"symptom\",\"conditions\",\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"Exterior Lighting, Electrical System\"},{\"kind\":\"other\",\"quote\":\"NHTSA Campaign Number: 26V059000\"},{\"kind\":\"symptom\",\"quote\":\"The contact had not experienced a failure.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0005208,
+      "cached_tokens": 384,
+      "cost_usd": 0.000868,
+      "input_tokens": 595,
+      "list_cost_usd": 0.000868,
+      "output_tokens": 1392,
+      "reasoning_tokens": 1265
+    }
+  }
+}

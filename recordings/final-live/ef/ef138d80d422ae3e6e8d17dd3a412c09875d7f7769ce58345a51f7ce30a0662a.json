@@ -1,0 +1,66 @@
+{
+  "key": "ef138d80d422ae3e6e8d17dd3a412c09875d7f7769ce58345a51f7ce30a0662a",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10194,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Full Self-Driving computer / camera system: continuous boot loop, all cameras black, Autosteer disabled immediately after software update 2026.32.7\",\"group\":\"driver-assist computer / camera system\",\"symptoms\":[\"continuous boot loop\",\"all eight vehicle cameras went black\",\"rear camera displays camera temporarily unavailable\",\"Autosteer will not engage\",\"camera-dependent driver-assist and safety features are inoperative\"],\"conditions\":[\"after software update\"],\"fault_codes\":[\"UI_a114\"],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"continuous boot loop\"},{\"kind\":\"symptom\",\"quote\":\"All eight vehicle cameras went black\"},{\"kind\":\"symptom\",\"quote\":\"camera temporarily unavailable\"},{\"kind\":\"symptom\",\"quote\":\"Autosteer will not engage\"},{\"kind\":\"fault_code\",\"quote\":\"UI_a114\"},{\"kind\":\"symptom\",\"quote\":\"All camera-dependent driver-assist and safety features are inoperative\"},{\"kind\":\"condition\",\"quote\":\"immediately after my 2021 Tesla Model Y installed Tesla software update 2026.32.7\"},{\"kind\":\"safety\",\"quote\":\"A manufacturer software update disabling all cameras and driver-assist safety systems is a safety defect.\"},{\"kind\":\"component_group\",\"quote\":\"Full Self-Driving computer\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize. Need parse report. Component VISIBILITY/WIPER but narrative is driver-assist computer/cameras. Group? \"the electrical/electronic component group, or the given group\" Given component wiper but actual narrative cameras/driver-assist computer. Need choose group likely electrical/electronic? Hmm component group maybe \"driver-assist computer / camera system\". Need not invent. Summary one line: component, symptom, conditions. Conditions include after software update 2026.32.7, maybe not cold etc. Symptoms: continuous boot loop, all eight cameras black, rear camera displays camera temporarily unavailable, Autosteer will not engage, alert UI_a114 for degraded driving visualization, camera-dependent driver-assist and safety features inoperative. Fault codes: UI_a114. Safety_relevant true? Mentions safety features inoperative, safety defect. No crash/fire etc but risk? \"safety features are inoperative\" is risk to people. Set true. Missing info: mileage null. Maybe date present received, narrative date. Component given but mismatch? missing_info maybe none? Mileage missing. Conditions present. Component? report component says wiper but narrative not wiper; but analysis needs component actual. We shouldn't invent missing? We can list mileage only. Could list \"component\" because given component VISIBILITY/WIPER conflicts? Hmm missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Component is present (though mismatch). Symptom present. Conditions present. Date present. Mileage missing. So [\"mileage\"].\n\nClues need verbatim quotes. Need exact spans from narrative. Quotes:\n- \"driver-assist computer entered a continuous boot loop\" (symptom)\n- \"All eight vehicle cameras went black\" (symptom)\n- \"rear camera displays 'camera temporarily unavailable,'\" (symptom) exact includes single quotes? Narrative: the rear camera displays 'camera temporarily unavailable,' Autosteer... Need quote verbatim \"camera temporarily unavailable\" maybe substring verbatim. Fine.\n- \"Autosteer will not engage\" symptom\n- \"alert UI_a114 for degraded driving visualization\" fault_code\n- \"All camera-dependent driver-assist and safety features are inoperative\" safety\n- \"immediately after my 2021 Tesla Model Y installed Tesla software update 2026.32.7\" condition\n- \"A manufacturer software update disabling all cameras and driver-assist safety systems is a safety defect.\" safety\n- \"hardware failure\" maybe other? Not needed.\n- Component group quote? \"Full Self-Driving computer\" component_group? The report names. But quote exact: \"Full Self-Driving computer\" yes.\nNeed group field. The given component is \"VISIBILITY/WIPER\" but narrative says driver-assist computer. The instruction: \"group\": \"the electrical/electronic component group, or the given group\". Maybe use \"driver-assist computer / camera system\" as group. But should be component group. Could be \"ADAS / camera system\". Is that invented? It's reasonable. Maybe \"Full Self-Driving computer\" exact. But group should be broader. Use \"driver-assist computer / camera system\". Is that allowed? It says electrical/electronic component group or given group. \"driver-assist computer\" is electrical. Hmm.\n\nNeed ensure JSON only. No markdown? They asked one JSON object and no other text. Final should be JSON only.\n\nNeed maybe include \"conditions\": [\"after software update\"]? The allowed examples include \"after service\", \"charging\", etc. The report condition is after software update. Should conditions list allowed plain words. It says conditions: [\"cold\", ...] examples not exhaustive? Likely yes list condition descriptors. Use [\"after software update\"]? The schema examples include \"after service\". Better use \"after software update\" as condition. Could include \"software update\". Need not include \"intermittent\" no.\n\nSummary: \"Full Self-Driving computer / camera system: continuous boot loop, all cameras black and Autosteer disabled immediately after software update 2026.32.7.\" Good.\n\nFault codes: [\"UI_a114\"]. Exact code.\n\nSafety_relevant true.\n\nMissing_info [\"mileage\"].\n\nClues array. Need all quotes verbatim. Let's choose concise exact spans:\n\n1 kind symptom quote \"continuous boot loop\" — exact substring yes.\n2 symptom quote \"All eight vehicle cameras went black\" — exact yes.\n3 symptom quote \"camera temporarily unavailable\" — exact substring within single quotes yes.\n4 symptom quote \"Autosteer will not engage\" — exact yes.\n5 fault_code quote \"UI_a114\" — exact.\n6 symptom quote \"All camera-dependent driver-assist and safety features are inoperative\" — exact yes.\n7 condition quote \"immediately after my 2021 Tesla Model Y installed Tesla software update 2026.32.7\" — exact? Narrative: \"On October 1, 2026, immediately after my 2021 Tesla Model Y installed Tesla software update 2026.32.7, the driver-assist computer...\" Yes substring exact.\n8 safety quote \"A manufacturer software update disabling all cameras and driver-assist safety systems is a safety defect.\" — exact yes.\n9 component_group quote \"Full Self-Driving computer\" — exact? Later: \"diagnosed a 'hardware failure' of the Full Self-Driving computer\" yes substring exact.\n10 other quote \"driver-assist system reset\" maybe not needed.\n\nNeed \"group\": maybe \"Full Self-Driving computer / camera system\". Is that okay? Could be \"driver-assist computer / camera system\". Let's use \"driver-assist computer / camera system\" because quote component_group is Full Self-Driving computer.\n\nNeed maybe \"summary\" one line. No actions.\n\nNeed final JSON only.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793540023,
+      "id": "402d9aaee0c134ab8caa13de89f4f68f",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1505,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1213,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0005685,
+          "billing_source": "go",
+          "list_cost": 0.0009475,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 289,
+            "output": 1505,
+            "reasoning": 1213
+          }
+        },
+        "prompt_tokens": 673,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2178
+      }
+    },
+    "text": "{\"summary\":\"Full Self-Driving computer / camera system: continuous boot loop, all cameras black, Autosteer disabled immediately after software update 2026.32.7\",\"group\":\"driver-assist computer / camera system\",\"symptoms\":[\"continuous boot loop\",\"all eight vehicle cameras went black\",\"rear camera displays camera temporarily unavailable\",\"Autosteer will not engage\",\"camera-dependent driver-assist and safety features are inoperative\"],\"conditions\":[\"after software update\"],\"fault_codes\":[\"UI_a114\"],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"continuous boot loop\"},{\"kind\":\"symptom\",\"quote\":\"All eight vehicle cameras went black\"},{\"kind\":\"symptom\",\"quote\":\"camera temporarily unavailable\"},{\"kind\":\"symptom\",\"quote\":\"Autosteer will not engage\"},{\"kind\":\"fault_code\",\"quote\":\"UI_a114\"},{\"kind\":\"symptom\",\"quote\":\"All camera-dependent driver-assist and safety features are inoperative\"},{\"kind\":\"condition\",\"quote\":\"immediately after my 2021 Tesla Model Y installed Tesla software update 2026.32.7\"},{\"kind\":\"safety\",\"quote\":\"A manufacturer software update disabling all cameras and driver-assist safety systems is a safety defect.\"},{\"kind\":\"component_group\",\"quote\":\"Full Self-Driving computer\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0005685,
+      "cached_tokens": 384,
+      "cost_usd": 0.0009475,
+      "input_tokens": 673,
+      "list_cost_usd": 0.0009475,
+      "output_tokens": 1505,
+      "reasoning_tokens": 1213
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "c72b0c8e0f2f73d14dd29e3fe4a2f4bc6e34d01dca478aad6f4b2d177f272adf",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 4865,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system: dash warning to take over steering followed within seconds by hard braking, while steering and using cruise control in interstate traffic at 40–70 mph.\",\"group\":\"ELECTRICAL SYSTEM\",\"symptoms\":[\"warning on the dash to take over steering\",\"car brakes hard within seconds\"],\"conditions\":[\"intermittent\",\"interstate traffic\",\"while using cruise control\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"On multiple occasions, while actively steering, I have gotten a warning on the dash to take over steering.\"},{\"kind\":\"safety\",\"quote\":\"Within seconds, the car brakes hard.\"},{\"kind\":\"condition\",\"quote\":\"I am typically in interstate traffic when this occurs.\"},{\"kind\":\"condition\",\"quote\":\"This happens when using cruise control.\"},{\"kind\":\"condition\",\"quote\":\"Speed does not matter as it has happened at 40 mph, 70 mph, and in between these two.\"}]}",
+            "reasoning_content": "We need output JSON only. Need normalize report. Component electrical system, maybe group \"ELECTRICAL SYSTEM\". Symptoms: warning on dash to take over steering; car brakes hard; occurs while actively steering; happens when using cruise control. Conditions: intermittent? multiple occasions; interstate traffic; speeds 40/70. No cold/moisture/heat/vibration/after service/charging. Safety relevant: brakes hard in interstate traffic, loss of control? It mentions hard braking, risk to people. Yes safety_relevant true. Fault codes none. missing_info: mileage (null), date? received_at exists but incident date missing. component exists. symptom exists. conditions exists. Could list mileage, date. Need clues verbatim quotes. Ensure exact spans from narrative. Quotes:\n\"On multiple occasions, while actively steering, I have gotten a warning on the dash to take over steering.\"\n\"Within seconds, the car brakes hard.\"\n\"I am typically in interstate traffic when this occurs.\"\n\"This happens when using cruise control.\"\n\"Speed does not matter as it has happened at 40 mph, 70 mph, and in between these two.\"\nNeed kind. symptom quote warning. condition quote interstate traffic, cruise control, multiple occasions? kind condition. safety quote \"the car brakes hard\" maybe safety. component_group \"ELECTRICAL SYSTEM\" from component field? Quote must be from report. The report includes component field \"ELECTRICAL SYSTEM\" yes. Could include quote \"ELECTRICAL SYSTEM\". Need summary one line component, symptom, conditions. \"Electrical system: dash warning to take over steering then hard braking, while steering and using cruise control in interstate traffic at 40–70 mph.\" Good.\n\nMissing_info: mileage, date. Maybe \"date\" incident date. Report received_at but no occurrence date. Include mileage and date.\n\nNeed no markdown, only JSON. Ensure valid.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793539732,
+      "id": "d2835e134df9a943d3fc589732c46d01",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 611,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 381,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00023469,
+          "billing_source": "go",
+          "list_cost": 0.00039115,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 156,
+            "output": 611,
+            "reasoning": 381
+          }
+        },
+        "prompt_tokens": 540,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1151
+      }
+    },
+    "text": "{\"summary\":\"Electrical system: dash warning to take over steering followed within seconds by hard braking, while steering and using cruise control in interstate traffic at 40–70 mph.\",\"group\":\"ELECTRICAL SYSTEM\",\"symptoms\":[\"warning on the dash to take over steering\",\"car brakes hard within seconds\"],\"conditions\":[\"intermittent\",\"interstate traffic\",\"while using cruise control\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"On multiple occasions, while actively steering, I have gotten a warning on the dash to take over steering.\"},{\"kind\":\"safety\",\"quote\":\"Within seconds, the car brakes hard.\"},{\"kind\":\"condition\",\"quote\":\"I am typically in interstate traffic when this occurs.\"},{\"kind\":\"condition\",\"quote\":\"This happens when using cruise control.\"},{\"kind\":\"condition\",\"quote\":\"Speed does not matter as it has happened at 40 mph, 70 mph, and in between these two.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00023469,
+      "cached_tokens": 384,
+      "cost_usd": 0.00039115,
+      "input_tokens": 540,
+      "list_cost_usd": 0.00039115,
+      "output_tokens": 611,
+      "reasoning_tokens": 381
+    }
+  }
+}

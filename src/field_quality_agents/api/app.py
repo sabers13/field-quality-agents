@@ -16,7 +16,7 @@ from field_quality_agents.api import cases, issues, replay, reports, streams
 from field_quality_agents.api.deps import ApiMode
 from field_quality_agents.api.events import EventBus
 from field_quality_agents.api.live import GraphLike, LiveDesk
-from field_quality_agents.api.models import Health
+from field_quality_agents.api.models import FinalLiveData, Health
 from field_quality_agents.api.static import add_static_routes
 from field_quality_agents.api.store import ResultStore
 
@@ -38,14 +38,15 @@ def create_app(
     graph: GraphLike | None = None,
     mode: ApiMode = "replay",
     static_dir: str | Path | None = None,
+    final_live: FinalLiveData | None = None,
     heartbeat_seconds: float = 15.0,
 ) -> FastAPI:
     """Build the API app.
 
     ``store`` is read-only recorded data (``FileResultStore`` in production, a
-    fixture store in tests). ``graph`` is only used in live mode. The two extra
+    fixture store in tests). ``graph`` is only used in live mode. The extra
     keyword arguments beyond ``docs/INTERFACES.md`` are additive: the static
-    directory and the SSE heartbeat interval.
+    directory, Q14's final live panel data and the SSE heartbeat interval.
     """
 
     app = FastAPI(
@@ -57,6 +58,7 @@ def create_app(
     app.state.mode = mode
     app.state.bus = EventBus(heartbeat_seconds=heartbeat_seconds)
     app.state.desk = LiveDesk(graph) if mode == "live" and graph is not None else None
+    app.state.final_live = final_live
 
     app.add_middleware(
         CORSMiddleware,

@@ -1,0 +1,66 @@
+{
+  "key": "2221a1234105b566643f906411ec928d2f33cb014d305c67a267671a739e2982",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9677,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"ADAS autonomous/self-driving software on a 2026 Zoox Robotaxi: at 35 MPH it kept excessive following distance, drove 5-10 MPH below the speed limit, and constantly braked, posing a safety risk.\",\n  \"group\": \"ELECTRICAL SYSTEM:ADAS:AUTONOMOUS/SELF DRIVING:SOFTWARE\",\n  \"symptoms\": [\n    \"maintained excessive distance from the vehicle ahead\",\n    \"drove approximately 5 - 10 MPH below the speed limit\",\n    \"constantly applied the brakes\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"Zoox Robotaxi vehicle\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"maintained an excessive distance from the vehicle ahead\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"drove approximately 5 - 10 MPH below the speed limit\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"constantly applied the brakes\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"posing a safety risk to other drivers\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer only JSON. Need normalize. Component given electrical ADAS autonomous/self driving software. Summary one line component symptom conditions. Symptoms excessive following distance? drove 5-10 mph below speed limit, constantly applied brakes. Conditions? Perhaps none explicit? \"while driving behind at 35 MPH\" is condition? Conditions list allowed cold moisture heat vibration intermittent after service charging. None. Safety_relevant true because \"posing a safety risk to other drivers\". Fault codes none. Missing_info: mileage? mileage null. date? received_at exists but report date? We can list mileage. Conditions maybe not missing essential? component/symptom present. Missing_info [\"mileage\"]. Clues verbatim spans. Need careful quotes exact. Could include component_group quote? \"Zoox Robotaxi vehicle\" maybe component group? Given group electrical... The group output should be given group? \"the electrical/electronic component group, or the given group\". Given component \"ELECTRICAL SYSTEM:ADAS:AUTONOMOUS/SELF DRIVING:SOFTWARE\" — group likely \"ELECTRICAL SYSTEM:ADAS:AUTONOMOUS/SELF DRIVING:SOFTWARE\" or electrical/electronic? Prompt asks group field. Use given group exactly? It says group: \"the electrical/electronic component group, or the given group\". Since given component is detailed, group maybe \"ELECTRICAL SYSTEM:ADAS:AUTONOMOUS/SELF DRIVING:SOFTWARE\". But field named group. Could put \"ELECTRICAL SYSTEM:ADAS:AUTONOMOUS/SELF DRIVING:SOFTWARE\". Summary: \"ADAS autonomous/self-driving software: Robotaxi followed at excessive distance, drove 5-10 MPH under limit, and constantly applied brakes at 35 MPH; safety risk.\" Conditions empty. Symptoms plain words: \"maintained excessive distance from vehicle ahead\", \"drove 5-10 MPH below speed limit\", \"constantly applied brakes\". Could include safety risk as symptom? no, safety true.\n\nClues: kind symptom quote exact \"maintained an excessive distance from the vehicle ahead\" yes narrative says \"the Robotaxi maintained an excessive distance from the vehicle ahead and drove approximately 5 - 10 MPH below the speed limit, and constantly applied the brakes\". Need quote exact with spaces around hyphen? \"5 - 10 MPH\" yes. Quote \"drove approximately 5 - 10 MPH below the speed limit\". Quote \"constantly applied the brakes\". Condition maybe \"while driving behind the Robotaxi at 35 MPH\" — kind condition? Allowed conditions only enumerated? Clues kind condition can quote \"at 35 MPH\" maybe not condition category. But condition list has only cold etc. Could omit. Safety quote \"posing a safety risk to other drivers\". Other quote \"Zoox Robotaxi vehicle\" component_group. Need ensure verbatim: \"The contact called to report an issue with a Zoox Robotaxi vehicle.\" Contains \"Zoox Robotaxi vehicle\". Good.\n\nNeed no markdown? User says Answer with one JSON object and no other text. final only JSON. Ensure valid. missing_info maybe [\"mileage\"]. If date missing? received_at is date, but incident date missing. The list includes date. Report received_at not event date. Could include \"date\" because date of incident not given. But rules missing only facts analysis needs. Mileage null. date maybe report has received date. Hmm likely missing_info [\"mileage\", \"date\"]? The prompt expects missing_info [\"mileage\"] if null. Date is present received_at. But \"date\" could refer incident date. However report has received_at. I can include only mileage.\n\nSafety relevant true. Summary includes component. Conditions empty. Let's craft JSON:\n\n{\n \"summary\": \"ADAS autonomous/self-driving software on a 2026 Zoox Robotaxi: at 35 MPH it kept excessive following distance, drove 5-10 MPH below the speed limit, and constantly braked, posing a safety risk.\",\n \"group\": \"ELECTRICAL SYSTEM:ADAS:AUTONOMOUS/SELF DRIVING:SOFTWARE\",\n \"symptoms\": [\"maintained excessive distance from the vehicle ahead\", \"drove approximately 5 - 10 MPH below the speed limit\", \"constantly applied the brakes\"],\n \"conditions\": [],\n \"fault_codes\": [],\n \"safety_relevant\": true,\n \"missing_info\": [\"mileage\"],\n \"clues\": [\n   {\"kind\":\"component_group\",\"quote\":\"Zoox Robotaxi vehicle\"},\n   {\"kind\":\"symptom\",\"quote\":\"maintained an excessive distance from the vehicle ahead\"},\n   {\"kind\":\"symptom\",\"quote\":\"drove approximately 5 - 10 MPH below the speed limit\"},\n   {\"kind\":\"symptom\",\"quote\":\"constantly applied the brakes\"},\n   {\"kind\":\"safety\",\"quote\":\"posing a safety risk to other drivers\"}\n ]\n}\n\nCheck quote \"maintained an excessive distance from the vehicle ahead\" exact? Narrative: \"the Robotaxi maintained an excessive distance from the vehicle ahead and drove...\" yes substring. \"constantly applied the brakes\" exact? \"and constantly applied the brakes\" yes.\n\nCould include condition quote \"while driving behind the Robotaxi at 35 MPH\" but kind condition? It is a condition but not allowed values? Clues kind condition can be any quote? Conditions array only enumerated. But clues kind condition okay. Might be useful. Yet conditions list empty. Maybe clue condition quote \"at 35 MPH\". But \"conditions\" in output maybe include \"intermittent\"? No. Do we set conditions [] because no cold etc. Yes.\n\nNeed one line summary. Good.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793540473,
+      "id": "49d2485feb2bfbc3c83fdd5a2faf0d73",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1465,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1165,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00054375,
+          "billing_source": "go",
+          "list_cost": 0.00090625,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 174,
+            "output": 1465,
+            "reasoning": 1165
+          }
+        },
+        "prompt_tokens": 558,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2023
+      }
+    },
+    "text": "{\n  \"summary\": \"ADAS autonomous/self-driving software on a 2026 Zoox Robotaxi: at 35 MPH it kept excessive following distance, drove 5-10 MPH below the speed limit, and constantly braked, posing a safety risk.\",\n  \"group\": \"ELECTRICAL SYSTEM:ADAS:AUTONOMOUS/SELF DRIVING:SOFTWARE\",\n  \"symptoms\": [\n    \"maintained excessive distance from the vehicle ahead\",\n    \"drove approximately 5 - 10 MPH below the speed limit\",\n    \"constantly applied the brakes\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"Zoox Robotaxi vehicle\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"maintained an excessive distance from the vehicle ahead\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"drove approximately 5 - 10 MPH below the speed limit\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"constantly applied the brakes\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"posing a safety risk to other drivers\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00054375,
+      "cached_tokens": 384,
+      "cost_usd": 0.00090625,
+      "input_tokens": 558,
+      "list_cost_usd": 0.00090625,
+      "output_tokens": 1465,
+      "reasoning_tokens": 1165
+    }
+  }
+}

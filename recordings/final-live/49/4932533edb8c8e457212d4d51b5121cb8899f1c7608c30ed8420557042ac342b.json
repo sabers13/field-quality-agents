@@ -1,0 +1,66 @@
+{
+  "key": "4932533edb8c8e457212d4d51b5121cb8899f1c7608c30ed8420557042ac342b",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12727,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Instrument panel speedometer/odometer mileage discrepancy reported as odometer fraud; purchase mileage 142,069 vs maintenance mileage 197,779.\",\"group\":\"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\",\"symptoms\":[\"mileage discrepancy\",\"odometer fraud\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\"},{\"kind\":\"symptom\",\"quote\":\"Odometer Fraud.\"},{\"kind\":\"symptom\",\"quote\":\"there was a mileage discrepancy\"},{\"kind\":\"other\",\"quote\":\"At the time of purchase, the vehicle mileage was 142,069\"},{\"kind\":\"other\",\"quote\":\"at the time of maintenance, it was discovered that the mileage was 197,779\"}]}",
+            "reasoning_content": "We need answer only JSON. Need parse report. Component electrical system instrument panel speedometer/odometer. Symptom mileage discrepancy/odometer fraud. Conditions? private sale, maintenance? Need conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. None apply. Maybe \"after service\" because discovered at maintenance? But condition is \"after service\" means fault occurred after service? Here discovered at time of maintenance. Could include? Need be careful. The report says \"at the time of maintenance, it was discovered that mileage was 197,779.\" Not a condition listed. We can leave conditions empty. Safety_relevant false? Odometer fraud could risk? Not crash/fire etc. No. Fault codes none. Missing_info: date? It has received_at but not incident date? mileage given. component given symptom given conditions maybe not needed. Missing info maybe date? The analysis needs date? It says list missing_info only facts analysis needs: component, symptom, conditions, mileage, date. We have component, symptom, mileage. Conditions absent; date maybe purchase/maintenance dates absent. But \"date\" maybe received_at not event date. Should list \"date\"? The report has received_at 2026-10-19 but not event date. Could include \"date\". Conditions? It gives private sale and maintenance but not environmental conditions. For odometer fraud conditions not relevant. Missing info maybe purchase date/maintenance date. Need not overdo. Summary one line: Instrument panel speedometer/odometer; mileage discrepancy/odometer fraud; private sale, mileage 142,069 at purchase vs 197,779 at maintenance. Group: given group \"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\" or electrical/electronic component group. Rule says group: the electrical/electronic component group, or given group. We can use given. Symptoms plain words: [\"mileage discrepancy\", \"odometer fraud\"]? Odometer fraud is not symptom? It's issue. Use \"mileage discrepancy\" and \"odometer reading inconsistent with purchase mileage\". Conditions empty. Fault codes empty. Clues: verbatim spans. Need exact quotes from narrative. \"Odometer Fraud.\" quote. \"mileage discrepancy\" quote? It's \"there was a mileage discrepancy\". Verbatim exact span. \"At the time of purchase, the vehicle mileage was 142,069\" exact? Narrative: \"At the time of purchase, the vehicle mileage was 142,069, and at the time of maintenance, it was discovered that the mileage was 197,779.\" Quote span can be \"At the time of purchase, the vehicle mileage was 142,069\" yes exact. \"at the time of maintenance, it was discovered that the mileage was 197,779\" exact? Narrative has comma after 142,069, and \"at the time...\" lowercase. Span exact includes. Use quote \"at the time of maintenance, it was discovered that the mileage was 197,779\" yes exact substring? Let's check: \"...142,069, and at the time of maintenance, it was discovered that the mileage was 197,779.\" The substring starting \"at the time of maintenance\" yes after \"and \". Good. Clues kind symptom for mileage discrepancy, other for purchase/maintenance mileage? Component_group quote \"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\" from component field? The report includes component. But narrative only? User says report in user message includes JSON. Verbatim can quote component string. But quote must be copied from report; component value exact. Could include component_group clue. Safety false. Missing_info maybe [\"date\"]? Need list only facts analysis needs. For NHTSA report, date of incident? received_at present. Mileage present. Component/symptom present. Conditions not relevant. I'd include [\"date\"] because no purchase/maintenance dates. But does analysis need date? It says missing_info list includes date. Yes. Maybe \"conditions\" absent? Conditions list is empty but not missing important. Do not include conditions if not applicable. For odometer fraud, conditions not needed. Missing date of purchase/maintenance is important. But report gives received_at, not event date. So [\"date\"]. Need answer one JSON object no other text.\n\nEnsure valid JSON. Use false not string. Summary one line. Conditions []. Symptoms maybe [\"mileage discrepancy\", \"odometer fraud\"]. Is odometer fraud a symptom? It is reported issue. Plain words. Fine. Clues quotes exact. Need include safety? none.\n\nNeed maybe \"group\": \"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\". Good.\n\nLet's craft final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793541132,
+      "id": "cb0b3329249b2dfd9828391703fba94d",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1197,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 992,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00044682,
+          "billing_source": "go",
+          "list_cost": 0.0007447,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 169,
+            "output": 1197,
+            "reasoning": 992
+          }
+        },
+        "prompt_tokens": 553,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1750
+      }
+    },
+    "text": "{\"summary\":\"Instrument panel speedometer/odometer mileage discrepancy reported as odometer fraud; purchase mileage 142,069 vs maintenance mileage 197,779.\",\"group\":\"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\",\"symptoms\":[\"mileage discrepancy\",\"odometer fraud\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\"},{\"kind\":\"symptom\",\"quote\":\"Odometer Fraud.\"},{\"kind\":\"symptom\",\"quote\":\"there was a mileage discrepancy\"},{\"kind\":\"other\",\"quote\":\"At the time of purchase, the vehicle mileage was 142,069\"},{\"kind\":\"other\",\"quote\":\"at the time of maintenance, it was discovered that the mileage was 197,779\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00044682,
+      "cached_tokens": 384,
+      "cost_usd": 0.0007447,
+      "input_tokens": 553,
+      "list_cost_usd": 0.0007447,
+      "output_tokens": 1197,
+      "reasoning_tokens": 992
+    }
+  }
+}

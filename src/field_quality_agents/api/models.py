@@ -40,6 +40,8 @@ __all__ = [
     "ComparisonSummary",
     "DecisionRequest",
     "DecisionResponse",
+    "FinalLiveData",
+    "FinalLiveSide",
     "Health",
     "InvestigationRef",
     "IssueDetail",
@@ -222,11 +224,40 @@ class ComparisonData(ApiModel):
     rows: list[ComparisonRow]
 
 
+class FinalLiveSide(ApiModel):
+    """One pipeline's metrics on one case set."""
+
+    cases: int
+    before: Metrics
+    after: Metrics
+
+
+class FinalLiveData(ApiModel):
+    """Q14's panel: the final live run beside the Q9 replay run.
+
+    Q14 owns ``results/final-live/``. This shape is additive to the command
+    centre so the panel shows the same numbers in the live API and the offline
+    export without a second endpoint.
+    """
+
+    run_id: str
+    set_name: str
+    window_start: date
+    window_end: date
+    spend_usd: float
+    steps: int
+    budget_hits: int
+    final: FinalLiveSide
+    q9: FinalLiveSide
+    q9_run_id: str
+
+
 class CommandCentreData(ApiModel):
     window: str
     kpis: list[Kpi]
     live_feed: list[StreamEvent]
     comparison: ComparisonSummary
+    final_live: FinalLiveData | None = None
 
 
 class StreamEvent(ApiModel):

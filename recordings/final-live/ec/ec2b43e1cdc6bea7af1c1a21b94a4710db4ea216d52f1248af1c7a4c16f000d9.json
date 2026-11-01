@@ -1,0 +1,66 @@
+{
+  "key": "ec2b43e1cdc6bea7af1c1a21b94a4710db4ea216d52f1248af1c7a4c16f000d9",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11028,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2024 Kia Telluride electrical system: digital instrument cluster black/dead at startup, persists across restarts.\",\"group\":\"ELECTRICAL SYSTEM\",\"symptoms\":[\"digital instrument panel cluster completely black and dead at startup\",\"no visibility of speedometer, safety alerts, or fuel levels while driving\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"digital instrument panel cluster went completely black and dead upon vehicle startup\"},{\"kind\":\"symptom\",\"quote\":\"instrument panel was completely black\"},{\"kind\":\"condition\",\"quote\":\"3 restarts in an hour period\"},{\"kind\":\"safety\",\"quote\":\"zero visibility of my speedometer, safety alerts, or fuel levels while trying to operate the vehicle\"},{\"kind\":\"other\",\"quote\":\"3-4 other vehicles of various models came in with the same issue recently\"},{\"kind\":\"other\",\"quote\":\"Approximate mileage of 38,000\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize. Component electrical system, symptom digital instrument panel cluster black/dead on startup, no speedometer safety alerts fuel levels. Conditions: intermittent? Repeated restarts 3 in hour, persists after restart. Could include \"intermittent\"? Report says completely black upon startup and after restarts. Not exactly intermittent, but recurring. Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. We can include intermittent? It says 3 restarts in an hour, same issue. Maybe yes \"intermittent\" not explicit but symptom recurring. But quote must verbatim. Need conditions from list only. Could include \"intermittent\" if clue quote \"3 restarts in an hour period\" not exactly intermittent. Maybe conditions empty? They want conditions. \"upon vehicle startup\" not in allowed list except maybe no. We can include \"intermittent\" as inferred? Rules say plain words? Conditions array from list. Better include \"intermittent\" because multiple restarts and issue recurring? Hmm.\n\nMissing_info: mileage? narrative gives approximate 38,000 but field null. The analysis needs mileage; but report has approximate mileage in narrative. Missing_info maybe [] because mileage present approximate. Date received 2026-10-15, not incident date. Missing date? It lacks date of occurrence. Conditions? We have startup/restarts. Component present symptom present. Could list \"date\" only? The schema says missing_info includes date. The report has received_at but not incident date. Yes missing_info [\"date\"] maybe. Mileage field null but narrative approximate. Could include \"mileage\" due structured null? But narrative has approximate. I'd say missing_info [\"date\"] maybe not needed? Analysis needs date? It has received_at, but incident date unknown. We can list date. Also maybe \"conditions\" because no weather/temp? But condition startup/restarts present. Hmm.\n\nFault codes none.\n\nSafety_relevant? Mentions zero visibility of speedometer, safety alerts while trying to operate vehicle. Is that risk to people? Could be safety relevant because no speedometer/safety alerts. The rule: crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. Zero visibility of speedometer and safety alerts while operating is a risk. Set true? It doesn't mention crash. But \"safety alerts\" and driving without speedometer. This is safety-relevant. I'd set true. Need clue quote for safety \"zero visibility of my speedometer, safety alerts, or fuel levels while trying to operate the vehicle\" verbatim. Good.\n\nClues: component_group quote \"ELECTRICAL SYSTEM\" maybe verbatim from report? It's in component field, not narrative. The report includes JSON so yes. symptom quote \"digital instrument panel cluster went completely black and dead upon vehicle startup\" verbatim. Another symptom quote \"instrument panel was completely black\". condition quote \"3 restarts in an hour period\". Fault code none. Safety quote. Other quote maybe \"3-4 other vehicles of various models came in with the same issue recently\" as other? Could be useful. But keep concise.\n\nSummary one line: \"2024 Kia Telluride electrical system: digital instrument cluster black/dead on startup, persists across restarts.\" Need include conditions. Good.\n\nGroup: \"ELECTRICAL SYSTEM\" or \"electrical/electronic\"? Given group. Use \"ELECTRICAL SYSTEM\".\n\nSymptom plain words: \"digital instrument panel cluster completely black and dead at startup\", \"no speedometer, safety alerts, or fuel level visibility\". Good.\n\nConditions: allowed list. Does \"upon vehicle startup\" map to? None. \"3 restarts in an hour\" could map intermittent. We can include \"intermittent\" maybe. But not exactly. The issue happened on startup, after short drive and off/on, still black. That's persistent, not intermittent. Conditions list lacks \"startup\". Could leave empty. But the prompt expects conditions maybe. We can include \"intermittent\" only if report names? It doesn't. Better conditions []? But then clues condition can include restart quote. Hmm. The conditions array is from allowed list; if none match, empty. That's acceptable. But \"3 restarts in an hour period\" indicates repeated attempts; not a condition category. Use conditions [].\n\nMissing_info: component present, symptom present, conditions? It has startup and restarts. Mileage approximate. Date missing? Maybe [\"date\"] because no incident date. But the report received_at date. The analysis might need date of failure. I'll include [\"date\"]. Or [\"mileage\"] because structured mileage null? But narrative approximate 38,000. The instruction \"Read only report\" and narrative has approximate. So not missing. Maybe no missing_info. Hmm.\n\nLet's craft JSON with all required keys. Ensure quotes exact. Need quote from report: \"The digital instrument panel cluster went completely black and dead upon vehicle startup, leaving me with zero visibility of my speedometer, safety alerts, or fuel levels while trying to operate the vehicle.\" We can quote substring. Verbatim character for character. Use exact substring without leading The? \"digital instrument panel cluster went completely black and dead upon vehicle startup\" yes appears after \"The \". Good. \"zero visibility of my speedometer, safety alerts, or fuel levels while trying to operate the vehicle\" exact. \"3 restarts in an hour period\" exact. \"3-4 other vehicles of various models came in with the same issue recently\" exact. \"ELECTRICAL SYSTEM\" exact from component. \"Approximate mileage of 38,000\" exact. Could include other clue mileage? Kind other. But clues kinds only symptom|condition|fault_code|component_group|safety|other. Could include other for mileage? Not necessary. We can include.\n\nSafety_relevant true. Clue safety quote. Good.\n\nNeed no other text. Final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793540876,
+      "id": "3eccd474b0d961ceffcef43c5a7c8b89",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1469,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1240,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00054843,
+          "billing_source": "go",
+          "list_cost": 0.00091405,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 210,
+            "output": 1469,
+            "reasoning": 1240
+          }
+        },
+        "prompt_tokens": 594,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2063
+      }
+    },
+    "text": "{\"summary\":\"2024 Kia Telluride electrical system: digital instrument cluster black/dead at startup, persists across restarts.\",\"group\":\"ELECTRICAL SYSTEM\",\"symptoms\":[\"digital instrument panel cluster completely black and dead at startup\",\"no visibility of speedometer, safety alerts, or fuel levels while driving\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"digital instrument panel cluster went completely black and dead upon vehicle startup\"},{\"kind\":\"symptom\",\"quote\":\"instrument panel was completely black\"},{\"kind\":\"condition\",\"quote\":\"3 restarts in an hour period\"},{\"kind\":\"safety\",\"quote\":\"zero visibility of my speedometer, safety alerts, or fuel levels while trying to operate the vehicle\"},{\"kind\":\"other\",\"quote\":\"3-4 other vehicles of various models came in with the same issue recently\"},{\"kind\":\"other\",\"quote\":\"Approximate mileage of 38,000\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00054843,
+      "cached_tokens": 384,
+      "cost_usd": 0.00091405,
+      "input_tokens": 594,
+      "list_cost_usd": 0.00091405,
+      "output_tokens": 1469,
+      "reasoning_tokens": 1240
+    }
+  }
+}

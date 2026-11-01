@@ -1,0 +1,66 @@
+{
+  "key": "437ce24624ab6db06db03edfa35a996a7cfbd03e0b4668cd1d0946406aada8c6",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12324,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Lane departure warning / multipurpose camera internal failure (U3000-49) disables multiple Honda Sensing systems; DTC returns after clearing.\",\"group\":\"electrical/electronic\",\"symptoms\":[\"multipurpose camera internal failure\",\"multiple Honda Sensing safety and driver-assistance systems become unavailable\",\"dashboard warnings for ACC, LKAS, CMBS, Road Departure Mitigation, and related safety systems\",\"DTC U3000-49 returns after being cleared\"],\"conditions\":[\"after service\"],\"fault_codes\":[\"U3000-49\"],\"safety_relevant\":true,\"missing_info\":[],\"clues\":[{\"kind\":\"fault_code\",\"quote\":\"DTC U3000-49, Multipurpose Camera Internal Failure\"},{\"kind\":\"symptom\",\"quote\":\"The failure causes multiple Honda Sensing safety and driver-assistance systems to become unavailable\"},{\"kind\":\"symptom\",\"quote\":\"produces multiple dashboard warnings, including Adaptive Cruise Control (ACC), Lane Keeping Assist System (LKAS), Collision Mitigation Braking System (CMBS), Road Departure Mitigation, and related safety-system warnings\"},{\"kind\":\"condition\",\"quote\":\"The Honda technician cleared the DTC, but it returned shortly afterward.\"},{\"kind\":\"safety\",\"quote\":\"My safety concern is that an internal failure of a single multipurpose camera can simultaneously disable multiple collision-avoidance, lane-assistance, and driver-assistance systems.\"},{\"kind\":\"component_group\",\"quote\":\"multipurpose camera\"},{\"kind\":\"other\",\"quote\":\"The vehicle has not yet been repaired.\"}]}",
+            "reasoning_content": "We need answer JSON only. Need parse report. Component \"LANE DEPARTURE: WARNING\" given. Need summary one line: component, symptom, conditions. Group electrical/electronic component group or given group. Need symptoms plain words. Conditions list from allowed: cold, moisture, heat, vibration, intermittent, after service, charging. Report mentions DTC returned shortly afterward, cleared. No cold etc. Could include intermittent? It returned shortly after clearing, not necessarily intermittent. Conditions maybe []? But schema says conditions array. Need fault_codes [\"U3000-49\"]. safety_relevant true due safety systems disabled collision avoidance etc? It mentions safety concern and multiple safety systems unavailable. Is that risk to people? Yes. missing_info: mileage? Report says at 120,007 miles in narrative, but mileage field null. It gives date October 5 2026 and received 2026-10-06. Component given, symptom. Conditions? Maybe no environmental conditions. Missing info maybe []? Need facts analysis needs; mileage present narrative, date present. Conditions not specified? Could list \"conditions\" missing? Hmm missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Conditions are not specified (when/how often except after DTC clear). But maybe not important? Could include \"conditions\" because no driving conditions? But report has enough. Need not invent. Should list missing_info []? Let's think.\n\nNeed clues with verbatim quotes. Quotes copied character for character. Need include symptom, condition, fault_code, component_group, safety, other. Quotes must be substrings. Use exact from narrative. E.g. \"DTC U3000-49, Multipurpose Camera Internal Failure\" exact? Narrative: \"diagnosed the vehicle with DTC U3000-49, Multipurpose Camera Internal Failure.\" Yes. \"The failure causes multiple Honda Sensing safety and driver-assistance systems to become unavailable\" exact. \"produces multiple dashboard warnings, including Adaptive Cruise Control (ACC), Lane Keeping Assist System (LKAS), Collision Mitigation Braking System (CMBS), Road Departure Mitigation, and related safety-system warnings\" exact? It includes \"including ...\" yes. \"The Honda technician cleared the DTC, but it returned shortly afterward.\" exact. \"The vehicle has not yet been repaired.\" exact. \"My safety concern is that an internal failure of a single multipurpose camera can simultaneously disable multiple collision-avoidance, lane-assistance, and driver-assistance systems.\" exact. Need maybe component_group quote \"multipurpose camera\" exact. Group? \"electrical/electronic component group\" maybe \"camera / driver-assistance sensor\". Given component group? The instruction: \"group\": \"the electrical/electronic component group, or the given group\". We can set \"electrical/electronic\" or \"driver-assistance camera\". Need not overinvent? Component is LANE DEPARTURE: WARNING, but actual component multipurpose camera. Group maybe \"electrical/electronic\". Hm.\n\nNeed JSON only no markdown. Ensure all quotes exact. Let's craft.\n\nSummary: \"Lane departure warning / multipurpose camera internal failure (U3000-49) disables Honda Sensing systems; DTC returns after clearing.\" Conditions: maybe [\"after service\"]? It was after dealership cleared DTC? \"after service\" allowed. The DTC returned shortly after technician cleared it, so after service condition. Also \"intermittent\"? It returned shortly afterward but not intermittent. Could include \"after service\". But condition \"after service\" might mean fault appeared after service; here after clearing. Is that okay? It is a condition. Maybe include \"after service\" due cleared then returned. Conditions array can include. Need not include cold etc.\n\nSymptoms: [\"multipurpose camera internal failure\", \"multiple Honda Sensing safety and driver-assistance systems unavailable\", \"dashboard warnings for ACC, LKAS, CMBS, Road Departure Mitigation and related safety systems\", \"DTC U3000-49 returns after being cleared\"]. Plain words.\n\nSafety_relevant true.\n\nMissing_info: []? Mileage is in narrative; date in narrative. Component given. Symptom given. Conditions maybe after service. So empty. But the mileage field null while narrative has 120,007. Should missing_info include mileage? The prompt: \"List missing_info only for facts the analysis needs: component, symptom, conditions, mileage, date. Use empty list when nothing important is missing.\" Even though structured mileage null, narrative has mileage. So not missing. Date present. So [].\n\nClues: Need kind values. Include:\n{\"kind\":\"fault_code\",\"quote\":\"DTC U3000-49, Multipurpose Camera Internal Failure\"}\n{\"kind\":\"symptom\",\"quote\":\"The failure causes multiple Honda Sensing safety and driver-assistance systems to become unavailable\"}\n{\"kind\":\"symptom\",\"quote\":\"produces multiple dashboard warnings, including Adaptive Cruise Control (ACC), Lane Keeping Assist System (LKAS), Collision Mitigation Braking System (CMBS), Road Departure Mitigation, and related safety-system warnings\"}\n{\"kind\":\"condition\",\"quote\":\"The Honda technician cleared the DTC, but it returned shortly afterward.\"}\n{\"kind\":\"safety\",\"quote\":\"My safety concern is that an internal failure of a single multipurpose camera can simultaneously disable multiple collision-avoidance, lane-assistance, and driver-assistance systems.\"}\n{\"kind\":\"component_group\",\"quote\":\"multipurpose camera\"}\n{\"kind\":\"other\",\"quote\":\"The vehicle has not yet been repaired.\"}\nNeed quote exact \"multipurpose camera\" appears. Good.\n\nNeed ensure summary one line. JSON only.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793540189,
+      "id": "0d90b6989b66be29d04ba3ed85d382a6",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1499,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1170,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00057255,
+          "billing_source": "go",
+          "list_cost": 0.00095425,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 358,
+            "output": 1499,
+            "reasoning": 1170
+          }
+        },
+        "prompt_tokens": 742,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2241
+      }
+    },
+    "text": "{\"summary\":\"Lane departure warning / multipurpose camera internal failure (U3000-49) disables multiple Honda Sensing systems; DTC returns after clearing.\",\"group\":\"electrical/electronic\",\"symptoms\":[\"multipurpose camera internal failure\",\"multiple Honda Sensing safety and driver-assistance systems become unavailable\",\"dashboard warnings for ACC, LKAS, CMBS, Road Departure Mitigation, and related safety systems\",\"DTC U3000-49 returns after being cleared\"],\"conditions\":[\"after service\"],\"fault_codes\":[\"U3000-49\"],\"safety_relevant\":true,\"missing_info\":[],\"clues\":[{\"kind\":\"fault_code\",\"quote\":\"DTC U3000-49, Multipurpose Camera Internal Failure\"},{\"kind\":\"symptom\",\"quote\":\"The failure causes multiple Honda Sensing safety and driver-assistance systems to become unavailable\"},{\"kind\":\"symptom\",\"quote\":\"produces multiple dashboard warnings, including Adaptive Cruise Control (ACC), Lane Keeping Assist System (LKAS), Collision Mitigation Braking System (CMBS), Road Departure Mitigation, and related safety-system warnings\"},{\"kind\":\"condition\",\"quote\":\"The Honda technician cleared the DTC, but it returned shortly afterward.\"},{\"kind\":\"safety\",\"quote\":\"My safety concern is that an internal failure of a single multipurpose camera can simultaneously disable multiple collision-avoidance, lane-assistance, and driver-assistance systems.\"},{\"kind\":\"component_group\",\"quote\":\"multipurpose camera\"},{\"kind\":\"other\",\"quote\":\"The vehicle has not yet been repaired.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00057255,
+      "cached_tokens": 384,
+      "cost_usd": 0.00095425,
+      "input_tokens": 742,
+      "list_cost_usd": 0.00095425,
+      "output_tokens": 1499,
+      "reasoning_tokens": 1170
+    }
+  }
+}

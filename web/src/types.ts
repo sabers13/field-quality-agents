@@ -258,11 +258,33 @@ export interface ComparisonData {
   rows: ComparisonRow[];
 }
 
+/** One pipeline's metrics on one case set (Q14's panel). */
+export interface FinalLiveSide {
+  cases: number;
+  before: Metrics;
+  after: Metrics;
+}
+
+/** Q14's final live run beside the Q9 replay run. */
+export interface FinalLiveData {
+  run_id: string;
+  set_name: string;
+  window_start: string;
+  window_end: string;
+  spend_usd: number;
+  steps: number;
+  budget_hits: number;
+  final: FinalLiveSide;
+  q9: FinalLiveSide;
+  q9_run_id: string;
+}
+
 export interface CommandCentreData {
   window: string;
   kpis: Kpi[];
   live_feed: StreamEvent[];
   comparison: ComparisonSummary;
+  final_live?: FinalLiveData | null;
 }
 
 export interface CaseListItem {

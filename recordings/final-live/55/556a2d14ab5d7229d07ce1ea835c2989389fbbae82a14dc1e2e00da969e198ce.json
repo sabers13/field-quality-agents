@@ -1,0 +1,66 @@
+{
+  "key": "556a2d14ab5d7229d07ce1ea835c2989389fbbae82a14dc1e2e00da969e198ce",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 4874,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\": \"Test the windshield safety camera system for intermittent warning-light faults using a long-run power cycling test.\", \"rationale\": \"The narrative reports warning lights that come on out of nowhere, which the intake classifies as an intermittent condition. The rulebook matches intermittent faults to a long-run power-cycling test.\", \"group\": \"electrical/electronic driver assistance safety camera system\", \"symptoms\": [\"warning lights illuminate\"], \"conditions\": [\"intermittent\"], \"fault_codes\": [], \"safety_relevant\": false, \"targeted\": true, \"test_name\": \"Long-run power cycling test\", \"clues\": [{\"kind\": \"symptom\", \"quote\": \"warning lights just come on out of no where\"}, {\"kind\": \"condition\", \"quote\": \"out of no where\"}, {\"kind\": \"component_group\", \"quote\": \"safety camera feature\"}, {\"kind\": \"other\", \"quote\": \"controls all the safety features of the car\"}]}",
+            "reasoning_content": "We need to produce JSON only. Need targeted test based on rulebook matched \"intermittent\" with test \"Long-run power cycling test\". Narrative: warning lights come on out of nowhere, safety camera controls safety features. Safety_relevant? Narrative doesn't show risk to people explicitly; \"controls all the safety features\" but no risk to people. Could be safety relevant? Rule: set safety_relevant when narrative shows a risk to people. It doesn't explicitly. Keep false as extraction. Targeted true since condition intermittent matches rulebook entry. Group component group from extraction. Symptoms, conditions, fault_codes. Clues must be verbatim quotes from narrative. Use provided extraction quotes that are verbatim from narrative? Need verify: narrative contains \"All this warning lights just come on out of no where due to the safety camera feature on the  windshield that controls all the safety features of the car and this vehicles are not even 10 years old and the repair cost is too expensive for just that camera and almost every Honda odyssey is having the same issue I think there should be a recall for that specific camera in my opinion.\"\n\nQuotes: \"warning lights just come on out of no where\" appears? Narrative: \"All this warning lights just come on out of no where due to...\" yes substring \"warning lights just come on out of no where\" yes. \"safety camera feature\" yes. \"out of no where\" yes. \"controls all the safety features of the car\" yes. \"repair cost is too expensive for just that camera\" yes. \"almost every Honda odyssey is having the same issue\" yes. \"there should be a recall\" yes. We can include a subset. Need summary one line. rationale condition and evidence. targeted true. test_name \"Long-run power cycling test\". safety_relevant false. Clues list with kind etc. Ensure no extra text. JSON valid.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793541568,
+      "id": "97011eeee2ce36e5dd8f6be608059a53",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 599,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 391,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00029448,
+          "billing_source": "go",
+          "list_cost": 0.0004908,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 876,
+            "output": 599,
+            "reasoning": 391
+          }
+        },
+        "prompt_tokens": 876,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 1475
+      }
+    },
+    "text": "{\"summary\": \"Test the windshield safety camera system for intermittent warning-light faults using a long-run power cycling test.\", \"rationale\": \"The narrative reports warning lights that come on out of nowhere, which the intake classifies as an intermittent condition. The rulebook matches intermittent faults to a long-run power-cycling test.\", \"group\": \"electrical/electronic driver assistance safety camera system\", \"symptoms\": [\"warning lights illuminate\"], \"conditions\": [\"intermittent\"], \"fault_codes\": [], \"safety_relevant\": false, \"targeted\": true, \"test_name\": \"Long-run power cycling test\", \"clues\": [{\"kind\": \"symptom\", \"quote\": \"warning lights just come on out of no where\"}, {\"kind\": \"condition\", \"quote\": \"out of no where\"}, {\"kind\": \"component_group\", \"quote\": \"safety camera feature\"}, {\"kind\": \"other\", \"quote\": \"controls all the safety features of the car\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00029448,
+      "cached_tokens": 0,
+      "cost_usd": 0.0004908,
+      "input_tokens": 876,
+      "list_cost_usd": 0.0004908,
+      "output_tokens": 599,
+      "reasoning_tokens": 391
+    }
+  }
+}

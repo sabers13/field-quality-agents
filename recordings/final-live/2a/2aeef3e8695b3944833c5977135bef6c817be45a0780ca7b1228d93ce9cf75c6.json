@@ -1,0 +1,66 @@
+{
+  "key": "2aeef3e8695b3944833c5977135bef6c817be45a0780ca7b1228d93ce9cf75c6",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12396,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Forward collision avoidance/adaptive cruise control: windshield-mounted camera above the rear-view mirror failed, disabling lane keep assist, adaptive cruise and other safety features; no conditions given.\",\"group\":\"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\",\"symptoms\":[\"windshield-mounted camera failed\",\"lane keep assist not functioning\",\"adaptive cruise not functioning\",\"other safety features not functioning\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\"},{\"kind\":\"symptom\",\"quote\":\"The on board camera mounted on windshield above rear view mirror has failed\"},{\"kind\":\"symptom\",\"quote\":\"none of the safety feature function (lane keep assist, adaptive cruise, etc).\"},{\"kind\":\"safety\",\"quote\":\"none of the safety feature function (lane keep assist, adaptive cruise, etc).\"}]}",
+            "reasoning_content": "We need answer one JSON object no other text. Need normalize report. Component given \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\". Narrative: \"The on board camera mounted on windshield above rear view mirror has failed and now none of the safety feature function (lane keep assist, adaptive cruise, etc).\" Need summary one line component, symptom, conditions. Group electrical/electronic component group or given group. Could use \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\" as group? They say \"the electrical/electronic component group, or the given group\". Given group is component field. Maybe group: \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\". Symptoms: \"on-board camera failed\", \"none of the safety features function\" maybe lane keep assist and adaptive cruise not functioning. Conditions: none mentioned. Fault codes none. safety_relevant? Mentions safety features not functioning; does that count risk to people? \"safety feature function\" not crash/fire etc. But loss of safety systems? Rule says crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. None explicit. Could set false. But ADAS failure might be safety relevant? Must not invent. There's no explicit risk. Set false. missing_info: mileage is null, date? received_at exists but date maybe event date not given. missing_info list facts analysis needs: component? no, symptom? yes present; conditions? no conditions; mileage? missing; date? received_at is report date, but incident date not. Could list mileage, date, conditions. Maybe \"conditions\" missing because no environmental conditions. Need clues with verbatim quotes. Use quotes exactly. Candidate quotes: \"The on board camera mounted on windshield above rear view mirror has failed\" and \"none of the safety feature function (lane keep assist, adaptive cruise, etc).\" Need exact span. Also component group quote? \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\" is in report? It's in component field, not narrative, but user message includes it. \"Read only report in user message\" includes JSON fields. Quote verbatim from report. Could quote component field. Need clues kind. symptom: quote. condition none. fault_code none. component_group quote. safety maybe no. other maybe. Use clue for component_group quote exactly \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\". But quote must be copied character for character; yes.\n\nSummary one line: \"Forward collision avoidance/adaptive cruise control: windshield-mounted camera failed, disabling lane keep assist and adaptive cruise.\" Conditions omitted? Summary must include conditions; none. Could say \"no conditions given\". One line: \"Forward collision avoidance/adaptive cruise: camera above rear-view mirror failed; lane keep assist and adaptive cruise no longer function; no conditions given.\" That's one line. Good.\n\nNeed JSON only. Ensure no markdown? They want one JSON object and no other text. We'll output raw JSON.\n\nCheck missing_info: include mileage, date, conditions. \"date\" because received_at only. Could include \"date\" for incident date. Maybe also \"component\"? Component present. Symptom present. Good.\n\nClues: \n{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\"}\n{\"kind\":\"symptom\",\"quote\":\"The on board camera mounted on windshield above rear view mirror has failed\"}\n{\"kind\":\"symptom\",\"quote\":\"none of the safety feature function (lane keep assist, adaptive cruise, etc).\"}\nMaybe {\"kind\":\"symptom\",\"quote\":\"lane keep assist, adaptive cruise\"} but redundant. Could include \"other\"? No.\n\nNeed exact quote includes period? \"etc).\" yes. First quote exact: \"The on board camera mounted on windshield above rear view mirror has failed\" yes. Note narrative says \"on board camera\" not \"on-board\". Good.\n\nGroup: could \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\". But \"the electrical/electronic component group\" maybe \"ADAS camera / forward collision avoidance\" not in report. We should not invent. Use given group.\n\nsymptoms array plain words: \"windshield-mounted camera failed\", \"lane keep assist not functioning\", \"adaptive cruise not functioning\", \"other safety features not functioning\". Plain words okay. Maybe \"none of the safety features function\". Need not all. Fine.\n\nConditions empty.\n\nsafety_relevant false? Hmm \"none of the safety feature function\" could be safety relevant because safety features disabled. But rule specifically mentions crash etc. \"another risk to people\" maybe disabled safety features could be risk. However instructions: set when report mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. It doesn't mention risk; only safety features. But \"safety feature\" word not enough. I think false. Could mention in summary. If set true, maybe evidence quote \"none of the safety feature function\" but that's inference. I'd keep false to avoid inventing. But ADAS failure has safety implications; but \"safety_relevant\" maybe should flag because safety features not functioning. The rule says \"or another risk to people\" not necessarily explicit? It says \"mentions ... another risk\". The report mentions safety features not functioning, which is a risk? Hmm. The field is for desk triage. A failed forward collision avoidance/adaptive cruise is safety relevant. However \"do not invent facts\" but safety relevance is derived. They say set when report mentions... \"none of the safety feature function\" implies safety risk? It doesn't mention crash etc. The word safety feature is there. I'd lean true? Let's parse: \"Set safety_relevant when the report mentions a crash, fire, smoke, injury, loss of control, a stall at speed or another risk to people.\" It doesn't say only explicit. The failure of safety features could be \"another risk to people\". But the report doesn't say risk. In many such tasks, ADAS failure = safety relevant. But prompt wants conservative? It says don't invent. Could set true with quote \"none of the safety feature function (lane keep assist, adaptive cruise, etc).\" That supports that safety features disabled. I'll decide true? Need maintain no action suggestions. It's okay.\n\nBut if safety_relevant true, clues include kind safety quote \"none of the safety feature function (lane keep assist, adaptive cruise, etc).\" That quote is verbatim. Is that enough? Yes, safety features not functioning. I think true is defensible. But rule examples not exhaustive. Let's set true because safety systems disabled. Hmm.\n\nNeed \"conditions\" includes \"cold\", etc. None. Conditions empty.\n\nCould include \"after service\"? no.\n\nMissing_info: mileage null. date? received_at but not incident date. conditions. Maybe component? no. symptom yes. Good.\n\nOutput JSON.\n\nNeed no code fences. Ensure valid JSON. Use false? Let's final decide safety_relevant true. Wait if evaluator expects false due no explicit crash? Hmm. The instruction \"Set safety_relevant when the report mentions a crash, fire, smoke, injury, loss of control, a stall at speed or another risk to people.\" The narrative says \"none of the safety feature function\". That is a risk to people (safety systems inoperative). I think true is fine. But \"risk to people\" not explicitly \"risk\". Yet it's the essence. I'll set true. Could summary mention \"safety systems disabled\". Good.\n\nNeed group maybe \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\". Good.\n\nFinal JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793540087,
+      "id": "b94ba88cf7fcee473b9ffed02ff31e3d",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1842,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1622,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00067524,
+          "billing_source": "go",
+          "list_cost": 0.0011254,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 127,
+            "output": 1842,
+            "reasoning": 1622
+          }
+        },
+        "prompt_tokens": 511,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2353
+      }
+    },
+    "text": "{\"summary\":\"Forward collision avoidance/adaptive cruise control: windshield-mounted camera above the rear-view mirror failed, disabling lane keep assist, adaptive cruise and other safety features; no conditions given.\",\"group\":\"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\",\"symptoms\":[\"windshield-mounted camera failed\",\"lane keep assist not functioning\",\"adaptive cruise not functioning\",\"other safety features not functioning\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\"},{\"kind\":\"symptom\",\"quote\":\"The on board camera mounted on windshield above rear view mirror has failed\"},{\"kind\":\"symptom\",\"quote\":\"none of the safety feature function (lane keep assist, adaptive cruise, etc).\"},{\"kind\":\"safety\",\"quote\":\"none of the safety feature function (lane keep assist, adaptive cruise, etc).\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00067524,
+      "cached_tokens": 384,
+      "cost_usd": 0.0011254,
+      "input_tokens": 511,
+      "list_cost_usd": 0.0011254,
+      "output_tokens": 1842,
+      "reasoning_tokens": 1622
+    }
+  }
+}

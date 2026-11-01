@@ -1,0 +1,66 @@
+{
+  "key": "1ae99218b20d1fbb044ea3b310e017964b3ea65723116d27ba380c5f285892c3",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 6046,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "```json\n{\n  \"summary\": \"Adaptive cruise control and lane keep assist on a 2017 Honda Pilot drop out together after ~30-40 seconds of use, with all sensor warning lights staying on; no OBD codes, battery healthy, windshield replaced in July 2026\",\n  \"group\": \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\",\n  \"symptoms\": [\n    \"ACC and LKAS disengage together after approximately 30-40 seconds of operation\",\n    \"all sensor warning lights illuminate\",\n    \"sensors, ACC and LKAS stop working afterwards\",\n    \"warning lights and error messages remain on the instrument cluster\",\n    \"no fault codes stored in OBD II\",\n    \"battery tests healthy\",\n    \"vehicle otherwise starts and runs normally\"\n  ],\n  \"conditions\": [\"after service\"],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"missing_info\": [\"mileage\", \"date\"],\n  \"clues\": [\n    {\"kind\": \"component_group\", \"quote\": \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\"},\n    {\"kind\": \"symptom\", \"quote\": \"While driving with ACC active, I engaged LKAS.\"},\n    {\"kind\": \"symptom\", \"quote\": \"ACC and LKAS disengaged and all sensor warning lights illuminated\"},\n    {\"kind\": \"symptom\", \"quote\": \"sensors as well as ACC and LKAS would no longer work\"},\n    {\"kind\": \"symptom\", \"quote\": \"Warning lights and error messages on instrument  cluster continue to show since this happened.\"},\n    {\"kind\": \"other\", \"quote\": \"Vehicle starts and runs normally otherwise.\"},\n    {\"kind\": \"other\", \"quote\": \"Battery tested and is healthy.\"},\n    {\"kind\": \"other\", \"quote\": \"OBD II shows no codes.\"},\n    {\"kind\": \"condition\", \"quote\": \"New windshield was installed in July 2026 by Safelite.\"}\n  ]\n}\n```",
+            "reasoning_content": "Let me extract.\n\nComponent group: FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL — electrical/electronic driver assistance.\n\nSymptoms: ACC and LKAS disengaged after 30-40 seconds, all sensor warning lights illuminated, sensors/ACC/LKAS no longer work, warning lights and error messages persist.\n\nConditions: none explicitly? \"While driving\" — driving condition, not in the list. The list: cold, moisture, heat, vibration, intermittent, after service, charging. New windshield installed July 2026 — that's \"after service\". Yes, windshield replacement is a service event. Include \"after service\".\n\nFault codes: none, \"OBD II shows no codes\" — so empty list.\n\nSafety relevant: ACC/LKAS disengagement while driving — is that a risk to people? It's a loss of driver assistance, not loss of control. Hmm. Rules say set when crash, fire, smoke, injury, loss of control, stall at speed or other risk to people. ADAS disengagement isn't loss of control. I'll set false. But arguably... no crash mentioned. Keep false.\n\nMissing info: mileage (null), date (received_at exists, but the incident date is unknown — \"date\" of occurrence not given). Mileage missing. I'll list [\"mileage\", \"date\"].\n\nClues with verbatim quotes.\n\nCareful verbatim: \"While driving with ACC active, I engaged LKAS.\" \"After approximately 30-40 seconds,  ACC and LKAS disengaged\" — note double space in original. Better to use a clean span: \"ACC and LKAS disengaged and all sensor warning lights illuminated\". \"New windshield was installed in July 2026 by Safelite.\" \"OBD II shows no codes.\" \"Vehicle starts and runs normally otherwise.\"\n\nSummary line: component, symptom, conditions.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793539718,
+      "id": "50b055e6a1a6133635e16c6659594c93",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 835,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 392,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00031893,
+          "billing_source": "go",
+          "list_cost": 0.00053155,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 196,
+            "output": 835,
+            "reasoning": 392
+          }
+        },
+        "prompt_tokens": 580,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1415
+      }
+    },
+    "text": "```json\n{\n  \"summary\": \"Adaptive cruise control and lane keep assist on a 2017 Honda Pilot drop out together after ~30-40 seconds of use, with all sensor warning lights staying on; no OBD codes, battery healthy, windshield replaced in July 2026\",\n  \"group\": \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\",\n  \"symptoms\": [\n    \"ACC and LKAS disengage together after approximately 30-40 seconds of operation\",\n    \"all sensor warning lights illuminate\",\n    \"sensors, ACC and LKAS stop working afterwards\",\n    \"warning lights and error messages remain on the instrument cluster\",\n    \"no fault codes stored in OBD II\",\n    \"battery tests healthy\",\n    \"vehicle otherwise starts and runs normally\"\n  ],\n  \"conditions\": [\"after service\"],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"missing_info\": [\"mileage\", \"date\"],\n  \"clues\": [\n    {\"kind\": \"component_group\", \"quote\": \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\"},\n    {\"kind\": \"symptom\", \"quote\": \"While driving with ACC active, I engaged LKAS.\"},\n    {\"kind\": \"symptom\", \"quote\": \"ACC and LKAS disengaged and all sensor warning lights illuminated\"},\n    {\"kind\": \"symptom\", \"quote\": \"sensors as well as ACC and LKAS would no longer work\"},\n    {\"kind\": \"symptom\", \"quote\": \"Warning lights and error messages on instrument  cluster continue to show since this happened.\"},\n    {\"kind\": \"other\", \"quote\": \"Vehicle starts and runs normally otherwise.\"},\n    {\"kind\": \"other\", \"quote\": \"Battery tested and is healthy.\"},\n    {\"kind\": \"other\", \"quote\": \"OBD II shows no codes.\"},\n    {\"kind\": \"condition\", \"quote\": \"New windshield was installed in July 2026 by Safelite.\"}\n  ]\n}\n```",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00031893,
+      "cached_tokens": 384,
+      "cost_usd": 0.00053155,
+      "input_tokens": 580,
+      "list_cost_usd": 0.00053155,
+      "output_tokens": 835,
+      "reasoning_tokens": 392
+    }
+  }
+}

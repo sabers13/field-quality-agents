@@ -1,0 +1,66 @@
+{
+  "key": "341f4f0d63470f11f2114f0975176c9659e9a25ee2002a098e19591333e5c7ae",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10883,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"2021 GMC Acadia air bags did not deploy in a three-vehicle crash after unintended acceleration despite full braking at 30 MPH.\",\n  \"group\": \"AIR BAGS\",\n  \"symptoms\": [\n    \"air bags did not deploy on impact\",\n    \"vehicle continued to accelerate despite brake pedal depressed to the floorboard\",\n    \"forward collision avoidance warning activated with a red warning light\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"air bags\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The air bags did not deploy upon impact\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"the vehicle continued to accelerate while the Forward Collision Avoidance warning feature activated with a red warning light on the instrument panel\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"while driving at 30 MPH\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"traffic stopped abruptly\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"the brake pedal was depressed to the floorboard\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"resulting in a three-vehicle collision\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"Another driver involved claimed unknown injuries\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"The contact sustained whiplash but did not seek medical attention\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer JSON only. Need parse report. Component AIR BAGS. Summary one line component symptom conditions. Group electrical/electronic component group? Air bags are safety restraint, maybe electrical/electronic? Prompt says \"the electrical/electronic component group, or the given group\". Given component AIR BAGS. Could group \"AIR BAGS\". Symptoms: air bags did not deploy upon impact; vehicle continued to accelerate despite brake depressed; Forward Collision Avoidance warning activated with red warning light. Conditions: driving at 30 MPH, traffic stopped abruptly, brake pedal depressed to floorboard, crash, three-vehicle collision. Need conditions list from allowed: cold, moisture, heat, vibration, intermittent, after service, charging. None explicitly. Could empty? But prompt says conditions array from list. We can include no conditions? Maybe [] because none match. But \"driving at 30 MPH\" not in list. Could \"intermittent\"? no. Keep [].\n\nFault codes: none named. safety_relevant true (crash, injuries, airbags nondeploy, acceleration). missing_info: date? We have received_at but not incident date; mileage given. Component given symptom given conditions given? Conditions maybe driving at 30 mph given. Missing date only? Analysis needs date. Could include \"date\" because no incident date. Maybe also \"conditions\"? But conditions are present (driving, braking, crash). Missing \"date\". Need list only important. Include [\"date\"]. Maybe mileage present 64000. Component present. Symptom present.\n\nClues: Need verbatim spans. kind symptom: \"the vehicle continued to accelerate while the Forward Collision Avoidance warning feature activated with a red warning light on the instrument panel\"; \"The air bags did not deploy upon impact\"; condition: \"while driving at 30 MPH\"; \"traffic stopped abruptly\"; \"the brake pedal was depressed to the floorboard\"; safety: \"resulting in a three-vehicle collision\"; \"The contact sustained whiplash\"; component_group: \"AIR BAGS\"? Quote from report? Component field is AIR BAGS but report narrative says air bags. Quote \"The air bags did not deploy upon impact\" covers symptom and component. Need quote verbatim. Could include component_group quote \"air bags\" from narrative. But quote must be verbatim; \"air bags\" appears in \"The air bags did not deploy...\" yes. But case? Verbatim \"air bags\" lower. Good.\n\nNeed ensure JSON valid no markdown? User says answer one JSON object and no other text. Final just JSON.\n\nNeed think about summary: \"2021 GMC Acadia air bags did not deploy in a three-vehicle crash after unintended acceleration despite full braking at 30 MPH.\" Conditions include crash. Good.\n\nNeed group: \"AIR BAGS\" or \"restraint system\"? They ask electrical/electronic component group, or given group. Given group is AIR BAGS. Use \"AIR BAGS\".\n\nSymptoms: plain words: \"air bags did not deploy on impact\", \"vehicle continued to accelerate despite brake pedal to floor\", \"forward collision avoidance warning activated with red warning light\". Good.\n\nConditions: allowed list only. Could include [] because no cold moisture etc. But \"driving at 30 MPH\" maybe condition but not allowed. The schema says conditions [\"cold\", ...], likely choose from list. Since none, [].\n\nFault_codes [].\n\nSafety true.\n\nMissing_info [\"date\"]. Is \"date\" missing? received_at is 2026-10-16 but incident date not specified. Yes.\n\nClues need maybe include fault_code? none. other? no. Need not overdo. Include quotes exact. Check exact spans:\n- \"The contact stated that while driving at 30 MPH, traffic stopped abruptly, and the brake pedal was depressed to the floorboard; however, the vehicle continued to accelerate while the Forward Collision Avoidance warning feature activated with a red warning light on the instrument panel.\" Could quote entire. But clue kind condition quote \"while driving at 30 MPH\" exact yes. \"traffic stopped abruptly\" exact yes. \"the brake pedal was depressed to the floorboard\" exact yes (lowercase the). Symptom quote \"the vehicle continued to accelerate while the Forward Collision Avoidance warning feature activated with a red warning light on the instrument panel\" exact substring? Narrative: \"however, the vehicle continued to accelerate while the Forward Collision Avoidance warning feature activated with a red warning light on the instrument panel.\" Yes substring starts \"the vehicle continued...\" exact. Symptom \"The air bags did not deploy upon impact\" exact sentence. Safety quote \"resulting in a three-vehicle collision\" exact. \"The contact sustained whiplash but did not seek medical attention\" exact. Also \"Another driver involved claimed unknown injuries\" exact. Include maybe safety quotes. Component group quote \"air bags\" exact. But whether \"air bags\" lower appears? Sentence: \"The air bags did not deploy...\" yes substring \"air bags\". Good.\n\nNeed be careful quote \"The air bags did not deploy upon impact\" includes period? Exact sentence has period. Quote without period still verbatim span. Fine.\n\nFinal JSON. Ensure no trailing commas. \nNeed maybe missing_info includes \"date\" only. Could include \"conditions\"? The report has conditions but not environmental. Hmm \"conditions\" in missing_info means facts analysis needs: component, symptom, conditions, mileage, date. Conditions maybe present? It gives driving at 30 mph, braking, traffic stop. So not missing. Date missing. Good.\n\nLet's final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793540999,
+      "id": "620d1e4218984caac98e8dd58d34a84b",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1519,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1146,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00057156,
+          "billing_source": "go",
+          "list_cost": 0.0009526,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 267,
+            "output": 1519,
+            "reasoning": 1146
+          }
+        },
+        "prompt_tokens": 651,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2170
+      }
+    },
+    "text": "{\n  \"summary\": \"2021 GMC Acadia air bags did not deploy in a three-vehicle crash after unintended acceleration despite full braking at 30 MPH.\",\n  \"group\": \"AIR BAGS\",\n  \"symptoms\": [\n    \"air bags did not deploy on impact\",\n    \"vehicle continued to accelerate despite brake pedal depressed to the floorboard\",\n    \"forward collision avoidance warning activated with a red warning light\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"air bags\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The air bags did not deploy upon impact\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"the vehicle continued to accelerate while the Forward Collision Avoidance warning feature activated with a red warning light on the instrument panel\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"while driving at 30 MPH\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"traffic stopped abruptly\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"the brake pedal was depressed to the floorboard\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"resulting in a three-vehicle collision\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"Another driver involved claimed unknown injuries\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"The contact sustained whiplash but did not seek medical attention\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00057156,
+      "cached_tokens": 384,
+      "cost_usd": 0.0009526,
+      "input_tokens": 651,
+      "list_cost_usd": 0.0009526,
+      "output_tokens": 1519,
+      "reasoning_tokens": 1146
+    }
+  }
+}

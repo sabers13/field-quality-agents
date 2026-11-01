@@ -46,6 +46,12 @@ def build_parser() -> argparse.ArgumentParser:
     baseline.add_argument("--data-dir", default="data", help="derived data directory")
     baseline.add_argument("--out-dir", default="results/baseline", help="results directory")
     baseline.add_argument(
+        "--set",
+        dest="set_name",
+        default="replay_2025",
+        help="committed case set (default: replay_2025; Q14 uses final_live)",
+    )
+    baseline.add_argument(
         "--keywords",
         default=None,
         help="keyword TOML path (default: config/keywords.toml)",
@@ -144,6 +150,11 @@ def build_parser() -> argparse.ArgumentParser:
         default="web/dist",
         help="built dashboard to serve (default: web/dist)",
     )
+    serve.add_argument(
+        "--final-live-dir",
+        default="results/final-live",
+        help="Q14 run directory for the final live panel (default: results/final-live)",
+    )
     serve.set_defaults(handler="serve")
 
     export = sub.add_parser("export", help="write the offline dashboard data (Q8/Q10)")
@@ -154,6 +165,11 @@ def build_parser() -> argparse.ArgumentParser:
         "--web-dir",
         default="web/dist",
         help="built dashboard to bundle (default: web/dist; run make web-build first)",
+    )
+    export.add_argument(
+        "--final-live-dir",
+        default="results/final-live",
+        help="Q14 run directory for the final live panel (default: results/final-live)",
     )
     export.set_defaults(handler="export")
 
@@ -208,8 +224,9 @@ def _run_baseline(args: argparse.Namespace) -> int:
         data_dir=args.data_dir,
         out_dir=args.out_dir,
         keywords_path=args.keywords,
+        case_set=args.set_name,
     )
-    print(f"baseline: {report.cases} case(s) from the replay set")
+    print(f"baseline: {report.cases} case(s) from the {args.set_name} set")
     print(
         "baseline: keyword macro-F1 "
         f"{report.macro_f1.value:.4f} "
@@ -364,12 +381,19 @@ def _run_serve(args: argparse.Namespace) -> int:
             recordings_dir=args.recordings_dir,
             static_dir=args.static_dir,
             live_limit=args.live_limit,
+            final_live_dir=args.final_live_dir,
         )
     else:
         from field_quality_agents.api import FileResultStore, create_app
+        from field_quality_agents.export.final_live import load_final_live
 
         store = FileResultStore(args.results_dir, run_id=args.run_id)
-        app = create_app(store=store, mode="replay", static_dir=args.static_dir)
+        app = create_app(
+            store=store,
+            mode="replay",
+            static_dir=args.static_dir,
+            final_live=load_final_live(final_dir=args.final_live_dir),
+        )
     uvicorn.run(app, host=args.host, port=args.port, log_level="info")
     return 0
 
@@ -382,6 +406,7 @@ def _run_export(args: argparse.Namespace) -> int:
         run_id=args.run_id,
         out_dir=args.out,
         web_dir=args.web_dir,
+        final_live_dir=args.final_live_dir,
     )
     cases = 0
     manifest = root / "data" / "manifest.json"

@@ -1,0 +1,66 @@
+{
+  "key": "299b56cd499506c12440071649f4434059fc4d70e0d910cb09188a3aaa9677b8",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12290,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Reported component EXTERIOR LIGHTING; intermittent check-engine light for over 2 years causing emissions-test difficulty despite catalytic converter, oxygen sensor and engine replacement.\",\n  \"group\": \"EXTERIOR LIGHTING\",\n  \"symptoms\": [\n    \"check engine light stays on intermittently\",\n    \"difficulty passing the emissions test\",\n    \"same diagnostic codes keep appearing despite repairs\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"missing_info\": [\n    \"mileage\",\n    \"component\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"EXTERIOR LIGHTING\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The check engine light has been on for over 2 years now.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"It turns off and on\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"it makes it hard to pass the emission test\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"it still has the same codes appearing\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"both catalyc converters, oxygen sensors\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer only JSON. Need normalize report. Component given EXTERIOR LIGHTING but narrative is check engine light, emissions, catalytic converters, O2 sensors, engine replaced. Need group electrical/electronic component group or given group. Hmm component field says EXTERIOR LIGHTING, but symptom is check engine light / emissions. We must not invent. Group: given group? \"the electrical/electronic component group, or the given group\" Since given component EXTERIOR LIGHTING, but narrative doesn't support exterior lighting. Need group maybe \"EXTERIOR LIGHTING\" as given. But symptoms check engine light. Fault codes none named. Safety relevant? No crash/fire etc. Missing info: mileage? component? The component given is exterior lighting but symptom is check engine light. Analysis needs accurate component. Also conditions? Report says over 2 years, turns off and on intermittent. No cold/moisture/heat/vibration/after service/charging. Conditions list intermittent. Missing_info: mileage, component? Date? received date exists but no event date. Conditions? intermittent present. Symptom present. Component is inconsistent, but field exists. Maybe missing_info [\"mileage\",\"component\"]? Need include date? The analysis needs date? received_at exists. No occurrence date. But allowed missing info list includes date. Report says over 2 years now, so timeframe but not date. Might include date. But only important facts. Hmm.\n\nNeed quotes verbatim. Summary one line: component, symptom, conditions. Could say \"Check engine light intermittent for over 2 years; emissions test failure despite replaced catalytic converters, oxygen sensors, engine.\" Component? \"EXTERIOR LIGHTING (reported component)\" maybe. Summary one line includes component. But if component mismatched, mention reported component. Group maybe \"EXTERIOR LIGHTING\". Symptoms: [\"check engine light on\", \"check engine light turns off and on\", \"hard to pass emission test\", \"same codes appearing\"]. Conditions: [\"intermittent\"]. Fault_codes [] (no code named). Safety false. Missing_info [\"mileage\", \"component\"]? Since component mismatch, but report has component field exterior lighting not narrative. Analysis needs true component; missing. Date? received_at given. Maybe mileage missing. Conditions not missing because intermittent. Summary.\n\nClues: need verbatim spans. kind symptom quote \"The check engine light has been on for over 2 years now.\" condition quote \"It turns off and on\" (intermittent). symptom \"hard to pass the emission test\" quote exact \"it makes it hard to pass the emission test\" maybe. fault_code? no. component_group quote \"EXTERIOR LIGHTING\" not in narrative but in user report JSON? The report includes component field. The rule read only report in user message. Quote can be from any field? It says verbatim span copied from report. Could quote \"EXTERIOR LIGHTING\" from component field. kind component_group. safety none. other quote \"$10k\" maybe not needed. Need maybe clue for replaced parts: \"both catalyc converters, oxygen sensors\" but kind other. But should be evidence. Include.\n\nNeed ensure JSON only. Summary maybe \"Reported component EXTERIOR LIGHTING; intermittent check-engine light over 2 years prevents emissions test; catalytic converters, oxygen sensors and engine replaced.\" This invents? It says replaced both catalytic converters, oxygen sensors, engine. Good. \"prevents\" maybe hard to pass. Fine.\n\nNeed component group? \"EXTERIOR LIGHTING\" given. But symptom not exterior lighting. Could group \"EXTERIOR LIGHTING\" exactly. Hmm.\n\nNeed \"missing_info\": Only facts analysis needs: component, symptom, conditions, mileage, date. Component? Given field exists but contradicts narrative. Is it missing? The report names component \"EXTERIOR LIGHTING\"; not missing. But accurate component missing? The rule says missing_info for facts analysis needs. We can put \"mileage\" and \"component\" because narrative doesn't identify actual component for check engine light. But component field says exterior lighting. Might be confusing. Maybe missing_info [\"mileage\", \"component\", \"date\"]? Date: received_at but no incident date. The report says over 2 years, enough? Hmm.\n\nNeed no extra text. Final JSON.\n\nNeed consider safety_relevant false. No mention risk.\n\nFault codes: \"same codes\" but no code named, so [].\n\nConditions: [\"intermittent\"] only. Could \"after service\" because engine replaced? Hmm \"after service\" condition indicates symptom after service. It had engine replaced in 2018; light on over 2 years; not explicitly after service. Don't include.\n\nSymptom plain words: \"check engine light stays on intermittently\", \"emissions test failure\", \"recurring diagnostic codes despite repairs\". The last \"same codes appearing\" is symptom. Fine.\n\nClues quotes exact:\n- \"The check engine light has been on for over 2 years now.\"\n- \"It turns off and on\"\n- \"it makes it hard to pass the emission test\"\n- \"it still has the same codes appearing\"\n- \"both catalyc converters, oxygen sensors\" exact with typo. Good.\n- \"EXTERIOR LIGHTING\" component_group. Is that verbatim from report? Yes component field. Should include. But kind component_group. It is not narrative but report. Good.\n\nNeed summary one line: \"Reported component EXTERIOR LIGHTING; intermittent check-engine light for over 2 years causing emissions-test difficulty despite catalytic converter, oxygen sensor and engine replacement.\" Good.\n\nNeed perhaps group \"EXTERIOR LIGHTING\" even though check engine. The instruction \"the electrical/electronic component group, or the given group\" If given group is EXTERIOR LIGHTING, use it. OK.\n\nMissing_info: component? Hmm if we include component, but component field present, could be considered wrong. But because mismatch, actual faulty component unknown. The missing_info options include component. I think include \"component\" and \"mileage\". Date? Not necessary because received_at. But occurrence date absent. The report says over 2 years, but no exact. Analysis may need date; include \"date\"? The list options include date. However if received_at exists, date of report is known. \"date\" likely event date. Include? Desired maybe no overdo. We can include mileage and component. Conditions present. Symptom present. Date maybe not important. I'll include [\"mileage\",\"component\"] to flag mismatch. Is \"component\" missing? It's given but wrong. Hmm.\n\nNeed final only JSON. Ensure valid JSON no markdown. Use double quotes. Good.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793540602,
+      "id": "b1153f31cf96a002cec6cbe9bb64b677",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1705,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1404,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00063573,
+          "billing_source": "go",
+          "list_cost": 0.00105955,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 236,
+            "output": 1705,
+            "reasoning": 1404
+          }
+        },
+        "prompt_tokens": 620,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2325
+      }
+    },
+    "text": "{\n  \"summary\": \"Reported component EXTERIOR LIGHTING; intermittent check-engine light for over 2 years causing emissions-test difficulty despite catalytic converter, oxygen sensor and engine replacement.\",\n  \"group\": \"EXTERIOR LIGHTING\",\n  \"symptoms\": [\n    \"check engine light stays on intermittently\",\n    \"difficulty passing the emissions test\",\n    \"same diagnostic codes keep appearing despite repairs\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"missing_info\": [\n    \"mileage\",\n    \"component\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"EXTERIOR LIGHTING\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"The check engine light has been on for over 2 years now.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"It turns off and on\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"it makes it hard to pass the emission test\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"it still has the same codes appearing\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"both catalyc converters, oxygen sensors\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00063573,
+      "cached_tokens": 384,
+      "cost_usd": 0.00105955,
+      "input_tokens": 620,
+      "list_cost_usd": 0.00105955,
+      "output_tokens": 1705,
+      "reasoning_tokens": 1404
+    }
+  }
+}

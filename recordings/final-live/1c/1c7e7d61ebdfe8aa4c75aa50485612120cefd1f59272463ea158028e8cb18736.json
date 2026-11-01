@@ -1,0 +1,66 @@
+{
+  "key": "1c7e7d61ebdfe8aa4c75aa50485612120cefd1f59272463ea158028e8cb18736",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 22474,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"AIR BAGS: buyer reports VIN mismatch and door/seal/windshield issues, asks how safe the vehicle is; no airbag-specific symptom described.\",\"group\":\"AIR BAGS\",\"symptoms\":[\"vehicle sold with a different VIN registered to a gray Trax\",\"door did not close\",\"gas tank sensing concern\",\"broken seal\",\"windshield suction cup marks and ice inside\",\"safety concern about the vehicle\"],\"conditions\":[\"cold\",\"moisture\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"symptom\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"other\",\"quote\":\"different vin number registered to a gray trax\"},{\"kind\":\"symptom\",\"quote\":\"The door didn’t close\"},{\"kind\":\"symptom\",\"quote\":\"gas tank does sense appropriately\"},{\"kind\":\"symptom\",\"quote\":\"the seal on the car is broken\"},{\"kind\":\"symptom\",\"quote\":\"the front windshield has suction cup marks on the inside and freezes with ice inside the windshield\"},{\"kind\":\"condition\",\"quote\":\"freezes with ice inside the windshield\"},{\"kind\":\"safety\",\"quote\":\"How safe is my vehicle?\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize report. Component air bags given, but narrative mostly VIN fraud, door didn't close, gas tank does sense appropriately (probably doesn't sense?), seal broken, windshield suction cup marks freezes ice inside. Need group electrical/electronic component group or given group. Air bags is component group? \"AIR BAGS\" restraint system, not electrical/electronic? Given group can use given group. Need infer symptoms plain words. Conditions: cold? \"freezes with ice inside windshield\" indicates cold/moisture. \"sold us car in dark\" maybe not condition. Intermittent? no. after service? warranty repairs? no. charging? no. Safety relevant: asks \"How safe is my vehicle?\" mentions door didn't close, windshield freezes, possible VIN mismatch, air bags component. Does it mention crash/fire/smoke/injury/loss control/stall? No. But safety relevant when report mentions risk to people. \"How safe is my vehicle?\" and door didn't close, windshield ice inside, airbag? It doesn't explicitly mention airbag malfunction. Safety? The report is under AIR BAGS and asks safety. Need set safety_relevant maybe true due to door not closing and ice inside windshield could be risk? Rule: safety_relevant when report mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. \"How safe is my vehicle?\" is a safety concern but not specific risk? Door didn't close is safety risk. I'd set true. Need quotes verbatim. Need be careful quotes exact spans. Can quote \"The door didn’t close\" includes curly apostrophe. Need copy verbatim from JSON string after unicode: \"The door didn\\u2019t close\" actual text \"The door didn’t close\". We can include. \"freezes with ice inside the windshield\". \"gas tank does sense appropriately\" verbatim. \"How safe is my vehicle?\" quote. \"different vin number registered to a gray trax\" maybe component? fault code none.\n\nNeed summary one line: AIR BAGS / VIN mismatch and door/seal/windshield concerns, no airbag symptom described. But \"component, symptom, conditions\". Summary: \"AIR BAGS: VIN mismatch on purchased used vehicle; door not closing, broken seal, ice inside windshield; no airbag-specific symptom.\" Is that invent? It's okay. Conditions include cold (freezes/ice) and moisture? ice inside windshield implies moisture/cold. Maybe \"cold\", \"moisture\". Need symptoms list plain words: \"vehicle sold with different VIN registered to a gray Trax\", \"door did not close\", \"gas tank does not sense appropriately\", \"seal broken\", \"windshield has suction cup marks and freezes with ice inside\", \"safety concern\". But symptoms should be symptom in plain words, component symptom. Air bags no symptom. Should we include VIN mismatch as symptom? It's report issue but not component symptom. Could include. Need not invent \"gas tank does not sense appropriately\" from \"does sense appropriately\" likely typo. Use verbatim maybe \"gas tank does sense appropriately\" is ambiguous; plain words can \"gas tank sensing concern\". Better list \"gas tank does not sense appropriately\" would alter? Plain words okay but could be inaccurate. Quote exact.\n\nmissing_info: component? given AIR BAGS. symptom? no airbag-specific symptom. conditions? has cold/moisture. mileage missing (null). date? received at but acquired date redacted \"29 XXX\", not exact. Need missing_info include \"mileage\", \"date\", \"symptom\" maybe. Component is given but narrative not about airbags. The analysis needs component, symptom, conditions, mileage, date. Component given. Symptom? There are symptoms but not airbag-specific. Maybe missing \"mileage\", \"date\", \"symptom\" (no airbag symptom). Conditions present. Add \"component\" maybe no because given component air bags. But report doesn't describe airbag issue; component field says AIR BAGS. Could list \"symptom\" only. Missing mileage and date. Date: received_at exists but incident/purchase date redacted. So \"date\". Missing \"mileage\". Maybe \"component\" not missing. \"conditions\" not missing. \"symptom\" yes because no airbag symptom. Also \"VIN\" not allowed.\n\nClues: kind symptom quote \"The door didn’t close\" exact? The report has \"The door didn\\u2019t close, gas tank does sense appropriately, the seal on the car is broken, the front windshield has suction cup marks on the inside and freezes with ice inside the windshield.\" We can quote spans. \"gas tank does sense appropriately\" verbatim. \"the seal on the car is broken\". \"the front windshield has suction cup marks on the inside and freezes with ice inside the windshield\". Condition quote \"freezes with ice inside the windshield\" condition cold/moisture. Safety quote \"How safe is my vehicle?\" kind safety. component_group quote \"AIR BAGS\" is from component not narrative? The report includes component field; quote can be from report entire user message? It says report in user message. Could quote \"AIR BAGS\" from component. But clues quote verbatim from report; the JSON has \"component\": \"AIR BAGS\", so yes. kind component_group quote \"AIR BAGS\". fault_code none.\n\nNeed ensure JSON valid, no extra text. Use actual curly apostrophe? JSON allows Unicode. Need escape? We can output curly apostrophe directly. Must be valid JSON. Use double quotes. Quotes copied. Need \"didn’t\" with curly. Good.\n\nNeed decide safety_relevant true. Quote \"How safe is my vehicle?\" supports safety. Another risk \"The door didn’t close\" maybe safety. Include kind safety quote \"How safe is my vehicle?\" and maybe \"The door didn’t close\" as symptom not safety. Good.\n\nNeed group: \"AIR BAGS\" (given group). Or \"restraint system\"? Prompt says \"the electrical/electronic component group, or the given group\". Given group AIR BAGS. Use \"AIR BAGS\".\n\nSummary: \"AIR BAGS: VIN mismatch on used vehicle purchase; door not closing, broken seal, ice inside windshield; no airbag-specific symptom.\" Is \"VIN mismatch\" a symptom? okay. Maybe mention \"safety concern\". Need one line. Could say \"AIR BAGS: buyer reports VIN mismatch and door/seal/windshield issues, asks how safe vehicle is; no airbag symptom.\" Good.\n\nSymptoms list:\n- \"vehicle sold with a different VIN registered to a gray Trax\"\n- \"door did not close\"\n- \"gas tank sensing concern\"\n- \"broken seal\"\n- \"windshield suction cup marks and ice inside\"\n- \"safety concern about vehicle\"\nCould \"gas tank sensing concern\" plain. Fine.\n\nConditions: [\"cold\", \"moisture\"] because ice/freezes. Maybe \"after service\"? no. \"charging\"? no. \"vibration\"? no. \"intermittent\"? no. \"heat\"? no.\n\nMissing_info: [\"mileage\", \"date\", \"symptom\"]? Need \"date\" because acquired date redacted. Mileage null. Symptom no airbag-specific. Could include \"conditions\"? It has cold/moisture but not general. No.\n\nClues:\n- {\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"}\n- {\"kind\":\"symptom\",\"quote\":\"The door didn’t close\"}\n- {\"kind\":\"symptom\",\"quote\":\"gas tank does sense appropriately\"}\n- {\"kind\":\"symptom\",\"quote\":\"the seal on the car is broken\"}\n- {\"kind\":\"symptom\",\"quote\":\"the front windshield has suction cup marks on the inside and freezes with ice inside the windshield\"}\n- {\"kind\":\"condition\",\"quote\":\"freezes with ice inside the windshield\"}\n- {\"kind\":\"safety\",\"quote\":\"How safe is my vehicle?\"}\n- maybe {\"kind\":\"other\",\"quote\":\"different vin number registered to a gray trax\"} because VIN mismatch. Could kind other. Or symptom. Include. Need quote exact: \"a different vin number registered to a gray trax\" (lowercase vin). The narrative: \"they sold me a used vehicle with a different vin number registered to a gray trax.\" So quote \"different vin number registered to a gray trax\". Use exact. Kind other maybe. Since not component symptom? Could be symptom? Use other. The clues can include other. Fine.\n\nNeed not include \"fault_codes\": [].\n\nNeed answer only JSON. Ensure no markdown? It says answer with one JSON object and no other text. Can output raw JSON. Good. Need not mention no airbag symptom in summary? okay.\n\nNeed \"safety_relevant\": true. Good.\n\nNeed \"summary\": one line. Good.\n\nPotential issue: \"component\" is AIR BAGS but narrative not airbag; missing_info includes \"symptom\" because no airbag symptom. Good.\n\nNeed maybe \"conditions\": [\"cold\",\"moisture\"] only. Could \"cold\" from freezes. Good.\n\nFinal.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793539694,
+      "id": "5e0566004d7dcc39592e1ec194ffc2d1",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2195,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1927,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00083499,
+          "billing_source": "go",
+          "list_cost": 0.00139165,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 490,
+            "output": 2195,
+            "reasoning": 1927
+          }
+        },
+        "prompt_tokens": 874,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 3069
+      }
+    },
+    "text": "{\"summary\":\"AIR BAGS: buyer reports VIN mismatch and door/seal/windshield issues, asks how safe the vehicle is; no airbag-specific symptom described.\",\"group\":\"AIR BAGS\",\"symptoms\":[\"vehicle sold with a different VIN registered to a gray Trax\",\"door did not close\",\"gas tank sensing concern\",\"broken seal\",\"windshield suction cup marks and ice inside\",\"safety concern about the vehicle\"],\"conditions\":[\"cold\",\"moisture\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"symptom\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"other\",\"quote\":\"different vin number registered to a gray trax\"},{\"kind\":\"symptom\",\"quote\":\"The door didn’t close\"},{\"kind\":\"symptom\",\"quote\":\"gas tank does sense appropriately\"},{\"kind\":\"symptom\",\"quote\":\"the seal on the car is broken\"},{\"kind\":\"symptom\",\"quote\":\"the front windshield has suction cup marks on the inside and freezes with ice inside the windshield\"},{\"kind\":\"condition\",\"quote\":\"freezes with ice inside the windshield\"},{\"kind\":\"safety\",\"quote\":\"How safe is my vehicle?\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00083499,
+      "cached_tokens": 384,
+      "cost_usd": 0.00139165,
+      "input_tokens": 874,
+      "list_cost_usd": 0.00139165,
+      "output_tokens": 2195,
+      "reasoning_tokens": 1927
+    }
+  }
+}

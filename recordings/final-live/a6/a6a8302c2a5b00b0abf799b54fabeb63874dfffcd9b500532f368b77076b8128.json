@@ -1,0 +1,66 @@
+{
+  "key": "a6a8302c2a5b00b0abf799b54fabeb63874dfffcd9b500532f368b77076b8128",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11972,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2026 Subaru Forester fuse/wiring: engine sputtered and vehicle stalled at 25 MPH; fuel pump replaced, then a blown fuse was found after recurrence.\",\"group\":\"ELECTRICAL SYSTEM:WIRING:FUSES AND CIRCUIT BREAKERS\",\"symptoms\":[\"engine sputtered\",\"vehicle stalled\",\"inoperable fuel pump\",\"blown fuse\"],\"conditions\":[\"intermittent\",\"after service\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"the engine sputtered before the vehicle stalled\"},{\"kind\":\"safety\",\"quote\":\"while driving 25 MPH, the engine sputtered before the vehicle stalled\"},{\"kind\":\"symptom\",\"quote\":\"diagnosed with an inoperable fuel pump\"},{\"kind\":\"condition\",\"quote\":\"The vehicle was repaired; however, the failure returned three weeks later\"},{\"kind\":\"condition\",\"quote\":\"unable to duplicated the failure\"},{\"kind\":\"other\",\"quote\":\"caused by a blown fuse\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize. Component given electrical system wiring fuses/circuit breakers. Narrative: 2026 Forester, driving 25 MPH engine sputtered before vehicle stalled. Towed dealer diagnosed inoperable fuel pump. Repaired; failure returned three weeks later. Dealer unable duplicate but determined failure caused by blown fuse and fuse replaced. Manufacturer contacted. Mileage ~6000. Safety relevant? Mentions engine sputtered before vehicle stalled while driving 25 MPH. Stall at speed? 25 MPH maybe risk; \"stalled\" while driving. Loss of control? Not explicitly. Safety relevant when mentions stall at speed or another risk to people. It stalled while driving 25 MPH, engine sputtered before stall. That is a stall at speed (low speed) risk. Set true. Conditions? Driving 25 MPH, failure returned three weeks later, after service? The failure returned three weeks after repair, and dealer unable duplicate. Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. Report mentions failure returned and unable duplicate -> intermittent? Could infer intermittent? It says unable to duplicate, failure returned three weeks later. \"intermittent\" is a condition. Is it in report? Need conditions as normalized tags, not necessarily quotes. We can include \"intermittent\" because unable to duplicate and returned. \"after service\" because failure returned three weeks later after repair? It was repaired then returned. Yes after service. No charging. Driving not in allowed conditions? conditions list explicitly includes only those? It says conditions: [\"cold\", ...]. We should use from list only. Include intermittent, after service. Maybe not \"after service\" because repair then failure returned three weeks later; yes.\n\nSymptoms: engine sputtered, vehicle stalled, inoperable fuel pump, blown fuse. Need plain words. fault_codes: none. missing_info: date? received_at 2026-10-09, but narrative no date of incident. Analysis needs date? We have received date but not failure date. Missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Component known, symptom known, conditions maybe known? mileage given approx 6000. Date: no incident date. Should list \"date\". Maybe conditions? We have driving 25 MPH and after service/intermittent. No need. Missing info \"date\" only. Could include \"conditions\" if we want precise ambient conditions? But not necessary. The report lacks date of failure. Include [\"date\"]. Maybe \"mileage\" is present. No.\n\nSummary one line: \"2026 Subaru Forester electrical wiring/fuse: engine sputtered and vehicle stalled at 25 MPH; fuel pump replaced, then blown fuse found after recurrence.\" Good.\n\nGroup: given group? \"ELECTRICAL SYSTEM:WIRING:FUSES AND CIRCUIT BREAKERS\" or normalized \"electrical system wiring fuses and circuit breakers\". Prompt: \"the electrical/electronic component group, or the given group\". Use exact given? JSON string. Could use \"ELECTRICAL SYSTEM:WIRING:FUSES AND CIRCUIT BREAKERS\". Fine.\n\nClues: every quote verbatim. Need include symptom quotes, condition quotes, safety quote. We need exact spans from narrative. Let's copy carefully.\n\nNarrative: \"The contact owns a 2026 Subaru Forester. The contact stated that while driving 25 MPH, the engine sputtered before the vehicle stalled. The vehicle was towed to the dealer and diagnosed with an inoperable fuel pump. The vehicle was repaired; however, the failure returned three weeks later. The vehicle was taken back to the same dealer. The dealer was unable to duplicated the failure but determined that the failure was caused by a blown fuse and the fuse was replaced. The manufacturer was contacted by phone and made aware of the failure. The failure mileage was approximately 6,000.\"\n\nQuotes:\n- \"while driving 25 MPH, the engine sputtered before the vehicle stalled\" symptom/safety. Verbatim includes comma. Good.\n- \"diagnosed with an inoperable fuel pump\" symptom.\n- \"the failure returned three weeks later\" condition? after service/intermittent.\n- \"unable to duplicated the failure\" (grammatical error in report) condition intermittent. Verbatim.\n- \"caused by a blown fuse\" symptom/other.\n- \"The failure mileage was approximately 6,000\" maybe other/mileage, but kind list doesn't include mileage. Could omit. Clues kind \"other\" maybe not needed. We can include \"while driving 25 MPH\" condition? Kind condition quote \"while driving 25 MPH\". But conditions tags don't include driving. Clue kind condition can quote driving condition? It says conditions list tags, clues kind condition. We can include quote \"while driving 25 MPH\" as condition, even though tag list not include. But conditions array should only allowed tags? It says conditions: [\"cold\"...]. We can include tags only. For clue, kind condition with quote \"while driving 25 MPH\" maybe okay? But the condition tag isn't in conditions. Hmm.\n\nNeed safety clue quote that supports safety: \"the engine sputtered before the vehicle stalled\" or full \"while driving 25 MPH, the engine sputtered before the vehicle stalled\". Use kind safety.\n\nNeed component_group clue? Could quote \"blown fuse\" component group? Kind component_group quote \"blown fuse\" maybe. But given component. Not necessary but okay. \"caused by a blown fuse\" is symptom? It's cause. Kind \"other\" or \"symptom\". Use symptom for blown fuse? The symptom is stall/sputter; blown fuse is fault. Could be \"other\". But allowed kinds. Use \"other\" quote \"caused by a blown fuse\". But clues should evidence. Include.\n\nNeed ensure no extra text. Final JSON only.\n\nLet's craft:\n{\n \"summary\": \"2026 Subaru Forester fuse/wiring: engine sputtered and vehicle stalled at 25 MPH; fuel pump replaced, then a blown fuse was found after recurrence.\",\n \"group\": \"ELECTRICAL SYSTEM:WIRING:FUSES AND CIRCUIT BREAKERS\",\n \"symptoms\": [\"engine sputtered\", \"vehicle stalled\", \"inoperable fuel pump\", \"blown fuse\"],\n \"conditions\": [\"intermittent\", \"after service\"],\n \"fault_codes\": [],\n \"safety_relevant\": true,\n \"missing_info\": [\"date\"],\n \"clues\": [\n   {\"kind\":\"symptom\",\"quote\":\"the engine sputtered before the vehicle stalled\"},\n   {\"kind\":\"safety\",\"quote\":\"while driving 25 MPH, the engine sputtered before the vehicle stalled\"},\n   {\"kind\":\"symptom\",\"quote\":\"diagnosed with an inoperable fuel pump\"},\n   {\"kind\":\"condition\",\"quote\":\"the failure returned three weeks later\"},\n   {\"kind\":\"condition\",\"quote\":\"unable to duplicated the failure\"},\n   {\"kind\":\"other\",\"quote\":\"caused by a blown fuse\"}\n ]\n}\n\nCheck quote \"unable to duplicated the failure\" exists exactly? Yes: \"The dealer was unable to duplicated the failure but determined...\" Contains \"unable to duplicated the failure\" exact. Good.\n\nBut condition \"after service\": quote \"The vehicle was repaired; however, the failure returned three weeks later.\" Could use exact quote for after service. We have \"the failure returned three weeks later\" enough. Maybe quote \"The vehicle was repaired; however, the failure returned three weeks later\" exact? It includes semicolon. Use that to support after service. Good.\n\n\"intermittent\" quote \"unable to duplicated the failure\" plus returned. Good.\n\nNeed maybe missing_info \"conditions\"? We have conditions tags but not ambient. Since prompt says missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. Conditions are partly known (driving 25 MPH, after service, intermittent). No need.\n\nSafety_relevant true due stall at 25 MPH. Good.\n\nNeed not mention \"date\" maybe received_at date given but incident date missing. Include date.\n\nEnsure valid JSON. Final only.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793540424,
+      "id": "1d4ef82595dc9728b73b3ab8539c159e",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1921,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1694,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00071214,
+          "billing_source": "go",
+          "list_cost": 0.0011869,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 221,
+            "output": 1921,
+            "reasoning": 1694
+          }
+        },
+        "prompt_tokens": 605,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2526
+      }
+    },
+    "text": "{\"summary\":\"2026 Subaru Forester fuse/wiring: engine sputtered and vehicle stalled at 25 MPH; fuel pump replaced, then a blown fuse was found after recurrence.\",\"group\":\"ELECTRICAL SYSTEM:WIRING:FUSES AND CIRCUIT BREAKERS\",\"symptoms\":[\"engine sputtered\",\"vehicle stalled\",\"inoperable fuel pump\",\"blown fuse\"],\"conditions\":[\"intermittent\",\"after service\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"the engine sputtered before the vehicle stalled\"},{\"kind\":\"safety\",\"quote\":\"while driving 25 MPH, the engine sputtered before the vehicle stalled\"},{\"kind\":\"symptom\",\"quote\":\"diagnosed with an inoperable fuel pump\"},{\"kind\":\"condition\",\"quote\":\"The vehicle was repaired; however, the failure returned three weeks later\"},{\"kind\":\"condition\",\"quote\":\"unable to duplicated the failure\"},{\"kind\":\"other\",\"quote\":\"caused by a blown fuse\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00071214,
+      "cached_tokens": 384,
+      "cost_usd": 0.0011869,
+      "input_tokens": 605,
+      "list_cost_usd": 0.0011869,
+      "output_tokens": 1921,
+      "reasoning_tokens": 1694
+    }
+  }
+}

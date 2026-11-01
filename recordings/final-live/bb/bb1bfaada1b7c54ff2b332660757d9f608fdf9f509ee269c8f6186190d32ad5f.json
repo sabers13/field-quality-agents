@@ -1,0 +1,66 @@
+{
+  "key": "bb1bfaada1b7c54ff2b332660757d9f608fdf9f509ee269c8f6186190d32ad5f",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 15976,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Electrical system: TPMS may not detect low tire pressure or illuminate the warning telltale; open safety recall 26V-559 left unremedied after a 4-day dealer visit.\",\n  \"group\": \"ELECTRICAL SYSTEM\",\n  \"symptoms\": [\n    \"TPMS may not detect low tire pressure\",\n    \"TPMS may not illuminate the warning telltale\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [\n    \"26V-559\",\n    \"54D\"\n  ],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"ELECTRICAL SYSTEM\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"the tire pressure monitoring system may not detect low tire pressure or illuminate the warning telltale\"\n    },\n    {\n      \"kind\": \"fault_code\",\n      \"quote\": \"26V-559\"\n    },\n    {\n      \"kind\": \"fault_code\",\n      \"quote\": \"54D\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"open, unrepaired safety recall\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"zero recall work performed\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"citing shop scheduling delays\"\n    }\n  ]\n}",
+            "reasoning_content": "We need to output JSON only. Need parse report. Component: electrical system. Summary one line: component, symptom, conditions. The report is about unrepaired safety recall TPMS may not detect low tire pressure/illuminate telltale; dealer failed to perform recall work after 4 days. Symptoms: TPMS may not detect low tire pressure or illuminate warning telltale. Conditions: after service? Not exactly. The conditions listed allowed: \"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\". The report says dropped off for service, returned with zero work. \"after service\" maybe not appropriate because no service performed. Conditions maybe empty? It mentions shop scheduling delays, calls not returned — not vehicle conditions. Could include \"after service\" because vehicle was at dealer? But condition is environmental/operational. Better conditions: [] or maybe \"after service\" because recall work not performed? The instructions: conditions list from given set. We should only include if report supports. \"after service\" could be cited by \"returned it Saturday evening with zero recall work performed\" but not a condition causing symptom. We can leave conditions empty. Fault codes: none named? Recall 26V-559, FCA 54D are recall/campaign identifiers, not fault codes. The field fault_codes asks \"code if the report names one\". Could include \"26V-559\", \"54D\" as codes? They are recall codes, not fault codes. But likely relevant. We can include them as fault_codes? The schema says fault_codes [\"code if the report names one\"]. It doesn't restrict to DTC. Include \"26V-559\" and \"54D\" maybe. Also \"RFH module reprogram\". Safety_relevant: true? Report mentions safety recall, TPMS may not detect low tire pressure; no crash/fire/injury. Safety relevant because safety recall and risk to people (low tire pressure undetected). Set true. Missing_info: mileage missing (null). Date? received_at given; date of incident maybe not needed. Conditions? Component and symptom present. Mileage missing. Also maybe date of service? Report gives Wednesday/Saturday but no exact date. Missing_info list only facts analysis needs: component, symptom, conditions, mileage, date. Mileage missing. Date? There is received_at 2026-10-24, but service date not exact. Could include \"mileage\" only. Maybe \"date\" as service date missing? But report says dropped off Wednesday, returned Saturday, received_at. For analysis, exact date maybe not critical. We can include \"mileage\". Clues: need verbatim quotes. We must copy exact spans from narrative. Need include kind symptom, condition, fault_code, component_group, safety, other. Quotes must be exact. Let's identify exact substrings.\n\nNarrative:\n\"New 2026 Jeep Grand Cherokee (2.0L turbo I4) has open, unrepaired safety recall 26V-559 (FCA 54D): the tire pressure monitoring system may not detect low tire pressure or illuminate the warning telltale; remedy is an RFH module reprogram. The vehicle also has an open manufacturer campaign for 2.0L engine spark plug replacement and additional software flash campaigns. I scheduled service for these recalls at an authorized FCA/Stellantis dealer (Larry H. Miller Chrysler Jeep Dodge Ram, Boise, ID). I dropped the vehicle off on a Wednesday at 7:00 AM; the dealer kept it nearly 4 full days and returned it Saturday evening with zero recall work performed, citing shop scheduling delays. The service advisor told me to call/email the following Tuesday to reschedule; those calls and emails were not returned. Voicemails and emails to the dealership's service manager and general manager have also gone unanswered. As a result, I am driving a new vehicle with an incomplete safety recall and no dealer remedy scheduled. No crash, fire, or injury has occurred. Problem has not been inspected by the manufacturer. I have escalated to the manufacturer and am attempting to book the recall at an alternate dealer. I am reporting that the manufacturer's dealer network has failed to remedy this safety recall in a timely manner.\"\n\nExact quotes:\n- \"ELECTRICAL SYSTEM\" from component field, not narrative. Clues quote should be from report? The report includes component field. The user message includes JSON with component \"ELECTRICAL SYSTEM\". So quote can be \"ELECTRICAL SYSTEM\". Kind component_group.\n- Symptom quote: \"the tire pressure monitoring system may not detect low tire pressure or illuminate the warning telltale\" exact. Check capitalization: narrative has \"the tire pressure monitoring system may not detect low tire pressure or illuminate the warning telltale\" yes.\n- Fault code quote: \"26V-559\" exact. Also \"54D\" exact. Kind fault_code.\n- Safety quote: \"safety recall\" exact? Or \"incomplete safety recall\" exact. Or \"No crash, fire, or injury has occurred.\" That indicates no safety event. Safety relevant true due to safety recall. Use quote \"open, unrepaired safety recall\" exact? It appears \"has open, unrepaired safety recall 26V-559\" so quote \"open, unrepaired safety recall\" is exact substring. Kind safety.\n- Other: \"zero recall work performed\" exact. Kind other.\n- Condition? \"citing shop scheduling delays\" exact, but not in allowed conditions. Could be other. Condition quote maybe none. If include condition \"after service\" need quote? \"returned it Saturday evening with zero recall work performed\" but not condition. We can skip conditions. Clues can include other kind.\n\nNeed summary: \"Electrical system / TPMS low-pressure detection and telltale warning may fail; unrepaired safety recall 26V-559, dealer kept vehicle 4 days without performing recall work.\" One line. Conditions: maybe \"after service\" not really. Summary conditions: \"dealer service visit\" maybe. But summary should include conditions. Could say \"Electrical system: TPMS may not detect low tire pressure or warn; open safety recall 26V-559 left unremedied after a 4-day dealer visit.\" That's one line.\n\nGroup: \"ELECTRICAL SYSTEM\" or \"electrical/electronic\"? The field says \"the electrical/electronic component group, or the given group\". Given component is \"ELECTRICAL SYSTEM\". Use \"ELECTRICAL SYSTEM\".\n\nSymptoms: [\"TPMS may not detect low tire pressure\", \"TPMS may not illuminate warning telltale\"]? Plain words. Or one symptom \"tire pressure monitoring system may not detect low tire pressure or illuminate the warning telltale\". Use array with one string. Could split into two. Schema says [\"symptom in plain words\"]. We can include two.\n\nConditions: [] maybe. But if conditions required? The allowed set includes \"after service\" — vehicle was at dealer for service but no work. It was returned with zero work. Not a condition. I think empty.\n\nFault codes: [\"26V-559\", \"54D\"]? Are recall IDs fault codes? The schema says fault_codes code if report names one. It names recall 26V-559 and FCA 54D. Could include both. But \"fault_codes\" likely DTCs. However recall codes are codes. The desk may want them. Include.\n\nSafety_relevant: true.\n\nMissing_info: [\"mileage\"] because null. Maybe \"date\" because no exact service date? Report has received_at. But missing_info should only facts analysis needs. Mileage missing. Maybe \"date\" of service? The report says Wednesday/Saturday but no calendar date. But not essential? The analysis may need date. The received_at is 2026-10-24. The incident date unknown. Could include \"date\". But missing_info list allowed facts: component, symptom, conditions, mileage, date. I can include [\"mileage\", \"date\"] if exact service date missing. But the report gives received_at; date of report. The service visit date not stated. For analysis, date of service could matter. Hmm.\n\nClues: Need include quotes that support. Let's craft JSON with clues:\n[\n{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},\n{\"kind\":\"symptom\",\"quote\":\"the tire pressure monitoring system may not detect low tire pressure or illuminate the warning telltale\"},\n{\"kind\":\"fault_code\",\"quote\":\"26V-559\"},\n{\"kind\":\"fault_code\",\"quote\":\"54D\"},\n{\"kind\":\"safety\",\"quote\":\"open, unrepaired safety recall\"},\n{\"kind\":\"other\",\"quote\":\"zero recall work performed\"},\n{\"kind\":\"other\",\"quote\":\"citing shop scheduling delays\"}\n]\nNeed ensure \"open, unrepaired safety recall\" exact: narrative: \"has open, unrepaired safety recall 26V-559\" yes substring includes space after has. Quote \"open, unrepaired safety recall\" exact. \"zero recall work performed\" exact. \"citing shop scheduling delays\" exact. Good.\n\nCould include condition clue? If conditions empty, no.\n\nNeed no other text. Final only JSON. Ensure valid JSON. Summary no quotes issue. Use false/true boolean. Good.\n\nNeed maybe \"group\": \"ELECTRICAL SYSTEM\" not \"electrical\". Good.\n\nLet's final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793541553,
+      "id": "29154784291d83bad2e17ae75ecb9e10",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2269,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1950,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00085074,
+          "billing_source": "go",
+          "list_cost": 0.0014179,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 369,
+            "output": 2269,
+            "reasoning": 1950
+          }
+        },
+        "prompt_tokens": 753,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 3022
+      }
+    },
+    "text": "{\n  \"summary\": \"Electrical system: TPMS may not detect low tire pressure or illuminate the warning telltale; open safety recall 26V-559 left unremedied after a 4-day dealer visit.\",\n  \"group\": \"ELECTRICAL SYSTEM\",\n  \"symptoms\": [\n    \"TPMS may not detect low tire pressure\",\n    \"TPMS may not illuminate the warning telltale\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [\n    \"26V-559\",\n    \"54D\"\n  ],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"ELECTRICAL SYSTEM\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"the tire pressure monitoring system may not detect low tire pressure or illuminate the warning telltale\"\n    },\n    {\n      \"kind\": \"fault_code\",\n      \"quote\": \"26V-559\"\n    },\n    {\n      \"kind\": \"fault_code\",\n      \"quote\": \"54D\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"open, unrepaired safety recall\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"zero recall work performed\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"citing shop scheduling delays\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00085074,
+      "cached_tokens": 384,
+      "cost_usd": 0.0014179,
+      "input_tokens": 753,
+      "list_cost_usd": 0.0014179,
+      "output_tokens": 2269,
+      "reasoning_tokens": 1950
+    }
+  }
+}

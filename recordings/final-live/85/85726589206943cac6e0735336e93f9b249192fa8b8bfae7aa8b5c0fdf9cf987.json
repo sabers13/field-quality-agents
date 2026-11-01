@@ -1,0 +1,66 @@
+{
+  "key": "85726589206943cac6e0735336e93f9b249192fa8b8bfae7aa8b5c0fdf9cf987",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 6053,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Test the odometer/speedometer system for the reported mileage discrepancy and possible odometer fraud.\",\"rationale\":\"The narrative reports a mileage discrepancy: the vehicle was purchased with 142,069 miles and later showed 197,779 miles at maintenance. No rulebook entry, recall, investigation, or similar case supports a targeted load test, so the standard test is proposed.\",\"group\":\"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\",\"symptoms\":[\"mileage discrepancy\",\"odometer fraud\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"targeted\":false,\"test_name\":\"standard test\",\"clues\":[{\"kind\":\"symptom\",\"quote\":\"Odometer Fraud.\"},{\"kind\":\"symptom\",\"quote\":\"there was a mileage discrepancy\"},{\"kind\":\"other\",\"quote\":\"At the time of purchase, the vehicle mileage was 142,069\"},{\"kind\":\"other\",\"quote\":\"at the time of maintenance, it was discovered that the mileage was 197,779\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need analyze. Case is odometer fraud, mileage discrepancy. No rulebook entries, no recalls/investigations/similar. Need propose standard test targeted false. Safety_relevant false? Narrative doesn't show risk to people. Odometer fraud is fraud, not safety. Group component. Symptoms conditions fault codes. Test_name standard test? Rulebook names none. Need maybe \"standard test\" or \"odometer verification\". The instructions: \"Otherwise propose the standard test (\\\"targeted\\\": false).\" test_name \"standard test\". Could say \"Odometer/speedometer verification\". But \"the targeted test the rulebook names\" only for targeted. For standard, perhaps \"standard test\". Need clues verbatim quotes from narrative. Must copy exactly from case narrative, not extraction? \"case narrative\" includes \"Odometer Fraud. The contact purchased a 2016 Honda Odyssey. It was discovered that there was a mileage discrepancy. The vehicle was a private sale. At the time of purchase, the vehicle mileage was 142,069, and at the time of maintenance, it was discovered that the mileage was 197,779.\"\n\nNeed include quote spans. Could include:\n- \"Odometer Fraud.\"\n- \"there was a mileage discrepancy\"\n- \"At the time of purchase, the vehicle mileage was 142,069\"\n- \"at the time of maintenance, it was discovered that the mileage was 197,779\"\nNeed ensure verbatim; second appears as \"It was discovered that there was a mileage discrepancy.\" The quote \"there was a mileage discrepancy\" is exact substring. Good.\nFirst \"Odometer Fraud.\" exact.\nThird exact? narrative says \"At the time of purchase, the vehicle mileage was 142,069,\" yes substring exact.\nFourth says \"and at the time of maintenance, it was discovered that the mileage was 197,779.\" substring \"at the time of maintenance, it was discovered that the mileage was 197,779\" exact. Good.\n\nNeed summary one line. Rationale condition/evidence. Group. symptoms arrays: [\"mileage discrepancy\", \"odometer fraud\"] maybe conditions [] fault_codes []. safety_relevant false. targeted false. test_name maybe \"standard test\". clues kinds symptom/other. The clue kind options include symptom condition fault_code component_group safety other. We can label mileage discrepancy symptom, odometer fraud symptom, mileage values other. Maybe component group clue quote? Need quote from narrative for component group? Narrative doesn't state group. Avoid. Could include \"private sale\" condition? It is a condition? \"The vehicle was a private sale.\" Could label condition? Hmm not really. But useful. Quote exact \"The vehicle was a private sale.\" Could include as other or condition. Conditions normally environmental/usage conditions. Private sale isn't a condition. Use other. But okay.\n\nNeed only JSON no other text. Ensure valid JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793541138,
+      "id": "f6801d3aa91a125a7c58ed4c119b9480",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 829,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 602,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00036972,
+          "billing_source": "go",
+          "list_cost": 0.0006162,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 792,
+            "output": 829,
+            "reasoning": 602
+          }
+        },
+        "prompt_tokens": 792,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 1621
+      }
+    },
+    "text": "{\"summary\":\"Test the odometer/speedometer system for the reported mileage discrepancy and possible odometer fraud.\",\"rationale\":\"The narrative reports a mileage discrepancy: the vehicle was purchased with 142,069 miles and later showed 197,779 miles at maintenance. No rulebook entry, recall, investigation, or similar case supports a targeted load test, so the standard test is proposed.\",\"group\":\"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\",\"symptoms\":[\"mileage discrepancy\",\"odometer fraud\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"targeted\":false,\"test_name\":\"standard test\",\"clues\":[{\"kind\":\"symptom\",\"quote\":\"Odometer Fraud.\"},{\"kind\":\"symptom\",\"quote\":\"there was a mileage discrepancy\"},{\"kind\":\"other\",\"quote\":\"At the time of purchase, the vehicle mileage was 142,069\"},{\"kind\":\"other\",\"quote\":\"at the time of maintenance, it was discovered that the mileage was 197,779\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00036972,
+      "cached_tokens": 0,
+      "cost_usd": 0.0006162,
+      "input_tokens": 792,
+      "list_cost_usd": 0.0006162,
+      "output_tokens": 829,
+      "reasoning_tokens": 602
+    }
+  }
+}

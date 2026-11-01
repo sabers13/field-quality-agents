@@ -1,0 +1,66 @@
+{
+  "key": "144bc443111747f267f157730d5c593575d3578083205f15458b3fc09d08e512",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 5821,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "```json\n{\n  \"summary\": \"Test the high-voltage electrical system on a 2025 Audi Q6 Sportback e-tron that has malfunctioned three times and been towed; no rulebook, recall or investigation data narrows this to a targeted load test.\",\n  \"rationale\": \"The narrative reports a third occurrence of a \\\"high-voltage electrical system malfunction\\\" with the vehicle towed to the dealership. There are no fault codes, no stated driving conditions, no matching recall, no open investigation, no similar case and no rulebook entry, so the reported conditions cannot be matched to a targeted load test. A standard electrical system test is therefore the appropriate proposal. The narrative does not describe a fire, loss of control or injury, so no direct risk to people is documented.\",\n  \"group\": \"ELECTRICAL SYSTEM\",\n  \"symptoms\": [\n    \"high-voltage electrical system malfunction\",\n    \"repeated malfunction, third occurrence\",\n    \"vehicle disabled and towed\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"targeted\": false,\n  \"test_name\": \"standard high-voltage electrical system diagnostic test\",\n  \"clues\": [\n    {\"kind\": \"symptom\", \"quote\": \"high-voltage electrical system malfunction\"},\n    {\"kind\": \"other\", \"quote\": \"This is the 3rd time\"},\n    {\"kind\": \"other\", \"quote\": \"It was just towed to the dealership.\"}\n  ]\n}\n```",
+            "reasoning_content": "The case: 2025 Audi Q6 Sportback e-tron, third high-voltage electrical system malfunction, towed. No recalls, no investigations, no rulebook matches, no similar cases.\n\nSafety: high-voltage electrical system malfunction — potential risk? Narrative doesn't show direct risk to people (no fire, no loss of power while driving stated). But HV malfunction repeated three times... The guidance says set safety_relevant when narrative shows a risk to people. Towed = disabled vehicle. No explicit risk. Extraction says false. I'll keep false... Hmm, but HV system malfunction could be safety. No explicit evidence of risk to people in narrative. Keep false to be consistent with extraction, though a repeated HV failure causing tow could be a hazard. I'll say false.\n\nTargeted: false, no rulebook entry. Standard test.\n\nTest name: no rulebook names — must not invent a rulebook test name. Use generic standard test, e.g., \"standard electrical system diagnostic test\". Hmm, \"test_name\": \"the targeted test the rulebook names\" — only when targeted. Since not targeted, maybe empty string or a standard test. I'll put \"standard electrical system function test\".\n\nClues with verbatim quotes from narrative: \"high-voltage electrical system malfunction\", \"This is the 3rd time\", \"It was just towed to the dealership.\"\n\nQuote spans must be verbatim from narrative. \"This is the 3rd time I have had a \\\"high-voltage electrical system malfunction.\\\"\" — quoted spans fine.\n\nOutput JSON only.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793540797,
+      "id": "de81e9090c07c983074100f841a5ff41",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 636,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 319,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00029106,
+          "billing_source": "go",
+          "list_cost": 0.0004851,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 690,
+            "output": 636,
+            "reasoning": 319
+          }
+        },
+        "prompt_tokens": 690,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 1326
+      }
+    },
+    "text": "```json\n{\n  \"summary\": \"Test the high-voltage electrical system on a 2025 Audi Q6 Sportback e-tron that has malfunctioned three times and been towed; no rulebook, recall or investigation data narrows this to a targeted load test.\",\n  \"rationale\": \"The narrative reports a third occurrence of a \\\"high-voltage electrical system malfunction\\\" with the vehicle towed to the dealership. There are no fault codes, no stated driving conditions, no matching recall, no open investigation, no similar case and no rulebook entry, so the reported conditions cannot be matched to a targeted load test. A standard electrical system test is therefore the appropriate proposal. The narrative does not describe a fire, loss of control or injury, so no direct risk to people is documented.\",\n  \"group\": \"ELECTRICAL SYSTEM\",\n  \"symptoms\": [\n    \"high-voltage electrical system malfunction\",\n    \"repeated malfunction, third occurrence\",\n    \"vehicle disabled and towed\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"targeted\": false,\n  \"test_name\": \"standard high-voltage electrical system diagnostic test\",\n  \"clues\": [\n    {\"kind\": \"symptom\", \"quote\": \"high-voltage electrical system malfunction\"},\n    {\"kind\": \"other\", \"quote\": \"This is the 3rd time\"},\n    {\"kind\": \"other\", \"quote\": \"It was just towed to the dealership.\"}\n  ]\n}\n```",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00029106,
+      "cached_tokens": 0,
+      "cost_usd": 0.0004851,
+      "input_tokens": 690,
+      "list_cost_usd": 0.0004851,
+      "output_tokens": 636,
+      "reasoning_tokens": 319
+    }
+  }
+}

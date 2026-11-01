@@ -1,0 +1,66 @@
+{
+  "key": "b550cdeeda0e46770ca6346b65b2f6b9016e9d7c28203bde291186946b6d94fe",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10220,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system high-voltage traction battery: severe overheating, swelling, permanent damage and inoperability during Level 3 DC fast charging.\",\"group\":\"ELECTRICAL SYSTEM\",\"symptoms\":[\"catastrophic battery failure\",\"high-voltage traction battery severely overheated\",\"battery physically expanded/swelled\",\"major vehicle fault sensor tripped\",\"battery permanently damaged\",\"vehicle entirely inoperable\"],\"conditions\":[\"charging\",\"heat\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"catastrophic battery failure\"},{\"kind\":\"condition\",\"quote\":\"plugged into a Level 3 DC fast charger\"},{\"kind\":\"symptom\",\"quote\":\"high-voltage traction battery severely overheated\"},{\"kind\":\"symptom\",\"quote\":\"physically expanded/swelled\"},{\"kind\":\"symptom\",\"quote\":\"tripped a major vehicle fault sensor\"},{\"kind\":\"symptom\",\"quote\":\"battery was permanently damaged\"},{\"kind\":\"symptom\",\"quote\":\"vehicle entirely inoperable\"},{\"kind\":\"condition\",\"quote\":\"during normal operation at an authorized charging station\"},{\"kind\":\"safety\",\"quote\":\"severe thermal event (overheating and physical expansion)\"},{\"kind\":\"safety\",\"quote\":\"fire and explosion hazard\"},{\"kind\":\"safety\",\"quote\":\"fire risks during fast charging\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize report. Need extract summary, group, symptoms, conditions, fault_codes, safety_relevant true, missing_info likely mileage? Report has no mileage. date? \"In XXX\" redacted, received date but incident date missing. component present, symptom present, conditions present (charging, fast charging, heat/overheating). Need missing_info list maybe mileage, date. The incident date redacted \"In XXX\" so date missing. Mileage null. Conditions? It mentions during charging, Level 3 DC fast charger, overheating. Could include \"charging\", \"heat\". Maybe \"after service\"? no. Intermittent? no. Cold? no. Moisture? no. Vibration? no. Safety relevant true due fire, explosion hazard, thermal event, smoke? no smoke but fire/explosion. Fault codes? \"major vehicle fault sensor\" but no code named. So fault_codes empty. Clues verbatim quotes. Need only quotes from report. Summary one line: component electrical system / high-voltage traction battery, symptom severe overheating, swelling, permanent damage, inoperable, conditions during Level 3 DC fast charging. Group: electrical/electronic component group or given group. Given component ELECTRICAL SYSTEM. Could set group \"ELECTRICAL SYSTEM\" or \"high-voltage traction battery\"? Prompt says \"the electrical/electronic component group, or the given group\". Better use \"ELECTRICAL SYSTEM\" as given. Symptoms plain words: \"high-voltage traction battery severely overheated\", \"battery physically expanded/swelled\", \"major vehicle fault sensor tripped\", \"battery permanently damaged\", \"vehicle entirely inoperable\". Also \"fire and explosion hazard\" is safety. Conditions: \"charging\", \"heat\". Maybe \"fast charging\". Allowed conditions list: [\"cold\",\"moisture\",\"heat\",\"vibration\",\"intermittent\",\"after service\",\"charging\"]. Use \"charging\",\"heat\". Could \"fast charging\" not in list? But conditions array maybe values from list? It says conditions: [\"cold\", ...]. We should stick to allowed. \"charging\" and \"heat\". safety_relevant true. missing_info: [\"mileage\",\"date\"] maybe date. Does analysis need date? yes incident date redacted. Could include \"date\". Also \"conditions\" are present. Component present. Symptom present. Maybe \"mileage\" missing. Do we need \"fault_codes\"? no. missing_info only listed facts. Include mileage and date. Clues: multiple. Need verbatim spans. Must copy exact. Ensure quotes exactly from report. Let's craft quotes:\n- \"catastrophic battery failure\" (symptom)\n- \"plugged into a Level 3 DC fast charger\" (condition)\n- \"high-voltage traction battery severely overheated\" (symptom)\n- \"physically expanded/swelled\" (symptom)\n- \"tripped a major vehicle fault sensor\" (symptom/other maybe symptom)\n- \"battery was permanently damaged\" (symptom)\n- \"vehicle entirely inoperable\" (symptom)\n- \"fire and explosion hazard\" (safety)\n- \"severe thermal event (overheating and physical expansion)\" (symptom/safety)\n- \"during normal operation at an authorized charging station\" (condition? charging)\n- \"fire risks during fast charging\" (safety/condition)\nNeed not too many but enough. Each quote verbatim. Check exact: \"In XXX, my 2020 Nissan Leaf experienced a catastrophic battery failure while plugged into a Level 3 DC fast charger at the Nissan dealership where the vehicle was originally purchased.\" So \"catastrophic battery failure\" yes. \"plugged into a Level 3 DC fast charger\" yes substring? \"while plugged into a Level 3 DC fast charger\" includes while. Use \"plugged into a Level 3 DC fast charger\" exact. \"high-voltage traction battery severely overheated\" exact? Sentence: \"During the charging session, the high-voltage traction battery severely overheated, physically expanded/swelled, and tripped a major vehicle fault sensor.\" Yes substring \"high-voltage traction battery severely overheated\" exact. \"physically expanded/swelled\" exact. \"tripped a major vehicle fault sensor\" exact. \"battery was permanently damaged\" exact? \"The dealership confirmed the battery was permanently damaged and rendered the vehicle entirely inoperable.\" yes. \"vehicle entirely inoperable\" exact? It says \"rendered the vehicle entirely inoperable\" so \"vehicle entirely inoperable\" exact substring? \"the vehicle entirely inoperable\" contains \"vehicle entirely inoperable\". yes.\n\"fire and explosion hazard\" exact? \"presenting an immediate fire and explosion hazard.\" yes.\n\"severe thermal event (overheating and physical expansion)\" exact? \"The vehicle experienced a severe thermal event (overheating and physical expansion) during normal operation\" yes.\n\"fire risks during fast charging\" exact? \"high-voltage battery defects and fire risks during fast charging.\" yes.\n\"during normal operation at an authorized charging station\" exact? yes.\nNeed group clue? component_group quote maybe \"ELECTRICAL SYSTEM\" from component field? Is that \"report\"? The user message includes JSON with component. Could quote \"ELECTRICAL SYSTEM\". It is in report. Include clue kind component_group quote \"ELECTRICAL SYSTEM\". Good.\n\nNeed JSON only no other text. Ensure valid JSON. Summary one line. \"Electrical system high-voltage traction battery: severe overheating, swelling, permanent damage and inoperability during Level 3 DC fast charging.\" Good.\n\nCheck safety_relevant true because fire/explosion. Good.\n\nNeed missing_info: \"mileage\", \"date\". Date? Incident date redacted. The report received_at 2026-09-30 but incident \"In XXX\" redacted. So date missing. Might include \"mileage\". Could also missing \"conditions\"? no. \"component\" no. \"symptom\" no. Good.\n\nPotential issue fault_codes: \"major vehicle fault sensor\" not code. Empty.\n\nNeed conditions includes \"charging\" and \"heat\" maybe \"intermittent\"? no. Could include \"after service\"? no. Maybe \"charging\" only because heat is symptom? But conditions list includes heat. The battery overheated, thermal event. So \"heat\". Good.\n\nNeed maybe \"vibration\" no.\n\nNeed no suggestions actions. Fine.\n\nLet's final JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793539831,
+      "id": "f125d48f2c576761a2cfff8df38c7b1c",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1641,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1334,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00063312,
+          "billing_source": "go",
+          "list_cost": 0.0010552,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 463,
+            "output": 1641,
+            "reasoning": 1334
+          }
+        },
+        "prompt_tokens": 847,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2488
+      }
+    },
+    "text": "{\"summary\":\"Electrical system high-voltage traction battery: severe overheating, swelling, permanent damage and inoperability during Level 3 DC fast charging.\",\"group\":\"ELECTRICAL SYSTEM\",\"symptoms\":[\"catastrophic battery failure\",\"high-voltage traction battery severely overheated\",\"battery physically expanded/swelled\",\"major vehicle fault sensor tripped\",\"battery permanently damaged\",\"vehicle entirely inoperable\"],\"conditions\":[\"charging\",\"heat\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"catastrophic battery failure\"},{\"kind\":\"condition\",\"quote\":\"plugged into a Level 3 DC fast charger\"},{\"kind\":\"symptom\",\"quote\":\"high-voltage traction battery severely overheated\"},{\"kind\":\"symptom\",\"quote\":\"physically expanded/swelled\"},{\"kind\":\"symptom\",\"quote\":\"tripped a major vehicle fault sensor\"},{\"kind\":\"symptom\",\"quote\":\"battery was permanently damaged\"},{\"kind\":\"symptom\",\"quote\":\"vehicle entirely inoperable\"},{\"kind\":\"condition\",\"quote\":\"during normal operation at an authorized charging station\"},{\"kind\":\"safety\",\"quote\":\"severe thermal event (overheating and physical expansion)\"},{\"kind\":\"safety\",\"quote\":\"fire and explosion hazard\"},{\"kind\":\"safety\",\"quote\":\"fire risks during fast charging\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00063312,
+      "cached_tokens": 384,
+      "cost_usd": 0.0010552,
+      "input_tokens": 847,
+      "list_cost_usd": 0.0010552,
+      "output_tokens": 1641,
+      "reasoning_tokens": 1334
+    }
+  }
+}

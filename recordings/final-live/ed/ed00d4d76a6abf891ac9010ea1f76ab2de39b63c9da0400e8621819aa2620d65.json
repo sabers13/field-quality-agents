@@ -1,0 +1,66 @@
+{
+  "key": "ed00d4d76a6abf891ac9010ea1f76ab2de39b63c9da0400e8621819aa2620d65",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9957,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"LANE DEPARTURE: ASSIST on a 2026 Honda Accord falsely initiated severe emergency braking and aggressive steering-wheel shake at high speed, with cycling warnings and U3000-49 steering module errors.\",\"group\":\"ADAS / electrical/electronic\",\"symptoms\":[\"false severe emergency braking\",\"steering wheel aggressively shook and fought driver input\",\"multiple warnings cycling: brake system failure, steering system failure, road departure warning, battery\",\"internal steering module errors\",\"tracking failures\"],\"conditions\":[\"high speed\",\"no warnings prior\"],\"fault_codes\":[\"U3000-49\"],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"LANE DEPARTURE: ASSIST\"},{\"kind\":\"condition\",\"quote\":\"While driving at high speed\"},{\"kind\":\"symptom\",\"quote\":\"falsely initiated severe emergency braking\"},{\"kind\":\"symptom\",\"quote\":\"aggressively shook the steering wheel\"},{\"kind\":\"symptom\",\"quote\":\"actively fighting my input to keep the car straight\"},{\"kind\":\"safety\",\"quote\":\"My safety was at risk as well as others around me who had to brake and swerve to avoid collision\"},{\"kind\":\"symptom\",\"quote\":\"all of the warnings were cycling (brake system failure, steering system failure, road departure warning, battery, etc.)\"},{\"kind\":\"fault_code\",\"quote\":\"internal steering module errors (U3000-49)\"},{\"kind\":\"symptom\",\"quote\":\"tracking failures occurred\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize. Need parse report. Component \"LANE DEPARTURE: ASSIST\" given. Group electrical/electronic component group? \"LANE DEPARTURE: ASSIST\" likely ADAS/electrical. Need summary one line component symptom conditions. Symptoms: false emergency braking at high speed, aggressive steering wheel shake/fighting input, warnings cycling (brake system failure, steering system failure, road departure warning, battery), internal steering module errors U3000-49, tracking failures. Conditions: high speed driving, no warnings prior, while occurring warnings cycling. Maybe \"after service\"? no. \"charging\"? no. \"cold/moisture/heat/vibration/intermittent\" no. Safety relevant true: safety at risk, others brake/swerve avoid collision, struggled to shoulder. Fault codes U3000-49. Missing info: mileage? mileage null, date? received date but incident date missing? The list includes mileage, date. Component present, symptom present, conditions present. Missing mileage and date (incident date). Maybe conditions? It says while driving high speed, enough. missing_info [\"mileage\",\"date\"]. Clues verbatim quotes. Need ensure exact spans. Quotes:\n\"While driving at high speed\" (condition)\n\"falsely initiated severe emergency braking\" symptom\n\"aggressively shook the steering wheel\" symptom\n\"actively fighting my input to keep the car straight\" symptom\n\"My safety was at risk as well as others around me who had to brake and swerve to avoid collision\" safety\n\"all of the warnings were cycling (brake system failure, steering system failure, road departure warning, battery, etc.)\" symptom/condition? symptom\n\"internal steering module errors (U3000-49)\" fault_code\n\"tracking failures occurred\" symptom\n\"LANE DEPARTURE: ASSIST\" component_group? Component from field but quote not narrative? The report includes component field. Quote can be from report. \"LANE DEPARTURE: ASSIST\" is in report. component_group clue. Need maybe \"steering column replacement\" other? no.\nNeed group: \"electrical/electronic component group, or given group\". We can set \"ADAS / electrical/electronic\" or \"LANE DEPARTURE: ASSIST\"? The schema says group \"the electrical/electronic component group, or the given group\". Given component is LANE DEPARTURE: ASSIST. Could use \"ADAS / electrical/electronic\". Need no invented? It is classification. \"electrical/electronic\" safe. But \"group\" likely component group e.g. \"ADAS\". Hmm.\n\nNeed JSON only. Ensure safety_relevant true. Fault codes array [\"U3000-49\"]. Symptoms plain words array. Conditions array: [\"high speed\", \"no warnings prior\"]? conditions allowed list includes cold moisture heat vibration intermittent after service charging. It says conditions: [\"cold\",...] but can include? The example fixed? It says conditions list from those? It lists categories. We can include \"high speed\" maybe not in list? Rule says conditions [\"cold\",...] maybe allowed values? Hmm. It says conditions array with those examples. Should we only include recognized conditions. High speed not in list; but condition is important. However \"conditions\" should include \"intermittent\"? Warnings cycling? No warnings prior, then occurs high speed. The list includes intermittent? Maybe incident is intermittent? It happened while driving high speed; no prior. Could include \"intermittent\" because no warnings prior and warnings cycling? But not necessarily intermittent. The prompt expects conditions among cold/moisture/heat/vibration/intermittent/after service/charging. High speed isn't listed. We can include \"intermittent\" maybe? But quote \"no warnings prior\" suggests sudden. Better conditions: []? But summary includes high speed. Yet \"conditions\" field should include \"high speed\" perhaps despite list. The instruction says conditions: [\"cold\", ...] but that's a recommendation? It says \"conditions\": [\"cold\", \"moisture\", ...]. It may expect these tags. We could include \"high speed\" as condition? But may violate allowed set? No explicit only. I think include \"high speed\" and \"intermittent\"? Hmm.\n\nNeed missing_info: [\"mileage\", \"date\"] because mileage null and no incident date. Date field received_at not incident. Good.\n\nClues kind: component_group quote \"LANE DEPARTURE: ASSIST\"; symptom quotes; condition quote \"While driving at high speed\"; safety quote; fault_code quote. Need exact quote from narrative. \"U3000-49\" within parentheses. Quote \"internal steering module errors (U3000-49)\" exact? Check narrative: \"showed internal steering module errors (U3000-49) and tracking failures occurred.\" yes.\n\nNeed maybe quote \"all of the warnings were cycling (brake system failure, steering system failure, road departure warning, battery, etc.)\" exact. Yes.\n\nNeed \"The vehicle remains at the dealership as they are suggesting a steering column replacement.\" Other? not needed.\n\nNeed \"I have filed a case with Honda requesting a master technician perform a formal ADAS camera alignment and an EPS circuit inspection\" other? Could be clue? Not necessary.\n\nNeed summary one line: \"LANE DEPARTURE: ASSIST on 2026 Honda Accord falsely commanded severe emergency braking and steering wheel shake at high speed with cycling warnings and U3000-49.\" Conditions high speed. Fine.\n\nGroup: \"ADAS / electrical/electronic\" maybe. But if given group? The report component \"LANE DEPARTURE: ASSIST\" is already group. I can set \"ADAS (electrical/electronic)\". It's okay.\n\nNeed output valid JSON no markdown. Ensure no extra text.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793540960,
+      "id": "474300de836fae66444fc166842cfa09",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1541,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1211,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00058092,
+          "billing_source": "go",
+          "list_cost": 0.0009682,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 283,
+            "output": 1541,
+            "reasoning": 1211
+          }
+        },
+        "prompt_tokens": 667,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2208
+      }
+    },
+    "text": "{\"summary\":\"LANE DEPARTURE: ASSIST on a 2026 Honda Accord falsely initiated severe emergency braking and aggressive steering-wheel shake at high speed, with cycling warnings and U3000-49 steering module errors.\",\"group\":\"ADAS / electrical/electronic\",\"symptoms\":[\"false severe emergency braking\",\"steering wheel aggressively shook and fought driver input\",\"multiple warnings cycling: brake system failure, steering system failure, road departure warning, battery\",\"internal steering module errors\",\"tracking failures\"],\"conditions\":[\"high speed\",\"no warnings prior\"],\"fault_codes\":[\"U3000-49\"],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"LANE DEPARTURE: ASSIST\"},{\"kind\":\"condition\",\"quote\":\"While driving at high speed\"},{\"kind\":\"symptom\",\"quote\":\"falsely initiated severe emergency braking\"},{\"kind\":\"symptom\",\"quote\":\"aggressively shook the steering wheel\"},{\"kind\":\"symptom\",\"quote\":\"actively fighting my input to keep the car straight\"},{\"kind\":\"safety\",\"quote\":\"My safety was at risk as well as others around me who had to brake and swerve to avoid collision\"},{\"kind\":\"symptom\",\"quote\":\"all of the warnings were cycling (brake system failure, steering system failure, road departure warning, battery, etc.)\"},{\"kind\":\"fault_code\",\"quote\":\"internal steering module errors (U3000-49)\"},{\"kind\":\"symptom\",\"quote\":\"tracking failures occurred\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00058092,
+      "cached_tokens": 384,
+      "cost_usd": 0.0009682,
+      "input_tokens": 667,
+      "list_cost_usd": 0.0009682,
+      "output_tokens": 1541,
+      "reasoning_tokens": 1211
+    }
+  }
+}

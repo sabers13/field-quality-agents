@@ -17,6 +17,7 @@ from field_quality_agents.api.models import (
     CaseDetail,
     CaseListItem,
     ComparisonExample,
+    FinalLiveData,
     IssueDetail,
     IssueSummary,
     ReplayEvent,
@@ -103,6 +104,7 @@ def export_dashboard(
     run_id: str | None = None,
     out_dir: str | Path = "dist/field-quality-agents",
     examples: Sequence[ComparisonExample] | None = None,
+    final_live: FinalLiveData | None = None,
 ) -> Path:
     """Write ``data/`` for the dashboard and return the export root.
 
@@ -152,6 +154,7 @@ def export_dashboard(
         store=store,
         window="365d",
         feed=feed_from_store(store),
+        final_live=final_live,
     )
     if examples is not None:
         command = command.model_copy(

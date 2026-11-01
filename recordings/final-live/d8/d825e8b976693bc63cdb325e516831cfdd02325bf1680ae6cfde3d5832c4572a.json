@@ -1,0 +1,66 @@
+{
+  "key": "d825e8b976693bc63cdb325e516831cfdd02325bf1680ae6cfde3d5832c4572a",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 5278,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "```json\n{\n  \"summary\": \"2026 Toyota Land Cruiser Hybrid, electrical system: multiple dash warnings and reduced engine power shortly after start, with gasoline pouring from the underside of the vehicle\",\n  \"group\": \"ELECTRICAL SYSTEM\",\n  \"symptoms\": [\n    \"all dash warning lights illuminated\",\n    \"Check Engine and Reduced Engine Power messages\",\n    \"Secondary collision Brake System malfunction message\",\n    \"Hybrid system malfunction message\",\n    \"System malfunction and Drive start control malfunction messages\",\n    \"gasoline pouring from the bottom of the vehicle\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\"mileage\", \"date\"],\n  \"clues\": [\n    {\"kind\": \"component_group\", \"quote\": \"ELECTRICAL SYSTEM\"},\n    {\"kind\": \"symptom\", \"quote\": \"every dash light came on\"},\n    {\"kind\": \"symptom\", \"quote\": \"Check Engine Reduced Engine power\"},\n    {\"kind\": \"symptom\", \"quote\": \"Secondary collision Brake System malfunction\"},\n    {\"kind\": \"symptom\", \"quote\": \"Hybrid system malfuncion\"},\n    {\"kind\": \"symptom\", \"quote\": \"Drive start control malfunction\"},\n    {\"kind\": \"other\", \"quote\": \"gasoline pouring from the bottom of my car running down the parking lot\"},\n    {\"kind\": \"safety\", \"quote\": \"It was a very dangerous situation.\"},\n    {\"kind\": \"safety\", \"quote\": \"someone in the parking lot was smoking\"}\n  ]\n}\n```",
+            "reasoning_content": "Let me parse the report.\n\nComponent: ELECTRICAL SYSTEM. Symptoms: all dash lights came on, messages: Check Engine, Reduced Engine power, Secondary collision Brake System malfunction, Hybrid system malfunction, System malfunction, Drive start control malfunction; gasoline pouring from bottom of car — but that's fuel leak, arguably a symptom too. Safety: dangerous situation, afraid because someone smoking — fire risk. Yes safety_relevant true.\n\nConditions: \"started when I left work\" — no cold/moisture/heat/vibration. Maybe none. Conditions list should be from allowed terms; none apply. Empty list.\n\nFault codes: none named.\n\nMissing_info: mileage (null), date (received_at given, but the incident date not given). component given, symptom given, conditions missing? Conditions: not really described (weather etc.). I'd list mileage and date. Hmm, is \"date\" missing? received_at 2026-10-12 is the report date, not incident date. I'll list mileage and date.\n\nClues: verbatim quotes.\n\nQuote candidates:\n- \"every dash light came on\" — verbatim \"every dash light came on\" yes.\n- \"Check Engine Reduced Engine power\" — verbatim: \"Check Engine Reduced Engine power,\" yes in text: \"said Check Engine Reduced Engine power, Secondary collision Brake System malfunction\". So \"Check Engine Reduced Engine power\" is a valid span.\n- \"Hybrid system malfuncion\" — note misspelling in original; must copy verbatim \"Hybrid system malfuncion\".\n- \"gasoline pouring from the bottom of my car\"\n- \"It was a very dangerous situation.\"\n- \"someone in the parking lot was smoking\" — verbatim \"someone in the parking lot was smoking\" yes.\n- component_group quote: \"ELECTRICAL SYSTEM\".\n\nSafety quote: \"It was a very dangerous situation.\"\n\nOutput JSON only.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793540652,
+      "id": "1adee8bca8ce92038bcb00f318d3767f",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 734,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 392,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00028383,
+          "billing_source": "go",
+          "list_cost": 0.00047305,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 210,
+            "output": 734,
+            "reasoning": 392
+          }
+        },
+        "prompt_tokens": 594,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1328
+      }
+    },
+    "text": "```json\n{\n  \"summary\": \"2026 Toyota Land Cruiser Hybrid, electrical system: multiple dash warnings and reduced engine power shortly after start, with gasoline pouring from the underside of the vehicle\",\n  \"group\": \"ELECTRICAL SYSTEM\",\n  \"symptoms\": [\n    \"all dash warning lights illuminated\",\n    \"Check Engine and Reduced Engine Power messages\",\n    \"Secondary collision Brake System malfunction message\",\n    \"Hybrid system malfunction message\",\n    \"System malfunction and Drive start control malfunction messages\",\n    \"gasoline pouring from the bottom of the vehicle\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\"mileage\", \"date\"],\n  \"clues\": [\n    {\"kind\": \"component_group\", \"quote\": \"ELECTRICAL SYSTEM\"},\n    {\"kind\": \"symptom\", \"quote\": \"every dash light came on\"},\n    {\"kind\": \"symptom\", \"quote\": \"Check Engine Reduced Engine power\"},\n    {\"kind\": \"symptom\", \"quote\": \"Secondary collision Brake System malfunction\"},\n    {\"kind\": \"symptom\", \"quote\": \"Hybrid system malfuncion\"},\n    {\"kind\": \"symptom\", \"quote\": \"Drive start control malfunction\"},\n    {\"kind\": \"other\", \"quote\": \"gasoline pouring from the bottom of my car running down the parking lot\"},\n    {\"kind\": \"safety\", \"quote\": \"It was a very dangerous situation.\"},\n    {\"kind\": \"safety\", \"quote\": \"someone in the parking lot was smoking\"}\n  ]\n}\n```",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00028383,
+      "cached_tokens": 384,
+      "cost_usd": 0.00047305,
+      "input_tokens": 594,
+      "list_cost_usd": 0.00047305,
+      "output_tokens": 734,
+      "reasoning_tokens": 392
+    }
+  }
+}

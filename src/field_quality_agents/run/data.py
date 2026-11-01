@@ -74,7 +74,14 @@ class RunSource:
     db_path: Path | None = None
     temp_dir: tempfile.TemporaryDirectory[str] | None = None
 
-    def cases(self) -> list[Case]:
+    def cases(self, set_name: str = "replay_2025") -> list[Case]:
+        """Read one committed case set, oldest first.
+
+        ``set_name`` is a parquet stem in the data directory: ``replay_2025``
+        for the main replay set and ``final_live`` for Q14's sealed set. A
+        fixture DB already holds exactly one set, so the name is ignored there.
+        """
+
         if self.db_path is not None:
             rows = self.toolbox.connection.execute(
                 f"SELECT {_CASE_COLUMNS} FROM cases ORDER BY received_at, id"
@@ -82,9 +89,9 @@ class RunSource:
         else:
             if self.data_dir is None:
                 raise RuntimeError("a run source needs a data directory or a fixture DB")
-            path = self.data_dir / "replay_2025.parquet"
+            path = self.data_dir / f"{set_name}.parquet"
             if not path.is_file():
-                raise FileNotFoundError(f"missing replay set: {path}")
+                raise FileNotFoundError(f"missing case set: {path}")
             rows = self.toolbox.connection.execute(
                 f"SELECT {_CASE_COLUMNS} FROM read_parquet(?) ORDER BY received_at, id",
                 [str(path)],

@@ -1,6 +1,6 @@
 .PHONY: setup fetch-data data data-check test lint typecheck web-build scan-forbidden scan-secrets \
-	facts baseline run-replay run-live run-live-smoke serve export screenshots all e2e release-check \
-	results-manifest results-manifest-check
+	facts baseline baseline-final run-replay run-live run-live-smoke run-live-final serve serve-live \
+	export screenshots all e2e release-check results-manifest results-manifest-check
 
 PYTHON := uv run python
 FQA := uv run fqa
@@ -42,6 +42,10 @@ facts:
 baseline:
 	$(FQA) baseline
 
+baseline-final:
+	# Q14: the linear pipeline on the sealed 150-case set, beside the live run.
+	$(FQA) baseline --set final_live --out-dir results/final-live/baseline
+
 run-replay:
 	# --legacy-recorded-input replays the frozen Q9 requests, which still carry
 	# the PLAN §7 evaluation labels. The run manifest records that policy and the
@@ -62,8 +66,23 @@ run-live-smoke:
 	fi
 	$(FQA) run --mode record --set replay_2025 --run-id live-2025-smoke --limit 20
 
+run-live-final:
+	# Q14: the agentic desk on the sealed 150-case set, recording every turn.
+	@if [ "$${FQA_LIVE_APPROVED:-}" != "1" ]; then \
+		echo "run-live-final makes real calls; set FQA_LIVE_APPROVED=1 to approve them."; \
+		exit 2; \
+	fi
+	$(FQA) run --mode record --set final_live --run-id final-live \
+		--results-dir results --recordings-dir recordings/final-live \
+		--baseline-dir results/final-live/baseline
+
 serve:
 	$(FQA) serve
+
+serve-live:
+	# Q14's live dashboard: the final live run, replayed from its recordings.
+	$(FQA) serve --mode live --results-dir results --run-id final-live \
+		--recordings-dir recordings/final-live
 
 export:
 	$(FQA) export --run-id replay

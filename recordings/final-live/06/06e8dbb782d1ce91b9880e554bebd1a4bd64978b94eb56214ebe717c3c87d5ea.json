@@ -1,0 +1,66 @@
+{
+  "key": "06e8dbb782d1ce91b9880e554bebd1a4bd64978b94eb56214ebe717c3c87d5ea",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 6528,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Back Over Prevention recall; no failure symptom reported; repair parts unavailable and on back order.\",\"group\":\"BACK OVER PREVENTION\",\"symptoms\":[],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"symptom\",\"conditions\",\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"BACK OVER PREVENTION\"},{\"kind\":\"other\",\"quote\":\"NHTSA Campaign Number: 26V423000\"},{\"kind\":\"other\",\"quote\":\"the part to do the recall repair was unavailable\"},{\"kind\":\"other\",\"quote\":\"parts were on back order\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize report. Component BACK OVER PREVENTION. Symptom? Report is about recall notification and parts unavailable, no actual failure symptom. Conditions? none. Fault codes none. Safety relevant? Back over prevention recall maybe safety but report doesn't mention crash/fire etc. It mentions recall for Back Over Prevention. Safety_relevant? Rule set when report mentions crash fire smoke injury loss control stall at speed or risk to people. It doesn't explicitly mention risk. Could be safety-related recall but no explicit risk. Set false likely. Missing info: symptom, conditions, mileage? Mileage null, date? received_at exists. Component given. Symptom missing. Conditions missing? For analysis needs conditions maybe. We can list [\"symptom\",\"conditions\",\"mileage\"]. Clues: component_group quote \"BACK OVER PREVENTION\" maybe from component field? It says quote copied verbatim from report. The report includes component field? User message is JSON. Verbatim span from report; can quote \"BACK OVER PREVENTION\". Also quote \"NHTSA Campaign Number: 26V423000\" as fault_code? Is that a fault code? Campaign number, not fault code. Maybe clues kind other quote. \"parts were on back order\" condition? Not one of conditions. We need one-line summary: component, symptom, conditions. Summary: \"Back Over Prevention recall; no failure symptom reported; repair parts unavailable/back ordered.\" Need JSON only.\n\nNeed ensure quotes verbatim. \"The contact received notification of NHTSA Campaign Number: 26V423000 (Back Over Prevention)\" is verbatim? In narrative: \"The contact received notification of NHTSA Campaign Number: 26V423000 (Back Over Prevention); however...\" Yes. Could use quote \"the part to do the recall repair was unavailable\" lowercase? Narrative: \"however, the part to do the recall repair was unavailable.\" It has \"the part...\" lowercase after comma. Verbatim span \"the part to do the recall repair was unavailable\" yes. \"parts were on back order\" verbatim. For component_group quote \"BACK OVER PREVENTION\". Need kind component_group. Maybe safety clue? no.\n\nFault_codes: maybe [] not campaign. The prompt says fault codes code if report names one. Campaign Number not fault code. So [].\n\nSymptoms: []? Since no symptom. But schema expects array. Use []. Summary mention no symptom.\n\nConditions: [] since no weather etc. Maybe \"after service\"? no.\n\nmissing_info: [\"symptom\", \"conditions\", \"mileage\"]. Date present received_at. Component present. Good.\n\nClues include:\n{\"kind\":\"component_group\",\"quote\":\"BACK OVER PREVENTION\"}\n{\"kind\":\"other\",\"quote\":\"NHTSA Campaign Number: 26V423000\"}\n{\"kind\":\"other\",\"quote\":\"the part to do the recall repair was unavailable\"}\n{\"kind\":\"other\",\"quote\":\"parts were on back order\"}\nMaybe symptom? no.\n\nNeed answer only JSON. Ensure no markdown? The instruction says answer with one JSON object and no other text. Final can be raw JSON. Need valid JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793541371,
+      "id": "ebb15c6800be7bae74eccde5f4b6ee2f",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 779,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 645,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00029571,
+          "billing_source": "go",
+          "list_cost": 0.00049285,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 162,
+            "output": 779,
+            "reasoning": 645
+          }
+        },
+        "prompt_tokens": 546,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1325
+      }
+    },
+    "text": "{\"summary\":\"Back Over Prevention recall; no failure symptom reported; repair parts unavailable and on back order.\",\"group\":\"BACK OVER PREVENTION\",\"symptoms\":[],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"symptom\",\"conditions\",\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"BACK OVER PREVENTION\"},{\"kind\":\"other\",\"quote\":\"NHTSA Campaign Number: 26V423000\"},{\"kind\":\"other\",\"quote\":\"the part to do the recall repair was unavailable\"},{\"kind\":\"other\",\"quote\":\"parts were on back order\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00029571,
+      "cached_tokens": 384,
+      "cost_usd": 0.00049285,
+      "input_tokens": 546,
+      "list_cost_usd": 0.00049285,
+      "output_tokens": 779,
+      "reasoning_tokens": 645
+    }
+  }
+}

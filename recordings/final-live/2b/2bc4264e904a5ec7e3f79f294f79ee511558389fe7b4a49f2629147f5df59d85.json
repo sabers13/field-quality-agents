@@ -1,0 +1,66 @@
+{
+  "key": "2bc4264e904a5ec7e3f79f294f79ee511558389fe7b4a49f2629147f5df59d85",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 4711,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\": \"Test a 2022 Jeep Grand Wagoneer for clustered electrical faults (inoperative rearview camera in Reverse, radio and rear HVAC, odometer in kilometers) without a matching rulebook entry.\", \"rationale\": \"The narrative reports several simultaneous electrical/electronic failures across the rearview camera, radio, rear HVAC, and odometer display while driving in Reverse, suggesting a shared electrical or configuration fault; no recalls, investigations, similar cases, or rulebook entries matched, so no targeted load test is specified.\", \"group\": \"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\", \"symptoms\": [\"rearview camera inoperable in reverse\", \"odometer displayed kilometers instead of miles\", \"radio inoperable\", \"rear HVAC system inoperable\"], \"conditions\": [\"driving in Reverse (R)\"], \"fault_codes\": [], \"safety_relevant\": false, \"targeted\": false, \"test_name\": \"standard electrical system diagnostic and functional check of rearview camera, radio, rear HVAC, and odometer configuration\", \"clues\": [{\"kind\": \"condition\", \"quote\": \"while driving in Reverse (R)\"}, {\"kind\": \"symptom\", \"quote\": \"the rearview camera was inoperable\"}, {\"kind\": \"symptom\", \"quote\": \"the odometer displayed kilometers instead of miles\"}, {\"kind\": \"symptom\", \"quote\": \"the radio was inoperable\"}, {\"kind\": \"symptom\", \"quote\": \"the rear HVAC system was inoperable\"}]}",
+            "reasoning_content": "We need to produce JSON. Case: multiple electrical symptoms, no rulebook matches, no recalls/investigations/similar cases. No safety event. Targeted false probably, since no rulebook entry. Test name? Standard test — rulebook doesn't name one. We can say \"standard electrical system diagnostic test\" but instructions say targeted test name when targeted. With targeted false, maybe test_name can be a standard diagnostic. Keep it generic. Clues must be verbatim from narrative. Use quotes from the narrative.\n\nCheck quotes verbatim: \"while driving in Reverse (R)\" yes. \"the rearview camera was inoperable\" yes. \"the odometer displayed kilometers instead of miles\" yes. \"the radio was inoperable\" yes. \"the rear HVAC system was inoperable\" yes.\n\nSafety_relevant false. Group \"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\" or \"electrical/electronic\". Use component group as given.\n\ntargeted false. test_name: \"standard electrical system diagnostic\" — acceptable, or \"standard test\". Maybe \"standard electrical diagnostic test and functional check of camera, radio, HVAC, and odometer configuration\".\n\nSummary one line.\n\nFault codes empty.\n\nConditions include \"driving in reverse\".\n\nNeed no other text.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793540849,
+      "id": "3b48302e3f84b4e3853f3cfcc7dca787",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 608,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 270,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00029745,
+          "billing_source": "go",
+          "list_cost": 0.00049575,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 873,
+            "output": 608,
+            "reasoning": 270
+          }
+        },
+        "prompt_tokens": 873,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 1481
+      }
+    },
+    "text": "{\"summary\": \"Test a 2022 Jeep Grand Wagoneer for clustered electrical faults (inoperative rearview camera in Reverse, radio and rear HVAC, odometer in kilometers) without a matching rulebook entry.\", \"rationale\": \"The narrative reports several simultaneous electrical/electronic failures across the rearview camera, radio, rear HVAC, and odometer display while driving in Reverse, suggesting a shared electrical or configuration fault; no recalls, investigations, similar cases, or rulebook entries matched, so no targeted load test is specified.\", \"group\": \"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\", \"symptoms\": [\"rearview camera inoperable in reverse\", \"odometer displayed kilometers instead of miles\", \"radio inoperable\", \"rear HVAC system inoperable\"], \"conditions\": [\"driving in Reverse (R)\"], \"fault_codes\": [], \"safety_relevant\": false, \"targeted\": false, \"test_name\": \"standard electrical system diagnostic and functional check of rearview camera, radio, rear HVAC, and odometer configuration\", \"clues\": [{\"kind\": \"condition\", \"quote\": \"while driving in Reverse (R)\"}, {\"kind\": \"symptom\", \"quote\": \"the rearview camera was inoperable\"}, {\"kind\": \"symptom\", \"quote\": \"the odometer displayed kilometers instead of miles\"}, {\"kind\": \"symptom\", \"quote\": \"the radio was inoperable\"}, {\"kind\": \"symptom\", \"quote\": \"the rear HVAC system was inoperable\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00029745,
+      "cached_tokens": 0,
+      "cost_usd": 0.00049575,
+      "input_tokens": 873,
+      "list_cost_usd": 0.00049575,
+      "output_tokens": 608,
+      "reasoning_tokens": 270
+    }
+  }
+}

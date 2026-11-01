@@ -1,0 +1,66 @@
+{
+  "key": "1dd6fddf4c2ab0efd9efce09ac5695922464998a8b69e431b3f3748747e323a6",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9744,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Forward collision avoidance/automatic emergency braking: dashboard take-over-steering warning followed within seconds by hard braking, while steering in interstate traffic with cruise control at 40–70 mph.\",\"group\":\"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\",\"symptoms\":[\"dashboard warning to take over steering\",\"hard braking\"],\"conditions\":[\"intermittent\",\"while steering\",\"interstate traffic\",\"cruise control\",\"40–70 mph\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"warning on the dash to take over steering\"},{\"kind\":\"symptom\",\"quote\":\"the car brakes hard\"},{\"kind\":\"condition\",\"quote\":\"while actively steering\"},{\"kind\":\"condition\",\"quote\":\"in interstate traffic\"},{\"kind\":\"condition\",\"quote\":\"using cruise control\"},{\"kind\":\"condition\",\"quote\":\"On multiple occasions\"},{\"kind\":\"condition\",\"quote\":\"40 mph, 70 mph, and in between these two\"},{\"kind\":\"safety\",\"quote\":\"the car brakes hard\"}]}",
+            "reasoning_content": "We need answer one JSON object no other text. Need normalize report. Need read only. Extract component group? Given component \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\" likely component_group maybe \"forward collision avoidance / automatic emergency braking\". Summary one line: component, symptom, conditions. Symptoms: warning on dash to take over steering; car brakes hard. Conditions: while actively steering, interstate traffic, using cruise control, speeds 40-70 mph; intermittent/multiple occasions. Safety relevant: brakes hard in interstate traffic while cruise control -> risk loss control? It mentions hard braking in traffic. Yes safety_relevant true likely. Missing info: mileage null; date? received_at is date but report date? The schema missing_info includes mileage, date, conditions, component, symptom. Component present, symptom present, conditions present. Mileage missing. Date? received_at 2026-09-30 maybe report received date, but incident date missing. We can list \"mileage\", \"date\" maybe date of occurrence. Need not invent. Fault codes none. Clues with verbatim quotes from narrative. Need exact spans. Let's craft.\n\nNeed JSON only. Ensure quotes exact from narrative including punctuation? Can quote substrings. Examples:\n- \"warning on the dash to take over steering\"\n- \"the car brakes hard\"\n- \"while actively steering\"\n- \"in interstate traffic\"\n- \"using cruise control\"\n- \"Speed does not matter\"\n- \"40 mph, 70 mph, and in between these two\"\n- \"On multiple occasions\"\n\nComponent group: maybe \"forward collision avoidance\" or \"automatic emergency braking\". The report component includes both. Group should be \"forward collision avoidance / automatic emergency braking\". Symptoms plain: \"dashboard warning to take over steering\"; \"hard braking\". Conditions array should use allowed terms? The schema conditions example include \"cold\", \"moisture\", etc, but also can include descriptive? It says conditions: [\"cold\", \"moisture\", ...] maybe standardized. But report conditions are \"while steering\", \"interstate traffic\", \"cruise control\", speeds. Should we put those in conditions? Probably yes but maybe allowed terms? Hmm prompt says conditions array with examples; likely include conditions. We can include \"while steering\", \"interstate traffic\", \"cruise control\", \"40-70 mph\", \"intermittent\" (multiple occasions). They want normalise. Conditions list can include plain conditions. Use \"intermittent\" since multiple occasions. Also \"cruise control\". Maybe \"highway/interstate traffic\". Need no invented. \"Speed does not matter\" and speeds. We can include \"40-70 mph\". Good.\n\nSummary: \"Forward collision avoidance/automatic emergency braking: dashboard take-over-steering warning followed within seconds by hard braking, while steering in interstate traffic with cruise control at 40–70 mph.\" One line. Good.\n\nMissing_info: mileage, date. Is date missing? received_at is date but not incident date. The analysis needs date maybe incident date. We can include \"date\" and \"mileage\". Conditions not missing. Component/symptom present. Good.\n\nClues: kind symptom for warning and hard brakes; condition for actively steering, interstate traffic, cruise control, speeds/multiple; safety maybe \"brakes hard\" in interstate traffic? But safety clue should quote relevant risk. We can mark \"the car brakes hard\" as safety? Or symptom. Need clues kind safety maybe quote \"Within seconds, the car brakes hard.\" But that also symptom. We can include a safety clue with quote \"the car brakes hard\" maybe. Ensure every quote verbatim. Let's verify narrative exact:\n\"On multiple occasions, while actively steering, I have gotten a warning on the dash to take over steering. Within seconds, the car brakes hard. I am typically in interstate traffic when this occurs.This happens when using cruise control. Speed does not matter as it has happened at 40 mph, 70 mph, and in between these two.\"\n\nNote \"occurs.This\" no space. Quotes can be substrings. \"warning on the dash to take over steering\" exact. \"the car brakes hard\" exact. \"while actively steering\" exact. \"in interstate traffic\" exact. \"using cruise control\" exact. \"On multiple occasions\" exact. \"40 mph, 70 mph, and in between these two\" exact. Good.\n\nNeed fault_codes [] since none named. safety true.\n\nCould include conditions array only allowed categories? Hmm \"conditions\": [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"] seems predefined. But report has intermittent, cruise control, interstate traffic. If strict, maybe only use \"intermittent\". But then loses context. The instruction says conditions array with those examples but not \"only\". It says \"conditions\": [\"cold\", ...]. Hmm. We can include \"intermittent\" and maybe \"cruise control\" etc. Since normalization, conditions can include. But to be safe? The output schema likely expects array of strings. It may not penalize. Include \"intermittent\", \"cruise control\", \"interstate traffic\", \"while steering\", \"40-70 mph\". That's fine.\n\nNeed perhaps \"group\": \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\" exactly? It says \"the electrical/electronic component group, or the given group\". Given group is component. Use exact component? Could use \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\". Good. But summary component same.\n\nNeed \"missing_info\": [\"mileage\", \"date\"]. Date maybe received_at provided; but incident date missing. Fine.\n\nLet's final JSON only.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793539742,
+      "id": "8d29b8524d3c03ace41193d05ef28cc1",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1440,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1201,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0005343,
+          "billing_source": "go",
+          "list_cost": 0.0008905,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 169,
+            "output": 1440,
+            "reasoning": 1201
+          }
+        },
+        "prompt_tokens": 553,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1993
+      }
+    },
+    "text": "{\"summary\":\"Forward collision avoidance/automatic emergency braking: dashboard take-over-steering warning followed within seconds by hard braking, while steering in interstate traffic with cruise control at 40–70 mph.\",\"group\":\"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\",\"symptoms\":[\"dashboard warning to take over steering\",\"hard braking\"],\"conditions\":[\"intermittent\",\"while steering\",\"interstate traffic\",\"cruise control\",\"40–70 mph\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"warning on the dash to take over steering\"},{\"kind\":\"symptom\",\"quote\":\"the car brakes hard\"},{\"kind\":\"condition\",\"quote\":\"while actively steering\"},{\"kind\":\"condition\",\"quote\":\"in interstate traffic\"},{\"kind\":\"condition\",\"quote\":\"using cruise control\"},{\"kind\":\"condition\",\"quote\":\"On multiple occasions\"},{\"kind\":\"condition\",\"quote\":\"40 mph, 70 mph, and in between these two\"},{\"kind\":\"safety\",\"quote\":\"the car brakes hard\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0005343,
+      "cached_tokens": 384,
+      "cost_usd": 0.0008905,
+      "input_tokens": 553,
+      "list_cost_usd": 0.0008905,
+      "output_tokens": 1440,
+      "reasoning_tokens": 1201
+    }
+  }
+}

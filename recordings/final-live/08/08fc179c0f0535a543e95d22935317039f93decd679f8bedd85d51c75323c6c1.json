@@ -1,0 +1,66 @@
+{
+  "key": "08fc179c0f0535a543e95d22935317039f93decd679f8bedd85d51c75323c6c1",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 13451,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Forward collision avoidance/adaptive cruise control: complete failure of most safety systems and adaptive cruise control, reported as a common front camera failure; conditions not stated.\",\n  \"group\": \"Forward Collision Avoidance: Adaptive Cruise Control\",\n  \"symptoms\": [\n    \"complete failure of most safety systems\",\n    \"adaptive cruise control failure\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"conditions\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Complete failure of most safety system’s systems as well as adaptive cruise control.\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"Complete failure of most safety system’s systems\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"failure of front camera\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize report. Component given \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\". Narrative: \"Complete failure of most safety system’s systems as well as adaptive cruise control. Is reported this is a very common problem due to failure of front camera   Contacted Honda and was told owner responsible for repairs.\"\n\nNeed summary one line: component, symptom, conditions. Group: electrical/electronic component group or given group. The component group is Forward Collision Avoidance: Adaptive Cruise Control perhaps electrical/electronic? Need \"the electrical/electronic component group, or the given group\". We can set group \"Forward Collision Avoidance: Adaptive Cruise Control\" maybe given group. But they want \"the electrical/electronic component group, or the given group\". Given component is already group-ish. Could use \"Forward Collision Avoidance: Adaptive Cruise Control\". Symptoms: \"complete failure of most safety systems\", \"adaptive cruise control failure\". Conditions: likely none? Maybe \"after service\"? No. Fault_codes none. Safety_relevant true? Report mentions failure of safety systems, not crash/fire etc. The rule: Set safety_relevant when mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. \"Complete failure of most safety system's systems\" is risk to people? Failure of safety systems like forward collision avoidance is safety-relevant. It is a safety system failure, arguably risk. Need set true. Could quote \"Complete failure of most safety system’s systems\" as safety. Need exact verbatim includes curly apostrophe. Also \"failure of front camera\". Clues: symptom quote \"Complete failure of most safety system’s systems as well as adaptive cruise control.\" condition? none. component_group quote \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\" from component field? Is that in report? The user message includes JSON with component. Quotes can be from report; report includes component field. Verbatim yes. Could use. safety quote \"Complete failure of most safety system’s systems\". fault code none. missing_info: mileage? mileage null, date received_at present but report date? missing mileage. Maybe conditions missing? Need analysis needs conditions; report no conditions. Also \"component\" not missing because component present. \"symptom\" present. \"date\" maybe received_at available. So missing_info [\"mileage\", \"conditions\"]. Maybe date? received_at 2026-10-21, but occurrence date missing; field says date in missing_info. The report has received_at not incident date. But \"date\" as fact analysis needs? Could list \"date\" if no incident date. But given received_at maybe not occurrence date. We should list mileage and conditions, maybe date? Need not overdo. The prompt: List missing_info only for facts the analysis needs: component, symptom, conditions, mileage, date. Use empty list when nothing important is missing. Mileage null -> missing. Conditions absent -> missing. Date? received_at is present, but that's intake date; incident date absent. Does analysis need date? It may, but not necessarily. We can include \"date\" because no occurrence date, but received_at exists. Hmm. Need be conservative. \"date\" could be missing for when failure occurred. The report has no date except received_at. Since field \"date\" likely incident date; yes missing. But the input includes received_at, so maybe date is not missing? The prompt says date, not received date. The report has received_at; but no incident date. I'd include \"date\"? But maybe too many. Let's parse: missing_info examples include \"mileage\", \"date\", \"conditions\", \"component\", \"symptom\". Since mileage null explicit; conditions absent; date perhaps received_at is date. But \"date\" likely report date? It has received_at. Hmm.\n\nNeed summary: \"Forward collision avoidance/adaptive cruise control: complete failure of most safety systems and adaptive cruise control, reported as common front camera failure.\" Conditions: none, maybe \"reported as common\" not condition. Could include \"not specified\" no. conditions empty list.\n\nNeed JSON only. Ensure valid JSON. Quotes verbatim. Need use exact unicode apostrophe? Narrative has \"system’s\" with curly right single quote. We can copy. Also \"safety system’s systems\" weird. Need quote exactly. Let's ensure. Narrative: \"Complete failure of most safety system’s systems as well as adaptive cruise control. Is reported this is a very common problem due to failure of front camera   Contacted Honda and was told owner responsible for repairs.\" There are three spaces between camera and Contacted. We can quote shorter.\n\nClues: \n- kind symptom quote \"Complete failure of most safety system’s systems as well as adaptive cruise control.\"\n- kind symptom quote \"failure of front camera\" maybe symptom? It's cause, but symptom? Could be other. Since clue kind can be \"other\"; but front camera failure is component/cause. Use \"other\" quote \"failure of front camera\". \n- kind component_group quote \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\"\n- kind safety quote \"Complete failure of most safety system’s systems\" (safety relevant)\nNeed maybe \"adaptive cruise control\" symptom? Already included. Could include separate quote \"adaptive cruise control\" but redundant.\n\nNeed group: \"Forward Collision Avoidance: Adaptive Cruise Control\" maybe same. But \"electrical/electronic component group\" maybe \"ADAS/electrical\" not given? The instruction says group is the electrical/electronic component group, or given group. Since component is a system group; use given group. Could use \"Forward Collision Avoidance: Adaptive Cruise Control\". That's fine.\n\nNeed safety_relevant true. Is \"Complete failure of most safety systems\" a risk to people? Yes.\n\nNeed missing_info: [\"mileage\", \"conditions\", \"date\"]? Let's decide. The report has no mileage, no conditions, no incident date. Since received_at is 2026-10-21, but that's not occurrence date. Analysis may need date of incident. I'd include date. But if they consider date present (received_at), maybe not. Missing_info facts analysis needs. The narrative doesn't state when. So include \"date\". But there is received_at. Hmm.\n\nNeed output exactly JSON. No extra text. Ensure no markdown? The prompt says answer with one JSON object and no other text. We can output raw JSON. Need valid.\n\nLet's craft:\n\n{\n  \"summary\": \"Forward collision avoidance/adaptive cruise control: complete failure of most safety systems and adaptive cruise control, reported as a common front camera failure.\",\n  \"group\": \"Forward Collision Avoidance: Adaptive Cruise Control\",\n  \"symptoms\": [\"complete failure of most safety systems\", \"adaptive cruise control failure\"],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\"mileage\", \"conditions\", \"date\"],\n  \"clues\": [\n    {\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\"},\n    {\"kind\":\"symptom\",\"quote\":\"Complete failure of most safety system’s systems as well as adaptive cruise control.\"},\n    {\"kind\":\"safety\",\"quote\":\"Complete failure of most safety system’s systems\"},\n    {\"kind\":\"other\",\"quote\":\"failure of front camera\"}\n  ]\n}\n\nNeed \"adaptive cruise control failure\" is paraphrase not quote but symptoms can be plain words. Good. Conditions empty.\n\nCould summary mention conditions? \"conditions not stated\" maybe summary one line component, symptom, conditions. We can include \"conditions not stated\" to satisfy. Summary: \"Forward collision avoidance/adaptive cruise control: complete failure of most safety systems and adaptive cruise control; conditions not stated.\" That's one line. Should we mention front camera? Maybe: \"reported as common front camera failure; conditions not stated.\" Good.\n\nNeed maybe group \"Electrical/Electronic\"?? The component group is \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\" given. The prompt: \"the electrical/electronic component group, or the given group\". Since given group in component field. Use given. Fine.\n\nNeed no suggestion actions. Good.\n\nFinal only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793541342,
+      "id": "072403ee0576ec56657e53b5560df47b",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2000,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1755,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00073356,
+          "billing_source": "go",
+          "list_cost": 0.0012226,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 143,
+            "output": 2000,
+            "reasoning": 1755
+          }
+        },
+        "prompt_tokens": 527,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2527
+      }
+    },
+    "text": "{\n  \"summary\": \"Forward collision avoidance/adaptive cruise control: complete failure of most safety systems and adaptive cruise control, reported as a common front camera failure; conditions not stated.\",\n  \"group\": \"Forward Collision Avoidance: Adaptive Cruise Control\",\n  \"symptoms\": [\n    \"complete failure of most safety systems\",\n    \"adaptive cruise control failure\"\n  ],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"conditions\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Complete failure of most safety system’s systems as well as adaptive cruise control.\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"Complete failure of most safety system’s systems\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"failure of front camera\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00073356,
+      "cached_tokens": 384,
+      "cost_usd": 0.0012226,
+      "input_tokens": 527,
+      "list_cost_usd": 0.0012226,
+      "output_tokens": 2000,
+      "reasoning_tokens": 1755
+    }
+  }
+}

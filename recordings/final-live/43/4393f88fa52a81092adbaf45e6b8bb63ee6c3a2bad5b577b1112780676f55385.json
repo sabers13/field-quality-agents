@@ -1,0 +1,66 @@
+{
+  "key": "4393f88fa52a81092adbaf45e6b8bb63ee6c3a2bad5b577b1112780676f55385",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 6903,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\": \"Test the blind spot detection/side mirror assembly for loose mounting and housing retention after the mirror fell and cracked.\", \"rationale\": \"The narrative reports a loose side mirror that fell from the housing, struck the vehicle, and cracked. No rulebook entry, recall, investigation, or similar case is available, so a standard test is appropriate.\", \"group\": \"LANE DEPARTURE: BLIND SPOT DETECTION\", \"symptoms\": [\"side mirror loose\", \"side mirror fell from housing\", \"mirror banged against car\", \"mirror cracked\"], \"conditions\": [], \"fault_codes\": [], \"safety_relevant\": false, \"targeted\": false, \"test_name\": \"standard test\", \"clues\": [{\"kind\": \"symptom\", \"quote\": \"The side mirror was loose\"}, {\"kind\": \"symptom\", \"quote\": \"fell from the housing\"}, {\"kind\": \"symptom\", \"quote\": \"banged against the car\"}, {\"kind\": \"symptom\", \"quote\": \"cracked\"}]}",
+            "reasoning_content": "We need answer JSON only. Need analyze. Case: side mirror loose and fell, banged car cracked. Component is lane departure blind spot detection. No recalls/investigations/rulebook/similar. Need propose standard test targeted false. Safety relevant? narrative shows risk? Side mirror falling could be safety risk? It banged against car and cracked. Risk to people? Maybe not directly. \"safety_relevant\" when narrative shows risk to people. A side mirror falling off while driving could create hazard to others, but narrative doesn't show injury or risk to people. Extraction false. We can set false.\n\nNeed clues quotes verbatim from case narrative. Narrative: \"The side mirror was loose and fell from the housing. It banged against the car and cracked.\" Quotes must be verbatim spans. Use \"The side mirror was loose\", \"fell from the housing\", \"It banged against the car\", maybe \"cracked\". But \"It banged...\" exact includes It. Extraction used banged without It? Actually narrative \"It banged against the car and cracked.\" Quote \"banged against the car\" is verbatim span. Also \"cracked\" verbatim. Need symptoms/conditions/fault_codes. Conditions none. fault_codes none. group component group \"LANE DEPARTURE: BLIND SPOT DETECTION\". targeted false. test_name standard test? Rulebook names targeted test but no rulebook result. Standard test likely \"standard inspection/test\" or \"standard field-quality test\". We need name. Since no rulebook, use \"standard test\". Maybe \"standard component inspection\". The instruction says \"Otherwise propose the standard test (`\\\"targeted\\\": false`).\" test_name \"standard test\". Could be \"standard field-quality test\". Need summary one line. Rationale condition and evidence. We'll produce valid JSON.\n\nNeed avoid citing ids not in tool results: no recalls ids. Could mention case id? It's in case. Not necessary. No citations to cases? clues quotes only.\n\nEnsure safety_relevant false. targeted false.\n\nLet's craft:\nsummary: \"Test the blind spot detection/side mirror assembly for loose mounting and housing retention after the mirror fell and cracked.\"\nrationale: \"Reported symptom is a loose side mirror that fell from its housing, struck the vehicle, and cracked; no rulebook match, recall, or investigation is available, so a standard test is appropriate.\"\ngroup: \"LANE DEPARTURE: BLIND SPOT DETECTION\"\nsymptoms: [\"side mirror loose\", \"side mirror fell from housing\", \"mirror banged against car\", \"mirror cracked\"] — these can be not direct quotes? symptoms don't require quote. fine.\nconditions: [].\nfault_codes: [].\nclues: quotes.\n\nNeed be careful \"The side mirror was loose\" exact. \"fell from the housing\" exact span. \"banged against the car\" exact. \"cracked\" exact. Good.\n\nFinal JSON only.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793541163,
+      "id": "6a4659313122da8800f1ff0dde5c1761",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 848,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 618,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00036945,
+          "billing_source": "go",
+          "list_cost": 0.00061575,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 713,
+            "output": 848,
+            "reasoning": 618
+          }
+        },
+        "prompt_tokens": 713,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 1561
+      }
+    },
+    "text": "{\"summary\": \"Test the blind spot detection/side mirror assembly for loose mounting and housing retention after the mirror fell and cracked.\", \"rationale\": \"The narrative reports a loose side mirror that fell from the housing, struck the vehicle, and cracked. No rulebook entry, recall, investigation, or similar case is available, so a standard test is appropriate.\", \"group\": \"LANE DEPARTURE: BLIND SPOT DETECTION\", \"symptoms\": [\"side mirror loose\", \"side mirror fell from housing\", \"mirror banged against car\", \"mirror cracked\"], \"conditions\": [], \"fault_codes\": [], \"safety_relevant\": false, \"targeted\": false, \"test_name\": \"standard test\", \"clues\": [{\"kind\": \"symptom\", \"quote\": \"The side mirror was loose\"}, {\"kind\": \"symptom\", \"quote\": \"fell from the housing\"}, {\"kind\": \"symptom\", \"quote\": \"banged against the car\"}, {\"kind\": \"symptom\", \"quote\": \"cracked\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00036945,
+      "cached_tokens": 0,
+      "cost_usd": 0.00061575,
+      "input_tokens": 713,
+      "list_cost_usd": 0.00061575,
+      "output_tokens": 848,
+      "reasoning_tokens": 618
+    }
+  }
+}

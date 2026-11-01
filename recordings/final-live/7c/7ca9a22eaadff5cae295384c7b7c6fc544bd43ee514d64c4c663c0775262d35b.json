@@ -1,0 +1,66 @@
+{
+  "key": "7ca9a22eaadff5cae295384c7b7c6fc544bd43ee514d64c4c663c0775262d35b",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 5698,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "```json\n{\n  \"summary\": \"Electrical system on a 2026 Audi Q5: random safety lights (e.g. forward collision) while driving, and doors self-locking with keys inside, refusing to unlock via spare fob or phone fob until opened manually and the engine started\",\n  \"group\": \"electrical/electronic\",\n  \"symptoms\": [\n    \"random safety warning lights illuminate while driving, such as forward collision\",\n    \"vehicle locks itself with the keys inside\",\n    \"will not unlock with the spare key fob\",\n    \"will not unlock with the phone key fob\",\n    \"all issues disappear after manually opening the door and starting the engine\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\"kind\": \"symptom\", \"quote\": \"While driving random safety lights will turn on like forward collision\"},\n    {\"kind\": \"safety\", \"quote\": \"The most recent safety concern is that with keys inside the car will lock\"},\n    {\"kind\": \"symptom\", \"quote\": \"will not unlock with the spare key fob and it will not unlock with the key fob from phone\"},\n    {\"kind\": \"condition\", \"quote\": \"when we started the engine all the issues went away\"},\n    {\"kind\": \"component_group\", \"quote\": \"ELECTRICAL SYSTEM\"}\n  ]\n}\n```",
+            "reasoning_content": "Let me produce the JSON.\n\nComponent: electrical system, group: electrical/electronic. Symptoms: random safety lights (forward collision) turning on while driving; car locks with keys inside; won't unlock with spare key fob or phone key fob; issues disappeared after manual unlock and engine start.\n\nConditions: intermittent.\n\nSafety relevant: yes — \"most recent safety concern is that with keys inside the car will lock\" — risk (dogs locked in, potential entrapment). Also random safety lights / forward collision — driving risk. I'd set true.\n\nMissing info: mileage (null), date? received_at exists but no incident date. Conditions? Provide mileage and date.\n\nClues: verbatim quotes.\n\nQuotes must be exact spans from narrative. Let's pick:\n- \"While driving random safety lights will turn on like forward collision\"\n- \"with keys inside the car will lock\"\n- \"will not unlock with the spare key fob and it will not unlock with the key fob from phone\"\n- \"when we started the engine all the issues went away\"\n- \"The most recent safety concern\"\n- component group: \"ELECTRICAL SYSTEM\" from component field — that's in the report (the user message). Fine.\n\nmissing_info: [\"mileage\", \"date\", \"conditions\"] — conditions? The report says \"While driving\". Conditions like temperature/weather not given. Include mileage and date. Conditions arguably given (while driving, engine start). I'll list [\"mileage\", \"date\"].",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793540803,
+      "id": "b14f95f8931c75337bfe6853b6ead6ca",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 634,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 307,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00024567,
+          "billing_source": "go",
+          "list_cost": 0.00040945,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 186,
+            "output": 634,
+            "reasoning": 307
+          }
+        },
+        "prompt_tokens": 570,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1204
+      }
+    },
+    "text": "```json\n{\n  \"summary\": \"Electrical system on a 2026 Audi Q5: random safety lights (e.g. forward collision) while driving, and doors self-locking with keys inside, refusing to unlock via spare fob or phone fob until opened manually and the engine started\",\n  \"group\": \"electrical/electronic\",\n  \"symptoms\": [\n    \"random safety warning lights illuminate while driving, such as forward collision\",\n    \"vehicle locks itself with the keys inside\",\n    \"will not unlock with the spare key fob\",\n    \"will not unlock with the phone key fob\",\n    \"all issues disappear after manually opening the door and starting the engine\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\"kind\": \"symptom\", \"quote\": \"While driving random safety lights will turn on like forward collision\"},\n    {\"kind\": \"safety\", \"quote\": \"The most recent safety concern is that with keys inside the car will lock\"},\n    {\"kind\": \"symptom\", \"quote\": \"will not unlock with the spare key fob and it will not unlock with the key fob from phone\"},\n    {\"kind\": \"condition\", \"quote\": \"when we started the engine all the issues went away\"},\n    {\"kind\": \"component_group\", \"quote\": \"ELECTRICAL SYSTEM\"}\n  ]\n}\n```",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00024567,
+      "cached_tokens": 384,
+      "cost_usd": 0.00040945,
+      "input_tokens": 570,
+      "list_cost_usd": 0.00040945,
+      "output_tokens": 634,
+      "reasoning_tokens": 307
+    }
+  }
+}

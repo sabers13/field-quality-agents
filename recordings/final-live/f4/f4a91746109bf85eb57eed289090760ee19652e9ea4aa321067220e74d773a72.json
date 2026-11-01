@@ -1,0 +1,66 @@
+{
+  "key": "f4a91746109bf85eb57eed289090760ee19652e9ea4aa321067220e74d773a72",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 8922,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2025 GMC Sierra 1500 infotainment system showed a blank screen and no audio volume during startup and while driving.\",\"group\":\"EQUIPMENT:ELECTRICAL:INFOTAINMENT\",\"symptoms\":[\"blank infotainment screen\",\"no audio volume\"],\"conditions\":[],\"fault_codes\":[\"PIT6362\"],\"safety_relevant\":false,\"missing_info\":[],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"EQUIPMENT:ELECTRICAL:INFOTAINMENT\"},{\"kind\":\"symptom\",\"quote\":\"infotainment system displayed a blank screen and produced no audio volume\"},{\"kind\":\"condition\",\"quote\":\"during vehicle startup\"},{\"kind\":\"condition\",\"quote\":\"The failure also occurred while driving.\"},{\"kind\":\"fault_code\",\"quote\":\"PIT6362\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need parse report. Component given ELECTRICAL:INFOTAINMENT. Summary one line component symptom conditions. Symptoms blank screen no audio volume, occurred during startup and while driving. Conditions: \"during vehicle startup\", \"while driving\" but allowed conditions list includes cold moisture heat vibration intermittent after service charging. No explicit those. Could include intermittent? Failure also occurred while driving maybe not intermittent. Conditions list should use allowed? Prompt says conditions [\"cold\", ...]. Need only if present. None. Maybe \"intermittent\" not explicitly. Missing info: conditions? We have conditions startup/driving. Mileage given 4000. Date received 2026. Component given. Symptom given. So missing_info empty? Analysis needs component symptom conditions mileage date all present. Date received but not incident date? Rule list date. Report has received_at but no failure date. Does missing_info include date? They need date maybe failure date. But \"date\" could be received date present. Hmm. Use empty? The report has mileage, component, symptom, conditions. Date maybe received_at. I'd say missing_info [] perhaps. Safety false. Fault codes none. Clues: verbatim spans. Need ensure exact substrings from narrative. Quotes:\n- \"infotainment system displayed a blank screen and produced no audio volume\" exact? Narrative: \"the infotainment system displayed a blank screen and produced no audio volume.\" Yes substring excluding \"the \" maybe exact \"infotainment system displayed a blank screen and produced no audio volume\" is verbatim.\n- \"The failure also occurred while driving.\" exact.\n- \"during vehicle startup\" exact? Narrative: \"during vehicle startup, the infotainment...\" yes.\n- component_group quote: \"EQUIPMENT:ELECTRICAL:INFOTAINMENT\"? It appears in component field not narrative. User message includes whole JSON, report? \"Read only report in user message\" includes component. Quote can be from report, likely any field. Verbatim \"EQUIPMENT:ELECTRICAL:INFOTAINMENT\". For kind component_group. \n- other: \"Preliminary Information Bulletin: PIT6362\" exact? Narrative: \"Preliminary Information Bulletin: PIT6362\" yes. But fault_codes: report names PIT6362? It's a bulletin, not fault code. Prompt says fault_codes: code if report names one. It names PIT6362 but as bulletin. Should we include? It says fault_codes code if report names one. PIT6362 is a Preliminary Information Bulletin identifier, not diagnostic trouble code. Could list \"PIT6362\" maybe. But clues kind fault_code? Hm. It names PIT6362. I'd include fault_codes [\"PIT6362\"] maybe as code. But could be not fault code. The desk analyzes field quality; bulletin code useful. Include.\n\nNeed summary one line: \"2025 GMC Sierra 1500 infotainment blank screen and no audio at startup and while driving.\" Conditions: startup/driving. Group given.\n\nNeed JSON only. No extra text. Ensure quotes exact. Let's craft.\n\nPotential missing_info: Maybe \"date\" because no specific failure date. But received_at exists. The list includes date. The report has received date, not failure date. Should I list date? Analysis may need incident date. But not critical? It says only facts analysis needs. I think missing_info [\"date\"] maybe. However the report has received_at 2026-10-14. That's a date. But not failure date. The missing_info categories are component, symptom, conditions, mileage, date. Date could mean date of report; present. I'd leave empty to avoid inventing missing. But if analysis needs failure date, maybe. Hm.\n\nCould missing_info include \"conditions\" because actual conditions not environmental? We have startup/driving. Conditions field in schema expects cold/moisture/heat/vibration/intermittent/after service/charging. None present, but that means no known environmental conditions. Missing info? Maybe conditions missing (e.g., weather). But not necessarily needed. The prompt says list only facts analysis needs. For infotainment software, environmental conditions less relevant. Empty.\n\nNeed maybe safety false.\n\nClues include symptom and condition and component_group and other. Need not include fault code? If fault_codes includes PIT6362, clue kind fault_code quote \"PIT6362\" exact. But is it code? Let's include to support.\n\nNeed \"conditions\": [] because none of allowed. But summary mentions startup/driving. Hmm conditions array allowed only enumerated. Use [].\n\nNeed symptoms: [\"blank infotainment screen\", \"no audio volume\"]. Plain words. \"blank screen and produced no audio volume\". Good.\n\nNeed group: \"EQUIPMENT:ELECTRICAL:INFOTAINMENT\" maybe. Prompt says \"the electrical/electronic component group, or the given group\". Given component is that. Use exact.\n\nFinal JSON. Ensure no markdown? User says one JSON object no other text. We can output raw JSON. Done.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793540777,
+      "id": "f514c46c1ea98f1f98f1474b9adc2422",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1255,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1075,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00046995,
+          "billing_source": "go",
+          "list_cost": 0.00078325,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 194,
+            "output": 1255,
+            "reasoning": 1075
+          }
+        },
+        "prompt_tokens": 578,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1833
+      }
+    },
+    "text": "{\"summary\":\"2025 GMC Sierra 1500 infotainment system showed a blank screen and no audio volume during startup and while driving.\",\"group\":\"EQUIPMENT:ELECTRICAL:INFOTAINMENT\",\"symptoms\":[\"blank infotainment screen\",\"no audio volume\"],\"conditions\":[],\"fault_codes\":[\"PIT6362\"],\"safety_relevant\":false,\"missing_info\":[],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"EQUIPMENT:ELECTRICAL:INFOTAINMENT\"},{\"kind\":\"symptom\",\"quote\":\"infotainment system displayed a blank screen and produced no audio volume\"},{\"kind\":\"condition\",\"quote\":\"during vehicle startup\"},{\"kind\":\"condition\",\"quote\":\"The failure also occurred while driving.\"},{\"kind\":\"fault_code\",\"quote\":\"PIT6362\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00046995,
+      "cached_tokens": 384,
+      "cost_usd": 0.00078325,
+      "input_tokens": 578,
+      "list_cost_usd": 0.00078325,
+      "output_tokens": 1255,
+      "reasoning_tokens": 1075
+    }
+  }
+}

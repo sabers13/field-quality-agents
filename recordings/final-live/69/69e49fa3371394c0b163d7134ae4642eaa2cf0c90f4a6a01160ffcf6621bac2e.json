@@ -1,0 +1,66 @@
+{
+  "key": "69e49fa3371394c0b163d7134ae4642eaa2cf0c90f4a6a01160ffcf6621bac2e",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11509,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system: backup camera unavailable because recall 25SA9 remains unremedied after a year, with safety incidents and damage from unseen objects.\",\"group\":\"ELECTRICAL SYSTEM\",\"symptoms\":[\"backup camera unavailable\"],\"conditions\":[],\"fault_codes\":[\"25SA9\"],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"Not having my back up camera\"},{\"kind\":\"condition\",\"quote\":\"Recall under 25SA9 has not been remedied a whole year later.\"},{\"kind\":\"fault_code\",\"quote\":\"25SA9\"},{\"kind\":\"safety\",\"quote\":\"has caused safety incidents\"},{\"kind\":\"other\",\"quote\":\"And a few damages from things I could not see\"}]}",
+            "reasoning_content": "We need answer only JSON object. Need parse report. Component ELECTRICAL SYSTEM. Narrative: \"Recall under 25SA9 has not been remedied a whole year later. Not having my back up camera has caused safety incidents. And a few damages from things I could not see\". Need summary one line: component, symptom, conditions. Group: electrical/electronic component group, or given group. Given component ELECTRICAL SYSTEM, so group maybe \"ELECTRICAL SYSTEM\". Symptoms: back up camera unavailable/not working; safety incidents; damages from unseen things? Plain words. Conditions: recall unremedied a year later? Is that condition? Conditions categories given: cold moisture heat vibration intermittent after service charging. None apply except maybe \"after service\" no. \"a whole year later\" not in categories. Could include \"recall not remedied\" as condition? They specified conditions list [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. We should likely only use those. No matching. But \"Not having my back up camera\" could be intermittent? No. So conditions empty. Fault codes: \"25SA9\" is recall code not fault code? It says fault_codes [\"code if report names one\"]. 25SA9 is recall identifier. Could include? It's not a fault code, but code named. Better maybe include \"25SA9\" as fault_code? Hmm \"Recall under 25SA9\" is a recall code. The schema fault_codes code if report names one. Could include 25SA9. Safety_relevant true: safety incidents, damages from things could not see. Missing_info: mileage null, date? received date present, but report date? \"date\" maybe missing? Mileage missing. Conditions missing? We have no conditions. Component given. Symptom present. So missing_info [\"mileage\", \"conditions\"] maybe date? The report has received_at but not incident date. The rule list facts needed: component, symptom, conditions, mileage, date. Date maybe missing (only received date). Include \"date\"? It says missing_info only facts analysis needs. The report lacks mileage and date of incident; conditions maybe no environmental conditions. Could include mileage, date, conditions. But maybe \"date\" is received_at? That's receipt date, not event date. Include \"mileage\", \"date\", \"conditions\". Need clues with verbatim quotes. Need every quote copied exactly. Quotes:\n- \"ELECTRICAL SYSTEM\" component_group? quote from report? Component field value is in report JSON; yes \"ELECTRICAL SYSTEM\" verbatim.\n- \"Recall under 25SA9 has not been remedied a whole year later.\" condition? other? Maybe condition? It's recall status. kind other or condition. Could use quote \"Recall under 25SA9 has not been remedied a whole year later.\" kind \"condition\"? It is a condition (unremedied recall). But conditions list doesn't include. Hmm clues kind can be condition. But conditions array only categories. We can still clue as other.\n- \"Not having my back up camera has caused safety incidents.\" symptom and safety. Quote exact. kind symptom? It includes safety. Could have separate clues: {\"kind\":\"symptom\",\"quote\":\"Not having my back up camera\"} and {\"kind\":\"safety\",\"quote\":\"has caused safety incidents\"} but quote spans exact. Need quote verbatim. \"Not having my back up camera has caused safety incidents.\" is exact. For safety quote \"safety incidents\" exact. For symptom quote \"Not having my back up camera\" exact. Good.\n- \"And a few damages from things I could not see\" exact. kind other or symptom? It's consequence. Could clue other/safety? Maybe other.\n- \"25SA9\" fault_code quote exact.\nNeed summary: \"Electrical system: backup camera unavailable due to unremedied recall 25SA9, with safety incidents and damage from unseen objects.\" Conditions: \"recall not remedied a year later\" maybe not category. But summary can include.\n\nNeed ensure JSON only. No markdown. Use booleans. Missing_info list. Group \"ELECTRICAL SYSTEM\". Symptoms plain words: [\"backup camera unavailable\", \"safety incidents from inability to see behind vehicle\", \"damage from unseen objects\"]? The symptom should be \"back up camera not working/not available\". Safety incidents not symptom? Could include \"safety incidents\". Better symptoms: [\"backup camera unavailable\"]. Conditions: [] maybe. But missing_info includes conditions. If conditions empty. But the report mentions \"a whole year later\" not environmental. Hmm.\n\nNeed consider \"safety incidents\" triggers safety_relevant true. Yes.\n\nNeed maybe group \"electrical/electronic\" rather than \"ELECTRICAL SYSTEM\"? The instruction: \"the electrical/electronic component group, or the given group\". Given group is ELECTRICAL SYSTEM. Use \"ELECTRICAL SYSTEM\". Good.\n\nNeed answer with one JSON object. No other text. Let's craft valid JSON. Quotes exact: Ensure \"Not having my back up camera\" exactly as in narrative (back up two words). Yes. \"has caused safety incidents\" exact substring? Narrative: \"Not having my back up camera has caused safety incidents.\" Yes substring \"has caused safety incidents\" exact. \"And a few damages from things I could not see\" exact. \"Recall under 25SA9 has not been remedied a whole year later.\" exact. \"25SA9\" exact. \"ELECTRICAL SYSTEM\" exact from component. Good.\n\nNeed maybe include clue kind \"condition\" for recall unremedied. Conditions array empty? Could include \"after service\"? No. Could include \"recall not remedied\" not allowed? The conditions array schema examples fixed categories but maybe can include other condition? It says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. It's likely enum-ish. Better not include non-listed. But \"recall not remedied\" is a condition in plain words? Hmm. The output \"conditions\" should list conditions from set. If none, [].\nNeed missing_info: [\"mileage\",\"date\",\"conditions\"] maybe. Date: received_at exists but no incident date. Should we include \"date\"? Yes likely. Mileage null. Conditions not described. Component and symptom present. Good.\n\nNeed summary line: \"Electrical system: backup camera unavailable because recall 25SA9 unremedied after a year, causing safety incidents and damage from unseen objects.\" Good.\n\nNeed \"symptoms\": [\"backup camera unavailable\", \"safety incidents\", \"damage from unseen objects\"]? Plain words. Symptoms maybe \"backup camera not available\" and \"cannot see behind vehicle\". The report says \"Not having my back up camera\". Use \"backup camera unavailable\". Safety incidents and damages are consequences not symptoms. But schema symptom in plain words; could list \"safety incidents\" as symptom? Better only actual symptom. But clues include safety. I can include \"backup camera unavailable\" only. Maybe \"unable to see behind vehicle\" is symptom. But not explicit? \"things I could not see\" yes. Could list \"unable to see objects behind vehicle\". That's plain. But not overinvent. Let's use [\"backup camera unavailable\"].\n\nNeed fault_codes: [\"25SA9\"]. Although recall code. Fine.\n\nNeed safety_relevant true.\n\nNeed clues: kind component_group quote \"ELECTRICAL SYSTEM\"; symptom quote \"Not having my back up camera\"; condition quote \"Recall under 25SA9 has not been remedied a whole year later.\"; fault_code quote \"25SA9\"; safety quote \"has caused safety incidents\"; other quote \"And a few damages from things I could not see\". All exact.\n\nNeed no markdown. Final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793539947,
+      "id": "868d6be17eb0861aa644f0387a5c86f8",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1832,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1646,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00067119,
+          "billing_source": "go",
+          "list_cost": 0.00111865,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 122,
+            "output": 1832,
+            "reasoning": 1646
+          }
+        },
+        "prompt_tokens": 506,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2338
+      }
+    },
+    "text": "{\"summary\":\"Electrical system: backup camera unavailable because recall 25SA9 remains unremedied after a year, with safety incidents and damage from unseen objects.\",\"group\":\"ELECTRICAL SYSTEM\",\"symptoms\":[\"backup camera unavailable\"],\"conditions\":[],\"fault_codes\":[\"25SA9\"],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"Not having my back up camera\"},{\"kind\":\"condition\",\"quote\":\"Recall under 25SA9 has not been remedied a whole year later.\"},{\"kind\":\"fault_code\",\"quote\":\"25SA9\"},{\"kind\":\"safety\",\"quote\":\"has caused safety incidents\"},{\"kind\":\"other\",\"quote\":\"And a few damages from things I could not see\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00067119,
+      "cached_tokens": 384,
+      "cost_usd": 0.00111865,
+      "input_tokens": 506,
+      "list_cost_usd": 0.00111865,
+      "output_tokens": 1832,
+      "reasoning_tokens": 1646
+    }
+  }
+}

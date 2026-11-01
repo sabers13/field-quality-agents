@@ -1,0 +1,66 @@
+{
+  "key": "031fc18913b4ccb8dae7ddd54810ff47dc6055579686ae86ec0a37e2838eb6bc",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9647,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Speedometer/odometer; odometer fraud/mileage discrepancy; dealer sale listed 142,000 vs title/Carfax 227,100.\",\"group\":\"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\",\"symptoms\":[\"odometer fraud\",\"mileage discrepancy\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\"},{\"kind\":\"symptom\",\"quote\":\"Odometer Fraud\"},{\"kind\":\"symptom\",\"quote\":\"mileage discrepancy\"},{\"kind\":\"other\",\"quote\":\"The vehicle was a dealer sale.\"},{\"kind\":\"other\",\"quote\":\"listed with a mileage of 142,000\"},{\"kind\":\"other\",\"quote\":\"mileage was 227,100\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize report. Need read only report. Need determine summary component symptom conditions etc. Report: component ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER. Narrative odometer fraud, mileage discrepancy, purchased 2011 Civic dealer sale, listed 142,000 but discovered via Carfax and Certificate of Title mileage 227,100. Need group electrical/electronic component? Given group is electrical system instrument panel speedometer/odometer. We can use \"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\" maybe group should be electrical/electronic component group, or given group. It says \"the electrical/electronic component group, or the given group\". Since component is electrical system, group likely \"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\" or \"electrical/electronic\". Need decide. JSON fields. Symptoms: [\"mileage discrepancy\", \"odometer fraud\"]? Plain words. Conditions: none? Maybe \"after service\"? No. \"dealer sale\" not condition. Cold/moisture/heat/vibration/intermittent/after service/charging none. fault_codes empty. safety_relevant? No crash/fire etc. Odometer fraud not safety. missing_info: We have component, symptom, mileage? Mileage given 227100. Date? received_at 2026-09-29 but not incident date. Conditions missing? Probably conditions? The rules list missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. Component present, symptom present, mileage present. Date? Narrative doesn't give date of purchase/discovery; received_at is not necessarily date. But missing_info may include \"date\" maybe. Conditions? Not relevant for odometer fraud? Could list \"date\" only. But they want missing info important. Since report includes purchase but no date. Maybe include \"date\". Conditions not applicable? But allowed. Need not invent. Clues: verbatim spans. Need quote exact. We can include:\n- {\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\"} But quote must be copied verbatim from report. Is component field part of report? User message includes JSON with component. It says read report in user message. Verbatim span copied from report. The component string is in report. OK.\n- symptom: \"mileage discrepancy\" quote \"mileage discrepancy\"\n- symptom: \"Odometer Fraud\" quote \"Odometer Fraud.\" or \"Odometer Fraud\" exact? Report has \"Odometer Fraud.\" We can quote \"Odometer Fraud\" (substring verbatim). Yes.\n- other: \"listed with a mileage of 142,000\" quote exact? Narrative says \"the vehicle was listed with a mileage of 142,000; however, it was discovered via a Carfax Report and Certificate of Tile of the vehicle that the mileage was 227,100.\" We can quote \"listed with a mileage of 142,000\" exact substring. Yes.\n- other: \"mileage was 227,100\" exact substring? It says \"that the mileage was 227,100.\" substring \"mileage was 227,100\" yes.\nNeed maybe clue for dealer sale: \"The vehicle was a dealer sale.\" quote exact. kind other/condition? No condition. Could include other.\nNeed summary one line: \"Speedometer/odometer; odometer fraud/mileage discrepancy; dealer sale listed 142,000 vs title/Carfax 227,100.\" That's one line.\n\nNeed ensure JSON valid. No other text. Need maybe group: \"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\" as given. Or \"electrical/electronic\". The prompt says group: \"the electrical/electronic component group, or the given group\". Given group is specific. Use given group.\n\nSafety false. Missing_info: [\"date\"]? Let's think. The report has received_at date but not purchase date. It asks \"missing_info only for facts the analysis needs: component, symptom, conditions, mileage, date.\" Component present, symptom present, mileage present. Conditions not specified but for odometer fraud conditions not needed. Date of purchase/discovery missing. So [\"date\"]. Could include \"conditions\"? No. Maybe no missing info? But date is missing. The case analysis may need date of purchase/discovery. Include date.\n\nPotential issue: \"Certificate of Tile\" typo in report; quote if include exact. Not needed.\n\nNeed \"symptoms\": [\"odometer fraud\", \"mileage discrepancy\"] lowercase? Plain words. Could use \"odometer fraud\", \"mileage discrepancy\". Fine.\n\nConditions: [] because none. Could \"after service\"? No. \"dealer sale\" not among list. Use [].\n\nFault codes [].\n\nClues array includes quotes exactly. Need ensure \"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\" appears exactly in user message component value. Yes. \"Odometer Fraud\" appears with capital. \"mileage discrepancy\" appears lowercase. \"The vehicle was a dealer sale.\" appears exact. \"listed with a mileage of 142,000\" exact? Narrative: \"At the time of the purchase, the vehicle was listed with a mileage of 142,000; however...\" yes. \"mileage was 227,100\" exact? \"that the mileage was 227,100.\" yes. Good.\n\nNeed final only JSON. Use no markdown? User says answer with one JSON object and no other text. So just JSON. Ensure no code fence. Good.\n\nNeed maybe summary no semicolons? okay.\n\nFinal.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793539655,
+      "id": "4cdb9751931f364b6c53ab1037e967d0",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1422,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1218,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0005289,
+          "billing_source": "go",
+          "list_cost": 0.0008815,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 181,
+            "output": 1422,
+            "reasoning": 1218
+          }
+        },
+        "prompt_tokens": 565,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1987
+      }
+    },
+    "text": "{\"summary\":\"Speedometer/odometer; odometer fraud/mileage discrepancy; dealer sale listed 142,000 vs title/Carfax 227,100.\",\"group\":\"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\",\"symptoms\":[\"odometer fraud\",\"mileage discrepancy\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\"},{\"kind\":\"symptom\",\"quote\":\"Odometer Fraud\"},{\"kind\":\"symptom\",\"quote\":\"mileage discrepancy\"},{\"kind\":\"other\",\"quote\":\"The vehicle was a dealer sale.\"},{\"kind\":\"other\",\"quote\":\"listed with a mileage of 142,000\"},{\"kind\":\"other\",\"quote\":\"mileage was 227,100\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0005289,
+      "cached_tokens": 384,
+      "cost_usd": 0.0008815,
+      "input_tokens": 565,
+      "list_cost_usd": 0.0008815,
+      "output_tokens": 1422,
+      "reasoning_tokens": 1218
+    }
+  }
+}

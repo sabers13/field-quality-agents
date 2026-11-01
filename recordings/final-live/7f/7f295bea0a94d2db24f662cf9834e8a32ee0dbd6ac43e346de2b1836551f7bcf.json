@@ -1,0 +1,66 @@
+{
+  "key": "7f295bea0a94d2db24f662cf9834e8a32ee0dbd6ac43e346de2b1836551f7bcf",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9424,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Infotainment screen went black and disabled the backup camera on a 2024 Volkswagen Tiguan; dealer diagnosed it and replacement parts are backordered 4 to 5 weeks.\",\"group\":\"electrical/electronic\",\"symptoms\":[\"main infotainment screen completely failed and went black\",\"backup camera entirely inoperable\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"The main infotainment screen completely failed and went black\"},{\"kind\":\"symptom\",\"quote\":\"rendering the backup camera entirely inoperable\"},{\"kind\":\"safety\",\"quote\":\"This creates a severe safety hazard\"},{\"kind\":\"safety\",\"quote\":\"violates Federal Motor Vehicle Safety Standard (FMVSS) No. 111\"},{\"kind\":\"component_group\",\"quote\":\"infotainment screen\"},{\"kind\":\"other\",\"quote\":\"replacement parts are backordered for 4 to 5 weeks\"}]}",
+            "reasoning_content": "We need answer one JSON only. Need normalize report. Component given VISIBILITY/WIPER but narrative about infotainment screen failed black, backup camera inoperable, safety hazard FMVSS 111, diagnosis dealer, parts backordered 4-5 weeks, no loaner, left car. Need group \"the electrical/electronic component group, or given group\". Given component VISIBILITY/WIPER. But actual component? Infotainment screen/backup camera. Need decide group. Prompt says group: \"the electrical/electronic component group, or the given group\". Since given group VISIBILITY/WIPER maybe use given? But narrative is infotainment/backup camera electrical. The intake normalises incoming field-quality report. It says group \"the electrical/electronic component group, or the given group\". I think use \"VISIBILITY/WIPER\" as given component group? Hmm.\n\nNeed summary one line: component, symptom, conditions. \"Infotainment screen went black, disabling backup camera on 2024 Volkswagen Tiguan; diagnosed at dealer, parts backordered 4-5 weeks.\" Conditions: maybe none? Could include \"after service\"? No. \"charging\"? No. Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. Report doesn't mention these. Maybe empty.\n\nSymptoms: \"main infotainment screen completely failed and went black\", \"backup camera entirely inoperable\". Fault codes none. safety_relevant true due severe safety hazard, backup camera inoperable. Missing_info: mileage is null; date? received_at but no incident date. Conditions? maybe missing conditions. Component? Given component VISIBILITY/WIPER but narrative actual infotainment/backup camera; maybe missing component? Hmm missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Component is present as given but mismatch? Symptom present. Conditions missing (when/how often). Mileage missing. Date? There is received_at, no occurrence date. So list [\"mileage\",\"date\",\"conditions\"] maybe component? The given component is weird but exists. Could include component? The report names infotainment screen and backup camera but component field says wiper. For analysis maybe component clarity missing due mismatch. But rules: list missing_info only for facts analysis needs. Component is arguably present. I'd include mileage, date, conditions. Maybe \"component\" because VISIBILITY/WIPER doesn't match narrative? But component field exists; don't invent. Hmm.\n\nClues: need verbatim spans. Must copy exactly from narrative. Need include symptom, safety, component_group? Quotes:\n- \"The main infotainment screen completely failed and went black\" verbatim (includes quote? Narrative has escaped quotes around whole; actual text includes `\"The main...` but inside string. Quote should be copied from report. The narrative field value includes leading quote and trailing quote. But we can quote interior substring. That's verbatim span from report. Good.\n- \"rendering the backup camera entirely inoperable\" verbatim.\n- \"This creates a severe safety hazard\" verbatim.\n- \"violates Federal Motor Vehicle Safety Standard (FMVSS) No. 111\" verbatim.\n- \"replacement parts are backordered for 4 to 5 weeks\" verbatim.\n- Maybe component_group quote \"main infotainment screen\" or \"backup camera\". Kind component_group maybe quote \"infotainment screen\" (verbatim).\n- condition? no allowed condition. Could include other for \"backordered for 4 to 5 weeks\"? kind other.\nNeed not include too many. Clues should support summary.\n\nNeed ensure JSON valid. No other text. Let's craft.\n\nGroup: Maybe \"electrical/electronic\" because actual component. But prompt: \"the electrical/electronic component group, or the given group\" means if can infer electrical/electronic, use that. Infotainment screen and backup camera are electrical/electronic. The given field is VISIBILITY/WIPER, likely NHTSA component. But the narrative is not wiper. For desk analysis, group as electrical/electronic. Hmm. But component field says VISIBILITY/WIPER. The instruction says group: \"the electrical/electronic component group, or the given group\". This implies use electrical/electronic group when applicable; otherwise given group. I think use \"electrical/electronic\" to reflect actual. But maybe they want given group exactly. Let's parse: `\"group\": \"the electrical/electronic component group, or the given group\"` — this is template description. It means output the electrical/electronic component group, or the given group. Since report is about infotainment screen, electrical/electronic. I'll set \"electrical/electronic\". Summary mentions component.\n\nSafety_relevant true.\n\nMissing_info: [\"mileage\", \"date\", \"conditions\"] maybe. Could include \"component\" if component mismatch? But not missing. Let's not.\n\nClues:\n[\n{\"kind\":\"symptom\",\"quote\":\"The main infotainment screen completely failed and went black\"},\n{\"kind\":\"symptom\",\"quote\":\"rendering the backup camera entirely inoperable\"},\n{\"kind\":\"safety\",\"quote\":\"This creates a severe safety hazard\"},\n{\"kind\":\"safety\",\"quote\":\"violates Federal Motor Vehicle Safety Standard (FMVSS) No. 111\"},\n{\"kind\":\"component_group\",\"quote\":\"infotainment screen\"},\n{\"kind\":\"other\",\"quote\":\"replacement parts are backordered for 4 to 5 weeks\"}\n]\nNeed ensure quote \"infotainment screen\" appears exactly? Narrative: \"The main infotainment screen completely failed\" yes substring. Good.\n\nMaybe include condition \"backordered\" not allowed condition. Other.\n\nSummary: \"Infotainment screen went black and disabled the backup camera on a 2024 Volkswagen Tiguan; dealer diagnosed it and parts are backordered 4-5 weeks.\" Conditions? none.\n\nNeed maybe include fault_codes empty.\n\nFinal only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793540384,
+      "id": "603383cb741611fc36b06890aaafd2f0",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1491,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1266,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00055707,
+          "billing_source": "go",
+          "list_cost": 0.00092845,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 218,
+            "output": 1491,
+            "reasoning": 1266
+          }
+        },
+        "prompt_tokens": 602,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2093
+      }
+    },
+    "text": "{\"summary\":\"Infotainment screen went black and disabled the backup camera on a 2024 Volkswagen Tiguan; dealer diagnosed it and replacement parts are backordered 4 to 5 weeks.\",\"group\":\"electrical/electronic\",\"symptoms\":[\"main infotainment screen completely failed and went black\",\"backup camera entirely inoperable\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"The main infotainment screen completely failed and went black\"},{\"kind\":\"symptom\",\"quote\":\"rendering the backup camera entirely inoperable\"},{\"kind\":\"safety\",\"quote\":\"This creates a severe safety hazard\"},{\"kind\":\"safety\",\"quote\":\"violates Federal Motor Vehicle Safety Standard (FMVSS) No. 111\"},{\"kind\":\"component_group\",\"quote\":\"infotainment screen\"},{\"kind\":\"other\",\"quote\":\"replacement parts are backordered for 4 to 5 weeks\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00055707,
+      "cached_tokens": 384,
+      "cost_usd": 0.00092845,
+      "input_tokens": 602,
+      "list_cost_usd": 0.00092845,
+      "output_tokens": 1491,
+      "reasoning_tokens": 1266
+    }
+  }
+}

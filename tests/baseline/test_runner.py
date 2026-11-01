@@ -130,6 +130,34 @@ def test_runner_outputs_are_stable_and_parse(tmp_path: Path) -> None:
     assert "closed no trouble found | 2" in summary
 
 
+def test_runner_reads_another_case_set(tmp_path: Path) -> None:
+    """Q14 reruns the same baseline on the sealed final live set."""
+
+    data = _fixture_data(tmp_path)
+    final = [
+        _row("L1", date(2026, 9, 29), "ELECTRICAL SYSTEM:WIRING", "power_and_wiring",
+             "The wiring harness smokes near the battery cable."),
+        _row("L2", date(2026, 9, 30), "EXTERIOR LIGHTING", "lighting",
+             "The brake light bulb failed.", safety=True),
+    ]
+    _write_parquet(data / "final_live.parquet", final)
+    output = tmp_path / "final-baseline"
+
+    report = run_baseline(
+        data_dir=data,
+        out_dir=output,
+        keywords_path=KEYWORDS,
+        case_set="final_live",
+    )
+
+    assert report.cases == 2
+    assert [d["case_id"] for d in json.loads((output / "decisions.json").read_text())] == [
+        "L1",
+        "L2",
+    ]
+    assert "data/final_live.parquet" in (output / "SUMMARY.md").read_text()
+
+
 def test_loader_preserves_the_contract_fields(tmp_path: Path) -> None:
     data = _fixture_data(tmp_path)
     cases = load_cases(data / "replay_2025.parquet")

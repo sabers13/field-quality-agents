@@ -1,0 +1,66 @@
+{
+  "key": "979d8172e5ed9e35779328c26b1ef3f6b44368d505565caa97a46a1c26e0d8b0",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 5174,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "```json\n{\n  \"summary\": \"2024 Hyundai Santa Fe electrical system: multiple driver-assist and brake warnings flashing with Auto Hold and emergency parking brake self-engaging, continuing while driving and with engine off\",\n  \"group\": \"ELECTRICAL SYSTEM\",\n  \"symptoms\": [\n    \"multiple dashboard warnings flashing for lane assist and emergency stopping\",\n    \"Auto Hold engaged by itself and turned orange\",\n    \"emergency parking brake engaged and stayed on\",\n    \"warnings chimed every 30 seconds while driving\",\n    \"every dashboard icon lit up\",\n    \"lane assist warnings continued after lane assist was turned off\",\n    \"lights flickered while parked and with the engine off\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\"\n  ],\n  \"clues\": [\n    {\"kind\": \"symptom\", \"quote\": \"Multiple warnings flashing across dashboard regarding lane assist and emergency stopping.\"},\n    {\"kind\": \"symptom\", \"quote\": \"The Auto Hold came on by itself and turned orange.\"},\n    {\"kind\": \"symptom\", \"quote\": \"The emergency parking brake came on and stayed on.\"},\n    {\"kind\": \"symptom\", \"quote\": \"The warnings kept dinging every 30 seconds while driving and lit up every icon on the dashboard.\"},\n    {\"kind\": \"symptom\", \"quote\": \"Once parked I turned off lane assist, but it continued to trigger warnings.\"},\n    {\"kind\": \"symptom\", \"quote\": \"Lights flickered in park and with engine turned off.\"},\n    {\"kind\": \"condition\", \"quote\": \"while driving\"},\n    {\"kind\": \"condition\", \"quote\": \"in park\"},\n    {\"kind\": \"safety\", \"quote\": \"The emergency parking brake came on and stayed on.\"},\n    {\"kind\": \"safety\", \"quote\": \"Multiple warnings flashing across dashboard regarding lane assist and emergency stopping.\"},\n    {\"kind\": \"component_group\", \"quote\": \"ELECTRICAL SYSTEM\"}\n  ]\n}\n```",
+            "reasoning_content": "Let me produce the JSON.\n\nComponent: electrical system, but the described symptoms relate to driver assist / braking. Group: \"ELECTRICAL SYSTEM\" given.\n\nSymptoms: multiple dashboard warnings flashing for lane assist and emergency stopping; auto hold engaged by itself and turned orange; emergency parking brake engaged and stayed on; warnings dinging every 30 seconds while driving; all dashboard icons lit; lane assist warnings continued after being turned off; lights flickered in park with engine off.\n\nConditions: \"while driving\", \"in park\", \"engine turned off\" — allowed list: cold, moisture, heat, vibration, intermittent, after service, charging. Hmm, restricted vocabulary. Intermittent fits (repeated warnings, flickering). I'd use [\"intermittent\"]. Maybe that's the only fit.\n\nFault codes: none.\n\nSafety: warnings about emergency stopping, emergency parking brake coming on while driving — that's a risk (unexpected braking). Yes, safety_relevant true. Quote: \"The emergency parking brake came on and stayed on\" or \"warnings kept dinging every 30 seconds while driving\". I'd say yes — loss of control/risk. Include.\n\nMissing info: mileage, and maybe fault codes — but list only component/symptom/conditions/mileage/date. Mileage missing. Date present (received_at 2026-10-06). Component present, symptom present, conditions... arguably present-ish. So [\"mileage\"].\n\nClues with verbatim quotes.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793540177,
+      "id": "9fd2de3be9bbef3b0d176c965c3e3d1f",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 762,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 306,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00029058,
+          "billing_source": "go",
+          "list_cost": 0.0004843,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 173,
+            "output": 762,
+            "reasoning": 306
+          }
+        },
+        "prompt_tokens": 557,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1319
+      }
+    },
+    "text": "```json\n{\n  \"summary\": \"2024 Hyundai Santa Fe electrical system: multiple driver-assist and brake warnings flashing with Auto Hold and emergency parking brake self-engaging, continuing while driving and with engine off\",\n  \"group\": \"ELECTRICAL SYSTEM\",\n  \"symptoms\": [\n    \"multiple dashboard warnings flashing for lane assist and emergency stopping\",\n    \"Auto Hold engaged by itself and turned orange\",\n    \"emergency parking brake engaged and stayed on\",\n    \"warnings chimed every 30 seconds while driving\",\n    \"every dashboard icon lit up\",\n    \"lane assist warnings continued after lane assist was turned off\",\n    \"lights flickered while parked and with the engine off\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\"\n  ],\n  \"clues\": [\n    {\"kind\": \"symptom\", \"quote\": \"Multiple warnings flashing across dashboard regarding lane assist and emergency stopping.\"},\n    {\"kind\": \"symptom\", \"quote\": \"The Auto Hold came on by itself and turned orange.\"},\n    {\"kind\": \"symptom\", \"quote\": \"The emergency parking brake came on and stayed on.\"},\n    {\"kind\": \"symptom\", \"quote\": \"The warnings kept dinging every 30 seconds while driving and lit up every icon on the dashboard.\"},\n    {\"kind\": \"symptom\", \"quote\": \"Once parked I turned off lane assist, but it continued to trigger warnings.\"},\n    {\"kind\": \"symptom\", \"quote\": \"Lights flickered in park and with engine turned off.\"},\n    {\"kind\": \"condition\", \"quote\": \"while driving\"},\n    {\"kind\": \"condition\", \"quote\": \"in park\"},\n    {\"kind\": \"safety\", \"quote\": \"The emergency parking brake came on and stayed on.\"},\n    {\"kind\": \"safety\", \"quote\": \"Multiple warnings flashing across dashboard regarding lane assist and emergency stopping.\"},\n    {\"kind\": \"component_group\", \"quote\": \"ELECTRICAL SYSTEM\"}\n  ]\n}\n```",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00029058,
+      "cached_tokens": 384,
+      "cost_usd": 0.0004843,
+      "input_tokens": 557,
+      "list_cost_usd": 0.0004843,
+      "output_tokens": 762,
+      "reasoning_tokens": 306
+    }
+  }
+}

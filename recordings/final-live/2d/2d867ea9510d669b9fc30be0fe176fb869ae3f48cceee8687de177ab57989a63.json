@@ -1,0 +1,66 @@
+{
+  "key": "2d867ea9510d669b9fc30be0fe176fb869ae3f48cceee8687de177ab57989a63",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10110,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Air bag and windshield A-pillar trim improperly repaired by dealer after a prior accident\",\"group\":\"AIR BAGS\",\"symptoms\":[\"airbag and windshield pillar A trim not properly repaired\"],\"conditions\":[\"after service\",\"after accident\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"The Airbag and the windshield piller A trim was not properly repaired\"},{\"kind\":\"condition\",\"quote\":\"after an accident\"},{\"kind\":\"condition\",\"quote\":\"was not properly repaired by Yark Toyota\"},{\"kind\":\"safety\",\"quote\":\"The Airbag and the windshield piller A trim was not properly repaired\"}]}",
+            "reasoning_content": "We need answer only JSON object. Need parse report. Component AIR BAGS. Narrative: \"The Airbag and the windshield piller A trim was not properly repaired by Yark Toyota in [XXX] after an accident prior to selling it to the next customer on XXX. Inspection of car finding this out was on XXX INFORMATION REDACTED...\" Need normalize. Summary one line: component, symptom, conditions. Group: electrical/electronic component group? Air bags likely safety restraint system / electrical? Given component \"AIR BAGS\" maybe group \"air bags\" or \"restraint system\". The schema says group \"the electrical/electronic component group, or the given group\". We can use \"AIR BAGS\" given. Symptoms: \"airbag and windshield pillar A trim not properly repaired\"; maybe symptom plain words: \"improper repair of airbag and A-pillar trim after accident\". Conditions: after accident, after service? The report says after an accident prior to selling; not cold/moisture etc. Include \"after service\"? It was not properly repaired by dealer after accident. Condition \"after service\" maybe relevant? But \"after service\" means after repair service. Could include \"after service\" and maybe \"after accident\" is not in allowed conditions list? Conditions array examples: cold, moisture, heat, vibration, intermittent, after service, charging. It says conditions: [\"cold\", ...]. Could include \"after service\" because repair by dealer. But \"after an accident\" not in list; could put in conditions? The rules say conditions list items? It doesn't explicitly restrict to given list, but examples. We should include \"after service\" and maybe \"after accident\" as condition? Hmm.\n\nFault codes: none. Safety_relevant: true? Airbag not properly repaired after accident is safety risk. Mentions accident but not crash? \"after an accident\" indicates prior accident. Airbag safety system improper repair. Safety relevant likely true. Need quote verbatim for safety: \"The Airbag and the windshield piller A trim was not properly repaired\" or \"after an accident\". Safety because airbag not properly repaired. Use quote.\n\nMissing_info: mileage missing (null). date? report has received_at and redacted dates, but narrative dates redacted. Inspection date redacted. The analysis needs date? There is received_at but not incident date. Mileage missing. Conditions? Maybe conditions are mentioned (after accident). Component and symptom present. So missing_info: [\"mileage\", \"date\"]. Maybe date missing due redaction. Could include. \n\nClues: kind symptom quote exact. Need verbatim spans. Quote from narrative exact including \"piller\" misspelling. \n- symptom: \"The Airbag and the windshield piller A trim was not properly repaired\"\n- condition: \"after an accident\"\n- component_group: \"AIR BAGS\" from component field? The report includes component field. Quote must be copied from report. The \"report\" JSON includes component \"AIR BAGS\". So quote \"AIR BAGS\" valid? Yes from report. But clues should quote from report. Use component_group quote \"AIR BAGS\". \n- safety: quote \"The Airbag and the windshield piller A trim was not properly repaired\" maybe same. \n- other? \"by Yark Toyota\" maybe service. condition \"after service\" quote \"not properly repaired by Yark Toyota\" but exact span? \"was not properly repaired by Yark Toyota\" is in narrative? Narrative: \"was not properly repaired by Yark Toyota in [XXX] after an accident\" yes. For condition after service, quote \"was not properly repaired by Yark Toyota\" is verbatim. But \"after service\" not explicitly; better not include if not exact. Maybe condition quote \"after an accident\". \n\nNeed summary one line: \"Air bag and A-pillar trim improperly repaired by dealer after prior accident\" includes component, symptom, conditions. Good.\n\nNeed JSON only. Ensure no markdown? User says answer one JSON object and no other text. We can output raw JSON. Use exact quotes. Check \"piller\" spelling. \"windshield piller A trim\" yes. Quote \"The Airbag and the windshield piller A trim was not properly repaired\" exact from narrative? Narrative begins \"The Airbag and the windshield piller A trim was not properly repaired by Yark Toyota...\" yes. Good.\n\nSafety_relevant true. Is \"crash\" mentioned? \"accident\" yes risk. Fine.\n\nNeed conditions array: [\"after service\", \"after accident\"]? The allowed examples don't include after accident, but conditions can be plain? The schema says conditions [\"cold\", ...]. Might accept. The rules list conditions examples. It says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. Could be closed list? It doesn't say only. But to be safe include \"after service\" and maybe \"after accident\" because report explicitly. However the expected may include \"after service\" only? Let's think. \"after an accident prior to selling\" is a condition. The intake normalizes conditions, maybe only from list. If only list, \"after accident\" isn't allowed. But \"after service\" is since repair. Yet report doesn't say service; says not properly repaired by dealer. That's after service/repair. Use \"after service\". Could include \"after accident\" as clue condition. Conditions array maybe [\"after service\"]. But summary can mention prior accident. But conditions should capture after accident. I think include both \"after service\" and \"after accident\"; not harmful? The schema examples not exhaustive. But \"conditions\" field likely expected controlled vocabulary. Hmm.\n\nMaybe use \"after service\" because \"not properly repaired\" = service. The accident is context. But missing condition after accident. \n\nCould include conditions [\"after service\", \"after accident\"] and clues condition quote \"after an accident\". Good.\n\nMissing_info: Date? The report has received_at but not incident/inspection date due redaction. Mileage null. Yes.\n\nNeed maybe \"component\" not missing. Symptom present. Conditions present. So [\"mileage\", \"date\"].\n\nFinal JSON. Need ensure valid JSON no trailing. Use escapes? Quotes inside summary no. Good.\n\nLet's produce.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793539841,
+      "id": "5903ecafc45656382e5b6204f4396ea8",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1475,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1307,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00054627,
+          "billing_source": "go",
+          "list_cost": 0.00091045,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 162,
+            "output": 1475,
+            "reasoning": 1307
+          }
+        },
+        "prompt_tokens": 546,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2021
+      }
+    },
+    "text": "{\"summary\":\"Air bag and windshield A-pillar trim improperly repaired by dealer after a prior accident\",\"group\":\"AIR BAGS\",\"symptoms\":[\"airbag and windshield pillar A trim not properly repaired\"],\"conditions\":[\"after service\",\"after accident\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"The Airbag and the windshield piller A trim was not properly repaired\"},{\"kind\":\"condition\",\"quote\":\"after an accident\"},{\"kind\":\"condition\",\"quote\":\"was not properly repaired by Yark Toyota\"},{\"kind\":\"safety\",\"quote\":\"The Airbag and the windshield piller A trim was not properly repaired\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00054627,
+      "cached_tokens": 384,
+      "cost_usd": 0.00091045,
+      "input_tokens": 546,
+      "list_cost_usd": 0.00091045,
+      "output_tokens": 1475,
+      "reasoning_tokens": 1307
+    }
+  }
+}

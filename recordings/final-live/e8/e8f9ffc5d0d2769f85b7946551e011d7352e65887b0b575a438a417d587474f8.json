@@ -1,0 +1,66 @@
+{
+  "key": "e8f9ffc5d0d2769f85b7946551e011d7352e65887b0b575a438a417d587474f8",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11457,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2022 Jeep Grand Wagoneer electrical/instrument-panel odometer issue: rearview camera, radio, and rear HVAC inoperable, and odometer shows kilometers instead of miles while driving in Reverse; no safety event.\",\"group\":\"electrical/electronic\",\"symptoms\":[\"rearview camera inoperable in reverse\",\"odometer displays kilometers instead of miles\",\"radio inoperable\",\"rear HVAC inoperable\"],\"conditions\":[\"driving in reverse\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\"},{\"kind\":\"condition\",\"quote\":\"while driving in Reverse (R)\"},{\"kind\":\"symptom\",\"quote\":\"the rearview camera was inoperable\"},{\"kind\":\"symptom\",\"quote\":\"the odometer displayed kilometers instead of miles\"},{\"kind\":\"symptom\",\"quote\":\"the radio was inoperable\"},{\"kind\":\"symptom\",\"quote\":\"the rear HVAC system was inoperable\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize report. Need extract summary, group, symptoms, conditions, fault codes, safety_relevant, missing_info, clues verbatim. Need be careful quotes exact spans. Report narrative: \"The contact owns a 2022 Jeep Grand Wagoneer. The contact stated that while driving in Reverse (R), the rearview camera was inoperable. Additionally, the odometer displayed kilometers instead of miles, the radio was inoperable, and the rear HVAC system was inoperable. The vehicle was taken to a dealer, where the contact was informed that a diagnostic fee was required because the VIN was not included in a recall for the rearview camera. The failure mileage was approximately 54,000.\"\n\nComponent field ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER. Group \"electrical/electronic\" maybe \"ELECTRICAL SYSTEM\". Need group: \"electrical/electronic\" or given group? Prompt \"the electrical/electronic component group, or the given group\". Component is electrical system instrument panel speedometer/odometer. Group could \"electrical/electronic\". Symptoms: rearview camera inoperable while driving in Reverse; odometer displayed kilometers instead of miles; radio inoperable; rear HVAC inoperable. Conditions: \"while driving in Reverse (R)\" maybe condition? Conditions list options cold moisture heat vibration intermittent after service charging. Reverse isn't in list. Could include \"intermittent\"? Not stated. Conditions maybe empty. Need missing_info: component? given; symptom present; conditions? It gives while driving reverse but not environmental. mileage present 54000; date maybe received_at 2026-10-14 but not incident date. Missing date? They need date maybe event date. Report lacks date of occurrence. Could list \"date\". Maybe conditions? Hmm. \"missing_info\" only facts analysis needs: component, symptom, conditions, mileage, date. Component present, symptom present, conditions partly (driving in reverse) but not general conditions. Mileage present. Date not explicit except received_at. The incident date missing. List [\"date\"]. Could list conditions? Maybe no. Safety_relevant? No crash/fire/smoke/injury/loss control/stall. Inoperable camera/radio/HVAC no safety risk. false.\n\nFault_codes none. Clues: need quote verbatim for symptom etc. Include:\n- {\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\"}? Is this from report? The \"report\" in user message includes component field. It says quote copied verbatim from report; the report includes component. We can quote that exact. But maybe narrative only? It says read report in user message. JSON includes component. Use quote exact.\n- symptom quote: \"the rearview camera was inoperable\" exact.\n- symptom quote: \"the odometer displayed kilometers instead of miles\" exact.\n- symptom quote: \"the radio was inoperable\" exact.\n- symptom quote: \"the rear HVAC system was inoperable\" exact.\n- condition quote: \"while driving in Reverse (R)\" exact.\n- other maybe mileage \"The failure mileage was approximately 54,000.\" But mileage not a clue kind? kind other. Could include. Missing_info date. Clues need only evidence. Could include recall quote? \"the VIN was not included in a recall for the rearview camera\" other? Not necessary. But clues useful. Need not overdo.\n\nNeed summary one line: \"2022 Jeep Grand Wagoneer instrument panel/odometer: rearview camera, radio, rear HVAC inoperable and odometer shows km while in Reverse; no safety event.\" Conditions \"while driving in Reverse (R)\" maybe. But summary should mention component, symptom, conditions. Good.\n\nEnsure JSON valid. No markdown? User says answer one JSON object and no other text. Use raw JSON. Need not include code fences. Final only JSON. Ensure quotes exact. Let's craft.\n\nGroup maybe \"electrical/electronic\". Symptoms plain words: \"rearview camera inoperable in reverse\", \"odometer displays kilometers instead of miles\", \"radio inoperable\", \"rear HVAC inoperable\". Conditions: []? The allowed list includes \"intermittent\" etc. Driving in reverse not in list. Should conditions array include \"while driving in Reverse (R)\"? The schema says conditions [\"cold\",\"moisture\",...] list. But can include other? It says conditions array examples? It might expect standard. Since reverse is a condition but not listed. But to avoid invalid? Could include \"driving in reverse\" as condition? The prompt schema says conditions list with options. \"conditions\": [\"cold\", ...]. It may accept any? It says normalise. Hmm. For conditions, report condition is \"while driving in Reverse (R)\". I can include \"driving in reverse\" as condition because it's a condition. But rule? The list are environmental/operational conditions. It says \"conditions\": [\"cold\", ...]. It doesn't say only. But safer include \"driving in reverse\" maybe. Yet condition categories don't include reverse. I think include it as condition, because summary needs conditions. But `conditions` expected standardized terms; \"driving in reverse\" not in list. The desk may prefer empty? But condition is critical: camera inoperable while reversing. It is a condition. I'll include \"driving in reverse\" and clue. Could also include \"intermittent\"? no.\n\nMissing_info: date. Maybe \"conditions\" missing? No, has driving in reverse. Could include \"date\" only. The report has received date, but failure date absent. Missing info analysis needs date. Good.\n\nClues: include quotes exact. Need component quote maybe exact with colon. Include safety? no. Could include \"other\" quote \"The failure mileage was approximately 54,000.\" But not necessary. Use only relevant.\n\nNeed \"fault_codes\": [].\n\nNeed safety_relevant false.\n\nFinal JSON. Ensure quote \"while driving in Reverse (R)\" appears exact: narrative \"stated that while driving in Reverse (R), the rearview camera was inoperable.\" Yes. Quote without comma? \"while driving in Reverse (R)\" exact span yes. \"the rearview camera was inoperable\" exact? Narrative has \"the rearview camera was inoperable.\" Yes after comma? It is \"the rearview camera was inoperable.\" The substring \"the rearview camera was inoperable\" exists. Good. \"the odometer displayed kilometers instead of miles\" exact. \"the radio was inoperable\" exact. \"the rear HVAC system was inoperable\" exact. Component field exact uppercase. Good.\n\nNeed \"summary\": \"2022 Jeep Grand Wagoneer electrical/instrument-panel odometer issue: rearview camera, radio, rear HVAC inoperable and odometer shows kilometers instead of miles while driving in Reverse; no safety event.\" Fine.\n\nShould group maybe \"ELECTRICAL SYSTEM\" rather than electrical/electronic. The prompt says \"the electrical/electronic component group, or the given group\". Component field \"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\"; group could \"ELECTRICAL SYSTEM\". But \"electrical/electronic\" is group. I can set \"electrical/electronic\". Good.\n\nLet's final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793540844,
+      "id": "22828ec7e9484ee648a639ebd97af519",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1796,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1557,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00066624,
+          "billing_source": "go",
+          "list_cost": 0.0011104,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 211,
+            "output": 1796,
+            "reasoning": 1557
+          }
+        },
+        "prompt_tokens": 595,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2391
+      }
+    },
+    "text": "{\"summary\":\"2022 Jeep Grand Wagoneer electrical/instrument-panel odometer issue: rearview camera, radio, and rear HVAC inoperable, and odometer shows kilometers instead of miles while driving in Reverse; no safety event.\",\"group\":\"electrical/electronic\",\"symptoms\":[\"rearview camera inoperable in reverse\",\"odometer displays kilometers instead of miles\",\"radio inoperable\",\"rear HVAC inoperable\"],\"conditions\":[\"driving in reverse\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\"},{\"kind\":\"condition\",\"quote\":\"while driving in Reverse (R)\"},{\"kind\":\"symptom\",\"quote\":\"the rearview camera was inoperable\"},{\"kind\":\"symptom\",\"quote\":\"the odometer displayed kilometers instead of miles\"},{\"kind\":\"symptom\",\"quote\":\"the radio was inoperable\"},{\"kind\":\"symptom\",\"quote\":\"the rear HVAC system was inoperable\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00066624,
+      "cached_tokens": 384,
+      "cost_usd": 0.0011104,
+      "input_tokens": 595,
+      "list_cost_usd": 0.0011104,
+      "output_tokens": 1796,
+      "reasoning_tokens": 1557
+    }
+  }
+}

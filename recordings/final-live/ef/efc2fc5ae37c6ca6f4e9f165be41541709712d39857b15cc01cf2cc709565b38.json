@@ -1,0 +1,66 @@
+{
+  "key": "efc2fc5ae37c6ca6f4e9f165be41541709712d39857b15cc01cf2cc709565b38",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 8867,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\": \"Test the ACC/LKAS sensor installation after the recent windshield replacement because both systems drop out together and warning lights persist.\", \"rationale\": \"The narrative reports ACC and LKAS disengaging together after 30-40 seconds, all sensor warnings illuminating, and the systems remaining inoperative. The rulebook's after-service entry points first to connector seating, pin damage and correct part fit, especially given the July 2026 windshield replacement. OBD II shows no codes and the battery is healthy, so the installation check should precede further testing.\", \"group\": \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\", \"symptoms\": [\"ACC and LKAS disengage together after approximately 30-40 seconds of operation\", \"all sensor warning lights illuminate\", \"sensors, ACC and LKAS stop working afterwards\", \"warning lights and error messages remain on the instrument cluster\"], \"conditions\": [\"after service\", \"windshield replacement\"], \"fault_codes\": [], \"safety_relevant\": false, \"targeted\": true, \"test_name\": \"Installation check before test\", \"clues\": [{\"kind\": \"symptom\", \"quote\": \"While driving with ACC active, I engaged LKAS.\"}, {\"kind\": \"symptom\", \"quote\": \"ACC and LKAS disengaged and all sensor warning lights illuminated\"}, {\"kind\": \"symptom\", \"quote\": \"sensors as well as ACC and LKAS would no longer work\"}, {\"kind\": \"symptom\", \"quote\": \"Warning lights and error messages on instrument  cluster continue to show since this happened.\"}, {\"kind\": \"other\", \"quote\": \"OBD II shows no codes.\"}, {\"kind\": \"other\", \"quote\": \"Battery tested and is healthy.\"}, {\"kind\": \"condition\", \"quote\": \"New windshield was installed in July 2026 by Safelite.\"}]}",
+            "reasoning_content": "We need answer JSON only. Need analyze. Case ACC/LKAS dropout after windshield replacement. Rulebook matched after_service: test \"Installation check before test\". Is it targeted? Rulebook entry test not load test. Prompt: Prefer targeted load test when conditions match rulebook entry. Otherwise standard test targeted false. Here rulebook names \"Installation check before test\" — it's a specific check, not load test. Need decide targeted? \"targeted\": true maybe because rulebook names test. But instruction says \"Prefer a targeted load test when the reported conditions match a rulebook entry. Otherwise propose the standard test (`\"targeted\": false`).\" Since rulebook entry exists but test not load test. Hmm targeted likely means targeted test named by rulebook; set true when rulebook entry. Need include test_name \"Installation check before test\". targeted true? Let's parse schema: \"targeted\": true, \"test_name\": \"the targeted test the rulebook names\". If not targeted, test_name maybe standard? But no standard given. Rulebook match says test. I'd set targeted true because rulebook names test. Safety false (no risk to people). Group component group \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\". Symptoms/conditions/fault_codes. Clues verbatim from case narrative only. Need only quotes from narrative. Can quote windshield sentence. Some extraction quotes have double space \"instrument  cluster\" but narrative has \"instrument  cluster\" yes? Narrative: \"Warning lights and error messages on instrument  cluster continue to show since this happened.\" It has two spaces? User text: \"instrument  cluster\" yes likely two spaces. Copy exact from narrative.\n\nNeed summary one line. Rationale condition and evidence. Clues include symptom, condition, other maybe component. Use verbatim spans. Avoid citing IDs. Include all relevant. Conditions [\"after service\", \"windshield replacement\"]? But quote \"New windshield was installed in July 2026 by Safelite.\" Condition after service. Fault codes [].\n\nNeed ensure JSON valid no markdown? \"Answer with one JSON object and no other text.\" So final only JSON. Need maybe quote \"While driving with ACC active, I engaged LKAS.\" and \"ACC and LKAS disengaged and all sensor warning lights illuminated\" and \"sensors as well as ACC and LKAS would no longer work\" etc. Also \"OBD II shows no codes.\" and \"Battery tested and is healthy.\" Are these clues kind other. Could include condition quote.\n\nRationale: ACC/LKAS dropout with persistent sensor warnings after windshield replacement; rulebook after_service says check connector seating, pin damage and part fit first. No codes and healthy battery don't explain; no recalls/investigations. Need mention no coded faults.\n\nSafety: false. Although ACC/LKAS failure could be safety, narrative doesn't show risk to people; but driving with ACC active... could be safety. Prompt says safety_relevant when narrative shows a risk to people. It doesn't explicitly show collision/ injury. False.\n\nTargeted true. Test_name exact \"Installation check before test\". Could be odd. Include group.\n\nNeed no citations to case id? The rule says do not cite case/recall/investigation id not in results. We can not cite any. It's okay.\n\nFinal JSON. Ensure quote exact. Let's craft.\n\nNeed maybe \"symptoms\": array. \"conditions\": [\"after service\", \"windshield replacement\"]. \"fault_codes\": [].\n\nClues kinds: symptom, condition, other. Could include component_group clue? \"quote\" must narrative; component group doesn't appear? Narrative doesn't say exact group. Skip.\n\nPotential issue: extraction includes \"after service\" condition but narrative says new windshield installed. Quote supports condition. Good.\n\nLet's produce.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793539727,
+      "id": "313d004f98074009bf3219fd2d80626e",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1209,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 799,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00053001,
+          "billing_source": "go",
+          "list_cost": 0.00088335,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 1053,
+            "output": 1209,
+            "reasoning": 799
+          }
+        },
+        "prompt_tokens": 1053,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 2262
+      }
+    },
+    "text": "{\"summary\": \"Test the ACC/LKAS sensor installation after the recent windshield replacement because both systems drop out together and warning lights persist.\", \"rationale\": \"The narrative reports ACC and LKAS disengaging together after 30-40 seconds, all sensor warnings illuminating, and the systems remaining inoperative. The rulebook's after-service entry points first to connector seating, pin damage and correct part fit, especially given the July 2026 windshield replacement. OBD II shows no codes and the battery is healthy, so the installation check should precede further testing.\", \"group\": \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\", \"symptoms\": [\"ACC and LKAS disengage together after approximately 30-40 seconds of operation\", \"all sensor warning lights illuminate\", \"sensors, ACC and LKAS stop working afterwards\", \"warning lights and error messages remain on the instrument cluster\"], \"conditions\": [\"after service\", \"windshield replacement\"], \"fault_codes\": [], \"safety_relevant\": false, \"targeted\": true, \"test_name\": \"Installation check before test\", \"clues\": [{\"kind\": \"symptom\", \"quote\": \"While driving with ACC active, I engaged LKAS.\"}, {\"kind\": \"symptom\", \"quote\": \"ACC and LKAS disengaged and all sensor warning lights illuminated\"}, {\"kind\": \"symptom\", \"quote\": \"sensors as well as ACC and LKAS would no longer work\"}, {\"kind\": \"symptom\", \"quote\": \"Warning lights and error messages on instrument  cluster continue to show since this happened.\"}, {\"kind\": \"other\", \"quote\": \"OBD II shows no codes.\"}, {\"kind\": \"other\", \"quote\": \"Battery tested and is healthy.\"}, {\"kind\": \"condition\", \"quote\": \"New windshield was installed in July 2026 by Safelite.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00053001,
+      "cached_tokens": 0,
+      "cost_usd": 0.00088335,
+      "input_tokens": 1053,
+      "list_cost_usd": 0.00088335,
+      "output_tokens": 1209,
+      "reasoning_tokens": 799
+    }
+  }
+}

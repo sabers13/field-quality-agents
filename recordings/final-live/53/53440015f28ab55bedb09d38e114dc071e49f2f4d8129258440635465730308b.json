@@ -1,0 +1,66 @@
+{
+  "key": "53440015f28ab55bedb09d38e114dc071e49f2f4d8129258440635465730308b",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 7849,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "```json\n{\n  \"summary\": \"2021 Honda Passport electrical system: hesitation and drop into neutral with battery warning lamp at a traffic light, radio static beforehand, unable to shift to park\",\n  \"group\": \"ELECTRICAL SYSTEM\",\n  \"symptoms\": [\n    \"hesitation when accelerating from a stop\",\n    \"transmission went into neutral and vehicle would not move\",\n    \"battery warning light on the dash\",\n    \"could not shift into park to restart\",\n    \"radio full of static on an FM channel just before the event\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\"kind\": \"component_group\", \"quote\": \"ELECTRICAL SYSTEM\"},\n    {\"kind\": \"symptom\", \"quote\": \"it hesitated, then went into neutral, the battery sign showed on the dash, the car would not go\"},\n    {\"kind\": \"symptom\", \"quote\": \"the radio became full of static on an FM channel\"},\n    {\"kind\": \"symptom\", \"quote\": \"allow me to switch to park to try and restart it\"},\n    {\"kind\": \"condition\", \"quote\": \"I was at a traffic light\"},\n    {\"kind\": \"condition\", \"quote\": \"I was 1 line under half a tank of gas\"},\n    {\"kind\": \"safety\", \"quote\": \"the car would not go\"}\n  ]\n}\n```",
+            "reasoning_content": "Let me extract. Component: electrical system, Honda Passport 2021. Symptoms: hesitation on acceleration, went into neutral, battery warning light on dash, would not move, couldn't shift to park, radio static on FM. Conditions: intermittent? At a traffic light, low-ish fuel (not empty). No cold/moisture/heat/vibration. \"Scary\" — not a safety event per defined list? Loss of control? Vehicle went into neutral and wouldn't go — that's a stall/loss of propulsion, but not at speed (at traffic light). Safety relevant: mentions \"Scary\" but not crash/fire. The rule: \"a stall at speed or another risk to people\". Vehicle lost power at a traffic light — could be a risk. I'd set true? Hmm. Safer: true, given loss of propulsion in traffic. But must ground with quote. I'll set safety_relevant true with quote \"the car would not go\". Hmm, that's borderline. The rule lists crash, fire, smoke, injury, loss of control, stall at speed. Vehicle stopped moving at a light — loss of propulsion. I'd mark true conservatively, but the quote must support. \"it hesitated, then went into neutral, the battery sign showed on the dash, the car would not go\" — I'll quote that.\n\nMissing info: mileage (null), date (received_at given but incident date not). Missing: mileage, date.\n\nGroups: electrical system.\n\nFault codes: none.\n\nClues verbatim quotes from narrative. Need exact characters including unicode apostrophe \\u2019. I'll avoid spans with apostrophes where possible, or include them properly.\n\nQuotes:\n- \"I was at a traffic light\" (condition/other)\n- \"it hesitated, then went into neutral, the battery sign showed on the dash, the car would not go\" (symptom) — check narrative: \"I gave the car gas it hesitated, then went into neutral, the battery sign showed on the dash, the car would not go.\" Yes verbatim substring.\n- \"the radio became full of static on an FM channel\" — narrative: \"just before this happened the radio became full of static on an FM channel.\" Yes.\n- \"It wouldn\\u2019t allow me to switch to park to try and restart it\" — I'll use \"allow me to switch to park to try and restart it\".\n- \"I was 1 line under half a tank of gas\" — condition/other.\n\nSummary one line.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793540481,
+      "id": "3d7831172cb25fe59cd71e82a6e0c4f8",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 862,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 527,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00032829,
+          "billing_source": "go",
+          "list_cost": 0.00054715,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 192,
+            "output": 862,
+            "reasoning": 527
+          }
+        },
+        "prompt_tokens": 576,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1438
+      }
+    },
+    "text": "```json\n{\n  \"summary\": \"2021 Honda Passport electrical system: hesitation and drop into neutral with battery warning lamp at a traffic light, radio static beforehand, unable to shift to park\",\n  \"group\": \"ELECTRICAL SYSTEM\",\n  \"symptoms\": [\n    \"hesitation when accelerating from a stop\",\n    \"transmission went into neutral and vehicle would not move\",\n    \"battery warning light on the dash\",\n    \"could not shift into park to restart\",\n    \"radio full of static on an FM channel just before the event\"\n  ],\n  \"conditions\": [\n    \"intermittent\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\"kind\": \"component_group\", \"quote\": \"ELECTRICAL SYSTEM\"},\n    {\"kind\": \"symptom\", \"quote\": \"it hesitated, then went into neutral, the battery sign showed on the dash, the car would not go\"},\n    {\"kind\": \"symptom\", \"quote\": \"the radio became full of static on an FM channel\"},\n    {\"kind\": \"symptom\", \"quote\": \"allow me to switch to park to try and restart it\"},\n    {\"kind\": \"condition\", \"quote\": \"I was at a traffic light\"},\n    {\"kind\": \"condition\", \"quote\": \"I was 1 line under half a tank of gas\"},\n    {\"kind\": \"safety\", \"quote\": \"the car would not go\"}\n  ]\n}\n```",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00032829,
+      "cached_tokens": 384,
+      "cost_usd": 0.00054715,
+      "input_tokens": 576,
+      "list_cost_usd": 0.00054715,
+      "output_tokens": 862,
+      "reasoning_tokens": 527
+    }
+  }
+}

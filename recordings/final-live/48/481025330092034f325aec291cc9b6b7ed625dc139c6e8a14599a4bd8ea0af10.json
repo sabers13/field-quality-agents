@@ -1,0 +1,66 @@
+{
+  "key": "481025330092034f325aec291cc9b6b7ed625dc139c6e8a14599a4bd8ea0af10",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10202,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Honda Odyssey forward collision avoidance/automatic emergency braking warning lights come on unexpectedly, attributed to the windshield safety camera.\",\"group\":\"electrical/electronic driver assistance safety camera system\",\"symptoms\":[\"warning lights illuminate\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"warning lights just come on out of no where\"},{\"kind\":\"component_group\",\"quote\":\"safety camera feature\"},{\"kind\":\"condition\",\"quote\":\"out of no where\"},{\"kind\":\"other\",\"quote\":\"controls all the safety features of the car\"},{\"kind\":\"other\",\"quote\":\"repair cost is too expensive for just that camera\"},{\"kind\":\"other\",\"quote\":\"almost every Honda odyssey is having the same issue\"},{\"kind\":\"other\",\"quote\":\"there should be a recall\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize report. Component forward collision avoidance automatic emergency braking. Narrative: warning lights come on out of nowhere due to safety camera feature on windshield controls safety features; vehicles not 10 years old; repair cost expensive; almost every Honda Odyssey same issue; recall opinion. Need summary one line component, symptom, conditions. Group electrical/electronic component group or given group. We can say \"driver assistance / safety camera system\". Symptoms: warning lights illuminate. Conditions: maybe \"out of nowhere\" -> intermittent? But conditions list controlled vocabulary: cold moisture heat vibration intermittent after service charging. Report says out of nowhere, could map intermittent? But quote \"out of no where\" maybe condition intermittent? Hmm conditions should be extracted. We can include \"intermittent\" due to out of nowhere? But don't invent. \"out of no where\" suggests unexpected, not necessarily intermittent. Better conditions empty? Missing info includes mileage (null), date? received_at exists but not incident date; conditions missing; component given; symptom present. Need missing_info: mileage, date, conditions. Maybe component? Given. Symptom present. Safety relevant? Warning lights for safety features, but no crash/fire/injury/loss control/stall. False. Fault codes none.\n\nClues need verbatim spans. Need quote exact. Narrative has \"All this warning lights just come on out of no where due to the safety camera feature on the  windshield\" note double spaces before windshield. Need copy exactly? We can quote shorter spans to avoid double space: \"warning lights just come on out of no where\", \"safety camera feature on the  windshield\" maybe double spaces. Better quote \"safety camera feature\" exact. \"controls all the safety features of the car\". \"repair cost is too expensive for just that camera\". \"almost every Honda odyssey is having the same issue\". \"there should be a recall\". Clues kinds: symptom quote warning lights; component_group quote safety camera feature; condition? \"out of no where\" maybe condition intermittent? Kind condition quote \"out of no where\". Safety? no. Other quote recall? maybe other.\n\nNeed JSON only. Ensure valid. Summary one line: \"Honda Odyssey forward collision avoidance / automatic emergency braking: warning lights illuminate unexpectedly, attributed to windshield safety camera.\" Conditions maybe [\"intermittent\"]? Hmm if include condition clue \"out of no where\" kind condition. Is that allowed? Conditions array vocabulary includes intermittent, but quote out of nowhere. I can set conditions [\"intermittent\"] and clue quote \"out of no where\". But is that over-inference? It says conditions plain? It includes intermittent. \"come on out of no where\" means sporadic/unexpected, likely intermittent. But maybe not. To be safe, conditions [] and missing_info includes conditions. But if clue kind condition quote out of nowhere? If conditions empty but clue condition exists inconsistent. Could list condition clue \"out of no where\" and conditions [\"intermittent\"]. Hmm.\n\nNeed group: \"electrical/electronic component group\" maybe \"driver assistance electronics\". The prompt says \"the electrical/electronic component group, or the given group\". Given component is system. Use \"forward collision avoidance / automatic emergency braking (safety camera system)\". But group should be group not component. Maybe \"electrical/electronic: driver assistance safety camera system\". Good.\n\nMissing_info: mileage null; date (incident date) missing; conditions missing? It mentions out of nowhere but not weather etc. Component given, symptom given. Include \"mileage\", \"date\", \"conditions\". Could include \"component\"? no. Date: received_at only; no incident date. Good.\n\nFault codes [].\n\nSafety false.\n\nFinal JSON. Need no markdown? User says answer with one JSON object and no other text. So output raw JSON. Ensure quotes. Use exact quote spans. Let's verify verbatim:\nNarrative: \"All this warning lights just come on out of no where due to the safety camera feature on the  windshield that controls all the safety features of the car and this vehicles are not even 10 years old and the repair cost is too expensive for just that camera and almost every Honda odyssey is having the same issue I think there should be a recall for that specific camera in my opinion.\"\nQuote \"warning lights just come on out of no where\" yes substring: \"All this warning lights just come on out of no where\" includes. \"safety camera feature\" yes. \"controls all the safety features of the car\" yes. \"repair cost is too expensive for just that camera\" yes. \"almost every Honda odyssey is having the same issue\" yes exact lowercase odyssey. \"there should be a recall\" yes.\n\nSummary mention component and symptom conditions. \"Honda Odyssey forward collision avoidance/automatic emergency braking warning lights come on unexpectedly; attributed to windshield safety camera.\" Good.\n\nNeed clue kind \"symptom\" quote warning. \"component_group\" quote safety camera feature. \"condition\" quote \"out of no where\" maybe. \"other\" quote repair cost? Could include. Clues evidence.\n\nPotential issue: safety_relevant? The report is about safety features warning lights, but no risk mentioned. False.\n\nLet's final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793541563,
+      "id": "9ad0b01a8907be0db08a43a5a0f84fa7",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1285,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1086,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00047913,
+          "billing_source": "go",
+          "list_cost": 0.00079855,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 176,
+            "output": 1285,
+            "reasoning": 1086
+          }
+        },
+        "prompt_tokens": 560,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1845
+      }
+    },
+    "text": "{\"summary\":\"Honda Odyssey forward collision avoidance/automatic emergency braking warning lights come on unexpectedly, attributed to the windshield safety camera.\",\"group\":\"electrical/electronic driver assistance safety camera system\",\"symptoms\":[\"warning lights illuminate\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"date\",\"conditions\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"warning lights just come on out of no where\"},{\"kind\":\"component_group\",\"quote\":\"safety camera feature\"},{\"kind\":\"condition\",\"quote\":\"out of no where\"},{\"kind\":\"other\",\"quote\":\"controls all the safety features of the car\"},{\"kind\":\"other\",\"quote\":\"repair cost is too expensive for just that camera\"},{\"kind\":\"other\",\"quote\":\"almost every Honda odyssey is having the same issue\"},{\"kind\":\"other\",\"quote\":\"there should be a recall\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00047913,
+      "cached_tokens": 384,
+      "cost_usd": 0.00079855,
+      "input_tokens": 560,
+      "list_cost_usd": 0.00079855,
+      "output_tokens": 1285,
+      "reasoning_tokens": 1086
+    }
+  }
+}

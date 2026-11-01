@@ -1,0 +1,66 @@
+{
+  "key": "910d73043ffba25f69c62d900bbcea321975a2e0f00666677700db5ca24d8b0f",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 15718,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Forward collision avoidance warnings; uncommanded collision-avoidance correction at a dead stop with no obstacle or driver input; two prior false alerts.\",\"group\":\"FORWARD COLLISION AVOIDANCE: WARNINGS\",\"symptoms\":[\"uncommanded collision-avoidance correction at a dead stop\",\"false alerts\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: WARNINGS\"},{\"kind\":\"symptom\",\"quote\":\"made an uncommanded collision-avoidance correction at a dead stop\"},{\"kind\":\"condition\",\"quote\":\"No obstacle ahead, no driver input\"},{\"kind\":\"symptom\",\"quote\":\"Two prior false alerts (8/25, 8/27)\"},{\"kind\":\"other\",\"quote\":\"No crash/injury\"}]}",
+            "reasoning_content": "We need to produce JSON. Need parse report. Component: FORWARD COLLISION AVOIDANCE: WARNINGS. Make Volvo XC40. Narrative: 9/4/26: 2023 Volvo XC40 Recharge made an uncommanded collision-avoidance correction at a dead stop. No obstacle ahead, no driver input. No crash/injury. Two prior false alerts (8/25, 8/27). Reported to Volvo Cars Danvers 9/15/26; no finding.\n\nNeed summary one line: component, symptom, conditions. Group: electrical/electronic component group? Given component is forward collision avoidance warnings; group likely \"Forward Collision Avoidance\" or \"ADAS\" maybe. The prompt says \"the electrical/electronic component group, or the given group\". We can use given group \"FORWARD COLLISION AVOIDANCE: WARNINGS\" or maybe \"driver assistance / ADAS\". Need choose. Since field component is \"FORWARD COLLISION AVOIDANCE: WARNINGS\". Group should be component group. Could be \"Forward Collision Avoidance\". I'll set \"Forward Collision Avoidance / ADAS\" maybe but not invent? It's a group. Better \"FORWARD COLLISION AVOIDANCE\" as given. But JSON examples expects string. Use \"FORWARD COLLISION AVOIDANCE\".\n\nSymptoms: \"uncommanded collision-avoidance correction at a dead stop\", \"false alerts\". Conditions: \"at a dead stop\", \"no obstacle ahead\", \"no driver input\". Maybe \"intermittent\"? Two prior false alerts indicate repeated. Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. The report conditions not those except \"dead stop\". But conditions list should be from allowed set? It says conditions: [\"cold\", ...] likely enumerate relevant conditions. We can include \"intermittent\" because prior alerts? Hmm \"Two prior false alerts\" not exactly intermittent but recurrent. But allowed list includes intermittent. Could include \"intermittent\". Also \"charging\"? It's a Recharge (plug-in hybrid/electric) but no mention charging. Don't infer. Could include conditions []? But summary has conditions. The JSON conditions array should contain recognized condition tags. The report has \"at a dead stop\" not in allowed list. But rules say conditions: [\"cold\", \"moisture\", ...]. Maybe we can include plain conditions? It says \"conditions\": [\"cold\", ...] likely use those tags if applicable. But \"dead stop\" is a condition. However schema only enumerates. We can include \"intermittent\" and maybe \"at a dead stop\"?? Hmm \"conditions\" list should be conditions in plain? The rules: conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. So likely only those. The \"dead stop\" is in summary and clues. Include \"intermittent\" due to two prior false alerts? That's a reasonable inference? It says do not invent facts. Prior false alerts indicate recurrence but not necessarily intermittent. Could include \"intermittent\" as a condition? Maybe not. But the report says two prior false alerts, so repeated false activations. I'd include \"intermittent\" to tag repeated false alerts. Need maybe conditions: [\"intermittent\"]. But the main incident was at a dead stop. The schema does not allow \"dead stop\". Could use [\"intermittent\"].\n\nFault codes: none named. [].\n\nSafety_relevant: Report says \"No crash/injury\" and \"uncommanded collision-avoidance correction at a dead stop\" could be risk? It made uncommanded correction at dead stop, no crash/injury. Safety relevant? The rules: set true when report mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. It explicitly says no crash/injury. But uncommanded collision-avoidance correction could be a risk if at speed; here at dead stop. \"another risk to people\" maybe false activation of ADAS could be safety relevant, but at dead stop no. However the component is safety system. It mentions \"No crash/injury\" negating. Need decide. Since it's an uncommanded collision-avoidance correction, that is a potential loss of control? At dead stop no. But \"uncommanded collision-avoidance correction\" in a moving vehicle would be safety. The report says at a dead stop; no crash/injury. But safety_relevant should be true if any risk to people. A false collision avoidance correction at dead stop maybe not risk. But the system is safety-related and false alerts could lead to unexpected braking. I'd set false? Hmm. The prompt: \"Set safety_relevant when the report mentions a crash, fire, smoke, injury, loss of control, a stall at speed or another risk to people.\" It mentions \"No crash/injury\" — that's mention of crash/injury but negated. Should not set based on negation. \"uncommanded collision-avoidance correction\" at dead stop could be \"another risk to people\" if it could cause vehicle movement? At dead stop no obstacle no driver input, correction at dead stop. Not clear. Since no crash/injury and at dead stop, set false. But maybe safety system false activation is safety relevant. The desk might want flag. I lean false because explicit no crash/injury and dead stop. But \"uncommanded collision-avoidance correction\" is a safety system malfunction; even at dead stop, it's a risk if it happens at speed. However rules ask report mentions risk, not potential. The report doesn't mention risk to people. So false.\n\nMissing_info: mileage is null. Date? Report has dates (9/4/26 incident, reported 9/15/26, received 2026-10-01). Component and symptom present. Conditions present partially. Missing \"mileage\". Maybe also \"date\" not missing because incident date given. \"conditions\" maybe missing? It has at dead stop. Need list only important missing. Mileage missing. Could include \"mileage\". Maybe \"date\" not missing. Component present. Symptom present. Conditions present. So [\"mileage\"].\n\nClues: Need verbatim quotes. We can include:\n- {\"kind\":\"symptom\",\"quote\":\"made an uncommanded collision-avoidance correction at a dead stop\"}\n- {\"kind\":\"condition\",\"quote\":\"at a dead stop\"} but quote must be exact span; \"at a dead stop\" appears. But clue quote can be same? Need verbatim. Could include \"No obstacle ahead, no driver input\" as condition? kind condition? It is condition. But quote includes comma. \n- {\"kind\":\"symptom\",\"quote\":\"Two prior false alerts (8/25, 8/27)\"}\n- {\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: WARNINGS\"} but that's from component field not narrative? The report in user message includes JSON with component field. Quotes can be from report, including component. Good.\n- {\"kind\":\"safety\",\"quote\":\"No crash/injury\"}? But safety kind maybe for safety relevant? If safety_relevant false, maybe no safety clue. Could include \"No crash/injury\" as other? Hmm kind safety maybe evidence. But if safety_relevant false, shouldn't include safety clue. But the report mentions no crash/injury. Could include as \"other\" with quote \"No crash/injury\" to show safety context. The clues kinds include safety; but if safety_relevant false, maybe don't. But clue could be \"other\" to note no injury. However every clue should support. I can include {\"kind\":\"other\",\"quote\":\"No crash/injury\"}. But not necessary.\n\nNeed ensure quote exact: \"9/4/26: 2023 Volvo XC40 Recharge made an uncommanded collision-avoidance correction at a dead stop. No obstacle ahead, no driver input. No crash/injury. Two prior false alerts (8/25, 8/27). Reported to Volvo Cars Danvers 9/15/26; no finding.\"\n\nQuotes:\n\"made an uncommanded collision-avoidance correction at a dead stop\" exact substring yes.\n\"No obstacle ahead, no driver input\" exact substring yes.\n\"Two prior false alerts (8/25, 8/27)\" exact yes.\n\"FORWARD COLLISION AVOIDANCE: WARNINGS\" from component field exact.\n\"No crash/injury\" exact yes.\n\nSummary: \"Forward collision avoidance warnings; uncommanded collision-avoidance correction at a dead stop with no obstacle or driver input; two prior false alerts.\" One line.\n\nGroup: \"FORWARD COLLISION AVOIDANCE\" or \"FORWARD COLLISION AVOIDANCE: WARNINGS\". Use \"FORWARD COLLISION AVOIDANCE: WARNINGS\" as given group? It says group: \"the electrical/electronic component group, or the given group\". Given group is component. Use exact.\n\nSymptom array: [\"uncommanded collision-avoidance correction at a dead stop\", \"false alerts\"]. The second \"Two prior false alerts\" can be \"false alerts\". Plain words. Good.\n\nConditions array: maybe [\"intermittent\"]. But \"at a dead stop\" not allowed. Include \"intermittent\" due to prior false alerts? Hmm. Let's think. The conditions array likely used for filtering. The report conditions are \"at a dead stop\", \"no obstacle ahead\", \"no driver input\". Those are not in the enumerated list except none. But if we only include allowed tags, we lose info. Could include \"intermittent\" as two prior false alerts. That's a valid condition. I'll do [\"intermittent\"]. But is it inventing? It's an interpretation of repeated false alerts. Fine. Maybe include \"at a dead stop\" as condition? The schema says conditions array with examples; not necessarily exhaustive? It gives list in quotes, likely allowed values. But \"conditions\" in summary covers. I can include \"intermittent\" only.\n\nFault_codes [].\n\nSafety false.\n\nMissing_info [\"mileage\"].\n\nClues as above. Need no markdown? The instruction says answer with one JSON object and no other text. In final, output raw JSON. Ensure valid JSON. No trailing commas. Use boolean false.\n\nNeed maybe include clue for \"uncommanded collision-avoidance correction\" with kind symptom. Good.\n\nLet's craft final JSON.\n\nCheck if \"summary\" one line: yes.\n\nPotential issue: \"group\" maybe \"ADAS\" but use given.\n\nNeed \"missing_info\": [\"mileage\"] only. Could include \"conditions\"? The report gives conditions (dead stop, no obstacle). So no.\n\nCould include \"date\"? Incident date present. no.\n\nOK final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793539930,
+      "id": "1e3fb398e44b4009685c2651132de714",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2493,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 2293,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00091311,
+          "billing_source": "go",
+          "list_cost": 0.00152185,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 166,
+            "output": 2493,
+            "reasoning": 2293
+          }
+        },
+        "prompt_tokens": 550,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 3043
+      }
+    },
+    "text": "{\"summary\":\"Forward collision avoidance warnings; uncommanded collision-avoidance correction at a dead stop with no obstacle or driver input; two prior false alerts.\",\"group\":\"FORWARD COLLISION AVOIDANCE: WARNINGS\",\"symptoms\":[\"uncommanded collision-avoidance correction at a dead stop\",\"false alerts\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: WARNINGS\"},{\"kind\":\"symptom\",\"quote\":\"made an uncommanded collision-avoidance correction at a dead stop\"},{\"kind\":\"condition\",\"quote\":\"No obstacle ahead, no driver input\"},{\"kind\":\"symptom\",\"quote\":\"Two prior false alerts (8/25, 8/27)\"},{\"kind\":\"other\",\"quote\":\"No crash/injury\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00091311,
+      "cached_tokens": 384,
+      "cost_usd": 0.00152185,
+      "input_tokens": 550,
+      "list_cost_usd": 0.00152185,
+      "output_tokens": 2493,
+      "reasoning_tokens": 2293
+    }
+  }
+}

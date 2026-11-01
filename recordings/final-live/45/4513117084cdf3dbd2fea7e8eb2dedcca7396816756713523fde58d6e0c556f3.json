@@ -1,0 +1,66 @@
+{
+  "key": "4513117084cdf3dbd2fea7e8eb2dedcca7396816756713523fde58d6e0c556f3",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 16915,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Back Over Prevention: rearview camera displays an upside-down or no image while reversing; recall repair parts unavailable.\",\"group\":\"BACK OVER PREVENTION\",\"symptoms\":[\"rearview camera displayed an upside-down image\",\"rearview camera failed to display an image\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"Back Over Prevention\"},{\"kind\":\"symptom\",\"quote\":\"While reversing, the rearview camera displayed an upside-down image or failed to display an image.\"},{\"kind\":\"condition\",\"quote\":\"While reversing\"},{\"kind\":\"safety\",\"quote\":\"While reversing, the rearview camera displayed an upside-down image or failed to display an image.\"},{\"kind\":\"other\",\"quote\":\"part to do the recall repair was not yet available\"},{\"kind\":\"other\",\"quote\":\"failure mileage was 125,000\"}]}",
+            "reasoning_content": "We need produce JSON only. Need parse report. Component given \"BACK OVER PREVENTION\". Summary one line: component, symptom, conditions. Symptoms: rearview camera displayed upside-down image or failed to display an image; while reversing. Conditions: reversing? The allowed conditions list: \"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\". While reversing isn't in list, but symptom condition? We need conditions array from allowed? Prompt says conditions: [\"cold\", ...]. Maybe include only if mentioned. Report mentions while reversing, recall part unavailable. \"after service\"? no. \"intermittent\"? displays upside-down or failed—could be intermittent? Not explicitly. Need not infer. Conditions maybe empty? But summary includes while reversing. Fault codes none. safety_relevant? Rearview camera failure while reversing could be risk? Mentions no crash/fire etc. Safety relevant when crash, fire, smoke, injury, loss control, stall at speed or another risk to people. Backup camera failure while reversing is risk to people? Could set true? Need be careful. The report says back over prevention recall; failed rearview camera while reversing could increase risk of backover. The rule: \"or another risk to people.\" This is a safety system failure while reversing; likely safety_relevant true. But does report mention risk? It's a back over prevention failure. Could be safety relevant. We can set true with clue quote \"While reversing, the rearview camera displayed an upside-down image or failed to display an image.\" Maybe kind safety. Hmm.\n\nMissing_info: component present, symptom present, conditions present? mileage present 125000, date? received_at 2026-10-23 but not failure date; date maybe missing? The analysis needs date; report has received date not incident date. But missing_info list only facts analysis needs: component, symptom, conditions, mileage, date. We have mileage, component, symptom. Conditions? \"while reversing\" is condition but not in allowed list. Date of failure missing. Could include \"date\". Maybe also \"conditions\"? Since no environmental conditions. But prompt says conditions allowed list. Need maybe include \"date\". Not include component etc. Need clues: quote verbatim spans. Need ensure exact substrings from narrative. Quotes can include \"2015 Ford Taurus\", \"NHTSA Campaign Number: 25V695000 (Back Over Prevention)\", \"part to do the recall repair was not yet available\", \"While reversing, the rearview camera displayed an upside-down image or failed to display an image.\", \"failure mileage was 125,000.\" Need kind symptom/condition/fault_code/component_group/safety/other. For fault code? NHTSA Campaign Number not fault code. Could include as other? Fault_codes empty. Clues: symptom quote for camera issue. condition quote \"While reversing\" or full sentence. component_group quote \"Back Over Prevention\" exactly? Report narrative has \"(Back Over Prevention)\" and component field has \"BACK OVER PREVENTION\". Quote must be from report; user message includes JSON field component \"BACK OVER PREVENTION\" but narrative has \"Back Over Prevention\". Use exact from narrative. Could quote \"Back Over Prevention\" as component_group. Safety clue maybe same sentence. Need not duplicate? Fine.\n\nSummary: \"Back Over Prevention: rearview camera shows upside-down or no image while reversing; recall repair parts unavailable.\" Conditions maybe [] because no allowed condition. But conditions in summary includes while reversing. Could conditions array include \"intermittent\"? It says displayed upside-down or failed, possibly intermittent? Not explicit. Avoid. Include maybe []? JSON expects array. If no conditions, empty.\n\nBut missing_info: date? The report received_at 2026-10-23. The failure date not given. Include \"date\". Maybe \"conditions\" because environmental conditions not specified; but while reversing is usage condition. The allowed conditions list doesn't include reversing. The analysis may need conditions. Hmm.\n\nNeed produce valid JSON no other text. Ensure quotes verbatim. Let's verify narrative exact: \"The contact owns a 2015 Ford Taurus. The contact received notification of NHTSA Campaign Number: 25V695000 (Back Over Prevention); however, the part to do the recall repair was not yet available. The contact stated that the manufacturer had exceeded a reasonable amount of time for the recall repair. While reversing, the rearview camera displayed an upside-down image or failed to display an image. The dealer was made aware of the failure but confirmed that parts were not yet available. The failure mileage was 125,000.\"\n\nQuote \"While reversing, the rearview camera displayed an upside-down image or failed to display an image.\" exact. Quote \"The failure mileage was 125,000.\" exact. Quote \"part to do the recall repair was not yet available\" exact substring? It appears \"the part to do the recall repair was not yet available.\" Yes substring without the. Good.\n\nNeed \"fault_codes\": [] since no code. NHTSA Campaign Number 25V695000 is recall number not fault code; don't include fault_codes. Could clue other for recall. But not needed.\n\nSafety relevant: Let's decide. The prompt asks set true when report mentions crash, fire, smoke, injury, loss of control, a stall at speed or another risk to people. It mentions back over prevention and rearview camera failure while reversing. That is another risk to people (backover). I think true. But if strict only mentions risk? It doesn't explicitly mention people. But \"Back Over Prevention\" implies. Hmm. The desk likely expects safety_relevant true for backup camera failure. We'll set true and include safety clue quote.\n\nNeed summary one line. \"Back Over Prevention: rearview camera displays upside-down or no image while reversing; recall repair parts unavailable.\" Good.\n\nGroup: \"BACK OVER PREVENTION\" or given group. Use component. \"BACK OVER PREVENTION\".\n\nSymptoms: [\"rearview camera displayed an upside-down image\", \"rearview camera failed to display an image\"] maybe exact plain. Could include \"rearview camera upside-down or no image while reversing\". Use plain words. Good.\n\nConditions: []? But \"while reversing\" is a condition though not allowed list. The allowed list doesn't include reversing; but could we include \"intermittent\"? no. Use [].\n\nMissing_info: [\"date\"] maybe also \"conditions\"? Since no environmental conditions. But conditions are not absent? \"while reversing\" is present. I'd include [\"date\"] only. But date? received_at exists. Failure date missing. The prompt says missing_info for facts analysis needs: component, symptom, conditions, mileage, date. We have mileage. Date maybe received date but not failure date. Include date. Maybe include \"conditions\" because no weather/temp etc. Hmm.\n\nClues array must quote exact spans. Let's craft:\n- {\"kind\":\"component_group\",\"quote\":\"Back Over Prevention\"}\n- {\"kind\":\"symptom\",\"quote\":\"While reversing, the rearview camera displayed an upside-down image or failed to display an image.\"}\n- {\"kind\":\"condition\",\"quote\":\"While reversing\"}? Is \"While reversing\" verbatim yes. But condition list allowed not include reversing; clue kind condition can be any condition. Fine.\n- {\"kind\":\"safety\",\"quote\":\"While reversing, the rearview camera displayed an upside-down image or failed to display an image.\"} Duplicate okay.\n- {\"kind\":\"other\",\"quote\":\"part to do the recall repair was not yet available\"}\n- {\"kind\":\"other\",\"quote\":\"failure mileage was 125,000\"} maybe mileage not a kind? kind other. Could include. But clues are evidence; okay.\n\nNeed ensure quote \"While reversing\" exact. Yes.\n\nNeed no markdown? User said answer with one JSON object no other text. We output raw JSON. Good.\n\nNeed maybe not include \"safety_relevant\": true? yes.\n\nPotential issue: \"conditions\" array allowed values only; if empty okay. But summary says conditions. The prompt's summary should include conditions; we include while reversing.\n\nLet's final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793541453,
+      "id": "2f96867debbfc37ac5555ad3c39bbf50",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1880,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1683,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00069495,
+          "billing_source": "go",
+          "list_cost": 0.00115825,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 194,
+            "output": 1880,
+            "reasoning": 1683
+          }
+        },
+        "prompt_tokens": 578,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2458
+      }
+    },
+    "text": "{\"summary\":\"Back Over Prevention: rearview camera displays an upside-down or no image while reversing; recall repair parts unavailable.\",\"group\":\"BACK OVER PREVENTION\",\"symptoms\":[\"rearview camera displayed an upside-down image\",\"rearview camera failed to display an image\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"Back Over Prevention\"},{\"kind\":\"symptom\",\"quote\":\"While reversing, the rearview camera displayed an upside-down image or failed to display an image.\"},{\"kind\":\"condition\",\"quote\":\"While reversing\"},{\"kind\":\"safety\",\"quote\":\"While reversing, the rearview camera displayed an upside-down image or failed to display an image.\"},{\"kind\":\"other\",\"quote\":\"part to do the recall repair was not yet available\"},{\"kind\":\"other\",\"quote\":\"failure mileage was 125,000\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00069495,
+      "cached_tokens": 384,
+      "cost_usd": 0.00115825,
+      "input_tokens": 578,
+      "list_cost_usd": 0.00115825,
+      "output_tokens": 1880,
+      "reasoning_tokens": 1683
+    }
+  }
+}

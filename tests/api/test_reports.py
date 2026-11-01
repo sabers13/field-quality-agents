@@ -2,9 +2,17 @@
 
 from __future__ import annotations
 
+from datetime import date
+from pathlib import Path
+
 import pytest
 from api_fixtures import ISSUE_ID
 from fastapi.testclient import TestClient
+
+from field_quality_agents.api import create_app
+from field_quality_agents.api.models import FinalLiveData, FinalLiveSide
+from field_quality_agents.api.store import MemoryResultStore
+from field_quality_agents.contracts import MetricEstimate, Metrics
 
 
 def test_issue_list_and_status_filter(client: TestClient) -> None:
@@ -129,3 +137,45 @@ def test_weekly_report_unknown_week_returns_404(client: TestClient) -> None:
 
     assert response.status_code == 404
     assert "2025-01-01" in response.json()["detail"]
+
+
+def test_kpis_have_no_final_live_panel_before_q14(client: TestClient) -> None:
+    assert client.get("/api/kpis").json()["final_live"] is None
+
+
+def test_kpis_carry_the_final_live_panel(
+    store: MemoryResultStore, tmp_path: Path
+) -> None:
+    final_metrics = Metrics(
+        cases=150,
+        safety_precision=MetricEstimate(value=0.5, n=150),
+    )
+    q9_metrics = Metrics(
+        cases=600,
+        safety_precision=MetricEstimate(value=0.4, n=600),
+    )
+    panel = FinalLiveData(
+        run_id="final-live",
+        set_name="final_live",
+        window_start=date(2026, 9, 28),
+        window_end=date(2026, 10, 25),
+        spend_usd=0.25,
+        steps=600,
+        budget_hits=0,
+        final=FinalLiveSide(cases=150, before=final_metrics, after=final_metrics),
+        q9=FinalLiveSide(cases=600, before=q9_metrics, after=q9_metrics),
+        q9_run_id="replay",
+    )
+    app = create_app(
+        store=store,
+        mode="replay",
+        static_dir=tmp_path / "dist",
+        final_live=panel,
+    )
+
+    with TestClient(app) as test_client:
+        body = test_client.get("/api/kpis").json()
+
+    assert body["final_live"]["run_id"] == "final-live"
+    assert body["final_live"]["final"]["cases"] == 150
+    assert body["final_live"]["q9"]["cases"] == 600

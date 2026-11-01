@@ -1,0 +1,66 @@
+{
+  "key": "41fbfd748c2c746cac034c9c07251885427e0c7c6d78b40c1058fd2a57b214bd",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 14085,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2023 Jeep Grand Cherokee exterior lighting: auto high beams do not work in the auto position; owner says similar to recall 12b but vehicle not included.\",\"group\":\"electrical/electronic\",\"symptoms\":[\"auto high beams do not work in the auto position\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"EXTERIOR LIGHTING\"},{\"kind\":\"symptom\",\"quote\":\"auto high beams do not work when in the auto position\"},{\"kind\":\"condition\",\"quote\":\"when in the auto position\"},{\"kind\":\"other\",\"quote\":\"similar issue to recall 12b\"}]}",
+            "reasoning_content": "We need answer one JSON object no other text. Need normalize report. Read only report. Need identify component group electrical/electronic? Given component EXTERIOR LIGHTING. Group \"the electrical/electronic component group, or the given group\". Exterior lighting likely electrical/electronic. Could use \"exterior lighting\" or \"electrical/electronic\". Need symptoms plain words. Summary one line component symptom conditions. Report: auto high beams do not work when in auto position; similar issue to recall 12b not included. Conditions: \"when in auto position\" maybe condition? The allowed conditions list: cold, moisture, heat, vibration, intermittent, after service, charging. None apply except maybe none. We shouldn't invent. Could include \"auto position\" as condition? Rule conditions array [\"cold\",\"moisture\"...] likely should use allowed but could include \"auto position\"? It says conditions: [\"cold\", ...]. Probably choose none. Symptoms: [\"automatic high beams do not work when in auto position\"] or \"auto high beams do not work\". Fault codes none. Safety_relevant? Mentions recall but no crash/fire etc. false. Missing_info: mileage is null; date? received_at exists but not incident date; missing mileage. Maybe missing date (incident date) too? The report has received_at but not date of occurrence. Need analysis needs component, symptom, conditions, mileage, date. Component and symptom present. Conditions? maybe not missing? Mileage missing. Date? received_at is date report received not incident date. Missing_info could include \"mileage\", \"date\". Maybe conditions? The condition \"auto position\" is present but not environmental. Hmm missing_info only facts analysis needs. Include mileage, date. Maybe no conditions? We can include \"conditions\" because no conditions like cold/moisture etc. But the report gives when in auto position. Yet allowed missing_info includes conditions. Is important? For intermittent? Not necessarily. Let's include mileage and date only maybe. Need clues with verbatim quotes. Need exact spans from narrative. Quotes:\n- \"auto high beams do not work when in the auto position\" exact substring? Narrative: \"My vehicle auto high beams do not work when in the auto position this is a similar issue to recall 12b that my vehicle was not included in!\" Yes substring \"auto high beams do not work when in the auto position\".\n- component group quote? Need quote verbatim from report. \"EXTERIOR LIGHTING\" is in component field. Is that report? It is in JSON. Quote can be from report; likely entire user message. Use quote \"EXTERIOR LIGHTING\" kind component_group. Good.\n- recall mention? kind other quote \"similar issue to recall 12b\" exact substring? Narrative: \"this is a similar issue to recall 12b that my vehicle was not included in!\" Contains \"similar issue to recall 12b\" yes.\n- condition? \"when in the auto position\" is condition kind? But allowed condition list not include. Clue kind condition can quote \"when in the auto position\". Good.\n- Could quote \"my vehicle was not included in\" maybe other. Need not overdo.\nNeed summary: \"2023 Jeep Grand Cherokee exterior lighting: auto high beams do not work in auto position; owner cites similar recall 12b not covering vehicle.\" This invents year/make/model from fields not narrative; allowed? Read report includes fields. Summary can include. Maybe one line. No other text.\n\nNeed JSON valid. Ensure no markdown? They said answer with one JSON object and no other text. We can output raw JSON.\n\nNeed decide group. \"electrical/electronic\" maybe. Component given \"EXTERIOR LIGHTING\". The instruction \"group\": \"the electrical/electronic component group, or the given group\". Exterior lighting is electrical/electronic. Use \"electrical/electronic\". Could use \"exterior lighting\". Hmm \"or the given group\" means if not electrical? It says group the electrical/electronic component group, or the given group. Given group is EXTERIOR LIGHTING. But exterior lighting is not exactly group? I'd set \"electrical/electronic\". Clue component_group quote \"EXTERIOR LIGHTING\". Good.\n\nSymptoms array: [\"automatic high beams do not work in the auto position\"] But quote should be exact? The symptom plain words can paraphrase. Better \"auto high beams do not work in auto position\". No issue.\n\nConditions: Maybe [\"auto position\"]? The schema allows list of strings; examples conditions. But \"conditions\" expected list from set? It says conditions: [\"cold\", ...]. If include \"auto position\" maybe okay? It is an operating condition, but not listed. The prompt says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. That seems enum. I should not put non-enum. Conditions empty [] because none of those. But clue condition \"when in the auto position\" might conflict with conditions empty? Clue kind condition can capture condition not in allowed? Hmm maybe kind \"condition\" with quote. But conditions array should include \"auto position\"? The schema says conditions array with examples; not strictly enum? It lists allowed. In prior tasks, conditions are tags. Could include \"auto position\" as condition because it's condition under which symptom occurs. But it's not one of listed. The instruction: conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. It likely wants those tags. However \"auto position\" is not environmental, but a condition. The clue kind includes condition. I can leave conditions [] and clue kind \"condition\" quote \"when in the auto position\" to preserve. But then conditions array not reflect. Maybe include \"auto position\" in conditions; but that violates examples? Not necessarily. The schema says conditions array of strings; examples. The rules don't say only those. But set list likely. Hmm.\n\nNeed missing_info: \"mileage\", \"date\". Does date missing? received_at 2026-10-14, but incident date missing. Include date. Conditions? Since no environmental conditions, maybe missing conditions? But auto position is given. Analysis may need weather/temperature? Not necessarily. Include mileage and date. Maybe \"conditions\" because no cold/moisture etc. But if we leave conditions empty, missing_info include \"conditions\"? The rule: list missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. Conditions absent? The report gives \"auto position\" but not environmental. For lighting fault, conditions maybe not critical. I'd include \"mileage\", \"date\". Could include \"conditions\" if no conditions. But then contradictions with clue. Let's think as intake agent: We need normalize. Missing_info should be facts analysis needs. Component present, symptom present. Conditions: \"when in auto position\" present. Mileage null. Date of incident not explicit. So missing_info [\"mileage\",\"date\"].\n\nSafety_relevant false. No crash/fire etc.\n\nNeed quote exact char. Let's verify narrative exact:\n\"My vehicle auto high beams do not work when in the auto position this is a similar issue to recall 12b that my vehicle was not included in!\"\nSubstring \"auto high beams do not work when in the auto position\" yes starts after \"vehicle \" and before \" this\". Exact lower. Good.\nSubstring \"when in the auto position\" exact.\nSubstring \"similar issue to recall 12b\" exact? Narrative has \"this is a similar issue to recall 12b that...\" yes substring \"similar issue to recall 12b\". Good.\n\"EXTERIOR LIGHTING\" exact from component field.\n\nCould include clue kind \"symptom\" quote \"auto high beams do not work\". Another symptom quote? Only one. Need clue list. We can have multiple clues maybe. Need not include all.\n\nJSON:\n{\n \"summary\": \"2023 Jeep Grand Cherokee exterior lighting: auto high beams do not work in the auto position; owner says similar to recall 12b but vehicle not included.\",\n \"group\": \"electrical/electronic\",\n \"symptoms\": [\"auto high beams do not work in the auto position\"],\n \"conditions\": [],\n \"fault_codes\": [],\n \"safety_relevant\": false,\n \"missing_info\": [\"mileage\", \"date\"],\n \"clues\": [\n   {\"kind\":\"component_group\",\"quote\":\"EXTERIOR LIGHTING\"},\n   {\"kind\":\"symptom\",\"quote\":\"auto high beams do not work when in the auto position\"},\n   {\"kind\":\"condition\",\"quote\":\"when in the auto position\"},\n   {\"kind\":\"other\",\"quote\":\"similar issue to recall 12b\"}\n ]\n}\nNeed maybe \"condition\" quote equals substring of symptom quote, okay.\n\nBut conditions array empty despite condition clue. Is that okay? Maybe include \"auto position\" in conditions? The prompt's conditions list doesn't include but maybe okay. If I include \"auto position\", the conditions array has a non-standard tag. Hmm.\n\nCould use conditions [\"intermittent\"]? No, not stated. Do not invent. Empty.\n\nNeed no other text. Final raw JSON. Ensure exactly JSON object no code fence. Use proper quotes. Done.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793540817,
+      "id": "59e0c7d418d323dc51a9e34d38464875",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2099,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1942,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00076713,
+          "billing_source": "go",
+          "list_cost": 0.00127855,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 120,
+            "output": 2099,
+            "reasoning": 1942
+          }
+        },
+        "prompt_tokens": 504,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2603
+      }
+    },
+    "text": "{\"summary\":\"2023 Jeep Grand Cherokee exterior lighting: auto high beams do not work in the auto position; owner says similar to recall 12b but vehicle not included.\",\"group\":\"electrical/electronic\",\"symptoms\":[\"auto high beams do not work in the auto position\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"EXTERIOR LIGHTING\"},{\"kind\":\"symptom\",\"quote\":\"auto high beams do not work when in the auto position\"},{\"kind\":\"condition\",\"quote\":\"when in the auto position\"},{\"kind\":\"other\",\"quote\":\"similar issue to recall 12b\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00076713,
+      "cached_tokens": 384,
+      "cost_usd": 0.00127855,
+      "input_tokens": 504,
+      "list_cost_usd": 0.00127855,
+      "output_tokens": 2099,
+      "reasoning_tokens": 1942
+    }
+  }
+}

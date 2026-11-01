@@ -1,0 +1,66 @@
+{
+  "key": "0270a99cd16a566e6528a829f58232a438f65df4ecb12a2409e688780376d6a5",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 19159,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"2024 Honda CR-V forward collision avoidance/automatic emergency braking falsely braked during low-speed left turns, abruptly stopping and injuring the driver; occurred twice without cruise control or lane steering assist.\",\n  \"group\": \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\",\n  \"symptoms\": [\n    \"unintended automatic emergency braking\",\n    \"vehicle abruptly stopped during a left turn\",\n    \"false detection of a vehicle, parked cars, or oncoming traffic\",\n    \"driver's upper body jerked forward\",\n    \"lower back pain/injury\",\n    \"headaches\"\n  ],\n  \"conditions\": [\n    \"intermittent\",\n    \"under 25 mph\",\n    \"left turn\",\n    \"cruise control off\",\n    \"lane steering assist off\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"the vehicle abruptly stopped\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"causing the upper half of my body to jerk forward hurting my lower back again\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"now I have slight headaches waking up in the morning again since then\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"the automatic break came on as if I was going to be in a collision which I wasn't\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"I was going under 25 miles\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"did not have cruise control or the driver assist for lane steering on\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"I was making a left turn onto a street in Long Beach, CA\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"I have experienced this 2 times\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"hurting my lower back again\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"now I have slight headaches waking up in the morning again since then\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer JSON only. Need normalize report. Component forward collision avoidance automatic emergency braking Honda CR-V 2024. Symptoms: vehicle abruptly stopped during left turn, body jerked forward, lower back hurt, headaches; automatic braking activated falsely sensing collision/parked cars/oncoming vehicles. Conditions: under 25 mph, no cruise control, no lane steering assist; occurred twice late Aug/early Sep 2026 and on redacted date. Fault codes none. Safety relevant: yes injury, abrupt stop. Missing info: mileage, date? Date partially redacted but has timeframe. Component present. Symptom present. Conditions present. Mileage missing. Date? report gives approximate dates and redacted. missing_info maybe mileage only. Could include date? It says date missing? It has late august early September 2026 and [XXX]. Analysis needs date maybe exact date missing due redaction. But the rule list missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Date partially given; maybe exact date missing. However don't overdo. Need clues verbatim spans. Ensure quotes exactly from narrative. Can include \"I was making a left turn onto a street in Long Beach, CA\", \"I was going under 25 miles\", \"did not have cruise control or the driver assist for lane steering on\", \"the vehicle abruptly stopped\", \"causing the upper half of my body to jerk forward hurting my lower back again\", \"now I have slight headaches waking up in the morning again since then\", \"the automatic break came on as if I was going to be in a collision which I wasn't\", \"I didn't use the steering assistance in the vehicle\", \"I stopped using it after the first incident occurred\", \"I was going to slow for cruise control to be on\". Need group: \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\" or electrical/electronic group? Given component group? It's ADAS braking. group can be given group. Summary one line.\n\nNeed JSON valid no markdown. Include safety_relevant true. missing_info [\"mileage\"] maybe [\"mileage\",\"date\"]? Since exact date redacted, but approximate. The analysis can use received_at and approximate. I'd include mileage only; exact date redacted is missing but report has timeframe. The prompt asks missing_info only for facts needed. Date is needed; exact dates redacted. But if include date, maybe okay. Hmm.\n\nNeed every quote verbatim. Check \"I was going under 25 miles\" yes. \"did not have cruise control or the driver assist for lane steering on\" yes. \"the vehicle abruptly stopped\" yes. \"causing the upper half of my body to jerk forward hurting my lower back again\" yes. \"now I have slight headaches waking up in the morning again since then\" yes. \"the automatic break came on as if I was going to be in a collision which I wasn't\" yes (break typo). \"I didn't use the steering assistance in the vehicle\" yes. \"I stopped using it after the first incident occurred\" yes. \"I was going to slow for cruise control to be on\" yes. \"I have experienced this 2 times\" yes.\n\nNeed symptoms plain words: \"unintended automatic emergency braking / abrupt stop\", \"false collision detection\", \"driver body jerked forward\", \"lower back injury/pain\", \"headaches\". Conditions: \"under 25 mph\", \"left turn\", \"no cruise control\", \"lane steering assist off\", \"intermittent/repeated\". Use allowed conditions list? They gave canonical [\"cold\",\"moisture\",\"heat\",\"vibration\",\"intermittent\",\"after service\",\"charging\"]. But conditions can be plain? Prompt says conditions array with those examples. We can include \"intermittent\" and maybe \"under 25 mph\", \"left turn\", \"no cruise control\", \"lane steering assist off\". But conditions canonical? It says conditions: [\"cold\", ...]. Might expect only those. Yet report conditions are driving conditions. We can include \"intermittent\" only canonical; maybe \"under 25 mph\" not in list. But the schema says conditions array of strings; examples. The rules mention conditions fact. I can include \"intermittent\", \"left turn\", \"under 25 mph\", \"no cruise control\", \"lane steering assist off\". But maybe group? Hmm.\n\nNeed no other text. Final only JSON.\n\nNeed ensure JSON valid with quotes. Use double quotes. No trailing commas.\n\nLet's craft.\n\nSummary: \"2024 Honda CR-V forward collision avoidance/automatic emergency braking falsely braked during low-speed left turns, abruptly stopping and injuring driver; occurred twice without cruise or lane assist.\"\n\nGroup: \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\" maybe.\n\nSymptoms:\n- \"unintended automatic emergency braking\"\n- \"vehicle abruptly stopped during left turn\"\n- \"false detection of vehicle/parked cars/oncoming traffic\"\n- \"driver jerked forward\"\n- \"lower back pain/injury\"\n- \"headaches\"\n\nConditions:\n- \"intermittent\"\n- \"under 25 mph\"\n- \"left turn\"\n- \"cruise control off\"\n- \"lane steering assist off\"\n\nfault_codes [].\n\nsafety_relevant true.\n\nmissing_info [\"mileage\",\"date\"]? Hmm exact dates redacted. Include \"mileage\" and \"date\" maybe. It has dates but redacted. The analysis needs exact date. Include both.\n\nClues: include symptom, condition, safety, component_group. Need \"component_group\" quote maybe \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\" is from component field not narrative? The report includes component field in user message. The quote can be from report. But rule says report in user message. It includes component field. We can quote it. But \"verbatim span copied from report\" maybe narrative only? Safer quote from narrative for clues. For component_group quote \"automatic break came on as if I was going to be in a collision\" maybe. But kind component_group quote should identify component. Could quote \"automatic break\" but it is symptom. Hmm.\n\nUse clues:\n{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"} — this is in component field, verbatim. Fine.\n{\"kind\":\"symptom\",\"quote\":\"the vehicle abruptly stopped\"}\n{\"kind\":\"symptom\",\"quote\":\"causing the upper half of my body to jerk forward hurting my lower back again\"}\n{\"kind\":\"symptom\",\"quote\":\"now I have slight headaches waking up in the morning again since then\"}\n{\"kind\":\"symptom\",\"quote\":\"the automatic break came on as if I was going to be in a collision which I wasn't\"}\n{\"kind\":\"condition\",\"quote\":\"I was going under 25 miles\"}\n{\"kind\":\"condition\",\"quote\":\"did not have cruise control or the driver assist for lane steering on\"}\n{\"kind\":\"condition\",\"quote\":\"I was making a left turn onto a street in Long Beach, CA\"}\n{\"kind\":\"condition\",\"quote\":\"I have experienced this 2 times\"}\n{\"kind\":\"safety\",\"quote\":\"hurting my lower back again\"}\n{\"kind\":\"safety\",\"quote\":\"now I have slight headaches waking up in the morning again since then\"}\n\nNeed avoid duplicate quote? Fine.\n\nFinal JSON only.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793540060,
+      "id": "b3ede4fabc10ca6acbf2af300927cd2d",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2088,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1544,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0007854,
+          "billing_source": "go",
+          "list_cost": 0.001309,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 367,
+            "output": 2088,
+            "reasoning": 1544
+          }
+        },
+        "prompt_tokens": 751,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2839
+      }
+    },
+    "text": "{\n  \"summary\": \"2024 Honda CR-V forward collision avoidance/automatic emergency braking falsely braked during low-speed left turns, abruptly stopping and injuring the driver; occurred twice without cruise control or lane steering assist.\",\n  \"group\": \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\",\n  \"symptoms\": [\n    \"unintended automatic emergency braking\",\n    \"vehicle abruptly stopped during a left turn\",\n    \"false detection of a vehicle, parked cars, or oncoming traffic\",\n    \"driver's upper body jerked forward\",\n    \"lower back pain/injury\",\n    \"headaches\"\n  ],\n  \"conditions\": [\n    \"intermittent\",\n    \"under 25 mph\",\n    \"left turn\",\n    \"cruise control off\",\n    \"lane steering assist off\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"the vehicle abruptly stopped\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"causing the upper half of my body to jerk forward hurting my lower back again\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"now I have slight headaches waking up in the morning again since then\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"the automatic break came on as if I was going to be in a collision which I wasn't\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"I was going under 25 miles\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"did not have cruise control or the driver assist for lane steering on\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"I was making a left turn onto a street in Long Beach, CA\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"I have experienced this 2 times\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"hurting my lower back again\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"now I have slight headaches waking up in the morning again since then\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0007854,
+      "cached_tokens": 384,
+      "cost_usd": 0.001309,
+      "input_tokens": 751,
+      "list_cost_usd": 0.001309,
+      "output_tokens": 2088,
+      "reasoning_tokens": 1544
+    }
+  }
+}

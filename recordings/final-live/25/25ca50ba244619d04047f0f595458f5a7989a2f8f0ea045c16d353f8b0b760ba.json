@@ -1,0 +1,66 @@
+{
+  "key": "25ca50ba244619d04047f0f595458f5a7989a2f8f0ea045c16d353f8b0b760ba",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11842,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Lane departure assist: blue EyeSight Assist Monitor indicators do not illuminate during startup self-check or operation; other indicator colors work.\",\"group\":\"LANE DEPARTURE: ASSIST\",\"symptoms\":[\"Blue EyeSight Assist Monitor indicators fail to illuminate during the startup self-check\",\"Blue indicators do not provide visual status information during Hands-Free Assist operation\",\"Other indicator colors illuminate\"],\"conditions\":[\"startup self-check\",\"operation\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"LANE DEPARTURE: ASSIST\"},{\"kind\":\"symptom\",\"quote\":\"The blue EyeSight Assist Monitor indicator lights on my 2026 Subaru Outback Touring XT do not illuminate\"},{\"kind\":\"symptom\",\"quote\":\"the blue indicators consistently fail to illuminate, while the other indicator colors illuminate.\"},{\"kind\":\"condition\",\"quote\":\"during the startup self-check\"},{\"kind\":\"symptom\",\"quote\":\"The blue indicators also do not provide the expected visual status information during operation of the Hands-Free Assist system.\"},{\"kind\":\"safety\",\"quote\":\"This creates a safety concern\"},{\"kind\":\"safety\",\"quote\":\"I experienced a near-miss situation\"},{\"kind\":\"other\",\"quote\":\"The problem has been repeatedly observed, including during a check conducted with dealership personnel.\"}]}",
+            "reasoning_content": "We need answer one JSON only. Need normalize. Need parse report. Component \"LANE DEPARTURE: ASSIST\" group maybe \"Lane departure assist\" electrical/electronic component group. Summary one line: component, symptom, conditions. Symptoms: blue EyeSight Assist Monitor indicators fail to illuminate during startup self-check and operation; other colors illuminate; no blue visual status for Hands-Free Assist. Conditions: startup self-check, operation, near-miss? Conditions list allowed: cold moisture heat vibration intermittent after service charging. The report doesn't mention those. Perhaps \"intermittent\"? No, repeatedly observed consistently fail. Not intermittent. Conditions empty? Could include \"startup self-check\" but allowed list only those. The schema conditions list examples? It says conditions [\"cold\",...]. We should use only listed? It says conditions list... likely can include \"startup self-check\"? Hmm rules say conditions: [\"cold\",\"moisture\",...]. But input narrative has startup self-check and operation. Conditions field should capture relevant conditions. We can include \"startup self-check\" maybe not in enum? The prompt says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. It may expect one of those. But no such. Could leave empty. However clues can include condition quote \"during the startup self-check\" but kind condition? Maybe condition kind can be \"startup self-check\" quote. Fault codes none. Safety_relevant true? Mentions safety concern, near-miss, confusion about status, risk? It mentions \"near-miss situation\" and \"safety concern\" but not crash/fire/injury/loss control/stall at speed. It is a driver-assistance status indicator; near-miss could be risk to people. Rule set safety_relevant when report mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. \"near-miss situation\" and \"safety concern\" qualifies another risk to people. So true. Missing_info: mileage null; date? received_at exists but report no incident date? Missing mileage, date. Component given, symptom present, conditions present. So [\"mileage\",\"date\"]. Clues verbatim quotes. Need copy exact character spans. Need ensure quotes exist exactly. We can pick:\n- \"The blue EyeSight Assist Monitor indicator lights ... do not illuminate\" Need exact span. Narrative: \"The blue EyeSight Assist Monitor indicator lights on my 2026 Subaru Outback Touring XT do not illuminate as described in the owner’s manual.\" We can quote \"The blue EyeSight Assist Monitor indicator lights on my 2026 Subaru Outback Touring XT do not illuminate\" but need exact substring yes.\n- \"the blue indicators consistently fail to illuminate, while the other indicator colors illuminate.\" exact? Narrative: \"However, the blue indicators consistently fail to illuminate, while the other indicator colors illuminate.\" Yes.\n- \"during the startup self-check\" exact? Narrative: \"during the startup self-check.\" yes.\n- \"This creates a safety concern\" exact? \"This creates a safety concern because I cannot reliably see...\" yes.\n- \"I experienced a near-miss situation\" exact.\n- \"including during a check conducted with dealership personnel.\" exact? \"The problem has been repeatedly observed, including during a check conducted with dealership personnel.\" yes.\n- \"I have brought this nearly new vehicle to an authorized Subaru dealership twice for the same issue.\" exact.\n- Component group clue quote maybe \"LANE DEPARTURE: ASSIST\" from component field? Report in user message includes JSON component. Is that report? It says read report in user message. The quote can be from report JSON. \"LANE DEPARTURE: ASSIST\" exact. Kind component_group.\n- fault_code none.\n\nNeed group: \"Lane departure assist\" or \"Lane Departure: Assist\". Prompt: \"the electrical/electronic component group, or the given group\". Since given component is \"LANE DEPARTURE: ASSIST\", group maybe \"LANE DEPARTURE: ASSIST\". But group should be component group, maybe \"driver assistance electronics\" or \"Lane departure assist\". We should set \"group\": \"LANE DEPARTURE: ASSIST\" to avoid inventing. But summary should mention component. However \"group\" can be the given group. I'll use \"LANE DEPARTURE: ASSIST\".\n\nSummary: \"Lane departure assist: blue EyeSight Assist Monitor indicators do not illuminate during startup self-check or operation; other colors work.\" Conditions? \"startup self-check/operation\" not allowed? The summary includes.\n\nNeed symptoms plain words: \"Blue EyeSight Assist Monitor indicators fail to illuminate during startup self-check\"; \"Blue indicators do not show Hands-Free Assist status during operation\"; \"Other indicator colors illuminate\". Maybe symptom list can include one or more. Need no invented. Good.\n\nMissing info: mileage (null), date (no incident date). Maybe component is given, symptom given, conditions given. OK.\n\nSafety_relevant true.\n\nClues list with quotes. Need be careful verbatim exact including curly apostrophe? We can avoid apostrophe quote. Use exact spans.\n\nLet's craft JSON only. Ensure valid JSON no trailing. Use quotes with curly? Quotes contain apostrophe? Avoid. Use spans from narrative exactly. Let's verify each quote:\n\n1 \"The blue EyeSight Assist Monitor indicator lights on my 2026 Subaru Outback Touring XT do not illuminate\" - narrative begins \"The blue EyeSight Assist Monitor indicator lights on my 2026 Subaru Outback Touring XT do not illuminate as described...\" yes exact.\n\n2 \"the blue indicators consistently fail to illuminate, while the other indicator colors illuminate.\" - exact including period? narrative \"However, the blue indicators consistently fail to illuminate, while the other indicator colors illuminate.\" yes substring includes final period. Good.\n\n3 \"during the startup self-check\" - narrative \"during the startup self-check.\" yes.\n\n4 \"The blue indicators also do not provide the expected visual status information during operation of the Hands-Free Assist system.\" exact? Narrative: \"The blue indicators also do not provide the expected visual status information during operation of the Hands-Free Assist system.\" yes.\n\n5 \"This creates a safety concern\" exact.\n\n6 \"I experienced a near-miss situation\" exact.\n\n7 \"The problem has been repeatedly observed, including during a check conducted with dealership personnel.\" exact? Narrative: \"The problem has been repeatedly observed, including during a check conducted with dealership personnel.\" yes.\n\n8 \"LANE DEPARTURE: ASSIST\" exact from component. Good.\n\nCould include \"I have brought this nearly new vehicle to an authorized Subaru dealership twice for the same issue.\" exact. Kind other/after service? It mentions twice dealership, after service? No. Could clue \"after service\"? Not exactly. Maybe condition \"after service\" because dealership visits? No.\n\nNeed kind for \"during the startup self-check\" as condition. OK.\n\nFor safety, quote \"This creates a safety concern\" and near-miss. Good.\n\nMissing_info includes \"mileage\",\"date\". Maybe \"date\" because received_at exists but incident date absent. Good.\n\nNeed no other text. Final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793541284,
+      "id": "d9aa59b97af5ec9cd1698746afed7338",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1805,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1510,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00069243,
+          "billing_source": "go",
+          "list_cost": 0.00115405,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 466,
+            "output": 1805,
+            "reasoning": 1510
+          }
+        },
+        "prompt_tokens": 850,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2655
+      }
+    },
+    "text": "{\"summary\":\"Lane departure assist: blue EyeSight Assist Monitor indicators do not illuminate during startup self-check or operation; other indicator colors work.\",\"group\":\"LANE DEPARTURE: ASSIST\",\"symptoms\":[\"Blue EyeSight Assist Monitor indicators fail to illuminate during the startup self-check\",\"Blue indicators do not provide visual status information during Hands-Free Assist operation\",\"Other indicator colors illuminate\"],\"conditions\":[\"startup self-check\",\"operation\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"LANE DEPARTURE: ASSIST\"},{\"kind\":\"symptom\",\"quote\":\"The blue EyeSight Assist Monitor indicator lights on my 2026 Subaru Outback Touring XT do not illuminate\"},{\"kind\":\"symptom\",\"quote\":\"the blue indicators consistently fail to illuminate, while the other indicator colors illuminate.\"},{\"kind\":\"condition\",\"quote\":\"during the startup self-check\"},{\"kind\":\"symptom\",\"quote\":\"The blue indicators also do not provide the expected visual status information during operation of the Hands-Free Assist system.\"},{\"kind\":\"safety\",\"quote\":\"This creates a safety concern\"},{\"kind\":\"safety\",\"quote\":\"I experienced a near-miss situation\"},{\"kind\":\"other\",\"quote\":\"The problem has been repeatedly observed, including during a check conducted with dealership personnel.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00069243,
+      "cached_tokens": 384,
+      "cost_usd": 0.00115405,
+      "input_tokens": 850,
+      "list_cost_usd": 0.00115405,
+      "output_tokens": 1805,
+      "reasoning_tokens": 1510
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "8cc9315d5f3046ee1821d1c06da7f40d6e9a59b166b99abca4b6d2ce28721d4c",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 5770,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Run a standard odometer/instrument-cluster verification test to confirm the reported mileage discrepancy; no targeted rulebook entry applies.\",\n  \"rationale\": \"The narrative reports odometer fraud and a mileage discrepancy on a 2011 Honda Civic purchased from a dealer, with the purchase listing 142,000 miles while the Carfax report and certificate of title show 227,100 miles. No targeted rulebook match, recall, investigation, or similar case was returned, so the standard test is appropriate.\",\n  \"group\": \"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\",\n  \"symptoms\": [\n    \"odometer fraud\",\n    \"mileage discrepancy\"\n  ],\n  \"conditions\": [\n    \"dealer sale\",\n    \"listed mileage 142,000 versus title/Carfax mileage 227,100\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"targeted\": false,\n  \"test_name\": \"Standard odometer/instrument cluster verification test\",\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Odometer Fraud\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"mileage discrepancy\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"The vehicle was a dealer sale.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"listed with a mileage of 142,000\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"mileage was 227,100\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer JSON only. Need analyze. Case is odometer fraud, no rulebook entries, no recalls/investigations/similar. Need propose standard test targeted false. Safety false. Component group electrical system instrument panel speedometer/odometer. Symptoms odometer fraud, mileage discrepancy. Conditions maybe dealer sale, listed mileage lower than actual. Fault codes none. Clues verbatim from narrative. Need ensure quotes verbatim from case narrative. Narrative: \"Odometer Fraud. The contact purchased a 2011 Honda Civic. It was discovered that there was a mileage discrepancy. The vehicle was a dealer sale. At the time of the purchase, the vehicle was listed with a mileage of 142,000; however, it was discovered via a Carfax Report and Certificate of Tile of the vehicle that the mileage was 227,100.\"\n\nQuotes can be exact spans. Include \"Odometer Fraud\" yes. \"mileage discrepancy\" yes. \"The vehicle was a dealer sale.\" yes. \"listed with a mileage of 142,000\" yes. \"mileage was 227,100\" yes (within \"that the mileage was 227,100\"). Good.\n\nNeed summary one line what test and why. Since no rulebook targeted test, standard test. \"Standard odometer/instrument cluster verification test to confirm mileage discrepancy; no targeted rulebook entry applies.\" Test name? Rulebook names none. Could use \"standard odometer verification test\" not named. targeted false. Maybe \"test_name\": \"Standard odometer/instrument cluster verification test\". No instructions about exact. Ensure no proposed action like dealer? No.\n\nRationale condition evidence. Group maybe \"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\". Conditions array maybe [\"dealer sale\", \"listed mileage 142,000 vs title/Carfax 227,100\"]. Fault codes [].\n\nClues kind: symptom for odometer fraud, mileage discrepancy; condition for dealer sale, listed with a mileage of 142,000, mileage was 227,100 maybe condition. But extraction had other. Use condition. No safety clue. targeted true? \"Prefer targeted load test when reported conditions match a rulebook entry. Otherwise standard test targeted false.\" No rulebook, so false.\n\nNeed no other text. JSON valid. summary one line. final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793539661,
+      "id": "828ae780c03756044fb0092f77448cd9",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 836,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 484,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.0003735,
+          "billing_source": "go",
+          "list_cost": 0.0006225,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 806,
+            "output": 836,
+            "reasoning": 484
+          }
+        },
+        "prompt_tokens": 806,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 1642
+      }
+    },
+    "text": "{\n  \"summary\": \"Run a standard odometer/instrument-cluster verification test to confirm the reported mileage discrepancy; no targeted rulebook entry applies.\",\n  \"rationale\": \"The narrative reports odometer fraud and a mileage discrepancy on a 2011 Honda Civic purchased from a dealer, with the purchase listing 142,000 miles while the Carfax report and certificate of title show 227,100 miles. No targeted rulebook match, recall, investigation, or similar case was returned, so the standard test is appropriate.\",\n  \"group\": \"ELECTRICAL SYSTEM:INSTRUMENT PANEL:SPEEDOMETER/ODOMETER\",\n  \"symptoms\": [\n    \"odometer fraud\",\n    \"mileage discrepancy\"\n  ],\n  \"conditions\": [\n    \"dealer sale\",\n    \"listed mileage 142,000 versus title/Carfax mileage 227,100\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": false,\n  \"targeted\": false,\n  \"test_name\": \"Standard odometer/instrument cluster verification test\",\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"Odometer Fraud\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"mileage discrepancy\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"The vehicle was a dealer sale.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"listed with a mileage of 142,000\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"mileage was 227,100\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.0003735,
+      "cached_tokens": 0,
+      "cost_usd": 0.0006225,
+      "input_tokens": 806,
+      "list_cost_usd": 0.0006225,
+      "output_tokens": 836,
+      "reasoning_tokens": 484
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "3cddaedf92cace7103aeb6a311dc1e79196e251e56c62471f9661e0bf25a8295",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 14162,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system: water intrusion through roof/dome light in heavy rain while driving, wetting electrical components and raising fire concern.\",\"group\":\"ELECTRICAL SYSTEM\",\"symptoms\":[\"water leak into cabin through dome light\",\"heavy stream of water inside vehicle while driving\",\"wet electrical components\",\"limited visibility\"],\"conditions\":[\"moisture\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"electrical components\"},{\"kind\":\"condition\",\"quote\":\"heavy rain\"},{\"kind\":\"condition\",\"quote\":\"while driving\"},{\"kind\":\"symptom\",\"quote\":\"heavy stream of water inside my vehicle while driving\"},{\"kind\":\"symptom\",\"quote\":\"into the cabin through dome light just behind the sunglasses holder\"},{\"kind\":\"symptom\",\"quote\":\"limited visibility\"},{\"kind\":\"safety\",\"quote\":\"I am concerned the wet electrical components will cause a fire.\"}]}",
+            "reasoning_content": "We need answer only JSON object. Need parse report. Component given ELECTRICAL SYSTEM. Need normalise. Summary one line: component, symptom, conditions. Report: water intrusion through roof/dome light while driving in heavy rain, wet electrical components, concern fire. Conditions: heavy rain, driving, moisture. Symptoms: water leak into cabin through dome light, electrical components wet, limited visibility, concern fire. Safety relevant? Mentions concern wet electrical components will cause fire, driving with children, limited visibility. Fire concern = safety relevant true. Fault codes none. Missing info: mileage null, maybe date provided incident Oct 1 2026, received Oct 22. Conditions provided. Component provided. Symptom provided. Missing mileage only maybe date? Date present. So missing_info [\"mileage\"]. Group: electrical/electronic component group or given group. Given component ELECTRICAL SYSTEM. Could group \"ELECTRICAL SYSTEM\" or \"electrical/electronic\". The schema says group: the electrical/electronic component group, or the given group. Since given group is ELECTRICAL SYSTEM, use \"ELECTRICAL SYSTEM\"? Maybe normalize to \"electrical/electronic\". Need decide. It says \"the electrical/electronic component group, or the given group\" so if report component is ELECTRICAL SYSTEM, group can be \"ELECTRICAL SYSTEM\". But the group likely expected taxonomy. Use \"ELECTRICAL SYSTEM\" to match given. Symptoms array plain words. Conditions include \"cold\",\"moisture\",\"heat\",\"vibration\",\"intermittent\",\"after service\",\"charging\" but report has heavy rain/moisture, driving. Conditions list should include \"moisture\". Maybe \"heavy rain\" not in enum? Rules say conditions [\"cold\", ...] list. But can include? It says conditions: [\"cold\", \"moisture\", ...]. We can include \"moisture\" only. Maybe \"driving\" not a condition in list. Could include \"heavy rain\" as condition? The schema examples fixed but not strict? Better include \"moisture\" and maybe \"heavy rain\" as condition? The rule says conditions list with those options. But \"heavy rain\" is a condition. The intake normalization may accept arbitrary. To be safe include \"moisture\" and \"heavy rain\"? Hmm.\n\nNeed clues verbatim quotes. Need exact spans from narrative. Must copy character for character. Need include quotes for symptom, condition, safety, component_group. Ensure exact. Let's extract:\n\nNarrative: \"The tubes running along the roof line according to my service report could not handle the heavy rain and was the resulted in a heavy stream of water inside my vehicle while driving. The water  \\\"backfilled\\\" into the cabin through dome light just behind the sunglasses holder. Incident occurred on October 1, 2026 while I was driving with my two children in the vehicle. The incident was witnessed by the construction manager over seeing the construction of our home. There was so much rain inside the vehicle that it soaked my pants, my seat, the carpet, ran down the navigation screen into the cup holders and warped my dash.  I wash my vehicle 2 to 3 times a week and have never had an issue with the roof leaking until driving in this storm. When I arrived home I lifted the t-top on the drivers side and there was no water in the weather stripping. I did take my vehicle to the dealer and was told this is a \\\"common issue\\\" with Broncos, for the tubing to wear out and that it and the electrical would be replaced. The dealer did not inspect the tubes or the electrical components in the over head compartment. They reported that several trips through the car wash did not result in a leak and that the tubes \\\"may have been too much water for drain tubes to keep up and it over flowed into the cab.\\\" I had limited visibility with a faucet style stream of water pouring into my lap a I drove. I am concerned the wet electrical components will cause a fire.\"\n\nNeed quotes exact including double spaces? Could quote smaller spans avoiding escapes. E.g.\n- symptom: \"heavy stream of water inside my vehicle while driving\"\n- symptom: \"backfilled\\\" into the cabin through dome light just behind the sunglasses holder\" includes quote? Verbatim span can include backslash? In report JSON narrative has `\\\"backfilled\\\"` but actual text includes quotes. Quote should be copied verbatim from report, character for character. If we put in JSON string, escape quotes. The span \"backfilled\" includes quotation marks. We can avoid quotes by quoting \"into the cabin through dome light just behind the sunglasses holder\". Good.\n- condition: \"heavy rain\" appears. Quote \"could not handle the heavy rain\" or \"heavy rain\". Verbatim.\n- condition: \"while driving\" maybe.\n- symptom: \"limited visibility\" exact.\n- safety: \"I am concerned the wet electrical components will cause a fire.\" exact. Or \"cause a fire\".\n- component_group: \"electrical components\" exact.\n- symptom: \"wet electrical components\" exact.\n- other: \"common issue\" with quotes? Avoid.\n- fault code none.\n\nNeed summary. \"Electrical system water intrusion through roof/dome light in heavy rain while driving; wet electrical components and fire concern.\" Good.\n\nNeed JSON only. Ensure no markdown? User says answer with one JSON object and no other text. So final just JSON. Need valid JSON. Use double quotes.\n\nCheck safety_relevant true.\n\nMissing_info: mileage. Component present, symptom present, conditions present, date present? Date incident and received. Yes. Mileage null. So [\"mileage\"].\n\nClues:\n[\n{\"kind\":\"component_group\",\"quote\":\"electrical components\"},\n{\"kind\":\"condition\",\"quote\":\"heavy rain\"},\n{\"kind\":\"symptom\",\"quote\":\"heavy stream of water inside my vehicle while driving\"},\n{\"kind\":\"symptom\",\"quote\":\"into the cabin through dome light just behind the sunglasses holder\"},\n{\"kind\":\"symptom\",\"quote\":\"limited visibility\"},\n{\"kind\":\"condition\",\"quote\":\"while driving\"},\n{\"kind\":\"safety\",\"quote\":\"I am concerned the wet electrical components will cause a fire.\"}\n]\nNeed ensure \"electrical components\" appears exact in \"or the electrical components in the over head compartment\" and \"wet electrical components\". Yes.\n\nCould include \"backfilled\" symptom? Use \"backfilled\" maybe exact? It appears as `\\\"backfilled\\\"` in source but actual text has quotes. If quote \"backfilled\" without quotes not verbatim? It is substring? Actually source contains the word backfilled surrounded by quote characters, but substring \"backfilled\" exists within. Yes okay. But no need.\n\nNeed \"conditions\": [\"moisture\"]? Report mentions heavy rain, water. If include \"heavy rain\" maybe not in allowed list. The schema shows allowed values but maybe can include. The instruction says `conditions`: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. It might expect one of those. Heavy rain is moisture. So conditions: [\"moisture\"]. But the clue quote \"heavy rain\" kind condition. Good. Could include \"moisture\" only in conditions array. However \"heavy rain\" condition is important. But array is controlled. Include \"moisture\" only to comply.\n\nSymptoms array plain words:\n- \"water leak into cabin through dome light\"\n- \"heavy stream of water inside vehicle while driving\"\n- \"wet electrical components\"\n- \"limited visibility\"\n- \"dash warped\" maybe symptom? It soaked interior and warped dash. But main symptom electrical. Include \"water soaking interior and warping dash\"? Plain words. Maybe too many. Need concise. The report primarily water intrusion. Symptoms: water leak into cabin through dome light; heavy stream of water inside vehicle while driving; wet electrical components; limited visibility. Could include \"concern fire\" but safety not symptom. Good.\n\nSummary one line: \"Electrical system: water intrusion through roof/dome light in heavy rain while driving, wetting electrical components and raising fire concern.\" Good.\n\nGroup: \"ELECTRICAL SYSTEM\". Since component given. Good.\n\nFault codes: [].\n\nJSON final. Need no extra. Ensure verbatim quote includes period. \"I am concerned the wet electrical components will cause a fire.\" exact yes. \"heavy stream of water inside my vehicle while driving\" exact? Source: \"resulted in a heavy stream of water inside my vehicle while driving.\" yes substring. \"into the cabin through dome light just behind the sunglasses holder\" exact? Source: \"backfilled\\\" into the cabin through dome light just behind the sunglasses holder.\" yes substring. \"limited visibility\" exact. \"while driving\" exact. \"heavy rain\" exact. \"electrical components\" exact.\n\nNeed quote for \"heavy rain\" exact yes. Good.\n\nPotential issue summary mentions roof/dome light; \"roof\" appears. okay.\n\nLet's final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793541390,
+      "id": "7ad3212c7cbfcbd3c53ed76199a4dfb1",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2059,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1854,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00077694,
+          "billing_source": "go",
+          "list_cost": 0.0012949,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 389,
+            "output": 2059,
+            "reasoning": 1854
+          }
+        },
+        "prompt_tokens": 773,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2832
+      }
+    },
+    "text": "{\"summary\":\"Electrical system: water intrusion through roof/dome light in heavy rain while driving, wetting electrical components and raising fire concern.\",\"group\":\"ELECTRICAL SYSTEM\",\"symptoms\":[\"water leak into cabin through dome light\",\"heavy stream of water inside vehicle while driving\",\"wet electrical components\",\"limited visibility\"],\"conditions\":[\"moisture\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"electrical components\"},{\"kind\":\"condition\",\"quote\":\"heavy rain\"},{\"kind\":\"condition\",\"quote\":\"while driving\"},{\"kind\":\"symptom\",\"quote\":\"heavy stream of water inside my vehicle while driving\"},{\"kind\":\"symptom\",\"quote\":\"into the cabin through dome light just behind the sunglasses holder\"},{\"kind\":\"symptom\",\"quote\":\"limited visibility\"},{\"kind\":\"safety\",\"quote\":\"I am concerned the wet electrical components will cause a fire.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00077694,
+      "cached_tokens": 384,
+      "cost_usd": 0.0012949,
+      "input_tokens": 773,
+      "list_cost_usd": 0.0012949,
+      "output_tokens": 2059,
+      "reasoning_tokens": 1854
+    }
+  }
+}

@@ -9,6 +9,7 @@ dashboard reads under ``results/runs/<run_id>/``.
 from __future__ import annotations
 
 import hashlib
+import re
 from collections import defaultdict
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
@@ -117,11 +118,26 @@ def build_model(*, mode: RunMode, recordings_dir: Path) -> AgentModel:
     raise ValueError("a batch run supports replay or record mode, not live")
 
 
+_SHARD = re.compile(r"^[0-9a-f]{2}$")
+
+
 def _recording_hashes(root: Path) -> list[tuple[str, str]]:
+    """Hash exactly the files the replay store can read.
+
+    The store's layout is ``<root>/<first two hex chars>/<key>.json`` (a flat
+    ``<root>/<key>.json`` is also read). Other directories under the root are a
+    different run's store — Q14 keeps ``recordings/final-live/`` beside Q9's
+    shards — and must not change this run's digest.
+    """
+
     if not root.is_dir():
         return []
+    paths = [path for path in root.glob("*.json") if path.is_file()]
+    for directory in root.iterdir():
+        if directory.is_dir() and _SHARD.fullmatch(directory.name):
+            paths.extend(path for path in directory.glob("*.json") if path.is_file())
     hashes: list[tuple[str, str]] = []
-    for path in sorted(root.rglob("*.json")):
+    for path in sorted(paths, key=lambda item: item.relative_to(root).as_posix()):
         hashes.append(
             (
                 path.relative_to(root).as_posix(),
@@ -355,7 +371,7 @@ def execute_run(
     CLI allows it only in replay mode.
     """
 
-    cases = source.cases()
+    cases = source.cases(set_name)
     if not cases:
         raise ValueError("the selected case set is empty")
     if limit is not None:

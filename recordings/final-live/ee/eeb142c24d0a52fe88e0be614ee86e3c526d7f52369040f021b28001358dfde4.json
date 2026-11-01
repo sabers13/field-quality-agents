@@ -1,0 +1,66 @@
+{
+  "key": "eeb142c24d0a52fe88e0be614ee86e3c526d7f52369040f021b28001358dfde4",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12661,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Ford Mustang Mach-E Adaptive Cruise Control/BlueCruise unexpectedly slows for a phantom vehicle ahead on highway and local roads.\",\"group\":\"driver assistance / ADAS electronics\",\"symptoms\":[\"vehicle slows unexpectedly while Adaptive Cruise Control or BlueCruise is active\",\"driver display shows a vehicle ahead that is not actually there\",\"slowing continues until the driver manually intervenes\",\"no warning lights or error messages\"],\"conditions\":[\"highway\",\"local roads\",\"moving traffic\",\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"repeatedly slowed down unexpectedly while using Adaptive Cruise Control and BlueCruise\"},{\"kind\":\"symptom\",\"quote\":\"The vehicle incorrectly displays a car ahead of me on the driver’s screen\"},{\"kind\":\"symptom\",\"quote\":\"continued slowing down until I manually intervened\"},{\"kind\":\"condition\",\"quote\":\"on the highway while using BlueCruise\"},{\"kind\":\"condition\",\"quote\":\"on local roads while using Adaptive Cruise Control\"},{\"kind\":\"condition\",\"quote\":\"under different driving conditions\"},{\"kind\":\"safety\",\"quote\":\"creates a serious safety concern\"},{\"kind\":\"safety\",\"quote\":\"putting me and other drivers at risk of a rear-end collision\"},{\"kind\":\"other\",\"quote\":\"no warning lights or error messages\"},{\"kind\":\"component_group\",\"quote\":\"driver-assistance system\"}]}",
+            "reasoning_content": "We need answer JSON only. Need parse. Component forward collision avoidance adaptive cruise control. Group electrical/electronic? Maybe \"driver assistance / ADAS\". Need symptoms: unexpected slowing under ACC/BlueCruise; phantom vehicle displayed; no warning lights; continued slowing until manual intervention; repeated. Conditions: highway, local roads, moving traffic? \"different driving conditions\"; maybe no vehicles ahead. Conditions list allowed examples but not restricted? It says conditions [\"cold\",\"moisture\",\"heat\",\"vibration\",\"intermittent\",\"after service\",\"charging\"]. We should include \"intermittent\"? It occurred multiple times, repeatedly, under different conditions. But \"intermittent\" maybe appropriate. No cold etc. Could include \"highway\", \"local roads\"? The schema says conditions list examples; likely can use plain. But rule? We should include conditions found: \"highway\", \"local roads\", \"multiple times\", \"different driving conditions\". Maybe use \"intermittent\" due repeated. Need safety_relevant true due risk rear-end collision, serious safety concern. Fault codes none. Missing_info: mileage null, date? received date present but incident date not. Need maybe \"mileage\", \"date\". Component given, symptom given, conditions given. missing_info only facts analysis needs: mileage, date. Need clues with verbatim quotes from narrative. Need exact character copying. Need be careful with quotes. We can quote substrings exactly. Need JSON valid.\n\nNeed summary one line: component, symptom, conditions. \"Ford Mustang Mach-E Adaptive Cruise Control/BlueCruise unexpectedly slows due to phantom vehicle ahead on highway and local roads.\" Good.\n\nGroup: \"driver assistance / ADAS\" or \"electrical/electronic component group\". The component is \"FORWARD COLLISION AVOIDANCE: ADAPTIVE CRUISE CONTROL\". Electrical/electronic component group maybe \"driver assistance electronics\". Use \"driver assistance / ADAS electronics\". Is that allowed? \"the electrical/electronic component group, or the given group\" yes.\n\nSymptoms array plain words:\n- \"vehicle slows unexpectedly while Adaptive Cruise Control or BlueCruise is active\"\n- \"driver display shows a vehicle ahead that is not there\"\n- \"slowing continues until driver manually intervenes\"\n- \"no warning lights or error messages\"\nMaybe \"repeated occurrences\". Conditions: [\"highway\", \"local roads\", \"intermittent\"]? Also \"moving traffic\" is condition. But conditions array examples. We can include \"highway\", \"local roads\", \"moving traffic\", \"intermittent\". The prompt lists condition examples with \"intermittent\"; include if applicable. \"different driving conditions\" quote. Maybe \"highway\", \"local roads\" are conditions. Need no invention.\n\nFault codes empty.\n\nSafety true.\n\nMissing info: [\"mileage\", \"date\"]. Incident date missing. Mileage null. Date? received_at is report date, but not incident date. Good.\n\nClues: Need quote verbatim. Let's select:\n- symptom: \"repeatedly slowed down unexpectedly while using Adaptive Cruise Control and BlueCruise\" exact? Narrative: \"My Ford Mustang Mach-E has repeatedly slowed down unexpectedly while using Adaptive Cruise Control and BlueCruise, even when there were no vehicles in front of me.\" The span \"repeatedly slowed down unexpectedly while using Adaptive Cruise Control and BlueCruise\" is exact yes.\n- symptom: \"incorrectly displays a car ahead of me on the driver’s screen\" exact? Narrative \"The vehicle incorrectly displays a car ahead of me on the driver’s screen and begins slowing down as though it is following that car.\" Span \"incorrectly displays a car ahead of me on the driver’s screen\" exact yes (with curly apostrophe). Need include verbatim curly. Could copy entire sentence maybe easier. Need quote exact with curly. We'll include \"The vehicle incorrectly displays a car ahead of me on the driver’s screen\" exact? yes includes The. \n- symptom/condition: \"continued slowing down until I manually intervened\" exact? Narrative \"In both situations, the vehicle continued slowing down until I manually intervened.\" Span \"continued slowing down until I manually intervened\" exact.\n- condition: \"on the highway while using BlueCruise\" exact? \"This has happened both on the highway while using BlueCruise and on local roads while using Adaptive Cruise Control.\" Span \"on the highway while using BlueCruise\" exact. \n- condition: \"on local roads while using Adaptive Cruise Control\" exact.\n- safety: \"putting me and other drivers at risk of a rear-end collision\" exact? Narrative \"putting me and other drivers at risk of a rear-end collision.\" yes.\n- safety: \"creates a serious safety concern\" exact? \"This creates a serious safety concern\" yes.\n- other: \"no warning lights or error messages\" exact? Narrative \"There were no warning lights or error messages before or during these incidents.\" Span \"no warning lights or error messages\" exact yes.\n- condition: \"under different driving conditions\" exact? Narrative \"occurred multiple times under different driving conditions\" yes.\n- component_group quote: \"driver-assistance system\" exact? Narrative \"I am concerned that the vehicle’s driver-assistance system is incorrectly detecting vehicles...\" Span \"driver-assistance system\" exact yes. Clue kind component_group quote \"driver-assistance system\".\nNeed maybe fault_code none.\n\nNeed ensure JSON only no markdown. We can output JSON. Need no extra text. Ensure quotes valid. Use curly apostrophe in quote exact. Need JSON string can contain ’. Fine. Could also use \\u2019 but not necessary. Need \"safety_relevant\": true.\n\nLet's formulate concise. But check \"missing_info\" only facts analysis needs. Since mileage null, date missing. Component/symptom/conditions present. Good.\n\nPotential issue \"conditions\" allowed values maybe only list given? It says conditions: [\"cold\",\"moisture\",\"heat\",\"vibration\",\"intermittent\",\"after service\",\"charging\"] in schema but rules don't say restricted. In examples, conditions are environmental. But report has highway/local roads. Should we include \"intermittent\" only? Hm. The schema literally shows list of example values; likely expected one or more from that set. But \"highway\" and \"local roads\" are useful conditions. The instructions: conditions: [\"cold\", ...] maybe not exhaustive? It says list. I think include \"highway\", \"local roads\", \"intermittent\", \"moving traffic\". But if strict validator expects only allowed? Usually these prompts allow arbitrary? It says \"conditions\": [\"cold\",...]. Hmm.\n\nNeed answer one JSON object. The \"group\" maybe \"ADAS\". Need \"clues\" quotes exact. Good.\n\nLet's final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793540543,
+      "id": "f347eb4efac776ba37c1f2c23967ca26",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1711,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1403,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00065364,
+          "billing_source": "go",
+          "list_cost": 0.0010894,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 411,
+            "output": 1711,
+            "reasoning": 1403
+          }
+        },
+        "prompt_tokens": 795,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2506
+      }
+    },
+    "text": "{\"summary\":\"Ford Mustang Mach-E Adaptive Cruise Control/BlueCruise unexpectedly slows for a phantom vehicle ahead on highway and local roads.\",\"group\":\"driver assistance / ADAS electronics\",\"symptoms\":[\"vehicle slows unexpectedly while Adaptive Cruise Control or BlueCruise is active\",\"driver display shows a vehicle ahead that is not actually there\",\"slowing continues until the driver manually intervenes\",\"no warning lights or error messages\"],\"conditions\":[\"highway\",\"local roads\",\"moving traffic\",\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"repeatedly slowed down unexpectedly while using Adaptive Cruise Control and BlueCruise\"},{\"kind\":\"symptom\",\"quote\":\"The vehicle incorrectly displays a car ahead of me on the driver’s screen\"},{\"kind\":\"symptom\",\"quote\":\"continued slowing down until I manually intervened\"},{\"kind\":\"condition\",\"quote\":\"on the highway while using BlueCruise\"},{\"kind\":\"condition\",\"quote\":\"on local roads while using Adaptive Cruise Control\"},{\"kind\":\"condition\",\"quote\":\"under different driving conditions\"},{\"kind\":\"safety\",\"quote\":\"creates a serious safety concern\"},{\"kind\":\"safety\",\"quote\":\"putting me and other drivers at risk of a rear-end collision\"},{\"kind\":\"other\",\"quote\":\"no warning lights or error messages\"},{\"kind\":\"component_group\",\"quote\":\"driver-assistance system\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00065364,
+      "cached_tokens": 384,
+      "cost_usd": 0.0010894,
+      "input_tokens": 795,
+      "list_cost_usd": 0.0010894,
+      "output_tokens": 1711,
+      "reasoning_tokens": 1403
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "068f437c3e2b558ac78e091116ad241484c639903c4e92264b04005fb405c78c",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9864,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"VISIBILITY/WIPER: passenger-side windshield fluid does not adequately clean dirt/bugs, obstructing road view even when parked since new.\",\"group\":\"VISIBILITY/WIPER\",\"symptoms\":[\"passenger-side windshield fluid does not adequately clean dirt and bugs\",\"obstructed view to the road\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"VISIBILITY/WIPER\"},{\"kind\":\"symptom\",\"quote\":\"passenger side windshield fluid does not adequately clean (dirt, bugs) on its side of the windshield\"},{\"kind\":\"condition\",\"quote\":\"even when parked\"},{\"kind\":\"safety\",\"quote\":\"obstructing my view to the road\"},{\"kind\":\"safety\",\"quote\":\"safety issue\"},{\"kind\":\"other\",\"quote\":\"Since new\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize. Report: component visibility/wiper. Symptom: passenger side windshield fluid does not adequately clean dirt/bugs on its side, obstructing view to road, even when parked. Conditions: even when parked? \"since new\" maybe after service? No. Conditions list options cold moisture heat vibration intermittent after service charging. None apply? Could include \"intermittent\"? No. Maybe no conditions. Fault codes none. Safety relevant? Mentions obstructing view to road and \"safety issue\" -> risk to people? Loss of visibility yes safety_relevant true. Missing_info: mileage? It says currently only 5,000 miles, so mileage present (though field null). Date? received_at but report doesn't mention date? \"Since new\" but no date. Missing date maybe. Component present. Symptom present. Conditions? It says even when parked, since new; no weather conditions. Missing conditions? Analysis needs conditions? Maybe list \"date\" only? Need assess. The schema missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Mileage given 5,000 miles. Date? received_at is date but not report? We should not invent. The report says since new and currently only 5,000 miles, no purchase date. Missing date could be relevant. Conditions missing? It says even when parked, since new; not weather. But conditions category might be missing? We can list \"date\" and \"conditions\"? Hmm.\n\nNeed exact quotes verbatim. Clues:\n- symptom: \"passenger side windshield fluid does not adequately clean (dirt, bugs) on its side of the windshield\"\n- condition? \"even when parked\" is condition? kind condition, quote \"even when parked\". But allowed condition list doesn't include parked. Clue kind can be condition quote. However conditions array should be from enumerated list? It says conditions: [\"cold\", ...]. We should only use those. There is no matching enumerated condition. Could omit conditions.\n- safety: \"obstructing my view to the road\" and \"safety issue\". Quote \"obstructing my view to the road\" maybe enough. Also \"It’s a Honda design issue that is a safety issue.\" Use exact apostrophe? narrative has \"It\\u2019s\" curly apostrophe. Need quote verbatim. Could use \"safety issue\" substring verbatim. Good.\n- component_group: \"VISIBILITY/WIPER\" is component field not narrative. Quote must be from report? The user message includes JSON with component field. \"report\" includes component. Could quote \"VISIBILITY/WIPER\". Yes.\n- other: \"Since new\" maybe. \"Car currently only has 5,000 miles.\" But mileage already. Clues should include relevant. Could include \"Since new\" as condition? Not in conditions list but clue kind condition? Hmm.\n\nSummary one line: \"VISIBILITY/WIPER: passenger-side washer does not adequately clean dirt/bugs, obstructing road view, even when parked since new.\" Need concise.\n\nGroup: \"VISIBILITY/WIPER\" or electrical/electronic component group? The given group is VISIBILITY/WIPER. It says group \"the electrical/electronic component group, or the given group\". Use \"VISIBILITY/WIPER\".\n\nSymptoms array plain words: \"passenger-side windshield washer does not adequately clean dirt and bugs\" and maybe \"obstructed view to the road\". Symptoms can be multiple. \"windshield fluid does not adequately clean\" is symptom. \"obstructing view\" is consequence/safety. Could include as symptom? Plain words. Maybe include \"obstructed view to the road\". The schema allows symptoms list. Fine.\n\nConditions: none from list. But \"even when parked\" maybe not enumerated. If we include \"intermittent\"? No. Use empty.\n\nFault_codes: [].\n\nSafety_relevant true.\n\nMissing_info: date? Maybe \"date\" because no date of occurrence/purchase. Mileage is in narrative. Conditions? It doesn't state weather/temperature but condition \"even when parked\" indicates. The analysis might need conditions; but not necessarily. The prompt says list missing only facts analysis needs. Component/symptom present. Mileage present. Date missing? The report has received_at but that's not incident date. It says since new, so date of purchase would help. I'd include [\"date\"]. Maybe \"conditions\" too? But if no weather conditions, the issue occurs even parked; conditions not critical. But analysis of field-quality maybe needs conditions. The report says \"even when parked\" - that's a condition. So not missing. Use [\"date\"].\n\nNeed ensure JSON no other text. Quotes verbatim. Let's craft.\n\nQuote \"passenger side windshield fluid does not adequately clean (dirt, bugs) on its side of the windshield\" exact? Narrative: \"my car's passenger side windshield fluid does not adequately clean (dirt, bugs) on its side of the windshield, even when parked, obstructing my view to the road.\" Yes substring from \"passenger side...\" to \"windshield\" exact. Good.\n\nQuote \"obstructing my view to the road\" exact. Good.\nQuote \"safety issue\" exact? Narrative \"It’s a Honda design issue that is a safety issue.\" substring \"safety issue\" yes.\nQuote \"VISIBILITY/WIPER\" exact in component field. Good.\nQuote \"Since new\" exact? Narrative \"Since new, my car's...\" yes.\nQuote \"Car currently only has 5,000 miles.\" exact? Narrative \"Car currently only has 5,000 miles.\" yes. Could include as other? Not needed.\n\nNeed clues maybe:\n{\"kind\":\"component_group\",\"quote\":\"VISIBILITY/WIPER\"}\n{\"kind\":\"symptom\",\"quote\":\"passenger side windshield fluid does not adequately clean (dirt, bugs) on its side of the windshield\"}\n{\"kind\":\"condition\",\"quote\":\"even when parked\"}? kind condition quote. But conditions array doesn't include parked. Clue kind can condition. It's okay? The schema says kind symptom|condition|fault_code|component_group|safety|other. Quote from report. So yes.\n{\"kind\":\"safety\",\"quote\":\"obstructing my view to the road\"}\n{\"kind\":\"safety\",\"quote\":\"safety issue\"}\n{\"kind\":\"other\",\"quote\":\"Since new\"} maybe. But not necessary. Clues should support summary. Could include \"Since new\" as other. But maybe too many.\n\nNeed maybe \"windshield fluid\" not washer. Use exact.\n\nFinal JSON. Ensure no markdown.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793540007,
+      "id": "3a0e12129bd1945249642cfbbdd30948",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1581,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1386,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00058416,
+          "billing_source": "go",
+          "list_cost": 0.0009736,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 159,
+            "output": 1581,
+            "reasoning": 1386
+          }
+        },
+        "prompt_tokens": 543,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2124
+      }
+    },
+    "text": "{\"summary\":\"VISIBILITY/WIPER: passenger-side windshield fluid does not adequately clean dirt/bugs, obstructing road view even when parked since new.\",\"group\":\"VISIBILITY/WIPER\",\"symptoms\":[\"passenger-side windshield fluid does not adequately clean dirt and bugs\",\"obstructed view to the road\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"VISIBILITY/WIPER\"},{\"kind\":\"symptom\",\"quote\":\"passenger side windshield fluid does not adequately clean (dirt, bugs) on its side of the windshield\"},{\"kind\":\"condition\",\"quote\":\"even when parked\"},{\"kind\":\"safety\",\"quote\":\"obstructing my view to the road\"},{\"kind\":\"safety\",\"quote\":\"safety issue\"},{\"kind\":\"other\",\"quote\":\"Since new\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00058416,
+      "cached_tokens": 384,
+      "cost_usd": 0.0009736,
+      "input_tokens": 543,
+      "list_cost_usd": 0.0009736,
+      "output_tokens": 1581,
+      "reasoning_tokens": 1386
+    }
+  }
+}

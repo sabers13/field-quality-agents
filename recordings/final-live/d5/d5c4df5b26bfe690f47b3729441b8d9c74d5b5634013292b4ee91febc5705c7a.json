@@ -1,0 +1,66 @@
+{
+  "key": "d5c4df5b26bfe690f47b3729441b8d9c74d5b5634013292b4ee91febc5705c7a",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12792,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"VISIBILITY/WIPER: no wipers at all; owner reports unresolved recalls nearly 8 months and engine recall concern.\",\n  \"group\": \"VISIBILITY/WIPER\",\n  \"symptoms\": [\"no wipers at all\"],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\"mileage\", \"conditions\"],\n  \"clues\": [\n    {\"kind\": \"component_group\", \"quote\": \"VISIBILITY/WIPER\"},\n    {\"kind\": \"symptom\", \"quote\": \"I have no wipers at all\"},\n    {\"kind\": \"other\", \"quote\": \"They have fixed zero recalls.\"},\n    {\"kind\": \"other\", \"quote\": \"A recall almost 8 months\"},\n    {\"kind\": \"safety\", \"quote\": \"It’s going to blow up before it’s fixed!\"}\n  ]\n}",
+            "reasoning_content": "We need answer JSON only. Need parse report. Component visibility/wiper. Symptom: no wipers at all; recall not fixed; engine recall concern; \"going to blow up before fixed\" maybe safety? Mentions engine recall, blow up? Safety relevant? It mentions \"It’s going to blow up before it’s fixed!\" Could be risk fire? It's hyperbole? Safety relevant when mentions fire, smoke, crash, injury, loss control, stall at speed or risk to people. \"blow up\" implies fire/explosion risk? But it's about engine recall, not necessarily report of actual fire. Need decide. The report mentions \"engine recall\" and \"going to blow up\" as concern. Safety_relevant likely true? Hmm rules: Set safety_relevant when report mentions crash, fire, smoke, injury, loss of control, a stall at speed or another risk to people. \"blow up\" is another risk to people? Could be fire/explosion. So true maybe. But careful do not invent. Quote verbatim \"It’s going to blow up before it’s fixed!\" includes curly apostrophe. Need exact character. Report has \\u2019. Need copy exact. We can include quote. Need summary one line: component, symptom, conditions. Conditions? No wipers at all, recall unfixed ~8 months. Conditions none? Maybe \"recall almost 8 months\" not condition. Conditions list should be from cold, moisture, heat, vibration, intermittent, after service, charging. None match. Empty.\n\nGroup: electrical/electronic component group? Given component VISIBILITY/WIPER. The schema says \"the electrical/electronic component group, or the given group\". We can use \"VISIBILITY/WIPER\" or \"visibility/wiper\". Need group. Since given group is VISIBILITY/WIPER. Use \"VISIBILITY/WIPER\". Symptoms: [\"no wipers at all\", \"wiper recall not fixed\"]? Plain words. Fault codes none. missing_info: mileage? It is null. date? received_at exists but maybe date of incident missing. component and symptom present. Conditions maybe missing? The analysis needs conditions; report lacks when/weather. But missing_info list only facts analysis needs: component, symptom, conditions, mileage, date. Here component and symptom present, mileage missing, date? It has received_at but not incident date. Conditions missing. Could list [\"mileage\", \"date\", \"conditions\"]. Is date missing? received_at 2026-10-19; not occurrence date. Report mentions recall almost 8 months. But no exact date. Missing mileage definitely. Conditions? no environmental conditions. Include conditions. Maybe date? Since received_at is date, but not event date. The field report has received_at, so date present? The instruction \"missing_info\" for facts analysis needs: mileage, date. Since date field absent? Actually has received_at. But likely date of report available. Don't list date if received_at exists? Hmm. The report includes received_at, so date not missing. Mileage null, list mileage. Conditions not specified, list conditions. Could include \"date\" if date of incident missing? The schema missing_info options include date. The data has received_at, not incident date. But \"date\" perhaps report date. To be safe: [\"mileage\", \"conditions\"]. Maybe \"conditions\" because no weather/temp. Missing info only important. Yes.\n\nClues: Need verbatim spans. We can include:\n- {\"kind\":\"component_group\",\"quote\":\"VISIBILITY/WIPER\"} but quote must be from report? The report includes component field \"VISIBILITY/WIPER\" yes in user JSON. Is that \"report\"? Yes. But quote verbatim. Fine.\n- symptom: \"I have no wipers at all\" exact. There is \"I have no wipers at all.\" Need quote without period? Verbatim span can be substring, okay \"I have no wipers at all\". It appears exact with no period? Report: \"I have no wipers at all. I’ve...\" So substring \"I have no wipers at all\" is verbatim. Good.\n- condition? \"A recall almost 8 months\" maybe other? Not condition category. Could use other quote for recall. \n- safety: \"It’s going to blow up before it’s fixed!\" exact? Report: \"It\\u2019s going to blow up before it\\u2019s fixed!\" yes. Use exact curly apostrophe. In JSON need UTF-8 curly. Fine.\n- fault_code none.\n- component_group maybe \"VISIBILITY/WIPER\" from component field. Good.\n- symptom \"zero wipers\" exact? \"people have zero wipers!!!\" includes. But maybe one symptom enough. \n- other: \"They have fixed zero recalls.\" Could be recall status. Not necessary.\nNeed answer only JSON, no markdown? \"Answer with one JSON object and no other text\" so raw JSON.\n\nNeed ensure all quotes exact character for character. Let's inspect narrative: \"They have fixed zero recalls. I have no wipers at all. I’ve attempted to get a resolution multiple times with no care or concern nor resolution. This is ridiculous. A recall almost 8 months and people have zero wipers!!! And the engine recall. It’s going to blow up before it’s fixed!\"\n\nCurly apostrophes. Need use \"I’ve\" if quoting? Maybe not. Use simple \"I have no wipers at all\" no curly. \"It’s going to blow up before it’s fixed!\" includes curly apostrophe in It’s and it’s. Need exact. In JSON, can include curly characters. Good.\n\nSafety_relevant true. Summary: \"VISIBILITY/WIPER: no wipers at all; owner reports unresolved wiper and engine recalls, fears engine will blow up before fixed.\" Conditions none. That includes \"fears\" maybe okay. One line. Maybe \"VISIBILITY/WIPER: no wipers at all; unresolved recalls nearly 8 months, engine recall concern.\" Good.\n\nGroup: \"VISIBILITY/WIPER\". Symptoms: [\"no wipers at all\", \"unresolved wiper recall\"]? Symptom should plain words. \"unresolved wiper recall\" is not symptom but issue. Could include \"zero wipers\". Hmm symptom: \"no wipers at all\". Maybe \"wiper recall not fixed\" is not symptom. But report says \"people have zero wipers\". Use [\"no wipers at all\"]. Fault codes [].\n\nConditions: [] because none match list. But maybe \"after service\" no. \"recall almost 8 months\" not condition. Good.\n\nMissing_info: [\"mileage\", \"conditions\"] maybe also \"date\"? Since received_at present. Do not list component/symptom. Good.\n\nClues:\n- component_group quote \"VISIBILITY/WIPER\" from component field. Is \"component_group\" kind allowed yes.\n- symptom quote \"I have no wipers at all\" exact.\n- other quote \"They have fixed zero recalls.\" exact? Yes. Could include recall status. \n- safety quote \"It’s going to blow up before it’s fixed!\" exact.\n- other quote \"A recall almost 8 months\" exact? Narrative has \"A recall almost 8 months and people...\" Yes substring. Good.\nMaybe include condition \"A recall almost 8 months\" as other. Not necessary.\n\nNeed no suggestion. Fine.\n\nPotential issue: \"safety_relevant\" maybe true due \"blow up\" and engine recall. Good.\n\nNeed final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793541105,
+      "id": "7b8cc05f501b24b871416f97bdb3d64e",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1806,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1604,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00066525,
+          "billing_source": "go",
+          "list_cost": 0.00110875,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 160,
+            "output": 1806,
+            "reasoning": 1604
+          }
+        },
+        "prompt_tokens": 544,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2350
+      }
+    },
+    "text": "{\n  \"summary\": \"VISIBILITY/WIPER: no wipers at all; owner reports unresolved recalls nearly 8 months and engine recall concern.\",\n  \"group\": \"VISIBILITY/WIPER\",\n  \"symptoms\": [\"no wipers at all\"],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\"mileage\", \"conditions\"],\n  \"clues\": [\n    {\"kind\": \"component_group\", \"quote\": \"VISIBILITY/WIPER\"},\n    {\"kind\": \"symptom\", \"quote\": \"I have no wipers at all\"},\n    {\"kind\": \"other\", \"quote\": \"They have fixed zero recalls.\"},\n    {\"kind\": \"other\", \"quote\": \"A recall almost 8 months\"},\n    {\"kind\": \"safety\", \"quote\": \"It’s going to blow up before it’s fixed!\"}\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00066525,
+      "cached_tokens": 384,
+      "cost_usd": 0.00110875,
+      "input_tokens": 544,
+      "list_cost_usd": 0.00110875,
+      "output_tokens": 1806,
+      "reasoning_tokens": 1604
+    }
+  }
+}

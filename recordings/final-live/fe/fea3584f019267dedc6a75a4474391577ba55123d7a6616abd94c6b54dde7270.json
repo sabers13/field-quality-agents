@@ -1,0 +1,66 @@
+{
+  "key": "fea3584f019267dedc6a75a4474391577ba55123d7a6616abd94c6b54dde7270",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10362,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"ELECTRICAL SYSTEM: urgent safety recall for potential EV battery fire; dealer canceled scheduled service twice.\",\n  \"group\": \"ELECTRICAL SYSTEM\",\n  \"symptoms\": [\"potential fire from EV battery\"],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\"mileage\", \"conditions\"],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"ELECTRICAL SYSTEM\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"urgent safety recall regarding potential fire from EV battery\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"This is a severe hazard.\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"Dealer canceled my scheduled recall service twice arguing backlog.\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer only JSON object. Need normalize. Report is about recall service canceled, urgent safety recall potential fire from EV battery. Component electrical system given. Symptoms? No actual component symptom except potential fire from EV battery, safety hazard. Need parse: narrative: \"Dealer canceled my scheduled recall service twice arguing backlog. Indicated they have no solution but did not provide any alternative arrangements.   I have been waiting for my car to be serviced to fix urgent safety recall regarding potential fire from EV battery. This is a severe hazard.\"\n\nNeed summary one line component, symptom, conditions. Component ELECTRICAL SYSTEM. Symptom: urgent safety recall regarding potential fire from EV battery. Conditions? maybe none. Could include \"after service\"? no. \"charging\"? no. Maybe \"waiting for service\" no. Safety relevant true due fire. Fault codes none. Missing info: mileage? it's null. Date? received_at exists but report date? The analysis needs date? Maybe missing mileage. Component present. Symptom present. Conditions? Not specified. Missing_info should only facts analysis needs: mileage, date, conditions, component, symptom. Here mileage missing. Conditions maybe missing? It says potential fire from EV battery but no conditions. Could list \"conditions\" maybe? But rules: missing_info only facts needed. Since conditions not given, list conditions? But maybe no need? It asks conditions in summary. We can include missing_info [\"mileage\",\"conditions\"]? Need be careful. Date is received_at not event date; maybe date missing? The report received date is present. Mileage null, so missing mileage. Conditions not specified, maybe missing. Component group? Given ELECTRICAL SYSTEM.\n\nClues: need verbatim quotes. Need include symptom quote \"potential fire from EV battery\" (exact substring? Narrative: \"regarding potential fire from EV battery.\" Yes). Safety quote \"This is a severe hazard.\" or \"urgent safety recall regarding potential fire from EV battery\". Need exactly. Condition maybe \"Dealer canceled my scheduled recall service twice arguing backlog\" indicates after service? Not exactly. Could be other? We need clues kinds. Include symptom quote, safety quote, component_group quote? \"ELECTRICAL SYSTEM\" is not in narrative but in component field; can quote? The quote must be copied from report; report includes JSON fields? It says report in user message. \"ELECTRICAL SYSTEM\" appears in component value. It is verbatim from report? likely yes. But quote \"ELECTRICAL SYSTEM\" from component field. Is that okay? It says quote copied verbatim from report. Yes. But could include component_group quote \"ELECTRICAL SYSTEM\". Need maybe group \"ELECTRICAL SYSTEM\". Summary: \"Electrical system: urgent safety recall for potential EV battery fire; dealer canceled service twice.\" Conditions maybe [] or [\"after service\"]? No. Don't invent. Conditions list can be empty. But schema conditions array. Use [].\n\nNeed symptoms: [\"urgent safety recall regarding potential fire from EV battery\"]? Plain words: \"potential fire from EV battery\" maybe symptom. Could include \"safety recall not completed due to canceled service\" but symptom is not exactly. The report names no specific failure symptom except potential fire hazard. Use [\"potential fire from EV battery\"]. Maybe \"urgent safety recall\" not symptom. Could include \"service delayed\" no.\n\nFault codes empty.\n\nSafety_relevant true.\n\nMissing_info: [\"mileage\", \"conditions\"]? Hmm \"conditions\" maybe fact analysis needs for fire? The report says potential fire but not under what conditions. Yes list conditions. Date? received_at 2026-10-08, not incident date. But missing_info includes date if missing. The report has received_at but no incident date. But maybe not important? It is a recall service complaint. Date of service cancellation not given. Could include \"date\". But missing_info list only facts analysis needs: component, symptom, conditions, mileage, date. Since no date of event? received_at is date. Might not need. But they ask \"date\" missing if no date. Here received_at is report date. However \"date\" could mean incident date. I think list mileage only? Hmm.\n\nNeed produce valid JSON only. No markdown? They said one JSON object and no other text. Final should be raw JSON. Ensure quotes exact. Check quote \"potential fire from EV battery\" exact substring: narrative has \"regarding potential fire from EV battery.\" yes. \"urgent safety recall regarding potential fire from EV battery\" exact? Narrative: \"to fix urgent safety recall regarding potential fire from EV battery.\" yes substring. \"This is a severe hazard.\" exact? Narrative: \"This is a severe hazard.\" yes. \"Dealer canceled my scheduled recall service twice arguing backlog.\" exact? Narrative: \"Dealer canceled my scheduled recall service twice arguing backlog.\" yes. Could include as other clue maybe \"service backlog\". But not needed. Could include condition? no.\n\nNeed group: \"ELECTRICAL SYSTEM\" or \"electrical/electronic component group\"? Given group. Use \"ELECTRICAL SYSTEM\".\n\nSummary one line: \"ELECTRICAL SYSTEM: urgent safety recall for potential EV battery fire; dealer canceled scheduled service twice.\" This includes conditions? It includes service cancellation. Conditions list empty.\n\nNeed missing_info: mileage null. Also conditions not specified. I'd include [\"mileage\",\"conditions\"]. Is \"date\" missing? There is received_at; no event date. Hmm. Should we include date? The analysis may need date of dealer cancellations? But missing_info only facts needed. For recall fire, date maybe not critical. But report has received_at. I'd not include date. Component and symptom present. Good.\n\nNeed clues list. Kinds: symptom, safety, other maybe. For condition? no. For component_group quote \"ELECTRICAL SYSTEM\". For other quote \"Dealer canceled my scheduled recall service twice arguing backlog.\" Kind \"other\". For symptom quote \"potential fire from EV battery\" or full. For safety quote \"This is a severe hazard.\" Also \"urgent safety recall regarding potential fire from EV battery\" could be symptom and safety? Use one.\n\nNeed ensure no invalid JSON due quotes. Use standard double quotes.\n\nFinal JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793540333,
+      "id": "6529df6b42f9274bce47c4ed1bf42c8b",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1479,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1286,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00054591,
+          "billing_source": "go",
+          "list_cost": 0.00090985,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 142,
+            "output": 1479,
+            "reasoning": 1286
+          }
+        },
+        "prompt_tokens": 526,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2005
+      }
+    },
+    "text": "{\n  \"summary\": \"ELECTRICAL SYSTEM: urgent safety recall for potential EV battery fire; dealer canceled scheduled service twice.\",\n  \"group\": \"ELECTRICAL SYSTEM\",\n  \"symptoms\": [\"potential fire from EV battery\"],\n  \"conditions\": [],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\"mileage\", \"conditions\"],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"ELECTRICAL SYSTEM\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"urgent safety recall regarding potential fire from EV battery\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"This is a severe hazard.\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"Dealer canceled my scheduled recall service twice arguing backlog.\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00054591,
+      "cached_tokens": 384,
+      "cost_usd": 0.00090985,
+      "input_tokens": 526,
+      "list_cost_usd": 0.00090985,
+      "output_tokens": 1479,
+      "reasoning_tokens": 1286
+    }
+  }
+}

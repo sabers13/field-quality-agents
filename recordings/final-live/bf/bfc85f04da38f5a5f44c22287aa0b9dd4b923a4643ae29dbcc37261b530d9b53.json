@@ -1,0 +1,66 @@
+{
+  "key": "bfc85f04da38f5a5f44c22287aa0b9dd4b923a4643ae29dbcc37261b530d9b53",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9225,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2025 Hyundai Tucson air bag system: air bags failed to deploy in a 65 MPH hydroplaning crash with severe frontal damage and injuries, and also failed in a prior tree-stump crash.\",\"group\":\"AIR BAGS\",\"symptoms\":[\"air bags failed to deploy in a crash\",\"air bags failed to deploy in a prior crash into a tree stump\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"the air bags failed to deploy\"},{\"kind\":\"symptom\",\"quote\":\"the air bags failed to deploy during a prior crash into a tree stump\"},{\"kind\":\"condition\",\"quote\":\"hydroplaned\"},{\"kind\":\"condition\",\"quote\":\"driving at approximately 65 MPH\"},{\"kind\":\"safety\",\"quote\":\"causing the driver to lose steering control\"},{\"kind\":\"safety\",\"quote\":\"The driver was transported to the hospital via emergency medical services with back and neck injuries, including a fractured cervical spine.\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize. Component AIR BAGS. Summary one line component, symptom, conditions. Group electrical/electronic? Air bags are safety restraint electronic component group. Could say \"air bag system (safety restraint)\"? The field says \"the electrical/electronic component group, or given group\" Given component AIR BAGS. We can set group \"AIR BAGS\" maybe. Need symptoms plain words: air bags failed to deploy in crash; prior crash into tree stump also failed. Conditions: hydroplaned? That's condition? List allowed conditions: cold, moisture, heat, vibration, intermittent, after service, charging. None? Hydroplaning not in list. Could include? It says conditions array [\"cold\", \"moisture\", ...]. We should only use allowed? It says conditions: [\"cold\", ...]. Probably can include only those? But hydroplaning not among. Maybe conditions empty. Intermittent? failed in two crashes? Not intermittent. Fault codes none. Safety relevant true (crash, injuries, loss of steering control). Missing_info: none? We have component, symptom, conditions? conditions maybe crash circumstances. Mileage/date present. Maybe missing \"conditions\" because no environmental/operating conditions? But narrative has driving 65 MPH, hydroplaned. So none. Clues verbatim. Need quotes exact. Include component group quote \"AIR BAGS\" from component? Is component field part of report? User message includes JSON fields. Verbatim span from report likely narrative? It says report in user message. Can quote \"AIR BAGS\" from component. Clues:\n- component_group quote \"AIR BAGS\"\n- symptom quote \"the air bags failed to deploy\"\n- symptom quote \"the air bags failed to deploy during a prior crash into a tree stump\"\n- safety quote \"the driver to lose steering control\" maybe exact \"causing the driver to lose steering control\"\n- safety quote \"The driver was transported to the hospital via emergency medical services with back and neck injuries, including a fractured cervical spine.\"\n- condition quote \"hydroplaned\" maybe kind condition though not in allowed list? Could include condition quote \"hydroplaned\" if kind condition. But conditions array not include? It can be clue. Maybe condition \"hydroplaned\" not in list; rules say conditions list specific values. I'd avoid in conditions array, but clue kind condition quote \"hydroplaned\" is okay? It says conditions [\"cold\"...]. Hmm clues kind can be condition. Quote hydroplaned. Fine.\n\nNeed summary: \"2025 Hyundai Tucson air bag system: air bags failed to deploy in a 65 MPH hydroplaning crash with severe frontal damage and injuries; prior non-deployment into tree stump.\" That's one line. Include component, symptom, conditions. Conditions hydroplaning, 65 mph. Good.\n\nGroup: \"AIR BAGS\" maybe. Since \"electrical/electronic component group, or given group\". Air bag is electronic safety system. Could set \"air bag system\". But group maybe should be \"AIR BAGS\" as given. I'll set \"AIR BAGS\".\n\nsymptoms: [\"air bags failed to deploy in a crash\", \"air bags failed to deploy in a prior crash into a tree stump\"]. Plain words.\n\nconditions: [] because none allowed? Maybe \"intermittent\" no. Could include \"moisture\"? Hydroplaning implies wet road, but not component moisture. Don't invent. Empty.\n\nfault_codes: [].\n\nsafety_relevant true.\n\nmissing_info: []? Maybe conditions? It has conditions. Date received but incident date missing? Rule missing_info includes date; report has received_at but not incident date. Analysis might need date. Should list \"date\" if incident date missing. It says only facts analysis needs: component, symptom, conditions, mileage, date. Received date not incident date. So missing \"date\". But maybe date is received_at. Hmm \"date\" likely incident date. The report lacks crash date. Include \"date\". Also conditions? It has hydroplaning/65mph. Component symptom present. mileage present. So [\"date\"].\n\nNeed ensure JSON valid. No markdown? \"Answer with one JSON object and no other text\". Final should be raw JSON. Include quotes exact. Check quote \"the air bags failed to deploy\" narrative: \"however, the air bags failed to deploy.\" Contains exact lowercase? Narrative: \"however, the air bags failed to deploy.\" Yes substring \"the air bags failed to deploy\" exact. Prior quote: \"the air bags failed to deploy during a prior crash into a tree stump\" exact? Narrative: \"The contact also stated that the air bags failed to deploy during a prior crash into a tree stump.\" yes. Safety quote \"causing the driver to lose steering control\" exact? Narrative: \"causing the driver to lose steering control, and the vehicle struck a concrete median wall.\" yes. Injuries quote exact: \"The driver was transported to the hospital via emergency medical services with back and neck injuries, including a fractured cervical spine.\" yes. Condition quote \"hydroplaned\" exact. Component quote \"AIR BAGS\" exact from component. Maybe quote \"65 MPH\" condition? kind condition? Condition quote \"driving at approximately 65 MPH\" exact. Could include. It's condition? Maybe \"condition\" quote. Fine.\n\nNeed no suggestion. Good.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793540699,
+      "id": "f42b3b3229850a78b7b245fdc6c9616a",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1349,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1114,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00050829,
+          "billing_source": "go",
+          "list_cost": 0.00084715,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 244,
+            "output": 1349,
+            "reasoning": 1114
+          }
+        },
+        "prompt_tokens": 628,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1977
+      }
+    },
+    "text": "{\"summary\":\"2025 Hyundai Tucson air bag system: air bags failed to deploy in a 65 MPH hydroplaning crash with severe frontal damage and injuries, and also failed in a prior tree-stump crash.\",\"group\":\"AIR BAGS\",\"symptoms\":[\"air bags failed to deploy in a crash\",\"air bags failed to deploy in a prior crash into a tree stump\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"the air bags failed to deploy\"},{\"kind\":\"symptom\",\"quote\":\"the air bags failed to deploy during a prior crash into a tree stump\"},{\"kind\":\"condition\",\"quote\":\"hydroplaned\"},{\"kind\":\"condition\",\"quote\":\"driving at approximately 65 MPH\"},{\"kind\":\"safety\",\"quote\":\"causing the driver to lose steering control\"},{\"kind\":\"safety\",\"quote\":\"The driver was transported to the hospital via emergency medical services with back and neck injuries, including a fractured cervical spine.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00050829,
+      "cached_tokens": 384,
+      "cost_usd": 0.00084715,
+      "input_tokens": 628,
+      "list_cost_usd": 0.00084715,
+      "output_tokens": 1349,
+      "reasoning_tokens": 1114
+    }
+  }
+}

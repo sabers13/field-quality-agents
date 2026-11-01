@@ -1,0 +1,66 @@
+{
+  "key": "ae326982a2e07a7dc8f17e61359256ffe1a8d9c47f850d1442ced28dc0489b2d",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12612,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"EXTERIOR LIGHTING: headlight bulbs burn out about twice per year since 2022, causing poor night visibility when two of four are out.\",\"group\":\"EXTERIOR LIGHTING\",\"symptoms\":[\"headlight bulbs burn out frequently\",\"reduced night visibility with two of four bulbs out\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"EXTERIOR LIGHTING\"},{\"kind\":\"symptom\",\"quote\":\"2 headlight bulbs burn out per year since 2022\"},{\"kind\":\"symptom\",\"quote\":\"hard to see at night\"},{\"kind\":\"safety\",\"quote\":\"It gets fairly hard to see at night when you have 2 out of the 4 burn out at once.\"}]}",
+            "reasoning_content": "We need answer JSON only. Need normalize report. Component exterior lighting, symptom headlight bulbs burn out frequently (2 per year since 2022), conditions? Night visibility hard when 2 of 4 out. Safety? Risk to people? Mentions hard to see at night, not crash/fire etc. Safety_relevant likely true? Rule: set when report mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. \"It gets fairly hard to see at night\" is risk to people? Could be safety relevant due visibility. Need decide. It says another risk to people. Reduced night visibility is safety risk. But explicit no crash. We can set true? The prompt likely expects safety_relevant true if visibility impaired at night? Hmm. Need be careful: safety_relevant when mentions crash/fire/smoke/injury/loss of control/stall at speed or another risk to people. Hard to see at night is risk. I'll set true? The report says \"hard to see at night when you have 2 out of the 4 burn out at once\" that is risk. Clues include quote. Group: electrical/electronic component group? Given component EXTERIOR LIGHTING. The schema says \"group\": \"the electrical/electronic component group, or the given group\". Need group maybe \"exterior lighting\". Since given group component. Use \"EXTERIOR LIGHTING\"? Could normalize lower? Need one JSON. Summary one line: EXTERIOR LIGHTING, headlight bulbs burning out ~2/year since 2022, reduced night visibility when 2 of 4 out.\n\nSymptoms: [\"headlight bulbs burn out frequently\", \"reduced night visibility with two of four bulbs out\"]. Conditions: maybe \"heat\"? No. \"intermittent\"? Repeated failures. Conditions array allowed values: cold, moisture, heat, vibration, intermittent, after service, charging. The report doesn't mention those. Could use [\"intermittent\"]? Burnouts recurring? Not intermittent. Maybe empty. But conditions includes? It says conditions list. If none, empty. Fault codes empty. Missing_info: mileage is null. Date? received_at present but date of incident? It says since 2022, no specific date. Missing info maybe [\"mileage\", \"date\"]? Need facts analysis needs: component present, symptom present, conditions not explicitly (driving at night maybe), mileage missing, date not exact? It says since 2022. Missing date maybe not important? But mileage null. Include mileage. Date? The report has since 2022 but no exact dates. Maybe include \"date\" because no occurrence date? Hmm.\n\nClues: kind symptom quote \"2 headlight bulbs burn out per year since 2022\" verbatim? Narrative: \"I have had on average 2 headlight bulbs burn out per year since 2022.\" Quote can be span \"2 headlight bulbs burn out per year since 2022\" does that appear verbatim? It says \"on average 2 headlight bulbs burn out per year since 2022.\" Span \"2 headlight bulbs burn out per year since 2022\" is contiguous within. Good. Another symptom quote \"hard to see at night\" verbatim? Narrative: \"It gets fairly hard to see at night when you have 2 out of the 4 burn out at once.\" \"hard to see at night\" contiguous yes. Safety clue same quote? kind safety quote \"hard to see at night\" or full. Component group quote \"EXTERIOR LIGHTING\"? That's from component field not narrative? Report includes JSON component. Quote can be copied from report. \"EXTERIOR LIGHTING\" appears in component. Good. Fault codes none.\n\nNeed answer only JSON. Ensure valid JSON no markdown? User says answer with one JSON object and no other text. We can output raw JSON. Need no extra. Let's craft.\n\nNeed consider \"group\": schema says \"the electrical/electronic component group, or the given group\". The given component is \"EXTERIOR LIGHTING\". So group \"EXTERIOR LIGHTING\".\n\nsafety_relevant: I'll set true because impaired night visibility. But maybe if strict only mentions crash/fire etc. \"another risk to people\" includes. Good.\n\nmissing_info: [\"mileage\"] maybe also \"date\"? It mentions since 2022, received date. Exact date of occurrence not needed? But list facts analysis needs: mileage, date. Since no mileage. Date? It has received_at and year. But no specific date. Include \"mileage\" only? Prompt says list missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. Component and symptom present; conditions? It doesn't explicitly mention conditions like cold/moisture but not necessarily missing? \"conditions\" could be missing because no conditions. Should include \"conditions\"? The report says at night, but conditions array could be empty. The analysis may need conditions. Hmm. It doesn't mention weather/usage conditions. But \"night\" is condition? Allowed condition values don't include night. Missing_info can include \"conditions\". Maybe include \"mileage\", \"conditions\"? Date? The narrative says since 2022, not exact. For pattern, date of report 2026. I'd include \"mileage\" and \"conditions\" maybe. But if no conditions mentioned, missing info yes. However they might want missing_info [\"mileage\"] because conditions not mentioned. Let's parse: \"List missing_info only for facts the analysis needs: component, symptom, conditions, mileage, date. Use an empty list when nothing important is missing.\" Analysis needs conditions; no conditions specified. So include \"conditions\". Date? It says since 2022 and received_at, but no specific occurrence date. Might include \"date\"? The pattern has dates? It says since 2022. I think date not missing entirely; year available. Mileage null definitely. Conditions absent. Maybe include [\"mileage\", \"conditions\"]. But if conditions array empty, yes. Could include \"date\" because exact date missing. But \"since 2022\" gives timeframe. Not exact. I'll include [\"mileage\", \"conditions\"]. Hmm.\n\nNeed conditions array: Does \"at night\" count as condition? Allowed values no. Empty. Could include \"intermittent\" because burnouts? No.\n\nsummary one line: \"EXTERIOR LIGHTING: headlight bulbs burn out about twice per year since 2022, causing poor night visibility when two of four are out.\" Good.\n\nClues:\n- component_group: quote \"EXTERIOR LIGHTING\"\n- symptom: quote \"2 headlight bulbs burn out per year since 2022\" (verbatim? Actually text: \"on average 2 headlight bulbs burn out per year since 2022.\" The substring starts at 2 and ends 2022. Yes.)\n- symptom: quote \"hard to see at night\"\n- safety: quote \"hard to see at night\" (same). Is duplicate okay. Could use full \"It gets fairly hard to see at night when you have 2 out of the 4 burn out at once.\" This is verbatim? Yes exactly. Use as safety. But quote long includes symptom. Fine.\n- condition? \"at night\" quote? kind condition? Conditions allowed? \"at night\" not in condition list but kind condition? Could include? Maybe not.\n\nNeed ensure every quote exact. \"EXTERIOR LIGHTING\" exact. \"2 headlight bulbs burn out per year since 2022\" exact substring? Let's check narrative: \"I have had on average 2 headlight bulbs burn out per year since 2022. It gets fairly hard to see at night when you have 2 out of the 4 burn out at once.\" Yes substring \"2 headlight bulbs burn out per year since 2022\" exact. \"hard to see at night\" exact. Full sentence exact? \"It gets fairly hard to see at night when you have 2 out of the 4 burn out at once.\" yes.\n\nCould include quote \"2 out of the 4 burn out at once\" as condition? kind symptom? Hmm.\n\nFinal JSON. Need no markdown.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793540725,
+      "id": "b370c5af54758f1842158a0b9e450c76",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1904,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1719,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00069774,
+          "billing_source": "go",
+          "list_cost": 0.0011629,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 129,
+            "output": 1904,
+            "reasoning": 1719
+          }
+        },
+        "prompt_tokens": 513,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2417
+      }
+    },
+    "text": "{\"summary\":\"EXTERIOR LIGHTING: headlight bulbs burn out about twice per year since 2022, causing poor night visibility when two of four are out.\",\"group\":\"EXTERIOR LIGHTING\",\"symptoms\":[\"headlight bulbs burn out frequently\",\"reduced night visibility with two of four bulbs out\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"EXTERIOR LIGHTING\"},{\"kind\":\"symptom\",\"quote\":\"2 headlight bulbs burn out per year since 2022\"},{\"kind\":\"symptom\",\"quote\":\"hard to see at night\"},{\"kind\":\"safety\",\"quote\":\"It gets fairly hard to see at night when you have 2 out of the 4 burn out at once.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00069774,
+      "cached_tokens": 384,
+      "cost_usd": 0.0011629,
+      "input_tokens": 513,
+      "list_cost_usd": 0.0011629,
+      "output_tokens": 1904,
+      "reasoning_tokens": 1719
+    }
+  }
+}

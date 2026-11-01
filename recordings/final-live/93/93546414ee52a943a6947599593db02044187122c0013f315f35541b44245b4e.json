@@ -1,0 +1,66 @@
+{
+  "key": "93546414ee52a943a6947599593db02044187122c0013f315f35541b44245b4e",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 14683,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Test electrical system faults (transmission clunk/hill no-engage, mirror/beep, climate door, backup camera) with the standard diagnostic because no rulebook entry matches.\",\n  \"rationale\": \"The case reports multiple electrical and driveline symptoms: transmission clunk on start, no engagement while climbing a hill, a loud crack turning out of the driveway, right-mirror warning/beep faults, a climate-control door that will not move, and backup-camera dropout. No recalls, investigations, similar cases or rulebook entries were returned, so there is no targeted load test to select. A standard field-quality diagnostic test is appropriate. Safety relevance is flagged because loss of transmission engagement on a hill and backup-camera failure can create a risk to people.\",\n  \"group\": \"ELECTRICAL SYSTEM\",\n  \"symptoms\": [\n    \"transmission clunks when starting\",\n    \"transmission does not engage while climbing a hill\",\n    \"loud crack when turning out of driveway\",\n    \"right mirror does not engage when car is near\",\n    \"warning beeping does not stop\",\n    \"climate control door does not move\",\n    \"backup camera cuts out\",\n    \"electrical system bugs\"\n  ],\n  \"conditions\": [\n    \"when starting\",\n    \"while climbing hill\",\n    \"when turning out of driveway\",\n    \"when car is near\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"targeted\": false,\n  \"test_name\": \"Standard field-quality diagnostic test\",\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"transmission/clunks when starting\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"wile climbing hill wont engage\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"loud crack when turning out of driveway\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"right mirror wont engage when car is near\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"the beeping wont go off\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"climate control door wont move\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"backup camera goes out\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"electrical system bugs\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"repaired suspension system axle assembly front steering rack penion motor mount left side suspension control arm\"\n    }\n  ]\n}",
+            "reasoning_content": "We need to produce JSON. No rulebook matches, no recalls, no investigations, no similar cases. So targeted false, standard test. Need quotes verbatim from narrative. Note extraction quotes may not be exactly in narrative (e.g. \"transmission/clunks when starting\" is in narrative yes; \"wile climbing hill wont engage\" yes; \"loud crack when turning out of driveway\" yes; \"right mirror wont engage when car is near\" yes; \"beeping wont go off\" narrative says \"the beeping wont go off\" - quote \"beeping wont go off\" is substring yes; \"climate control door wont move\" yes; \"backup camera goes out\" yes; \"electrical system bugs\" yes; \"repaired suspension system axle assembly front steering rack penion motor mount left side suspension control arm\" yes). Safety: any risk to people? Transmission won't engage climbing hill, loud crack turning, backup camera goes out, warning beep won't go off. Could be safety relevant? \"wont engage while climbing hill\" could be loss of power/rollback risk; backup camera out; beeping. But extraction says false. We should decide. The narrative shows potential risk: transmission not engaging on hill could cause rollback/stall; backup camera failure. Safety_relevant true? The prompt says set when narrative shows a risk to people. A transmission that won't engage climbing a hill is a hazard. Also loud crack when turning out of driveway. I think safety_relevant true may be appropriate. But extraction says false. We are to analyse. Hmm. The case component electrical system with multiple electrical gremlins; transmission clunk and hill engagement could be safety. I'd set true because loss of propulsion on hill and backup camera failure. But \"safety cases go to a human before any test is booked.\" We can propose standard test but safety true. Is that allowed? Yes.\n\nTargeted false since no rulebook entry. test_name? Standard test not named. Could be \"Standard field-quality test\" or \"standard test\". The schema expects test_name. For non-targeted, maybe \"Standard diagnostic test\". We'll say \"Standard field-quality diagnostic test\". targeted false.\n\nSummary one line: \"Test electrical system faults (transmission clunk/hill no-engage, mirror/beep, climate door, backup camera) with standard diagnostic because no rulebook match.\"\n\nGroup: ELECTRICAL SYSTEM.\n\nSymptoms: list. Conditions: none? Could include \"when starting\", \"while climbing hill\", \"when turning out of driveway\", \"when car is near\" as conditions? The schema conditions list. The extraction had conditions empty. We can include conditions from narrative: \"when starting\", \"while climbing hill\", \"when turning out of driveway\", \"when car is near\". But rule says clues quote verbatim. Conditions array just strings; okay. But maybe not needed. Fault codes empty.\n\nClues: need verbatim spans. Use several:\n- symptom \"transmission/clunks when starting\"\n- symptom \"wile climbing hill wont engage\"\n- symptom \"loud crack when turning out of driveway\"\n- symptom \"right mirror wont engage when car is near\"\n- symptom \"the beeping wont go off\" (verbatim includes \"the\")\n- symptom \"climate control door wont move\"\n- symptom \"backup camera goes out\"\n- symptom \"electrical system bugs\"\n- other \"repaired suspension system axle assembly front steering rack penion motor mount left side suspension control arm\"\n- safety? Maybe quote \"wile climbing hill wont engage\" as safety clue? Kind safety. But same quote can be duplicated? Better use a safety clue with \"backup camera goes out\" or \"wile climbing hill wont engage\". We can mark kind safety for \"wile climbing hill wont engage\" and symptom for same? Duplicate quote across kinds maybe okay but not ideal. Use safety quote \"loud crack when turning out of driveway\" perhaps. But safety risk is loss of engagement. We'll include a safety clue with \"wile climbing hill wont engage\". Also symptom duplicate? Maybe avoid duplicate; use symptom for transmission/clunks, safety for hill. Then symptoms array includes both.\n\nNeed rationale: \"No rulebook, recall or investigation matches; multiple electrical and driveline symptoms with no stated conditions. Standard diagnostic test proposed; safety_relevant due to transmission not engaging on a hill and backup camera dropout.\"\n\nEnsure JSON valid. No extra text.\n\nTest name: \"Standard field-quality diagnostic test\" maybe. Could be \"Standard test\". Since targeted false, test_name can be \"Standard diagnostic test (no rulebook match)\". Fine.\n\nLet's craft.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793541050,
+      "id": "de27cddb62e2da284a3fcd0cc1f7fc81",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1530,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 958,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00063396,
+          "billing_source": "go",
+          "list_cost": 0.0010566,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 924,
+            "output": 1530,
+            "reasoning": 958
+          }
+        },
+        "prompt_tokens": 924,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 2454
+      }
+    },
+    "text": "{\n  \"summary\": \"Test electrical system faults (transmission clunk/hill no-engage, mirror/beep, climate door, backup camera) with the standard diagnostic because no rulebook entry matches.\",\n  \"rationale\": \"The case reports multiple electrical and driveline symptoms: transmission clunk on start, no engagement while climbing a hill, a loud crack turning out of the driveway, right-mirror warning/beep faults, a climate-control door that will not move, and backup-camera dropout. No recalls, investigations, similar cases or rulebook entries were returned, so there is no targeted load test to select. A standard field-quality diagnostic test is appropriate. Safety relevance is flagged because loss of transmission engagement on a hill and backup-camera failure can create a risk to people.\",\n  \"group\": \"ELECTRICAL SYSTEM\",\n  \"symptoms\": [\n    \"transmission clunks when starting\",\n    \"transmission does not engage while climbing a hill\",\n    \"loud crack when turning out of driveway\",\n    \"right mirror does not engage when car is near\",\n    \"warning beeping does not stop\",\n    \"climate control door does not move\",\n    \"backup camera cuts out\",\n    \"electrical system bugs\"\n  ],\n  \"conditions\": [\n    \"when starting\",\n    \"while climbing hill\",\n    \"when turning out of driveway\",\n    \"when car is near\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"targeted\": false,\n  \"test_name\": \"Standard field-quality diagnostic test\",\n  \"clues\": [\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"transmission/clunks when starting\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"wile climbing hill wont engage\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"loud crack when turning out of driveway\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"right mirror wont engage when car is near\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"the beeping wont go off\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"climate control door wont move\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"backup camera goes out\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"electrical system bugs\"\n    },\n    {\n      \"kind\": \"other\",\n      \"quote\": \"repaired suspension system axle assembly front steering rack penion motor mount left side suspension control arm\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00063396,
+      "cached_tokens": 0,
+      "cost_usd": 0.0010566,
+      "input_tokens": 924,
+      "list_cost_usd": 0.0010566,
+      "output_tokens": 1530,
+      "reasoning_tokens": 958
+    }
+  }
+}

@@ -19,6 +19,7 @@ from field_quality_agents.api.models import (
     ComparisonHeadline,
     ComparisonRow,
     ComparisonSummary,
+    FinalLiveData,
     Kpi,
     StreamEvent,
     Tone,
@@ -328,6 +329,7 @@ def build_command_centre(
     store: ResultStore,
     window: str,
     feed: Sequence[StreamEvent] = (),
+    final_live: FinalLiveData | None = None,
 ) -> CommandCentreData:
     days = parse_window(window)
     records = list(store.cases())
@@ -347,4 +349,5 @@ def build_command_centre(
         kpis=kpis,
         live_feed=list(feed),
         comparison=build_summary(pair, store.comparison_examples()),
+        final_live=final_live,
     )

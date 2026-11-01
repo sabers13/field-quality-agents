@@ -1,0 +1,66 @@
+{
+  "key": "4a0b778cc9ccdbdabb5e5e51bbf2ed2e3521dad89dd2f8786065a0bf3fce31bd",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9046,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical System recall repair part unavailable on 2025 Volkswagen Tiguan; dealer contacted and manufacturer aware.\",\"group\":\"ELECTRICAL SYSTEM\",\"symptoms\":[],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"symptom\",\"conditions\",\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"Electrical System\"},{\"kind\":\"other\",\"quote\":\"NHTSA Campaign Number: 26V587000\"},{\"kind\":\"other\",\"quote\":\"the part to do the recall repair was not yet available\"},{\"kind\":\"other\",\"quote\":\"the manufacturer had exceeded a reasonable amount of time for the recall repair\"}]}",
+            "reasoning_content": "We need answer with one JSON object only. Need normalize report. Need read only report. Component ELECTRICAL SYSTEM. Narrative: 2025 VW Tiguan, notification NHTSA Campaign Number 26V587000 Electrical System; part not available; dealer contacted; manufacturer exceeded reasonable amount time for recall repair; manufacturer aware. No symptom? It's recall repair part unavailable. Symptoms maybe none? Need symptoms array [\"symptom in plain words\"]. Could include \"recall repair part not available\" but that's not symptom. Conditions? None explicitly. Fault codes? Campaign number is not fault code? It's recall campaign, not fault code. Should we put in fault_codes? Rule code if report names one. Could include \"26V587000\" as campaign number not fault code. But schema says fault_codes. Hmm likely not. Clues: symptom? condition? fault_code? component_group? safety? other. Need quote verbatim. Safety relevant? No crash/fire etc. Missing_info: mileage null? Report has mileage null. Missing info needs mileage, date? Received_at 2026-10-09, not incident date. Missing component? component given. Symptom missing? There's no actual symptom, only recall remedy unavailable. missing_info maybe [\"symptom\", \"mileage\", \"date\"]? But date? The report has received_at; but not incident date. Conditions missing. Need not overdo. Analysis needs component, symptom, conditions, mileage, date. Component present, symptom not really, conditions absent, mileage absent, date maybe received_at present? But report date is received_at not event date. Include missing_info: [\"symptom\", \"conditions\", \"mileage\", \"date\"]? But maybe date present as received_at; still no incident date. Hmm.\n\nSummary one line: \"Electrical System recall remedy unavailable on 2025 Volkswagen Tiguan; dealer contacted, manufacturer aware.\" Need component, symptom, conditions. \"No symptom reported\" maybe. Group \"ELECTRICAL SYSTEM\" or \"electrical/electronic\". Given group. Use \"ELECTRICAL SYSTEM\".\n\nSymptoms: Since no symptom, perhaps []? But prompt says symptoms array. Could be empty. The narrative doesn't describe a failure, just recall part unavailable. Should not invent. So symptoms: []. Conditions: []. Fault_codes: []? Or [\"26V587000\"]? It names NHTSA Campaign Number: 26V587000. Not fault code. But maybe fault_codes intended for codes, campaign number not code. Better not include. Clues include component_group quote \"Electrical System\"; other quote \"NHTSA Campaign Number: 26V587000\" maybe kind fault_code? Hmm quote verbatim \"NHTSA Campaign Number: 26V587000 (Electrical System)\" includes. Need quote exact span. In narrative: \"NHTSA Campaign Number: 26V587000 (Electrical System)\" yes. Could clue kind \"fault_code\" quote \"26V587000\"? But campaign number not fault code. Kind other. Also \"part to do the recall repair was not yet available\" kind other? or symptom? It's condition? No. \"manufacturer had exceeded a reasonable amount of time for the recall repair\" other. Need every quote verbatim. Safety false. missing_info: [\"symptom\", \"conditions\", \"mileage\", \"date\"] maybe. But date? received_at 2026-10-09. The incident date absent. Use \"date\" as missing? The report has received_at not event date. Fine.\n\nNeed answer JSON only. Ensure no markdown? User says answer with one JSON object and no other text. We can output raw JSON. Need valid JSON. Summary one line. Group exact \"ELECTRICAL SYSTEM\". Symptoms [].\n\nPotential issue: \"missing_info\" only for facts analysis needs: component, symptom, conditions, mileage, date. Component present. Symptom missing. Conditions missing. Mileage missing. Date? Received_at present but not event date. Missing date? Hmm. Maybe include only missing_info [\"symptom\", \"conditions\", \"mileage\"] because date received present. But analysis might need date of incident; not given. But \"date\" could be received_at, so not missing. I'd include [\"symptom\", \"conditions\", \"mileage\"] to avoid claiming date missing when received_at exists. However if no symptom/conditions, maybe no need date? Hmm.\n\nLet's craft:\n\n{\n \"summary\": \"Electrical System recall repair part unavailable on 2025 Volkswagen Tiguan; dealer contacted and manufacturer aware.\",\n \"group\": \"ELECTRICAL SYSTEM\",\n \"symptoms\": [],\n \"conditions\": [],\n \"fault_codes\": [],\n \"safety_relevant\": false,\n \"missing_info\": [\"symptom\", \"conditions\", \"mileage\"],\n \"clues\": [\n   {\"kind\":\"component_group\",\"quote\":\"Electrical System\"},\n   {\"kind\":\"other\",\"quote\":\"NHTSA Campaign Number: 26V587000\"},\n   {\"kind\":\"other\",\"quote\":\"the part to do the recall repair was not yet available\"},\n   {\"kind\":\"other\",\"quote\":\"the manufacturer had exceeded a reasonable amount of time for the recall repair\"}\n ]\n}\n\nNeed quote \"Electrical System\" appears in narrative as \"(Electrical System)\" and component field \"ELECTRICAL SYSTEM\". Verbatim from report? User message includes component \"ELECTRICAL SYSTEM\" and narrative \"(Electrical System)\" exact case. Quote \"Electrical System\" is in narrative. Good.\n\nCould clue \"component_group\" quote \"ELECTRICAL SYSTEM\" from component field? The report includes JSON field. Hmm \"Electrical System\" narrative. Use that.\n\nNeed no extra. final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793540443,
+      "id": "b47762c578465f1e777e3a9fc06f2f5d",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1329,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1185,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00049407,
+          "billing_source": "go",
+          "list_cost": 0.00082345,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 166,
+            "output": 1329,
+            "reasoning": 1185
+          }
+        },
+        "prompt_tokens": 550,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1879
+      }
+    },
+    "text": "{\"summary\":\"Electrical System recall repair part unavailable on 2025 Volkswagen Tiguan; dealer contacted and manufacturer aware.\",\"group\":\"ELECTRICAL SYSTEM\",\"symptoms\":[],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":false,\"missing_info\":[\"symptom\",\"conditions\",\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"Electrical System\"},{\"kind\":\"other\",\"quote\":\"NHTSA Campaign Number: 26V587000\"},{\"kind\":\"other\",\"quote\":\"the part to do the recall repair was not yet available\"},{\"kind\":\"other\",\"quote\":\"the manufacturer had exceeded a reasonable amount of time for the recall repair\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00049407,
+      "cached_tokens": 384,
+      "cost_usd": 0.00082345,
+      "input_tokens": 550,
+      "list_cost_usd": 0.00082345,
+      "output_tokens": 1329,
+      "reasoning_tokens": 1185
+    }
+  }
+}

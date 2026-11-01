@@ -1,0 +1,66 @@
+{
+  "key": "cda3af90072581ee43e7e4f94357518ecbe890bfaf4dc573e56dd52e40428220",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 9252,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"AIR BAGS: airbags did not deploy and seatbelt did not buckle after purchase; vehicle went out of control while driving due to transmission shift gear cable.\",\"group\":\"AIR BAGS\",\"symptoms\":[\"airbags did not deploy\",\"seatbelt did not buckle\",\"vehicle went out of control\"],\"conditions\":[\"driving\",\"after purchase\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"severe car vacation not deploy\"},{\"kind\":\"symptom\",\"quote\":\"the seatbelt did not buckle\"},{\"kind\":\"symptom\",\"quote\":\"the airbags have never been deployed\"},{\"kind\":\"condition\",\"quote\":\"when I was driving the car\"},{\"kind\":\"other\",\"quote\":\"transmission shift gear cable\"},{\"kind\":\"safety\",\"quote\":\"it went out of control\"}]}",
+            "reasoning_content": "We need answer with JSON only. Need parse report. Component AIR BAGS. Narrative has typos: \"severe car vacation not deploy\" likely \"severe car accident airbags did not deploy\"; seatbelt did not buckle. Mentions paperwork airbags never deployed/deactivated. \"due to transmission shift gear cable when I was driving the car it went out of control\" safety relevant loss of control. Need summary one line: component, symptom, conditions. Group: electrical/electronic component group? Air bags are safety/restraint, maybe electrical/electronic? Prompt says \"the electrical/electronic component group, or the given group\". Given component AIR BAGS. Could group \"AIR BAGS\" or \"restraint system\". Need symptoms plain words: airbags did not deploy, seatbelt did not buckle, vehicle went out of control due to transmission shift gear cable. Conditions: driving, after purchase? \"when driving\" not one of enumerated but can include? Conditions list examples cold moisture heat vibration intermittent after service charging. We should include conditions mentioned: \"driving\"? The schema conditions array examples, not strict? It says conditions: [\"cold\", ...]. We can include \"driving\" maybe. But rules maybe only those. Could include \"after purchase\"? Not in list but okay? Better include \"driving\" as condition. Fault codes none. Safety true due loss of control and airbag nondeploy. Missing info: mileage (null), date? received date exists but incident date June 16? Date not specified year? Actually got car June 12, incident June 16; no year. Maybe date missing? Mileage missing. Component present. Symptom present. Conditions present. missing_info [\"mileage\", \"date\"] maybe date of incident? Report says June 16 no year. Date maybe missing. Clues must verbatim quotes. Need exact spans from narrative. Quotes:\n- \"AIR BAGS\" component? The report field has \"AIR BAGS\" but narrative? The report includes component field. Clues can quote from report? It says verbatim span copied from report. The report is whole JSON, so can quote \"AIR BAGS\". But kind component_group. \n- symptom quote: \"the airbags have never been deployed\" or \"not deploy\" maybe exact \"severe car vacation not deploy\" is weird. Quote \"not deploy\" verbatim? \"severe car vacation not deploy\" yes. For symptom plain words airbags did not deploy; quote \"not deploy\" verbatim. Better quote \"the airbags have never been deployed\" which is in narrative but context paperwork. For symptom actual nondeploy: \"not deploy\" exact substring. \n- seatbelt: \"the seatbelt did not buckle\"\n- loss control: \"it went out of control\"\n- condition: \"when I was driving the car\"\n- other: \"transmission shift gear cable\"\n- safety: \"it went out of control\"\nNeed quote exact including \"car vacation\" maybe typo. Use exact substrings. Check narrative: \"I got the car on June 12th on June 16th when I had a severe car vacation not deploy and the seatbelt did not buckle when I bought the car they stated in the paperwork that the airbags have never been deployed and or never been deactivated and I had to find out the hard way 4 days later and due to the transmission shift gear cable when I was driving the car it went out of control and I had to work well that day\"\n\nQuotes exact:\n\"severe car vacation not deploy\" yes substring? It says \"when I had a severe car vacation not deploy and\" yes.\n\"the seatbelt did not buckle\" yes.\n\"the airbags have never been deployed\" yes.\n\"transmission shift gear cable\" yes.\n\"when I was driving the car\" yes.\n\"it went out of control\" yes.\n\"June 16th\" yes maybe date clue.\nNeed output JSON no other text. Ensure valid JSON. Summary one line: \"AIR BAGS: airbags did not deploy and seatbelt did not buckle after purchase; vehicle went out of control while driving due to transmission shift gear cable.\" Conditions: [\"driving\", \"after purchase\"]? \"after purchase\" maybe not enumerated but condition. Could include \"after service\"? No. \"intermittent\"? no. \"charging\"? no. Better conditions [\"driving\"]. Maybe \"after purchase\" is relevant. The schema says conditions examples, not restricted. But likely expected among list. Include \"driving\" and \"after purchase\". But \"after purchase\" isn't listed; okay. Missing info: [\"mileage\",\"date\"] because incident date lacks year? Hmm date field received_at. The analysis needs date of incident; \"June 16th\" no year. Mileage null. Could include \"date\". But report has date-ish. Missing_info only facts analysis needs: component, symptom, conditions, mileage, date. If date incomplete, list date. Good.\n\nGroup: \"AIR BAGS\" exactly? The given group is component \"AIR BAGS\". Could set \"AIR BAGS\". The group \"electrical/electronic component group\" maybe airbags are electrical/electronic? But given group is AIR BAGS, use \"AIR BAGS\". \n\nsafety_relevant true.\n\nNeed no markdown? They said JSON object no other text. Final should be raw JSON. Ensure no code fence.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793541073,
+      "id": "36a05ebdfab39450eebe5f2029a3cefa",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1324,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1117,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00049362,
+          "billing_source": "go",
+          "list_cost": 0.0008227,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 181,
+            "output": 1324,
+            "reasoning": 1117
+          }
+        },
+        "prompt_tokens": 565,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1889
+      }
+    },
+    "text": "{\"summary\":\"AIR BAGS: airbags did not deploy and seatbelt did not buckle after purchase; vehicle went out of control while driving due to transmission shift gear cable.\",\"group\":\"AIR BAGS\",\"symptoms\":[\"airbags did not deploy\",\"seatbelt did not buckle\",\"vehicle went out of control\"],\"conditions\":[\"driving\",\"after purchase\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"severe car vacation not deploy\"},{\"kind\":\"symptom\",\"quote\":\"the seatbelt did not buckle\"},{\"kind\":\"symptom\",\"quote\":\"the airbags have never been deployed\"},{\"kind\":\"condition\",\"quote\":\"when I was driving the car\"},{\"kind\":\"other\",\"quote\":\"transmission shift gear cable\"},{\"kind\":\"safety\",\"quote\":\"it went out of control\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00049362,
+      "cached_tokens": 384,
+      "cost_usd": 0.0008227,
+      "input_tokens": 565,
+      "list_cost_usd": 0.0008227,
+      "output_tokens": 1324,
+      "reasoning_tokens": 1117
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "f9e752c0ed1ccd17ad7813e33fa157fe7e4439fb83a740c438ca3a6b3d60dca8",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12768,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"ELECTRICAL SYSTEM: auto-stop/start glitch causes the engine to fail to restart after stopping in traffic or at lights, happening daily and described as extremely dangerous.\",\"group\":\"ELECTRICAL SYSTEM\",\"symptoms\":[\"auto-stop/start system glitch\",\"engine fails to turn back on after auto-stop\",\"vehicle unexpectedly turns off while driving\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"auto-stop/start system glitch where the engine fails to turn back on\"},{\"kind\":\"condition\",\"quote\":\"while driving in traffic or at a stop light\"},{\"kind\":\"condition\",\"quote\":\"This issue happens daily\"},{\"kind\":\"symptom\",\"quote\":\"car unexpected turns off and fails to turn back on\"},{\"kind\":\"safety\",\"quote\":\"extremely dangerous\"},{\"kind\":\"other\",\"quote\":\"no option to turn off the auto-stop/start system\"}]}",
+            "reasoning_content": "We need answer one JSON object only. Need normalize report. Need parse component ELECTRICAL SYSTEM, symptom auto-stop/start glitch engine fails to turn back on, occurs while driving in traffic/stop light daily, dangerous car turns off and fails to turn back on busy road, no option to turn off system. Conditions: intermittent? occurs daily, traffic, stop light, while driving. Safety relevant true: unexpected turns off and fails to turn back on busy road extremely dangerous. Missing info mileage? Given mileage null, date received but no incident date. Component? given electrical system, symptom present, conditions present? Need list missing_info only facts analysis needs: mileage, date. Maybe conditions? has traffic/stop light/daily. Date maybe received_at not incident date. Missing mileage and date. Could include component? no. Need clues with verbatim quotes. Need group electrical/electronic component group or given group. Maybe \"ELECTRICAL SYSTEM\" or \"electrical/electronic\". The schema says \"group\": \"the electrical/electronic component group, or the given group\". Given group is ELECTRICAL SYSTEM. Use \"ELECTRICAL SYSTEM\". Symptoms list plain words: \"auto-stop/start system glitch\", \"engine fails to turn back on after auto-stop\", \"vehicle unexpectedly turns off while driving\". Conditions: [\"intermittent\"? daily maybe not intermittent? It occurs daily but not necessarily intermittent? Auto-stop/start glitch. Conditions allowed list: cold, moisture, heat, vibration, intermittent, after service, charging. We should only include from list? It says conditions array with examples? It lists allowed values maybe. Report doesn't mention cold etc. Could include \"intermittent\" because glitch? But daily occurrence not intermittent. Maybe no conditions? However there are driving conditions traffic/stop light but not in allowed list. The prompt says conditions: [\"cold\", ...] likely allowed values. But \"traffic\" and \"stop light\" aren't in list. Should not invent. Could include \"intermittent\" because glitch? \"frequently occurs\" not intermittent exactly. Hmm. The conditions field maybe for environmental/operational conditions. Allowed values include intermittent. Auto-stop/start glitch could be intermittent? But \"happens daily\" and \"frequently\" implies recurring, not necessarily intermittent. Better not include. But then conditions empty. Missing conditions? It has traffic/stop light. We can put conditions [\"intermittent\"]? Need evidence quote \"glitch\" maybe. But intermittent not quoted. Rules don't require every condition to have clue? But clues can include condition. I'd include no conditions or maybe \"intermittent\" as glitch. Let's think.\n\nNeed quote exact spans. We can quote:\n- \"Faulty and auto-stop/start system glitch where the engine fails to turn back on.\"\n- \"This issue frequently occurs while driving in traffic or at a stop light.\"\n- \"This issue happens daily\"\n- \"car unexpected turns off and fails to turn back on a busy road\"\n- \"There is no option to turn off the auto-stop/start system to avoid the glitch.\"\nNeed kind for each. symptom for first, condition for traffic/stop light? condition kind. safety for dangerous? \"extremely dangerous\" quote? Need verbatim. Could quote \"become extremely dangerous\" but exact from \"This issue happens daily become extremely dangerous as car unexpected turns off...\" There is missing \"and\"? Narrative: \"This issue happens daily become extremely dangerous as car unexpected turns off...\" Exact substring \"become extremely dangerous as car unexpected turns off and fails to turn back on a busy road\" is present? Let's check: \"This issue happens daily become extremely dangerous as car unexpected turns off and fails to turn back on a busy road.\" Yes substring from \"become\" to \"road.\" includes. Could quote \"extremely dangerous\" as safety. Better full span.\n\nNeed fault_codes: none. missing_info: [\"mileage\", \"date\"]. Date? received_at exists but incident date missing. The report has received date 2026-10-13, but missing incident date. The allowed missing_info includes \"date\". Include \"date\". Mileage null. Could also include \"conditions\"? No, has. Component? has. Symptom? has.\n\nNeed summary one line: \"ELECTRICAL SYSTEM: auto-stop/start glitch causes engine to fail to restart after stopping in traffic/at lights, daily and dangerous.\" Need no other text. JSON valid. Ensure quotes verbatim. Let's craft.\n\nNeed decide conditions. Maybe conditions include \"intermittent\" because glitch? But report says daily, not intermittent. However the allowed list includes \"intermittent\"; maybe \"frequently occurs\" and \"glitch\" could be intermittent. But if I include condition \"intermittent\", I should have clue quote. Could quote \"glitch\" kind condition? Not necessarily. Hmm.\n\nThe instructions: conditions array `[\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]`. It seems enumerated allowed conditions. We should only select those mentioned. None explicitly. But \"glitch\" might imply intermittent? No, glitch is symptom. I will set conditions [] to avoid inventing. But the summary mentions traffic/stop light; that's okay. Missing_info maybe include conditions? The report gives operational context but not environmental. No.\n\nNeed clues. Should include component_group for \"ELECTRICAL SYSTEM\". Quote exact \"ELECTRICAL SYSTEM\" from component field, yes report? The user message includes JSON with component. It says read only report in user message. Component field is part of report. Quote verbatim. Good.\n\nClue list:\n{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"}\n{\"kind\":\"symptom\",\"quote\":\"auto-stop/start system glitch where the engine fails to turn back on\"}\n{\"kind\":\"condition\",\"quote\":\"while driving in traffic or at a stop light\"}\n{\"kind\":\"symptom\",\"quote\":\"car unexpected turns off and fails to turn back on\"}\n{\"kind\":\"safety\",\"quote\":\"extremely dangerous\"}\n{\"kind\":\"other\",\"quote\":\"no option to turn off the auto-stop/start system\"}\nMaybe condition \"daily\" quote. kind condition. But \"daily\" not in allowed conditions. Could be condition. It is a condition/frequency. Include? Sure. Clue kind condition with quote \"This issue happens daily\". Conditions array still empty? If clue has condition, maybe conditions should include? Hmm. The schema's conditions array is normalized to allowed. \"daily\" isn't allowed. Could still clue. But if conditions empty and clue condition daily, inconsistent? Not terrible. Maybe conditions include \"intermittent\"? No. Let's keep conditions [] and clues condition for traffic/stop light and daily? But conditions array should have normalized conditions; none of allowed. However \"intermittent\" is arguably. Hmm.\n\nMaybe set conditions [\"intermittent\"] and clue quote \"glitch\" kind condition? But \"glitch\" is symptom. Let's avoid.\n\nCould set conditions [] and missing_info [\"mileage\",\"date\"] only. Good.\n\nNeed safety_relevant true. Summary. Ensure JSON only. No markdown. Use proper escaping. Final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793540712,
+      "id": "15a75c461317f99ade3becda070cd2af",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1739,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1512,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00064122,
+          "billing_source": "go",
+          "list_cost": 0.0010687,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 161,
+            "output": 1739,
+            "reasoning": 1512
+          }
+        },
+        "prompt_tokens": 545,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 2284
+      }
+    },
+    "text": "{\"summary\":\"ELECTRICAL SYSTEM: auto-stop/start glitch causes the engine to fail to restart after stopping in traffic or at lights, happening daily and described as extremely dangerous.\",\"group\":\"ELECTRICAL SYSTEM\",\"symptoms\":[\"auto-stop/start system glitch\",\"engine fails to turn back on after auto-stop\",\"vehicle unexpectedly turns off while driving\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"symptom\",\"quote\":\"auto-stop/start system glitch where the engine fails to turn back on\"},{\"kind\":\"condition\",\"quote\":\"while driving in traffic or at a stop light\"},{\"kind\":\"condition\",\"quote\":\"This issue happens daily\"},{\"kind\":\"symptom\",\"quote\":\"car unexpected turns off and fails to turn back on\"},{\"kind\":\"safety\",\"quote\":\"extremely dangerous\"},{\"kind\":\"other\",\"quote\":\"no option to turn off the auto-stop/start system\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00064122,
+      "cached_tokens": 384,
+      "cost_usd": 0.0010687,
+      "input_tokens": 545,
+      "list_cost_usd": 0.0010687,
+      "output_tokens": 1739,
+      "reasoning_tokens": 1512
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "f0205fae55a1520e2e81a0625015b4a2a68418ab21b16355b2bd57ebf3b855c8",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 8418,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\": \"Test the back over prevention camera display path on a 2025 Chevrolet Trax after startup because the rear image fails and the center display stays black about 10 minutes.\", \"rationale\": \"The narrative shows the back over prevention camera fails to display the rear image after starting the vehicle, with the center display black for about 10 minutes; a prior fisheye symptom led to radio replacement. No rulebook entry, recall record, investigation, or similar case is available in the tool results, so a targeted load test is not indicated and the standard diagnostic test should be proposed.\", \"group\": \"BACK OVER PREVENTION\", \"symptoms\": [\"back over prevention camera fails to display rear image\", \"center display black for about 10 minutes after starting\", \"prior fisheye image when camera activated; radio replaced\"], \"conditions\": [\"after starting the vehicle\"], \"fault_codes\": [], \"safety_relevant\": false, \"targeted\": false, \"test_name\": \"standard back over prevention system diagnostic test\", \"clues\": [{\"kind\": \"component_group\", \"quote\": \"back over prevention camera\"}, {\"kind\": \"symptom\", \"quote\": \"the back over prevention camera failed to display an image of the rear of the vehicle\"}, {\"kind\": \"symptom\", \"quote\": \"the center display was black for approximately 10 minutes\"}, {\"kind\": \"condition\", \"quote\": \"after starting the vehicle\"}, {\"kind\": \"symptom\", \"quote\": \"the radio was previously replaced due to a fisheye displayed on the screen whenever the back over prevention camera was activated\"}]}",
+            "reasoning_content": "We need answer one JSON. Need parse. No rulebook matches, recalls empty despite narrative mentions NHTSA campaign but tool results empty. Rules: do not cite case/recall/investigation id tool results do not contain. Fault codes? extraction has \"26V539000\" but recall result empty; can we include fault_code? We can include perhaps but clue quote from narrative. But \"Do not cite a case, recall or investigation id that tool results do not contain.\" NHTSA campaign number from narrative is not in recalls result. Could include as fault_code? It says fault_codes array; maybe include only extraction fault codes? But rule says don't cite recall id tool results don't contain. So avoid 26V539000 as fault_code? Hmm.\n\nNeed answer JSON with summary, rationale, group, symptoms, conditions, fault_codes, safety_relevant, targeted, test_name, clues. Every clue quote verbatim from narrative. Need decide targeted. No rulebook entries -> standard test targeted false. test_name? \"standard test\" maybe? The schema says test_name the targeted test the rulebook names. If no rulebook, targeted false; could give \"standard test\"? Need not invent. Maybe \"standard diagnostic test\". But likely test_name can be empty string? Need valid JSON. We need propose what to test and why.\n\nSafety: back over camera failure could risk people? Narrative no actual risk to people; extraction says false. Set false.\n\nComponent group: BACK OVER PREVENTION.\n\nSymptoms: from narrative: back over prevention camera failed to display image; center display black 10 min; prior fisheye. Conditions: after starting vehicle. Fault codes: maybe none because recall id not confirmed. But extraction fault_codes has 26V539000. The instruction \"Do not cite a case, recall or investigation id that the tool results do not contain.\" A recall campaign number is an id. Since recalls.result empty, shouldn't cite. But fault_codes can be empty. However clue can include \"NHTSA Campaign Number: 26V539000\"? That is citing recall id? It says do not cite a case, recall or investigation id that tool results do not contain. The clue quote contains it, but that's narrative evidence. To be safe, omit that clue. But then not all evidence. It says every quote copied; dropped if mismatch. We can include symptom and condition clues.\n\nNeed mention recall notification and remedy unavailable? Could say rationale: camera display failure after start, center display black; no rulebook match; no recall/investigation records available in tool results; standard diagnostic test. Wait can mention recall? \"narrative reports a recall notification but recalls result is empty\" maybe okay not citing id. But do not cite id. Good.\n\ntest_name: \"standard back over prevention camera diagnostic test\" maybe not rulebook. targeted false. Could set test_name \"standard diagnostic test\". The instruction says test_name targeted test rulebook names. Since none, maybe \"standard test\". We'll use \"standard back over prevention system diagnostic test\". Fine.\n\nClues:\n- component_group quote \"back over prevention camera\"\n- symptom quote \"the back over prevention camera failed to display an image of the rear of the vehicle\"\n- symptom quote \"the center display was black for approximately 10 minutes\"\n- condition quote \"after starting the vehicle\"\n- symptom quote \"the radio was previously replaced due to a fisheye displayed on the screen whenever the back over prevention camera was activated\"\n\nNeed ensure exact verbatim spans from narrative. Narrative: \"The contact stated that after starting the vehicle, the back over prevention camera failed to display an image of the rear of the vehicle and the center display was black for approximately 10 minutes.\" So quote \"after starting the vehicle\" yes. \"the back over prevention camera failed to display an image of the rear of the vehicle\" yes. \"the center display was black for approximately 10 minutes\" yes. \"the radio was previously replaced due to a fisheye displayed on the screen whenever the back over prevention camera was activated\" yes. \"back over prevention camera\" yes.\n\nCould include safety clue? no.\n\nSummary one line. Rationale condition and evidence. targeted false.\n\nNeed output only JSON. No markdown. Ensure valid JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793541311,
+      "id": "5f72eda55e03f4010a75e55a21fda0b2",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1220,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 880,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00052569,
+          "billing_source": "go",
+          "list_cost": 0.00087615,
+          "tokens": {
+            "cache_read": 0,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 961,
+            "output": 1220,
+            "reasoning": 880
+          }
+        },
+        "prompt_tokens": 961,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "total_tokens": 2181
+      }
+    },
+    "text": "{\"summary\": \"Test the back over prevention camera display path on a 2025 Chevrolet Trax after startup because the rear image fails and the center display stays black about 10 minutes.\", \"rationale\": \"The narrative shows the back over prevention camera fails to display the rear image after starting the vehicle, with the center display black for about 10 minutes; a prior fisheye symptom led to radio replacement. No rulebook entry, recall record, investigation, or similar case is available in the tool results, so a targeted load test is not indicated and the standard diagnostic test should be proposed.\", \"group\": \"BACK OVER PREVENTION\", \"symptoms\": [\"back over prevention camera fails to display rear image\", \"center display black for about 10 minutes after starting\", \"prior fisheye image when camera activated; radio replaced\"], \"conditions\": [\"after starting the vehicle\"], \"fault_codes\": [], \"safety_relevant\": false, \"targeted\": false, \"test_name\": \"standard back over prevention system diagnostic test\", \"clues\": [{\"kind\": \"component_group\", \"quote\": \"back over prevention camera\"}, {\"kind\": \"symptom\", \"quote\": \"the back over prevention camera failed to display an image of the rear of the vehicle\"}, {\"kind\": \"symptom\", \"quote\": \"the center display was black for approximately 10 minutes\"}, {\"kind\": \"condition\", \"quote\": \"after starting the vehicle\"}, {\"kind\": \"symptom\", \"quote\": \"the radio was previously replaced due to a fisheye displayed on the screen whenever the back over prevention camera was activated\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00052569,
+      "cached_tokens": 0,
+      "cost_usd": 0.00087615,
+      "input_tokens": 961,
+      "list_cost_usd": 0.00087615,
+      "output_tokens": 1220,
+      "reasoning_tokens": 880
+    }
+  }
+}

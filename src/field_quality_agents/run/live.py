@@ -16,6 +16,7 @@ from field_quality_agents.agents.graph import build_desk_graph
 from field_quality_agents.api import create_app
 from field_quality_agents.api.store import FileResultStore
 from field_quality_agents.contracts import Case
+from field_quality_agents.export.final_live import load_final_live
 from field_quality_agents.llm.langchain_model import LangChainChatModel
 from field_quality_agents.llm.prices import DEFAULT_MODEL
 from field_quality_agents.llm.recorder import RecordReplayStore
@@ -51,6 +52,7 @@ def build_live_app(
     static_dir: str | Path | None = "web/dist",
     heartbeat_seconds: float = 15.0,
     live_limit: int = 25,
+    final_live_dir: str | Path = "results/final-live",
 ) -> FastAPI:
     """Create the live app and start up to ``live_limit`` case threads."""
 
@@ -70,6 +72,7 @@ def build_live_app(
         graph=graph,
         mode="live",
         static_dir=static_dir,
+        final_live=load_final_live(final_dir=final_live_dir),
         heartbeat_seconds=heartbeat_seconds,
     )
     desk = app.state.desk

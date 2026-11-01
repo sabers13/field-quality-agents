@@ -1,0 +1,66 @@
+{
+  "key": "375e02a6f83fcb645d3364880b469371d0417741457021a86748fd37856f6f04",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 8185,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Air bags did not deploy and sensors keep going off; vehicle overheated, including before an accident and after a Mazda service two months earlier.\",\"group\":\"AIR BAGS\",\"symptoms\":[\"airbags did not deploy\",\"sensors keep going off\",\"car keeps overheating\"],\"conditions\":[\"heat\",\"after service\",\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"Airbags did not deploy\"},{\"kind\":\"symptom\",\"quote\":\"sensors keep going off\"},{\"kind\":\"symptom\",\"quote\":\"car keeps over heating\"},{\"kind\":\"condition\",\"quote\":\"even before accident\"},{\"kind\":\"condition\",\"quote\":\"two months prior\"},{\"kind\":\"safety\",\"quote\":\"Airbags did not deploy\"},{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize. Report: component AIR BAGS. Narrative: Airbags did not deploy, sensors keep going off, car keeps over heating even before accident did take it in to Mazda to be fixed two months prior. Need summary one line component symptom conditions. Group electrical/electronic component group? Air bags are safety restraint, maybe electrical/electronic? Given component \"AIR BAGS\"; group should be \"the electrical/electronic component group, or the given group\". We can say \"Air bags / supplementary restraint system\" maybe. Need symptoms plain: airbags did not deploy; sensors keep going off; car keeps overheating. Conditions: accident? \"even before accident\" maybe after service? \"two months prior\" service. Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. Overheating relates heat? But condition \"heat\" maybe yes? Need only include if report says. \"over heating\" yes heat. \"after service\" because took to Mazda two months prior. \"intermittent\" sensors keep going off? maybe not explicit intermittent but \"keep going off\" implies recurring. Need safety_relevant true: airbags did not deploy, accident. Fault codes none. Missing_info: mileage (null), date? received_at present but incident date missing? The missing list includes date. Also conditions? It gives some conditions. Component present. Symptom present. Mileage missing, date missing (incident date). Maybe conditions? It mentions overheating before accident and service two months prior, but not full conditions. The rules list missing_info only facts needed: component, symptom, conditions, mileage, date. Since mileage null and no incident date, include mileage/date. Could include conditions? It has some. Maybe not. Need clues with verbatim quotes. Need ensure quotes exact substrings. Let's craft.\n\nSummary: \"Air bags did not deploy and sensors kept going off; vehicle overheated, including before an accident and after a Mazda service two months earlier.\" Need one line. Conditions: heat, after service, intermittent? \"sensors keep going off\" maybe intermittent. Safety true.\n\nClues:\n- {\"kind\":\"symptom\",\"quote\":\"Airbags did not deploy\"}\n- {\"kind\":\"symptom\",\"quote\":\"sensors keep going off\"}\n- {\"kind\":\"symptom\",\"quote\":\"car keeps over heating\"}\n- {\"kind\":\"condition\",\"quote\":\"even before accident\"}\n- {\"kind\":\"condition\",\"quote\":\"two months prior\"}\n- {\"kind\":\"safety\",\"quote\":\"Airbags did not deploy\"}\n- {\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"} but quote from report? The user message includes component field \"AIR BAGS\". Is that report? Yes. Could include. But component_group quote \"AIR BAGS\". Fine.\nNeed \"accident\" maybe safety. Use \"accident\" quote. But \"even before accident\" includes accident. Safety relevant due airbags did not deploy and accident. Quote \"Airbags did not deploy\" sufficient.\n\nNeed no other text. Ensure JSON valid. Group maybe \"Air bags (supplementary restraint system)\" or \"electrical/electronic\"? The instruction: \"the electrical/electronic component group, or the given group\". Air bags have electrical sensors, but component group given AIR BAGS. I can set group \"AIR BAGS\". Good.\n\nMissing_info: [\"mileage\",\"date\"]. Date? received_at isn't incident date. yes.\n\nNeed conditions list: [\"heat\",\"after service\",\"intermittent\"]? Is intermittent justified? \"sensors keep going off\" = recurring; allowed condition intermittent. Could include. Also \"after service\" from \"take it in to Mazda to be fixed two months prior\" yes after service. \"heat\" from over heating. No cold/moisture/vibration/charging. Also \"accident\" not in allowed conditions. Fine.\n\nFault codes empty. Safety true.\n\nFinal JSON only.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793541008,
+      "id": "c8ef26aff14b191b94372e344db5f633",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1007,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 812,
+          "rejected_prediction_tokens": 0
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00037365,
+          "billing_source": "go",
+          "list_cost": 0.00062275,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 116,
+            "output": 1007,
+            "reasoning": 812
+          }
+        },
+        "prompt_tokens": 500,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384
+        },
+        "total_tokens": 1507
+      }
+    },
+    "text": "{\"summary\":\"Air bags did not deploy and sensors keep going off; vehicle overheated, including before an accident and after a Mazda service two months earlier.\",\"group\":\"AIR BAGS\",\"symptoms\":[\"airbags did not deploy\",\"sensors keep going off\",\"car keeps overheating\"],\"conditions\":[\"heat\",\"after service\",\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"symptom\",\"quote\":\"Airbags did not deploy\"},{\"kind\":\"symptom\",\"quote\":\"sensors keep going off\"},{\"kind\":\"symptom\",\"quote\":\"car keeps over heating\"},{\"kind\":\"condition\",\"quote\":\"even before accident\"},{\"kind\":\"condition\",\"quote\":\"two months prior\"},{\"kind\":\"safety\",\"quote\":\"Airbags did not deploy\"},{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00037365,
+      "cached_tokens": 384,
+      "cost_usd": 0.00062275,
+      "input_tokens": 500,
+      "list_cost_usd": 0.00062275,
+      "output_tokens": 1007,
+      "reasoning_tokens": 812
+    }
+  }
+}
