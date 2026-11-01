@@ -21,7 +21,6 @@ _NOT_IMPLEMENTED = {
     "report": "Q8 (report agent)",
     "serve": "Q7 (FastAPI backend)",
     "export": "Q10 (static export)",
-    "mcp": "Q2 (MCP server)",
 }
 
 
@@ -80,6 +79,21 @@ def build_parser() -> argparse.ArgumentParser:
     export.set_defaults(handler="export")
 
     mcp = sub.add_parser("mcp", help="serve the tool functions over MCP stdio (Q2)")
+    mcp.add_argument(
+        "--data-dir",
+        default=None,
+        help="directory with the committed parquet files (default: data)",
+    )
+    mcp.add_argument(
+        "--db",
+        default=None,
+        help="fixture DuckDB file to read instead of the committed parquet",
+    )
+    mcp.add_argument(
+        "--rulebook",
+        default=None,
+        help="rulebook TOML path (default: config/rulebook.toml)",
+    )
     mcp.set_defaults(handler="mcp")
 
     return parser
@@ -113,6 +127,14 @@ def main(argv: Sequence[str] | None = None) -> int:
     args = parser.parse_args(argv)
     if args.handler == "data":
         return _run_data(args)
+    if args.handler == "mcp":
+        from field_quality_agents.mcp_server import serve
+
+        return serve(
+            data_dir=args.data_dir,
+            db_path=args.db,
+            rulebook_path=args.rulebook,
+        )
     lane = _NOT_IMPLEMENTED[args.handler]
     print(
         f"fqa {args.command}: not implemented in the Q0 scaffold; this lands in {lane}.",

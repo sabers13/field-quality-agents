@@ -1,0 +1,53 @@
+# Example rulebook: reported condition -> targeted test.
+#
+# This is deliberately small and readable. It is an example for the agentic
+# desk, not a service manual: an engineer can edit it, and every match is
+# recorded with the condition that caused it.
+#
+# `conditions` are matched case-insensitively as whole words or phrases against
+# the conditions extracted from a case. The order below is the order results
+# are returned in.
+
+version = 1
+
+[[rule]]
+id = "moisture"
+test = "Humidity and condensation test"
+reason = "Water ingress and condensation are the first suspects when moisture, damp or a leak is reported."
+conditions = ["moisture", "water", "damp", "wet", "humidity", "condensation", "rain", "leak"]
+
+[[rule]]
+id = "cold"
+test = "Low-temperature cycling test"
+reason = "Cold-soak and cold-start behaviour separates a temperature-dependent fault from a permanent one."
+conditions = ["cold", "freezing", "frost", "winter", "sub-zero", "subzero"]
+
+[[rule]]
+id = "heat"
+test = "High-temperature operation test"
+reason = "Heat soak and high ambient temperature can expose thermal shutdown or solder faults."
+conditions = ["heat", "hot", "high temperature", "overheat", "summer"]
+
+[[rule]]
+id = "vibration"
+test = "Vibration test"
+reason = "Rough-road and vibration exposure tests intermittent connectors and mounts."
+conditions = ["vibration", "shake", "rough road", "bumpy", "rough roads"]
+
+[[rule]]
+id = "intermittent"
+test = "Long-run power cycling test"
+reason = "A long power-cycling run reproduces faults that appear only after repeated wake and sleep cycles."
+conditions = ["intermittent", "intermittently", "sometimes", "random", "occasional", "occasionally"]
+
+[[rule]]
+id = "after_service"
+test = "Installation check before test"
+reason = "A fault that appears after service is checked for connector seating, pin damage and correct part fit first."
+conditions = ["after service", "after repair", "post-service", "after replacement", "following repair", "replaced"]
+
+[[rule]]
+id = "charging"
+test = "Electrical load test"
+reason = "Charging and high-current loads stress the supply path, connectors and protection circuits."
+conditions = ["charging", "charge", "charger", "plug-in", "dc fast", "fast charging"]
