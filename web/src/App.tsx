@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 
 import { AppContext, MODE_DESCRIPTIONS, MODE_LABELS, type AppMode } from "./app/AppContext";
 import { Icon, type IconName } from "./components/Icon";
+import { bundledManifest } from "./data/bundled";
 import { LiveDataSource, type DashboardDataSource } from "./data/source";
 import { StaticDataSource } from "./data/static";
 import { NAV_ITEMS, PAGE_TITLES, parseRoute, routeHref, type PageId } from "./lib/router";
@@ -63,7 +64,9 @@ function useHashRoute() {
 }
 
 export function App() {
-  const [mode, setMode] = useState<AppMode>(readMode);
+  const [mode, setMode] = useState<AppMode>(() =>
+    bundledManifest() ? "static" : readMode(),
+  );
   const [theme, setThemeState] = useState<ThemePreference>(() => readThemePreference(window.localStorage));
   const [streamEvents, setStreamEvents] = useState<StreamEvent[]>([]);
   const [streamStatus, setStreamStatus] = useState<"idle" | "open" | "error">("idle");
@@ -71,6 +74,7 @@ export function App() {
   const systemDark = useSystemDark();
   const resolvedTheme = resolveTheme(theme, systemDark);
   const route = useHashRoute();
+  const bundled = bundledManifest();
 
   const source = useMemo<DashboardDataSource>(
     () =>
@@ -132,11 +136,14 @@ export function App() {
         onChange={(event) => setMode(event.target.value as AppMode)}
         aria-label="Data mode"
       >
-        {(["static", "replay", "live"] as const).map((value) => (
-          <option value={value} key={value}>
-            {MODE_LABELS[value]}
-          </option>
-        ))}
+        {(["static", "replay", "live"] as const)
+          // The offline export has no API, so only the bundled mode is real.
+          .filter((value) => !bundled || value === "static")
+          .map((value) => (
+            <option value={value} key={value}>
+              {MODE_LABELS[value]}
+            </option>
+          ))}
       </select>
     </label>
   );
@@ -250,8 +257,9 @@ export function App() {
 
           {mode === "static" ? (
             <p className="fixture-banner" role="note">
-              Bundled fixture data for the Q6 dashboard. Q10 wires the recorded run and replaces
-              these numbers.
+              {bundled
+                ? `Bundled run ${bundled.run_id}: ${bundled.counts.cases} cases, ${bundled.counts.issues} issues, generated ${bundled.generated_at.slice(0, 10)}. Read-only, no network.`
+                : "Bundled fixture data for the Q6 dashboard. Run make all to build the recorded run export."}
             </p>
           ) : null}
 

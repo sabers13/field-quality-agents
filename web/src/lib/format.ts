@@ -140,6 +140,42 @@ export function formatMetricValue(value: number, kind: MetricKind): string {
   }
 }
 
+/** One before/after headline: its unit decides the format, not a single default. */
+export function formatHeadlineValue(unit: string, value: number): string {
+  if (unit === "USD") {
+    return formatMoney(value);
+  }
+  if (unit === "per case") {
+    return formatScore(value, 1);
+  }
+  return formatPercent(value);
+}
+
+/** The change arrow in the headline's own unit (points, dollars or per-case). */
+export function formatHeadlineDelta(unit: string, delta: number): string {
+  const sign = delta >= 0 ? "+" : "−";
+  const size = Math.abs(delta);
+  if (unit === "USD") {
+    return `${sign}${formatMoney(size)}`;
+  }
+  if (unit === "per case") {
+    return `${sign}${size.toFixed(1)}`;
+  }
+  return `${sign}${(size * 100).toFixed(1)} pts`;
+}
+
+/** Metrics where a smaller number is the better outcome. */
+const LOWER_IS_BETTER = new Set(["cost_per_1000_cases_usd", "human_touches_per_case"]);
+
+/** Whether a headline change reads as good, bad or neutral. */
+export function headlineTone(id: string, delta: number): "good" | "bad" | "neutral" {
+  if (delta === 0) {
+    return "neutral";
+  }
+  const good = LOWER_IS_BETTER.has(id) ? delta < 0 : delta > 0;
+  return good ? "good" : "bad";
+}
+
 export interface EstimateLike {
   value: number;
   ci_low: number | null;

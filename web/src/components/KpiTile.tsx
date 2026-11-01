@@ -3,7 +3,7 @@ import { formatInteger } from "../lib/format";
 import { Icon } from "./Icon";
 import { Sparkline } from "./Sparkline";
 
-const PERCENT_IDS = new Set(["prepared_share", "ntf_without_evidence"]);
+const PERCENT_IDS = new Set(["prepared_without_edits", "ntf_without_evidence"]);
 const INTEGER_IDS = new Set(["cases_in", "open_issues"]);
 
 export function formatKpiValue(kpi: Kpi): string {
@@ -14,13 +14,13 @@ export function formatKpiValue(kpi: Kpi): string {
     return formatInteger(kpi.value);
   }
   if (PERCENT_IDS.has(kpi.id)) {
-    return `${(kpi.value * 100).toFixed(1)}%`;
+    return `${kpi.value.toFixed(1)}%`;
   }
   if (kpi.id === "cost_per_case") {
     return `$${kpi.value.toFixed(4)}`;
   }
   if (kpi.id === "time_to_decision") {
-    return `${kpi.value.toFixed(1)}${kpi.unit ? ` ${kpi.unit}` : ""}`;
+    return kpi.value.toFixed(1);
   }
   return kpi.value.toFixed(1);
 }

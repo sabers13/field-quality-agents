@@ -66,13 +66,18 @@ export:
 	$(FQA) export --run-id replay
 
 screenshots:
-	@echo "Playwright screenshots land with Q6/Q10; no browser suite exists in the Q0 scaffold."
-	@exit 2
+	@test -f dist/field-quality-agents/index.html || { \
+		echo "screenshots: no static export yet; run make all first"; \
+		exit 2; \
+	}
+	cd web && FQA_SCREENSHOT_DIR="$(CURDIR)/results/screenshots" \
+		NODE_PATH="$$PWD/node_modules" \
+		npx playwright test --config ../tests/web/playwright.export.config.ts
 
 results-manifest:
 	$(PYTHON) scripts/results_manifest.py write
 
-all: data-check baseline run-replay export web-build results-manifest
+all: data-check baseline run-replay web-build export results-manifest
 	@echo "all: data checked, baseline, replay run, dashboard data and web build are up to date"
 
 e2e: web-build

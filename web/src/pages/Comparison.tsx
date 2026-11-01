@@ -3,8 +3,11 @@ import { Icon } from "../components/Icon";
 import { EmptyState, ErrorState, LoadingState, Panel } from "../components/States";
 import {
   formatEstimate,
+  formatHeadlineDelta,
+  formatHeadlineValue,
   formatMetricValue,
   formatPercent,
+  headlineTone,
   isEstimate,
   metricMeta,
   type MetricKind,
@@ -27,17 +30,21 @@ function HeadlineCards({ summary }: { summary: ComparisonSummary }) {
     <div className="headline-grid">
       {summary.headline.map((item) => {
         const delta = item.after - item.before;
+        const tone = headlineTone(item.id, delta);
         return (
           <article className="headline-card" key={item.id}>
             <span className="headline-label">{item.label}</span>
             <span className="headline-values">
-              <span className="headline-before">{formatPercent(item.before)}</span>
+              <span className="headline-before">{formatHeadlineValue(item.unit, item.before)}</span>
               <Icon name="chevron" size={14} />
-              <span className="headline-after">{formatPercent(item.after)}</span>
+              <span className="headline-after">{formatHeadlineValue(item.unit, item.after)}</span>
             </span>
-            <span className={delta >= 0 ? "headline-delta is-good" : "headline-delta is-bad"}>
-              {delta >= 0 ? "+" : "−"}
-              {(Math.abs(delta) * 100).toFixed(1)} pts
+            <span
+              className={
+                tone === "neutral" ? "headline-delta" : tone === "good" ? "headline-delta is-good" : "headline-delta is-bad"
+              }
+            >
+              {formatHeadlineDelta(item.unit, delta)}
             </span>
           </article>
         );
@@ -125,8 +132,8 @@ export function ComparisonPage() {
         aside={<span className="muted">{data.after.cases} cases · {data.after.budget_hits} budget hits after</span>}
       >
         <p className="callout">
-          Issue precision is read beside the base rate: {formatPercent(data.after.issue_base_rate ?? 0)} of
-          cases in this set belong to a cluster that later matched a recall or investigation.
+          Issue precision is read beside the base rate: a random week of the same series hits the
+          same early-issue rule {formatPercent(data.after.issue_base_rate ?? 0)} of the time.
         </p>
         <MetricsTable data={data} />
       </Panel>
@@ -189,7 +196,7 @@ export function ComparisonPage() {
 
       <p className="source-note">
         {mode === "static" ? "Source: bundled comparison.json." : "Source: GET /api/comparison."} Both
-        columns cover the same 600 replay cases.
+        columns cover the same {data.after.cases} cases.
       </p>
     </div>
   );

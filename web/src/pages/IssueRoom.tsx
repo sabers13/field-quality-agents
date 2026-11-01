@@ -121,7 +121,7 @@ function IssueTimeline({ issue }: { issue: IssueDetail }) {
 }
 
 function IssueDetailView({ issue }: { issue: IssueDetail }) {
-  const { resolvedTheme } = useApp();
+  const { resolvedTheme, mode } = useApp();
   const option = useMemo(() => clusterOption(issue, resolvedTheme === "dark"), [issue, resolvedTheme]);
   const latestCount = issue.weekly_counts.at(-1)?.count ?? 0;
   const firstWeek = issue.weekly_counts[0]?.week_start ?? issue.opened_at;
@@ -255,8 +255,10 @@ function IssueDetailView({ issue }: { issue: IssueDetail }) {
       </Panel>
 
       <p className="source-note">
-        Source: {issue.id} fixture. Linked ids open the case board; recall and investigation ids open
-        their citation.
+        {mode === "static"
+          ? `Source: bundled issues.json (${issue.id}).`
+          : `Source: GET /api/issues/${issue.id}.`}{" "}
+        Linked ids open the case board; recall and investigation ids open their citation.
       </p>
     </div>
   );

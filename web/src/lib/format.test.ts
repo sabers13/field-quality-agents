@@ -4,11 +4,14 @@ import {
   describeStreamEvent,
   formatDateTime,
   formatEstimate,
+  formatHeadlineDelta,
+  formatHeadlineValue,
   formatInteger,
   formatMetricValue,
   formatMoney,
   formatPercent,
   formatRelative,
+  headlineTone,
   isEstimate,
   metricMeta,
 } from "./format";
@@ -47,6 +50,22 @@ describe("formatting", () => {
       kind: "percent",
     });
     expect(metricMeta("unknown_metric", "Custom label").label).toBe("Custom label");
+  });
+
+  it("formats headline changes in the metric's own unit", () => {
+    expect(formatHeadlineValue("share", 0.4198)).toBe("42.0%");
+    expect(formatHeadlineValue("per case", 1)).toBe("1.0");
+    expect(formatHeadlineValue("USD", 1.3317)).toBe("$1.33");
+    expect(formatHeadlineDelta("share", 0.4198)).toBe("+42.0 pts");
+    expect(formatHeadlineDelta("USD", 1.3317)).toBe("+$1.33");
+    expect(formatHeadlineDelta("USD", -0.5)).toBe("−$0.50");
+    expect(formatHeadlineDelta("per case", 0)).toBe("+0.0");
+  });
+
+  it("knows which direction is good for the headline metrics", () => {
+    expect(headlineTone("targeted_test_share", 0.42)).toBe("good");
+    expect(headlineTone("cost_per_1000_cases_usd", 1.33)).toBe("bad");
+    expect(headlineTone("human_touches_per_case", 0)).toBe("neutral");
   });
 
   it("describes stream events without exposing raw payloads", () => {

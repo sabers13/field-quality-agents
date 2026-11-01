@@ -142,6 +142,11 @@ def build_parser() -> argparse.ArgumentParser:
     export.add_argument("--out", default="dist/field-quality-agents")
     export.add_argument("--run-id", default=None)
     export.add_argument("--results-dir", default="results/runs")
+    export.add_argument(
+        "--web-dir",
+        default="web/dist",
+        help="built dashboard to bundle (default: web/dist; run make web-build first)",
+    )
     export.set_defaults(handler="export")
 
     mcp = sub.add_parser("mcp", help="serve the tool functions over MCP stdio (Q2)")
@@ -354,14 +359,21 @@ def _run_serve(args: argparse.Namespace) -> int:
 
 
 def _run_export(args: argparse.Namespace) -> int:
-    from field_quality_agents.run.dashboard import export_dashboard
+    from field_quality_agents.export.site import build_static_export
 
-    root = export_dashboard(
+    root = build_static_export(
         results_dir=args.results_dir,
         run_id=args.run_id,
         out_dir=args.out,
+        web_dir=args.web_dir,
     )
-    print(f"export: wrote dashboard data under {root / 'data'}")
+    cases = 0
+    manifest = root / "data" / "manifest.json"
+    if manifest.is_file():
+        import json
+
+        cases = int(json.loads(manifest.read_text(encoding="utf-8"))["counts"]["cases"])
+    print(f"export: wrote the offline dashboard to {root} ({cases} cases)")
     return 0
 
 

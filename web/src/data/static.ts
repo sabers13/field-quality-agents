@@ -12,7 +12,8 @@ import type {
 } from "../types";
 import type { DashboardDataSource } from "./source";
 import { NotFoundError } from "./source";
-import { fixtureBundle, type StaticBundle } from "./fixtures";
+import { staticBundle } from "./bundled";
+import type { StaticBundle } from "./fixtures";
 
 function clone<T>(value: T): T {
   if (typeof structuredClone === "function") {
@@ -55,7 +56,7 @@ interface CaseDetailSummary {
 export class StaticDataSource implements DashboardDataSource {
   private readonly bundle: StaticBundle;
 
-  constructor(bundle: StaticBundle = fixtureBundle) {
+  constructor(bundle: StaticBundle = staticBundle()) {
     this.bundle = bundle;
   }
 

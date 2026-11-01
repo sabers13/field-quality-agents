@@ -27,7 +27,15 @@ export interface ReplayBundle {
   events: Record<string, ReplayEvent[]>;
 }
 
+/** The small manifest the export writes beside its data files. */
+export interface BundledManifest {
+  run_id: string;
+  generated_at: string;
+  counts: { cases: number; issues: number; weeks: number; events: number };
+}
+
 export interface StaticBundle {
+  manifest?: BundledManifest;
   commandCentre: CommandCentreData;
   cases: CaseListItem[];
   caseDetails: Record<string, CaseDetail>;

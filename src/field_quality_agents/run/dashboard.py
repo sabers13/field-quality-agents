@@ -7,14 +7,16 @@ and the dashboard can be built against a real recorded run.
 
 from __future__ import annotations
 
+from collections.abc import Sequence
 from datetime import UTC, datetime, time
 from pathlib import Path
 
 from field_quality_agents.api.events import feed_from_store
-from field_quality_agents.api.kpis import build_command_centre, build_comparison
+from field_quality_agents.api.kpis import build_command_centre, build_comparison, build_summary
 from field_quality_agents.api.models import (
     CaseDetail,
     CaseListItem,
+    ComparisonExample,
     IssueDetail,
     IssueSummary,
     ReplayEvent,
@@ -100,8 +102,14 @@ def export_dashboard(
     results_dir: str | Path = "results/runs",
     run_id: str | None = None,
     out_dir: str | Path = "dist/field-quality-agents",
+    examples: Sequence[ComparisonExample] | None = None,
 ) -> Path:
-    """Write ``data/`` for the dashboard and return the export root."""
+    """Write ``data/`` for the dashboard and return the export root.
+
+    ``examples`` overrides the run's stored showcase examples; Q10 passes the
+    fixed-rule selection from ``export/showcase.py`` so the export and the
+    committed run records stay independent.
+    """
 
     store = FileResultStore(results_dir, run_id=run_id)
     active = store.active_run_id()
@@ -145,7 +153,14 @@ def export_dashboard(
         window="365d",
         feed=feed_from_store(store),
     )
-    comparison = build_comparison(store.metrics(), store.comparison_examples())
+    if examples is not None:
+        command = command.model_copy(
+            update={"comparison": build_summary(store.metrics(), examples)}
+        )
+    comparison = build_comparison(
+        store.metrics(),
+        store.comparison_examples() if examples is None else examples,
+    )
     reports = sorted(
         store.weekly_reports(),
         key=lambda report: (report.week_start, report.week_end),

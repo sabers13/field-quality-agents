@@ -2,9 +2,21 @@ import { useApp } from "../app/AppContext";
 import { KpiTile } from "../components/KpiTile";
 import { Panel, EmptyState, ErrorState, LoadingState } from "../components/States";
 import { ToneBadge } from "../components/StatusBadge";
-import { describeStreamEvent, formatDateTime, formatPercent, formatRelative } from "../lib/format";
+import {
+  describeStreamEvent,
+  formatDateTime,
+  formatHeadlineDelta,
+  formatHeadlineValue,
+  formatRelative,
+  headlineTone,
+} from "../lib/format";
 import { useAsync } from "../lib/useAsync";
 import type { ComparisonSummary, StreamEvent } from "../types";
+
+function windowLabel(window: string): string {
+  const match = /^(\d+)d$/.exec(window);
+  return match ? `Last ${match[1]} days` : window;
+}
 
 function streamLabel(status: "idle" | "open" | "error", mode: string): string {
   if (mode === "static") {
@@ -54,14 +66,14 @@ function MiniComparison({ summary }: { summary: ComparisonSummary }) {
       <tbody>
         {summary.headline.map((item) => {
           const delta = item.after - item.before;
+          const tone = headlineTone(item.id, delta);
           return (
             <tr key={item.id}>
               <th scope="row">{item.label}</th>
-              <td>{formatPercent(item.before)}</td>
-              <td>{formatPercent(item.after)}</td>
-              <td className={delta >= 0 ? "delta-good" : "delta-bad"}>
-                {delta >= 0 ? "+" : "−"}
-                {(Math.abs(delta) * 100).toFixed(1)} pts
+              <td>{formatHeadlineValue(item.unit, item.before)}</td>
+              <td>{formatHeadlineValue(item.unit, item.after)}</td>
+              <td className={tone === "neutral" ? "" : tone === "good" ? "delta-good" : "delta-bad"}>
+                {formatHeadlineDelta(item.unit, delta)}
               </td>
             </tr>
           );
@@ -96,7 +108,7 @@ export function CommandCentrePage() {
       <p className="lede">
         The same returns process, run by a linear rule pipeline and by an agentic desk, on the same
         cases. Agents gather evidence and draft; engineers decide.{" "}
-        <span className="window-label">{data.window}</span>
+        <span className="window-label">{windowLabel(data.window)}</span>
       </p>
 
       {state.status === "error" && state.error ? (
