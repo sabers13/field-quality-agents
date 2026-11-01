@@ -25,10 +25,19 @@ def test_run_rejects_live_mode() -> None:
 
 
 def test_stub_exits_nonzero_with_lane(capsys: pytest.CaptureFixture[str]) -> None:
-    assert main(["baseline"]) == 2
+    assert main(["issues"]) == 2
     captured = capsys.readouterr()
-    assert "Q3" in captured.err
+    assert "Q8" in captured.err
     assert captured.out == ""
+
+
+def test_baseline_parser_accepts_paths() -> None:
+    args = build_parser().parse_args(
+        ["baseline", "--data-dir", "d", "--out-dir", "o", "--keywords", "k.toml"]
+    )
+    assert args.data_dir == "d"
+    assert args.out_dir == "o"
+    assert args.keywords == "k.toml"
 
 
 def test_data_parser_accepts_refresh_and_skip_fetch() -> None:

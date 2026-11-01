@@ -15,7 +15,6 @@ from pathlib import Path
 from field_quality_agents import __version__
 
 _NOT_IMPLEMENTED = {
-    "baseline": "Q3 (linear baseline)",
     "run": "Q8 (end-to-end run)",
     "issues": "Q8 (issue agent)",
     "report": "Q8 (report agent)",
@@ -48,6 +47,13 @@ def build_parser() -> argparse.ArgumentParser:
     data.set_defaults(handler="data")
 
     baseline = sub.add_parser("baseline", help="run the linear baseline (Q3)")
+    baseline.add_argument("--data-dir", default="data", help="derived data directory")
+    baseline.add_argument("--out-dir", default="results/baseline", help="results directory")
+    baseline.add_argument(
+        "--keywords",
+        default=None,
+        help="keyword TOML path (default: config/keywords.toml)",
+    )
     baseline.set_defaults(handler="baseline")
 
     run = sub.add_parser("run", help="play a case set through the desk (Q8)")
@@ -122,11 +128,41 @@ def _run_data(args: argparse.Namespace) -> int:
     return 0
 
 
+def _run_baseline(args: argparse.Namespace) -> int:
+    from field_quality_agents.baseline.runner import run_baseline
+
+    report = run_baseline(
+        data_dir=args.data_dir,
+        out_dir=args.out_dir,
+        keywords_path=args.keywords,
+    )
+    print(f"baseline: {report.cases} case(s) from the replay set")
+    print(
+        "baseline: keyword macro-F1 "
+        f"{report.macro_f1.value:.4f} "
+        f"[{report.macro_f1.ci_low:.4f}, {report.macro_f1.ci_high:.4f}], "
+        f"coverage {report.coverage.value:.4f}"
+    )
+    print(
+        "baseline: safety precision "
+        f"{report.safety_precision.value:.4f}, recall {report.safety_recall.value:.4f}"
+    )
+    print(
+        f"baseline: priority {report.priority}, standard test {report.standard_test}, "
+        f"closed no trouble found {report.no_trouble_found}"
+    )
+    print(f"baseline: TF-IDF reference macro-F1 {report.tfidf_macro_f1.value:.4f}")
+    print(f"baseline: wrote {report.out_dir}")
+    return 0
+
+
 def main(argv: Sequence[str] | None = None) -> int:
     parser = build_parser()
     args = parser.parse_args(argv)
     if args.handler == "data":
         return _run_data(args)
+    if args.handler == "baseline":
+        return _run_baseline(args)
     if args.handler == "mcp":
         from field_quality_agents.mcp_server import serve
 

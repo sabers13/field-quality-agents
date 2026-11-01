@@ -16,6 +16,7 @@ dependencies = [
   "langgraph==1.2.19",
   "mcp==2.3.0",
   "pydantic>=2.11,<3",
+  "scikit-learn>=1.9.1",
 ]
 
 [project.scripts]
@@ -47,6 +48,12 @@ python_version = "3.12"
 mypy_path = "src"
 strict = true
 files = ["src"]
+
+[[tool.mypy.overrides]]
+# scikit-learn does not ship type information; the reference model is isolated
+# in baseline/tfidf.py and its public returns are annotated by hand.
+module = ["sklearn.*"]
+ignore_missing_imports = true
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
