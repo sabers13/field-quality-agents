@@ -33,6 +33,7 @@ from field_quality_agents.contracts import (
     SourceType,
     TargetedTest,
 )
+from field_quality_agents.llm.errors import BadAnswerError
 
 
 def _rule_name(rules: list[dict[str, object]]) -> str:
@@ -187,12 +188,12 @@ def make_analysis_node(model: AgentModel, tools: ToolRegistry) -> Node:
                 cost_usd=turn.cost_usd,
                 duration_ms=turn.duration_ms,
             )
-        except ModelOutputError:
+        except (ModelOutputError, BadAnswerError):
             readable = False
             writer.add(
                 agent="analysis",
                 action="unreadable_model_output",
-                reason="model answer was not a JSON object; asking the engineer",
+                reason="model answer was unreadable; asking the engineer",
             )
 
         if not readable:

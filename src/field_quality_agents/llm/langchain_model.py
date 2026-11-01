@@ -35,7 +35,7 @@ class LangChainChatModel(BaseChatModel):
     model: str = DEFAULT_MODEL
     prompt_version: str = "p1"
     temperature: float = 0.0
-    max_tokens: int = 1024
+    max_tokens: int = 8192
     tool_choice: str = "auto"
     bound_tools: tuple[dict[str, object], ...] = ()
 

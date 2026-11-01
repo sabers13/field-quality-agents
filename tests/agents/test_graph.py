@@ -42,7 +42,7 @@ def test_run_day_stops_at_the_day_boundary() -> None:
     first = make_case(id="CASE-EARLY", received_at=date(2025, 3, 4))
     second = make_case(id="CASE-LATE", received_at=date(2025, 3, 10))
     graph, _model, _tools = build_graph(
-        intake=intake_payload(missing=("mileage",)),
+        intake=intake_payload(missing=("symptom",)),
     )
 
     issues = run_day([first, second], date(2025, 3, 5), graph)

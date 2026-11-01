@@ -88,7 +88,7 @@ def run_case_scenario(name: str) -> CaseRun:
         return run
     if name == "missing_info":
         run, _model, _tools = run_desk(
-            make_case(), intake=intake_payload(missing=("mileage",))
+            make_case(), intake=intake_payload(missing=("symptom",))
         )
         return run
     if name == "budget":
@@ -113,7 +113,7 @@ def run_case_scenario(name: str) -> CaseRun:
     if name == "request_info":
         run, _model, _tools = run_desk(
             make_case(),
-            intake=intake_payload(missing=("mileage",)),
+            intake=intake_payload(missing=("symptom",)),
             engineer=decide_manually(DecisionAction.REQUEST_INFO),
         )
         return run
@@ -158,7 +158,7 @@ def test_random_matrix_never_decides_without_a_human_decision() -> None:
         )
         intake = intake_payload(
             safety=safety,
-            missing=("mileage",) if missing else (),
+            missing=("symptom",) if missing else (),
             quotes=("goes blank when the cabin is cold",),
         )
         analysis = None

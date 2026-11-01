@@ -71,6 +71,32 @@ def test_success_parses_tool_call_and_request_shape() -> None:
     assert body["tools"] == [TOOL]
 
 
+def test_reasoning_effort_is_sent_from_the_request_config() -> None:
+    seen: list[httpx.Request] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        seen.append(request)
+        return httpx.Response(200, json=completion(text="ok"))
+
+    client = make_client(handler)
+    client.chat(messages=[{"role": "user", "content": "hi"}])
+
+    assert json_body(seen[0])["reasoning_effort"] == "low"
+
+
+def test_reasoning_effort_can_be_disabled() -> None:
+    seen: list[httpx.Request] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        seen.append(request)
+        return httpx.Response(200, json=completion(text="ok"))
+
+    client = make_client(handler, reasoning_effort="")
+    client.chat(messages=[{"role": "user", "content": "hi"}])
+
+    assert "reasoning_effort" not in json_body(seen[0])
+
+
 def test_cost_comes_from_usage_tokens_when_gateway_has_no_cost() -> None:
     payload = completion(
         text="ok",

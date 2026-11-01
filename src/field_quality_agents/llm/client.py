@@ -126,12 +126,19 @@ class OpenAIChatClient:
         pacer: Pacer | None = None,
         now: Callable[[], datetime] | None = None,
         timeout: float | None = None,
+        reasoning_effort: str | None = None,
     ) -> None:
         self.model = model
         self.base_url = base_url.rstrip("/")
         self.prices = prices if prices is not None else Prices.load()
         self.config = config if config is not None else BudgetConfig.load()
         self.stop_path = Path(stop_path)
+        effort = (
+            reasoning_effort
+            if reasoning_effort is not None
+            else self.config.request.reasoning_effort
+        )
+        self.reasoning_effort = effort.strip() or None
         self._clock = clock
         self._sleep = sleep
         self._now = now if now is not None else (lambda: datetime.now(UTC))
@@ -176,6 +183,8 @@ class OpenAIChatClient:
             "temperature": temperature,
             "max_tokens": max_tokens,
         }
+        if self.reasoning_effort:
+            payload["reasoning_effort"] = self.reasoning_effort
         if tools:
             payload["tools"] = [dict(tool) for tool in tools]
             payload["tool_choice"] = tool_choice

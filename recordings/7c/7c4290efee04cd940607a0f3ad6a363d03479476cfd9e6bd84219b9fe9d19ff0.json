@@ -1,0 +1,60 @@
+{
+  "key": "7c4290efee04cd940607a0f3ad6a363d03479476cfd9e6bd84219b9fe9d19ff0",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 14272,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\": \"Run a long-run power cycling test because the intermittent MOST-network and gauge-cluster dropout matches the intermittent rulebook entry.\", \"rationale\": \"The gauge cluster, speedometer, gear selection and navigation shut off at freeway speed and returned after a minute or two with no MOST network. The intermittent condition matches the rulebook's long-run power-cycling test. The completed MOST cable recall work also matches the after-service entry, so connector seating and pin damage should be checked before the run.\", \"group\": \"electrical_general\", \"symptoms\": [\"gauge cluster including speedometer, gear selection, and navigation system shut off\", \"The speedometer area was blank\", \"the navigation screen said \\\"network connection lost\\\"\", \"No MOST network\", \"It began to come back on a minute or 2 later\"], \"conditions\": [\"while driving at freeway speed\", \"intermittent\", \"after service\"], \"fault_codes\": [], \"safety_relevant\": false, \"targeted\": true, \"test_name\": \"Long-run power cycling test\", \"clues\": [{\"kind\": \"condition\", \"quote\": \"While driving at freeway speed\"}, {\"kind\": \"symptom\", \"quote\": \"gauge cluster including speedometer, gear selection, and navigation system shut off\"}, {\"kind\": \"symptom\", \"quote\": \"The speedometer area was blank\"}, {\"kind\": \"symptom\", \"quote\": \"the navigation screen said \\\"network connection lost\\\"\"}, {\"kind\": \"symptom\", \"quote\": \"No MOST network\"}, {\"kind\": \"symptom\", \"quote\": \"It began to come back on a minute or 2 later\"}, {\"kind\": \"condition\", \"quote\": \"The MOST cable recall work has been done.\"}]}",
+            "reasoning_content": "We need answer one JSON only. Need analyze. We have case narrative, extraction, rulebook matches intermittent and after_service. Need targeted? Rulebook names tests: Long-run power cycling test for intermittent; Installation check before test for after_service. The prompt says \"Prefer a targeted load test when reported conditions match a rulebook entry. Otherwise standard test (targeted false).\" \"test_name\": \"the targeted test the rulebook names\". Which one? Conditions match both. Need propose targeted test. Could pick Long-run power cycling test because intermittent. But after_service also. Maybe mention both? Schema only one test_name. Need maybe targeted true, test_name \"Long-run power cycling test\". Rationale mention after service installation check before test. But \"test_name\" singular. Clues quotes verbatim from case narrative. Need ensure quote exactly from narrative not extraction? \"case narrative\" likely narrative field. Must copy verbatim spans from narrative: \"While driving at freeway speed\" yes. \"gauge cluster including speedometer, gear selection, and navigation system shut off\" yes (the narrative says \"the gauge cluster including speedometer, gear selection, and navigation system shut off.\" Preceding \"While driving at freeway speed the gauge cluster...\" quote can start \"gauge cluster including...\" yes exact). \"The speedometer area was blank\" yes. \"the navigation screen said \\\"network connection lost\\\"\" narrative has \"the navigation screen said \\\"network connection lost\\\"\" yes. \"No MOST network\" yes. \"It began to come back on a minute or 2 later\" yes. \"The MOST cable recall work has been done.\" yes exact includes period? Quote can include period. Need component group maybe \"electrical_general\". Safety relevant false. targeted true. Summary one line what to test and why. Conditions list. Fault codes empty. Symptoms list. Clues kinds. Need no id citations. Could include component_group quote \"ELECTRICAL SYSTEM\" from? That's component field not narrative? The narrative doesn't contain ELECTRICAL SYSTEM. Rule says quote copied verbatim from case narrative. The case narrative doesn't include component. So avoid component_group clue unless quote from narrative? \"gauge cluster\" maybe symptom. Use clues from narrative only. We can include kind symptom/condition/other. No component group quote. Need maybe clue \"network connection lost\" quote includes quotes? Verbatim span can be `the navigation screen said \"network connection lost\"` with escaped quotes. Fine.\n\nNeed decide test_name. Since both rulebook entries, maybe targeted true and test_name \"Long-run power cycling test\" because intermittent is primary and no install issue despite recall done. But after_service matched. Could test name \"Installation check before test\" is not load test. Prompt: \"Prefer a targeted load test when the reported conditions match a rulebook entry. Otherwise propose the standard test (`\"targeted\": false`).\" Rulebook entry for intermittent gives \"Long-run power cycling test\". We can set targeted true. The after service one says check connector seating etc first. But test_name singular. Maybe rational: intermittent loss consistent with wake/sleep fault; recall work done means installation check first, then long-run power cycling. But schema only one. Could set test_name \"Long-run power cycling test\" and rationale mention installation check first. That seems okay. \"targeted\": true.\n\nNeed summary: \"Run a long-run power cycling test because the intermittent MOST-network/cluster dropout matches the intermittent rulebook entry.\" one line.\n\nRationale: \"Gauge cluster, speedometer, gear selection and navigation shut off at freeway speed and returned after 1–2 minutes; no MOST network. The intermittent condition matches the rulebook's long-run power-cycling test. Recall cable work already done also matches after-service, so inspect connector seating/pin damage before the run.\" That includes after service. Good.\n\nSymptoms list maybe exact phrases. Conditions list include \"while driving at freeway speed\", \"intermittent\", \"after service\". Fault codes [].\n\nClues array. Ensure every quote verbatim from narrative. We need quote \"While driving at freeway speed\" yes. \"gauge cluster including speedometer, gear selection, and navigation system shut off\" yes. \"The speedometer area was blank\" yes. \"the navigation screen said \\\"network connection lost\\\"\" yes. \"No MOST network\" yes. \"It began to come back on a minute or 2 later\" yes. \"The MOST cable recall work has been done.\" yes. Could include \"network connection lost\" only? Fine.\n\nNeed output only JSON no markdown. Ensure valid JSON. Let's craft.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793522750,
+      "id": "gw-c026736306b7-2ba44d",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1339,
+        "completion_tokens_details": {
+          "reasoning_tokens": 960
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00058947,
+          "billing_source": "go",
+          "list_cost": 0.00098245,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 1186,
+            "output": 1339,
+            "reasoning": 960
+          }
+        },
+        "prompt_tokens": 1570,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "total_tokens": 2909
+      }
+    },
+    "text": "{\"summary\": \"Run a long-run power cycling test because the intermittent MOST-network and gauge-cluster dropout matches the intermittent rulebook entry.\", \"rationale\": \"The gauge cluster, speedometer, gear selection and navigation shut off at freeway speed and returned after a minute or two with no MOST network. The intermittent condition matches the rulebook's long-run power-cycling test. The completed MOST cable recall work also matches the after-service entry, so connector seating and pin damage should be checked before the run.\", \"group\": \"electrical_general\", \"symptoms\": [\"gauge cluster including speedometer, gear selection, and navigation system shut off\", \"The speedometer area was blank\", \"the navigation screen said \\\"network connection lost\\\"\", \"No MOST network\", \"It began to come back on a minute or 2 later\"], \"conditions\": [\"while driving at freeway speed\", \"intermittent\", \"after service\"], \"fault_codes\": [], \"safety_relevant\": false, \"targeted\": true, \"test_name\": \"Long-run power cycling test\", \"clues\": [{\"kind\": \"condition\", \"quote\": \"While driving at freeway speed\"}, {\"kind\": \"symptom\", \"quote\": \"gauge cluster including speedometer, gear selection, and navigation system shut off\"}, {\"kind\": \"symptom\", \"quote\": \"The speedometer area was blank\"}, {\"kind\": \"symptom\", \"quote\": \"the navigation screen said \\\"network connection lost\\\"\"}, {\"kind\": \"symptom\", \"quote\": \"No MOST network\"}, {\"kind\": \"symptom\", \"quote\": \"It began to come back on a minute or 2 later\"}, {\"kind\": \"condition\", \"quote\": \"The MOST cable recall work has been done.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00058947,
+      "cached_tokens": 384,
+      "cost_usd": 0.00098245,
+      "input_tokens": 1570,
+      "list_cost_usd": 0.00098245,
+      "output_tokens": 1339,
+      "reasoning_tokens": 960
+    }
+  }
+}

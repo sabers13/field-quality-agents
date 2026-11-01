@@ -1,0 +1,60 @@
+{
+  "key": "4952e2e6d2a1059c1ab8ca2d33a3a09d61cefb61f3738ddda3c6d0c4346d8bd3",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 10956,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"AIR BAGS: inactive airbag sign on for about two years.\",\"group\":\"restraints\",\"symptoms\":[\"inactive airbag sign on\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"inactive airbag sign on\"},{\"kind\":\"condition\",\"quote\":\"for about the two years\"},{\"kind\":\"safety\",\"quote\":\"inactive airbag sign\"}]}",
+            "reasoning_content": "We need output JSON only. Need parse report. Component AIR BAGS, group restraints. Narrative: \"The truck has been having the inactive airbag sign on for about the two years that we have had it.\" Symptom: inactive airbag sign on. Conditions? \"for about the two years\" maybe intermittent? No, not intermittent. No cold/moisture/heat/vibration/after service/charging. Conditions list can be empty. Fault codes none. Safety relevant? Report mentions inactive airbag sign; airbag system inactive could be safety risk? Rule says safety_relevant when mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. Inactive airbag is a restraint safety system, arguably risk to people. But given provided safety_relevant false? The user field says safety_relevant: false. We should set based on report. \"inactive airbag sign\" indicates airbags inactive, safety risk. The prompt says set safety_relevant when report mentions ... \"or another risk to people.\" An inactive airbag is a safety system fault, a risk. So true likely. But maybe they expect true? Need decide. The report itself doesn't mention crash etc. But inactive airbag sign is safety-relevant. I think true.\n\nMissing info: mileage is null, date? received_at exists. Conditions? Could list \"conditions\" missing? The analysis needs conditions maybe not given. Component and symptom present. Mileage missing. Date? received_at present. Conditions missing? There's duration but not operational conditions. The missing_info list allowed facts: component, symptom, conditions, mileage, date. We can include mileage and conditions. Since conditions empty, missing conditions. Date present. Component present. Symptom present. So [\"mileage\",\"conditions\"].\n\nClues must be verbatim spans. Need quote exact substrings. Narrative: \"The truck has been having the inactive airbag sign on for about the two years that we have had it.\" Quotes:\n- symptom: \"inactive airbag sign on\" exact substring? Narrative has \"the inactive airbag sign on\" yes \"inactive airbag sign on\" appears.\n- component_group: \"AIR BAGS\" from component field? Quote copied from report. The report includes component \"AIR BAGS\". Yes.\n- condition? \"for about the two years\" exact substring? Narrative: \"for about the two years that we have had it.\" yes.\n- safety: \"inactive airbag sign\" maybe.\n\nNeed summary one line: component, symptom, conditions. \"AIR BAGS: inactive airbag sign on for about two years.\" Good.\n\nGroup: \"restraints\".\n\nSymptoms: [\"inactive airbag sign on\"] or [\"inactive airbag warning illuminated\"]. Plain words. Use \"inactive airbag sign on\".\n\nConditions: [] maybe. Could include \"long-standing\" not in allowed condition list. Conditions allowed: cold, moisture, heat, vibration, intermittent, after service, charging. None. Empty.\n\nFault_codes: [].\n\nSafety_relevant: true? Let's think. The intake prompt says \"Set safety_relevant when the report mentions a crash, fire, smoke, injury, loss of control, a stall at speed or another risk to people.\" Inactive airbag sign = airbag system not active, risk to people in crash. It's safety relevant. So true. But then clue kind safety quote \"inactive airbag sign\" okay.\n\nNeed output one JSON object no other text. Ensure valid JSON. Use quotes. No markdown? They said answer with one JSON object and no other text. We can provide raw JSON.\n\nNeed missing_info maybe [\"mileage\",\"conditions\"]. Is conditions important? Since no conditions given, yes. Date present. Component present. Symptom present. Mileage null. Good.\n\nClues:\n[\n{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},\n{\"kind\":\"symptom\",\"quote\":\"inactive airbag sign on\"},\n{\"kind\":\"condition\",\"quote\":\"for about the two years\"},\n{\"kind\":\"safety\",\"quote\":\"inactive airbag sign\"}\n]\nNeed quote \"AIR BAGS\" exact from component field yes. \"for about the two years\" exact? Narrative: \"for about the two years that we have had it.\" The substring \"for about the two years\" is exact contiguous. Good.\n\nCould include \"other\" \"The truck has been having\" no.\n\nSummary: \"AIR BAGS: inactive airbag sign on for about two years.\" Conditions maybe \"about two years\". Good.\n\nNeed no extra.\n\nLet's final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793522508,
+      "id": "gw-c0c301b7e952-2d919e",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1072,
+        "completion_tokens_details": {
+          "reasoning_tokens": 947
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00039795,
+          "billing_source": "go",
+          "list_cost": 0.00066325,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 126,
+            "output": 1072,
+            "reasoning": 947
+          }
+        },
+        "prompt_tokens": 510,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "total_tokens": 1582
+      }
+    },
+    "text": "{\"summary\":\"AIR BAGS: inactive airbag sign on for about two years.\",\"group\":\"restraints\",\"symptoms\":[\"inactive airbag sign on\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"conditions\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"inactive airbag sign on\"},{\"kind\":\"condition\",\"quote\":\"for about the two years\"},{\"kind\":\"safety\",\"quote\":\"inactive airbag sign\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00039795,
+      "cached_tokens": 384,
+      "cost_usd": 0.00066325,
+      "input_tokens": 510,
+      "list_cost_usd": 0.00066325,
+      "output_tokens": 1072,
+      "reasoning_tokens": 947
+    }
+  }
+}

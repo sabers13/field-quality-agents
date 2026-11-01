@@ -94,12 +94,25 @@ class SimulatedClock:
 def build_model(*, mode: RunMode, recordings_dir: Path) -> AgentModel:
     """Build the record/replay chat model for a run."""
 
+    from field_quality_agents.llm.budget import BudgetConfig
+
+    request = BudgetConfig.load().request
     if mode is RunMode.REPLAY:
         store = RecordReplayStore(recordings_dir, "replay")
-        return LangChainChatModel(store=store, model=DEFAULT_MODEL)
+        return LangChainChatModel(
+            store=store,
+            model=DEFAULT_MODEL,
+            temperature=request.temperature,
+            max_tokens=request.max_tokens,
+        )
     if mode is RunMode.RECORD:
         store = RecordReplayStore(recordings_dir, "record")
-        return LangChainChatModel(store=store, model=DEFAULT_MODEL)
+        return LangChainChatModel(
+            store=store,
+            model=DEFAULT_MODEL,
+            temperature=request.temperature,
+            max_tokens=request.max_tokens,
+        )
     raise ValueError("a batch run supports replay or record mode, not live")
 
 

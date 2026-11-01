@@ -81,7 +81,7 @@ def test_a_safety_case_reaches_a_human_before_any_analysis_step() -> None:
 def test_an_approved_information_request_never_decides_a_case() -> None:
     run, _model, _tools = run_desk(
         make_case(),
-        intake=intake_payload(missing=("mileage",)),
+        intake=intake_payload(missing=("symptom",)),
     )
     assert run.decision is not None
     assert run.decision.action is DecisionAction.APPROVE

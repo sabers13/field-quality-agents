@@ -1,0 +1,60 @@
+{
+  "key": "8777212e2cf915f7ccd8dbc1214d11fb4624bcb3bc7b4b9ef4fb6682bc7f41cd",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 13890,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2023 Hyundai Kona forward collision avoidance/automatic emergency braking; brake pedal went to floor with no tension and brakes failed after dealer service; vehicle crossed curb/sidewalk and hit a building.\",\"group\":\"adas\",\"symptoms\":[\"brake pedal had no tension and went to the floor\",\"brakes did not work\",\"emergency collision warning activated\"],\"conditions\":[\"after service\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"},{\"kind\":\"symptom\",\"quote\":\"The pedal seemed to not have any tension and go to the floor.\"},{\"kind\":\"symptom\",\"quote\":\"the brakes did not work\"},{\"kind\":\"symptom\",\"quote\":\"The emergency collision warning went off\"},{\"kind\":\"condition\",\"quote\":\"Less than 24 hours later\"},{\"kind\":\"safety\",\"quote\":\"The vehicle jumped over a parking curb, knocking over a handicap sign, going across the sidewalk, hitting a garbage can and finally coming to a stop in a brick building.\"}]}",
+            "reasoning_content": "We need answer one JSON object no other text. Need normalize report. Need follow rules. Need copy verbatim quotes. Need determine summary one line component symptom conditions. Group given adas. Symptoms plain words. Conditions list allowed: cold moisture heat vibration intermittent after service charging. Report mentions service at dealer less than 24 hours later, so \"after service\". Also maybe not intermittent. Fault codes none. safety_relevant true (crash, hitting building, etc.). missing_info: mileage null, date? received_at but event date not given. component present, symptom present, conditions? conditions present after service. Need missing_info only facts analysis needs: mileage, date maybe. Report has no mileage. Date? received_at 2025-01-15 but incident date not explicit (\"Less than 24 hours later\" relative to service but no date). Could list mileage and date. Maybe conditions? It does mention after service. Need missing info component? no. symptom? yes. The schema says missing_info array strings from [\"mileage\",\"date\",\"conditions\",\"component\",\"symptom\"]. Use [\"mileage\",\"date\"]. Clues: symptom: \"The pedal seemed to not have any tension and go to the floor.\"; \"the brakes did not work\"; \"The emergency collision warning went off\"; maybe component_group quote \"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\" but that's from component field not narrative? User message includes entire JSON report, quote can be copied from report. The component field is in report. But maybe quote from narrative better. Condition: \"Vehicle was service at a Hyundai Dealer for routine required maintenance to continue the warranty.  Less than 24 hours later\" includes typo \"service\" not \"serviced\"; copy verbatim. Could quote \"Less than 24 hours later\" for after service. Safety: \"hitting a garbage can and finally coming to a stop in a brick building\" or \"vehicle jumped over a parking curb, knocking over a handicap sign, going across the sidewalk\". Safety relevant due crash. Need maybe quote \"The vehicle jumped over a parking curb, knocking over a handicap sign, going across the sidewalk, hitting a garbage can and finally coming to a stop in a brick building.\" That's verbatim.\n\nNeed ensure JSON valid. Summary one line: \"2023 Hyundai Kona forward collision avoidance/automatic emergency braking; brake pedal went to floor with no tension and brakes failed after dealer service; vehicle crossed curb/sidewalk and hit building.\" Keep one line. It says component group or given group. group \"adas\".\n\nSymptoms array: [\"brake pedal had no tension and went to the floor\", \"brakes did not work\", \"emergency collision warning activated\"]. Plain words. Conditions: [\"after service\"]. Could maybe \"after service\" because service <24h. No cold etc.\n\nFault_codes: [].\n\nSafety_relevant true.\n\nClues list with kind and quote. Need every quote verbatim. Let's craft:\n\n- {\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"}\n- {\"kind\":\"symptom\",\"quote\":\"The pedal seemed to not have any tension and go to the floor.\"}\n- {\"kind\":\"symptom\",\"quote\":\"the brakes did not work\"}\n- {\"kind\":\"symptom\",\"quote\":\"The emergency collision warning went off\"}\n- {\"kind\":\"condition\",\"quote\":\"Less than 24 hours later\"}\n- {\"kind\":\"safety\",\"quote\":\"The vehicle jumped over a parking curb, knocking over a handicap sign, going across the sidewalk, hitting a garbage can and finally coming to a stop in a brick building.\"}\n\nNeed check verbatim: Narrative: \"Vehicle was service at a Hyundai Dealer for routine required maintenance to continue the warranty.  Less than 24 hours later I was driving my special needs, handicap daughter to breakfast and pulled into a handicap parking space and placed my foot on the brake.  The pedal seemed to not have any tension and go to the floor.  The emergency collision warning went off, but the brakes did not work.  The vehicle jumped over a parking curb, knocking over a handicap sign, going across the sidewalk, hitting a garbage can and finally coming to a stop in a brick building.\"\n\n\"The emergency collision warning went off\" exact with capital? Narrative has \"The emergency collision warning went off\" yes capital T after period. In clue quote exact if start \"The\". Good.\n\"the brakes did not work\" lowercase t? Narrative: \", but the brakes did not work.\" It contains \"the brakes did not work\" exact. Good.\n\"Less than 24 hours later\" exact.\nSafety quote exact with \"The vehicle...\" yes.\n\nNeed missing_info: Could include \"date\" and \"mileage\". Is \"conditions\" missing? We have after service, but maybe not environmental. The analysis might need conditions? They say list only facts analysis needs: component, symptom, conditions, mileage, date. Conditions are present. Date absent. Mileage null. Good.\n\nNeed output only JSON. Ensure no markdown. final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793522473,
+      "id": "gw-c068bf5dd6ff-2a7105",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1305,
+        "completion_tokens_details": {
+          "reasoning_tokens": 1054
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00049092,
+          "billing_source": "go",
+          "list_cost": 0.0008182,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 227,
+            "output": 1305,
+            "reasoning": 1054
+          }
+        },
+        "prompt_tokens": 611,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "total_tokens": 1916
+      }
+    },
+    "text": "{\"summary\":\"2023 Hyundai Kona forward collision avoidance/automatic emergency braking; brake pedal went to floor with no tension and brakes failed after dealer service; vehicle crossed curb/sidewalk and hit a building.\",\"group\":\"adas\",\"symptoms\":[\"brake pedal had no tension and went to the floor\",\"brakes did not work\",\"emergency collision warning activated\"],\"conditions\":[\"after service\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: AUTOMATIC EMERGENCY BRAKING\"},{\"kind\":\"symptom\",\"quote\":\"The pedal seemed to not have any tension and go to the floor.\"},{\"kind\":\"symptom\",\"quote\":\"the brakes did not work\"},{\"kind\":\"symptom\",\"quote\":\"The emergency collision warning went off\"},{\"kind\":\"condition\",\"quote\":\"Less than 24 hours later\"},{\"kind\":\"safety\",\"quote\":\"The vehicle jumped over a parking curb, knocking over a handicap sign, going across the sidewalk, hitting a garbage can and finally coming to a stop in a brick building.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00049092,
+      "cached_tokens": 384,
+      "cost_usd": 0.0008182,
+      "input_tokens": 611,
+      "list_cost_usd": 0.0008182,
+      "output_tokens": 1305,
+      "reasoning_tokens": 1054
+    }
+  }
+}

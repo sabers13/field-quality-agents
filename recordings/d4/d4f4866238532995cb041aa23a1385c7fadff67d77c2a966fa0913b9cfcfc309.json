@@ -1,0 +1,60 @@
+{
+  "key": "d4f4866238532995cb041aa23a1385c7fadff67d77c2a966fa0913b9cfcfc309",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 12086,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"AIR BAGS: air bags failed to deploy in a rear-end crash while driving 30-35 MPH with seat belt engaged.\",\"group\":\"restraints\",\"symptoms\":[\"air bags failed to deploy\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"the air bags failed to deploy\"},{\"kind\":\"condition\",\"quote\":\"while driving 30-35 MPH with the seat belt engaged\"},{\"kind\":\"safety\",\"quote\":\"The contact sustained injuries to the left arm, neck, face, back, and head\"},{\"kind\":\"other\",\"quote\":\"the contact crashed into the rear of the vehicle\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize. Need extract. Component AIR BAGS group restraints. Symptoms: air bags failed to deploy. Crash into rear, vehicle ahead stopped at train tracks. Conditions: driving 30-35 MPH with seat belt engaged? Conditions list allowed: cold moisture heat vibration intermittent after service charging. None match except maybe not. Could include \"intermittent\"? no. So conditions empty. Fault codes none. safety_relevant true due crash injury. missing_info: component? given component. symptom given. conditions? maybe crash conditions provided. mileage provided. date? received_at but date of incident missing? The report doesn't provide incident date. Analysis needs date maybe missing. Also \"date\" missing. Need list only facts analysis needs. It has component, symptom, conditions? conditions maybe none in allowed categories, but report gives driving speed/seat belt. Mileage present. Date missing. Could include \"date\". Maybe also \"conditions\" because no environmental/operational condition categories? But narrative has driving conditions. The schema conditions categories don't match. Hmm.\n\nNeed quotes verbatim. Need quote spans copied from narrative. Summary one line: AIR BAGS / air bag non-deployment in rear-end crash at 30-35 MPH with seat belt engaged. Group restraints. Symptoms [\"air bags failed to deploy\"]. conditions [] maybe. fault_codes []. safety_relevant true. missing_info [\"date\"]. clues: symptom quote \"the air bags failed to deploy\"; condition quote \"while driving 30-35 MPH with the seat belt engaged\" maybe kind condition? It is not in allowed conditions list but clue kind can condition. component_group quote \"AIR BAGS\" from component? Is that in report? The report includes component field \"AIR BAGS\" yes user message includes. Quote verbatim from report? \"AIR BAGS\" yes. safety quote \"The contact sustained injuries to the left arm, neck, face, back, and head\" or \"crashed into the rear of the vehicle\". Need safety quote. Also crash quote. Other? Need maybe quote \"A Police report was filed.\" not needed. Ensure JSON no extra. Need no markdown? User says one JSON object and no other text. We can output raw JSON. Ensure valid JSON. \"summary\": \"AIR BAGS: air bags failed to deploy in a rear-end crash while driving 30-35 MPH with seat belt engaged.\" Good.\n\nNeed missing_info only date? Is date absent? received_at 2025-01-14 but incident date not stated. Yes date missing. Component and symptom present. Conditions? The conditions categories maybe not. Since conditions list allowed categories none. The analysis needs conditions? Report has speed and seat belt. But not weather etc. Should we include \"conditions\" because none of cold/moisture/heat/vibration/intermittent/after service/charging? The prompt says missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. Conditions maybe not missing because report gives driving 30-35 MPH with seat belt. But environmental conditions absent. Hmm \"conditions\" is a category; if no conditions from allowed list, maybe missing. But missing_info shouldn't overdo. We can include \"date\" only. The report doesn't name fault code. Good.\n\nNeed clues quotes exactly. \"AIR BAGS\" is verbatim in component field; acceptable? \"quote copied verbatim from report\" yes. Could include component_group clue. Quote \"AIR BAGS\". Symptom quote exact: \"the air bags failed to deploy\" appears. Condition quote exact: \"while driving 30-35 MPH with the seat belt engaged\" appears. Safety quote exact: \"The contact sustained injuries to the left arm, neck, face, back, and head\" appears. Also crash quote exact: \"the contact crashed into the rear of the vehicle\" appears. Kind \"other\" or safety? Use safety for injuries, condition for driving, symptom for airbags. Could include other for crash? The allowed kind includes other. Quote \"the contact crashed into the rear of the vehicle\". Not necessary but okay.\n\nFinal JSON. Need no markdown.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793522462,
+      "id": "gw-c068bf5dd6ff-2a6c78",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1024,
+        "completion_tokens_details": {
+          "reasoning_tokens": 855
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00039246,
+          "billing_source": "go",
+          "list_cost": 0.0006541,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 257,
+            "output": 1024,
+            "reasoning": 855
+          }
+        },
+        "prompt_tokens": 641,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "total_tokens": 1665
+      }
+    },
+    "text": "{\"summary\":\"AIR BAGS: air bags failed to deploy in a rear-end crash while driving 30-35 MPH with seat belt engaged.\",\"group\":\"restraints\",\"symptoms\":[\"air bags failed to deploy\"],\"conditions\":[],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"AIR BAGS\"},{\"kind\":\"symptom\",\"quote\":\"the air bags failed to deploy\"},{\"kind\":\"condition\",\"quote\":\"while driving 30-35 MPH with the seat belt engaged\"},{\"kind\":\"safety\",\"quote\":\"The contact sustained injuries to the left arm, neck, face, back, and head\"},{\"kind\":\"other\",\"quote\":\"the contact crashed into the rear of the vehicle\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00039246,
+      "cached_tokens": 384,
+      "cost_usd": 0.0006541,
+      "input_tokens": 641,
+      "list_cost_usd": 0.0006541,
+      "output_tokens": 1024,
+      "reasoning_tokens": 855
+    }
+  }
+}

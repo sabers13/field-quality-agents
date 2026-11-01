@@ -1,0 +1,60 @@
+{
+  "key": "5bf687954cff340782a0ad5aa35d5505a6c55dfe3f0951927f9669200bde2feb",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 16479,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system: body leak causes Park break module short circuit, making the vehicle suddenly stop and lock up three times.\",\"group\":\"electrical_general\",\"symptoms\":[\"Park break module short circuit\",\"vehicle suddenly stops and locks up\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"condition\",\"quote\":\"The outside body of the vehicle is leaking\"},{\"kind\":\"symptom\",\"quote\":\"Park break module to short circuit\"},{\"kind\":\"symptom\",\"quote\":\"my vehicle to suddenly stop and lock up\"},{\"kind\":\"condition\",\"quote\":\"This has happened three times so far.\"},{\"kind\":\"safety\",\"quote\":\"suddenly stop and lock up\"}]}",
+            "reasoning_content": "We need answer only JSON. Need parse report. Component ELECTRICAL SYSTEM, group electrical_general. Narrative: \"The outside body of the vehicle is leaking, which is causing the Park break module to short circuit. This is causing my vehicle to suddenly stop and lock up.This has happened three times so far.\"\n\nNeed summary one line: component, symptom, conditions. Group given electrical_general. Symptoms: \"Park break module to short circuit\" maybe short circuit; vehicle suddenly stop and lock up. Conditions: leaking outside body? moisture? It says leaking causing short circuit. Conditions list allowed: cold, moisture, heat, vibration, intermittent, after service, charging. \"leaking\" not in list, but moisture maybe? Need careful not invent. Could include \"moisture\" if body leaking implies water? But quote not direct moisture. Conditions: maybe \"intermittent\"? happened three times, sudden stop. But \"intermittent\" could be inferred repeated. Need only conditions supported. \"This has happened three times so far\" indicates intermittent/recurring. But allowed condition \"intermittent\". Could include. Fault codes none. Safety_relevant true? It mentions vehicle suddenly stop and lock up, risk. Prompt says set safety_relevant when crash fire smoke injury loss control stall at speed or another risk. Sudden stop and lock up is risk to people. So true despite input safety_relevant false. Missing_info: mileage (null), date? received_at exists but incident date missing. conditions? We have leaking. component present symptom present. Missing: mileage, date. Maybe \"conditions\" not missing? It has leak but not weather. Analysis needs conditions; we have some condition (leak). List mileage, date.\n\nClues verbatim spans. Need quote exact. Narrative has \"The outside body of the vehicle is leaking, which is causing the Park break module to short circuit.\" Could quote \"The outside body of the vehicle is leaking\" condition. \"Park break module to short circuit\" symptom. \"my vehicle to suddenly stop and lock up\" symptom/safety. \"This has happened three times so far.\" condition intermittent? Quote. Need kind.\n\nNeed ensure JSON only. Summary: \"Electrical system: Park brake module short circuits due to body leak, causing sudden stop and lock-up.\" But \"Park break\" misspelled in report. Use \"Park break module\" maybe. Summary one line: \"Electrical system: body leak causes Park break module short circuit, vehicle suddenly stops and locks up (three times).\" Conditions: [\"moisture\",\"intermittent\"]? Is moisture inferred from leaking? Leaking outside body likely water ingress. But quote \"leaking\" maybe condition kind other? Allowed conditions list doesn't include leaking. Could include \"moisture\" as analysis condition? It says conditions [\"cold\",\"moisture\",...]. The report says leaking causing short circuit, so moisture is implied. But \"Do not invent facts.\" Moisture not explicitly. Better conditions: [\"intermittent\"]? The leak is a condition but not in list. Could set conditions [\"intermittent\"] only? But \"moisture\" maybe okay because leak causing short circuit implies moisture. Hmm.\n\nNeed answer one JSON. For clues, quote must be verbatim. If include condition \"moisture\", quote \"leaking\" supports? But kind condition quote \"The outside body of the vehicle is leaking\" perhaps. It doesn't say moisture. We can include condition quote leak as \"other\" or condition. The `conditions` array should include only allowed values; leak isn't allowed. Could include none? But there is condition \"leaking\" not in list. Maybe conditions: [] and clue kind other quote leak. But analysis conditions needs? Hmm.\n\nMissing_info: if conditions missing? The report has leak but not ambient conditions. The allowed conditions are cold/moisture/heat/vibration/intermittent/after service/charging. It doesn't state cold etc. It does state repeated three times -> intermittent. So condition intermittent. Leak not allowed. Could set conditions [\"intermittent\"] and clue quote \"This has happened three times so far.\" Good. For leak as \"other\" clue.\n\nSafety relevant true. Clue safety quote \"my vehicle to suddenly stop and lock up\" or full \"This is causing my vehicle to suddenly stop and lock up.\" Good.\n\nSymptoms: [\"Park break module short circuit\", \"vehicle suddenly stops and locks up\"]. The phrase \"Park break\" is report typo; use exact? Symptoms plain words can correct to \"park brake module short circuit\"? But quote exact \"Park break module to short circuit\". In symptoms array plain words. Fine.\n\nFault_codes [].\n\nMissing_info: [\"mileage\",\"date\"] maybe. Date? received_at exists but incident date not. The schema missing_info includes date. Since report date received only, incident date missing. Mileage null. Conditions? We have intermittent. Component and symptom present. Good.\n\nNeed JSON no text. Ensure valid. Use quotes. Clues:\n- {\"kind\":\"condition\",\"quote\":\"The outside body of the vehicle is leaking\"} but condition kind okay though not in allowed list? It says kind can be condition. Quote verbatim yes.\n- {\"kind\":\"symptom\",\"quote\":\"Park break module to short circuit\"} exact substring? Narrative: \"causing the Park break module to short circuit.\" Yes substring \"Park break module to short circuit\" appears. Good.\n- {\"kind\":\"symptom\",\"quote\":\"my vehicle to suddenly stop and lock up\"} appears? \"causing my vehicle to suddenly stop and lock up.\" Yes substring \"my vehicle to suddenly stop and lock up\" begins after causing. Good.\n- {\"kind\":\"condition\",\"quote\":\"This has happened three times so far.\"} exact yes. This supports intermittent.\n- {\"kind\":\"safety\",\"quote\":\"suddenly stop and lock up\"} exact substring yes. But duplicate. Could include.\nNeed component_group clue? \"ELECTRICAL SYSTEM\" from component field not narrative. The report includes component field. Quote \"ELECTRICAL SYSTEM\" verbatim from report? It's in JSON field. User message report includes component. Yes quote can be from report. But clues should quote from report? It says copied verbatim from report. Component field is part. Include maybe kind component_group quote \"ELECTRICAL SYSTEM\". But group given. Not necessary.\n\nSummary should mention three times.\n\nNeed decide safety true. Yes.\n\nFinal JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793522241,
+      "id": "gw-c0c301b7e952-2d2c41",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1506,
+        "completion_tokens_details": {
+          "reasoning_tokens": 1335
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00055554,
+          "billing_source": "go",
+          "list_cost": 0.0009259,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 141,
+            "output": 1506,
+            "reasoning": 1335
+          }
+        },
+        "prompt_tokens": 525,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "total_tokens": 2031
+      }
+    },
+    "text": "{\"summary\":\"Electrical system: body leak causes Park break module short circuit, making the vehicle suddenly stop and lock up three times.\",\"group\":\"electrical_general\",\"symptoms\":[\"Park break module short circuit\",\"vehicle suddenly stops and locks up\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\",\"date\"],\"clues\":[{\"kind\":\"condition\",\"quote\":\"The outside body of the vehicle is leaking\"},{\"kind\":\"symptom\",\"quote\":\"Park break module to short circuit\"},{\"kind\":\"symptom\",\"quote\":\"my vehicle to suddenly stop and lock up\"},{\"kind\":\"condition\",\"quote\":\"This has happened three times so far.\"},{\"kind\":\"safety\",\"quote\":\"suddenly stop and lock up\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00055554,
+      "cached_tokens": 384,
+      "cost_usd": 0.0009259,
+      "input_tokens": 525,
+      "list_cost_usd": 0.0009259,
+      "output_tokens": 1506,
+      "reasoning_tokens": 1335
+    }
+  }
+}

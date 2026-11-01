@@ -1,0 +1,60 @@
+{
+  "key": "2603dc371199c0d4fb5de014d7afaecfd57b0f8de20e80812a5872d9f8561b9d",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 22088,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"2020 Subaru Forester forward collision avoidance: inadvertent brake pedal application at about 30 MPH with pre-collision braking activated message; dealer could not replicate.\",\"group\":\"adas\",\"symptoms\":[\"brake pedal applied inadvertently\",\"pre-collision braking system activated message appeared\"],\"conditions\":[\"while driving at approximately 30 MPH\",\"intermittent (dealer could not replicate)\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"condition\",\"quote\":\"while driving at approximately 30 MPH\"},{\"kind\":\"symptom\",\"quote\":\"brake pedal of the vehicle was applied inadvertently\"},{\"kind\":\"condition\",\"quote\":\"without any vehicles surrounding the vehicle\"},{\"kind\":\"symptom\",\"quote\":\"Pre collision braking system was activated\"},{\"kind\":\"other\",\"quote\":\"failure was not replicated\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize report. Need infer component group given adas. Summary one line component symptom conditions. Symptoms: brake pedal applied inadvertently without surrounding vehicles; pre-collision braking system activated message. Conditions: while driving at approximately 30 MPH. Safety relevant? The report mentions inadvertent braking while driving; risk? Rules safety relevant when crash fire smoke injury loss control stall at speed or risk to people. Inadvertent braking at 30 mph could be risk, but report doesn't mention crash/injury. Need decide. Since \"brake pedal applied inadvertently\" while driving could be safety risk (unexpected braking) but instruction says set when mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. It doesn't explicitly say loss of control, but unintended braking at speed is risk to people. However provided safety_relevant false in input? We should not blindly copy? It says report in user message; JSON has safety_relevant false. But we determine. Need maybe set true due to inadvertent braking while driving at 30 MPH? The rule says \"another risk to people\"; unexpected automatic braking at 30 mph is risk. But is \"pre collision braking system was activated\" message and brake applied inadvertently. Could be safety. But if no crash etc maybe false? Need be accurate. The desk safety-relevant detects risk. I'd set true? Hmm. Need missing_info: mileage present 26000, date received, conditions present (30 mph). Component present, symptom present. Missing maybe none? \"date\" could mean failure date not given; received_at given. Analysis needs date? Could list \"date\" because no failure date. But rule missing_info only facts analysis needs: component symptom conditions mileage date. Component/symptom/conditions/mileage present; date of incident not. It has received_at but not failure date. Should list \"date\"? Maybe yes if no date. But could be considered not missing? The prompt asks missing_info. In many tasks, if no incident date, include \"date\". The narrative doesn't mention date. So missing_info [\"date\"]. But maybe no important missing. It says use empty when nothing important missing. Failure date could matter. I'd include date.\n\nFault codes none. Clues quote verbatim. Need quotes copied exactly from narrative. Include:\n- \"while driving at approximately 30 MPH\" kind condition\n- \"brake pedal of the vehicle was applied inadvertently\" kind symptom\n- \"without any vehicles surrounding the vehicle\" kind condition? maybe condition\n- \"\\\" Pre collision braking system was activated \\\"\" need exact spacing? In narrative: `a  \\\" Pre collision braking system was activated \\\" message appeared.` There are two spaces after a? JSON string includes `a  \\\" Pre...` The quote can be \"Pre collision braking system was activated\" without spaces? Verbatim span. Need copy exact substring: `Pre collision braking system was activated` is within. Kind fault_code? It's a message not code. Could be symptom. Use quote `\" Pre collision braking system was activated \"`? Verbatim includes spaces around. Simpler quote \"Pre collision braking system was activated\" is verbatim substring. kind symptom? It's message. Use \"other\" maybe? But clue kind fault_code for code if named; no code. Could use symptom. \"pre collision braking system was activated\" is symptom/message.\n\n- \"failure was not replicated\" kind other maybe.\n- \"towed to a dealer\" other? Not needed.\n\nNeed summary: \"2020 Subaru Forester forward collision avoidance: inadvertent brake application at ~30 MPH with pre-collision braking activation message; dealer could not replicate.\" One line. Component maybe \"FORWARD COLLISION AVOIDANCE\". Conditions: cold? no; vibration? no; intermittent? Not replicated maybe intermittent? Hmm \"failure was not replicated\" suggests intermittent? Condition \"intermittent\" could apply? The prompt conditions list includes intermittent. Since dealer not replicate, maybe intermittent. But we shouldn't invent. Could list \"intermittent\" as condition? The failure not replicated indicates possible intermittent. But the report doesn't say intermittent. Better conditions: [\"while driving at approximately 30 MPH\"]? The allowed condition categories are [\"cold\",\"moisture\",\"heat\",\"vibration\",\"intermittent\",\"after service\",\"charging\"]. Need output conditions from list? It says conditions array examples; likely use those categories. The report condition is driving at 30 MPH, not in list. Hmm The schema says conditions: [\"cold\", ...]. We can include \"while driving at approximately 30 MPH\"? But rules ask conditions as list. It may accept any. Better include \"intermittent\" because not replicated? But no. Could include \"driving at approximately 30 MPH\" as condition? The allowed examples include only categories, but not strict. Need normalise. We can output [\"while driving at approximately 30 MPH\"]? But \"conditions\" likely should be tags. The instruction says \"conditions\": [\"cold\", ...]. It doesn't say only those. But normalization might want tags. We can set conditions: [] if no listed condition. But summary includes speed. Missing_info conditions? Conditions present. Maybe conditions array [\"intermittent\"]? Hmm.\n\nNeed answer JSON only. Let's craft:\n\n{\n \"summary\": \"2020 Subaru Forester forward collision avoidance: inadvertent brake pedal application at about 30 MPH with pre-collision braking activated message; dealer could not replicate.\",\n \"group\": \"adas\",\n \"symptoms\": [\"brake pedal applied inadvertently\", \"pre-collision braking system activated message appeared\"],\n \"conditions\": [\"while driving at approximately 30 MPH\", \"intermittent (dealer could not replicate)\"]? But \"intermittent\" not explicitly. Maybe avoid parenthetical. Conditions maybe [\"intermittent\"]? Hmm.\n\nNeed clues quote exact. \"while driving at approximately 30 MPH\" exact yes. \"brake pedal of the vehicle was applied inadvertently\" exact yes. \"Pre collision braking system was activated\" exact? Narrative: `\\\" Pre collision braking system was activated \\\" message` includes capital P. Yes substring \"Pre collision braking system was activated\" exact. \"failure was not replicated\" exact. \"without any vehicles surrounding the vehicle\" exact. Use kind condition for without vehicles? \"condition\" maybe.\n\nSafety_relevant: I lean true? Let's inspect: \"brake pedal ... applied inadvertently\" at 30 mph without surrounding vehicles. Unexpected braking could cause risk, but no crash. The rule explicitly includes \"another risk to people\". Unexpected braking at speed is risk. But source says safety_relevant false; maybe the task expects us to copy? However prompt says set safety_relevant when report mentions ... another risk. Since inadvertent braking while driving can be risk, but not necessarily \"loss of control\". Could be safety relevant due to risk of rear-end collision. But report says no vehicles surrounding, so less. It says without any vehicles surrounding the vehicle. Hmm no surrounding vehicles reduces crash risk at that moment, but still risk. I'd set true? If safety_relevant true, it's a safety issue. The desk likely cares. The original JSON has false maybe a field from source not to trust? The intake agent should set. I'll set true because inadvertent braking while driving at 30 MPH is a potential risk to people. But maybe they'd mark false because no crash/injury. Need decide. The rules: \"Set safety_relevant when the report mentions a crash, fire, smoke, injury, loss of control, a stall at speed or another risk to people.\" It doesn't mention \"unintended braking\" explicitly but that is another risk. At 30 mph, sudden braking can cause rear-end collision. So true.\n\nMissing_info: \"date\" maybe. Mileage present. conditions present? Speed present. Component present. Symptom present. Date of failure not given. Include [\"date\"]. If safety true no issue.\n\nNeed no other text. Ensure valid JSON. Quotes exact. Need escape quotes? No quotes in quotes? The quote \"Pre collision...\" no quotes. Good.\n\nPotential issue: summary says \"dealer could not replicate\" but report says failure was not replicated at dealer. OK.\n\nNeed maybe group \"adas\" given. Good.\n\nLet's final.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793522400,
+      "id": "gw-c11b106115d1-215e15",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1912,
+        "completion_tokens_details": {
+          "reasoning_tokens": 1725
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00070737,
+          "billing_source": "go",
+          "list_cost": 0.00117895,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 204,
+            "output": 1912,
+            "reasoning": 1725
+          }
+        },
+        "prompt_tokens": 588,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "total_tokens": 2500
+      }
+    },
+    "text": "{\"summary\":\"2020 Subaru Forester forward collision avoidance: inadvertent brake pedal application at about 30 MPH with pre-collision braking activated message; dealer could not replicate.\",\"group\":\"adas\",\"symptoms\":[\"brake pedal applied inadvertently\",\"pre-collision braking system activated message appeared\"],\"conditions\":[\"while driving at approximately 30 MPH\",\"intermittent (dealer could not replicate)\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"date\"],\"clues\":[{\"kind\":\"condition\",\"quote\":\"while driving at approximately 30 MPH\"},{\"kind\":\"symptom\",\"quote\":\"brake pedal of the vehicle was applied inadvertently\"},{\"kind\":\"condition\",\"quote\":\"without any vehicles surrounding the vehicle\"},{\"kind\":\"symptom\",\"quote\":\"Pre collision braking system was activated\"},{\"kind\":\"other\",\"quote\":\"failure was not replicated\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00070737,
+      "cached_tokens": 384,
+      "cost_usd": 0.00117895,
+      "input_tokens": 588,
+      "list_cost_usd": 0.00117895,
+      "output_tokens": 1912,
+      "reasoning_tokens": 1725
+    }
+  }
+}

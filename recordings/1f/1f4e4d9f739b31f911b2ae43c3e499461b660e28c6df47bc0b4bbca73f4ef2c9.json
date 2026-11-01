@@ -1,0 +1,60 @@
+{
+  "key": "1f4e4d9f739b31f911b2ae43c3e499461b660e28c6df47bc0b4bbca73f4ef2c9",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 20034,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Honda CR-V ADAS forward collision avoidance/AEB false activation with no forward objects and no dashboard warning, causing injury; third occurrence at same spot.\",\"group\":\"adas\",\"symptoms\":[\"Automatic Emergency Braking applies with no object, person, or vehicle ahead\",\"No dashboard warning before sudden braking\",\"Sudden braking causes occupant injury\",\"Repeated false AEB activation at same location\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: WARNINGS\"},{\"kind\":\"symptom\",\"quote\":\"Automatic Emergency Breaks applied though there are no objects, people or vehicles in front of the vehicle.\"},{\"kind\":\"symptom\",\"quote\":\"Suddenly, the Automatic Emergency Break applied without any warnings on the dashboard.\"},{\"kind\":\"safety\",\"quote\":\"my wife got injured, she hit her knee to the back air vent.\"},{\"kind\":\"condition\",\"quote\":\"This is the third time we were run to this issue at the same spot.\"},{\"kind\":\"safety\",\"quote\":\"we avoided the collision\"},{\"kind\":\"condition\",\"quote\":\"while driving on the highway\"}]}",
+            "reasoning_content": "We need answer only JSON. Need normalize. Must copy quotes verbatim from report. Need identify component group adas. Summary one line component symptom conditions. Symptoms: Automatic Emergency Brakes applied though no objects/people/vehicles in front; no warnings on dashboard; injury due sudden brake; repeated three times at same spot. Conditions:? Report mentions highway warning messages, same spot, sudden. Conditions taxonomy: cold moisture heat vibration intermittent after service charging. Maybe \"intermittent\" repeated third time same spot; not exactly. Conditions list should use allowed values? It says conditions [\"cold\",...]. We can include \"intermittent\" for repeated. Maybe no conditions. But clues can include condition quote. Need missing_info: mileage null, date? received_at and incident date present 01/08/2025. Model year 2018. Date present. Conditions? We have same spot, time 8:10 PM EST, highway. Missing maybe mileage. Component present. Symptom present. So missing_info [\"mileage\"]. Safety relevant true because injury and avoided collision. Fault codes none.\n\nNeed exact quotes. The narrative includes curly quotes and escaped? We need copy spans. Use exact substring. Quotes:\n- \"Automatic Emergency Breaks applied though there are no objects, people or vehicles in front of the vehicle.\" Wait narrative: \"Automatic Emergency Breaks applied though there are no objects, people or vehicles in front of the vehicle.\" It says \"Breaks\" not Brakes. Exact.\n- \"Suddenly, the Automatic Emergency Break applied without any warnings on the dashboard.\" Exact.\n- \"my wife got injured, she hit her knee to the back air vent.\" Exact.\n- \"This is the third time we were run to this issue at the same spot.\" Exact.\n- \"So, luckily, we avoided the collision.\" Exact.\n- \"there would be a major collision.\" Exact.\n- \"I am keep observing the warning messages earlier while driving on the highway\" exact maybe.\n\nNeed JSON with summary. Summary can mention Honda CR-V forward collision avoidance/AEB false activation, no forward objects, no dashboard warnings, injury, repeated third time. Conditions maybe \"same spot\" not in taxonomy. Conditions array include \"intermittent\"? Is repeated three times intermittent? Maybe yes. But conditions allowed enumerated. We can include \"intermittent\". Also maybe \"after service\"? no. \"charging\"? no. \"heat/cold/moisture/vibration\"? no. So [\"intermittent\"].\n\nClues kind symptom/condition/fault_code/component_group/safety/other. Include component_group quote? Quote \"FORWARD COLLISION AVOIDANCE: WARNINGS\" is from component field, not narrative? The report is JSON includes component. The rules quote from report. The report includes component field. Can quote component. Use \"FORWARD COLLISION AVOIDANCE: WARNINGS\". Group \"adas\". Safety clue quote \"my wife got injured\" and \"avoided the collision\" maybe. \"safety\" quote \"my wife got injured, she hit her knee to the back air vent.\" Could include \"there would be a major collision.\" But safety relevant due injury. Also \"loss of control\"? no.\n\nNeed no other text. Ensure valid JSON. Summary one line.\n\nNeed consider \"Automatic Emergency Breaks\" typo. Use exact in quote.\n\nPotential issue: missing_info date? date is present 01/08/2025 but received_at 2025-01-10. Good.\n\nNeed \"conditions\" maybe []? The schema says conditions list with examples. We can include \"intermittent\" because repeated third time. But is that a condition? It is in list. Good.\n\nNeed quotes verbatim. Let's verify exact text:\n\"On 01/08/2025, Time: 8:10 PM EST – Automatic Emergency Breaks applied though there are no objects, people or vehicles in front of the vehicle.  My wife, [XXX]  kid and I were heading back to home from COSTCO, Mathews NC. Suddenly, the Automatic Emergency Break applied without any warnings on the dashboard. Because of the sudden break, my wife got injured, she hit her knee to the back air vent. I must take a long breath for a min and move the car to the parking lot and check back with my kid and wife. There was a little distance from my car to the other car behind me. So, luckily, we avoided the collision. Otherwise, there would be a major collision. This is the third time we were run to this issue at the same spot. I am keep observing the warning messages earlier while driving on the highway and but stopping all the sudden without any warnings make us very scary. I was still doubting the security measures and investigation process being held at the HONDA. Please consider the fact that, “Human Lives matter and security is a fundamental right.” and resolve the issue at the earliest.  The older AEB (Automatic Emergency Break)incident information as follows: 1st incident was reported on “[XXX] | NHTSA ID NUMBER: 11457060” and 2nd incident was on “[XXX] | NHTSA ID NUMBER: 11575701” INFORMATION REDACTED PURSUANT TO THE FREEDOM OF INFORMATION ACT (FOIA), 5 U.S.C. 552(B)(6)\"\n\nQuotes exact:\n\"Automatic Emergency Breaks applied though there are no objects, people or vehicles in front of the vehicle.\" yes starts after – space. Exact.\n\"Suddenly, the Automatic Emergency Break applied without any warnings on the dashboard.\" yes.\n\"Because of the sudden break, my wife got injured, she hit her knee to the back air vent.\" Could quote full. Verbatim includes \"Because of the sudden break, my wife got injured, she hit her knee to the back air vent.\" yes.\n\"This is the third time we were run to this issue at the same spot.\" yes.\n\"we avoided the collision\" exact? \"So, luckily, we avoided the collision.\" yes.\n\"there would be a major collision\" exact in \"Otherwise, there would be a major collision.\" yes.\n\"while driving on the highway\" exact.\n\nNeed no markdown? User says answer with one JSON object and no other text. We can output JSON only. Use code? No, just raw JSON. Good.\n\nNeed maybe summary \"Honda CR-V ADAS forward collision avoidance/AEB false activation with no forward objects and no dashboard warning, causing injury; third occurrence at same spot.\" Good.\n\nNeed \"symptoms\" list plain words. [\"Automatic Emergency Braking applies with no object, person, or vehicle ahead\", \"No dashboard warning before sudden braking\", \"Sudden braking causes occupant injury\", \"Repeated false AEB activation at same location\"] Plain. Okay.\n\nNeed \"conditions\": [\"intermittent\"] maybe. But \"same spot\" not in allowed list. Could include \"intermittent\" as condition. Good.\n\nNeed \"fault_codes\": [].\nNeed safety true.\nMissing [\"mileage\"].\nClues: \ncomponent_group quote \"FORWARD COLLISION AVOIDANCE: WARNINGS\"\nsymptom quote \"Automatic Emergency Breaks applied though there are no objects, people or vehicles in front of the vehicle.\"\nsymptom quote \"Suddenly, the Automatic Emergency Break applied without any warnings on the dashboard.\"\nsafety quote \"my wife got injured, she hit her knee to the back air vent.\"\ncondition quote \"This is the third time we were run to this issue at the same spot.\" Kind condition? It is repeated occurrence; could kind condition. Good.\nsafety quote \"we avoided the collision\" maybe.\nother quote \"while driving on the highway\" maybe condition? The allowed condition kinds. Could include condition quote \"while driving on the highway\" kind condition? But conditions array doesn't include highway. Clue kind condition can be quote for context; okay. But not needed.\nNeed avoid too many.\n\nNeed ensure every quote is exact substring. \"my wife got injured, she hit her knee to the back air vent.\" yes exact substring within \"Because of the sudden break, my wife got injured, she hit her knee to the back air vent.\" Good.\n\"we avoided the collision\" exact substring? \"So, luckily, we avoided the collision.\" yes.\n\"while driving on the highway\" exact substring in \"I am keep observing the warning messages earlier while driving on the highway and but...\" yes.\n\nPotential issue: JSON strings with quotes? No internal quotes except none. Fine.\n\nNeed maybe \"safety_relevant\": true and clue safety. Good.\n\nFinal only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793522441,
+      "id": "gw-c0c301b7e952-2d788f",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 2064,
+        "completion_tokens_details": {
+          "reasoning_tokens": 1797
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00078549,
+          "billing_source": "go",
+          "list_cost": 0.00130915,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 464,
+            "output": 2064,
+            "reasoning": 1797
+          }
+        },
+        "prompt_tokens": 848,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "total_tokens": 2912
+      }
+    },
+    "text": "{\"summary\":\"Honda CR-V ADAS forward collision avoidance/AEB false activation with no forward objects and no dashboard warning, causing injury; third occurrence at same spot.\",\"group\":\"adas\",\"symptoms\":[\"Automatic Emergency Braking applies with no object, person, or vehicle ahead\",\"No dashboard warning before sudden braking\",\"Sudden braking causes occupant injury\",\"Repeated false AEB activation at same location\"],\"conditions\":[\"intermittent\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"FORWARD COLLISION AVOIDANCE: WARNINGS\"},{\"kind\":\"symptom\",\"quote\":\"Automatic Emergency Breaks applied though there are no objects, people or vehicles in front of the vehicle.\"},{\"kind\":\"symptom\",\"quote\":\"Suddenly, the Automatic Emergency Break applied without any warnings on the dashboard.\"},{\"kind\":\"safety\",\"quote\":\"my wife got injured, she hit her knee to the back air vent.\"},{\"kind\":\"condition\",\"quote\":\"This is the third time we were run to this issue at the same spot.\"},{\"kind\":\"safety\",\"quote\":\"we avoided the collision\"},{\"kind\":\"condition\",\"quote\":\"while driving on the highway\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00078549,
+      "cached_tokens": 384,
+      "cost_usd": 0.00130915,
+      "input_tokens": 848,
+      "list_cost_usd": 0.00130915,
+      "output_tokens": 2064,
+      "reasoning_tokens": 1797
+    }
+  }
+}

@@ -84,18 +84,30 @@ def test_safety_branch_reaches_a_human_before_analysis() -> None:
 def test_missing_information_branch_requests_a_report() -> None:
     run, _model, _tools = run_desk(
         make_case(),
-        intake=intake_payload(missing=("mileage", "conditions")),
+        intake=intake_payload(missing=("component", "symptom")),
     )
 
     assert run.proposal is not None
     assert run.proposal.kind is ProposalKind.REQUEST_INFO
-    assert run.proposal.requested_info == ("mileage", "conditions")
+    assert run.proposal.requested_info == ("component", "symptom")
     assert "draft_info_request" in actions(run)
     assert run.decision is not None
     assert run.decision.action is DecisionAction.APPROVE
     # An approved information request never decides the case.
     assert run.case.status is CaseStatus.NEEDS_ENGINEER
     assert "search_similar_cases" not in actions(run)
+
+
+def test_missing_mileage_or_date_alone_does_not_block_analysis() -> None:
+    run, _model, _tools = run_desk(
+        make_case(),
+        intake=intake_payload(missing=("mileage", "date")),
+        analysis=analysis_payload(),
+    )
+
+    assert run.proposal is None or run.proposal.kind is not ProposalKind.REQUEST_INFO
+    assert "note_missing_info" in actions(run)
+    assert "search_similar_cases" in actions(run)
 
 
 def test_budget_hit_hands_the_case_to_a_human() -> None:

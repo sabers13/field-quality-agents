@@ -1,0 +1,60 @@
+{
+  "key": "01224fe565d6c33d2cfcd091e1f4e052e7ef589691375c6be0aecee82b4164f0",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 19071,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system: water leak from third brake light caused RF hub short circuit, no-start, battery drain, and mildew odors.\",\"group\":\"electrical_general\",\"symptoms\":[\"water leak into cabin\",\"radiofrequency hub short circuit\",\"vehicle would not turn on\",\"battery killed and repeatedly drained\",\"bad odors, smells, and mildew\"],\"conditions\":[\"moisture\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"condition\",\"quote\":\"Water leaked into their vehicle into my Ram 1500 cabin.\"},{\"kind\":\"condition\",\"quote\":\"Water leaks from the third brake light above the rear window into the cabin.\"},{\"kind\":\"symptom\",\"quote\":\"It caused the Radiofrequency hub to short circuit\"},{\"kind\":\"symptom\",\"quote\":\"my vehicle wouldn't turn on\"},{\"kind\":\"symptom\",\"quote\":\"it killed my battery\"},{\"kind\":\"symptom\",\"quote\":\"it automatically drained\"},{\"kind\":\"symptom\",\"quote\":\"bad odors, smells, and mildew\"},{\"kind\":\"safety\",\"quote\":\"I have children and not knowing that there is mildew growing in my vehicle is a major health concern.\"}]}",
+            "reasoning_content": "We need to output JSON only. Need parse report. Component: ELECTRICAL SYSTEM, group electrical_general. Symptoms: water leak from third brake light above rear window into cabin; RF hub short circuit; vehicle wouldn't turn on; battery killed/drained; bad odors smells mildew. Conditions: water/moisture leak, maybe not cold/heat. \"moisture\" condition. Fault codes none. Safety relevant? Report mentions health concern mildew with children, but safety_relevant defined crash fire smoke injury loss control stall at speed or risk to people. Mildew health concern maybe risk to people? It says major health concern. Could set safety_relevant true? The intake prompt says set when mentions crash, fire, smoke, injury, loss of control, stall at speed or another risk to people. Mildew health concern is risk to people, especially children. But given source safety_relevant false. However we must read only report; don't invent. It explicitly says health concern. I'd set true? Hm \"safety_relevant\": false provided but we should normalize. The rules say set safety_relevant when report mentions ... another risk to people. \"major health concern\" qualifies. But maybe not \"safety\" in automotive safety? The schema includes safety. I'd set true because health risk to children. Need missing_info: mileage null. date? received_at exists. conditions? There are conditions. component present. symptom present. Missing mileage. Maybe date? Received_at is date. So [\"mileage\"].\n\nClues must be verbatim quotes. Need quotes exact. From narrative: \"Water leaked into their vehicle into my Ram 1500 cabin.\" exact? Yes. \"Water leaks from the third brake light above the rear window into the cabin.\" exact. \"It caused the Radiofrequency hub to short circuit\" exact. \"my vehicle wouldn't turn on\" exact. \"it killed my battery\" exact. \"when I replaced my battery, it automatically drained\" exact. \"bad odors, smells, and mildew\" exact. \"I have children and not knowing that there is mildew growing in my vehicle is a major health concern.\" exact. Need kind mapping. symptom for water leak? Water leak is condition maybe. Symptom: vehicle wouldn't turn on, battery drain, odors/mildew. Condition: water leak/moisture. Fault code none. component_group quote \"ELECTRICAL SYSTEM\"? That is component field, not narrative? Report includes component. Can quote from whole report including fields. \"ELECTRICAL SYSTEM\" verbatim. safety quote health concern. Other maybe RF hub short.\n\nSummary one line: \"Electrical system: water leak from third brake light caused RF hub short, no-start, battery drain, mildew odors.\" Conditions: moisture. Symptoms: \"water leak into cabin\", \"radiofrequency hub short circuit\", \"vehicle would not turn on\", \"battery drained\", \"bad odors and mildew\". Need plain words. JSON.\n\nEnsure no markdown? User says answer with one JSON object and no other text. We can output raw JSON.\n\nNeed decide safety_relevant true. Hmm could be controversial because the prompt says \"another risk to people\" and health concern. Yes. Also \"I have children\" risk. Good.\n\nMissing_info: mileage. Maybe \"date\" not missing. The report has received_at, no incident date. The analysis needs date? It says missing_info only for facts analysis needs: component, symptom, conditions, mileage, date. There is no incident date, only received_at. Could include \"date\" as missing incident date? Hmm received_at is date report received; but not date of occurrence. The narrative does not give when leak occurred. \"date\" might be missing. But do we list missing_info only facts analysis needs. Could include mileage and date? They gave received_at. But the \"date\" may be incident date. Since no date in narrative, yes maybe missing. But report has received_at 2025-01-09. That's a date. However not necessarily incident date. The intake normalizes incoming report; date field not asked except missing_info. I think list [\"mileage\"] only, because date is present as received_at. But if analysis needs occurrence date, maybe missing. The prompt says \"date\" fact; report has received_at. I'll not include date.\n\nNeed clues include \"ELECTRICAL SYSTEM\" kind component_group. Maybe \"Water leaks from the third brake light above the rear window into the cabin.\" kind condition. \"Radiofrequency hub to short circuit\" symptom. \"my vehicle wouldn't turn on\" symptom. \"it killed my battery\" symptom. \"automatically drained\" symptom. \"bad odors, smells, and mildew\" symptom. \"major health concern\" safety. Need quote exact span. \"I have children and not knowing that there is mildew growing in my vehicle is a major health concern.\" exact? Let's verify: \"I have children and not knowing that there is mildew growing in my vehicle is a major health concern.\" yes.\n\nCould include \"Water leaked into their vehicle into my Ram 1500 cabin.\" condition. It is awkward. Use exact.\n\nNeed summary mention component, symptom, conditions. \"Electrical system: water leak from third brake light led to RF hub short, no-start, battery drain, and mildew/odors.\" Conditions moisture. Good.\n\nNeed JSON valid. No trailing commas. Ensure quotes escaped. Strings can include apostrophes. \"wouldn't\" fine. JSON no issue.\n\nLet's craft:\n\n{\n  \"summary\": \"Electrical system: water leak from third brake light caused RF hub short circuit, no-start, battery drain, and mildew odors.\",\n  \"group\": \"electrical_general\",\n  \"symptoms\": [\"water leak into cabin\", \"radiofrequency hub short circuit\", \"vehicle would not turn on\", \"battery killed and repeatedly drained\", \"bad odors, smells, and mildew\"],\n  \"conditions\": [\"moisture\"],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\"mileage\"],\n  \"clues\": [...]\n}\n\nClues:\n{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"}\n{\"kind\":\"condition\",\"quote\":\"Water leaked into their vehicle into my Ram 1500 cabin.\"}\n{\"kind\":\"condition\",\"quote\":\"Water leaks from the third brake light above the rear window into the cabin.\"}\n{\"kind\":\"symptom\",\"quote\":\"It caused the Radiofrequency hub to short circuit\"}\n{\"kind\":\"symptom\",\"quote\":\"my vehicle wouldn't turn on\"}\n{\"kind\":\"symptom\",\"quote\":\"it killed my battery\"}\n{\"kind\":\"symptom\",\"quote\":\"it automatically drained\"}\n{\"kind\":\"symptom\",\"quote\":\"bad odors, smells, and mildew\"}\n{\"kind\":\"safety\",\"quote\":\"I have children and not knowing that there is mildew growing in my vehicle is a major health concern.\"}\nMaybe also \"Water leaked into their vehicle into my Ram 1500 cabin.\" exact? The narrative says \"Water leaked into their vehicle into my Ram 1500 cabin.\" Yes.\n\nNeed maybe include \"Water leaks from the third brake light above the rear window into the cabin.\" exact with period. yes.\n\nShould conditions include \"water\" not in allowed list? Allowed list: cold, moisture, heat, vibration, intermittent, after service, charging. Use \"moisture\" only. Good.\n\nPotential issue: safety_relevant true might conflict with given false, but rules. Good.\n\nNeed final only JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793522422,
+      "id": "gw-c068bf5dd6ff-2a5cf9",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1824,
+        "completion_tokens_details": {
+          "reasoning_tokens": 1552
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00067524,
+          "billing_source": "go",
+          "list_cost": 0.0011254,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 199,
+            "output": 1824,
+            "reasoning": 1552
+          }
+        },
+        "prompt_tokens": 583,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "total_tokens": 2407
+      }
+    },
+    "text": "{\"summary\":\"Electrical system: water leak from third brake light caused RF hub short circuit, no-start, battery drain, and mildew odors.\",\"group\":\"electrical_general\",\"symptoms\":[\"water leak into cabin\",\"radiofrequency hub short circuit\",\"vehicle would not turn on\",\"battery killed and repeatedly drained\",\"bad odors, smells, and mildew\"],\"conditions\":[\"moisture\"],\"fault_codes\":[],\"safety_relevant\":true,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"ELECTRICAL SYSTEM\"},{\"kind\":\"condition\",\"quote\":\"Water leaked into their vehicle into my Ram 1500 cabin.\"},{\"kind\":\"condition\",\"quote\":\"Water leaks from the third brake light above the rear window into the cabin.\"},{\"kind\":\"symptom\",\"quote\":\"It caused the Radiofrequency hub to short circuit\"},{\"kind\":\"symptom\",\"quote\":\"my vehicle wouldn't turn on\"},{\"kind\":\"symptom\",\"quote\":\"it killed my battery\"},{\"kind\":\"symptom\",\"quote\":\"it automatically drained\"},{\"kind\":\"symptom\",\"quote\":\"bad odors, smells, and mildew\"},{\"kind\":\"safety\",\"quote\":\"I have children and not knowing that there is mildew growing in my vehicle is a major health concern.\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00067524,
+      "cached_tokens": 384,
+      "cost_usd": 0.0011254,
+      "input_tokens": 583,
+      "list_cost_usd": 0.0011254,
+      "output_tokens": 1824,
+      "reasoning_tokens": 1552
+    }
+  }
+}

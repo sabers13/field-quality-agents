@@ -29,6 +29,13 @@ from field_quality_agents.contracts import (
     Proposal,
     ProposalKind,
 )
+from field_quality_agents.llm.errors import BadAnswerError
+
+#: Facts the desk cannot analyse without. The model's ``missing_info`` list is
+#: advisory for the rest: NHTSA reports often omit mileage, and the desk always
+#: has the received date, so neither may stop a case at intake (Q9 smoke run
+#: showed 19 of 20 cases blocked on mileage/date before this filter).
+ESSENTIAL_INFO = frozenset({"component", "symptom"})
 
 
 def _info_request(case: Case, missing: tuple[str, ...]) -> Proposal:
@@ -75,12 +82,12 @@ def make_intake_node(model: AgentModel, tools: ToolRegistry) -> Node:
                 cost_usd=turn.cost_usd,
                 duration_ms=turn.duration_ms,
             )
-        except ModelOutputError:
+        except (ModelOutputError, BadAnswerError):
             readable = False
             writer.add(
                 agent="intake",
                 action="unreadable_model_output",
-                reason="model answer was not a JSON object; asking the engineer",
+                reason="model answer was unreadable; asking the engineer",
             )
 
         extraction = Extraction(
@@ -114,14 +121,25 @@ def make_intake_node(model: AgentModel, tools: ToolRegistry) -> Node:
         )
 
         missing = as_text_list(payload, "missing_info")
+        blocking = tuple(item for item in missing if item in ESSENTIAL_INFO)
         proposal: Proposal | None = None
-        if not readable or missing:
-            reason_text = "unreadable model output" if not readable else "report incomplete"
-            proposal = _info_request(case, missing or ("a readable report",))
+        if not readable or blocking:
+            if readable:
+                reason_text = "missing essential information: " + ", ".join(blocking)
+            else:
+                reason_text = "unreadable model output"
+            proposal = _info_request(case, blocking or ("a readable report",))
             writer.add(
                 agent="intake",
                 action="draft_info_request",
                 reason=reason_text,
+            )
+        elif missing:
+            writer.add(
+                agent="intake",
+                action="note_missing_info",
+                reason="the report omits " + ", ".join(missing) + "; analysis can proceed",
+                counts=False,
             )
 
         updated = case.model_copy(

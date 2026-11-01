@@ -1,0 +1,60 @@
+{
+  "key": "4ff38ebc006808e826db3ffc52d03fd5bd277f54c6c3f8350b00590a6ff66a4d",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 17401,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Instrument cluster/panel: dashboard froze and truck would not restart, recurred while traveling with warning lights/sound; flagged unsafe and unresolved after service.\",\n  \"group\": \"instrumentation\",\n  \"symptoms\": [\n    \"dashboard frozen\",\n    \"truck would not restart\",\n    \"no warning light displayed at first\",\n    \"warning lights and sound went off\"\n  ],\n  \"conditions\": [\n    \"intermittent\",\n    \"after service\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"ELECTRICAL SYSTEM: INSTRUMENT CLUSTER/PANEL\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"the trucks dashboard was frozen\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"the truck would not restart\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"No warning light displayed at this time and the truck was stationary.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"Dash froze again while the truck was traveling\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"warning lights and sound went off this time\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"No Accident occurred but having the dashboard fail when in motions was a very unsafe situation\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"if the trucks dash system was to freeze up when the crane is deployed that would also be an unsafe situation\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"The truck is currently at a Peterbilt Service provider, but the issue has not been resolved after 5 weeks.\"\n    }\n  ]\n}",
+            "reasoning_content": "We need answer JSON only. Need normalize report. Need parse. Component instrument cluster. Group instrumentation given. Summary one line component symptom conditions. Symptoms: dashboard frozen, truck would not restart, warning lights and sound went off, issue not resolved after 5 weeks? Symptom plain words. Conditions: truck stationary, while traveling, when crane deployed, after service? It says Peterbilt mobile service thought resolved; dash froze again. \"after service\" condition maybe yes? Rules conditions list includes after service. We can include \"after service\" because issue thought resolved after mobile service then recurred? Quote must evidence. Also \"stationary\", \"while traveling\", \"crane deployed\". Conditions specified allowed: cold moisture heat vibration intermittent after service charging. Also maybe \"intermittent\" because froze again; not explicitly intermittent but recurrence. Could include \"intermittent\" based on froze again. Clues quotes verbatim. Safety_relevant true because unsafe situation, dashboard fail when in motion, crane deployed unsafe. Mentions no accident but unsafe. Fault codes none. Missing_info: mileage null? date? received date exists but incident date missing. Need list only facts analysis needs: mileage, date maybe. Component present symptom present conditions present. missing_info [\"mileage\",\"date\"]. Maybe \"date\" incident date not given. Good.\n\nNeed exact quotes copied. Narrative: \"The Crane operator reported that the trucks dashboard was frozen, the truck would not restart.\" Quote \"the trucks dashboard was frozen\" exact lowercase? Narrative has \"the trucks dashboard was frozen\" yes after \"that \". \"the truck would not restart\" exact. \"No warning light displayed at this time and the truck was stationary.\" quote \"No warning light displayed at this time and the truck was stationary.\" \"Dash froze again while the truck was traveling, warning lights and sound went off this time.\" Quote exact. \"No Accident occurred but having the dashboard fail when in motions was a very unsafe situation\" exact includes \"in motions\" typo. \"if the trucks dash system was to freeze up when the crane is deployed that would also be an unsafe situation.\" exact. \"The truck is currently at a Peterbilt Service provider, but the issue has not been resolved after 5 weeks.\" exact.\n\nNeed clues include kind. For safety quote. component_group quote maybe \"ELECTRICAL SYSTEM: INSTRUMENT CLUSTER/PANEL\"? That's in component field not narrative. Report includes component. Verbatim from report yes. Could include. Need summary: \"Instrument cluster/panel: dashboard froze and truck would not restart; recurred while traveling with warning lights/sound, safety concern.\" One line.\n\nNeed group \"instrumentation\". symptoms array maybe [\"dashboard frozen\", \"truck would not restart\", \"warning lights and sound went off\"] Maybe \"no warning light displayed at first\". But symptom? Include maybe \"no warning light displayed at this time\". But symptom plain words. Could include. \"issue unresolved after 5 weeks\" not symptom. Conditions: [\"stationary\", \"while traveling\", \"crane deployed\", \"after service\"] But allowed list includes \"after service\"; maybe not exact condition. Conditions list examples. It says conditions: [\"cold\", ...]. Could include \"while traveling\"? That's condition? It expects condition categories. Hmm the schema says conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"]. So likely use those terms only? It says conditions list. Use \"intermittent\", \"after service\". But stationary/traveling are operational states, not in list. However can include plain conditions? The prompt examples maybe not exhaustive? It says conditions: [\"cold\"...] likely allowed values. To be safe include \"intermittent\", \"after service\". But \"while traveling\" is relevant condition and clue. Could include \"stationary\" and \"while traveling\" maybe not allowed. The instruction: conditions: [\"cold\", \"moisture\", \"heat\", \"vibration\", \"intermittent\", \"after service\", \"charging\"] This appears enumerated allowed. Use only relevant allowed: \"intermittent\", \"after service\". \"after service\" because mobile service thought resolved and dash froze again. Also maybe \"while traveling\" not in allowed; can be clue condition? Kind condition quote \"Dash froze again while the truck was traveling\" maybe. But conditions field can just have intermittent, after service. Hmm.\n\nNeed safety_relevant true despite input false. Yes override.\n\nMissing_info: mileage null, date? Received_at is 2025-01-03 but incident date not in narrative. Use [\"mileage\",\"date\"]. Maybe no missing component/symptom/conditions. Good.\n\nNeed JSON no other text. Ensure valid JSON. Quotes verbatim. Need exact capitalization. Let's verify all quotes:\n\n- \"ELECTRICAL SYSTEM: INSTRUMENT CLUSTER/PANEL\" from component.\n- \"the trucks dashboard was frozen\" yes substring: \"that the trucks dashboard was frozen, the truck...\" exact.\n- \"the truck would not restart\" exact.\n- \"No warning light displayed at this time and the truck was stationary.\" exact.\n- \"Dash froze again while the truck was traveling\" exact substring with comma after traveling? Quote can omit comma. Character for character span \"Dash froze again while the truck was traveling\" yes.\n- \"warning lights and sound went off this time\" exact substring.\n- \"No Accident occurred but having the dashboard fail when in motions was a very unsafe situation\" exact? Narrative: \"No Accident occurred but having the dashboard fail when in motions was a very unsafe situation and additionally...\" yes.\n- \"if the trucks dash system was to freeze up when the crane is deployed that would also be an unsafe situation\" exact? Narrative: \"and additionally if the trucks dash system was to freeze up when the crane is deployed that would also be an unsafe situation.\" yes.\n- \"The truck is currently at a Peterbilt Service provider, but the issue has not been resolved after 5 weeks.\" exact.\n\nNeed summary one line. \"Instrument cluster/panel: dashboard frozen and no restart, recurred while traveling with warning lights/sound; flagged unsafe, unresolved after service.\" Good.\n\nCould include \"missing_info\": []? No, mileage/date missing. Maybe date not explicitly? received_at but incident date not. Yes.\n\nNeed not mention action. Good.\n\nFinal JSON.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793522223,
+      "id": "gw-c1efd3264bbc-2a5312",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1738,
+        "completion_tokens_details": {
+          "reasoning_tokens": 1317
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00064806,
+          "billing_source": "go",
+          "list_cost": 0.0010801,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 241,
+            "output": 1738,
+            "reasoning": 1317
+          }
+        },
+        "prompt_tokens": 625,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "total_tokens": 2363
+      }
+    },
+    "text": "{\n  \"summary\": \"Instrument cluster/panel: dashboard froze and truck would not restart, recurred while traveling with warning lights/sound; flagged unsafe and unresolved after service.\",\n  \"group\": \"instrumentation\",\n  \"symptoms\": [\n    \"dashboard frozen\",\n    \"truck would not restart\",\n    \"no warning light displayed at first\",\n    \"warning lights and sound went off\"\n  ],\n  \"conditions\": [\n    \"intermittent\",\n    \"after service\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"missing_info\": [\n    \"mileage\",\n    \"date\"\n  ],\n  \"clues\": [\n    {\n      \"kind\": \"component_group\",\n      \"quote\": \"ELECTRICAL SYSTEM: INSTRUMENT CLUSTER/PANEL\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"the trucks dashboard was frozen\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"the truck would not restart\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"No warning light displayed at this time and the truck was stationary.\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"Dash froze again while the truck was traveling\"\n    },\n    {\n      \"kind\": \"symptom\",\n      \"quote\": \"warning lights and sound went off this time\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"No Accident occurred but having the dashboard fail when in motions was a very unsafe situation\"\n    },\n    {\n      \"kind\": \"safety\",\n      \"quote\": \"if the trucks dash system was to freeze up when the crane is deployed that would also be an unsafe situation\"\n    },\n    {\n      \"kind\": \"condition\",\n      \"quote\": \"The truck is currently at a Peterbilt Service provider, but the issue has not been resolved after 5 weeks.\"\n    }\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00064806,
+      "cached_tokens": 384,
+      "cost_usd": 0.0010801,
+      "input_tokens": 625,
+      "list_cost_usd": 0.0010801,
+      "output_tokens": 1738,
+      "reasoning_tokens": 1317
+    }
+  }
+}

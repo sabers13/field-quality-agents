@@ -17,5 +17,10 @@ max_retry_after_seconds = 300.0
 
 [request]
 temperature = 0.0
-max_tokens = 1024
+# DeepSeek V4.1 Flash is a reasoning model and its reasoning tokens count
+# against this allowance. 1024 tokens were entirely consumed by reasoning on
+# the first Q9 case, so Q9 raised the allowance (PLAN §3 says "at least 1,024")
+# and pinned the reasoning effort to the documented "low" setting.
+max_tokens = 8192
+reasoning_effort = "low"
 timeout_seconds = 60.0

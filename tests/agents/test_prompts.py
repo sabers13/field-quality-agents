@@ -43,7 +43,7 @@ def test_versions_must_look_like_p_number(version: str) -> None:
 
 
 def test_run_records_the_prompt_version() -> None:
-    run, _model, _tools = run_desk(make_case(), intake=intake_payload(missing=("mileage",)))
+    run, _model, _tools = run_desk(make_case(), intake=intake_payload(missing=("symptom",)))
     assert run.prompt_version == PROMPT_VERSION
     supervisor_steps = [step for step in run.trace if step.agent == "supervisor"]
     assert supervisor_steps

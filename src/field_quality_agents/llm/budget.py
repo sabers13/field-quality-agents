@@ -28,7 +28,8 @@ class RetryConfig:
 @dataclass(frozen=True)
 class RequestConfig:
     temperature: float = 0.0
-    max_tokens: int = 1024
+    max_tokens: int = 8192
+    reasoning_effort: str = "low"
     timeout_seconds: float = 60.0
 
 
@@ -69,7 +70,8 @@ class BudgetConfig:
             ),
             request=RequestConfig(
                 temperature=_float(request, "temperature", 0.0),
-                max_tokens=_int(request, "max_tokens", 1024),
+                max_tokens=_int(request, "max_tokens", 8192),
+                reasoning_effort=_str(request, "reasoning_effort", "low"),
                 timeout_seconds=_float(request, "timeout_seconds", 60.0),
             ),
         )
@@ -93,3 +95,10 @@ def _float(section: object, key: str, default: float) -> float:
     if isinstance(value, bool) or not isinstance(value, int | float):
         return default
     return float(value)
+
+
+def _str(section: object, key: str, default: str) -> str:
+    value = _value(section, key)
+    if not isinstance(value, str) or not value.strip():
+        return default
+    return value.strip()

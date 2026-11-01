@@ -1,0 +1,60 @@
+{
+  "key": "ef213d7150b76d61b56f46e8a821f0f1c318cc914aa3ecef5d62748ce6dee3a8",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 16650,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\"summary\":\"Electrical system recall 24V608000 on 2015 BMW 428I; repair parts unavailable; no failure experienced.\",\"group\":\"electrical_general\",\"symptoms\":[],\"conditions\":[],\"fault_codes\":[\"24V608000\"],\"safety_relevant\":false,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"Electrical System\"},{\"kind\":\"fault_code\",\"quote\":\"24V608000\"},{\"kind\":\"condition\",\"quote\":\"the part to the recall repair was unavailable\"},{\"kind\":\"symptom\",\"quote\":\"The contact had not experienced a failure.\"},{\"kind\":\"other\",\"quote\":\"manufacturer had exceeded a reasonable amount of time for the recall repair\"}]}",
+            "reasoning_content": "We need answer JSON only. Need parse report. Component electrical system, group electrical_general. Narrative about recall 24V608000 engine and engine cooling electrical system, part unavailable, no failure experienced. Need summary one line component symptom conditions. Symptom? \"contact had not experienced a failure\" means no symptom. Conditions? Recall, parts unavailable, no failure. Maybe conditions none. Fault codes: NHTSA Campaign Number 24V608000 is recall not fault code? Rule says fault_codes code if report names one. It names campaign number. Could include \"24V608000\" as fault_code? It's a recall campaign code. Probably include. Safety_relevant false because report explicitly says no failure, no crash fire etc. missing_info? mileage null, date? received_at given. conditions? No failure conditions. component present symptom? no symptom but \"had not experienced a failure\" maybe missing symptom? Analysis needs symptom? Since no failure, maybe missing_info [\"mileage\",\"symptom\"]? Need follow rules list missing_info only facts analysis needs: component, symptom, conditions, mileage, date. Component present. Symptom absent (no failure). Conditions? recall context, parts unavailable. Mileage missing. Date present. Could list mileage and symptom. But \"missing_info\" for symptom when report says no failure? It is not missing exactly; no symptom. But desk analyzing field-quality report might need symptom. Hmm.\n\nClues: verbatim quotes. Need include symptom quote \"The contact had not experienced a failure.\" kind symptom? It's absence. condition quote \"the part to the recall repair was unavailable\" kind condition? Could quote. fault_code quote \"24V608000\" or \"NHTSA Campaign Number: 24V608000\". component_group quote \"ELECTRICAL SYSTEM\" maybe exact from component field? Is report includes \"Electrical System\" in narrative. Quote should be copied verbatim from report. The report is entire JSON? User says read only report. Quotes from narrative likely. \"Electrical System\" appears in narrative exactly with capital E? It says \"(Engine and Engine Cooling, Electrical System)\" yes. component group quote \"Electrical System\". Safety? No safety quote? Could quote \"The contact had not experienced a failure.\" kind safety? Not safety relevant. Better no safety clue. Other quote \"manufacturer had exceeded a reasonable amount of time for the recall repair\" condition? Hmm.\n\nNeed one JSON object no other text. Ensure valid JSON. Summary: \"2015 BMW 428I electrical system recall 24V608000; part unavailable; no failure experienced.\" Conditions array: maybe [\"after service\"? no]. It mentions recall repair unavailable, dealer contacted. Conditions allowable list: cold, moisture, heat, vibration, intermittent, after service, charging. None. Could be empty. Symptoms: [] because no failure. Fault_codes [\"24V608000\"]. Safety_relevant false. missing_info [\"mileage\",\"symptom\"]? Is symptom missing? The report says no failure, so symptom is \"none reported.\" But missing_info asks facts analysis needs. Since no failure, symptom absent. I might put [\"mileage\"] only. But if no symptom, analysis cannot assess. However missing_info list includes symptom. It is not missing; it's reported as no failure. Hmm \"missing_info\" only for facts the analysis needs: component, symptom, conditions, mileage, date. Symptom not experienced; but still no symptom detail. I'd include \"mileage\" and \"symptom\" maybe safe. Conditions? There's recall condition but not environmental. Could include conditions? No. Date present. Component present. I'd list [\"mileage\", \"symptom\"]? The narrative says no failure so symptom is not applicable. But the schema expects symptoms array; empty. Missing_info could include \"symptom\" because none. The instructions: \"Use an empty list when nothing important is missing.\" Mileage is missing and important? For field quality maybe yes. So not empty. Include mileage. Symptom? It's not missing; it explicitly says no failure. I'd avoid symptom. Maybe conditions missing? No.\n\nNeed clues:\n- {\"kind\":\"component_group\",\"quote\":\"Electrical System\"}\n- {\"kind\":\"fault_code\",\"quote\":\"24V608000\"}\n- {\"kind\":\"condition\",\"quote\":\"the part to the recall repair was unavailable\"}\n- {\"kind\":\"symptom\",\"quote\":\"The contact had not experienced a failure.\"}\n- maybe {\"kind\":\"other\",\"quote\":\"manufacturer had exceeded a reasonable amount of time for the recall repair\"}\n\nNeed ensure quotes verbatim. Narrative exact: \"The contact received notification of NHTSA Campaign Number: 24V608000 (Engine and Engine Cooling, Electrical System); however, the part to the recall repair was unavailable.\" Quote \"the part to the recall repair was unavailable\" is exact substring? It says \"however, the part to the recall repair was unavailable.\" Yes substring \"the part to the recall repair was unavailable\" exists. Good. \"Electrical System\" exact. \"24V608000\" exact. \"The contact had not experienced a failure.\" exact. \"manufacturer had exceeded a reasonable amount of time for the recall repair\" exact? Narrative: \"The contact stated that the manufacturer had exceeded a reasonable amount of time for the recall repair.\" substring \"manufacturer had exceeded a reasonable amount of time for the recall repair\" yes.\n\nSummary should mention component, symptom, conditions. \"Electrical system recall 24V608000 on 2015 BMW 428I; repair parts unavailable; no failure experienced.\" Good.\n\nNeed no markdown? They said answer with one JSON object and no other text. We can output raw JSON. Good.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793522185,
+      "id": "gw-c0c301b7e952-2d16d8",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 1336,
+        "completion_tokens_details": {
+          "reasoning_tokens": 1178
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00050019,
+          "billing_source": "go",
+          "list_cost": 0.00083365,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 206,
+            "output": 1336,
+            "reasoning": 1178
+          }
+        },
+        "prompt_tokens": 590,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "total_tokens": 1926
+      }
+    },
+    "text": "{\"summary\":\"Electrical system recall 24V608000 on 2015 BMW 428I; repair parts unavailable; no failure experienced.\",\"group\":\"electrical_general\",\"symptoms\":[],\"conditions\":[],\"fault_codes\":[\"24V608000\"],\"safety_relevant\":false,\"missing_info\":[\"mileage\"],\"clues\":[{\"kind\":\"component_group\",\"quote\":\"Electrical System\"},{\"kind\":\"fault_code\",\"quote\":\"24V608000\"},{\"kind\":\"condition\",\"quote\":\"the part to the recall repair was unavailable\"},{\"kind\":\"symptom\",\"quote\":\"The contact had not experienced a failure.\"},{\"kind\":\"other\",\"quote\":\"manufacturer had exceeded a reasonable amount of time for the recall repair\"}]}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00050019,
+      "cached_tokens": 384,
+      "cost_usd": 0.00083365,
+      "input_tokens": 590,
+      "list_cost_usd": 0.00083365,
+      "output_tokens": 1336,
+      "reasoning_tokens": 1178
+    }
+  }
+}

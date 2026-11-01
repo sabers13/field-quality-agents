@@ -1,0 +1,60 @@
+{
+  "key": "2a68c0e092a793049b296af691fdb01a47fbd0ca0ec8005825c8597464bd7c6f",
+  "response": {
+    "finish_reason": "stop",
+    "latency_ms": 11935,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "{\n  \"summary\": \"Verify that the rear-view camera image reliably reappears on every shift into reverse, including repeated drive-to-reverse cycling during parking manoeuvres.\",\n  \"rationale\": \"The narrative describes a repeatable software behaviour: the rear camera displays on the first shift into reverse, but after shifting to drive and back to reverse the image does not return and requires several infotainment touchscreen inputs to restore. This matches a camera-software display-restore defect on the 2025 Polestar 3, and an open recall (25V293000) for the same model/year addresses a rearview camera image that may not display in reverse, citing FMVSS 111 rear visibility non-compliance. No rulebook entry or prior similar case is available, so a standard functional verification of the camera display on repeated reverse engagements is proposed rather than a rulebook-named targeted test. Because loss of the rear camera view while reversing can deprive the driver of rear visibility and create a back-over risk, the case is flagged for human review before any test is booked.\",\n  \"group\": \"adas\",\n  \"symptoms\": [\n    \"rear view parking camera software is defective\",\n    \"rear parking camera view does not come back up after shifting from drive into reverse\",\n    \"requires several additional touches on the infotainment touchscreen to restore the camera view\"\n  ],\n  \"conditions\": [\n    \"shifting from drive back into reverse\",\n    \"repeated reverse engagements during parking adjustments in a parking lot\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"targeted\": false,\n  \"test_name\": \"Standard functional check: rear-view camera display on repeated reverse engagements\",\n  \"clues\": [\n    {\"kind\": \"component_group\", \"quote\": \"BACK OVER PREVENTION: SENSING SYSTEM: CAMERA\"},\n    {\"kind\": \"symptom\", \"quote\": \"The rear view parking camera software is defective.\"},\n    {\"kind\": \"symptom\", \"quote\": \"the rear parking camera view does NOT come back up\"},\n    {\"kind\": \"symptom\", \"quote\": \"it requires several additional touches on the car's infotainment touchscreen to bring the rear parking camera view back up\"},\n    {\"kind\": \"condition\", \"quote\": \"if you put the car into drive and then back into reverse\"},\n    {\"kind\": \"condition\", \"quote\": \"as if you are making some parking adjustments in a parking lot\"}\n  ]\n}",
+            "reasoning_content": "The user wants a JSON object. No rulebook matches, so targeted false, standard test. Safety relevant? The case's safety_relevant is false in intake, but recall indicates FMVSS 111 non-compliance — rear visibility failure. Hmm. Narrative doesn't show risk to people explicitly, but backup camera failure is a safety concern. The rule: set safety_relevant when narrative shows risk to people. A rear visibility camera failure while reversing... arguably. But the extraction says false. The recall exists for the same issue. I'd say safety_relevant true given rear visibility failure relates to pedestrian/backover risk. Hmm, but the narrative simply describes software defect. The field is \"safety_relevant\": false in the case data. But we should judge. Rear camera not displaying during reverse is a backover risk. Consider the recall cites FMVSS 111. I'll set true — safety cases go to a human, conservative. But mismatch with extraction may be fine. Actually the rule: \"Set safety_relevant when the narrative shows a risk to people.\" The narrative doesn't explicitly mention people. A camera fault means driver can't see behind — that's a risk of backover. I'll go true.\n\nHmm, but perhaps grading expects false since intake says false. The intake safety_relevant is provided as extraction field. I'll weigh: a rear visibility failure is a classic safety item; NHTSA recall. I'll say true.\n\nActually, risk of being wrong... I'll set true and explain in rationale.\n\nClues must be verbatim quotes from narrative. Use quotes from narrative text.\n\nTest name: no rulebook entry, so \"targeted\": false and test_name something standard like \"standard functional check of rear-view camera display on repeated reverse engagements\". Rulebook names nothing; provide a standard test name but mark targeted false. Maybe test_name can be \"standard road test\"? I'll say \"Standard functional test: repeated reverse engagement camera display check\".",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1793522765,
+      "id": "gw-c026736306b7-2baa81",
+      "model": "deepseek-v4.1-flash",
+      "object": "chat.completion",
+      "usage": {
+        "completion_tokens": 928,
+        "completion_tokens_details": {
+          "reasoning_tokens": 404
+        },
+        "cost": 0,
+        "opencode": {
+          "allowance": 0.00039417,
+          "billing_source": "go",
+          "list_cost": 0.00065695,
+          "tokens": {
+            "cache_read": 384,
+            "cache_write_1h": 0,
+            "cache_write_5m": 0,
+            "input": 660,
+            "output": 928,
+            "reasoning": 404
+          }
+        },
+        "prompt_tokens": 1044,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "total_tokens": 1972
+      }
+    },
+    "text": "{\n  \"summary\": \"Verify that the rear-view camera image reliably reappears on every shift into reverse, including repeated drive-to-reverse cycling during parking manoeuvres.\",\n  \"rationale\": \"The narrative describes a repeatable software behaviour: the rear camera displays on the first shift into reverse, but after shifting to drive and back to reverse the image does not return and requires several infotainment touchscreen inputs to restore. This matches a camera-software display-restore defect on the 2025 Polestar 3, and an open recall (25V293000) for the same model/year addresses a rearview camera image that may not display in reverse, citing FMVSS 111 rear visibility non-compliance. No rulebook entry or prior similar case is available, so a standard functional verification of the camera display on repeated reverse engagements is proposed rather than a rulebook-named targeted test. Because loss of the rear camera view while reversing can deprive the driver of rear visibility and create a back-over risk, the case is flagged for human review before any test is booked.\",\n  \"group\": \"adas\",\n  \"symptoms\": [\n    \"rear view parking camera software is defective\",\n    \"rear parking camera view does not come back up after shifting from drive into reverse\",\n    \"requires several additional touches on the infotainment touchscreen to restore the camera view\"\n  ],\n  \"conditions\": [\n    \"shifting from drive back into reverse\",\n    \"repeated reverse engagements during parking adjustments in a parking lot\"\n  ],\n  \"fault_codes\": [],\n  \"safety_relevant\": true,\n  \"targeted\": false,\n  \"test_name\": \"Standard functional check: rear-view camera display on repeated reverse engagements\",\n  \"clues\": [\n    {\"kind\": \"component_group\", \"quote\": \"BACK OVER PREVENTION: SENSING SYSTEM: CAMERA\"},\n    {\"kind\": \"symptom\", \"quote\": \"The rear view parking camera software is defective.\"},\n    {\"kind\": \"symptom\", \"quote\": \"the rear parking camera view does NOT come back up\"},\n    {\"kind\": \"symptom\", \"quote\": \"it requires several additional touches on the car's infotainment touchscreen to bring the rear parking camera view back up\"},\n    {\"kind\": \"condition\", \"quote\": \"if you put the car into drive and then back into reverse\"},\n    {\"kind\": \"condition\", \"quote\": \"as if you are making some parking adjustments in a parking lot\"}\n  ]\n}",
+    "tool_calls": [],
+    "usage": {
+      "allowance_usd": 0.00039417,
+      "cached_tokens": 384,
+      "cost_usd": 0.00065695,
+      "input_tokens": 1044,
+      "list_cost_usd": 0.00065695,
+      "output_tokens": 928,
+      "reasoning_tokens": 404
+    }
+  }
+}
