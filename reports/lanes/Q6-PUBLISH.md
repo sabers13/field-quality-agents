@@ -55,8 +55,34 @@ claiming the PII screen removes all personal names or changing scientific facts.
 
 ## Publication receipt
 
-Prepared and verified locally; final GitHub commits, Pages deployment and live
-checks are recorded here after pushing.
+- Source main was pushed at `64dae4ce0ec476d8ce9a992857c64ed68e3b9c9f`.
+  The existing `v1.0.0` tag was also pushed without moving it.
+- Portfolio main was pushed at `66fc679c4e0898f76f26a9ecde2ec37b97fce027`.
+  [Pages run 41400644943](https://github.com/sabers13/sabers13.github.io/actions/runs/41400644943)
+  completed successfully, with its head SHA matching the portfolio commit.
+- `https://sabersojudi.com/field-quality-agents/` is live. The served HTML,
+  application script, data bundle, credit notice and SVG card each returned 200
+  and matched the committed portfolio bytes. The public homepage contains the
+  project card and its project link.
+- Repeated the nine-view / two-theme / three-width verification against the
+  public URL: 54 screenshots; correct GitHub source link, real case, playback,
+  exact JSON download and credits; no API requests, script/console errors or
+  document overflow. The published demo is the real recorded static export.
+- NHTSA remains credited as the public data source. The client/employer naming
+  restriction remains in force. Original dataset/results were not rewritten.
+
+The follow-up receipt commit changes this report only; the verified website
+payload and scientific results remain the same.
+
+## Live performance observation
+
+Chrome reload trace on the public Pages URL, 390×844 mobile, Slow 4G, CPU ×4:
+FCP 0.83s, LCP 1.68s, CLS 0.00. The observed LCP/CLS meet 2.5s/0.1 thresholds,
+but this is a warm-cache reload (three of four responses were cached), not a cold
+network benchmark or field measurement. Five long tasks totalled 1,095ms, with
+634ms maximum. INP was not measured. The large bundled replay data and application
+remain the existing cold-load limitation; this publication does not claim to fix
+their architecture. Trace and summary are in ignored `.taste-skill/` files.
 
 ## orch-ui tool report
 
@@ -75,7 +101,7 @@ checks are recorded here after pushing.
 | shadcn / Kokonut / Bklit / Motion | Skipped | Existing stack; no component/dependency change |
 | scenes.mjs | Skipped | No scroll scene |
 | assets.mjs | Skipped | Project diagram is repo-native SVG, no stock media |
-| DevTools speed check | Pending live site | Measure the actual Pages delivery after deployment |
+| DevTools speed check | Ran | Public Pages reload trace; warm-cache limitation disclosed above |
 | reference-image workflow | Skipped | No image reconstruction |
 | Lavish | Skipped | No new design decision |
 | Package installs | Skipped | None needed |
