@@ -18,8 +18,9 @@ describe("theme preference", () => {
 
   it("reads only known preferences", () => {
     expect(readThemePreference(storageWith("dark"))).toBe("dark");
-    expect(readThemePreference(storageWith("purple"))).toBe("auto");
-    expect(readThemePreference(storageWith(null))).toBe("auto");
-    expect(readThemePreference(undefined)).toBe("auto");
+    expect(readThemePreference(storageWith("auto"))).toBe("auto");
+    expect(readThemePreference(storageWith("purple"))).toBe("light");
+    expect(readThemePreference(storageWith(null))).toBe("light");
+    expect(readThemePreference(undefined)).toBe("light");
   });
 });

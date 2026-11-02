@@ -1,9 +1,7 @@
 # Method
 
-This is the method behind the project, in plain words. The frozen version is
-`PLAN.md` §3–§8; this document explains what those sections build and why, with
-pointers to the code that does it. Where the project deviates, the reason is in
-`reports/RUN.md`.
+This is the method behind the project, in plain words: what each part builds
+and why, with pointers to the code that does it.
 
 ## 1. The experiment
 
@@ -232,8 +230,7 @@ cannot wobble between runs.
 The live run is checked separately: its record-mode output is replayed from the
 same recordings and every content file is compared with the recorded run. Only
 the manifest (mode and run id) and the event feed (run id in report events)
-differ, by design. `reports/RUN.md` records that check and the environment it
-ran in.
+differ, by design.
 
 Tests are offline. The pytest configuration blocks sockets, and the browser
 tests run against fixture recordings, so `make test` and `make release-check`

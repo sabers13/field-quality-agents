@@ -9,10 +9,13 @@
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <title>Field quality agents</title>
     <script>
+      // Light is the default; "auto" (follow the system) is an explicit choice.
+      let theme = "light";
       try {
-        const theme = localStorage.getItem("fqa-theme");
-        if (theme === "light" || theme === "dark") document.documentElement.dataset.theme = theme;
+        const stored = localStorage.getItem("fqa-theme");
+        if (stored === "light" || stored === "dark" || stored === "auto") theme = stored;
       } catch { /* The opening state also works without storage access. */ }
+      if (theme !== "auto") document.documentElement.dataset.theme = theme;
     </script>
     <style>
       body { margin: 0; }

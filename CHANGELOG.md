@@ -52,7 +52,7 @@ dashboard and the documentation.
   and leaving 299 in a priority queue.
 - The replay check re-ran `make all` with no key and the network blackholed;
   the results manifest was byte-identical, and every content file of the
-  recorded run matched its replay. Details in `reports/RUN.md`.
+  recorded run matched its replay.
 - Headline metrics, both pipelines, in `results/runs/replay/metrics.json`:
   component macro-F1 0.7340 before; issue precision 0.4000 against a 0.2000
   base rate; targeted load test share 0.4198; 0.9064 of 4,166 proposed quotes
@@ -72,23 +72,23 @@ Changes made after the first live attempts:
   every smoke-run case to a person.
 - A 2xx answer with no usable content now sends the case to an engineer instead
   of aborting the batch.
-- A policy stop exits the CLI cleanly after writing `reports/STOP.md`.
+- A policy stop exits the CLI cleanly after writing a stop notice.
 - `make all` exports one explicit run and writes a results manifest, so the
   reproducible output does not depend on which record-mode runs sit beside it.
 
 ### Fixed after the independent review
 
-`reports/REVIEW.md` (Q12) found one copy of the answer key and several smaller
-defects. The fix-up (Q13) changed:
+An independent review found one copy of the answer key and several smaller
+defects. The fix changed:
 
-- The component group and the safety flag are PLAN §7 evaluation targets, so
-  they no longer travel in a model request. A record run cannot send them; the
-  frozen Q9 recordings replay with an explicit legacy flag, and the recorded
+- The component group and the safety flag are evaluation targets, so they no
+  longer travel in a model request. A record run cannot send them; the frozen
+  recordings replay with an explicit legacy flag, and the recorded
   run's group and safety metrics are withheld rather than published.
   `--legacy-recorded-input` is refused outside replay mode.
 - Intake verifies its own clues before keeping them, so a safety or
   information-request case can no longer persist an unchecked quote. A failing
-  quote is dropped, as PLAN §4 requires.
+  quote is dropped, as the method requires.
 - A quote needs a meaningful span: at least two words, or an identifier with a
   digit, matched on word boundaries. Quote grounding counts dropped quotes in
   the denominator.
@@ -96,9 +96,8 @@ defects. The fix-up (Q13) changed:
   word with the test.
 - `make release-check` runs the results-manifest check, so a stale or polluted
   `results/MANIFEST.sha256` fails the release gate.
-- `reports/DEVIATIONS.md` records every deviation from the frozen method.
 - The PII screen's scope is stated in `data/STATS.md` and the README: names in
-  narratives are not screened (open captain decision, review B4).
+  narratives are not screened.
 - Static mode shows an error instead of invented fixture numbers when no
   exported run is bundled.
 
@@ -108,7 +107,7 @@ defects. The fix-up (Q13) changed:
   156 in the NHTSA crash, fire, injury or death fields, and only 146 reports
   reach the analysis agent. The recorded pipeline ORed NHTSA's flag into the
   prediction; the label is now out of the request and the prediction, so the
-  final live run measures the model's own flag.
+  a live run measures the model's own flag.
 - Recall linking is thin: 0.1667 of linked recalls match make, model, model
   year and component group.
 - The simulated engineer approved every proposal, so "decided without edits" is
@@ -118,4 +117,4 @@ defects. The fix-up (Q13) changed:
   the rulebook under `config/rulebook.toml` is an example, not a service
   manual.
 - Narrative signatures can contain personal names; the PII screen does not
-  cover them and the captain has not yet decided whether to rebuild the set.
+  cover them.

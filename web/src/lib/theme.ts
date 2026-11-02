@@ -17,15 +17,18 @@ export function isThemePreference(value: unknown): value is ThemePreference {
   return value === "auto" || value === "light" || value === "dark";
 }
 
+/** The theme a first-time visitor sees: light, whatever the system prefers. */
+export const DEFAULT_THEME: ThemePreference = "light";
+
 export function readThemePreference(storage: Pick<Storage, "getItem"> | undefined): ThemePreference {
   if (!storage) {
-    return "auto";
+    return DEFAULT_THEME;
   }
   try {
     const stored = storage.getItem(THEME_STORAGE_KEY);
-    return isThemePreference(stored) ? stored : "auto";
+    return isThemePreference(stored) ? stored : DEFAULT_THEME;
   } catch {
-    return "auto";
+    return DEFAULT_THEME;
   }
 }
 

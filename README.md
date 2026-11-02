@@ -1,10 +1,11 @@
 # Field Quality Agents
 
-> **The plain question:** *What happens when a returns pipeline becomes agentic:
-> same process, agents doing the legwork between the steps, engineers approving?*
+**What changes when a returns pipeline becomes agentic: the same process, agents
+doing the legwork between the steps, and engineers still approving every
+decision?**
 
-[Explore the project and recorded evidence](https://sabersojudi.com/field-quality-agents/)
-· [Source code](https://github.com/sabers13/field-quality-agents)
+[Live dashboard](https://sabersojudi.com/field-quality-agents/) ·
+[Method](METHOD.md) · [Changelog](CHANGELOG.md)
 
 A supplier receives far more returned electrical and electronic parts and
 complaint reports than its labs and engineers can analyse properly. Many parts
@@ -82,14 +83,13 @@ did not produce a valid one (see the note below the table).
 | Latency p95 (seconds) | — | 29.5 |
 
 Read the table as behaviour, not as a scoreboard. An em dash on the agentic
-side means the run did not produce a valid measurement. The independent review
-found that two NHTSA truth fields — the component group and the safety flag —
-were visible to the model in the recorded run, so its group and safety numbers
-measured a copy of the answer key rather than the desk (`reports/REVIEW.md` B1
-and B2). The desk no longer sends either field to the model, and the two rows
-stay blank until the final live run measures them on unseen reports; the
-recorded run's other rows — evidence, workload, issue detection and cost — do
-not depend on those fields. As recorded, the desk flagged **462** reports
+side means the run did not produce a valid measurement. A review of the
+recorded run found that two NHTSA truth fields — the component group and the
+safety flag — were visible to the model, so its group and safety numbers
+measured a copy of the answer key rather than the desk. The desk no longer
+sends either field to the model, and the two rows stay blank until a live run
+measures them on unseen reports; the recorded run's other rows — evidence,
+workload, issue detection and cost — do not depend on those fields. As recorded, the desk flagged **462** reports
 against **156** in the NHTSA fields, and only **146** reports reached the
 analysis agent. Issue detection reports 0.4000 precision against a 0.2000 base
 rate for random weeks, with a median lead time of 65 days, and recall linking
@@ -106,7 +106,7 @@ The recorded run `live-2025` played **600 reports** through the agentic desk;
   case.
 - **Fleet view:** **5 fleet issues** and **53 weekly reports**.
 - **Spend:** **USD 0.798998** at gateway list cost, about **1.33** per 1,000
-  cases. `reports/RUN.md` records the timing and the two attempts.
+  cases.
 - **Routing:** **462** reports were flagged safety-relevant, against **156** in
   the NHTSA crash, fire, injury or death fields. **146** reports reached the
   analysis agent, **13** asked the reporter for more information, and **55**
@@ -122,7 +122,6 @@ Sources: `results/runs/replay/manifest.json`, `results/runs/replay/metrics.json`
 `results/runs/replay/decisions.json`, `results/runs/replay/proposals.json`,
 `results/runs/replay/traces.json`, `results/runs/replay/issues.json`,
 `results/runs/replay/reports.json` and `results/runs/replay/report.json`.
-`reports/RUN.md` is the narrative account.
 
 ## What the desk found
 
@@ -148,10 +147,9 @@ find something, it is that the trace shows why they did or did not.
 
 ## Screenshots
 
-The original seven operational pages were captured at 360 and 1280 px in light
-and dark into `results/screenshots/` with Playwright. These captures preserve the
-original release; the portfolio link above opens the redesigned overview and
-current controls.
+The seven working pages are captured at 360 and 1280 px, in light and dark,
+into `results/screenshots/` with Playwright (`make screenshots`). The live
+dashboard linked above also has a project overview page.
 
 | Command centre, 1280 px | Command centre, 360 px dark |
 |---|---|
@@ -168,7 +166,7 @@ current controls.
 | **Case board** | Reports by status, with a search and filter. |
 | **Case detail** | The narrative with highlighted quotes, the full agent trace, the proposal, similar cases, linked recalls and the approve / override / ask controls. |
 | **Issue room** | The cluster chart with the spike rule, linked recalls and investigations, the 8D D1–D4 draft, the decision memo and clickable citations. |
-| **Before vs after** | The PLAN §7 metrics side by side, plus the comparison examples above. |
+| **Before vs after** | The evaluation metrics side by side, plus the comparison examples above. |
 | **Replay** | A recorded run played day by day: reports arriving, agents acting, humans deciding. |
 | **Weekly report** | The report agent's weekly quality report. |
 
@@ -196,18 +194,16 @@ Be clear about what this is:
 3. **The rulebook is an example.** `config/rulebook.toml` maps a handful of
    reported conditions to targeted tests. It is readable and editable, not a
    service manual, and it is not tuned per vehicle.
-4. **The group and safety measurements are open.** The independent review found
-   the component-group label and the NHTSA safety flag in the model input of the
-   recorded run (`reports/REVIEW.md` B1 and B2). The desk no longer sends either
-   field to the model, and the two rows that depend on them are blank rather
-   than published from a contaminated run; the final live run measures them on
-   unseen reports. As recorded, 462 reports were flagged against 156 in the
+4. **The group and safety measurements are open.** The component-group label
+   and the NHTSA safety flag were part of the model input in the recorded run.
+   The desk no longer sends either field to the model, and the two rows that
+   depend on them are blank rather than published from a contaminated run; a
+   live run on unseen reports is what measures them. As recorded, 462 reports were flagged against 156 in the
    NHTSA fields, and only 146 reports reach the analysis agent. Nothing was
    tuned after seeing the replay set.
 5. **Names are not screened.** The PII screen covers VINs, e-mail addresses,
    phone numbers and street addresses, not personal names in a narrative
-   signature. Publication retains the original public NHTSA records under the
-   owner's scoped decision in `reports/DEVIATIONS.md`; review B4 remains a
+   signature. The data is the original public NHTSA records, so this is a
    limitation of the screen, not a claim of complete anonymisation.
 6. **One model and one prompt version.** The run used a single model and prompt
    version. Costs are gateway list prices, not a negotiated rate.
@@ -227,8 +223,7 @@ Be clear about what this is:
 | `config/` | Keyword rules, example rulebook, budgets, prices and the forbidden-name hashes. |
 | `scripts/` | Data check, facts check, scanners and the results manifest. |
 | `tests/` | Offline unit, integration and Playwright tests. |
-| `docs/` | Verified notes on the model, LangGraph, MCP and DuckDB, plus the interfaces. |
-| `reports/` | `RUN.md` and the lane reports. |
+| `prompts/` | The versioned prompt for each agent. |
 
 ## Documents
 
@@ -238,8 +233,6 @@ Be clear about what this is:
 - `CHANGELOG.md` — what is in this version and what changed.
 - `project-facts.yml` — the canonical numbers, each with the committed file it
   comes from; `make facts` re-derives them.
-- `reports/RUN.md` — the live run: spend, timing, steps, deviations and what
-  went wrong.
 
 ## Licence and credits
 
