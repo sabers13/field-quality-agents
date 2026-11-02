@@ -77,7 +77,7 @@ export function OverviewPage() {
         <p>I built an agent desk that reads complaint reports, gathers evidence and proposes what to test next. Engineers keep the decision, with a trail they can inspect.</p>
         <ul className="project-skills" aria-label="Skills demonstrated in this project">{SKILLS.map((skill) => <li key={skill.name} title={skill.detail}><Icon name={skill.icon} size={16} />{skill.name}</li>)}</ul>
         <div className="overview-actions">
-          <a className="btn project-source" href="https://github.com/sabers13" target="_blank" rel="noopener noreferrer"><Icon name="github" size={18} />GitHub<span className="sr-only"> profile (opens in a new tab)</span></a>
+          <a className="btn project-source" href="https://github.com/sabers13/field-quality-agents" target="_blank" rel="noopener noreferrer"><Icon name="github" size={18} />GitHub<span className="sr-only"> source code (opens in a new tab)</span></a>
           <a className="btn btn-primary" href="https://sabersojudi.com/#contact"><Icon name="briefcase" size={18} />Hire Me</a>
           <a href="#/compare">Read the results <Icon name="chevron" size={14} /></a>
         </div>

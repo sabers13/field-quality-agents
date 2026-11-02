@@ -57,13 +57,18 @@ that `reports/RUN.md` used to carry, and added the fix-up's own deviations.
    simple inflection, `vibration`/`vibrates`). A proposal whose verified quote
    is about a different clue no longer counts.
 
-## Open captain decisions
+## Publication decision
 
-- **Names in narratives (review B4).** The PII screen covers VINs, e-mail
-  addresses, phone numbers and street addresses. The review found
-  signature-style personal names in already-public NHTSA narratives and could
-  not choose between extending the screen and rebuilding the data (which needs
-  a new live run) or recording a captain-approved exception. Q13 did not
-  rebuild the committed sets or edit the review's evidence. The decision and
-  its record belong to the captain; until then this is an open stop-condition
-  question under PLAN §10.2, not a deviation granted here.
+- **Original public NHTSA narratives (review B4), 2026-11-02.** The owner
+  explicitly requested publication of the project repository and website. After
+  the B4 finding and PLAN §10.2 hold were presented, the owner clarified that
+  the naming rule protects the client/employer identity, permits NHTSA
+  attribution, and requested that the rule be changed accordingly. Publication
+  therefore retains the original public NHTSA dataset and recorded results
+  under this scoped owner exception; no frozen input or result was rebuilt.
+  The client/employer identity remains excluded. This resolves the publication
+  decision, not the review's technical finding: the PII screen covers VINs,
+  e-mail addresses, phone numbers and street addresses, and signature-style
+  personal names may remain in the public narratives. The README, review and
+  third-party notice retain that limitation. This decision makes no claim that
+  the data is fully anonymised or that publication has no legal obligations.

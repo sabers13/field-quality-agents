@@ -1,5 +1,11 @@
 # Q12: independent review
 
+**Publication note, 2026-11-02:** the original review below is historical.
+The owner's later naming-rule clarification and publication exception for the
+original public NHTSA records are recorded in `reports/DEVIATIONS.md`. B4's
+technical finding (signature-style names are not screened) remains disclosed;
+the publication decision has been resolved without changing the frozen data.
+
 **Reviewed:** local `main` at `7a2f468` (`feat: Q9 600-case live run with recordings and results`), in a fresh clone.
 **Reviewer:** a worker that wrote none of this code.
 **Scope:** `plan/TASKS.md` §Q12; this file is the only repository file changed.

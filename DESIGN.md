@@ -97,7 +97,7 @@ No new motion library or dependencies are needed.
 
 Polish request, 2026-11-02: retain the selected layout and add the portfolio's
 skill chips, GitHub and Hire Me actions. Skill labels describe implemented work;
-GitHub links to the verified public profile until a project repository exists.
+GitHub links to `https://github.com/sabers13/field-quality-agents`.
 Hire Me links to `https://sabersojudi.com/#contact`.
 
 Motion stays native CSS, matching the inspected reference sources: 140ms feedback,
@@ -130,4 +130,9 @@ contract. Exercise navigation, browser history, theme control, filters, case-she
 keyboard flow, playback and downloads. Run Taste lint/inspector, screenshot loop,
 hygiene review, strict build, existing unit tests and scoped recorded-browser tests.
 Protected: PLAN.md, all committed results and recordings, backend method and data.
-This task ends at a local preview; no push, remote creation or publication.
+The initial redesign stopped at a local preview. The owner's later instruction
+on 2026-11-02 explicitly authorizes creating and pushing the project repository,
+updating the GitHub action and publishing the static project on the existing
+portfolio website. Limit publication to this project and its portfolio card.
+The owner's naming-rule clarification and scoped B4 publication decision are
+recorded in reports/DEVIATIONS.md; preserve its disclosure and original evidence.

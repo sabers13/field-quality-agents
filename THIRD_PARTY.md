@@ -107,10 +107,15 @@ dependencies the project chooses and the tools it runs.
 
 ### Assets
 
-No web fonts, icon packs, images or chart themes are downloaded or bundled.
-Icons are inline SVG authored in `web/src/components/Icon.tsx`; fonts are the
-operating system's UI fonts; the chart theme is written for this project in
-`web/src/theme/echartsTheme.ts`. Screenshots under `results/screenshots/` are
+The dashboard includes the locally hosted Inter latin variable subset, copyright
+2016 The Inter Project Authors, under SIL Open Font License 1.1. Its licence is
+included at `web/public/fonts/OFL-inter.txt` and in every static export. There is
+no external font service.
+
+Icons are inline SVG in `web/src/components/Icon.tsx`. The GitHub icon follows
+Feather Icons under MIT; its copyright and licence are retained in
+`web/public/THIRD_PARTY_NOTICES.txt`. The chart theme is written for this project
+in `web/src/theme/echartsTheme.ts`. Screenshots under `results/screenshots/` are
 captured from the project's own dashboard.
 
 ## Attribution

@@ -1,5 +1,11 @@
 # v1.0.0 release dossier
 
+**Publication note, 2026-11-02:** the original Q15 candidate record below is
+historical. The owner has authorized publication of the project repository and
+the redesigned portfolio page. The current receipt is in
+`reports/lanes/Q6-PUBLISH.md`; the naming-rule clarification and original-data
+exception are in `reports/DEVIATIONS.md`. The original `v1.0.0` tag is retained.
+
 **Status: local release candidate, tagged `v1.0.0`.** Nothing was pushed, no
 remote exists, nothing was published. The captain publishes (§6).
 

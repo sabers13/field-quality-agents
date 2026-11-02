@@ -32,7 +32,7 @@ test("portfolio skills and actions use real destinations on a phone", async ({ p
   await page.setViewportSize({ width: 375, height: 812 });
   await page.goto("/?mode=replay#/");
   await expect(page.getByRole("list", { name: "Skills demonstrated in this project" })).toContainText("LangGraph");
-  await expect(page.getByRole("link", { name: "GitHub profile (opens in a new tab)" })).toHaveAttribute("href", "https://github.com/sabers13");
+  await expect(page.getByRole("link", { name: "GitHub source code (opens in a new tab)" })).toHaveAttribute("href", "https://github.com/sabers13/field-quality-agents");
   await expect(page.getByRole("link", { name: "Hire Me", exact: true })).toHaveAttribute("href", "https://sabersojudi.com/#contact");
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });

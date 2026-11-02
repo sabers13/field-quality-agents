@@ -3,6 +3,9 @@
 > **The plain question:** *What happens when a returns pipeline becomes agentic:
 > same process, agents doing the legwork between the steps, engineers approving?*
 
+[Explore the project and recorded evidence](https://sabersojudi.com/field-quality-agents/)
+· [Source code](https://github.com/sabers13/field-quality-agents)
+
 A supplier receives far more returned electrical and electronic parts and
 complaint reports than its labs and engineers can analyse properly. Many parts
 get a standard test, find nothing ("no trouble found"), and go back without a
@@ -145,8 +148,10 @@ find something, it is that the trace shows why they did or did not.
 
 ## Screenshots
 
-All seven pages are captured at 360 and 1280 px in light and dark into
-`results/screenshots/` with Playwright.
+The original seven operational pages were captured at 360 and 1280 px in light
+and dark into `results/screenshots/` with Playwright. These captures preserve the
+original release; the portfolio link above opens the redesigned overview and
+current controls.
 
 | Command centre, 1280 px | Command centre, 360 px dark |
 |---|---|
@@ -158,6 +163,7 @@ All seven pages are captured at 360 and 1280 px in light and dark into
 
 | Page | What it shows |
 |---|---|
+| **Project overview** | The problem, a real report, verified evidence, measured limits and links into the working desk. |
 | **Command centre** | KPI tiles, a live feed of agent actions and a before/after summary. |
 | **Case board** | Reports by status, with a search and filter. |
 | **Case detail** | The narrative with highlighted quotes, the full agent trace, the proposal, similar cases, linked recalls and the approve / override / ask controls. |
@@ -200,11 +206,12 @@ Be clear about what this is:
    tuned after seeing the replay set.
 5. **Names are not screened.** The PII screen covers VINs, e-mail addresses,
    phone numbers and street addresses, not personal names in a narrative
-   signature; the review records what it found and the captain decides whether
-   to rebuild the set (`reports/REVIEW.md` B4).
-5. **One model and one prompt version.** The run used a single model and prompt
+   signature. Publication retains the original public NHTSA records under the
+   owner's scoped decision in `reports/DEVIATIONS.md`; review B4 remains a
+   limitation of the screen, not a claim of complete anonymisation.
+6. **One model and one prompt version.** The run used a single model and prompt
    version. Costs are gateway list prices, not a negotiated rate.
-6. **The comparison is a simulation.** "Time to decision" and the linear
+7. **The comparison is a simulation.** "Time to decision" and the linear
    pipeline's four steps are modelled, not observed in a real factory. The
    workload comparison is about shape, not a measured saving.
 

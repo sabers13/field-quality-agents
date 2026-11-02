@@ -171,7 +171,7 @@ export function App() {
             <div className="route-content" key={route.page}>{page}</div>
           </main>
           <footer className="project-footer"><span>Field quality agents · Public complaint evidence</span>
-            <a href="#/compare">Results & limitations</a><a href="https://sabersojudi.com/">Back to portfolio</a></footer>
+            <a href="#/compare">Results & limitations</a><a href="./THIRD_PARTY_NOTICES.txt">Credits</a><a href="https://sabersojudi.com/">Back to portfolio</a></footer>
         </div>
       </div>
     </div>
