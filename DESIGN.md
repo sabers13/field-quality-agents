@@ -47,7 +47,11 @@ No invented fixtures ship as project evidence.
 Header: author link in portfolio blue, four ordinary route links (Overview,
 Cases, Issues, Results), project badge and Back-to-portfolio. Active route has a
 thin blue underline. No tab ARIA for ordinary navigation. Utilities offer theme
-and recorded/static/live data controls. A detached desktop tool rail links to
+and recorded/static/live data controls. Theme uses adjacent sun/moon buttons with
+pressed states and one-click selection, following the reference projects. The OS
+preference applies until an explicit choice is saved. Data source uses a compact
+chooser with labelled options, a 140ms opacity/transform transition, outside-click
+and Escape dismissal, and focus restoration. No nested native select. A detached desktop tool rail links to
 Dashboard, Replay and Weekly report. On smaller screens all destinations become
 one horizontally scrollable navigation row; the document itself never scrolls
 sideways. No duplicate mobile bottom bar. Header stays sticky without obscuring

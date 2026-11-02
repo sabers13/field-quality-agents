@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 
-import { AppContext, MODE_DESCRIPTIONS, MODE_LABELS, type AppMode } from "./app/AppContext";
+import { AppContext, type AppMode } from "./app/AppContext";
 import { Icon, type IconName } from "./components/Icon";
+import { WorkspaceSettings } from "./components/WorkspaceSettings";
 import { bundledManifest } from "./data/bundled";
 import { LiveDataSource, type DashboardDataSource } from "./data/source";
 import { StaticDataSource } from "./data/static";
@@ -160,26 +161,7 @@ export function App() {
           <div className="workspace-toolbar">
             <div className="recorded-status"><span className="status-dot" aria-hidden="true" />{statusText}
               {mode !== "live" ? <span className="toolbar-context"> · Read-only evidence</span> : null}</div>
-            <div className="workspace-settings">
-              <details className="data-settings">
-                <summary>Data source</summary>
-                <div className="data-settings-panel">
-                  <label className="select-control"><span>Data mode</span>
-                    <select value={mode} aria-label="Data mode" onChange={(event) => changeMode(event.target.value as AppMode)}>
-                      {(["static", "replay", "live"] as const).filter((value) => !bundled || value === "static").map((value) =>
-                        <option key={value} value={value}>{MODE_LABELS[value]}</option>)}
-                    </select>
-                  </label>
-                  <p>{MODE_DESCRIPTIONS[mode]}</p>
-                </div>
-              </details>
-              <label className="appearance-control"><Icon name={resolvedTheme === "dark" ? "moon" : "sun"} size={16} />
-                <span className="sr-only">Theme</span><select aria-label="Theme" value={theme}
-                  onChange={(event) => setTheme(event.target.value as ThemePreference)}>
-                  <option value="auto">System</option><option value="light">Light</option><option value="dark">Dark</option>
-                </select>
-              </label>
-            </div>
+            <WorkspaceSettings bundled={Boolean(bundled)} />
           </div>
           <main id="main-content" className="workspace-content" tabIndex={-1}>
             {route.page !== "overview" ? <div className="workspace-page-heading">

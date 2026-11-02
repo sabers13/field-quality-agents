@@ -111,8 +111,12 @@ test("case list switches to the workflow board and search sends its query", asyn
 test("mobile navigation, theme and skip link stay usable", async ({ page }) => {
   await page.setViewportSize({ width: 375, height: 812 });
   await page.goto("/?mode=replay#/cases");
-  await page.getByLabel("Theme", { exact: true }).selectOption("dark");
+  await page.getByRole("button", { name: "Dark theme", exact: true }).click();
   await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+  await page.reload();
+  await expect(page.getByRole("button", { name: "Dark theme", exact: true })).toHaveAttribute("aria-pressed", "true");
+  await page.getByRole("button", { name: "Light theme", exact: true }).click();
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
   const skip = page.getByRole("link", { name: "Skip to content" });
   await skip.focus();
   await page.keyboard.press("Enter");
@@ -123,6 +127,38 @@ test("mobile navigation, theme and skip link stay usable", async ({ page }) => {
   await page.getByRole("button", { name: "Play replay" }).click();
   await expect(page.locator(".replay-event").first()).toBeVisible();
   await page.getByRole("button", { name: "Pause replay" }).click();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});
+
+test("data source chooser supports dismissal, keyboard selection and focus restoration", async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto("/?mode=replay#/");
+  const trigger = page.getByRole("button", { name: "Data source", exact: true });
+  const choices = page.getByRole("group", { name: "Data source choices", exact: true });
+  await expect(choices).not.toBeVisible();
+  await trigger.focus();
+  await page.keyboard.press("Enter");
+  await expect(trigger).toHaveAttribute("aria-expanded", "true");
+  await expect(choices.getByRole("button", { name: /^Recorded run/ })).toHaveAttribute("aria-pressed", "true");
+  await page.keyboard.press("Escape");
+  await expect(choices).not.toBeVisible();
+  await expect(trigger).toBeFocused();
+  await trigger.click();
+  await page.locator(".recorded-status").click();
+  await expect(trigger).toHaveAttribute("aria-expanded", "false");
+  await trigger.click();
+  await expect(choices.getByRole("button", { name: /^Saved results/ })).toBeDisabled();
+  await page.keyboard.press("Tab");
+  await expect(choices.getByRole("button", { name: /^Recorded run/ })).toBeFocused();
+  await page.keyboard.press("Tab");
+  await expect(choices.getByRole("button", { name: /^Live connection/ })).toBeFocused();
+  await page.keyboard.press("Enter");
+  await expect(page).toHaveURL(/mode=live/);
+  await expect(trigger).toBeFocused();
+  await trigger.click();
+  await choices.getByRole("button", { name: /^Recorded run/ }).click();
+  await expect(page).toHaveURL(/mode=replay/);
+  await expect(choices).not.toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
 
