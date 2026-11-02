@@ -91,7 +91,7 @@ export function CommandCentrePage() {
     return state.status === "error" && state.error ? (
       <ErrorState error={state.error} onRetry={state.reload} />
     ) : (
-      <LoadingState label="Loading command centre" />
+      <LoadingState label="Loading dashboard" layout="metrics" />
     );
   }
 

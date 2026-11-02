@@ -24,7 +24,12 @@ export type IconName =
   | "arrow-down"
   | "external"
   | "clock"
-  | "spark";
+  | "spark"
+  | "code"
+  | "workflow"
+  | "database"
+  | "github"
+  | "briefcase";
 
 const PATHS: Record<IconName, string[]> = {
   command: ["M4 4h6v6H4z", "M14 4h6v6h-6z", "M4 14h6v6H4z", "M14 14h6v6h-6z"],
@@ -51,6 +56,11 @@ const PATHS: Record<IconName, string[]> = {
   external: ["M14 4h6v6", "M20 4 10 14", "M18 14v5H5V6h5"],
   clock: ["M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z", "M12 7v5l3 2"],
   spark: ["M4 17l3-5 3 2 4-7 3 4 3-6"],
+  code: ["m8 7-5 5 5 5", "m16 7 5 5-5 5", "m14 4-4 16"],
+  workflow: ["M3 4h6v6H3z", "M15 14h6v6h-6z", "M9 7h5a4 4 0 0 1 4 4v3", "m15 11 3 3 3-3"],
+  database: ["M20 6c0 2-3.6 3-8 3S4 8 4 6s3.6-3 8-3 8 1 8 3Z", "M4 6v12c0 2 3.6 3 8 3s8-1 8-3V6", "M4 12c0 2 3.6 3 8 3s8-1 8-3"],
+  github: ["M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"],
+  briefcase: ["M3 7h18v14H3z", "M8 7V3h8v4", "M3 12a20 20 0 0 0 18 0", "M12 11v4"],
 };
 
 export interface IconProps extends Omit<SVGProps<SVGSVGElement>, "name"> {

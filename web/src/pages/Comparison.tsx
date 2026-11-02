@@ -113,7 +113,7 @@ export function ComparisonPage() {
     return state.status === "error" && state.error ? (
       <ErrorState error={state.error} onRetry={state.reload} />
     ) : (
-      <LoadingState label="Loading comparison" />
+      <LoadingState label="Loading comparison" layout="metrics" />
     );
   }
 

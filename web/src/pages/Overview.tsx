@@ -1,5 +1,5 @@
 import { useApp } from "../app/AppContext";
-import { Icon } from "../components/Icon";
+import { Icon, type IconName } from "../components/Icon";
 import { ErrorState, LoadingState } from "../components/States";
 import { formatInteger, formatPercent } from "../lib/format";
 import { useAsync } from "../lib/useAsync";
@@ -7,6 +7,15 @@ import type { CaseDetail, ComparisonData } from "../types";
 
 // Committed showcase example: results/runs/replay/comparison_examples.json.
 const EXAMPLE_ID = "2156317";
+
+const SKILLS: { name: string; icon: IconName; detail: string }[] = [
+  { name: "Python", icon: "code", detail: "Typed pipelines, evidence tools and evaluation" },
+  { name: "LangGraph", icon: "workflow", detail: "Supervisor and specialist agents with human review checkpoints" },
+  { name: "DuckDB", icon: "database", detail: "Queryable complaint reports and linked source evidence" },
+  { name: "React", icon: "command", detail: "An interactive evidence desk and recorded replay" },
+  { name: "TypeScript", icon: "code", detail: "Strict data contracts for the dashboard" },
+  { name: "Evaluation", icon: "shield", detail: "Quote verification, measured comparisons and visible limitations" },
+];
 
 function CasePreview({ detail }: { detail: CaseDetail }) {
   const quote = detail.proposal?.evidence.find((item) => item.verified && item.quote && detail.case.narrative.includes(item.quote));
@@ -23,7 +32,7 @@ function CasePreview({ detail }: { detail: CaseDetail }) {
     </div>
     <div className="example-preview-footer">
       <span>{detail.decision?.actor === "simulated_engineer" ? "Simulated engineer" : "Engineer"}{detail.decision ? ` · ${detail.decision.action === "approve" ? "Approved" : detail.decision.action}` : " · Awaiting review"}</span>
-      <a href={`#/cases/${encodeURIComponent(detail.case.id)}`}>Read the full case <Icon name="chevron" size={14} /></a>
+      <a className="btn btn-primary" href={`#/cases/${encodeURIComponent(detail.case.id)}`}>Explore a real case <Icon name="chevron" size={16} /></a>
     </div>
   </article>;
 }
@@ -46,14 +55,11 @@ function Workflow() {
   return <section className="overview-method" aria-labelledby="method-title">
     <div><h2 id="method-title">Agents prepare. Engineers decide.</h2><p>A standard test can miss a fault that only appears under specific conditions. The desk reads the complaint, checks its clues against the source, and drafts a test recommendation for review.</p><p>It proposes work. It does not close a case, scrap a part, perform a physical test or accept a charge.</p><a href="#/replay">Follow the recorded workflow <Icon name="chevron" size={14} /></a></div>
     <figure className="workflow-figure">
-      <svg viewBox="0 0 560 220" role="img" aria-labelledby="workflow-title workflow-desc">
-        <title id="workflow-title">From report to engineer review</title>
-        <desc id="workflow-desc">A complaint report enters the agent desk. It gathers verified evidence and drafts a test recommendation. An engineer approves, overrides or asks for information.</desc>
-        <g className="workflow-line" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M100 75H275V145H410" /><path d="m402 139 8 6-8 6" /><path d="m267 69 8 6-8 6" /></g>
-        <g id="report-node"><title>Complaint report</title><rect className="workflow-node" x="12" y="22" width="180" height="78" rx="16"/><text x="30" y="53" className="workflow-node-title">Complaint report</text><text x="30" y="78" className="workflow-node-note">What happened?</text></g>
-        <g id="evidence-node"><title>Verified evidence</title><rect className="workflow-node" x="242" y="22" width="300" height="78" rx="16"/><text x="262" y="53" className="workflow-node-title">Verified evidence</text><text x="262" y="78" className="workflow-node-note">Source quotes → test proposal</text></g>
-        <g id="review-node"><title>Engineer decision</title><rect className="workflow-review" x="180" y="133" width="362" height="74" rx="16"/><text x="200" y="164" className="workflow-node-title">Engineer decision</text><text x="200" y="188" className="workflow-node-note">Approve · Override · Ask for more</text></g>
-      </svg>
+      <ol className="workflow-trail" aria-label="From report to engineer review">
+        <li><span className="workflow-mark"><Icon name="report" size={22} /></span><div><strong>Complaint report</strong><span>Read what happened and when.</span></div><span className="workflow-step" aria-hidden="true">01</span></li>
+        <li><span className="workflow-mark"><Icon name="quote" size={22} /></span><div><strong>Verified evidence</strong><span>Check source quotes. Propose a test.</span></div><span className="workflow-step" aria-hidden="true">02</span></li>
+        <li><span className="workflow-mark"><Icon name="shield" size={22} /></span><div><strong>Engineer decision</strong><span>Approve, override or ask for more.</span></div><span className="workflow-step" aria-hidden="true">03</span></li>
+      </ol>
       <figcaption>Every recommendation keeps its supporting evidence and action history.</figcaption>
     </figure>
   </section>;
@@ -69,13 +75,18 @@ export function OverviewPage() {
         <h1 id="overview-title">Field quality agents</h1>
         <p className="overview-lead">A returned part can pass a standard test and still leave the real problem unexplained.</p>
         <p>I built an agent desk that reads complaint reports, gathers evidence and proposes what to test next. Engineers keep the decision, with a trail they can inspect.</p>
-        <div className="overview-actions"><a className="btn btn-primary" href={`#/cases/${EXAMPLE_ID}`}>Explore a real case <Icon name="chevron" size={16} /></a><a href="#/compare">Read the results</a></div>
+        <ul className="project-skills" aria-label="Skills demonstrated in this project">{SKILLS.map((skill) => <li key={skill.name} title={skill.detail}><Icon name={skill.icon} size={16} />{skill.name}</li>)}</ul>
+        <div className="overview-actions">
+          <a className="btn project-source" href="https://github.com/sabers13" target="_blank" rel="noopener noreferrer"><Icon name="github" size={18} />GitHub<span className="sr-only"> profile (opens in a new tab)</span></a>
+          <a className="btn btn-primary" href="https://sabersojudi.com/#contact"><Icon name="briefcase" size={18} />Hire Me</a>
+          <a href="#/compare">Read the results <Icon name="chevron" size={14} /></a>
+        </div>
         <p className="overview-context">Public NHTSA reports stand in for returned-part reports. This is a recorded demonstration, with a simulated engineer.</p>
       </div>
-      {example.data ? <CasePreview detail={example.data} /> : example.error ? <ErrorState title="The example could not load" error={example.error} onRetry={example.reload} /> : <LoadingState label="Loading a recorded case" />}
+      {example.data ? <CasePreview detail={example.data} /> : example.error ? <ErrorState title="The example could not load" error={example.error} onRetry={example.reload} /> : <LoadingState label="Loading a recorded case" layout="case" />}
     </section>
     <Workflow />
-    {comparison.data ? <ResultSnapshot data={comparison.data} /> : comparison.error ? <ErrorState title="Results could not load" error={comparison.error} onRetry={comparison.reload} /> : <LoadingState label="Loading measured results" />}
+    {comparison.data ? <ResultSnapshot data={comparison.data} /> : comparison.error ? <ErrorState title="Results could not load" error={comparison.error} onRetry={comparison.reload} /> : <LoadingState label="Loading measured results" layout="metrics" />}
     <section className="explore-project" aria-labelledby="explore-title">
       <div className="overview-section-heading"><h2 id="explore-title">Inspect the work</h2><span>Real reports, traceable decisions</span></div>
       <div className="explore-project-grid">

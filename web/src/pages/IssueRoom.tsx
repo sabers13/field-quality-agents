@@ -63,12 +63,13 @@ function clusterOption(issue: IssueDetail, dark: boolean): EChartsOption {
   const counts = issue.weekly_counts.map((week) => week.count);
   const issueColour = dark ? "#ff8d8d" : "#a32020";
   return {
-    grid: { left: 36, right: 12, top: 28, bottom: 26 },
-    tooltip: { trigger: "axis" },
+    grid: { left: 4, right: 12, top: 24, bottom: 8, containLabel: true },
+    tooltip: { trigger: "axis", confine: true },
     xAxis: {
       type: "category",
       data: labels,
       boundaryGap: false,
+      axisLabel: { hideOverlap: true, margin: 12 },
     },
     yAxis: {
       type: "value",
@@ -85,12 +86,8 @@ function clusterOption(issue: IssueDetail, dark: boolean): EChartsOption {
           silent: true,
           symbol: "none",
           lineStyle: { color: issueColour, type: "dashed", width: 1 },
-          label: {
-            formatter: "Poisson 99.9% threshold",
-            color: issueColour,
-            fontSize: 11,
-            position: "insideEndTop",
-          },
+          // The caption labels this line without crowding the plot on a phone.
+          label: { show: false },
           data: [{ yAxis: issue.threshold }],
         },
       },
@@ -278,7 +275,7 @@ export function IssueRoomPage({ issueId }: { issueId: string | undefined }) {
     return listState.status === "error" && listState.error ? (
       <ErrorState error={listState.error} onRetry={listState.reload} />
     ) : (
-      <LoadingState label="Loading issues" />
+      <LoadingState label="Loading issues" layout="list" />
     );
   }
 

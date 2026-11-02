@@ -41,7 +41,7 @@ export interface FqaChartTheme {
   };
 }
 
-const FONT = 'ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif';
+const FONT = 'Inter, ui-sans-serif, system-ui, sans-serif';
 
 const base = {
   backgroundColor: "transparent",
@@ -54,12 +54,12 @@ const base = {
   categoryAxis: {
     axisLine: { lineStyle: { color: "" } },
     axisTick: { show: false },
-    axisLabel: { fontSize: 11 },
+    axisLabel: { fontSize: 12 },
     splitLine: { show: false },
   },
   valueAxis: {
     axisLine: { show: false },
-    axisLabel: { fontSize: 11 },
+    axisLabel: { fontSize: 12 },
     splitLine: { lineStyle: { color: "", type: "dashed" as const, opacity: 0.5 } },
   },
   legend: { textStyle: { fontSize: 12 } },
@@ -71,61 +71,61 @@ const base = {
 
 export const fqaTheme: FqaChartTheme = {
   ...base,
-  color: ["#1f5fbf", "#0f766e", "#b45309", "#6d4aff", "#17663a", "#a32020"],
-  textStyle: { ...base.textStyle, color: "#4d5a68" },
+  color: ["#2563eb", "#626b78", "#8a4b00", "#374151", "#17663a", "#a32020"],
+  textStyle: { ...base.textStyle, color: "#374151" },
   title: {
-    textStyle: { ...base.title.textStyle, color: "#1b2430" },
-    subtextStyle: { ...base.title.subtextStyle, color: "#6f7c8a" },
+    textStyle: { ...base.title.textStyle, color: "#111827" },
+    subtextStyle: { ...base.title.subtextStyle, color: "#626b78" },
   },
   categoryAxis: {
     ...base.categoryAxis,
-    axisLine: { lineStyle: { color: "#d8dee5" } },
-    axisLabel: { ...base.categoryAxis.axisLabel, color: "#6f7c8a" },
+    axisLine: { lineStyle: { color: "#e5e7eb" } },
+    axisLabel: { ...base.categoryAxis.axisLabel, color: "#626b78" },
   },
   valueAxis: {
     ...base.valueAxis,
-    axisLabel: { ...base.valueAxis.axisLabel, color: "#6f7c8a" },
+    axisLabel: { ...base.valueAxis.axisLabel, color: "#626b78" },
     splitLine: {
       ...base.valueAxis.splitLine,
-      lineStyle: { ...base.valueAxis.splitLine.lineStyle, color: "#d8dee5" },
+      lineStyle: { ...base.valueAxis.splitLine.lineStyle, color: "#e5e7eb" },
     },
   },
-  legend: { textStyle: { ...base.legend.textStyle, color: "#4d5a68" } },
+  legend: { textStyle: { ...base.legend.textStyle, color: "#374151" } },
   tooltip: {
     ...base.tooltip,
     backgroundColor: "#ffffff",
-    borderColor: "#d8dee5",
-    textStyle: { ...base.tooltip.textStyle, color: "#1b2430" },
+    borderColor: "#e5e7eb",
+    textStyle: { ...base.tooltip.textStyle, color: "#111827" },
   },
 };
 
 export const fqaDarkTheme: FqaChartTheme = {
   ...base,
-  color: ["#6ea8ff", "#4fd1c5", "#f0b45e", "#a78bfa", "#6fd39a", "#ff8d8d"],
-  textStyle: { ...base.textStyle, color: "#b3bec9" },
+  color: ["#60a5fa", "#a6afbd", "#f0b45e", "#d1d5db", "#6fd39a", "#ff8d8d"],
+  textStyle: { ...base.textStyle, color: "#d1d5db" },
   title: {
-    textStyle: { ...base.title.textStyle, color: "#e8edf2" },
-    subtextStyle: { ...base.title.subtextStyle, color: "#8794a1" },
+    textStyle: { ...base.title.textStyle, color: "#f9fafb" },
+    subtextStyle: { ...base.title.subtextStyle, color: "#a6afbd" },
   },
   categoryAxis: {
     ...base.categoryAxis,
-    axisLine: { lineStyle: { color: "#2c3742" } },
-    axisLabel: { ...base.categoryAxis.axisLabel, color: "#8794a1" },
+    axisLine: { lineStyle: { color: "#374151" } },
+    axisLabel: { ...base.categoryAxis.axisLabel, color: "#a6afbd" },
   },
   valueAxis: {
     ...base.valueAxis,
-    axisLabel: { ...base.valueAxis.axisLabel, color: "#8794a1" },
+    axisLabel: { ...base.valueAxis.axisLabel, color: "#a6afbd" },
     splitLine: {
       ...base.valueAxis.splitLine,
-      lineStyle: { ...base.valueAxis.splitLine.lineStyle, color: "#2c3742" },
+      lineStyle: { ...base.valueAxis.splitLine.lineStyle, color: "#374151" },
     },
   },
-  legend: { textStyle: { ...base.legend.textStyle, color: "#b3bec9" } },
+  legend: { textStyle: { ...base.legend.textStyle, color: "#d1d5db" } },
   tooltip: {
     ...base.tooltip,
-    backgroundColor: "#202a35",
-    borderColor: "#2c3742",
-    textStyle: { ...base.tooltip.textStyle, color: "#e8edf2" },
+    backgroundColor: "#1a2232",
+    borderColor: "#374151",
+    textStyle: { ...base.tooltip.textStyle, color: "#f9fafb" },
   },
 };
 

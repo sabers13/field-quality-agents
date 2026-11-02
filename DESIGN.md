@@ -91,6 +91,20 @@ public section gap 48px. Radii: small 8px (controls), medium 16px (insets), larg
 Duration 140ms ease-out for hover feedback; reduced motion disables transitions.
 No new motion library or dependencies are needed.
 
+Polish request, 2026-11-02: retain the selected layout and add the portfolio's
+skill chips, GitHub and Hire Me actions. Skill labels describe implemented work;
+GitHub links to the verified public profile until a project repository exists.
+Hire Me links to `https://sabersojudi.com/#contact`.
+
+Motion stays native CSS, matching the inspected reference sources: 140ms feedback,
+420ms ease-out for one page group or a sheet opening, and 1200ms ease-in-out for
+loading opacity. Loading repeats four times, then settles; no endless decorative
+motion. Only opacity and transform animate. No staggered entrance per card or
+counting-up evidence values. Reduced motion removes all motion. A lightweight
+opening state appears before the application bundle; shape placeholders reserve
+space for cases, lists and metrics while data loads. The workflow is a connected
+HTML trail so its text stays readable at phone widths and browser zoom.
+
 ## Components and responsive behavior
 
 All actions use anchors or buttons. Keyboard focus visible, labelled form fields,

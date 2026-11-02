@@ -186,7 +186,7 @@ export function App() {
               <a className="back-overview" href="#/">Project overview <Icon name="chevron" size={12} /></a>
               <h1>{PAGE_TITLES[route.page]}</h1>
             </div> : null}
-            {page}
+            <div className="route-content" key={route.page}>{page}</div>
           </main>
           <footer className="project-footer"><span>Field quality agents · Public complaint evidence</span>
             <a href="#/compare">Results & limitations</a><a href="https://sabersojudi.com/">Back to portfolio</a></footer>

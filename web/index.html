@@ -8,9 +8,43 @@
     <meta name="description" content="An agent desk that reads public complaint reports, verifies evidence and proposes tests for engineer review. Explore real cases, measured results and limitations." />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <title>Field quality agents</title>
+    <script>
+      try {
+        const theme = localStorage.getItem("fqa-theme");
+        if (theme === "light" || theme === "dark") document.documentElement.dataset.theme = theme;
+      } catch { /* The opening state also works without storage access. */ }
+    </script>
+    <style>
+      body { margin: 0; }
+      .boot-screen { min-height: 100svh; display: grid; place-content: center; justify-items: center; gap: 24px; padding: 32px; background: #f9fafb; color: #111827; font: 15px/1.6 Inter, system-ui, sans-serif; text-align: center; }
+      .boot-screen svg { color: #2563eb; }
+      .boot-screen h1 { font-size: 28px; line-height: 1.2; letter-spacing: -.03em; font-weight: 550; margin: 0; }
+      .boot-screen p { margin: 0; color: #626b78; }
+      .boot-indicator { display: flex; gap: 8px; }
+      .boot-indicator span { width: 32px; height: 4px; border-radius: 8px; background: #2563eb; }
+      [data-theme="dark"] .boot-screen { background: #030712; color: #f9fafb; }
+      [data-theme="dark"] .boot-screen p { color: #a6afbd; }
+      [data-theme="dark"] .boot-screen svg { color: #60a5fa; }
+      [data-theme="dark"] .boot-indicator span { background: #60a5fa; }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) .boot-screen { background: #030712; color: #f9fafb; }
+        :root:not([data-theme="light"]) .boot-screen p { color: #a6afbd; }
+        :root:not([data-theme="light"]) .boot-screen svg { color: #60a5fa; }
+        :root:not([data-theme="light"]) .boot-indicator span { background: #60a5fa; }
+      }
+      @keyframes boot-pulse { 50% { opacity: .35; } }
+      @media (prefers-reduced-motion: no-preference) {
+        .boot-indicator { animation: boot-pulse 1200ms ease-in-out 4; }
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"><div class="boot-screen" role="status" aria-live="polite">
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="40" height="40" rx="8"/><path d="M16 14h10l6 6v14H16zM25 14v7h7M21 27h6M21 31h6"/></svg>
+      <h1>Field quality agents</h1><p>Opening the evidence desk…</p>
+      <div class="boot-indicator" aria-hidden="true"><span></span><span></span><span></span></div>
+      <noscript>Enable JavaScript to explore the project and its evidence.</noscript>
+    </div></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

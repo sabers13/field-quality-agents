@@ -241,7 +241,7 @@ export function CaseDetailView({ caseId, onClose }: { caseId: string; onClose: (
         state.status === "error" && state.error ? (
           <ErrorState error={state.error} onRetry={state.reload} />
         ) : (
-          <LoadingState label="Loading case" />
+          <LoadingState label="Loading case" layout="case" />
         )
       ) : (
         <div className="case-detail">
@@ -411,7 +411,7 @@ export function CaseBoardPage() {
       {state.data === null && state.status === "error" && state.error ? (
         <ErrorState error={state.error} onRetry={state.reload} />
       ) : state.data === null ? (
-        <LoadingState label="Loading cases" />
+        <LoadingState label="Loading cases" layout="list" />
       ) : view === "list" ? <CaseRegister items={items} /> : (
         <div className="board" aria-label="Case board">
           {visibleColumns.map((column) => {

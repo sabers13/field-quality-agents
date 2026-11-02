@@ -28,6 +28,61 @@ test("overview leads into a case, disclosures and browser Back", async ({ page }
   await expect(page).toHaveURL(/#\/$/);
 });
 
+test("portfolio skills and actions use real destinations on a phone", async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto("/?mode=replay#/");
+  await expect(page.getByRole("list", { name: "Skills demonstrated in this project" })).toContainText("LangGraph");
+  await expect(page.getByRole("link", { name: "GitHub profile (opens in a new tab)" })).toHaveAttribute("href", "https://github.com/sabers13");
+  await expect(page.getByRole("link", { name: "Hire Me", exact: true })).toHaveAttribute("href", "https://sabersojudi.com/#contact");
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});
+
+test("case loading reserves a preview, then offers recovery on failure", async ({ page }) => {
+  let release!: () => void;
+  const held = new Promise<void>((resolve) => { release = resolve; });
+  let fail = true;
+  await page.route("**/api/cases/2156317", async (route) => {
+    await held;
+    if (fail) {
+      await route.fulfill({ status: 503, contentType: "application/json", body: JSON.stringify({ detail: "Recorded case temporarily unavailable" }) });
+    } else {
+      await route.fulfill({ contentType: "application/json", body: JSON.stringify({ ...fixtures.case4, case: { ...(fixtures.case4.case as object), id: "2156317" } }) });
+    }
+  });
+  await page.goto("/?mode=replay#/");
+  const loading = page.getByRole("status").filter({ hasText: "Loading a recorded case…" });
+  await expect(loading).toBeVisible();
+  await expect(loading).toHaveAttribute("aria-busy", "true");
+  expect(Math.round((await loading.boundingBox())!.height)).toBeGreaterThanOrEqual(420);
+  await expect(page.locator(".example-preview")).toHaveCount(0);
+  await expect(page.getByRole("link", { name: "Hire Me", exact: true })).toBeVisible();
+  release();
+  const error = page.getByRole("alert");
+  await expect(error).toContainText("The example could not load");
+  fail = false;
+  await error.getByRole("button", { name: "Retry", exact: true }).click();
+  await expect(page.getByRole("link", { name: "Explore a real case" })).toBeVisible();
+  await expect(loading).toHaveCount(0);
+});
+
+test("opening state appears before the app and reduced motion remains still", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  let release!: () => void;
+  const held = new Promise<void>((resolve) => { release = resolve; });
+  await page.route("**/src/main.tsx", async (route) => { await held; await route.continue(); });
+  const navigation = page.goto("/?mode=replay#/");
+  await expect(page.getByRole("status").filter({ hasText: "Opening the evidence desk…" })).toBeVisible();
+  expect(await page.locator(".boot-indicator").evaluate((element) => getComputedStyle(element).animationName)).toBe("none");
+  release();
+  await navigation;
+  await expect(page.locator(".boot-screen")).toHaveCount(0);
+  await expect(page.getByRole("link", { name: "Explore a real case" })).toBeVisible();
+  expect(await page.locator(".route-content").evaluate((element) => getComputedStyle(element).animationName)).toBe("none");
+  await page.getByRole("link", { name: "Explore a real case" }).click();
+  await expect(page.getByRole("dialog", { name: "2156317" })).toBeVisible();
+  expect(await page.locator(".sheet").evaluate((element) => getComputedStyle(element).animationName)).toBe("none");
+});
+
 test("results preserve caveats and download the same comparison", async ({ page }) => {
   await page.goto("/?mode=replay#/compare");
   await expect(page.getByText("Read the comparison with its limits")).toBeVisible();
@@ -73,6 +128,7 @@ test("mobile navigation, theme and skip link stay usable", async ({ page }) => {
 
 for (const theme of ["light", "dark"] as const) {
   test(`overview and working views: ${theme} accessibility`, async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: "reduce" });
     await page.setViewportSize({ width: theme === "dark" ? 375 : 1280, height: 900 });
     await page.addInitScript((value) => localStorage.setItem("fqa-theme", value), theme);
     for (const hash of ["/", "/cases", "/issues/I-2025-0001", "/compare", "/dashboard", "/replay", "/report"]) {
