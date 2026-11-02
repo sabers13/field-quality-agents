@@ -70,8 +70,8 @@ test.describe("live decisions keyboard flow", () => {
 
   test("the live mode reports a disconnected stream without blocking the page", async ({ page }) => {
     await mockLiveApi(page);
-    await page.goto("/?mode=live#/");
-    await expect(page.getByText(/Live (offline|reconnecting)/).first()).toBeVisible();
+    await page.goto("/?mode=live#/dashboard");
+    await expect(page.getByText("Connection interrupted", { exact: true })).toBeVisible();
     await expect(page.getByText("Cases in", { exact: true })).toBeVisible();
   });
 });

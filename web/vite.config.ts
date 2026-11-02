@@ -8,6 +8,9 @@ export default defineConfig({
   build: {
     outDir: "dist",
     sourcemap: false,
+    // Keep the local font inside the classic-script export. A module script
+    // has no document.currentScript, so relative CSS asset URLs lose /assets/.
+    assetsInlineLimit: (filePath) => filePath.endsWith(".woff2") ? true : undefined,
     // A single classic script so the export opens straight from file://
     // (browsers block ES modules on the file: scheme).
     rolldownOptions: {

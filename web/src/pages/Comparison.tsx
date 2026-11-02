@@ -1,4 +1,6 @@
 import { useApp } from "../app/AppContext";
+import { EvidenceDownload } from "../components/EvidenceDownload";
+import { FinalLivePanel } from "../components/FinalLivePanel";
 import { Icon } from "../components/Icon";
 import { EmptyState, ErrorState, LoadingState, Panel } from "../components/States";
 import {
@@ -105,6 +107,7 @@ function MetricsTable({ data }: { data: ComparisonData }) {
 export function ComparisonPage() {
   const { source, mode } = useApp();
   const state = useAsync(() => source.getComparison(), `comparison:${mode}`);
+  const run = useAsync(() => source.getCommandCentre(), `comparison-run:${mode}`);
 
   if (state.data === null) {
     return state.status === "error" && state.error ? (
@@ -115,17 +118,25 @@ export function ComparisonPage() {
   }
 
   const data = state.data;
-  const agentWins = data.summary.examples.filter((example) => !example.note.toLowerCase().includes("reverse"));
-  const reverse = data.summary.examples.filter((example) => example.note.toLowerCase().includes("reverse"));
+  const isCounterexample = (note: string) => /reverse|pipeline was right/i.test(note);
+  const agentWins = data.summary.examples.filter((example) => !isCounterexample(example.note));
+  const reverse = data.summary.examples.filter((example) => isCounterexample(example.note));
 
   return (
     <div className="page">
       <p className="lede">
-        The same replay set through both pipelines. Every estimate carries its confidence interval
-        where the method requires one; the arrows show direction, not significance.
+        What changed when agents gathered the evidence? These are recorded proposals and simulated
+        decisions, compared with a rule-based pipeline on the same reports. A proposed test is not a proven repair.
       </p>
 
+      <div className="evaluation-note results-limits"><Icon name="issues" size={18} /><div>
+        <strong>Read the comparison with its limits</strong>
+        <p>The original run exposed the component group and safety answer fields to the model. Those scores are withheld. The unseen follow-up still failed component classification because its answers did not match the expected codes.</p>
+        <p>The baseline’s standard test always passes in this simulation. Simulated engineer approvals do not establish real-world accuracy, safety or time saved.</p>
+      </div></div>
       <HeadlineCards summary={data.summary} />
+      {run.data?.final_live ? <FinalLivePanel data={run.data.final_live} /> : null}
+      {run.error ? <p role="alert" className="inline-warning">The unseen-test comparison could not load. <button type="button" className="btn btn-secondary" onClick={run.reload}>Retry test results</button></p> : null}
 
       <Panel
         title="Metrics side by side"
@@ -138,7 +149,7 @@ export function ComparisonPage() {
         <MetricsTable data={data} />
       </Panel>
 
-      <div className="split-grid">
+      <div className="results-examples">
         <Panel title="Where the agent found what the linear pipeline missed">
           {agentWins.length === 0 ? (
             <EmptyState title="No positive example in this run" />
@@ -194,6 +205,7 @@ export function ComparisonPage() {
         </Panel>
       </div>
 
+      <EvidenceDownload data={data} />
       <p className="source-note">
         {mode === "static" ? "Source: bundled comparison.json." : "Source: GET /api/comparison."} Both
         columns cover the same {data.after.cases} cases.

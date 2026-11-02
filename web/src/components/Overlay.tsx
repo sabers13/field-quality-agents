@@ -7,6 +7,7 @@ const FOCUSABLE =
   'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
 const overlayStack: symbol[] = [];
+let backgroundState: { root: HTMLElement | null; inert: boolean; overflow: string } | null = null;
 
 function useOverlay(panelRef: RefObject<HTMLElement | null>, onClose: () => void): void {
   const closeRef = useRef(onClose);
@@ -17,6 +18,12 @@ function useOverlay(panelRef: RefObject<HTMLElement | null>, onClose: () => void
     const previous = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     if (!panel) {
       return;
+    }
+    if (overlayStack.length === 0) {
+      const root = document.getElementById("root");
+      backgroundState = { root, inert: root?.inert ?? false, overflow: document.body.style.overflow };
+      if (root) root.inert = true;
+      document.body.style.overflow = "hidden";
     }
     const token = Symbol("overlay");
     overlayStack.push(token);
@@ -64,8 +71,6 @@ function useOverlay(panelRef: RefObject<HTMLElement | null>, onClose: () => void
       }
     };
 
-    const { overflow } = document.body.style;
-    document.body.style.overflow = "hidden";
     document.addEventListener("keydown", onKeyDown, true);
     return () => {
       document.removeEventListener("keydown", onKeyDown, true);
@@ -73,8 +78,10 @@ function useOverlay(panelRef: RefObject<HTMLElement | null>, onClose: () => void
       if (index >= 0) {
         overlayStack.splice(index, 1);
       }
-      if (overlayStack.length === 0) {
-        document.body.style.overflow = overflow;
+      if (overlayStack.length === 0 && backgroundState) {
+        document.body.style.overflow = backgroundState.overflow;
+        if (backgroundState.root) backgroundState.root.inert = backgroundState.inert;
+        backgroundState = null;
       }
       previous?.focus();
     };

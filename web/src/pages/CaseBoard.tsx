@@ -71,6 +71,22 @@ function CaseCard({ item }: { item: CaseListItem }) {
   );
 }
 
+function CaseRegister({ items }: { items: CaseListItem[] }) {
+  if (items.length === 0) return <EmptyState title="No matching reports">Try another search or clear the filters.</EmptyState>;
+  return <div className="case-register">
+    <div className="case-register-head" aria-hidden="true"><span>Report</span><span>Component & evidence</span><span>Review status</span><span /></div>
+    <ul className="case-register-list" aria-label="Complaint reports">
+      {items.map((item) => <li key={item.id}><a className="case-register-row" href={`#/cases/${encodeURIComponent(item.id)}`}
+        aria-label={`Open case ${item.id}: ${item.make} ${item.model}, ${item.component}`}>
+        <span><strong>{item.make} {item.model} {item.year}</strong><small>Report {item.id} · {formatDate(item.received_at)}</small></span>
+        <span><span className="case-register-component">{item.component}</span><small>{item.evidence_count} evidence · {item.human_touches} human {item.human_touches === 1 ? "touch" : "touches"}</small></span>
+        <span><StatusBadge status={item.status} />{item.safety_relevant ? <small className="flag-safety"><Icon name="shield" size={12} /> Safety flagged</small> : null}</span>
+        <Icon name="chevron" size={16} />
+      </a></li>)}
+    </ul>
+  </div>;
+}
+
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section className="detail-section">
@@ -259,12 +275,12 @@ export function CaseDetailView({ caseId, onClose }: { caseId: string; onClose: (
             onDecided={state.reload}
           />
 
-          <Section title="Agent trace">
-            <TraceTimeline steps={liveTrace} />
-          </Section>
+          <details className="case-disclosure"><summary>Agent trace · inspect the action history</summary>
+            <Section title="Agent trace"><TraceTimeline steps={liveTrace} /></Section>
+          </details>
 
           {detail.extraction ? (
-            <Section title="Extraction">
+            <details className="case-disclosure"><summary>Extracted symptoms & conditions</summary><Section title="Extraction">
               <dl className="meta-grid">
                 <div>
                   <dt>Group</dt>
@@ -284,11 +300,11 @@ export function CaseDetailView({ caseId, onClose }: { caseId: string; onClose: (
                 </div>
               </dl>
               <p>{detail.extraction.summary}</p>
-            </Section>
+            </Section></details>
           ) : null}
-
-          <SimilarCases detail={detail} />
-          <LinkedSources detail={detail} />
+          <details className="case-disclosure"><summary>Related reports & linked sources</summary>
+            <SimilarCases detail={detail} /><LinkedSources detail={detail} />
+          </details>
         </div>
       )}
     </Sheet>
@@ -297,6 +313,8 @@ export function CaseDetailView({ caseId, onClose }: { caseId: string; onClose: (
 
 export function CaseBoardPage() {
   const { source, mode } = useApp();
+  const [view, setView] = useState<"list" | "board">("list");
+  const [offset, setOffset] = useState(0);
   const [search, setSearch] = useState("");
   const [debounced, setDebounced] = useState("");
   const [safetyOnly, setSafetyOnly] = useState(false);
@@ -309,13 +327,14 @@ export function CaseBoardPage() {
   }, [search]);
 
   const query = {
-    limit: 200,
-    offset: 0,
+    limit: view === "list" ? 25 : 200,
+    offset,
+    ...(mobileColumn !== "all" ? { status: mobileColumn } : {}),
     ...(debounced ? { q: debounced } : {}),
     ...(safetyOnly ? { safety: true } : {}),
     ...(group ? { group } : {}),
   };
-  const key = `cases:${mode}:${debounced}:${safetyOnly}:${group}`;
+  const key = `cases:${mode}:${debounced}:${safetyOnly}:${group}:${view}:${offset}:${mobileColumn}`;
   const state = useAsync(() => source.getCases(query), key);
 
   const items = state.data?.items ?? [];
@@ -325,8 +344,7 @@ export function CaseBoardPage() {
   return (
     <div className="page">
       <p className="lede">
-        Six columns, one workflow. Intake and analysis both read as “In agent”; a case only reaches
-        decided with a human decision.
+        Read complaint reports, proposed tests and recorded decisions. Open a report to inspect its evidence.
       </p>
 
       <div className="board-controls">
@@ -337,13 +355,15 @@ export function CaseBoardPage() {
             className="input"
             type="search"
             value={search}
-            placeholder="Case id, make, model or component"
-            onChange={(event) => setSearch(event.target.value)}
+            placeholder="Case, make or component…"
+            name="case-search" autoComplete="off"
+            onChange={(event) => { setSearch(event.target.value); setOffset(0); }}
           />
         </label>
+        <details className="case-extra-filters"><summary>Filters</summary><div className="case-extra-filters-panel">
         <label className="field-inline" htmlFor="case-group">
           <span>Group</span>
-          <select id="case-group" className="input" value={group} onChange={(event) => setGroup(event.target.value)}>
+          <select id="case-group" className="input" value={group} onChange={(event) => { setGroup(event.target.value); setOffset(0); }}>
             <option value="">All groups</option>
             {groups.map((value) => (
               <option value={value} key={value}>
@@ -353,17 +373,25 @@ export function CaseBoardPage() {
           </select>
         </label>
         <label className="checkbox">
-          <input type="checkbox" checked={safetyOnly} onChange={(event) => setSafetyOnly(event.target.checked)} />
+          <input type="checkbox" checked={safetyOnly} onChange={(event) => { setSafetyOnly(event.target.checked); setOffset(0); }} />
           Safety only
         </label>
+        </div></details>
       </div>
 
+      <div className="case-results-heading">
+        <p role="status">{state.data ? `${formatInteger(state.data.total)} reports match · showing ${items.length === 0 ? 0 : offset + 1}–${offset + items.length}` : "Finding reports…"}</p>
+        <div className="view-switch" role="group" aria-label="Case view">
+          <button type="button" aria-pressed={view === "list"} onClick={() => { setView("list"); setOffset(0); }}>List</button>
+          <button type="button" aria-pressed={view === "board"} onClick={() => { setView("board"); setOffset(0); }}>Board</button>
+        </div>
+      </div>
       <div className="board-filter" role="group" aria-label="Filter board by status">
         <button
           type="button"
           className="chip"
           aria-pressed={mobileColumn === "all"}
-          onClick={() => setMobileColumn("all")}
+          onClick={() => { setMobileColumn("all"); setOffset(0); }}
         >
           All
         </button>
@@ -373,7 +401,7 @@ export function CaseBoardPage() {
             className="chip"
             key={column.id}
             aria-pressed={mobileColumn === column.id}
-            onClick={() => setMobileColumn(column.id)}
+            onClick={() => { setMobileColumn(column.id); setOffset(0); }}
           >
             {column.header}
           </button>
@@ -384,7 +412,7 @@ export function CaseBoardPage() {
         <ErrorState error={state.error} onRetry={state.reload} />
       ) : state.data === null ? (
         <LoadingState label="Loading cases" />
-      ) : (
+      ) : view === "list" ? <CaseRegister items={items} /> : (
         <div className="board" aria-label="Case board">
           {visibleColumns.map((column) => {
             const columnItems = items.filter((item) => column.statuses.includes(item.status));
@@ -410,6 +438,13 @@ export function CaseBoardPage() {
         </div>
       )}
 
+      {state.data && state.data.total > state.data.limit ? <nav className="case-pagination" aria-label="Report pages">
+        <button type="button" className="btn btn-secondary" disabled={offset === 0 || state.status === "refreshing"}
+          onClick={() => setOffset(Math.max(0, offset - state.data!.limit))}>Previous</button>
+        <span>{formatInteger(offset + 1)}–{formatInteger(offset + items.length)} of {formatInteger(state.data.total)}</span>
+        <button type="button" className="btn btn-secondary" disabled={offset + items.length >= state.data.total || state.status === "refreshing"}
+          onClick={() => setOffset(offset + state.data!.limit)}>Next reports</button>
+      </nav> : null}
       <p className="source-note">
         {mode === "static" ? "Source: bundled cases.json." : "Source: GET /api/cases."}
         {state.data ? ` ${state.data.total} cases match.` : ""}

@@ -1,5 +1,4 @@
 import { useApp } from "../app/AppContext";
-import { FinalLivePanel } from "../components/FinalLivePanel";
 import { KpiTile } from "../components/KpiTile";
 import { Panel, EmptyState, ErrorState, LoadingState } from "../components/States";
 import { ToneBadge } from "../components/StatusBadge";
@@ -103,12 +102,13 @@ export function CommandCentrePage() {
   ]
     .filter((event, index, all) => (event.id ? all.findIndex((item) => item.id === event.id) === index : true))
     .slice(0, 50);
+  const primaryKpis = new Set(["cases_in", "human_touches", "open_issues", "cost_per_case"]);
 
   return (
     <div className="page">
       <p className="lede">
-        The same returns process, run by a linear rule pipeline and by an agentic desk, on the same
-        cases. Agents gather evidence and draft; engineers decide.{" "}
+        The recorded desk at a glance: reports received, engineer workload and model spend.
+        Decisions in this run came from a simulated engineer.{" "}
         <span className="window-label">{windowLabel(data.window)}</span>
       </p>
 
@@ -119,14 +119,14 @@ export function CommandCentrePage() {
       ) : null}
 
       <div className="kpi-grid">
-        {data.kpis.map((kpi) => (
+        {data.kpis.filter((kpi) => primaryKpis.has(kpi.id)).map((kpi) => (
           <KpiTile kpi={kpi} key={kpi.id} />
         ))}
       </div>
 
-      {data.final_live ? <FinalLivePanel data={data.final_live} /> : null}
+      <p className="dashboard-result-link">Looking for the evaluation? <a href="#/compare">Read the results and limitations</a>.</p>
 
-      <div className="split-grid">
+      <div className="split-grid dashboard-main">
         <Panel
           title="Agent actions"
           className="feed-panel"
@@ -136,7 +136,7 @@ export function CommandCentrePage() {
             <EmptyState title="No actions yet">Agent steps stream here as the desk works through cases.</EmptyState>
           ) : (
             <ol className="feed" aria-label="Recent agent actions">
-              {events.map((event, index) => (
+              {events.slice(0, 4).map((event, index) => (
                 <FeedItem event={event} key={event.id ?? `${event.at}-${index}`} />
               ))}
             </ol>
@@ -157,6 +157,12 @@ export function CommandCentrePage() {
           </p>
         </Panel>
       </div>
+      <details className="technical-disclosure"><summary>More operational measurements</summary>
+        <div className="kpi-grid dashboard-secondary-kpis">{data.kpis.filter((kpi) => !primaryKpis.has(kpi.id)).map((kpi) => <KpiTile kpi={kpi} key={kpi.id} />)}</div>
+      </details>
+      {events.length > 4 ? <details className="technical-disclosure"><summary>Full recorded activity</summary>
+        <ol className="feed" aria-label="Full recorded agent actions">{events.map((event, index) => <FeedItem event={event} key={event.id ?? index} />)}</ol>
+      </details> : null}
     </div>
   );
 }

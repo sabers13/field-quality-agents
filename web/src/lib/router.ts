@@ -1,6 +1,7 @@
 /** Tiny hash router: no dependency, works in the static export and dev server. */
 
 export type Route =
+  | { page: "overview" }
   | { page: "command" }
   | { page: "cases"; caseId?: string }
   | { page: "issues"; issueId?: string }
@@ -13,11 +14,16 @@ export type PageId = Route["page"];
 export function parseRoute(hash: string): Route {
   const path = hash.replace(/^#/, "").replace(/^\/+/, "").replace(/\/+$/, "");
   if (path === "") {
-    return { page: "command" };
+    return { page: "overview" };
   }
   const [head, ...rest] = path.split("/");
   const id = rest.join("/");
   switch (head) {
+    case "overview":
+      return { page: "overview" };
+    case "dashboard":
+    case "command":
+      return { page: "command" };
     case "cases":
       return id ? { page: "cases", caseId: decodeURIComponent(id) } : { page: "cases" };
     case "issues":
@@ -29,14 +35,16 @@ export function parseRoute(hash: string): Route {
     case "report":
       return { page: "report" };
     default:
-      return { page: "command" };
+      return { page: "overview" };
   }
 }
 
 export function routeHref(route: Route): string {
   switch (route.page) {
-    case "command":
+    case "overview":
       return "#/";
+    case "command":
+      return "#/dashboard";
     case "cases":
       return route.caseId ? `#/cases/${encodeURIComponent(route.caseId)}` : "#/cases";
     case "issues":
@@ -51,6 +59,7 @@ export function routeHref(route: Route): string {
 }
 
 export const PAGE_TITLES: Record<PageId, string> = {
+  overview: "Field quality agents",
   command: "Command centre",
   cases: "Case board",
   issues: "Issue room",
@@ -60,10 +69,11 @@ export const PAGE_TITLES: Record<PageId, string> = {
 };
 
 export const NAV_ITEMS: { page: PageId; label: string; short: string }[] = [
-  { page: "command", label: "Command centre", short: "Command" },
-  { page: "cases", label: "Case board", short: "Cases" },
-  { page: "issues", label: "Issue room", short: "Issues" },
-  { page: "compare", label: "Before vs after", short: "Compare" },
+  { page: "overview", label: "Overview", short: "Overview" },
+  { page: "cases", label: "Cases", short: "Cases" },
+  { page: "issues", label: "Issues", short: "Issues" },
+  { page: "compare", label: "Results", short: "Results" },
+  { page: "command", label: "Dashboard", short: "Dashboard" },
   { page: "replay", label: "Replay", short: "Replay" },
   { page: "report", label: "Weekly report", short: "Report" },
 ];

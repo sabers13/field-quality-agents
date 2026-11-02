@@ -211,7 +211,8 @@ function IssueDetailView({ issue }: { issue: IssueDetail }) {
         </Panel>
       </div>
 
-      <Panel title="8D draft · D1–D4">
+      <Panel title="Investigation draft (8D)">
+        <p className="muted">A structured problem-solving draft: the team, reported problem, proposed containment and possible causes. It still needs engineer review.</p>
         {issue.eight_d ? (
           <div className="eightd">
             <p className="muted">
@@ -284,12 +285,12 @@ export function IssueRoomPage({ issueId }: { issueId: string | undefined }) {
   return (
     <div className="page">
       <p className="lede">
-        One room per cluster: the weekly counts against the spike rule, the linked cases and
-        recalls, the 8D draft and the decision memo.
+        Do several reports point to the same problem? Open a cluster to inspect the report counts,
+        linked evidence and a draft investigation summary.
       </p>
-      <div className="issues-layout" data-detail={issueId ? "true" : "false"}>
+      <div className={issueId ? "issues-layout" : "issues-overview"} data-detail={issueId ? "true" : "false"}>
         <IssueList issues={listState.data} activeId={issueId ?? null} />
-        <div className="issue-detail-pane">
+        {issueId ? <div className="issue-detail-pane">
           {issueId ? (
             <a className="back-link" href="#/issues">
               <Icon name="chevron" size={12} /> All issues
@@ -309,7 +310,7 @@ export function IssueRoomPage({ issueId }: { issueId: string | undefined }) {
           ) : (
             <IssueDetailView issue={detailState.data} />
           )}
-        </div>
+        </div> : null}
       </div>
     </div>
   );

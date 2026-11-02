@@ -21,10 +21,16 @@ export function FinalLivePanel({ data }: { data: FinalLiveData }) {
       <p className="lede">
         The desk ran again on {data.final.cases} reports it had never seen
         ({formatDate(data.window_start)} to {formatDate(data.window_end)}), and the
-        same 600-case replay is beside it. Spend {formatMoney(data.spend_usd)} (
+        original recorded comparison is beside it. Spend {formatMoney(data.spend_usd)} (
         {formatMoney(perCase, { perCase: true })} per case), {data.budget_hits} budget{" "}
         {data.budget_hits === 1 ? "hit" : "hits"}.
       </p>
+      {groupRow && groupRow.final !== null && groupRow.final < 0.1 ? (
+        <div className="evaluation-note"><div><strong>Component classification failed in the unseen test</strong>
+          <p>The agent returned component descriptions rather than the required group codes. The classification score was {formatMetricValue(groupRow.final, groupRow.kind)}. The remaining measurements do not depend on that field.</p>
+        </div></div>
+      ) : null}
+      <details className="technical-disclosure"><summary>Compare the complete recorded measurements</summary>
       <table className="mini-table">
         <caption className="sr-only">
           Q9 replay set against the final live test set, agentic desk
@@ -45,14 +51,7 @@ export function FinalLivePanel({ data }: { data: FinalLiveData }) {
             </tr>
           ))}
         </tbody>
-      </table>
-      {groupRow && groupRow.final !== null && groupRow.final < 0.1 ? (
-        <p className="field-note">
-          Group macro-F1 is near zero because intake prompt p1 never lists the group
-          ids, so the desk answers with component text. reports/FINAL-LIVE.md records
-          the finding; the other rows do not depend on it.
-        </p>
-      ) : null}
+      </table></details>
       <p className="source-note">
         Source: results/final-live/metrics.json and the Q9 run ({data.q9_run_id}).
         The linear pipeline ran on the same cases; its numbers are in the

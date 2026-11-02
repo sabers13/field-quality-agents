@@ -103,6 +103,16 @@ export function WeeklyReportPage() {
         </div>
       </header>
 
+      <Panel title="Report narrative">
+        {report.narrative ? (
+          <p className="report-narrative">{report.narrative}</p>
+        ) : (
+          <EmptyState title="No narrative">
+            The report agent writes the week's story from the committed run files.
+          </EmptyState>
+        )}
+      </Panel>
+
       <div className="stat-grid">
         <article className="stat-card">
           <span className="stat-label">Cases received</span>
@@ -126,19 +136,9 @@ export function WeeklyReportPage() {
         </article>
       </div>
 
-      <Panel title="Report narrative">
-        {report.narrative ? (
-          <p className="report-narrative">{report.narrative}</p>
-        ) : (
-          <EmptyState title="No narrative">
-            The report agent writes the week's story from the committed run files.
-          </EmptyState>
-        )}
-      </Panel>
-
-      <Panel title="Metrics for the week">
-        <MetricsGrid metrics={report.metrics} />
-      </Panel>
+      <details className="technical-disclosure"><summary>Detailed measurements for this week</summary>
+        <Panel title="Metrics for the week"><MetricsGrid metrics={report.metrics} /></Panel>
+      </details>
 
       <p className="source-note">
         {mode === "static" ? "Source: bundled weekly_report.json." : "Source: GET /api/reports/weekly."}
